@@ -1,0 +1,8 @@
+{% macro render(text = null, elementId = null, textPartId = null) %}{% apply spaceless %}
+    {% set text = text ?: bsi_cx_lorem(110) %}
+    {% set elementId = elementId ?: 'text-kkq2fq' %}
+    {% set textPartId = textPartId ?: 'text-part-Fjse59' %}
+    <div data-bsi-element="{{ elementId }}" data-bsi-element-part="{{ textPartId }}" class="{{ 'bsi-element-' ~ elementId }} bsi-default">
+        <p>{{ text }}</p>
+    </div>
+{% endapply %}{% endmacro %}

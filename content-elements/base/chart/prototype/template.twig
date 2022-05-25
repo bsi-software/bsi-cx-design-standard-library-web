@@ -1,0 +1,13 @@
+{% macro render(elementId = null, urlPartId = null, imagePartId = null, imageSrc = null) %}{% apply spaceless %}
+    {% set elementId = elementId ?: 'chart-qEBqKT' %}
+    {% set urlPartId = urlPartId ?: 'chart-part-url-cDW6yK' %}
+    {% set imagePartId = imagePartId ?: 'chart-part-image-rpPPzg' %}
+    {% set imageSrc = imageSrc ?: bsi_cx_asset('../../../../static/image.png') %}
+
+    {% if cx.version.TARGET >= cx.version.CX_22_0 %}
+        <div x-data="chartElement" x-init="initChart" data-bsi-element="{{ elementId }}" class="mb-3 chart-js {{ 'bsi-element-' ~ elementId }}" data-bsi-element-part="{{ urlPartId }}" data-bsi-url-provider="Diagramm">
+            <img src="{{ imageSrc }}" alt="" class="w-100" data-bsi-element-part="{{ imagePartId }}"/>
+        </div>
+    {% endif %}
+
+{% endapply %}{% endmacro %}

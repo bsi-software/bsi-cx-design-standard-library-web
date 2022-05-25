@@ -1,0 +1,36 @@
+@mixin styles($id: 'form-field-tel-fKUxNS') {
+  .bsi-element-#{$id}.bsi-form-tel-input {
+    .iti__flag {
+      background-image: url("./flags.png");
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .iti__flag {
+        background-image: url("./flags_2x.png");
+      }
+    }
+
+    &.bsi-element-width-full .iti {
+      width: 100% !important;
+      display: block;
+    }
+
+    .bsi-form-tel-input-element {
+      width: 100% !important;
+    }
+
+    .bsi-tel-input-error-invalid {
+      margin-top: 0.25rem;
+      font-size: 0.875em;
+      color: #dc3545;
+    }
+
+    .form-floating .form-label {
+      margin-left: 40px;
+    }
+
+    .iti__selected-flag {
+      background-color: rgba(0, 0, 0, 0.05) !important;
+    }
+  }
+}

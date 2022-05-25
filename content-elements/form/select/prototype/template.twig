@@ -1,0 +1,20 @@
+{% macro render(text = null, elementId = null, elementPartId = null, errorRequiredPartId = null) %}{% apply spaceless %}
+    {% set text = text ?: bsi_cx_lorem(9) %}
+    {% set elementId = elementId ?: 'select-iOtV1m' %}
+    {% set elementPartId = elementPartId ?: 'select-part-XNh1St' %}
+    {% set formTextPartId = formTextPartId ?: 'select-part-text-hSNRfA' %}
+    {% set errorRequiredPartId = errorRequiredPartId ?: 'select-part-error-required-6sq4M6' %}
+
+    <div x-data="selectField" data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-placeholder-not-defined" data-bsi-element-part="{{ elementPartId }}">
+        <div class="bsi-form-input-element bsi-label-floating-element mb-3">
+            <label for="select" class="form-label">Label</label>
+            <select x-init="initSelectField" class="form-select" id="select">
+                <option value="">Please select</option>
+            </select>
+            <div data-bsi-element-part="{{ formTextPartId }}" class="form-text">{{ text }}</div>
+            <div class="invalid-feedback">
+                <label data-bsi-element-part="{{ errorRequiredPartId }}">Please fill out this field.</label>
+            </div>
+        </div>
+    </div>
+{% endapply %}{% endmacro %}

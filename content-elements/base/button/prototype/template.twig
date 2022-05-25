@@ -1,0 +1,11 @@
+{% macro render(elementId = null, elementPartId = null, iconPartId = null) %}{% apply spaceless %}
+    {% set elementId = elementId ?: 'button-v3cFFn' %}
+    {% set elementPartId = elementPartId ?: 'button-part-0Cq8Xc' %}
+    {% set iconPartId = iconPartId ?: 'button-part-icon-f1TI9P' %}
+
+    <div x-data="btnElement" data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} bsi-btn-element bsi-btn-color-primary bsi-btn-filled bsi-btn-size-md bsi-btn-width-default bsi-corner-rounded bsi-btn-letter-default bsi-btn-icon-hide">
+        <a x-init="initBtn" class="btn" data-bsi-element-part="{{ elementPartId }}" href="#">Read more</a>
+        <label hidden class="bsi-icon-identifier" data-bsi-element-part="{{ iconPartId }}">arrow-right</label>
+    </div>
+
+{% endapply %}{% endmacro %}

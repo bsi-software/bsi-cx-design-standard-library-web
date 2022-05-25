@@ -1,0 +1,16 @@
+{% macro render(elementId = null, dropzoneImageId = null, dropzoneContentId = null) %}{% apply spaceless %}
+    {% set elementId = elementId ?: 'card-crRST4' %}
+    {% set dropzoneImageId = dropzoneImageId ?: 'card-dropzone-image-CIqKdf' %}
+    {% set dropzoneContentId = dropzoneContentId ?: 'card-dropzone-content-b19htW' %}
+    <div data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} card mb-3 bsi-image-top bsi-ratio-4-8 bsi-shadow-visible bsi-bg-color-transparent bsi-opacity-100 bsi-gradient-hide bsi-border-visible bsi-corner-rounded bsi-height-auto">
+        <div class="bsi-card-element row g-0">
+            <div data-bsi-dropzone="{{ dropzoneImageId }}" class="bsi-card-image">
+                {% include '../../figure/template.twig' %}
+            </div>
+            <div data-bsi-dropzone="{{ dropzoneContentId }}" class="card-body container">
+                {% include '../../h3/template.twig' %}
+                {% include '../../text/template.twig' %}
+            </div>
+        </div>
+    </div>
+{% endapply %}{% endmacro %}

@@ -1,0 +1,38 @@
+{% macro render(text = null, elementId = null, elementPartId = null, leftPartId = null, rightPartId = null, errorRequiredPartId = null) %}{% apply spaceless %}
+    {% set text = text ?: bsi_cx_lorem(9) %}
+    {% set elementId = elementId ?: 'poll-wni8em' %}
+    {% set elementPartId = elementPartId ?: 'poll-part-diJBU7' %}
+    {% set leftPartId = leftPartId ?: 'poll-part-left-fw2gb8' %}
+    {% set rightPartId = rightPartId ?: 'poll-part-right-Cz7PuT' %}
+    {% set formTextPartId = formTextPartId ?: 'poll-part-text-Xi7bOp' %}
+    {% set errorRequiredPartId = errorRequiredPartId ?: 'poll-part-error-required-lL6aMT' %}
+
+    {% set pollRange = range(1,10) %}
+    {% set pollValueList = '' %}
+    {% for value in pollRange %}
+        {% set pollValueList = pollValueList ~ value ~ (loop.last == false ? "\n" : '') %}
+    {% endfor %}
+
+    <div x-data="formPoll" data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-poll-nps">
+        <div data-bsi-element-part="{{ elementPartId }}" data-bsi-value="" data-bsi-value-list="{{ pollValueList }}">
+            <label for="poll-input" class="form-label pt-0 d-block">How likely is it that you will recommend our product to others?</label>
+            <div x-init="initRadioGroup($root, $el)" class="bsi-poll-radio-group" data-bsi-radio-group="">
+                {% for value in pollRange %}
+                    <div class="form-check form-check-inline radio-group bsi-poll-radio-item" data-bsi-radio-item="" data-form-radio-selected="false">
+                        <input x-on:change="validateInput" class="form-check-input bsi-poll-radio-input" type="radio" id="poll-input-{{ value }}" name="poll-input" value="{{ value }}"/>
+                        <label class="form-check-label bsi-poll-radio-label" for="poll-input-{{ value }}">{{ value }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div x-init="initLabel" class="d-flex justify-content-between my-2">
+                <label data-bsi-element-part="{{ leftPartId }}">Unlikely</label>
+                <label data-bsi-element-part="{{ rightPartId }}">Very likely</label>
+            </div>
+            <div data-bsi-element-part="{{ formTextPartId }}" class="form-text">{{ text }}</div>
+            <div x-init="initRequiredError" class="invalid-feedback">
+                <label data-bsi-element-part="{{ errorRequiredPartId }}">Please fill out this field.</label>
+            </div>
+        </div>
+    </div>
+
+{% endapply %}{% endmacro %}

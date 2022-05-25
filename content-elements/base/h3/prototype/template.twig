@@ -1,0 +1,6 @@
+{% macro render(title = null, elementId = null, titlePartId = null) %}{% apply spaceless %}
+    {% set title = title ?: bsi_cx_lorem(3) %}
+    {% set elementId = elementId ?: 'title-h3-gbnkTT' %}
+    {% set titlePartId = titlePartId ?: 'title-h3-part-mJ0yli' %}
+    <h3 data-bsi-element="{{ elementId }}" data-bsi-element-part="{{ titlePartId }}" class="{{ 'bsi-element-' ~ elementId }} bsi-heading-element bsi-text-primary-color bsi-default">{{ title }}</h3>
+{% endapply %}{% endmacro %}

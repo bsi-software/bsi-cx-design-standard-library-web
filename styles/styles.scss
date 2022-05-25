@@ -1,0 +1,95 @@
+@import "./properties";
+@import "bootstrap/scss/bootstrap";
+
+// Styles used by multiple content elements:
+// Headings
+.bsi-heading-element {
+  width: 100%;
+  font-family: $fonts;
+  $colors: ("primary-color": $primary, "secondary-color": $secondary, "dark": $dark, "light": $light);
+  @each $name, $color in $colors {
+    &.bsi-text-#{$name} {
+      color: $color;
+    }
+  }
+}
+
+// Columns
+.bsi-column-element {
+  &.bsi-space-around-hide {
+    --bs-gutter-x: 0;
+    overflow-x: hidden;
+
+    .row {
+      @media (max-width: $md - 1px) {
+        --bs-gutter-x: 0;
+      }
+    }
+  }
+
+  &.bsi-gaps-hide .row {
+    --bs-gutter-x: 0;
+  }
+
+  &.bsi-col-align-center {
+    .bsi-column, .card-body {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    p, h1, h2, h3, h4, h5 {
+      text-align: center;
+    }
+
+    .btn {
+      margin: 0 12px 12px 12px;
+    }
+  }
+
+  &.bsi-col-align-right {
+    .bsi-column, .card-body {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: right;
+    }
+
+    p, h1, h2, h3, h4, h5 {
+      text-align: right;
+    }
+
+    .btn {
+      margin: 0 0 12px 12px;
+    }
+  }
+
+  $colors: ("primary": $primary, "secondary": $secondary, "tertiary": $tertiary, "primary-pastel": $primary-pastel, "secondary-pastel": $secondary-pastel, "tertiary-pastel": $tertiary-pastel, "brown-light": $brown-light, "brown-medium": $brown-medium, "brown-dark": $brown-dark, "dark": $dark);
+  @for $i from 10 through 100 {
+    @if $i % 10 == 0 {
+      $opacity-percentage: $i*1%;
+      @each $name, $color in $colors {
+        &.bsi-bg-color-#{$name}.bsi-opacity-#{$i} {
+          .bsi-column {
+            background-color: mix(white, $color, 100%-$opacity-percentage);
+          }
+
+          &.bsi-gradient-to-bottom .bsi-column {
+            background-image: linear-gradient(to bottom, white, mix(white, $color, 100%-$opacity-percentage));
+          }
+
+          &.bsi-gradient-to-top .bsi-column {
+            background-image: linear-gradient(to top, white, mix(white, $color, 100%-$opacity-percentage));
+          }
+
+          &.bsi-gradient-to-bottom-and-top .bsi-column {
+            background-image: linear-gradient(white, mix(white, $color, 100%-$opacity-percentage), white);
+          }
+        }
+      }
+    }
+  }
+}
+
+.bsi-ce-edit-mode [data-bsi-element] .bsi-column-element.bsi-space-around-hide {
+  overflow-x: visible !important;
+}

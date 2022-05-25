@@ -1,0 +1,13 @@
+{% macro render(elementId = null, imagePartId = null, textPartId = null, imageSrc = null, caption = null) %}{% apply spaceless %}
+    {% set elementId = elementId ?: 'figure-DWEfdD' %}
+    {% set imagePartId = imagePartId ?: 'figure-part-image-JoCwpV' %}
+    {% set textPartId = textPartId ?: 'figure-part-text-Xbhmjk' %}
+    {% set imageSrc = imageSrc ?: bsi_cx_asset('../../../../static/image.png') %}
+    {% set caption = caption ?: bsi_cx_lorem(3) %}
+
+    <figure data-bsi-element="{{ elementId }}" class="figure {{ 'bsi-element-' ~ elementId }} bsi-caption-hide bsi-caption-medium bsi-shape-square bsi-orientation-landscape bsi-aspect-ratio-auto bsi-hover-effect-disabled bsi-overlay-hide bsi-overlay-opacity-0">
+        <img src="{{ imageSrc }}" class="figure-img img-fluid" alt="{{ text }}" data-bsi-element-part="{{ imagePartId }}" srcset="{{ imageSrc }}"/>
+        <figcaption class="figure-caption" data-bsi-element-part="{{ textPartId }}">{{ caption }}</figcaption>
+    </figure>
+
+{% endapply %}{% endmacro %}

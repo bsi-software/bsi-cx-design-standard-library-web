@@ -1,0 +1,23 @@
+{% macro render(text = null, elementId = null, elementPartId = null, errorRequiredPartId = null) %}{% apply spaceless %}
+    {% set text = text ?: bsi_cx_lorem(9) %}
+    {% set elementId = elementId ?: 'radio-O6XCY3' %}
+    {% set elementPartId = elementPartId ?: 'radio-part-I0iU7X' %}
+    {% set formTextPartId = formTextPartId ?: 'radio-part-text-NyYl9g' %}
+    {% set errorRequiredPartId = errorRequiredPartId ?: 'radio-part-error-required-KCNwQh' %}
+
+    <div x-data="formRadio" data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-form-flex-label bsi-radio-block" data-bsi-element-part="{{ elementPartId }}">
+        <div class="bsi-form-input-element">
+            <label class="form-label pt-0">Label</label>
+            <div data-bsi-radio-group="" class="form-radio">
+                <div class="form-check" data-bsi-radio-item="">
+                    <input x-on:change="validateInput" class="form-check-input" type="radio" name="radio" id="radio1">
+                    <label class="form-check-label" for="radio1">Radio</label>
+                </div>
+            </div>
+            <div data-bsi-element-part="{{ formTextPartId }}" class="form-text">{{ text }}</div>
+            <div x-init="initRequiredError" class="invalid-feedback">
+                <label data-bsi-element-part="{{ errorRequiredPartId }}">Please fill out this field.</label>
+            </div>
+        </div>
+    </div>
+{% endapply %}{% endmacro %}

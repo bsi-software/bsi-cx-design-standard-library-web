@@ -1,0 +1,12 @@
+@mixin styles($id: 'radio-O6XCY3') {
+  .bsi-element-#{$id} {
+    &.bsi-radio-inline .form-check {
+      display: inline-block;
+      margin-right: 1rem;
+    }
+
+    .form-check-input {
+      -webkit-appearance: none;
+    }
+  }
+}

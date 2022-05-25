@@ -1,0 +1,37 @@
+{% macro render(text = null, elementId = null, elementPartId = null, countriesPartId = null, pinnedCountriesPartId = null, errorRequiredPartId = null, errorInvalidPartId = null) %}{% apply spaceless %}
+    {% set text = text ?: bsi_cx_lorem(9) %}
+    {% set elementId = elementId ?: 'form-field-tel-fKUxNS' %}
+    {% set elementPartId = elementPartId ?: 'form-field-tel-part-L3Y3gC' %}
+    {% set countriesPartId = countriesPartId ?: 'form-field-tel-part-countries-OGz4jf' %}
+    {% set pinnedCountriesPartId = pinnedCountriesPartId ?: 'form-field-tel-part-pinned-BEWZhN' %}
+    {% set formTextPartId = formTextPartId ?: 'form-field-tel-part-text-yXZUwb' %}
+    {% set errorRequiredPartId = errorRequiredPartId ?: 'form-field-tel-part-error-required-XKiYlP' %}
+    {% set errorInvalidPartId = errorInvalidPartId ?: 'form-field-tel-part-error-invalid-3XeP4R' %}
+
+    <div x-data="telInput" data-bsi-element="{{ elementId }}" data-bsi-element-part="{{ elementPartId }}" data-bsi-form-field-fixed-type class="{{ 'bsi-element-' ~ elementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-form-tel-input bsi-element-width-full">
+        <div class="bsi-form-input-element mb-3">
+            <label for="tel-field" class="form-label">Label</label>
+            <input x-init="initTelInput" x-on:change="validateInput" x-on:countrychange="changeCountry" x-on:focus="onFocus" x-on:focusout="onFocusOut" class="form-control bsi-form-tel-input-element" id="tel-field" type="tel" value="">
+
+            <!-- When live, the following section will hold hidden input field with the normalized phone number -->
+            <div x-init="initHiddenInput" data-bsi-remove-if="draft" class="normalizedValueHolder" role="presentation" hidden="true" aria-hidden="true"></div>
+
+            <!-- configuration -->
+            <div role="presentation" hidden="true" aria-hidden="true">
+                <label data-bsi-element-part="{{ countriesPartId }}" class="only-countries"></label>
+            </div>
+            <div role="presentation" hidden="true" aria-hidden="true">
+                <label data-bsi-element-part="{{ pinnedCountriesPartId }}" class="preferred-countries">ch,de,at</label>
+            </div>
+
+            <div data-bsi-element-part="{{ formTextPartId }}" class="form-text">{{ text }}</div>
+            <div x-init="initRequiredError" class="bsi-tel-input-error-required invalid-feedback">
+                <label data-bsi-element-part="{{ errorRequiredPartId }}">Please fill out this field.</label>
+            </div>
+            <div x-init="initInvalidError" class="bsi-tel-input-error-invalid" hidden="true" aria-hidden="true">
+                <label data-bsi-element-part="{{ errorInvalidPartId }}" class="errormessage-invalid">The value you entered for this field is invalid.</label>
+            </div>
+        </div>
+    </div>
+
+{% endapply %}{% endmacro %}

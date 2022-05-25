@@ -1,0 +1,10 @@
+{% macro render(elementId = null, dropzoneId = null) %}{% apply spaceless %}
+    {% set elementId = elementId ?: 'multi-column-VxWXpr' %}
+    {% set dropzoneId = dropzoneId ?: 'multi-column-dropzone-olNcOu' %}
+    <div data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} bsi-multi-col-element px-0 bsi-col-auto bsi-default-wide">
+        <div class="d-flex flex-wrap bsi-multi-col" data-bsi-dropzone="{{ dropzoneId }}">
+            {% include '../../form-field/template.twig' %}
+            {% include '../../form-field/template.twig' %}
+        </div>
+    </div>
+{% endapply %}{% endmacro %}

@@ -1,0 +1,4 @@
+{% macro render(elementId = null) %}{% apply spaceless %}
+    {% set elementId = elementId ?: 'spacer-jarY9b' %}
+    <div data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} pt-5"></div>
+{% endapply %}{% endmacro %}
