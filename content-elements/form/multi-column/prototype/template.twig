@@ -3,8 +3,10 @@
     {% set dropzoneId = dropzoneId ?: 'multi-column-dropzone-olNcOu' %}
     <div data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} bsi-multi-col-element px-0 bsi-col-auto bsi-default-wide">
         <div class="d-flex flex-wrap bsi-multi-col" data-bsi-dropzone="{{ dropzoneId }}">
-            {% include '../../form-field/template.twig' %}
-            {% include '../../form-field/template.twig' %}
+            {% block multi_column_dropzone %}
+                {% include '../../form-field/template.twig' %}
+                {% include '../../form-field/template.twig' %}
+            {% endblock %}
         </div>
     </div>
 {% endapply %}{% endmacro %}

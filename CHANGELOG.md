@@ -12,4 +12,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 * Standard library for CX designs.
 
-[1.0.0]: https://github.com/bsi-software/bsi-cx-design-standard-library/releases/tag/1.0.0
+[1.0.0]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.0.0

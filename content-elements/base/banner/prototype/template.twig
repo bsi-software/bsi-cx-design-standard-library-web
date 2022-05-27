@@ -9,6 +9,7 @@
         <img src="{{ imageSrc }}" srcset="{{ imageSrc }} 1320w, {{ imageMobileSrc }} 800w" class="bsi-banner w-100" alt="" data-bsi-element-part="{{ imagePartId }}"/>
         <div class="position-absolute start-0 top-0 end-0 bottom-0 py-5 d-flex justify-content-center">
             <div class="align-self-center" data-bsi-dropzone="{{ dropzoneId }}">
+                {% block banner_dropzone %}{% endblock %}
             </div>
         </div>
     </div>

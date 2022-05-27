@@ -5,11 +5,15 @@
     <div data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} card mb-3 bsi-image-top bsi-ratio-4-8 bsi-shadow-visible bsi-bg-color-transparent bsi-opacity-100 bsi-gradient-hide bsi-border-visible bsi-corner-rounded bsi-height-auto">
         <div class="bsi-card-element row g-0">
             <div data-bsi-dropzone="{{ dropzoneImageId }}" class="bsi-card-image">
-                {% include '../../figure/template.twig' %}
+                {% block card_dropzone_image %}
+                    {% include '../../figure/template.twig' %}
+                {% endblock %}
             </div>
             <div data-bsi-dropzone="{{ dropzoneContentId }}" class="card-body container">
-                {% include '../../h3/template.twig' %}
-                {% include '../../text/template.twig' %}
+                {% block card_dropzone_content %}
+                    {% include '../../h3/template.twig' %}
+                    {% include '../../text/template.twig' %}
+                {% endblock %}
             </div>
         </div>
     </div>

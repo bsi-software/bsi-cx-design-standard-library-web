@@ -1,11 +1,11 @@
 {
-  "name": "@bsi-cx/design-standard-library",
+  "name": "@bsi-cx/design-standard-library-web",
   "version": "1.0.0",
   "description": "Standard content element library for BSI CX.",
   "license": "MIT",
-  "repository": "github:bsi-software/bsi-cx-design-standard-library",
+  "repository": "github:bsi-software/bsi-cx-design-standard-library-web",
   "bugs": {
-    "url": "https://github.com/bsi-software/bsi-cx-design-standard-library/issues"
+    "url": "https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues"
   },
   "contributors": [
     {
