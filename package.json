@@ -2,7 +2,7 @@
   "name": "@bsi-cx/design-standard-library",
   "version": "1.0.0",
   "description": "Standard content element library for BSI CX.",
-  "license": "ISC",
+  "license": "MIT",
   "repository": "github:bsi-software/bsi-cx-design-standard-library",
   "bugs": {
     "url": "https://github.com/bsi-software/bsi-cx-design-standard-library/issues"
@@ -10,27 +10,22 @@
   "contributors": [
     {
       "name": "Yann Büchler",
-      "email": "yann.buechler@bsi-software.com",
       "url": "https://www.bsi-software.com/"
     },
     {
       "name": "Oliver Fabel",
-      "email": "oliver.fabel@bsi-software.com",
       "url": "https://www.bsi-software.com/"
     },
     {
       "name": "Lukas Heyer",
-      "email": "lukas.heyer@bsi-software.com",
       "url": "https://www.bsi-software.com/"
     },
     {
       "name": "Marleen Jattke",
-      "email": "marleen.jattke@bsi-software.com",
       "url": "https://www.bsi-software.com/"
     },
     {
       "name": "Lukas Steiger",
-      "email": "lukas.steiger@bsi-software.com",
       "url": "https://www.bsi-software.com/"
     }
   ],
