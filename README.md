@@ -40,6 +40,7 @@ Or add the following lines to the `devDependencies` section in your `package.jso
 ````json
 "@bsi-cx/design-standard-library-web": "github:bsi-software/bsi-cx-design-standard-library-web#semver:^1.0.0"
 ````
+Please note that `1.0.0` must be replaced with the latest version.
 
 ## Issues
 
