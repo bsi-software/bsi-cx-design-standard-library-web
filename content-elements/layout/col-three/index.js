@@ -9,7 +9,8 @@ const element = cx.contentElement;
 module.exports = element;
 element.withFile(require('./template.twig'))
   .withElementId('col-three-MEOl1p')
-  .withLabel('3 Columns')
+  /*.withLabel('3 Columns')*/
+  .withLabel('3 Spalten')
   .withIcon(Icon.THREE_COLUMNS)
   .withStyleConfigs(
     require('../../../configs/styles/col-width'),

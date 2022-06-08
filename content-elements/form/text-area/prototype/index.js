@@ -15,13 +15,17 @@ const {cx, Icon} = require('@bsi-cx/design-build');
 module.exports = (
   template = require('../template.twig'),
   elementId = 'text-area-J5z17p',
-  elementLabel = 'Multiline text field',
+  /*elementLabel = 'Multiline text field',*/
+  elementLabel = 'Mehrzeiliges Textfeld',
   elementPartId = 'text-area-part-61guvT',
-  elementPartLabel = 'Multiline text field',
+  /*elementPartLabel = 'Multiline text field',*/
+  elementPartLabel = 'Mehrzeiliges Textfeld',
   formTextPartId = 'text-area-part-text-gFR3M5',
-  formTextPartLabel = 'Info text',
+  /*formTextPartLabel = 'Info text',*/
+  formTextPartLabel = 'Info Text',
   errorRequiredPartId = 'text-area-part-error-required-ZPOyD8',
-  errorRequiredPartLabel = 'Required error message'
+  /*errorRequiredPartLabel = 'Required error message'*/
+  errorRequiredPartLabel = 'Fehlermeldung bei leerem Pflichtfeld'
 ) => cx
   .contentElement
   .withFile(template)

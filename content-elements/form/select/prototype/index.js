@@ -19,9 +19,11 @@ module.exports = (
   elementPartId = 'select-part-XNh1St',
   elementPartLabel = 'Dropdown',
   formTextPartId = 'select-part-text-hSNRfA',
-  formTextPartLabel = 'Info text',
+  /*formTextPartLabel = 'Info text',*/
+  formTextPartLabel = 'Info Text',
   errorRequiredPartId = 'select-part-error-required-6sq4M6',
-  errorRequiredPartLabel = 'Required error message'
+  /*errorRequiredPartLabel = 'Required error message'*/
+  errorRequiredPartLabel = 'Fehlermeldung bei leerem Pflichtfeld'
 ) => cx
   .contentElement
   .withFile(template)

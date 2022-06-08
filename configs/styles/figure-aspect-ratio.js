@@ -2,7 +2,8 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('figure-aspect-ratio-4yu1Zh')
-  .withLabel('Aspect ratio')
+  /*.withLabel('Aspect ratio')*/
+  .withLabel('Seitenverhältnis')
   .withCssClasses(
     cx.cssClass
       .withLabel('Auto')

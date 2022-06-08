@@ -63,7 +63,7 @@
     }
   }
 
-  $colors: ("primary": $primary, "secondary": $secondary, "tertiary": $tertiary, "primary-pastel": $primary-pastel, "secondary-pastel": $secondary-pastel, "tertiary-pastel": $tertiary-pastel, "brown-light": $brown-light, "brown-medium": $brown-medium, "brown-dark": $brown-dark, "dark": $dark);
+  $colors: ("primary": $primary, "secondary": $secondary, "tertiary": $tertiary, "dark": $dark);
   @for $i from 10 through 100 {
     @if $i % 10 == 0 {
       $opacity-percentage: $i*1%;

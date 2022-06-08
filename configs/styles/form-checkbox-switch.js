@@ -2,7 +2,8 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('form-checkbox-switch-hqxpU2')
-  .withLabel('Type')
+  /*.withLabel('Type')*/
+  .withLabel('Typ')
   .withCssClasses(
     cx.cssClass
       .withLabel('Checkbox')

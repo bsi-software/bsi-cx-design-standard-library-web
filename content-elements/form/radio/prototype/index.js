@@ -15,13 +15,17 @@ const {cx, Icon} = require('@bsi-cx/design-build');
 module.exports = (
   template = require('../template.twig'),
   elementId = 'radio-O6XCY3',
-  elementLabel = 'Radio button',
+  /*elementLabel = 'Radio button',*/
+  elementLabel = 'Radio Button',
   elementPartId = 'radio-part-I0iU7X',
-  elementPartLabel = 'Radio button',
+  /*elementPartLabel = 'Radio button',*/
+  elementPartLabel = 'Radio Button',
   formTextPartId = 'radio-part-text-NyYl9g',
-  formTextPartLabel = 'Info text',
+  /*formTextPartLabel = 'Info text',*/
+  formTextPartLabel = 'Info Text',
   errorRequiredPartId = 'radio-part-error-required-KCNwQh',
-  errorRequiredPartLabel = 'Required error message'
+  /*errorRequiredPartLabel = 'Required error message'*/
+  errorRequiredPartLabel = 'Fehlermeldung bei leerem Pflichtfeld'
 ) => cx
   .contentElement
   .withFile(template)

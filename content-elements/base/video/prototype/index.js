@@ -4,7 +4,6 @@ const {cx, Icon} = require('@bsi-cx/design-build');
  * @param {string} template
  * @param {string} elementId
  * @param {string} elementLabel
- * @param {string} elementDescription
  * @param {string} elementPartId
  * @param {string} elementPartLabel
  * @returns {ContentElement}
@@ -12,16 +11,16 @@ const {cx, Icon} = require('@bsi-cx/design-build');
 module.exports = (
   template = require('../template.twig'),
   elementId = 'video-C4cbKm',
-  elementLabel = 'Video',
-  elementDescription = 'YouTube video',
+  /*elementLabel = 'YouTube video',*/
+  elementLabel = 'YouTube Video',
   elementPartId = 'video-part-loPxhG',
-  elementPartLabel = 'YouTube video'
+  /*elementPartLabel = 'YouTube video'*/
+  elementPartLabel = 'YouTube Video'
 ) => cx
   .contentElement
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
-  .withDescription(elementDescription)
   .withIcon(Icon.VIDEO)
   .withParts(
     cx.part.video

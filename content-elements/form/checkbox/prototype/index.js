@@ -19,9 +19,11 @@ module.exports = (
   elementPartId = 'checkbox-part-Nls88s',
   elementPartLabel = 'Checkbox',
   formTextPartId = 'checkbox-part-text-6ycJm4',
-  formTextPartLabel = 'Info text',
+  /*formTextPartLabel = 'Info text',*/
+  formTextPartLabel = 'Info Text',
   errorRequiredPartId = 'checkbox-part-error-required-iYG8Ss',
-  errorRequiredPartLabel = 'Required error message'
+  /*errorRequiredPartLabel = 'Required error message'*/
+  errorRequiredPartLabel = 'Fehlermeldung bei leerem Pflichtfeld'
 ) => cx
   .contentElement
   .withFile(template)

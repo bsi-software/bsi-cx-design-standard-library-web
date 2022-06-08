@@ -10,7 +10,7 @@
     }
 
     .bsi-card-image > figure {
-      margin-bottom: 0px;
+      margin-bottom: 0;
       height: 100%;
     }
 
@@ -135,7 +135,7 @@
     }
 
     &.bsi-corner-sharp {
-      border-radius: 0rem;
+      border-radius: 0;
     }
 
     $heights: (150px, 200px, 250px, 300px, 350px, 400px, 450px, 500px);
@@ -145,12 +145,12 @@
       }
     }
 
-    $colors: ("primary": $primary, "secondary": $secondary, "tertiary": $tertiary, "primary-pastel": $primary-pastel, "secondary-pastel": $secondary-pastel, "tertiary-pastel": $tertiary-pastel, "brown-light": $brown-light, "brown-medium": $brown-medium, "brown-dark": $brown-dark, "dark": $dark);
+    $colors: ("primary": $primary, "secondary": $secondary, "tertiary": $tertiary, "dark": $dark);
     @for $i from 10 through 100 {
       @if $i % 10 == 0 {
         $opacity-percentage: $i*1%;
         @each $name, $color in $colors {
-          &.bsi-bg-color-#{$name}.opacity-#{$i} {
+          &.bsi-bg-color-#{$name}.bsi-opacity-#{$i} {
             background-color: mix(white, $color, 100%-$opacity-percentage);
 
             &.bsi-gradient-to-bottom {

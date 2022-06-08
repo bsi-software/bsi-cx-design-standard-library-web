@@ -2,7 +2,8 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('image-content-ratio-lFa6R7')
-  .withLabel('Image-content ratio')
+  /*.withLabel('Image-content ratio')*/
+  .withLabel('Verhältnis Bild-Inhalt')
   .withCssClasses(
     cx.cssClass
       .withLabel('1/6 - 5/6')

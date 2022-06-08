@@ -9,7 +9,8 @@ const element = cx.contentElement;
 module.exports = element;
 element.withElementId('col-one-l2ZclN')
   .withFile(require('./template.twig'))
-  .withLabel('1 Column')
+  /*.withLabel('1 Column')*/
+  .withLabel('1 Spalte')
   .withIcon(Icon.ONE_COLUMN)
   .withStyleConfigs(
     require('../../../configs/styles/col-width'),

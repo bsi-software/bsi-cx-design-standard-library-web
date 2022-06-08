@@ -2,7 +2,8 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('col-two-ratio-dYkpTf')
-  .withLabel('Columns width ratio')
+  /*.withLabel('Columns width ratio')*/
+  .withLabel('Verhältnis der Spaltenbreiten')
   .withCssClasses(
     cx.cssClass
       .withLabel('1 - 1')

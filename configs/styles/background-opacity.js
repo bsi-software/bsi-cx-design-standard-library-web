@@ -2,7 +2,8 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('background-opacity-tE3oU4')
-  .withLabel('Color opacity')
+  /*.withLabel('Color opacity')*/
+  .withLabel('Farbdeckkraft')
   .withCssClasses(
     cx.cssClass
       .withLabel('10%')

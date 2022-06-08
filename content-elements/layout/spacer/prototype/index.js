@@ -9,7 +9,8 @@ const {cx, Icon} = require('@bsi-cx/design-build');
 module.exports = (
   template = require('../template.twig'),
   elementId = 'spacer-jarY9b',
-  elementLabel = 'Spacing',
+  /*elementLabel = 'Spacing',*/
+  elementLabel = 'Abstand',
 ) => cx
   .contentElement
   .withFile(template)

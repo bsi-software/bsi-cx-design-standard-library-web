@@ -11,7 +11,8 @@ const element = cx.contentElement;
 module.exports = element;
 element.withFile(require('./template.twig'))
   .withElementId(`form-container-692qIu`)
-  .withLabel('Form')
+  /*.withLabel('Form')*/
+  .withLabel('Formular')
   .withIcon(Icon.ONE_COLUMN)
   .withStyleConfigs(
     require('../../../configs/styles/form-width'),
@@ -23,7 +24,8 @@ element.withFile(require('./template.twig'))
   .withParts(
     cx.part.form
       .withId('form-container-part-6eHZEX')
-      .withLabel('Form'))
+      /*.withLabel('Form'))*/
+      .withLabel('Formular'))
   .withDropzones(
     cx.dropzone
       .withDropzone('form-container-dropzone-zsY6UI')

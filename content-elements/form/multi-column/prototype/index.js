@@ -13,7 +13,8 @@ const {formElements} = require('../../index');
 module.exports = (
   template = require('../template.twig'),
   elementId = 'multi-column-VxWXpr',
-  elementLabel = 'Multiple columns within form',
+  /*elementLabel = 'Multiple columns within form',*/
+  elementLabel = 'Mehrspaltiges Formularelement',
   dropzoneId = 'multi-column-dropzone-olNcOu'
 ) => cx
   .contentElement

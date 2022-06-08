@@ -9,7 +9,8 @@ const element = cx.contentElement;
 module.exports = element;
 element.withFile(require('./template.twig'))
   .withElementId('col-four-yFAGKM')
-  .withLabel('4 Columns')
+  /*.withLabel('4 Columns')*/
+  .withLabel('4 Spalten')
   .withIcon(Icon.THREE_COLUMNS)
   .withStyleConfigs(
     require('../../../configs/styles/col-width'),

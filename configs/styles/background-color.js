@@ -2,38 +2,26 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('background-color-KJRfob')
-  .withLabel('Background color')
+  /*.withLabel('Background color')*/
+  .withLabel('Hintergrundfarbe')
   .withCssClasses(
     cx.cssClass
+      /*.withLabel('Transparent')*/
       .withLabel('Transparent')
       .withCssClass('bsi-bg-color-transparent'),
     cx.cssClass
-      .withLabel('Primary color')
+      /*.withLabel('Primary color')*/
+      .withLabel('Primärfarbe')
       .withCssClass('bsi-bg-color-primary'),
     cx.cssClass
-      .withLabel('Secondary color')
+      /*.withLabel('Secondary color')*/
+      .withLabel('Sekundärfarbe')
       .withCssClass('bsi-bg-color-secondary'),
     cx.cssClass
-      .withLabel('Tertiary color')
+      /*.withLabel('Tertiary color')*/
+      .withLabel('Tertiärfarbe')
       .withCssClass('bsi-bg-color-tertiary'),
     cx.cssClass
-      .withLabel('Primary pastel color')
-      .withCssClass('bsi-bg-color-primary-pastel'),
-    cx.cssClass
-      .withLabel('Secondary pastel color')
-      .withCssClass('bsi-bg-color-secondary-pastel'),
-    cx.cssClass
-      .withLabel('Tertiary pastel color')
-      .withCssClass('bsi-bg-color-tertiary-pastel'),
-    cx.cssClass
-      .withLabel('Light brown')
-      .withCssClass('bsi-bg-color-brown-light'),
-    cx.cssClass
-      .withLabel('Medium brown')
-      .withCssClass('bsi-bg-color-brown-medium'),
-    cx.cssClass
-      .withLabel('Dark brown')
-      .withCssClass('bsi-bg-color-brown-dark'),
-    cx.cssClass
-      .withLabel('Dark')
+      /*.withLabel('Dark')*/
+      .withLabel('Dunkel')
       .withCssClass('bsi-bg-color-dark'));

@@ -13,11 +13,14 @@ const {cx, Icon} = require('@bsi-cx/design-build');
 module.exports = (
   template = require('../template.twig'),
   elementId = 'news-snippet-4E7jFg',
-  elementLabel = 'News snippet',
+  /*elementLabel = 'News snippet',*/
+  elementLabel = 'News Snippet',
   newsPartId = 'news-snippet-part-Z6vBxS',
-  newsPartLabel = 'News snippet',
+  /*newsPartLabel = 'News snippet',*/
+  newsPartLabel = 'News Snippet',
   btnPartId = 'news-snippet-part-btn-BplEx2',
-  btnPartLabel = 'Button text'
+  /*btnPartLabel = 'Button text'*/
+  btnPartLabel = 'Button Text'
 ) => cx
   .contentElement
   .withFile(template)

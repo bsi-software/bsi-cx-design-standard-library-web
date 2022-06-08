@@ -17,7 +17,8 @@ module.exports = (
   elementPartId = 'button-part-0Cq8Xc',
   elementPartLabel = 'Button',
   iconPartId = 'button-part-icon-f1TI9P',
-  iconPartLabel = 'Icon identifier (select an icon here: https://icons.getbootstrap.com/ and enter its name, e.g. "arrow-right")'
+  /*iconPartLabel = 'Icon identifier (select an icon here: https://icons.getbootstrap.com/ and enter its name, e.g. "arrow-right")'*/
+  iconPartLabel = 'Icon Bezeichner (wählen Sie hier ein Icon aus: https://icons.getbootstrap.com/ und geben Sie den Namen ein, z.B. "arrow-right")'
 ) => cx
   .contentElement
   .withFile(template)

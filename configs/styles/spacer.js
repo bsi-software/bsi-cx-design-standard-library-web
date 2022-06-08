@@ -2,7 +2,8 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('spacer-yijTs2')
-  .withLabel('Size of spacing')
+  /*.withLabel('Size of spacing')*/
+  .withLabel('Grösse des Abstands')
   .withCssClasses(
     cx.cssClass
       .withLabel('1')

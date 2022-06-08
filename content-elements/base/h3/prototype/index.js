@@ -4,7 +4,6 @@ const {cx, Icon} = require('@bsi-cx/design-build');
  * @param {string} template
  * @param {string} elementId
  * @param {string} elementLabel
- * @param {string} elementDescription
  * @param {string} titlePartId
  * @param {string} titlePartLabel
  * @returns {ContentElement}
@@ -12,16 +11,16 @@ const {cx, Icon} = require('@bsi-cx/design-build');
 module.exports = (
   template = require('../template.twig'),
   elementId = 'title-h3-gbnkTT',
-  elementLabel = 'Heading 3',
-  elementDescription = 'H3 heading',
+  /*elementLabel = 'Heading H3',*/
+  elementLabel = 'H3 Überschrift',
   titlePartId = 'title-h3-part-mJ0yli',
-  titlePartLabel = 'Heading 3'
+  /*titlePartLabel = 'Heading H3'*/
+  titlePartLabel = 'H3 Überschrift'
 ) => cx
   .contentElement
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
-  .withDescription(elementDescription)
   .withIcon(Icon.TEXT)
   .withStyleConfigs(
     require('../../../../configs/styles/text-color'),

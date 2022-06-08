@@ -2,7 +2,8 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('overlay-opacity-IbPo7m')
-  .withLabel('Opacity of overlay')
+  /*.withLabel('Opacity of overlay')*/
+  .withLabel('Deckkraft des Overlays')
   .withCssClasses(
     cx.cssClass
       .withLabel('100%')
