@@ -39,7 +39,7 @@
     "intl-tel-input": "^17.0.15"
   },
   "devDependencies": {
-    "@bsi-cx/design-build": "github:bsi-software/bsi-cx-design-build#semver:^1.0.0",
+    "@bsi-cx/design-build": "github:bsi-software/bsi-cx-design-build#semver:^1.9.5",
     "file-loader": "^6.2.0"
   }
 }
