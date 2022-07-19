@@ -5,6 +5,9 @@
     .bsi-poll-radio-group {
       margin-bottom: 0.75em;
     }
+    .bsi-poll-number-input {
+      display: none;
+    }
 
     &.bsi-poll-nps {
       .bsi-poll-radio-group {
@@ -117,7 +120,8 @@
         &:not(:hover) {
           .bsi-poll-radio-item {
             &[data-form-radio-selected="true"] input[type="radio"]:checked,
-            &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"] {
+            &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"],
+            &.bsi-poll-radio-checked ~ .bsi-poll-radio-item input[type="radio"] {
               background-image: $star-fill-icon;
             }
           }
@@ -125,7 +129,8 @@
 
         &:hover {
           .bsi-poll-radio-item {
-            &[data-form-radio-selected="true"] input[type="radio"] {
+            &[data-form-radio-selected="true"] input[type="radio"],
+            &.bsi-poll-radio-checked input[type="radio"] {
               background-image: $star-icon;
             }
 
@@ -183,7 +188,8 @@
     &:not(:hover) {
       .bsi-poll-radio-item {
         &[data-form-radio-selected="true"] input[type="radio"]:checked,
-        &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"] {
+        &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"],
+        &.bsi-poll-radio-checked ~ .bsi-poll-radio-item input[type="radio"] {
           &:valid, &.is-valid {
             background-image: $star-fill-icon-valid !important;
           }
@@ -193,7 +199,8 @@
 
     &:hover {
       .bsi-poll-radio-item {
-        &[data-form-radio-selected="true"] input[type="radio"] {
+        &[data-form-radio-selected="true"] input[type="radio"],
+        &.bsi-poll-radio-checked input[type="radio"] {
           &:valid, &.is-valid {
             background-image: $star-icon-valid !important;
           }

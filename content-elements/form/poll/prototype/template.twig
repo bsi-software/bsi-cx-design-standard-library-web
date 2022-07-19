@@ -14,12 +14,14 @@
     {% endfor %}
 
     <div x-data="formPoll" data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-poll-nps">
-        <div data-bsi-element-part="{{ elementPartId }}" data-bsi-value="" data-bsi-value-list="{{ pollValueList }}">
+        <div data-bsi-element-part="{{ elementPartId }}">
             <label for="poll-input" class="form-label pt-0 d-block">How likely is it that you will recommend our product to others?</label>
-            <div x-init="initRadioGroup($root, $el)" class="bsi-poll-radio-group" data-bsi-radio-group="">
+            <input type="number" name="poll-input" id="poll-input" min="1" max="10" step="1" value="" required="" class="bsi-poll-number-input" />
+            <div x-init="initRadioGroup($root)" class="bsi-poll-radio-group" data-bsi-remove-if="draft"></div>
+            <div class="bsi-poll-radio-group" data-bsi-remove-if="live">
                 {% for value in pollRange %}
-                    <div class="form-check form-check-inline radio-group bsi-poll-radio-item" data-bsi-radio-item="" data-form-radio-selected="false">
-                        <input x-on:change="validateInput" class="form-check-input bsi-poll-radio-input" type="radio" id="poll-input-{{ value }}" name="poll-input" value="{{ value }}"/>
+                    <div class="form-check form-check-inline radio-group bsi-poll-radio-item">
+                        <input class="form-check-input bsi-poll-radio-input" type="radio" id="poll-input-{{ value }}" name="poll-input" value="{{ value }}" />
                         <label class="form-check-label bsi-poll-radio-label" for="poll-input-{{ value }}">{{ value }}</label>
                     </div>
                 {% endfor %}

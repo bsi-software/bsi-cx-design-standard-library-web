@@ -45,7 +45,7 @@ module.exports = (
   .withStyleConfigs(
     require('../../../../configs/styles/form-poll'))
   .withParts(
-    cx.part.formRadio
+    cx.part.formField
       .withId(elementPartId)
       .withLabel(elementPartLabel),
     cx.part.plainText
