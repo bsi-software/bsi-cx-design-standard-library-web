@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.0.4] - 19.07.2022
+
+### Changed
+
+* change form poll element to numeric output
+
+[1.0.4]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.0.4
+
+
 ## [1.0.3] - 15.07.2022
 
 ### Changed
