@@ -68,7 +68,6 @@ Alpine.data('formPoll', () => ({
     radio.setAttribute('type', 'radio');
     radio.setAttribute('value', value);
     radio.setAttribute('id', id);
-    radio.setAttribute('name', 'poll-input');
     if (range.hasAttribute('required')) {
       radio.required = true;
     }
