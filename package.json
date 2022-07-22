@@ -30,7 +30,7 @@
     }
   ],
   "dependencies": {
-    "@bsi-cx/chart": "github:bsi-software/bsi-cx-chart#semver:1.1.2",
+    "@bsi-cx/chart": "github:bsi-software/bsi-cx-chart#semver:1.3.0",
     "alpinejs": "^3.9.0",
     "bootstrap": "^5.1.3",
     "bootstrap-icons": "^1.8.1",
