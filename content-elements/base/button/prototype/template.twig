@@ -1,11 +1,22 @@
-{% macro render(elementId = null, elementPartId = null, iconPartId = null) %}{% apply spaceless %}
-    {% set elementId = elementId ?: 'button-v3cFFn' %}
-    {% set elementPartId = elementPartId ?: 'button-part-0Cq8Xc' %}
-    {% set iconPartId = iconPartId ?: 'button-part-icon-f1TI9P' %}
-
-    <div x-data="btnElement" data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} bsi-btn-element bsi-btn-color-primary bsi-btn-filled bsi-btn-size-md bsi-btn-width-default bsi-corner-rounded bsi-btn-letter-default bsi-btn-icon-hide">
-        <a x-init="initBtn" class="btn" data-bsi-element-part="{{ elementPartId }}" href="#">Read more</a>
-        <label hidden class="bsi-icon-identifier" data-bsi-element-part="{{ iconPartId }}">arrow-right</label>
-    </div>
-
+{% macro render(elementId = null, elementPartId = null, iconPartId = null, buttonText = null, buttonColor = null, buttonLayout = null, buttonSize = null, buttonWidth = null, buttonBorderRadius = null, buttonLetterCase = null) %}{% apply spaceless %}
+    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
+    {% include './template.twig' %}
 {% endapply %}{% endmacro %}
+
+{% apply spaceless %}
+    {% set buttonElementId = elementId ?: 'button-v3cFFn' %}
+    {% set buttonElementPartId = elementPartId ?: 'button-part-0Cq8Xc' %}
+    {% set buttonIconPartId = iconPartId ?: 'button-part-icon-f1TI9P' %}
+    {% set buttonText = (buttonText ?: properties.buttonText) ?: 'Read more' %}
+    {% set buttonColor = (buttonColor ?: properties.buttonColor) ?: 'bsi-btn-color-primary' %}
+    {% set buttonLayout = (buttonLayout ?: properties.buttonLayout) ?: 'bsi-btn-filled' %}
+    {% set buttonSize = (buttonSize ?: properties.buttonSize) ?: 'bsi-btn-size-md' %}
+    {% set buttonWidth = (buttonWidth ?: properties.buttonWidth) ?: 'bsi-btn-width-default' %}
+    {% set buttonBorderRadius = (buttonBorderRadius ?: properties.buttonBorderRadius) ?: 'bsi-corner-rounded' %}
+    {% set buttonLetterCase = (buttonLetterCase ?: properties.buttonLetterCase) ?: 'bsi-btn-letter-default' %}
+
+    <div x-data="btnElement" data-bsi-element="{{ buttonElementId }}" class="{{ 'bsi-element-' ~ buttonElementId }} bsi-btn-element {{ buttonColor }} {{ buttonLayout }} {{ buttonSize }} {{ buttonWidth }} {{ buttonBorderRadius }} {{ buttonLetterCase }} bsi-btn-icon-hide">
+        <a x-init="initBtn" class="btn" data-bsi-element-part="{{ buttonElementPartId }}" href="#">{{ buttonText }}</a>
+        <label hidden class="bsi-icon-identifier" data-bsi-element-part="{{ buttonIconPartId }}">arrow-right</label>
+    </div>
+{% endapply %}

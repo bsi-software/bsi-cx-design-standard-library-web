@@ -1,6 +1,6 @@
 @import "../../../../styles/properties";
 
-@mixin styles($id: 'card-crRST4') {
+@mixin styles($id: 'card-crRST4', $card-primary-color: $primary, $card-secondary-color: $secondary, $card-tertiary-color: $tertiary, $card-dark: $dark) {
   .bsi-element-#{$id} {
     width: 100%;
 
@@ -145,7 +145,7 @@
       }
     }
 
-    $colors: ("primary": $primary, "secondary": $secondary, "tertiary": $tertiary, "dark": $dark);
+    $colors: ("primary": $card-primary-color, "secondary": $card-secondary-color, "tertiary": $card-tertiary-color, "dark": $card-dark);
     @for $i from 10 through 100 {
       @if $i % 10 == 0 {
         $opacity-percentage: $i*1%;

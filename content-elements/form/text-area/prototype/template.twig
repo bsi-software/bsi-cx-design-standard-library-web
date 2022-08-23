@@ -1,18 +1,25 @@
-{% macro render(text = null, elementId = null, elementPartId = null, errorRequiredPartId = null) %}{% apply spaceless %}
-    {% set text = text ?: bsi_cx_lorem(9) %}
-    {% set elementId = elementId ?: 'text-area-J5z17p' %}
-    {% set elementPartId = elementPartId ?: 'text-area-part-61guvT' %}
-    {% set formTextPartId = formTextPartId ?: 'text-area-part-text-gFR3M5' %}
-    {% set errorRequiredPartId = errorRequiredPartId ?: 'text-area-part-error-required-ZPOyD8' %}
+{% macro render(elementId = null, elementPartId = null, formTextPartId = null, errorRequiredPartId = null, labelText = null, infoText = null, errorRequiredText = null) %}{% apply spaceless %}
+    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
+    {% include './template.twig' %}
+{% endapply %}{% endmacro %}
 
-    <div data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} mb-4 bsi-form-element bsi-form-textarea bsi-form-flex-label" data-bsi-element-part="{{ elementPartId }}">
+{% apply spaceless %}
+    {% set textAreaElementId = elementId ?: 'text-area-J5z17p' %}
+    {% set textAreaElementPartId = elementPartId ?: 'text-area-part-61guvT' %}
+    {% set textAreaFormTextPartId = formTextPartId ?: 'text-area-part-text-gFR3M5' %}
+    {% set textAreaErrorRequiredPartId = errorRequiredPartId ?: 'text-area-part-error-required-ZPOyD8' %}
+    {% set textAreaLabelText = (labelText ?: properties.textAreaLabelText) ?: bsi_cx_lorem(3) %}
+    {% set textAreaInfoText = (infoText ?: properties.textAreaInfoText) ?: bsi_cx_lorem(9) %}
+    {% set textAreaErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Please fill out this field.' %}
+
+    <div data-bsi-element="{{ textAreaElementId }}" class="{{ 'bsi-element-' ~ textAreaElementId }} mb-4 bsi-form-element bsi-form-textarea bsi-form-flex-label" data-bsi-element-part="{{ textAreaElementPartId }}">
         <div class="bsi-form-input-element bsi-label-floating-element mb-3">
-            <label for="field" class="form-label">Label</label>
+            <label for="field" class="form-label">{{ textAreaLabelText }}</label>
             <textarea class="form-control" id="field" rows="5" value=""></textarea>
-            <div data-bsi-element-part="{{ formTextPartId }}" class="form-text">{{ text }}</div>
+            <div data-bsi-element-part="{{ textAreaFormTextPartId }}" class="form-text">{{ textAreaInfoText }}</div>
             <div class="invalid-feedback">
-                <label data-bsi-element-part="{{ errorRequiredPartId }}">Please fill out this field.</label>
+                <label data-bsi-element-part="{{ textAreaErrorRequiredPartId }}">{{ textAreaErrorRequiredText }}</label>
             </div>
         </div>
     </div>
-{% endapply %}{% endmacro %}
+{% endapply %}

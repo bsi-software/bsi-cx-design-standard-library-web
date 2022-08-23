@@ -2,18 +2,6 @@
 @import "bootstrap/scss/bootstrap";
 
 // Styles used by multiple content elements:
-// Headings
-.bsi-heading-element {
-  width: 100%;
-  font-family: $fonts;
-  $colors: ("primary-color": $primary, "secondary-color": $secondary, "dark": $dark, "light": $light);
-  @each $name, $color in $colors {
-    &.bsi-text-#{$name} {
-      color: $color;
-    }
-  }
-}
-
 // Columns
 .bsi-column-element {
   &.bsi-space-around-hide {
@@ -38,7 +26,7 @@
       justify-content: center;
     }
 
-    p, h1, h2, h3, h4, h5 {
+    p, h1, h2, h3 {
       text-align: center;
     }
 
@@ -54,7 +42,7 @@
       justify-content: right;
     }
 
-    p, h1, h2, h3, h4, h5 {
+    p, h1, h2, h3 {
       text-align: right;
     }
 

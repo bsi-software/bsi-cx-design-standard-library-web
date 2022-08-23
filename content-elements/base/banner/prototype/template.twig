@@ -1,16 +1,21 @@
 {% macro render(elementId = null, dropzoneId = null, imagePartId = null, imageSrc = null, imageMobileSrc = null) %}{% apply spaceless %}
-    {% set elementId = elementId ?: 'banner-8eHkFN' %}
-    {% set dropzoneId = dropzoneId ?: 'banner-dropzone-Hh2fWF' %}
-    {% set imagePartId = imagePartId ?: 'banner-part-MIY0yR' %}
-    {% set imageSrc = imageSrc ?: bsi_cx_asset('../../../../static/image.png') %}
-    {% set imageMobileSrc = imageMobileSrc ?: bsi_cx_asset('../../../../static/image.png') %}
+    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
+    {% include './template.twig' %}
+{% endapply %}{% endmacro %}
 
-    <div data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} container-fluid mb-3 px-0 position-relative overflow-hidden bsi-overlay-hide bsi-overlay-opacity-0">
-        <img src="{{ imageSrc }}" srcset="{{ imageSrc }} 1320w, {{ imageMobileSrc }} 800w" class="bsi-banner w-100" alt="" data-bsi-element-part="{{ imagePartId }}"/>
+{% apply spaceless %}
+    {% set bannerElementId = elementId ?: 'banner-8eHkFN' %}
+    {% set bannerDropzoneId = dropzoneId ?: 'banner-dropzone-Hh2fWF' %}
+    {% set bannerImagePartId = imagePartId ?: 'banner-part-MIY0yR' %}
+    {% set bannerImageSrc = imageSrc ?: bsi_cx_asset('../../../../static/image.png') %}
+    {% set bannerImageMobileSrc = imageMobileSrc ?: bsi_cx_asset('../../../../static/image.png') %}
+
+    <div data-bsi-element="{{ bannerElementId }}" class="{{ 'bsi-element-' ~ bannerElementId }} container-fluid mb-3 px-0 position-relative overflow-hidden bsi-overlay-hide bsi-overlay-opacity-0">
+        <img src="{{ bannerImageSrc }}" srcset="{{ bannerImageSrc }} 1320w, {{ bannerImageMobileSrc }} 800w" class="bsi-banner w-100" alt="" data-bsi-element-part="{{ bannerImagePartId }}"/>
         <div class="position-absolute start-0 top-0 end-0 bottom-0 py-5 d-flex justify-content-center">
-            <div class="align-self-center" data-bsi-dropzone="{{ dropzoneId }}">
+            <div class="align-self-center" data-bsi-dropzone="{{ bannerDropzoneId }}">
                 {% block banner_dropzone %}{% endblock %}
             </div>
         </div>
     </div>
-{% endapply %}{% endmacro %}
+{% endapply %}
