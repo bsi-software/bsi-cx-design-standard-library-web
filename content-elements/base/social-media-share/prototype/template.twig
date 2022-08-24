@@ -1,11 +1,16 @@
 {% macro render(elementId = null, elementPartId = null, labelPartId = null) %}{% apply spaceless %}
-    {% set elementId = elementId ?: 'social-media-share-u9ppdj' %}
-    {% set elementPartId = elementPartId ?: 'social-media-share-part-7duJql' %}
-    {% set labelPartId = labelPartId ?: 'social-media-share-part-label-gVreZk' %}
+    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
+    {% include './template.twig' %}
+{% endapply %}{% endmacro %}
 
-    <div data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} d-flex flex-wrap bsi-icon-color-primary bsi-icon-size-medium" data-bsi-element-part="{{ elementPartId }}">
+{% apply spaceless %}
+    {% set shareElementId = elementId ?: 'social-media-share-u9ppdj' %}
+    {% set shareElementPartId = elementPartId ?: 'social-media-share-part-7duJql' %}
+    {% set shareLabelPartId = labelPartId ?: 'social-media-share-part-label-gVreZk' %}
+
+    <div data-bsi-element="{{ shareElementId }}" class="{{ 'bsi-element-' ~ shareElementId }} d-flex flex-wrap bsi-icon-color-primary bsi-icon-size-medium" data-bsi-element-part="{{ shareElementPartId }}">
         <div class="social-media-info">
-            <label data-bsi-element-part="{{ labelPartId }}">Share this page</label>
+            <label data-bsi-element-part="{{ shareLabelPartId }}">Share this page</label>
         </div>
         <div data-bsi-social-share="LinkedIn" class="sm-linkedin social-media-item share m-1">
             <a href="https://www.linkedin.com/sharing/share-offsite/?url=(url)" target="_blank" title="LinkedIn" class="btn btn-outline-primary">
@@ -45,5 +50,4 @@
             </a>
         </div>
     </div>
-
-{% endapply %}{% endmacro %}
+{% endapply %}

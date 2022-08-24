@@ -1,52 +1,73 @@
-{% macro render(elementId = null, elementPartId = null, linkedin = null, xing = null, twitter = null, facebook = null, youtube = null, instagram = null, kununu = null, whatsapp = null, pinterest = null, snapchat = null) %}{% apply spaceless %}
-    {% set elementId = elementId ?: 'social-media-follow-2MlXWB' %}
-    {% set elementPartId = elementPartId ?: 'social-media-follow-part-6oLWxR' %}
-    {% set linkedin = linkedin ?: "https://www.linkedin.com/" %}
-    {% set xing = xing ?: "https://www.xing.com/" %}
-    {% set twitter = twitter ?: "https://www.twitter.com/" %}
-    {% set facebook = facebook ?: "https://www.facebook.com/" %}
-    {% set youtube = youtube ?: "https://www.youtube.com/" %}
-    {% set instagram = instagram ?: "https://www.instagram.com/" %}
-    {% set kununu = kununu ?: "https://www.kununu.com/" %}
-    {% set whatsapp = whatsapp ?: "https://api.whatsapp.com/" %}
-    {% set pinterest = pinterest ?: "https://www.pinterest.com/" %}
-    {% set snapchat = snapchat ?: "https://www.snapchat.com/" %}
+{% macro render(elementId = null, elementPartId = null, linkedinURL = null, xingURL = null, twitterURL = null, facebookURL = null, youtubeURL = null, instagramURL = null, kununuURL = null, whatsappURL = null, pinterestURL = null, snapchatURL = null, linkedinHidden = null, xingHidden = null, twitterHidden = null, facebookHidden = null, youtubeHidden = null, instagramHidden = null, kununuHidden = null, whatsappHidden = null, pinterestHidden = null, snapchatHidden = null, iconColor = null, iconHoverColor = null, iconSize = null) %}{% apply spaceless %}
+    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
+    {% include './template.twig' %}
+{% endapply %}{% endmacro %}
 
-    <div data-bsi-element="{{ elementId }}" class="{{ 'bsi-element-' ~ elementId }} d-flex flex-wrap bsi-icon-color-primary bsi-icon-hover-color-secondary bsi-icon-size-medium" data-bsi-element-part="{{ elementPartId }}">
-        <div data-bsi-social-follow="Linkedin" class="social-media-item p-2">
-            <a href="{{ linkedin }}" title="Linkedin">
+{% apply spaceless %}
+    {% set followElementId = elementId ?: 'social-media-follow-2MlXWB' %}
+    {% set followElementPartId = elementPartId ?: 'social-media-follow-part-6oLWxR' %}
+
+    {% set followLinkedinURL = (linkedinURL ?: properties.followLinkedinURL) ?: "https://www.linkedin.com/" %}
+    {% set followXingURL = (xingURL ?: properties.followXingURL) ?: "https://www.xing.com/" %}
+    {% set followTwitterURL = (twitterURL ?: properties.followTwitterURL) ?: "https://www.twitter.com/" %}
+    {% set followFacebookURL = (facebookURL ?: properties.followFacebookURL) ?: "https://www.facebook.com/" %}
+    {% set followYoutubeURL = (youtubeURL ?: properties.followYoutubeURL) ?: "https://www.youtube.com/" %}
+    {% set followInstagramURL = (instagramURL ?: properties.followInstagramURL) ?: "https://www.instagram.com/" %}
+    {% set followKununuURL = (kununuURL ?: properties.followKununuURL) ?: "https://www.kununu.com/" %}
+    {% set followWhatsappURL = (whatsappURL ?: properties.followWhatsappURL) ?: "https://api.whatsapp.com/" %}
+    {% set followPinterestURL = (pinterestURL ?: properties.followPinterestURL) ?: "https://www.pinterest.com/" %}
+    {% set followSnapchatURL = (snapchatURL ?: properties.followSnapchatURL) ?: "https://www.snapchat.com/" %}
+
+    {% set followLinkedinHidden = (linkedinHidden ?: properties.followLinkedinHidden) ?: false %}
+    {% set followXingHidden = (xingHidden ?: properties.followXingHidden) ?: false %}
+    {% set followTwitterHidden = (twitterHidden ?: properties.followTwitterHidden) ?: false %}
+    {% set followFacebookHidden = (facebookHidden ?: properties.followFacebookHidden) ?: false %}
+    {% set followYoutubeHidden = (youtubeHidden ?: properties.followYoutubeHidden) ?: false %}
+    {% set followInstagramHidden = (instagramHidden ?: properties.followInstagramHidden) ?: false %}
+    {% set followKununuHidden = (kununuHidden ?: properties.followKununuHidden) ?: false %}
+    {% set followWhatsappHidden = (whatsappHidden ?: properties.followWhatsappHidden) ?: true %}
+    {% set followPinterestHidden = (pinterestHidden ?: properties.followPinterestHidden) ?: true %}
+    {% set followSnapchatHidden = (snapchatHidden ?: properties.followSnapchatHidden) ?: true %}
+
+    {% set followIconColor = (iconColor ?: properties.followIconColor) ?: 'bsi-icon-color-primary' %}
+    {% set followIconHoverColor = (iconHoverColor ?: properties.followIconHoverColor) ?: 'bsi-icon-hover-color-secondary' %}
+    {% set followIconSize = (iconSize ?: properties.followIconSize) ?: 'bsi-icon-size-medium' %}
+
+    <div data-bsi-element="{{ followElementId }}" class="{{ 'bsi-element-' ~ followElementId }} d-flex flex-wrap {{ followIconColor }} {{ followIconHoverColor }} {{ followIconSize }}" data-bsi-element-part="{{ followElementPartId }}">
+        <div data-bsi-social-follow="Linkedin" {% if followLinkedinHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
+            <a href="{{ followLinkedinURL }}" title="Linkedin">
                 <i class="bi bi-linkedin"></i>
             </a>
         </div>
-        <div data-bsi-social-follow="Xing" class="social-media-item bsi-social-media-svg p-2">
-            <a href="{{ xing }}" title="Xing">
+        <div data-bsi-social-follow="Xing" {% if followXingHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item bsi-social-media-svg p-2">
+            <a href="{{ followXingURL }}" title="Xing">
                 <svg class="bsi-svg-xing" height="26" width="26" viewBox="0 0 50 50">
                     <path d="M 43.699219 2.097656 L 6.214844 2.097656 C 3.914063 2.097656 2 4.015625 2 6.3125 L 2 43.796875 C 2 46.085938 3.914063 48 6.214844 48 L 43.699219 48 C 45.984375 48 47.898438 46.085938 47.898438 43.796875 L 47.898438 6.3125 C 47.898438 4.015625 45.984375 2.097656 43.699219 2.097656 Z M 16.15625 33 L 10.796875 33 C 10.011719 32.972656 9.835938 32.308594 10.226563 31.738281 L 15.777344 21.5 C 15.960938 21.3125 15.960938 21.039063 15.777344 20.84375 L 12.117188 14.453125 C 11.921875 14.070313 12.117188 13.5 12.5 13.5 L 18 13.5 C 18.195313 13.5 18.386719 13.542969 18.578125 13.882813 L 22.660156 21.039063 C 22.84375 21.226563 22.84375 21.410156 22.660156 21.609375 L 16.726563 32.507813 C 16.726563 32.507813 16.5 32.980469 16.15625 33 Z M 39.488281 8.796875 L 28.75 28.5 C 28.5625 28.695313 28.5625 28.804688 28.75 29 L 35.65625 41.304688 C 36.039063 42.03125 35.65625 42.5 35.089844 42.5 L 29.738281 42.5 C 29.542969 42.5 29.425781 42.367188 29.15625 41.882813 L 21.890625 29 C 21.757813 28.851563 21.761719 28.671875 21.890625 28.492188 L 32.988281 8.027344 C 33.210938 7.597656 33.554688 7.5 33.75 7.5 L 39 7.5 C 39.675781 7.480469 39.789063 8.1875 39.488281 8.796875 Z"/>
                 </svg>
             </a>
         </div>
-        <div data-bsi-social-follow="Twitter" class="social-media-item p-2">
-            <a href="{{ twitter }}" title="Twitter">
+        <div data-bsi-social-follow="Twitter" {% if followTwitterHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
+            <a href="{{ followTwitterURL }}" title="Twitter">
                 <i class="bi bi-twitter"></i>
             </a>
         </div>
-        <div data-bsi-social-follow="Facebook" class="social-media-item p-2">
-            <a href="{{ facebook }}" title="Facebook">
+        <div data-bsi-social-follow="Facebook" {% if followFacebookHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
+            <a href="{{ followFacebookURL }}" title="Facebook">
                 <i class="bi bi-facebook"></i>
             </a>
         </div>
-        <div data-bsi-social-follow="Youtube" class="social-media-item p-2">
-            <a href="{{ youtube }}" title="Youtube">
+        <div data-bsi-social-follow="Youtube" {% if followYoutubeHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
+            <a href="{{ followYoutubeURL }}" title="Youtube">
                 <i class="bi bi-youtube"></i>
             </a>
         </div>
-        <div data-bsi-social-follow="Instagram" class="social-media-item p-2">
-            <a href="{{ instagram }}" title="Instagram">
+        <div data-bsi-social-follow="Instagram" {% if followInstagramHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
+            <a href="{{ followInstagramURL }}" title="Instagram">
                 <i class="bi bi-instagram"></i>
             </a>
         </div>
-        <div data-bsi-social-follow="Kununu" class="social-media-item bsi-social-media-svg p-2">
-            <a href="{{ kununu }}" title="Kununu">
+        <div data-bsi-social-follow="Kununu" {% if followKununuHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item bsi-social-media-svg p-2">
+            <a href="{{ followKununuURL }}" title="Kununu">
                 <svg class="bsi-svg-kununu" height="24" width="24" viewBox="0 0 229.30667 229.30661">
                     <g transform="matrix(1.3333333,0,0,-1.3333333,0,229.30667)" id="g10">
                         <g transform="scale(0.1)" id="g12">
@@ -56,21 +77,20 @@
                 </svg>
             </a>
         </div>
-        <div data-bsi-social-follow="WhatsApp" data-bsi-remove-if="live" class="social-media-item p-2">
-            <a href="{{ whatsapp }}" title="WhatsApp">
+        <div data-bsi-social-follow="WhatsApp" {% if followWhatsappHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
+            <a href="{{ followWhatsappURL }}" title="WhatsApp">
                 <i class="bi bi-whatsapp"></i>
             </a>
         </div>
-        <div data-bsi-social-follow="Pinterest" data-bsi-remove-if="live" class="social-media-item p-2">
-            <a href="{{ pinterest }}" title="Pinterest">
+        <div data-bsi-social-follow="Pinterest" {% if followPinterestHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
+            <a href="{{ followPinterestURL }}" title="Pinterest">
                 <i class="bi bi-pinterest"></i>
             </a>
         </div>
-        <div data-bsi-social-follow="Snapchat" data-bsi-remove-if="live" class="social-media-item p-2">
-            <a href="{{ snapchat }}" title="Snapchat">
+        <div data-bsi-social-follow="Snapchat" {% if followSnapchatHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
+            <a href="{{ followSnapchatURL }}" title="Snapchat">
                 <i class="bi bi-snapchat"></i>
             </a>
         </div>
     </div>
-
-{% endapply %}{% endmacro %}
+{% endapply %}
