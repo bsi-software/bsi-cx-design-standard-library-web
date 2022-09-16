@@ -9,8 +9,26 @@
       object-fit: cover;
     }
 
-    h1, h2, h3 {
-      text-align: center;
+    $vAlign: (top: flex-start, center: center, bottom: flex-end);
+    @each $key, $value in $vAlign {
+      &.bsi-vertical-align-#{$key} {
+        .bsi-vertical-align {
+          align-self: $value;
+        }
+      }
+    }
+
+    $hAlign: (left: flex-start, center: center, right: flex-end);
+    @each $key, $value in $hAlign {
+      &.bsi-horizontal-align-#{$key} {
+        .bsi-horizontal-align {
+          justify-content: $value;
+        }
+
+        .bsi-vertical-align {
+          text-align: $key;
+        }
+      }
     }
 
     $colors: ("primary-color": $overlay-primary-color, "secondary-color": $overlay-secondary-color, "dark": $overlay-dark, "light": $overlay-light);
