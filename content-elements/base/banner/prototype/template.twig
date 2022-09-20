@@ -12,9 +12,9 @@
     {% set bannerVerticalAlignment = (verticalAlign ?: properties.bannerVerticalAlignment) ?: 'bsi-vertical-align-center' %}
     {% set bannerHorizontalAlignment = (horizontalAlign ?: properties.bannerHorizontalAlignment) ?: 'bsi-horizontal-align-center' %}
 
-    <div data-bsi-element="{{ bannerElementId }}" class="{{ 'bsi-element-' ~ bannerElementId }} {{ bannerHorizontalAlignment }} {{ bannerVerticalAlignment }} container-fluid mb-3 px-0 position-relative overflow-hidden bsi-overlay-hide bsi-overlay-opacity-0">
-        <img src="{{ bannerImageSrc }}" srcset="{{ bannerImageSrc }} 1320w, {{ bannerImageMobileSrc }} 800w" class="bsi-banner w-100" alt="" data-bsi-element-part="{{ bannerImagePartId }}"/>
-        <div class="container bsi-horizontal-align position-absolute start-0 top-0 end-0 bottom-0 py-5 d-flex">
+    <div data-bsi-element="{{ bannerElementId }}" class="{{ 'bsi-element-' ~ bannerElementId }} {{ bannerHorizontalAlignment }} {{ bannerVerticalAlignment }} container-fluid mb-3 px-0 position-relative d-flex overflow-hidden bsi-overlay-hide bsi-overlay-opacity-0">
+        <img src="{{ bannerImageSrc }}" srcset="{{ bannerImageSrc }} 1320w, {{ bannerImageMobileSrc }} 800w" class="bsi-banner w-100 h-100 position-absolute" alt="" data-bsi-element-part="{{ bannerImagePartId }}"/>
+        <div class="bsi-banner-dz container position-relative bsi-horizontal-align py-5 d-flex">
             <div class="bsi-vertical-align" data-bsi-dropzone="{{ bannerDropzoneId }}">
                 {% block banner_dropzone %}{% endblock %}
             </div>

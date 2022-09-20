@@ -23,7 +23,7 @@ $titleH1FontSize: bsiProperty('titleH1FontSize', 2.5rem);
 $titleH2FontSize: bsiProperty('titleH2FontSize', 2rem);
 $titleH3FontSize: bsiProperty('titleH3FontSize', 1.75rem);
 $textSize: bsiProperty('textFontSize', 16px);
-$bannerHeight: bsiProperty('bannerHeight', 500px);
+$bannerHeight: bsiProperty('bannerHeight', 250px);
 
 // Icons
 $icon-primary-color: '%23' + str-slice(#{$primary}, 2);

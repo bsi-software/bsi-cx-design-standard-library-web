@@ -2,11 +2,16 @@
 
 @mixin styles($id: 'banner-8eHkFN', $overlay-primary-color: $primary, $overlay-secondary-color: $secondary, $overlay-dark: $dark, $overlay-light: $light, $height: $bannerHeight) {
   .bsi-element-#{$id} {
-    max-height: $height;
+    min-height: $height;
 
     .bsi-banner {
-      max-height: $height;
+      min-height: $height;
       object-fit: cover;
+      z-index: 1;
+    }
+
+    .bsi-banner-dz {
+      z-index: 2;
     }
 
     $vAlign: (top: flex-start, center: center, bottom: flex-end);
