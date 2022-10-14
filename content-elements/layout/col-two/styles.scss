@@ -1,0 +1,32 @@
+@import "../../../styles/properties";
+
+.bsi-element-col-two-ILRIL0 {
+    @media (min-width: $md) {
+        &.bsi-ratio-6-6 {
+            > .row > .bsi-column-1 {
+                width: 50%;
+            }
+            > .row > .bsi-column-2 {
+                width: 50%;
+            }
+        }
+
+        &.bsi-ratio-4-8 {
+            > .row > .bsi-column-1 {
+                width: 33.33333333%;
+            }
+            > .row > .bsi-column-2 {
+                width: 66.66666667%;
+            }
+        }
+
+        &.bsi-ratio-8-4 {
+            > .row > .bsi-column-1 {
+                width: 66.66666667%;
+            }
+            > .row > .bsi-column-2 {
+                width: 33.33333333%;
+            }
+        }        
+    }
+}
