@@ -13,7 +13,7 @@
     {% set pollLabelText = (labelText ?: properties.pollLabelText) ?: 'How likely is it that you will recommend our product to others?' %}
     {% set pollLabelLeftText = (labelLeftText ?: properties.pollLabelLeftText) ?: 'Unlikely' %}
     {% set pollLabelRightText = (labelRightText ?: properties.pollLabelRightText) ?: 'Very likely' %}
-    {% set pollInfoText = (infoText ?: properties.pollInfoText) ?: bsi_cx_lorem(9) %}
+    {% set pollInfoText = (infoText ?: properties.pollInfoText) ?: "" %}
     {% set pollErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Please fill out this field.' %}
 
     {% set pollRange = range(1,10) %}
