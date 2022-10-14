@@ -14,7 +14,7 @@
     {% set pollLabelLeftText = (labelLeftText ?: properties.pollLabelLeftText) ?: 'Unlikely' %}
     {% set pollLabelRightText = (labelRightText ?: properties.pollLabelRightText) ?: 'Very likely' %}
     {% set pollInfoText = (infoText ?: properties.pollInfoText) ?: "" %}
-    {% set pollErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Please fill out this field.' %}
+    {% set pollErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
     {% set pollRange = range(1,10) %}
     {% set pollValueList = '' %}

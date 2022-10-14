@@ -11,7 +11,7 @@
     {% set radioGroupLabelText = (groupLabelText ?: properties.radioGroupLabelText) ?: bsi_cx_lorem(3) %}
     {% set radioLabelText = (labelText ?: properties.radioLabelText) ?: bsi_cx_lorem(3) %}
     {% set radioInfoText = (infoText ?: properties.radioInfoText) ?: "" %}
-    {% set radioErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Please fill out this field.' %}
+    {% set radioErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
     <div x-data="formRadio" data-bsi-element="{{ radioElementId }}" class="{{ 'bsi-element-' ~ radioElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-form-flex-label bsi-radio-block" data-bsi-element-part="{{ radioElementPartId }}">
         <div class="bsi-form-input-element">

@@ -11,7 +11,7 @@
     {% set selectLabelText = (labelText ?: properties.selectLabelText) ?: bsi_cx_lorem(3) %}
     {% set selectOptionText = (optionText ?: properties.selectOptionText) ?: 'Please select' %}
     {% set selectInfoText = (infoText ?: properties.selectInfoText) ?: "" %}
-    {% set selectErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Please fill out this field.' %}
+    {% set selectErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
     <div x-data="selectField" data-bsi-element="{{ selectElementId }}" class="{{ 'bsi-element-' ~ selectElementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-placeholder-not-defined" data-bsi-element-part="{{ selectElementPartId }}">
         <div class="bsi-form-input-element bsi-label-floating-element mb-3">
