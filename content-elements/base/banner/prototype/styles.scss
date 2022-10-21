@@ -50,5 +50,12 @@
         }
       }
     }
+
+    &.bsi-overlay-hide {
+      background-color: unset;
+      > img {
+        opacity: unset;
+      }
+    }
   }
 }

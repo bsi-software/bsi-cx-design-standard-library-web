@@ -9,8 +9,8 @@
     {% set textAreaFormTextPartId = formTextPartId ?: 'text-area-part-text-gFR3M5' %}
     {% set textAreaErrorRequiredPartId = errorRequiredPartId ?: 'text-area-part-error-required-ZPOyD8' %}
     {% set textAreaLabelText = (labelText ?: properties.textAreaLabelText) ?: bsi_cx_lorem(3) %}
-    {% set textAreaInfoText = (infoText ?: properties.textAreaInfoText) ?: bsi_cx_lorem(9) %}
-    {% set textAreaErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Please fill out this field.' %}
+    {% set textAreaInfoText = (infoText ?: properties.textAreaInfoText) ?: "" %}
+    {% set textAreaErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
     <div data-bsi-element="{{ textAreaElementId }}" class="{{ 'bsi-element-' ~ textAreaElementId }} mb-4 bsi-form-element bsi-form-textarea bsi-form-flex-label" data-bsi-element-part="{{ textAreaElementPartId }}">
         <div class="bsi-form-input-element bsi-label-floating-element mb-3">

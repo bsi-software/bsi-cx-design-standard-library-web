@@ -1,3 +1,5 @@
+require('./styles.scss');
+
 const {cx, Icon} = require('@bsi-cx/design-build');
 const {contentElements} = require('../../base');
 

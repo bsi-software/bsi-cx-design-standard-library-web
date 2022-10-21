@@ -6,5 +6,13 @@
     color: $text-color;
     font-size: $text-size;
     font-family: $text-font-family;
+
+    &.lead {
+      font-size: 1.25rem;
+    }
+
+    &.small {
+      font-size: 0.75rem;
+    }
   }
 }

@@ -12,9 +12,9 @@
     {% set phoneErrorRequiredPartId = errorRequiredPartId ?: 'form-field-tel-part-error-required-XKiYlP' %}
     {% set phoneErrorInvalidPartId = errorInvalidPartId ?: 'form-field-tel-part-error-invalid-3XeP4R' %}
     {% set phoneLabelText = (labelText ?: properties.phoneLabelText) ?: bsi_cx_lorem(3) %}
-    {% set phoneInfoText = (infoText ?: properties.phoneInfoText) ?: bsi_cx_lorem(9) %}
-    {% set phoneErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Please fill out this field.' %}
-    {% set phoneErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'The value you entered for this field is invalid.' %}
+    {% set phoneInfoText = (infoText ?: properties.phoneInfoText) ?: "" %}
+    {% set phoneErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
+    {% set phoneErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %} {# TODO: make translatable #}
 
     <div x-data="telInput" data-bsi-element="{{ phoneElementId }}" data-bsi-element-part="{{ phoneElementPartId }}" data-bsi-form-field-fixed-type class="{{ 'bsi-element-' ~ phoneElementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-form-tel-input bsi-element-width-full">
         <div class="bsi-form-input-element mb-3">
