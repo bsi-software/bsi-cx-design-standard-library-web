@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 21.10.2022
+
+### Changed
+
+Quality improvements:
+* column elements: fix non-working column ratio style
+* banner element: fix opacity issue
+* text element: fix font size style
+* form elements: empty info text by default (instead of lorem ipsum...)
+
+[1.1.1]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.1.1
+
 ## [1.1.0] - 23.08.2022
 
 ### Changed
