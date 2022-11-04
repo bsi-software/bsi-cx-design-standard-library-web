@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.2] - 04.11.2022
+
+### Changed
+
+New feature:
+* Add style to swap the order of columns on mobile devices:
+In a two-column element (e.g. with text in the left column and an image in the right column), a style can be set so that the order of the columns is swapped only on mobile devices. This enables the image to be displayed above the text in mobile view, even if the image remains in the right column in the desktop view.
+
+Improvements:
+* Update labels of spacer style
+
+[1.1.2]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.1.2
+
+
 ## [1.1.1] - 21.10.2022
 
 ### Changed

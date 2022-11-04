@@ -17,6 +17,7 @@ element.withFile(require('./template.twig'))
   .withStyleConfigs(
     require('../../../configs/styles/col-width'),
     require('../../../configs/styles/col-two-ratio'),
+    require('../../../configs/styles/col-two-order-mobile'),
     require('../../../configs/styles/col-spacing'),
     require('../../../configs/styles/col-gap'),
     require('../../../configs/styles/col-alignment'),
