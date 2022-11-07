@@ -3,10 +3,10 @@
 @mixin styles($id: 'button-v3cFFn', $btn-primary-color: $primary, $btn-secondary-color: $secondary, $btn-dark: $dark, $btn-light: $light) {
   .bsi-element-#{$id} {
     display: inline-block;
-    margin: 0 0.25rem 0.25rem 0;
+    margin: 0 0.25rem 1rem 0;
     @media (max-width: $sm - 1px) {
       display: block;
-      margin: 0 0 0.25rem 0;
+      margin: 0 0 1rem 0;
       flex-basis: 100%;
       .btn {
         width: 100%;
@@ -22,12 +22,12 @@
     }
 
     &.bsi-corner-sharp .btn {
-      border-radius: 0rem !important;
+      border-radius: 0 !important;
     }
 
     &.bsi-btn-width-wide {
       display: block !important;
-      margin: 0 0 0.25rem 0 !important;
+      margin: 0 0 1rem 0 !important;
       flex-grow: 1;
 
       .btn {
