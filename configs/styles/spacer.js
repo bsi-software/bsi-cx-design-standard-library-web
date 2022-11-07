@@ -6,17 +6,17 @@ module.exports = cx.style
   .withLabel('Grösse des Abstands')
   .withCssClasses(
     cx.cssClass
-      .withLabel('1')
+      .withLabel('4 px')
       .withCssClass('pt-1'),
     cx.cssClass
-      .withLabel('2')
+      .withLabel('8 px')
       .withCssClass('pt-2'),
     cx.cssClass
-      .withLabel('3')
+      .withLabel('16 px')
       .withCssClass('pt-3'),
     cx.cssClass
-      .withLabel('4')
+      .withLabel('24 px')
       .withCssClass('pt-4'),
     cx.cssClass
-      .withLabel('5')
+      .withLabel('48 px')
       .withCssClass('pt-5'));

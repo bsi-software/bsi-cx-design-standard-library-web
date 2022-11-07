@@ -29,4 +29,11 @@
             }
         }        
     }
+    @media (max-width: $md) {
+        &.bsi-mobile-order-swapped {
+            > .row {
+                flex-direction: column-reverse;
+            }
+        }
+    }
 }
