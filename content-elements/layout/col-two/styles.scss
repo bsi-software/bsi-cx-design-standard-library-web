@@ -29,8 +29,17 @@
             }
         }        
     }
-    @media (max-width: $md) {
-        &.bsi-mobile-order-swapped {
+    @media (min-width: $md) {
+        &.bsi-col-order-swapped,
+        &.bsi-col-order-swapped-desktop {
+            > .row {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+    @media (max-width: $md - 1px) {
+        &.bsi-col-order-swapped,
+        &.bsi-col-order-swapped-mobile {
             > .row {
                 flex-direction: column-reverse;
             }
