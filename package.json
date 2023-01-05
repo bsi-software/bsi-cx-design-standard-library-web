@@ -39,7 +39,7 @@
     "intl-tel-input": "^17.0.19"
   },
   "devDependencies": {
-    "@bsi-cx/design-build": "^1.0.0",
+    "@bsi-cx/design-build": "^1.12.0",
     "file-loader": "^6.2.0"
   }
 }
