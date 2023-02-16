@@ -13,7 +13,7 @@ Improvements:
 * This package is now available on NPM
 * Updated dependencies
 
-[1.1.4]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.1.5
+[1.1.5]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.1.5
 
 
 ## [1.1.4] - 03.02.2023
