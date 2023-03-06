@@ -44,5 +44,9 @@
                 flex-direction: column-reverse;
             }
         }
+
+        &.bsi-mobile-keep .row .bsi-column {
+            width: 50%!important;
+        }
     }
 }

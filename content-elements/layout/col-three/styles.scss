@@ -26,4 +26,10 @@
             }
         }      
     }
+
+    @media (max-width: $md - 1px) {
+        &.bsi-mobile-keep .row .bsi-column {
+            width: 33.3%!important;
+        }
+    }    
 }

@@ -6,17 +6,17 @@ const titleElements = [
 
 const contentElements = [
   ...titleElements,
-  require('./text'),
-  require('./figure'),
   require('./button'),
   require('./card'),
-  require('./news-snippet'),
-  require('./table'),
-  require('./video'),
-  require('./social-media-follow'),
-  require('./social-media-share'),
   require('./chart'),
-  require('./html')
+  require('./figure'),
+  require('./html'),
+  require('./news-snippet'),
+  require('./social-media-follow'),
+  require('./social-media-share'),  
+  require('./table'),
+  require('./text'),
+  require('./video')
 ];
 
 module.exports.titleElements = titleElements;

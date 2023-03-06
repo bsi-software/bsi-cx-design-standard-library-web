@@ -1,3 +1,5 @@
+require('./styles.scss');
+
 const {cx, Icon} = require('@bsi-cx/design-build');
 const {contentElements} = require('../../base');
 
@@ -17,6 +19,7 @@ element.withFile(require('./template.twig'))
     require('../../../configs/styles/col-spacing'),
     require('../../../configs/styles/col-gap'),
     require('../../../configs/styles/col-alignment'),
+    require('../../../configs/styles/col-mobile'),
     require('../../../configs/styles/background-color'),
     require('../../../configs/styles/color-gradient'),
     require('../../../configs/styles/background-opacity'))
