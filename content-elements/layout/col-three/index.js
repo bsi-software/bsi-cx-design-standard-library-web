@@ -20,6 +20,7 @@ element.withFile(require('./template.twig'))
     require('../../../configs/styles/col-spacing'),
     require('../../../configs/styles/col-gap'),
     require('../../../configs/styles/col-alignment'),
+    require('../../../configs/styles/col-mobile'),
     require('../../../configs/styles/background-color'),
     require('../../../configs/styles/color-gradient'),
     require('../../../configs/styles/background-opacity'))
