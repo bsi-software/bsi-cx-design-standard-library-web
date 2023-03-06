@@ -1,12 +1,12 @@
 const formElements = [
+  require('./checkbox'),
   require('./form-field'),
   require('./form-field-tel'),
-  require('./text-area'),
-  require('./radio'),
-  require('./checkbox'),
-  require('./select'),
   require('./poll'),
-  require('./recaptcha')
+  require('./radio'),
+  require('./recaptcha'),
+  require('./select'),
+  require('./text-area')
 ];
 
 module.exports.formElements = formElements;

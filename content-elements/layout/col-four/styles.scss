@@ -1,7 +1,7 @@
 @import "../../../styles/properties";
 
 .bsi-element-col-four-yFAGKM {
-    @media (max-width: $md - 1px) {
+    @media (max-width: $lg - 1px) {
         &.bsi-mobile-keep .row .bsi-column {
             width: 25%!important;
         }
