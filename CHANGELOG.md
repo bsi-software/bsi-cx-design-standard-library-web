@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [1.2.0] - 16.02.2023
+
+New feature:
+* New content element to capture an image by accessing the camera. The camera to be accessed (front or back) is configurable. A fallback mode allows to upload in image manually, when camera access is impossible.
+
+Improvements:
+* A bug (#342733) has been fixed which prevented from using the telephone number field multiple times
+
+[1.2.0]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.2.0
+
+
 ## [1.1.5] - 16.02.2023
 
 ### Changed
