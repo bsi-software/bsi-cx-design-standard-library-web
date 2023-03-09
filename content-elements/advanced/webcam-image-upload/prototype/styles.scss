@@ -33,6 +33,8 @@
                 border-radius: 3rem;
                 background: var(--bs-btn-bg);
                 color: white;
+                text-align: center;
+                padding: 0;
 
                 &.camera-button-capture {
                     font-size: 2rem;
@@ -40,7 +42,6 @@
 
                 &.camera-button-undo {
                     font-size: 3rem;
-                    font-weight: 900;
                 }
 
                 :hover {

@@ -4,11 +4,17 @@ Alpine.data('webcamImageUpload', () => ({
     isAsk: true,
     isCamera: false,
     isCameraCapture: true,
-    isManual: false,
+    isManual: false, 
+    facingMode: 'user',
 
     init() {
+        this.facingMode = this.getCameraFacingMode(this.$refs.webcamImageUpload);
         this.isAsk = this.hasWebcamSupport();
         this.isManual = !this.hasWebcamSupport();
+    },
+
+    getCameraFacingMode(el) {
+        return (el && el.classList && el.classList.contains('bsi-webcam-back')) ? 'environment' : 'user';
     },
 
     visibility(isAsk, isCamera, isManual) {
@@ -32,7 +38,7 @@ Alpine.data('webcamImageUpload', () => ({
             .getUserMedia({
                 audio: false,
                 video: {
-                    facingMode: 'user'
+                    facingMode: this.facingMode
                 }
             })
             .then((stream) => {
@@ -77,7 +83,7 @@ Alpine.data('webcamImageUpload', () => ({
 
         xhr.open('POST', this.$refs.form.action, true);
         xhr.onload = () => {
-            window.location = this.responseURL;
+            window.location = xhr.responseURL;
         };
         xhr.send(data);
     }
