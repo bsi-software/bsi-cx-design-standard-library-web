@@ -13,6 +13,7 @@ Alpine.data('telInput', () => ({
   invalidErrorElement: null,
   labelElement: null,
   labelText: null,
+  iti: null,
 
   initTelInput() {
     this.rootElement = this.$root;
@@ -90,12 +91,12 @@ Alpine.data('telInput', () => ({
   },
 
   onFocus() {
-    if (!this.inputField.value) {
+    if (!this.inputField.value && this.labelElement !== null) {
       this.labelElement.innerText = this.labelText;
     }
   },
   onFocusOut() {
-    if (!this.inputField.value) {
+    if (!this.inputField.value && this.labelElement !== null) {
       this.labelElement.innerText = this.inputField.placeholder;
     }
   },
@@ -125,10 +126,9 @@ Alpine.data('telInput', () => ({
   },
 
   _initFloatingLabel() {
-    const iti = this.rootElement.querySelector('.iti');
     this.labelElement = this.rootElement.querySelector('.form-label');
-    iti.classList.add('form-floating');
-    iti.append(this.labelElement);
+    this.iti.classList.add('form-floating');
+    this.iti.append(this.labelElement);
 
     this.labelText = this.labelElement.innerText;
     this.labelElement.innerText = this.inputField.placeholder;
