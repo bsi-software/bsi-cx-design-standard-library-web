@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.2.0] - 16.02.2023
+## [1.2.0] - 15.03.2023
 
 New feature:
 * New content element to capture an image by accessing the camera. The camera to be accessed (front or back) is configurable. A fallback mode allows to upload in image manually, when camera access is impossible.
