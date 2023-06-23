@@ -108,9 +108,5 @@ Alpine.data('formField', () => ({
         maxDate: this.maxDate
       });
     }
-    this.fp._input.onkeydown = () => false;
-    this.fp._input.style.cursor = 'pointer';
-    this.fp._input.style.caretColor = 'transparent';
   },
-
 }))
