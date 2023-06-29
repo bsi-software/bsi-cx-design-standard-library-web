@@ -15,7 +15,10 @@
 
     <div x-data="selectField" data-bsi-element="{{ selectElementId }}" class="{{ 'bsi-element-' ~ selectElementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-placeholder-not-defined" data-bsi-element-part="{{ selectElementPartId }}">
         <div class="bsi-form-input-element bsi-label-floating-element mb-3">
-            <label for="select" class="form-label">{{ selectLabelText }}</label>
+            <div class="form-label">
+                <label for="select">{{ selectLabelText }}</label>
+                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip"></i>
+            </div>
             <select x-init="initSelectField" class="form-select" id="select">
                 <option value="">{{ selectOptionText }}</option>
             </select>

@@ -18,7 +18,10 @@
 
     <div x-data="telInput" data-bsi-element="{{ phoneElementId }}" data-bsi-element-part="{{ phoneElementPartId }}" data-bsi-form-field-fixed-type class="{{ 'bsi-element-' ~ phoneElementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-form-tel-input bsi-element-width-full">
         <div class="bsi-form-input-element mb-3">
-            <label for="tel-field" class="form-label">{{ phoneLabelText }}</label>
+            <div class="form-label">
+                <label for="tel-field">{{ phoneLabelText }}</label>
+                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip"></i>
+            </div>
             <input x-init="initTelInput" x-on:change="validateInput" x-on:countrychange="changeCountry" x-on:focus="onFocus" x-on:focusout="onFocusOut" class="form-control bsi-form-tel-input-element" id="tel-field" type="tel" value="">
 
             <!-- When live, the following section will hold hidden input field with the normalized phone number -->

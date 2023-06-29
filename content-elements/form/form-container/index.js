@@ -20,7 +20,8 @@ element.withFile(require('./template.twig'))
     require('../../../configs/styles/border-radius'),
     require('../../../configs/styles/form-label'),
     require('../../../configs/styles/form-color'),
-    require('../../../configs/styles/form-btn-layout'))
+    require('../../../configs/styles/form-btn-layout'),
+    require('../../../configs/styles/form-info'))
   .withParts(
     cx.part.form
       .withId('form-container-part-6eHZEX')

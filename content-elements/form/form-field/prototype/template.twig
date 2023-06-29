@@ -16,7 +16,10 @@
 
     <div x-data="formField" data-bsi-element="{{ formFieldElementId }}" class="{{ 'bsi-element-' ~ formFieldElementId }} mb-4 bsi-form-element bsi-form-field-element bsi-form-flex-label" data-bsi-element-part="{{ formFieldElementPartId }}">
         <div class="bsi-form-input-element bsi-label-floating-element mb-3">
-            <label for="field" class="form-label">{{ formFieldLabelText }}</label>
+            <div class="form-label">
+                <label for="field">{{ formFieldLabelText }}</label>
+                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip"></i>
+            </div>
             <input x-init="initFormFieldInput" x-on:change="validateInput" type="text" class="form-control bsi-form-field-input" id="field" value="">
             <div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
             <div x-init="initRequiredError" class="invalid-feedback">

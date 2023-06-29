@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs';
+import { Tooltip } from 'bootstrap';
 
 Alpine.data('formElement', () => ({
   form: null,
@@ -13,6 +14,19 @@ Alpine.data('formElement', () => ({
       floatingElements.forEach((floatingElement) => {
         this._initFloatingLabels(floatingElement);
       });
+    }
+    if (this.root.classList.contains('bsi-form-info-as-tooltip')
+      && ['bsi-form-label-top', 'bsi-form-label-left'].some(labelClass => this.root.classList.contains(labelClass))) {
+      this.form.querySelectorAll('.bsi-form-element').forEach((formElement) => {
+        let infoTextField = formElement.querySelector('.form-text');
+        if (infoTextField && infoTextField.innerText) {
+          let tooltipIcon = formElement.querySelector('i');
+          tooltipIcon.classList.add('tooltip-visible');
+          tooltipIcon.setAttribute('title', infoTextField.innerText);
+          new Tooltip(tooltipIcon);
+          infoTextField.innerText = "";
+        }
+      })
     }
   },
 

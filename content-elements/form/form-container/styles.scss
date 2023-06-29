@@ -234,4 +234,25 @@
   .text-danger {
     list-style-type: none;
   }
+
+  .form-label, 
+  .form-check-label {
+    display: flex;
+    gap: 0.5rem;
+
+    i.bi-info-circle {
+      color: $primary;
+      display: none;
+
+      &.tooltip-visible {
+        display: block;
+      }
+    }
+  }
+}
+
+// Tooltip styles are global
+.bsi-tooltip {
+  --bs-tooltip-bg: var(--bs-primary);
+  --bs-tooltip-color: var(--bs-light);
 }
