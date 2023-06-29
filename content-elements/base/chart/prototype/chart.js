@@ -1,7 +1,8 @@
+import { ChartConfig, ChartUrlProvider } from '@bsi-cx/chart';
+import ChartConfigColor from '@bsi-cx/chart/src/config/color';
+import { bsiProperty } from '@bsi-cx/design-build';
 import Alpine from 'alpinejs';
 import 'chart.js/auto';
-import {ChartConfig, ChartUrlProvider} from '@bsi-cx/chart';
-import ChartConfigColor from '@bsi-cx/chart/src/config/color';
 
 /**
  * @type {{border: ChartConfigColor, background: ChartConfigColor}[]}
@@ -44,8 +45,8 @@ Alpine.data('chartElement', () => ({
   ChartConfigColor.of( '#c7f296ff','#c7f29666')
 ]*/
 const colors = [
-    ChartConfigColor.of(window.properties?.chartBorderColor1 ?? '#116985ff',window.properties?.chartBackgroundColor1 ?? '#11698566'),
-    ChartConfigColor.of(window.properties?.chartBorderColor2 ?? '#27aab0ff',window.properties?.chartBackgroundColor2 ?? '#27aab066'),
-    ChartConfigColor.of(window.properties?.chartBorderColor3 ?? '#94e7a8ff',window.properties?.chartBackgroundColor3 ?? '#94e7a866'),
-    ChartConfigColor.of(window.properties?.chartBorderColor4 ?? '#c7f296ff',window.properties?.chartBackgroundColor4 ?? '#c7f29666')
+    ChartConfigColor.of(bsiProperty('chartBorderColor1', '#116985ff'),bsiProperty('chartBackgroundColor1', '#11698566')),
+    ChartConfigColor.of(bsiProperty('chartBorderColor2', '#27aab0ff'),bsiProperty('chartBackgroundColor2', '#27aab066')),
+    ChartConfigColor.of(bsiProperty('chartBorderColor3', '#94e7a8ff'),bsiProperty('chartBackgroundColor3', '#94e7a866')),
+    ChartConfigColor.of(bsiProperty('chartBorderColor4', '#c7f296ff'),bsiProperty('chartBackgroundColor4', '#c7f29666'))
 ];
