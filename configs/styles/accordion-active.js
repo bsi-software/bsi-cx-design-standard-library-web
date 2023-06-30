@@ -2,11 +2,11 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('accordion-active-nnrTAT')
-  .withLabel('Darstellung')
+  .withLabel('Beim Laden')
   .withCssClasses(
     cx.cssClass
       .withLabel('Geschlossen')
-      .withCssClass('active'),
+      .withCssClass('inactive'),
     cx.cssClass
       .withLabel('Offen')
-      .withCssClass('inactive'));
+      .withCssClass('active'));
