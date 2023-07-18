@@ -1,4 +1,5 @@
 const advancedElements = [
+  require('./signature-field'),
   require('./webcam-image-upload')
 ];
 

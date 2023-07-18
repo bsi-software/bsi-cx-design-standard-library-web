@@ -1,0 +1,27 @@
+@mixin styles($id: 'signature-field-fKwfSc') {
+  .bsi-element-#{$id} {
+    canvas, img {
+      border: 1px solid rgba(56, 62, 66, .3);
+    }
+  }
+}
+
+
+// /* smartphones, touchscreens */
+// @media (hover: none) and (pointer: coarse) {
+//     /* ... */
+// }
+// /* stylus-based screens */
+// @media (hover: none) and (pointer: fine) {
+//     /* ... */
+// }
+// /* Nintendo Wii controller, Microsoft Kinect */
+// @media (hover: hover) and (pointer: coarse) {
+//     /* ... */
+// }
+// /* mouse, touch pad */
+// @media (hover: hover) and (pointer: fine) {
+//     /* ... */
+// }
+
+// // https://ferie.medium.com/detect-a-touch-device-with-only-css-9f8e30fa1134

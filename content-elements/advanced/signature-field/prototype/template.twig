@@ -1,0 +1,27 @@
+{% apply spaceless %}
+    {% set inSignSessionId = inSignSessionId ?: '{inSignSessionId}' %}
+    {% set inSignBaseUrl = inSignBaseUrl ?: '{inSignBaseUrl}' %}
+    {% set signatureFieldElementId = elementId ?: 'signature-field-fKwfSc' %}
+
+    <div x-data="signatureField" data-bsi-element="{{ signatureFieldElementId }}" class="{{ 'bsi-element-' ~ signatureFieldElementId }} mb-4 bsi-form-element bsi-form-textarea bsi-form-flex-label">
+        <div x-ref="signaturePad">
+            <h4>Unterschreiben Sie bitte in folgendem Feld mit Maus oder Finger:</h4>
+            <div class="signature-wrapper">
+                <canvas width="500px" height="150px"></canvas> <!-- TODO: change to dynamic width/height -->
+            </div>
+            <button x-on:click="submitSignature" class="btn btn-primary">Unterschrift übermitteln</button>
+            <button x-on:click="clearSignature" class="btn btn-light">Löschen</button>
+        </div>
+
+        <!-- TODO: add QR-Code / SMS Support -->
+
+        <div class="d-none">
+            <span x-ref="sessionId">{{inSignSessionId}}</span>
+            <span x-ref="baseUrl">{{inSignBaseUrl}}</span>
+        </div>
+
+        <script src="{{inSignBaseUrl}}/webjars/jquery/3.6.4/jquery.min.js?v34581"></script>
+        <script src="{{inSignBaseUrl}}/js/insign-standalonesignature-pad.js" type="text/javascript"></script>
+        <script src="{{inSignBaseUrl}}/configjs.js?sessionid={{inSignSessionId}}" type="text/javascript"></script>
+    </div>
+{% endapply %}

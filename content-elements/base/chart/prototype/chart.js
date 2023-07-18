@@ -45,8 +45,8 @@ Alpine.data('chartElement', () => ({
   ChartConfigColor.of( '#c7f296ff','#c7f29666')
 ]*/
 const colors = [
-    ChartConfigColor.of(bsiProperty('chartBorderColor1', '#116985ff'),bsiProperty('chartBackgroundColor1', '#11698566')),
-    ChartConfigColor.of(bsiProperty('chartBorderColor2', '#27aab0ff'),bsiProperty('chartBackgroundColor2', '#27aab066')),
-    ChartConfigColor.of(bsiProperty('chartBorderColor3', '#94e7a8ff'),bsiProperty('chartBackgroundColor3', '#94e7a866')),
-    ChartConfigColor.of(bsiProperty('chartBorderColor4', '#c7f296ff'),bsiProperty('chartBackgroundColor4', '#c7f29666'))
+    //ChartConfigColor.of(bsiProperty('chartBorderColor1', '#116985ff'),bsiProperty('chartBackgroundColor1', '#11698566')),
+    //ChartConfigColor.of(bsiProperty('chartBorderColor2', '#27aab0ff'),bsiProperty('chartBackgroundColor2', '#27aab066')),
+    //ChartConfigColor.of(bsiProperty('chartBorderColor3', '#94e7a8ff'),bsiProperty('chartBackgroundColor3', '#94e7a866')),
+    //ChartConfigColor.of(bsiProperty('chartBorderColor4', '#c7f296ff'),bsiProperty('chartBackgroundColor4', '#c7f29666'))
 ];
