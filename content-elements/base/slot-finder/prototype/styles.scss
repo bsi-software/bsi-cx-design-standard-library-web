@@ -1,0 +1,142 @@
+@use "../src/slot/slot";
+
+@import "../../../../styles/properties";
+
+$icons: (
+  "calendar": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M17 14C17.5523 14 18 13.5523 18 13C18 12.4477 17.5523 12 17 12C16.4477 12 16 12.4477 16 13C16 13.5523 16.4477 14 17 14Z'/%3E%3Cpath d='M17 18C17.5523 18 18 17.5523 18 17C18 16.4477 17.5523 16 17 16C16.4477 16 16 16.4477 16 17C16 17.5523 16.4477 18 17 18Z'/%3E%3Cpath d='M13 13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13C11 12.4477 11.4477 12 12 12C12.5523 12 13 12.4477 13 13Z'/%3E%3Cpath d='M13 17C13 17.5523 12.5523 18 12 18C11.4477 18 11 17.5523 11 17C11 16.4477 11.4477 16 12 16C12.5523 16 13 16.4477 13 17Z'/%3E%3Cpath d='M7 14C7.55229 14 8 13.5523 8 13C8 12.4477 7.55229 12 7 12C6.44772 12 6 12.4477 6 13C6 13.5523 6.44772 14 7 14Z'/%3E%3Cpath d='M7 18C7.55229 18 8 17.5523 8 17C8 16.4477 7.55229 16 7 16C6.44772 16 6 16.4477 6 17C6 17.5523 6.44772 18 7 18Z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M7 1.75C7.41421 1.75 7.75 2.08579 7.75 2.5V3.26272C8.412 3.24999 9.14133 3.24999 9.94346 3.25H14.0564C14.8586 3.24999 15.588 3.24999 16.25 3.26272V2.5C16.25 2.08579 16.5858 1.75 17 1.75C17.4142 1.75 17.75 2.08579 17.75 2.5V3.32709C18.0099 3.34691 18.2561 3.37182 18.489 3.40313C19.6614 3.56076 20.6104 3.89288 21.3588 4.64124C22.1071 5.38961 22.4392 6.33855 22.5969 7.51098C22.75 8.65018 22.75 10.1058 22.75 11.9435V14.0564C22.75 15.8941 22.75 17.3498 22.5969 18.489C22.4392 19.6614 22.1071 20.6104 21.3588 21.3588C20.6104 22.1071 19.6614 22.4392 18.489 22.5969C17.3498 22.75 15.8942 22.75 14.0565 22.75H9.94359C8.10585 22.75 6.65018 22.75 5.51098 22.5969C4.33856 22.4392 3.38961 22.1071 2.64124 21.3588C1.89288 20.6104 1.56076 19.6614 1.40314 18.489C1.24997 17.3498 1.24998 15.8942 1.25 14.0564V11.9436C1.24998 10.1058 1.24997 8.65019 1.40314 7.51098C1.56076 6.33855 1.89288 5.38961 2.64124 4.64124C3.38961 3.89288 4.33856 3.56076 5.51098 3.40313C5.7439 3.37182 5.99006 3.34691 6.25 3.32709V2.5C6.25 2.08579 6.58579 1.75 7 1.75ZM5.71085 4.88976C4.70476 5.02502 4.12511 5.27869 3.7019 5.7019C3.27869 6.12511 3.02502 6.70476 2.88976 7.71085C2.86685 7.88123 2.8477 8.06061 2.83168 8.25H21.1683C21.1523 8.06061 21.1331 7.88124 21.1102 7.71085C20.975 6.70476 20.7213 6.12511 20.2981 5.7019C19.8749 5.27869 19.2952 5.02502 18.2892 4.88976C17.2615 4.75159 15.9068 4.75 14 4.75H10C8.09318 4.75 6.73851 4.75159 5.71085 4.88976ZM2.75 12C2.75 11.146 2.75032 10.4027 2.76309 9.75H21.2369C21.2497 10.4027 21.25 11.146 21.25 12V14C21.25 15.9068 21.2484 17.2615 21.1102 18.2892C20.975 19.2952 20.7213 19.8749 20.2981 20.2981C19.8749 20.7213 19.2952 20.975 18.2892 21.1102C17.2615 21.2484 15.9068 21.25 14 21.25H10C8.09318 21.25 6.73851 21.2484 5.71085 21.1102C4.70476 20.975 4.12511 20.7213 3.7019 20.2981C3.27869 19.8749 3.02502 19.2952 2.88976 18.2892C2.75159 17.2615 2.75 15.9068 2.75 14V12Z'/%3E%3C/svg%3E",
+  "clock": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' %3E%3Cpath d='M12 1C5.93464 1 1 5.93464 1 12C1 18.0654 5.93464 23 12 23C18.0654 23 23 18.0654 23 12C23 5.93464 18.0654 1 12 1ZM12 2.65C17.1736 2.65 21.35 6.82637 21.35 12C21.35 17.1736 17.1736 21.35 12 21.35C6.82636 21.35 2.65 17.1736 2.65 12C2.65 6.82637 6.82636 2.65 12 2.65ZM11.7121 5.38818C11.4935 5.3916 11.2852 5.48165 11.1329 5.63855C10.9806 5.79545 10.8969 6.00638 10.9 6.225V12.825C10.9 13.0438 10.9869 13.2536 11.1417 13.4083C11.2964 13.5631 11.5062 13.65 11.725 13.65H16.125C16.2343 13.6515 16.3429 13.6313 16.4443 13.5906C16.5458 13.5498 16.6381 13.4893 16.7159 13.4125C16.7938 13.3358 16.8556 13.2443 16.8978 13.1434C16.94 13.0426 16.9617 12.9343 16.9617 12.825C16.9617 12.7157 16.94 12.6074 16.8978 12.5066C16.8556 12.4057 16.7938 12.3142 16.7159 12.2375C16.6381 12.1607 16.5458 12.1002 16.4443 12.0594C16.3429 12.0187 16.2343 11.9985 16.125 12H12.55V6.225C12.5516 6.11458 12.531 6.00496 12.4894 5.90265C12.4479 5.80034 12.3862 5.70741 12.308 5.62937C12.2299 5.55133 12.1369 5.48978 12.0345 5.44835C11.9322 5.40692 11.8225 5.38646 11.7121 5.38818Z' fill='black'/%3E%3C/svg%3E%0A",
+  "tick": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M15 22.75H9C3.57 22.75 1.25 20.43 1.25 15V9C1.25 3.57 3.57 1.25 9 1.25H15C20.43 1.25 22.75 3.57 22.75 9V15C22.75 20.43 20.43 22.75 15 22.75ZM9 2.75C4.39 2.75 2.75 4.39 2.75 9V15C2.75 19.61 4.39 21.25 9 21.25H15C19.61 21.25 21.25 19.61 21.25 15V9C21.25 4.39 19.61 2.75 15 2.75H9Z' fill='black'/%3E%3Cpath d='M10.5795 15.5801C10.3795 15.5801 10.1895 15.5001 10.0495 15.3601L7.21945 12.5301C6.92945 12.2401 6.92945 11.7601 7.21945 11.4701C7.50945 11.1801 7.98945 11.1801 8.27945 11.4701L10.5795 13.7701L15.7195 8.6301C16.0095 8.3401 16.4895 8.3401 16.7795 8.6301C17.0695 8.9201 17.0695 9.4001 16.7795 9.6901L11.1095 15.3601C10.9695 15.5001 10.7795 15.5801 10.5795 15.5801Z' fill='black'/%3E%3C/svg%3E%0A",
+);
+
+@mixin styles($id: "slot-finder-dZlvGH", $primary-color: $primary) {
+  .bsi-element-#{$id} {
+    --primary-color: #{$primary-color};
+    --disabled-color: #808080;
+
+    --border-radius: 3px;
+    --default-gap: 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--default-gap);
+
+    &.column-flow {
+      flex-direction: column;
+      max-width: 420px;
+    }
+
+    &.small-slots .slot .duration,
+    &.small-slots .slot .to-time {
+      display: none;
+    }
+
+    &.day-view > #week-view,
+    &.week-view > #day-view {
+      display: none;
+    }
+
+    fieldset {
+      all: revert; /* Revert Bootstrap design */
+      white-space: nowrap;
+      border: 1px solid gainsboro;
+      border-radius: var(--border-radius);
+      flex: 1;
+
+      legend {
+        all: revert; /* Revert Bootstrap design */
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    #calendar {
+      height: 300px;
+      width: 100%;
+
+      .vanilla-calendar-day__btn_today {
+        color: var(--primary-color);
+      }
+
+      .vanilla-calendar-day__btn_selected {
+        background-color: var(--primary-color);
+        color: #fff;
+      }
+    }
+
+    #slots-day,
+    #slots-week {
+      max-height: 300px;
+      min-width: 205px; /* 2x slots (long with duration) */
+      overflow: auto;
+    }
+
+    #summary {
+      min-width: 292px;
+
+      p {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    #book-button {
+      width: 100%;
+      min-width: max-content;
+      padding: 10px 50px;
+
+      background-color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      color: white;
+      border-radius: var(--border-radius);
+      font-weight: bold;
+
+      &:disabled {
+        color: var(--disabled-color);
+        background-color: white;
+        border-color: var(--disabled-color);
+      }
+
+      &:hover:enabled {
+        filter: brightness(85%);
+      }
+    }
+
+    @media screen and (min-width: 886px) {
+      #slots-week {
+        min-width: 525px; /* min width using big slots */
+      }
+
+      :not(&.day-view) > #day-view,
+      #slots-week .weekday.short {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 885px) {
+      #slots-week {
+        min-width: 292px; /* min width using small slots */
+      }
+
+      :not(&.week-view) > #week-view {
+        display: none;
+      }
+    }
+
+    @each $name, $icon in $icons {
+      .prefix-#{$name}::before {
+        content: "";
+        -webkit-mask: url($icon);
+        mask: url($icon);
+        -webkit-mask-size: cover;
+        mask-size: cover;
+        background-color: currentColor;
+        display: inline-block;
+        width: 0.9em;
+        height: 0.9em;
+        margin-right: 2px;
+      }
+    }
+
+    @include slot.styles;
+  }
+}
