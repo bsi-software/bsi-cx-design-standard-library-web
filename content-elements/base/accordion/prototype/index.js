@@ -37,10 +37,20 @@ module.exports = (
     .withDropzones(
         cx.dropzone
             .withDropzone(contentDropzoneId)
-            .withAllowedElements(
-                require('../../h1'),
-                require('../../h2'),
-                require('../../h3'),
-                require('../../text'),
-                require('../../figure'))
-    );
+            .withAllowedElements(   
+                require('../../../base/h1'),
+                require('../../../base/h2'),
+                require('../../../base/h3'),
+                require('../../../base/text'),
+                require('../../../base/button'),
+                require('../../../base/figure'),
+                require('../../../base/card'),
+                require('../../../base/table'),
+                require('../../../base/video'),
+                require('../../../base/social-media-share'),
+                require('../../../base/social-media-follow'),
+                require('../../../base/chart'),
+                require('../../../base/html'),
+                require('../../../form/form-container'),
+                require('../../../layout/spacer')
+            ));
