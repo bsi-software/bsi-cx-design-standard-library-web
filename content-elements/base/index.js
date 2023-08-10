@@ -6,6 +6,7 @@ const titleElements = [
 
 const contentElements = [
   ...titleElements,
+  require('./accordion'),
   require('./button'),
   require('./card'),
   require('./chart'),
