@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.2.1] - 11.08.2023
+
+New feature:
+* An **Accordion** content element has been added
+
+
+Improvements:
+* #354376 - Allow manual date/time picker input
+* #352221 - fix chart color access
+* #358223 - fix form style for floating labels
+* fix radio element with sharp style
+* Dependencies updated
+
+[1.2.1]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.2.1
+
+
 ## [1.2.0] - 15.03.2023
 
 New feature:
