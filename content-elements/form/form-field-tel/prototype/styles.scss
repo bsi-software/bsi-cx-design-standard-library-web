@@ -1,12 +1,14 @@
+$flagsImagePath: '~intl-tel-input/build/img/';
+
 @mixin styles($id: 'form-field-tel-fKUxNS') {
   .bsi-element-#{$id}.bsi-form-tel-input {
     .iti__flag {
-      background-image: url("./flags.png");
+      background-image: url($flagsImagePath + "flags.png");
     }
 
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
       .iti__flag {
-        background-image: url("./flags_2x.png");
+        background-image: url($flagsImagePath + "flags@2x.png");
       }
     }
 
