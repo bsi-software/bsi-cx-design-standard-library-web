@@ -1,5 +1,5 @@
 import VanillaCalendar from "@uvarov.frontend/vanilla-calendar";
-import { changeMonth, changeYear, changeYearAndMonth, getDaysOfMonth, getFirstDayOfMonth, getLastDayOfMonth, toLocalISOStringDate } from "./utils/date-utils.js";
+import { changeMonth, changeYear, changeYearAndMonth, getDaysOfMonth, getFirstDayOfMonth, toLocalISOStringDate } from "./utils/date-utils.js";
 import { fetchSlotsInRange } from "./api.js";
 
 // Basic styles
@@ -22,7 +22,7 @@ let selectedMonth = getFirstDayOfMonth();
 export function initCalendar(model, $element) {
   const calendar = new VanillaCalendar($element, {
     settings: {
-      lang: 'de',
+      lang: model.lang,
       visibility: {
         theme: "light",
         daysOutside: false,
@@ -51,7 +51,7 @@ export function initCalendar(model, $element) {
     calendar.settings.range.disableAllDays = true;
     calendar.update();
 
-    const slots = await fetchSlotsInRange(model.url, month, getLastDayOfMonth(month));
+    const slots = await fetchSlotsInRange(model.url, month, changeMonth(month, month.getMonth() + 1));
     const daysWithoutSlots = getDaysOfMonth(month)
       .filter(day => !slots.some(slot => isSlotOnDay(slot, day)));
 

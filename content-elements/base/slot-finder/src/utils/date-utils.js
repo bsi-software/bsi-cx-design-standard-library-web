@@ -1,38 +1,11 @@
 /**
+ * @typedef {('en' | 'de' | 'fr' | 'it')} Locale
+ */
+
+/**
  * @const {Number} current date
  */
 const now = new Date();
-
-/**
- * @const {String[]} days of the week
- */
-const days = [
-  "Sonntag",
-  "Montag",
-  "Dienstag",
-  "Mittwoch",
-  "Donnerstag",
-  "Freitag",
-  "Samstag",
-];
-
-/**
- * @const {String[]} month of the year
- */
-const months = [
-  "Januar",
-  "Februar",
-  "März",
-  "April",
-  "Mai",
-  "Juni",
-  "Juli",
-  "August",
-  "September",
-  "Oktober",
-  "November",
-  "Dezember",
-];
 
 /**
  * Change the year of the given date
@@ -173,41 +146,49 @@ export function isDayInThePast(date) {
 /**
  * Get the day of the week of the given date
  *
+ * @param {Locale} locale
  * @param {Date} date
  * @returns {String} day of the week
  */
-export function getWeekday(date) {
-  return days[date.getDay()];
+export function getWeekday(locale, date) {
+  let weekday = new Date(0, 0, date.getDay()).toLocaleString(locale, { weekday: 'long' });
+  return capitalize(weekday.replace(/\./, ''));
 }
 
 /**
  * Get the day of the week of the given date
  *
+ * @param {Locale} locale
  * @param {Date} date
  * @returns {String} day of the week
  */
-export function getWeekdayShort(date) {
-  return days[date.getDay()].substring(0, 2);
+export function getWeekdayShort(locale, date) {
+  let weekday = new Date(0, 0, date.getDay()).toLocaleString(locale, { weekday: 'short' });
+  return capitalize(weekday.replace(/\./, ''));
 }
 
 /**
  * Get the month of the given date
  *
+ * @param {Locale} locale
  * @param {Date} date
  * @returns {String} month
  */
-export function getMonth(date) {
-  return months[date.getMonth()];
+export function getMonth(locale, date) {
+  let month = new Date(0, date.getMonth()).toLocaleString(locale, { month: 'long' });
+  return capitalize(month.replace(/\./, ''));
 }
 
 /**
  * Get the month abbreviation of the given date
  *
+ * @param {Locale} locale
  * @param {Date} date
  * @returns {String} month
  */
-export function getMonthShort(date) {
-  return months[date.getMonth()].substring(0, 3);
+export function getMonthShort(locale, date) {
+  let month = new Date(0, date.getMonth()).toLocaleString(locale, { month: 'short' });
+  return capitalize(month.replace(/\./, ''));
 }
 
 /**
@@ -257,11 +238,12 @@ export function formatTime(date) {
 /**
  * Formats the given date to d. mmmm yyyy
  *
+ * @param {Locale} locale
  * @param {Date} date
  * @returns {String} formatted date
  */
-export function formatDate(date) {
-  return `${date.getDate()}. ${getMonth(date)} ${date.getFullYear()}`;
+export function formatDate(locale, date) {
+  return `${date.getDate()}. ${getMonth(locale, date)} ${date.getFullYear()}`;
 }
 
 /**
@@ -273,4 +255,14 @@ export function formatDate(date) {
 function prefixZero(num) {
   if (num < 10) return "0" + num;
   return num.toString();
+}
+
+/**
+ * Capitalize the first letter of the given string
+ *
+ * @param {String} str
+ * @returns capitalized string
+ */
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }

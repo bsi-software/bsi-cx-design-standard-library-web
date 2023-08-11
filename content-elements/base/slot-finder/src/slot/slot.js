@@ -24,6 +24,7 @@ const NUMBER_OF_DAYS = 5;
  */
 export function initDayView(model, $element) {
   model.slots.onChange(() => renderDayView(model, $element));
+  model.selectedDate.onChange(() => renderDayView(model, $element));
   model.selectedSlot.onChange(() => renderDayView(model, $element));
 }
 
@@ -35,6 +36,7 @@ export function initDayView(model, $element) {
  */
 export function initWeekView(model, $element) {
   model.slots.onChange(() => renderWeekView(model, $element));
+  model.selectedDate.onChange(() => renderWeekView(model, $element));
   model.selectedSlot.onChange(() => renderWeekView(model, $element));
 }
 
@@ -73,7 +75,7 @@ function renderWeekView(model, $element) {
       noSlots = false;
     }
 
-    const $day = createDay(addDays(startDate, i));
+    const $day = createDay(model.lang, addDays(startDate, i));
     const $slots = createSlots(slotsOfDay, model);
 
     $element?.append($day, $slots);
@@ -86,16 +88,16 @@ function renderWeekView(model, $element) {
 
 /**
  * Create a day and its slots
- 
- * @param {Date} date 
+ * @param {Date} date
+ * @param {import("../../prototype/slot-finder.js").Language} lang
  * @returns {Element}
  */
-function createDay(date) {
+function createDay(lang, date) {
   return Template(`
     <div class="day">
-      <div class="weekday long">${getWeekday(date)}</div>
-      <div class="weekday short">${getWeekdayShort(date)}</div>
-      <div class="date">${date.getDate()} ${getMonthShort(date)}</div>
+      <div class="weekday long">${getWeekday(lang, date)}</div>
+      <div class="weekday short">${getWeekdayShort(lang, date)}</div>
+      <div class="date">${date.getDate()} ${getMonthShort(lang, date)}</div>
     </div>
   `);
 }

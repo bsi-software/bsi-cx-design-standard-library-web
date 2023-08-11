@@ -13,9 +13,14 @@ import { initDayView, initWeekView } from "../src/slot/slot.js";
  */
 
 /**
+ * @typedef {('en' | 'de' | 'fr' | 'it')} Language
+ */
+
+/**
  * Model
  *
  * @typedef {Object} Model
+ * @property {Language} lang
  * @property {String} url
  * @property {Observable<Date>} selectedDate
  * @property {Observable<Slot[]>} slots
@@ -31,6 +36,7 @@ const $bookButton = document.getElementById("book-button");
 
 /** @type {Model}  */
 export const model = {
+  lang: 'de',
   url: $slotFinder?.dataset.bsiUrl ?? "",
   selectedDate: Observable(new Date()),
   slots: Observable([]),
