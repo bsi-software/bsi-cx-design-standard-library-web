@@ -9,10 +9,9 @@ Alpine.data('formElement', () => ({
     this.root = this.$root;
 
     if (this.root.classList.contains('bsi-form-label-floating')) {
-      const floatingElements = this.form.getElementsByClassName('bsi-label-floating-element');
-      floatingElements.forEach((floatingElement) => {
+      for(const floatingElement of this.form.getElementsByClassName('bsi-label-floating-element')) {
         this._initFloatingLabels(floatingElement);
-      });
+      }
     }
   },
 
