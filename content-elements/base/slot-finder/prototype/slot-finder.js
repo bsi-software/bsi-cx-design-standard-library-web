@@ -1,3 +1,5 @@
+
+import Alpine from 'alpinejs';
 import Observable from "../src/utils/observable.js";
 import { initCalendar } from "../src/calendar.js";
 import { initSummary } from "../src/summary.js";
@@ -27,23 +29,19 @@ import { initDayView, initWeekView } from "../src/slot/slot.js";
  * @property {Observable<Slot|null>} selectedSlot
  */
 
-const $slotFinder = document.getElementById("slot-finder");
-const $calendar = document.getElementById("calendar");
-const $slotsDay = document.getElementById("slots-day");
-const $slotsWeek = document.getElementById("slots-week");
-const $summary = document.getElementById("summary");
-const $bookButton = document.getElementById("book-button");
-
 /** @type {Model}  */
-export const model = {
+const model = {
   lang: 'de',
-  url: $slotFinder?.dataset.bsiUrl ?? "",
+  url: '',
   selectedDate: Observable(new Date()),
   slots: Observable([]),
   selectedSlot: Observable(null),
 };
 
-initCalendar(model, $calendar);
-initDayView(model, $slotsDay);
-initWeekView(model, $slotsWeek);
-initSummary(model, $summary, $bookButton);
+Alpine.data('slotFinder', () => ({
+  init() { model.url = this.$el.dataset.bsiUrl ?? '' },
+  initCalendar() { initCalendar(model, this.$el) },
+  initDayView() { initDayView(model, this.$el) },
+  initWeekView() { initWeekView(model, this.$el) },
+  initSummary() { initSummary(model, this.$el, this.$refs.bookButton) },
+}));
