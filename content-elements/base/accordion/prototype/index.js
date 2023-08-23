@@ -51,6 +51,5 @@ module.exports = (
                 require('../../../base/social-media-follow'),
                 require('../../../base/chart'),
                 require('../../../base/html'),
-                require('../../../form/form-container'),
                 require('../../../layout/spacer')
             ));
