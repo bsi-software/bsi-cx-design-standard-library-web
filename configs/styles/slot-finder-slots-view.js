@@ -3,7 +3,7 @@ const {cx} = require('@bsi-cx/design-build');
 module.exports = cx.style
     .withIdentifier('slots-finder-slots-view-dkKLoi')
     /*.withLabel('Slots view')*/
-    .withLabel('Slotanzeige')
+    .withLabel('Terminanzeige')
     .withCssClasses(
         cx.cssClass
             /*.withLabel('Automatic')*/

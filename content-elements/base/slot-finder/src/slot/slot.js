@@ -144,7 +144,7 @@ export function createSlot(slot, model) {
  */
 export function createNoSlots() {
   return Template(`
-    <div class="no-slots">Keine Slots verfügbar</div>
+    <div class="no-slots">Keine Termine verfügbar</div>
   `);
 }
 

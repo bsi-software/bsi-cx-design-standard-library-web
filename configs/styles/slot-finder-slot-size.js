@@ -3,11 +3,11 @@ const {cx} = require('@bsi-cx/design-build');
 module.exports = cx.style
     .withIdentifier('slots-finder-slot-size-fjRdbB')
     /*.withLabel('Slots view')*/
-    .withLabel('Slotanzeige')
+    .withLabel('Kalenderanzeige')
     .withCssClasses(
         cx.cssClass
             /*.withLabel('Automatic')*/
-            .withLabel('Normal')
+            .withLabel('Start- und Endzeit')
             .withCssClass('default-slots'), 
         cx.cssClass
             /*.withLabel('Only starting times')*/
