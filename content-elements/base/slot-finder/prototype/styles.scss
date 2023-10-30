@@ -40,7 +40,16 @@ $icons: (
       white-space: nowrap;
       border: 1px solid gainsboro;
       border-radius: var(--border-radius);
-      flex: 1;
+
+      &:first-child {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      &:not(:first-child) {
+        flex: 10;
+      }
 
       legend {
         all: revert; /* Revert Bootstrap design */
@@ -49,17 +58,19 @@ $icons: (
       }
     }
 
-    #calendar {
-      height: 300px;
-      width: 100%;
+    .flatpickr-calendar {
+      box-shadow: revert; /* Revert flatpickr border */
 
-      .vanilla-calendar-day__btn_today {
-        color: var(--primary-color);
+      .flatpickr-day.prevMonthDay,
+      .flatpickr-day.nextMonthDay {
+        height: 0;
+        width: 0;
+        visibility: hidden;
       }
 
-      .vanilla-calendar-day__btn_selected {
-        background-color: var(--primary-color);
-        color: #fff;
+      .flatpickr-day.selected {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
       }
     }
 

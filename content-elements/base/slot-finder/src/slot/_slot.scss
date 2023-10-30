@@ -1,10 +1,13 @@
 @mixin styles {
   #slots-day {
-    display: flex;
-    align-content: flex-start;
-    flex-wrap: wrap;
+    display: grid;
     gap: var(--default-gap);
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     overflow: auto;
+
+    &:has(.no-slots) {
+      display: flex;
+    }
   }
 
   #slots-week {
@@ -68,7 +71,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--default-gap);
-    width: 100px;
 
     &:hover {
       background: rgba(0, 0, 0, 0.08);
