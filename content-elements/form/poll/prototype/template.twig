@@ -24,7 +24,10 @@
 
     <div x-data="formPoll" data-bsi-element="{{ pollElementId }}" class="{{ 'bsi-element-' ~ pollElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-poll-nps">
         <div data-bsi-element-part="{{ pollElementPartId }}">
-            <label for="poll-input" class="form-label pt-0 d-block">{{ pollLabelText }}</label>
+            <div class="form-label-and-info-text">
+                <label for="poll-input" class="form-label pt-0 d-block">{{ pollLabelText }}</label>
+                <div data-bsi-element-part="{{ pollFormTextPartId }}" class="form-text">{{ pollInfoText }}</div>
+            </div>
             <input type="number" name="poll-input" id="poll-input" min="1" max="10" step="1" value="" required="" class="bsi-poll-number-input" />
             <div x-init="initRadioGroup($root)" class="bsi-poll-radio-group" data-bsi-remove-if="draft"></div>
             <div class="bsi-poll-radio-group" data-bsi-remove-if="live">
@@ -39,9 +42,8 @@
                 <label data-bsi-element-part="{{ pollLeftPartId }}">{{ pollLabelLeftText }}</label>
                 <label data-bsi-element-part="{{ pollRightPartId }}">{{ pollLabelRightText }}</label>
             </div>
-            <div data-bsi-element-part="{{ pollFormTextPartId }}" class="form-text">{{ pollInfoText }}</div>
             <div x-init="initRequiredError" class="invalid-feedback">
-                <label data-bsi-element-part="{{ pollErrorRequiredPartId }}">{{ pollErrorRequiredText }}</label>
+                <label data-bsi-element-part="{{ pollErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ pollErrorRequiredText }}</label>
             </div>
         </div>
     </div>

@@ -15,15 +15,17 @@
     {% set formFieldErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %} {# TODO: make translatable #}
 
     <div x-data="formField" data-bsi-element="{{ formFieldElementId }}" class="{{ 'bsi-element-' ~ formFieldElementId }} mb-4 bsi-form-element bsi-form-field-element bsi-form-flex-label" data-bsi-element-part="{{ formFieldElementPartId }}">
-        <div class="bsi-form-input-element bsi-label-floating-element mb-3">
-            <label for="field" class="form-label">{{ formFieldLabelText }}</label>
+        <div class="bsi-form-input-element mb-3">
+            <div class="form-label-and-info-text bsi-label-floating-element">
+                <label for="field" class="form-label">{{ formFieldLabelText }}</label>
+                <div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
+            </div>
             <input x-init="initFormFieldInput" x-on:change="validateInput" type="text" class="form-control bsi-form-field-input" id="field" value="">
-            <div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
             <div x-init="initRequiredError" class="invalid-feedback">
-                <label data-bsi-element-part="{{ formFieldErrorRequiredPartId }}">{{ formFieldErrorRequiredText }}</label>
+                <label data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ formFieldErrorRequiredText }}</label>
             </div>
             <div x-init="initInvalidError" class="format-invalid-feedback" hidden="true" aria-hidden="true">
-                <label data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="errormessage-invalid">{{ formFieldErrorInvalidText }}</label>
+                <label data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="errormessage-invalid" role="alert" aria-live="assertive" aria-atomic="true">{{ formFieldErrorInvalidText }}</label>
             </div>
         </div>
     </div>

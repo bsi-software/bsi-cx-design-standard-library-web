@@ -4,6 +4,16 @@
   padding-right: 0px;
   padding-left: 0px;
 
+  .form-text {
+    margin-top: 0 !important;
+  }
+  input, select, textarea, input.bsi-form-tel-input-element, .bsi-poll-radio-group, .form-radio {
+    margin-top: 0.5rem !important;
+  }
+  label {
+    margin-bottom: 0;
+  }
+
   .card, input, select, textarea {
     border: 1px solid rgba(56, 62, 66, .3);
   }
@@ -54,7 +64,7 @@
           flex-wrap: wrap;
           align-items: center;
 
-          .form-label {
+          .form-label-and-info-text {
             flex: 0 1 20%;
             margin: 0;
             padding-right: 10px;

@@ -18,7 +18,11 @@
 
     <div x-data="telInput" data-bsi-element="{{ phoneElementId }}" data-bsi-element-part="{{ phoneElementPartId }}" data-bsi-form-field-fixed-type class="{{ 'bsi-element-' ~ phoneElementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-form-tel-input bsi-element-width-full">
         <div class="bsi-form-input-element mb-3">
-            <label for="tel-field" class="form-label">{{ phoneLabelText }}</label>
+            <div class="form-label-and-info-text">
+                <label for="tel-field" class="form-label">{{ phoneLabelText }}</label>
+                <div data-bsi-element-part="{{ phoneFormTextPartId }}" class="form-text">{{ phoneInfoText }}</div>
+            </div>
+
             <input x-init="initTelInput" x-on:change="validateInput" x-on:countrychange="changeCountry" x-on:focus="onFocus" x-on:focusout="onFocusOut" class="form-control bsi-form-tel-input-element" id="tel-field" type="tel" value="">
 
             <!-- When live, the following section will hold hidden input field with the normalized phone number -->
@@ -32,12 +36,11 @@
                 <label data-bsi-element-part="{{ phonePinnedCountriesPartId }}" class="preferred-countries">ch,de,at</label>
             </div>
 
-            <div data-bsi-element-part="{{ phoneFormTextPartId }}" class="form-text">{{ phoneInfoText }}</div>
             <div x-init="initRequiredError" class="bsi-tel-input-error-required invalid-feedback">
-                <label data-bsi-element-part="{{ phoneErrorRequiredPartId }}">{{ phoneErrorRequiredText }}</label>
+                <label data-bsi-element-part="{{ phoneErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ phoneErrorRequiredText }}</label>
             </div>
             <div x-init="initInvalidError" class="bsi-tel-input-error-invalid" hidden="true" aria-hidden="true">
-                <label data-bsi-element-part="{{ phoneErrorInvalidPartId }}" class="errormessage-invalid">{{ phoneErrorInvalidText }}</label>
+                <label data-bsi-element-part="{{ phoneErrorInvalidPartId }}" class="errormessage-invalid" role="alert" aria-live="assertive" aria-atomic="true">{{ phoneErrorInvalidText }}</label>
             </div>
         </div>
     </div>

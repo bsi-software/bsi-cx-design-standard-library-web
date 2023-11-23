@@ -19,7 +19,7 @@
         </div>
         <div data-bsi-element-part="{{ checkboxFormTextPartId }}" class="form-text">{{ checkboxInfoText }}</div>
         <div class="invalid-feedback">
-            <label data-bsi-element-part="{{ checkboxErrorRequiredPartId }}">{{ checkboxErrorRequiredText }}</label>
+            <label data-bsi-element-part="{{ checkboxErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ checkboxErrorRequiredText }}</label>
         </div>
     </div>
 {% endapply %}

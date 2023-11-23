@@ -15,16 +15,18 @@
 
     <div x-data="formRadio" data-bsi-element="{{ radioElementId }}" class="{{ 'bsi-element-' ~ radioElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-form-flex-label bsi-radio-block" data-bsi-element-part="{{ radioElementPartId }}">
         <div class="bsi-form-input-element">
-            <label class="form-label pt-0">{{ radioGroupLabelText }}</label>
+            <div class="form-label-and-info-text">
+                <label class="form-label pt-0">{{ radioGroupLabelText }}</label>
+                <div data-bsi-element-part="{{ radioFormTextPartId }}" class="form-text">{{ radioInfoText }}</div>
+            </div>
             <div data-bsi-radio-group="" class="form-radio">
                 <div class="form-check" data-bsi-radio-item="">
                     <input x-on:change="validateInput" class="form-check-input" type="radio" name="radio" id="radio1">
                     <label class="form-check-label" for="radio1">{{ radioLabelText }}</label>
                 </div>
             </div>
-            <div data-bsi-element-part="{{ radioFormTextPartId }}" class="form-text">{{ radioInfoText }}</div>
             <div x-init="initRequiredError" class="invalid-feedback">
-                <label data-bsi-element-part="{{ radioErrorRequiredPartId }}">{{ radioErrorRequiredText }}</label>
+                <label data-bsi-element-part="{{ radioErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ radioErrorRequiredText }}</label>
             </div>
         </div>
     </div>
