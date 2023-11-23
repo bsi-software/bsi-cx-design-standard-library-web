@@ -14,14 +14,16 @@
     {% set selectErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
     <div x-data="selectField" data-bsi-element="{{ selectElementId }}" class="{{ 'bsi-element-' ~ selectElementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-placeholder-not-defined" data-bsi-element-part="{{ selectElementPartId }}">
-        <div class="bsi-form-input-element bsi-label-floating-element mb-3">
-            <label for="select" class="form-label">{{ selectLabelText }}</label>
+        <div class="bsi-form-input-element bsi-label-floating-element mb-3" role="alert" aria-live="polite">
+            <div class="form-label-and-info-text">
+                <label for="select" class="form-label">{{ selectLabelText }}</label>
+                <div data-bsi-element-part="{{ selectFormTextPartId }}" class="form-text">{{ selectInfoText }}</div>
+            </div>
             <select x-init="initSelectField" class="form-select" id="select">
                 <option value="">{{ selectOptionText }}</option>
             </select>
-            <div data-bsi-element-part="{{ selectFormTextPartId }}" class="form-text">{{ selectInfoText }}</div>
             <div class="invalid-feedback">
-                <label data-bsi-element-part="{{ selectErrorRequiredPartId }}">{{ selectErrorRequiredText }}</label>
+                <label data-bsi-element-part="{{ selectErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ selectErrorRequiredText }}</label>
             </div>
         </div>
     </div>

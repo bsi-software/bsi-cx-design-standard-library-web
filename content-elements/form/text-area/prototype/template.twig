@@ -14,11 +14,13 @@
 
     <div data-bsi-element="{{ textAreaElementId }}" class="{{ 'bsi-element-' ~ textAreaElementId }} mb-4 bsi-form-element bsi-form-textarea bsi-form-flex-label" data-bsi-element-part="{{ textAreaElementPartId }}">
         <div class="bsi-form-input-element bsi-label-floating-element mb-3">
-            <label for="field" class="form-label">{{ textAreaLabelText }}</label>
+            <div class="form-label-and-info-text">
+                <label for="field" class="form-label">{{ textAreaLabelText }}</label>
+                <div data-bsi-element-part="{{ textAreaFormTextPartId }}" class="form-text">{{ textAreaInfoText }}</div>
+            </div>
             <textarea class="form-control" id="field" rows="5" value=""></textarea>
-            <div data-bsi-element-part="{{ textAreaFormTextPartId }}" class="form-text">{{ textAreaInfoText }}</div>
             <div class="invalid-feedback">
-                <label data-bsi-element-part="{{ textAreaErrorRequiredPartId }}">{{ textAreaErrorRequiredText }}</label>
+                <label data-bsi-element-part="{{ textAreaErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ textAreaErrorRequiredText }}</label>
             </div>
         </div>
     </div>
