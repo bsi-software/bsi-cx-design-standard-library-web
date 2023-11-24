@@ -19,7 +19,7 @@ module.exports = (
 ) => cx
   .contentElement
   .withFile(template)
-  .withMinVersion(Version.CX_22_0)
+  .withMinVersion(Version.CX_23_2)
   .withElementId(elementId)
   .withLabel(elementLabel)
   .withIcon(Icon.COMMUNICATION)

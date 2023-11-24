@@ -14,13 +14,7 @@
 {% set bookSlotText = properties.slotFinderBookSlotText ?: 'Book appointment' %}
 {% set noSlotsText = properties.slotFinderNoSlotsText ?: 'No slots available' %}
 
-{% set calendarViewDay = (calendarViewDay ?: properties.calendarViewDay) ?: 'calendar-view-day' %}
-{% set calendarViewWeek = (calendarViewWeek ?: properties.calendarViewWeek) ?: 'calendar-view-week' %}
-{% set calendarViewMonth = (calendarViewMonth ?: properties.calendarViewMonth) ?: 'no-calendar-view-month' %}
-{% set calendarViewList = (calendarViewList ?: properties.calendarViewList) ?: 'no-calendar-view-list' %}
-{% set calendarStartingView = (calendarStartingView ?: properties.calendarStartingView) ?: 'calendar-starting-view-day' %}
-
-{% if cx.version.TARGET >= cx.version.CX_22_0 %}
+{% if cx.version.TARGET >= cx.version.CX_23_2 %}
 
 	<div x-data="slotFinder" id="slot-finder" data-bsi-element="{{ slotFinderElementId }}" data-bsi-element-part="{{ slotFinderUrlPartId }}" data-bsi-url-provider="Calendar" class="{{ 'bsi-element-' ~ slotFinderElementId }} day-view default-slots default-flow">
     <fieldset>
