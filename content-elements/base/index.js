@@ -13,6 +13,7 @@ const contentElements = [
   require('./figure'),
   require('./html'),
   require('./news-snippet'),
+  require('./slot-finder'),
   require('./social-media-follow'),
   require('./social-media-share'),  
   require('./table'),
