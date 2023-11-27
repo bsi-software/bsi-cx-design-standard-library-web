@@ -69,6 +69,31 @@ Alpine.data('formField', () => ({
   },
 
   _initDateInput() {
+    if (this.inputEl.placeholder && (this.inputEl.type === 'date' || this.inputEl.type === 'datetime-local')) {
+      let date = new Date(this.inputEl.placeholder);
+      let day = date.getDate();
+      let month = date.getMonth() + 1; // month is 0 indexed
+      let year = date.getFullYear();
+      if (day.toString().length === 1) {
+        day = '0' + day.toString();
+      }
+      if (month.toString().length === 1) {
+        month = '0' + month.toString();
+      }
+      if (this.inputEl.type === 'date') {
+        this.inputEl.placeholder = day + "." + month + "." + year; // format: 'd.m.Y'
+      } else if (this.inputEl.type === 'datetime-local') {
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        if (hours.toString().length === 1) {
+          hours = '0' + hours.toString();
+        }
+        if (minutes.toString().length === 1) {
+          minutes = '0' + minutes.toString();
+        }
+        this.inputEl.placeholder = day + "." + month + "." + year + " " + hours + ":" + minutes; // format: 'd.m.Y H:i'
+      }
+    }
     if (this.inputEl.min) {
       this.minDate = this.inputEl.min;
     }
