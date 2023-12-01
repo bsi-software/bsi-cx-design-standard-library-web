@@ -36,7 +36,8 @@
     "bootstrap-icons": "^1.9.1",
     "chart.js": "^4.2.1",
     "flatpickr": "^4.6.10",
-    "intl-tel-input": "^18.1.5"
+    "intl-tel-input": "^18.2.1",
+    "@popperjs/core": "^2.11.8"
   },
   "devDependencies": {
     "@bsi-cx/design-build": "^1.13.0",

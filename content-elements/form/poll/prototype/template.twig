@@ -27,6 +27,7 @@
             <div class="form-label-and-info-text">
                 <label for="poll-input" class="form-label pt-0 d-block">{{ pollLabelText }}</label>
                 <div data-bsi-element-part="{{ pollFormTextPartId }}" class="form-text">{{ pollInfoText }}</div>
+                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ pollInfoText }}"></i>
             </div>
             <input type="number" name="poll-input" id="poll-input" min="1" max="10" step="1" value="" required="" class="bsi-poll-number-input" />
             <div x-init="initRadioGroup($root)" class="bsi-poll-radio-group" data-bsi-remove-if="draft"></div>
