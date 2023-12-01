@@ -15,8 +15,8 @@
     {% set formFieldErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %} {# TODO: make translatable #}
 
     <div x-data="formField" data-bsi-element="{{ formFieldElementId }}" class="{{ 'bsi-element-' ~ formFieldElementId }} mb-4 bsi-form-element bsi-form-field-element bsi-form-flex-label" data-bsi-element-part="{{ formFieldElementPartId }}">
-        <div class="bsi-form-input-element mb-3">
-            <div class="form-label-and-info-text bsi-label-floating-element">
+        <div class="bsi-form-input-element mb-3 bsi-label-floating-element">
+            <div class="form-label-and-info-text">
                 <label for="field" class="form-label">{{ formFieldLabelText }}</label>
                 <div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
             </div>

@@ -29,6 +29,7 @@ Alpine.data('formElement', () => ({
   _initFloatingLabels(floatingElement) {
     let input = floatingElement.querySelector('.form-control');
     let label = floatingElement.querySelector('.form-label');
+    let labelAndInfo = floatingElement.querySelector('.form-label-and-info-text');
     if (!input) {
       input = floatingElement.querySelector('.form-select');
     } else {
@@ -43,8 +44,10 @@ Alpine.data('formElement', () => ({
     }
 
     if (!(input.type === "range")) {
-      floatingElement.classList.add('form-floating');
-      floatingElement.insertBefore(input, label);
+      let floatingDiv = document.createElement("div");
+      floatingDiv.classList.add('form-floating');
+      floatingElement.insertBefore(floatingDiv, labelAndInfo.nextSibling);
+      floatingDiv.append(input, label);
     }
   },
 

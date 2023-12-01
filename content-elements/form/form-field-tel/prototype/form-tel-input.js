@@ -127,8 +127,9 @@ Alpine.data('telInput', () => ({
 
   _initFloatingLabel() {
     this.labelElement = this.rootElement.querySelector('.form-label');
-    this.iti.classList.add('form-floating');
-    this.iti.append(this.labelElement);
+    let itiElement = this.rootElement.querySelector('.iti');
+    itiElement.classList.add('form-floating');
+    itiElement.append(this.labelElement);
 
     this.labelText = this.labelElement.innerText;
     this.labelElement.innerText = this.inputField.placeholder;
