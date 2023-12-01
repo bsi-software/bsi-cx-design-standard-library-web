@@ -33,6 +33,10 @@
             .accordion-title {
                 flex-grow: 1;
             }
+
+            &:focus-visible {
+                outline: 0.2rem solid $secondary;
+            }
         }
 
 
