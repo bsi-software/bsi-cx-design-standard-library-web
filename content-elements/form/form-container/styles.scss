@@ -222,6 +222,10 @@
       input[type=range]:focus::-ms-thumb {
         box-shadow: 0 0 0 .25rem rgba($color, .25);
       } /* IE */
+
+      i.bi-info-circle {
+        color: $color;
+      }
     }
   }
 
@@ -248,4 +252,29 @@
   .text-danger {
     list-style-type: none;
   }
+
+  .form-label-and-info-text,
+  .checkbox-label-and-tooltip {
+    &.contains-tooltip {
+      display: flex;
+      gap: 0.5rem;
+
+      .form-text {
+        display: none;
+      }
+    }
+
+    i.bi-info-circle {
+      display: none;
+
+      &.tooltip-visible {
+        display: block;
+      }
+    }
+  }
+}
+
+.bsi-tooltip {
+  --bs-tooltip-bg: var(--bs-gray-dark);
+  --bs-tooltip-color: var(--bs-light);
 }
