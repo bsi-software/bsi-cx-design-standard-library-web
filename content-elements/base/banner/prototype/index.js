@@ -27,6 +27,7 @@ module.exports = (
   .withDescription(elementDescription)
   .withIcon(Icon.IMAGE)
   .withStyleConfigs(
+    require('../../../../configs/styles/col-width'),
     require('../../../../configs/styles/alignment-horizontal'),    
     require('../../../../configs/styles/alignment-vertical'),
     require('../../../../configs/styles/overlay-color'),
