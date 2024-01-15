@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 15.01.2024
+
+### Important Change
+We are now using the [CSP Distribution of Alpine.js](https://alpinejs.dev/advanced/csp). Thus, developers my no longer use any inline JavaScript in HTML/TWIG files associated with Alpine. Instead, there must always be a reference pointing to an associated alpine data object. We changed the implementation of a couple of components to comply with this new rule. The advantage of it is that content elements using Alpine.js are now shown properly in the 'Preview' mode of the content editor and in live mode without having to change the CSP settings. By using de CSP distribution of Alpine.js, it is no longer required to add `usafe-eval` to the CSP, which helps to increase security (#355743).
+
+### Additional changes
+* New style to display a button as a link (#357481)
+* Remove unused caption for logo element (#364438)
+* New style to used a fixed width for the header image element (#355743)
+* Prevent from chosing the wrong input type for poll element (#355743)
+* Upgrade dependencies
+
+[1.4.0]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.4.0
+
 ## [1.3.0] - 04.12.2023
 
 ### Added
