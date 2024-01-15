@@ -8,11 +8,14 @@
     {% set figureImagePartId = imagePartId ?: 'figure-part-image-JoCwpV' %}
     {% set figureTextPartId = textPartId ?: 'figure-part-text-Xbhmjk' %}
     {% set figureImageSrc = imageSrc ?: bsi_cx_asset('../../../../static/image.png') %}
-    {% set figureCaption = caption ?: bsi_cx_lorem(3) %}
+    {% set figureHasCaption = hasCaption ?? true %}
+    {% set figureCaptionText = caption ?? "" %}
 
     <figure data-bsi-element="{{ figureElementId }}" class="figure {{ 'bsi-element-' ~ figureElementId }} bsi-caption-hide bsi-caption-medium bsi-shape-square bsi-orientation-landscape bsi-aspect-ratio-auto bsi-hover-effect-disabled bsi-overlay-hide bsi-overlay-opacity-0">
         {# 'srcset' support removed until further notice. see: https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues/46 #}
-        <img src="{{ figureImageSrc }}" class="figure-img img-fluid" alt="{{ figureCaption }}" data-bsi-element-part="{{ figureImagePartId }}"/>
-        <figcaption class="figure-caption" data-bsi-element-part="{{ figureTextPartId }}">{{ figureCaption }}</figcaption>
+        <img src="{{ figureImageSrc }}" class="figure-img img-fluid" alt="{{ figureCaptionText }}" data-bsi-element-part="{{ figureImagePartId }}"/>
+        {% if figureHasCaption == true %}
+            <figcaption class="figure-caption" data-bsi-element-part="{{ figureTextPartId }}">{{ figureCaptionText }}</figcaption>
+        {% endif %}
     </figure>
 {% endapply %}
