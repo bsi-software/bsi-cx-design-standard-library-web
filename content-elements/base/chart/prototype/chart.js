@@ -1,6 +1,6 @@
 import { ChartConfig, ChartUrlProvider } from '@bsi-cx/chart';
 import ChartConfigColor from '@bsi-cx/chart/src/config/color';
-import Alpine from 'alpinejs';
+import Alpine from '@alpinejs/csp';
 import 'chart.js/auto';
 
 /**

@@ -1,12 +1,12 @@
-import Alpine from 'alpinejs';
+import Alpine from '@alpinejs/csp';
 
 Alpine.data('formPoll', () => ({
   root: null,
   labelElement: null,
   requiredErrorElement: null,
 
-  initRadioGroup(root) {
-    this.root = root;
+  initRadioGroup() {
+    this.root = this.$root;
     let thisForm = this;
     let range = this.root.querySelector('input');
     if (range === null) {
@@ -47,10 +47,10 @@ Alpine.data('formPoll', () => ({
   initLabel() {
     this.labelElement = this.$el;
     let radioItems = this.root.querySelectorAll('input[type="radio"]');
-    if (this.root.classList.contains('bsi-poll-nps')) {
+    if (radioItems && this.root.classList.contains('bsi-poll-nps')) {
       // NPS elements have a max width of 42px and gaps of 0.1em
       this.labelElement.style.maxWidth = (radioItems.length * 42) + ((radioItems.length - 1) * 1.6) + 'px';
-    } else if (this.root.classList.contains('bsi-poll-star')) {
+    } else if (radioItems && this.root.classList.contains('bsi-poll-star')) {
       // Star elements have a width of 40px and no gaps
       this.labelElement.style.maxWidth = (radioItems.length * 40) + 'px';
     }

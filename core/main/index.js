@@ -1,5 +1,5 @@
 // import dependencies
-import Alpine from 'alpinejs';
+import Alpine from '@alpinejs/csp';
 import 'bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 

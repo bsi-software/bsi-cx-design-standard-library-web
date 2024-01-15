@@ -1,4 +1,4 @@
-import Alpine from 'alpinejs';
+import Alpine from '@alpinejs/csp';
 import flatpickr from "flatpickr";
 
 Alpine.data('formField', () => ({

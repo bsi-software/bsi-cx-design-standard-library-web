@@ -1,6 +1,6 @@
 import intlTelInput from 'intl-tel-input';
 import 'intl-tel-input/build/css/intlTelInput.css';
-import Alpine from "alpinejs";
+import Alpine from '@alpinejs/csp';
 
 Alpine.data('telInput', () => ({
   rootElement: null,

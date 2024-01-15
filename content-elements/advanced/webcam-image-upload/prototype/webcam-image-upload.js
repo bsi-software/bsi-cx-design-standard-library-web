@@ -1,9 +1,9 @@
-import Alpine from 'alpinejs';
+import Alpine from '@alpinejs/csp';
 
 Alpine.data('webcamImageUpload', () => ({
     isAsk: true,
     isCamera: false,
-    isCameraCapture: true,
+    isCaptureMode: true,
     isManual: false, 
     facingMode: 'user',
 
@@ -11,6 +11,14 @@ Alpine.data('webcamImageUpload', () => ({
         this.facingMode = this.getCameraFacingMode(this.$refs.webcamImageUpload);
         this.isAsk = this.hasWebcamSupport();
         this.isManual = !this.hasWebcamSupport();
+    },
+
+    isPreview() {
+        return !this.isCaptureMode;
+    }, 
+
+    isCameraCapture() {
+        return this.isCaptureMode;
     },
 
     getCameraFacingMode(el) {
@@ -32,7 +40,7 @@ Alpine.data('webcamImageUpload', () => ({
     },
 
     accessCamera() {
-        this.isCameraCapture = true;
+        this.isCaptureMode = true;
 
         navigator.mediaDevices
             .getUserMedia({
@@ -58,7 +66,7 @@ Alpine.data('webcamImageUpload', () => ({
     }, 
 
     stopVideo() {
-        this.isCameraCapture = false;
+        this.isCaptureMode = false;
         this.$refs.video.srcObject.getTracks().forEach(track => track.stop());
     },
 
