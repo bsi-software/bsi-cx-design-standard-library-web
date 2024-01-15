@@ -13,7 +13,8 @@ module.exports = (
   elementId = 'text-kkq2fq',
   elementLabel = 'Text',
   textPartId = 'text-part-Fjse59',
-  textPartLabel = 'Text'
+  textPartLabel = 'Text',
+  textEditorConfig = require('../../../../configs/editor/full.js'),
 ) => cx
   .contentElement
   .withFile(template)
@@ -24,6 +25,6 @@ module.exports = (
     require('../../../../configs/styles/text-size'))
   .withParts(
     cx.part.formattedText
-      .withHtmlEditorConfig(require('../../../../configs/editor/full.js'))
+      .withHtmlEditorConfig(textEditorConfig)
       .withId(textPartId)
       .withLabel(textPartLabel));

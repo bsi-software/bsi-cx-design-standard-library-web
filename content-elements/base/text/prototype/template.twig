@@ -9,6 +9,6 @@
     {% set text = (text ?: properties.textContent) ?: bsi_cx_lorem(110) %}
 
     <div data-bsi-element="{{ textElementId }}" data-bsi-element-part="{{ textPartId }}" class="{{ 'bsi-element-' ~ textElementId }} bsi-default">
-        <p>{{ text }}</p>
+        <p>{{ text | raw }}</p>
     </div>
 {% endapply %}
