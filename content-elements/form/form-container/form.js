@@ -1,4 +1,4 @@
-import Alpine from 'alpinejs';
+import Alpine from '@alpinejs/csp';
 import { Tooltip } from 'bootstrap';
 
 Alpine.data('formElement', () => ({

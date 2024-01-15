@@ -20,10 +20,10 @@
 				<h5 class="card-title" data-bsi-element-part="{{ webcamImgModeAskTitlePartId }}">Kamerazugriff benötigt</h5>
 				<p data-bsi-element-part="{{ webcamImgModeAskDescriptionPartId }}">Wir benötigen Zugriff auf ihre Kamera, um ein Bild aufzunehmen. Falls ihr Browser Sie im nächsten Schritt um die Berechtigung zur Nutzung der Kamera fragt, muss der Zugriff auf die Kamera gewährt werden.</p>
 				<div class="bsi-element-button-v3cFFn bsi-btn-element bsi-btn-filled bsi-btn-size-lg bsi-btn-width-default bsi-corner-sharp bsi-btn-letter-uppercase bsi-btn-icon-hide bsi-btn-color-primary bsi-video-btn">
-					<button @click="accessCamera()" class="btn" data-bsi-element-part="{{ webcamImgModeAskButtonCameraPartId }}">Zugriff erlauben</button>
+					<button @click="accessCamera" class="btn" data-bsi-element-part="{{ webcamImgModeAskButtonCameraPartId }}">Zugriff erlauben</button>
 				</div>
 				<div class="bsi-element-button-v3cFFn bsi-btn-element bsi-btn-width-default bsi-corner-sharp bsi-btn-icon-hide bsi-btn-color-dark bsi-btn-outline bsi-btn-size-sm bsi-btn-letter-default bsi-video-btn">
-					<button @click="showUploadDialog()" class="btn" data-bsi-element-part="{{ webcamImgModeAskButtonManualPartId }}">Stattdessen ein Bild hochladen</button>
+					<button @click="showUploadDialog" class="btn" data-bsi-element-part="{{ webcamImgModeAskButtonManualPartId }}">Stattdessen ein Bild hochladen</button>
 				</div>
 			</div>
 
@@ -32,12 +32,12 @@
 			<div x-show="isCamera" class="camera bsi-ce-hide">
 				<div class="card-header">
 					<video x-show="isCameraCapture" x-ref="video" autoplay muted playsinline></video>
-					<canvas x-show="!isCameraCapture" x-ref="canvas"></canvas>
-					<button x-show="isCameraCapture" @click="capturePicture()" class="camera-button camera-button-capture btn-primary bi bi-circle-fill" />
-					<button x-show="!isCameraCapture" @click="undoPicture()" class="camera-button camera-button-undo btn-secondary bi bi-arrow-counterclockwise" />
+					<canvas x-show="isPreview" x-ref="canvas"></canvas>
+					<button x-show="isCameraCapture" @click="capturePicture" class="camera-button camera-button-capture btn-primary bi bi-circle-fill" />
+					<button x-show="isPreview" @click="undoPicture" class="camera-button camera-button-undo btn-secondary bi bi-arrow-counterclockwise" />
 				</div>
 				<div class="card-body bsi-element-button-v3cFFn bsi-btn-element bsi-btn-filled bsi-btn-size-lg bsi-btn-width-default bsi-corner-sharp bsi-btn-letter-uppercase bsi-btn-icon-hide bsi-btn-color-primary bsi-video-btn ">
-					<button x-bind:disabled="isCameraCapture" @click="uploadImageCapture()" class="btn">Bild übermitteln</button>
+					<button x-bind:disabled="isCameraCapture" @click="uploadImageCapture" class="btn">Bild übermitteln</button>
 				</div>
 			</div>
 

@@ -1,5 +1,5 @@
 
-import Alpine from 'alpinejs';
+import Alpine from '@alpinejs/csp';
 import Observable from "../src/utils/observable.js";
 import { initCalendar } from "../src/calendar.js";
 import { initSummary } from "../src/summary.js";

@@ -23,14 +23,14 @@
     {% endfor %}
 
     <div x-data="formPoll" data-bsi-element="{{ pollElementId }}" class="{{ 'bsi-element-' ~ pollElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-poll-nps">
-        <div data-bsi-element-part="{{ pollElementPartId }}">
+        <div data-bsi-element-part="{{ pollElementPartId }}" data-bsi-form-field-fixed-type>
             <div class="form-label-and-info-text">
                 <label for="poll-input" class="form-label pt-0 d-block">{{ pollLabelText }}</label>
                 <div data-bsi-element-part="{{ pollFormTextPartId }}" class="form-text">{{ pollInfoText }}</div>
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ pollInfoText }}"></i>
             </div>
             <input type="number" name="poll-input" id="poll-input" min="1" max="10" step="1" value="" required="" class="bsi-poll-number-input" />
-            <div x-init="initRadioGroup($root)" class="bsi-poll-radio-group" data-bsi-remove-if="draft"></div>
+            <div x-init="initRadioGroup" class="bsi-poll-radio-group" data-bsi-remove-if="draft"></div>
             <div class="bsi-poll-radio-group" data-bsi-remove-if="live">
                 {% for value in pollRange %}
                     <div class="form-check form-check-inline radio-group bsi-poll-radio-item">
