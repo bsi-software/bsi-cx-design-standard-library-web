@@ -6,10 +6,14 @@ module.exports = cx.style
   .withLabel('Button Layout')
   .withCssClasses(
     cx.cssClass
-      /*.withLabel('Filled')*/
-      .withLabel('Farbig ausgefüllt')
+      /*.withLabel('colored, illed')*/
+      .withLabel('Farbig, ausgefüllt')
       .withCssClass('bsi-btn-filled'),
+      cx.cssClass
+      /*.withLabel('colored, framed')*/
+      .withLabel('Farbig, umrandet')
+      .withCssClass('bsi-btn-outline'),      
     cx.cssClass
-      /*.withLabel('Outline')*/
-      .withLabel('Farbig umrandet')
-      .withCssClass('bsi-btn-outline'));
+      /*.withLabel('link without border')*/
+      .withLabel('Link ohne Umrandung')
+      .withCssClass('bsi-btn-link'));

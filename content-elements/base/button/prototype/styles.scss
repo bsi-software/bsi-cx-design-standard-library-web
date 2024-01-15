@@ -91,6 +91,19 @@
             box-shadow: 0 0 0 .35rem rgba($color, .4);
           }
         }
+
+        &.bsi-btn-link .btn {
+          color: $color;
+          background-color: transparent;
+          border: none;
+
+          &:hover {
+            font-weight: bold;
+          }
+          &:focus {
+            box-shadow: 0 0 0 .35rem rgba($color, .4);
+          }
+        }
       }
     }
   }
