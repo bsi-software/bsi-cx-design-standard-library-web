@@ -1,3 +1,6 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
 /* --------------------- Set style variables ------------------- */
 
 // Colors
@@ -73,4 +76,12 @@ $grid-breakpoints: (
         lg: $lg,
         xl: $xl,
         xxl: $xxl
+);
+
+$spacers: map-merge(
+    $spacers, (
+        6: $spacer * 5,
+        7: $spacer * 7.5,
+        8: $spacer * 10,
+    )
 );

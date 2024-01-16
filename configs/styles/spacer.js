@@ -19,4 +19,13 @@ module.exports = cx.style
       .withCssClass('pt-4'),
     cx.cssClass
       .withLabel('48 px')
-      .withCssClass('pt-5'));
+      .withCssClass('pt-5'),      
+    cx.cssClass
+      .withLabel('80 px')
+      .withCssClass('pt-6'),
+    cx.cssClass
+      .withLabel('120 px')
+      .withCssClass('pt-7'),
+    cx.cssClass
+      .withLabel('160 px')
+      .withCssClass('pt-8'));
