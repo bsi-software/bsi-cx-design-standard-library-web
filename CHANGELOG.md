@@ -13,7 +13,10 @@ We are now using the [CSP Distribution of Alpine.js](https://alpinejs.dev/advanc
 ### Additional changes
 * New style to display a button as a link (#357481)
 * Remove unused caption for logo element (#364438)
-* New style to used a fixed width for the header image element (#355743)
+* New style to use a fixed width for the header image element (#365087)
+* Additonal spacer options (#365087)
+* Better description for banner and header image (#365087)
+* Replace Twitter with X, fix typo in YouTube (@#371665)
 * Prevent from chosing the wrong input type for poll element (#355743)
 * Upgrade dependencies
 
