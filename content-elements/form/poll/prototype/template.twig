@@ -10,9 +10,9 @@
     {% set pollRightPartId = rightPartId ?: 'poll-part-right-Cz7PuT' %}
     {% set pollFormTextPartId = formTextPartId ?: 'poll-part-text-Xi7bOp' %}
     {% set pollErrorRequiredPartId = errorRequiredPartId ?: 'poll-part-error-required-lL6aMT' %}
-    {% set pollLabelText = (labelText ?: properties.pollLabelText) ?: 'How likely is it that you will recommend our product to others?' %}
-    {% set pollLabelLeftText = (labelLeftText ?: properties.pollLabelLeftText) ?: 'Unlikely' %}
-    {% set pollLabelRightText = (labelRightText ?: properties.pollLabelRightText) ?: 'Very likely' %}
+    {% set pollLabelText = (labelText ?: properties.pollLabelText) ?: 'Wie wahrscheinlich ist es, dass Sie unser Produkt weiter empfehlen werden?' %} {# TODO: make translatable #}
+    {% set pollLabelLeftText = (labelLeftText ?: properties.pollLabelLeftText) ?: 'Unwahrscheinlich' %} {# TODO: make translatable #}
+    {% set pollLabelRightText = (labelRightText ?: properties.pollLabelRightText) ?: 'Sehr wahrscheinlich' %} {# TODO: make translatable #}
     {% set pollInfoText = (infoText ?: properties.pollInfoText) ?: "" %}
     {% set pollErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
