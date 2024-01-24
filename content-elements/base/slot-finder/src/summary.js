@@ -36,7 +36,7 @@ function renderSummary(model, $element) {
   const slot = model.selectedSlot.get();
   if (slot === null) return;
   $element.innerHTML = `
-    <p class="prefix-calendar">${getWeekday(model.lang, slot.from)}, ${formatDate(model.lang, slot.from)}</p>
-    <p class="prefix-clock">${formatSlot(slot)} Uhr</p>
+    <p class="prefix-calendar">${getWeekday(model.locale, slot.from)}, ${formatDate(model.locale, slot.from)}</p>
+    <p class="prefix-clock">${formatSlot(slot)}</p>
   `;
 }

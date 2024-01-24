@@ -1,5 +1,5 @@
 @mixin styles {
-  #slots-day {
+  .slots-day {
     display: grid;
     gap: var(--default-gap);
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -10,7 +10,7 @@
     }
   }
 
-  #slots-week {
+  .slots-week {
     display: grid;
     grid-template-rows: max-content 1fr;
     grid-auto-columns: 1fr;
@@ -50,15 +50,15 @@
   }
 
   @container (max-width: 523px) {
-    #slots-week .weekday.long,
-    #slots-week .duration,
-    #slots-week .to-time {
+    .slots-week .weekday.long,
+    .slots-week .duration,
+    .slots-week .to-time {
       display: none;
     }
   }
 
   @container (min-width: 524px) {
-    #slots-week .weekday.short {
+    .slots-week .weekday.short {
       display: none;
     }
   }
@@ -71,6 +71,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--default-gap);
+    cursor: pointer;
 
     &:hover {
       background: rgba(0, 0, 0, 0.08);
@@ -87,7 +88,7 @@
     }
 
     .time > .to-time::before {
-      content: "\00a0-\00a0";
+      content: "\a0-\a0";
     }
 
     .duration {

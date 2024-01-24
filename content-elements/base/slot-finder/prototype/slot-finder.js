@@ -31,7 +31,7 @@ import { initDayView, initWeekView } from "../src/slot/slot.js";
 
 /** @type {Model}  */
 const model = {
-  lang: 'de',
+  locale: '',
   url: '',
   selectedDate: Observable(new Date()),
   slots: Observable([]),
@@ -39,9 +39,24 @@ const model = {
 };
 
 Alpine.data('slotFinder', () => ({
-  init() { model.url = this.$el.dataset.bsiUrl ?? '' },
-  initCalendar() { initCalendar(model, this.$el) },
-  initDayView() { initDayView(model, this.$el) },
-  initWeekView() { initWeekView(model, this.$el) },
-  initSummary() { initSummary(model, this.$el, this.$refs.bookButton) },
+  init() {
+    model.locale = document.documentElement.lang.slice(0, 2) ?? 'de';
+    model.url = this.$el.dataset.bsiUrl ?? '';
+  },
+  
+  initCalendar() {
+    initCalendar(model, this.$el);
+  },
+
+  initDayView() {
+    initDayView(model, this.$el, this.$refs.noSlotsText, this.$refs.chooseAnotherDayText);
+  },
+
+  initWeekView() {
+    initWeekView(model, this.$el, this.$refs.noSlotsText, this.$refs.chooseAnotherDayText);
+  },
+
+  initSummary() { 
+    initSummary(model, this.$el, this.$refs.bookButton);
+  },
 }));
