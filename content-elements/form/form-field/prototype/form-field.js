@@ -1,5 +1,8 @@
 import Alpine from '@alpinejs/csp';
 import flatpickr from "flatpickr";
+import "flatpickr/dist/l10n/de.js";
+import "flatpickr/dist/l10n/fr.js";
+import "flatpickr/dist/l10n/it.js";
 
 Alpine.data('formField', () => ({
   rootEl: null,
@@ -69,6 +72,7 @@ Alpine.data('formField', () => ({
   },
 
   _initDateInput() {
+    let locale = document.documentElement.lang.slice(0, 2) ?? 'de-CH';
     if (this.inputEl.placeholder && (this.inputEl.type === 'date' || this.inputEl.type === 'datetime-local')) {
       let date = new Date(this.inputEl.placeholder);
       let day = date.getDate();
@@ -102,6 +106,7 @@ Alpine.data('formField', () => ({
     }
     if (this.inputEl.type === 'date') {
       this.fp = flatpickr(this.inputEl, {
+        locale: locale,
         altInput: true,
         altFormat: 'd.m.Y',
         dateFormat: 'Y-m-d',
@@ -111,6 +116,7 @@ Alpine.data('formField', () => ({
       });
     } else if (this.inputEl.type === 'datetime-local') {
       this.fp = flatpickr(this.inputEl, {
+        locale: locale,
         altInput: true,
         altFormat: 'd.m.Y H:i',
         dateFormat: 'Y-m-dTH:i',
@@ -122,6 +128,7 @@ Alpine.data('formField', () => ({
       });
     } else if (this.inputEl.type === 'time') {
       this.fp = flatpickr(this.inputEl, {
+        locale: locale,
         altInput: true,
         altFormat: 'H:i',
         dateFormat: 'H:i',
