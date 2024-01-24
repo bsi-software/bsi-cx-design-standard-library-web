@@ -15,9 +15,11 @@ Alpine.data('telInput', () => ({
   labelText: null,
   iti: null,
 
-  initTelInput() {
+  init() {
     this.rootElement = this.$root;
-    this.inputField = this.$el;
+    this.inputField = this.$refs.inputField;
+    this.requiredErrorElement = this.$refs.requiredErrorField;
+    this.invalidErrorElement = this.$refs.invalidErrorField;
 
     let countryData = window.intlTelInputGlobals.getCountryData();
     countryData.forEach((country) => {
@@ -29,14 +31,16 @@ Alpine.data('telInput', () => ({
 
     this.errormessageInvalid = this.rootElement.getElementsByClassName('errormessage-invalid')[0].innerText;
 
+    this.initHiddenInput();
 
     if (this.rootElement.closest('.bsi-form-label-floating')) {
       // If floating label is selected, only show country flag without country code
       this.iti = intlTelInput(this.inputField, {
         onlyCountries: this.onlyCountries,
         preferredCountries: this.preferredCountries,
+        countrySearch: false, // disable to be able to use 'preferredCountries'. See https://github.com/jackocnr/intl-tel-input/issues/1504
         utilsScript: require('intl-tel-input/build/js/utils.js'),
-        separateDialCode: false
+        showSelectedDialCode: false
       });
 
     } else {
@@ -44,8 +48,9 @@ Alpine.data('telInput', () => ({
       this.iti = intlTelInput(this.inputField, {
         onlyCountries: this.onlyCountries,
         preferredCountries: this.preferredCountries,
+        countrySearch: false, // disable to be able to use 'preferredCountries'. See https://github.com/jackocnr/intl-tel-input/issues/1504
         utilsScript: require('intl-tel-input/build/js/utils.js'),
-        separateDialCode: true
+        showSelectedDialCode: true
       });
     }
 
@@ -60,7 +65,7 @@ Alpine.data('telInput', () => ({
 
   initHiddenInput() {
     this.normalizedValueField = document.createElement('input');
-    const inputHolder = this.$el;
+    const inputHolder = this.$refs.hiddenInput;
     if (inputHolder) {
       this.normalizedValueField.setAttribute('type', 'hidden');
       this.normalizedValueField.setAttribute('name', this.inputField.getAttribute('name'));
@@ -70,14 +75,6 @@ Alpine.data('telInput', () => ({
       inputHolder.appendChild(this.normalizedValueField);
       this.inputField.removeAttribute('name');
     }
-  },
-
-  initRequiredError() {
-    this.requiredErrorElement = this.$el;
-  },
-
-  initInvalidError() {
-    this.invalidErrorElement = this.$el;
   },
 
   validateInput() {
@@ -134,4 +131,4 @@ Alpine.data('telInput', () => ({
     this.labelText = this.labelElement.innerText;
     this.labelElement.innerText = this.inputField.placeholder;
   },
-}))
+}));
