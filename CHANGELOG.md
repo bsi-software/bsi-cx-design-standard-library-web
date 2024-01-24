@@ -5,7 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.1] - 24.01.2024
+
+### changes
+* Prevent endless loop in the phone number element, which used to cause landingpages/websites to crash in the previous release (#372595)
+* Proper translation of date picker (#371869)
+* Make slot finder texts configurable and translatable (#371869)
+* Make webcam image element translatable on configuration level (#368259)
+* Upgrade dependencies
+
+[1.4.1]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.4.1
+
 ## [1.4.0] - 15.01.2024
+
+**Known issue with this release**
+We do not recommend to use this release as it will cause the page to crash as soon as the phone number content element is included. Please upgrade to the next patch release (1.4.1) to resolve this issue.
 
 ### Important Change
 We are now using the [CSP Distribution of Alpine.js](https://alpinejs.dev/advanced/csp). Thus, developers my no longer use any inline JavaScript in HTML/TWIG files associated with Alpine. Instead, there must always be a reference pointing to an associated alpine data object. We changed the implementation of a couple of components to comply with this new rule. The advantage of it is that content elements using Alpine.js are now shown properly in the 'Preview' mode of the content editor and in live mode without having to change the CSP settings. By using de CSP distribution of Alpine.js, it is no longer required to add `usafe-eval` to the CSP, which helps to increase security (#355743).
