@@ -21,11 +21,13 @@ const NUMBER_OF_DAYS = 5;
  *
  * @param {Model} model
  * @param {HTMLElement} $element
+ * @param {HTMLElement} $noSlotsText
+ * @param {HTMLElement} $chooseAnotherDayText
  */
-export function initDayView(model, $element) {
-  model.slots.onChange(() => renderDayView(model, $element));
-  model.selectedDate.onChange(() => renderDayView(model, $element));
-  model.selectedSlot.onChange(() => renderDayView(model, $element));
+export function initDayView(model, $element, $noSlotsText, $chooseAnotherDayText) {
+  model.slots.onChange(() => renderDayView(model, $element, $noSlotsText, $chooseAnotherDayText));
+  model.selectedDate.onChange(() => renderDayView(model, $element, $noSlotsText, $chooseAnotherDayText));
+  model.selectedSlot.onChange(() => renderDayView(model, $element, $noSlotsText, $chooseAnotherDayText));
 }
 
 /**
@@ -33,11 +35,13 @@ export function initDayView(model, $element) {
  *
  * @param {Model} model
  * @param {HTMLElement} $element
+ * @param {HTMLElement} $noSlotsText
+ * @param {HTMLElement} $chooseAnotherDayText
  */
-export function initWeekView(model, $element) {
-  model.slots.onChange(() => renderWeekView(model, $element));
-  model.selectedDate.onChange(() => renderWeekView(model, $element));
-  model.selectedSlot.onChange(() => renderWeekView(model, $element));
+export function initWeekView(model, $element, $noSlotsText, $chooseAnotherDayText) {
+  model.slots.onChange(() => renderWeekView(model, $element, $noSlotsText, $chooseAnotherDayText));
+  model.selectedDate.onChange(() => renderWeekView(model, $element, $noSlotsText, $chooseAnotherDayText));
+  model.selectedSlot.onChange(() => renderWeekView(model, $element, $noSlotsText, $chooseAnotherDayText));
 }
 
 /**
@@ -45,16 +49,21 @@ export function initWeekView(model, $element) {
  *
  * @param {Model} model
  * @param {HTMLElement} $element
+ * @param {HTMLElement} $noSlotsText
+ * @param {HTMLElement} $chooseAnotherDayText
  */
-function renderDayView(model, $element) {
-  const slotsOfDay = findSlotsOfDay(model.slots.get(), model.selectedDate.get());
+function renderDayView(model, $element, $noSlotsText, $chooseAnotherDayText) {
+  const allSlots = model.slots.get();
+  const slotsOfDay = findSlotsOfDay(allSlots, model.selectedDate.get());
   const slots = slotsOfDay.map((slot) => createSlot(slot, model));
 
   $element?.replaceChildren(...slots);
 
-  if (slots.length === 0) {
-    $element.innerHTML = createNoSlots().outerHTML;
-  }
+  if (slots.length === 0 && allSlots.length === 0) {
+    $element.innerHTML = $noSlotsText.innerHTML;
+  } else if (slots.length === 0 && allSlots.length > 0) {
+    $element.innerHTML = $chooseAnotherDayText.innerHTML;
+  } 
 }
 
 /**
@@ -62,28 +71,33 @@ function renderDayView(model, $element) {
  *
  * @param {Model} model
  * @param {HTMLElement} $element
+ * @param {HTMLElement} $noSlotsText
+ * @param {HTMLElement} $chooseAnotherDayText
  */
-function renderWeekView(model, $element) {
+function renderWeekView(model, $element, $noSlotsText, $chooseAnotherDayText) {
   let noSlots = true;
+  const allSlots = model.slots.get();
   const startDate = getLastMonday(model.selectedDate.get());
   $element.innerHTML = "";
   [...Array(NUMBER_OF_DAYS)].map((_, i) => {
     const date = addDays(startDate, i);
-    const slotsOfDay = findSlotsOfDay(model.slots.get(), date);
+    const slotsOfDay = findSlotsOfDay(allSlots, date);
 
     if (slotsOfDay.length > 0) {
       noSlots = false;
     }
 
-    const $day = createDay(model.lang, addDays(startDate, i));
+    const $day = createDay(model.locale, addDays(startDate, i));
     const $slots = createSlots(slotsOfDay, model);
 
     $element?.append($day, $slots);
   });
 
-  if (noSlots) {
-    $element.innerHTML = createNoSlots().outerHTML;
-  }
+  if (noSlots && allSlots.length === 0) {
+    $element.innerHTML = $noSlotsText.innerHTML;
+  } else if (noSlots && allSlots.length > 0) {
+    $element.innerHTML = $chooseAnotherDayText.innerHTML;
+  } 
 }
 
 /**
@@ -135,17 +149,6 @@ export function createSlot(slot, model) {
   `);
   $slot.addEventListener("click", () => model.selectedSlot.set(slot));
   return $slot;
-}
-
-/**
- * Create the no slots content
- *
- * @returns {Element}
- */
-export function createNoSlots() {
-  return Template(`
-    <div class="no-slots">Keine Termine verfügbar</div>
-  `);
 }
 
 /**

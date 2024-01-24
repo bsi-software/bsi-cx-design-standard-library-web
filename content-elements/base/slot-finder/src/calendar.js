@@ -14,7 +14,7 @@ import { isSlotOnDay } from "./slot/slot.js";
 export function initCalendar(model, $element) {
   $element.innerHTML = ''; // remove static flatpickr instance used in content-editor template
   const calendar = flatpickr($element, {
-    locale: model.lang,
+    locale: model.locale,
     inline: true,
     minDate: 'today',
     enable: [],
