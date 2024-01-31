@@ -22,7 +22,7 @@ import { initDayView, initWeekView } from "../src/slot/slot.js";
  * Model
  *
  * @typedef {Object} Model
- * @property {Language} lang
+ * @property {Language} locale
  * @property {String} url
  * @property {Observable<Date>} selectedDate
  * @property {Observable<Slot[]>} slots
