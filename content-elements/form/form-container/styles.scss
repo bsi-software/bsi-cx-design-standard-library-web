@@ -7,7 +7,7 @@
   .form-text {
     margin-top: 0 !important;
   }
-  input, select, textarea, input.bsi-form-tel-input-element, .bsi-poll-radio-group, .form-radio {
+  input:not([type=checkbox]):not([type=radio]), select, textarea, input.bsi-form-tel-input-element, .bsi-poll-radio-group, .form-radio {
     margin-top: 0.5rem !important;
   }
   label {
@@ -40,12 +40,8 @@
   }
 
   &.bsi-corner-sharp {
-    .card, input, select, textarea {
+    .card, input:not([type=checkbox]):not([type=radio]), select, textarea {
       border-radius: 0;
-    }
-
-    input[type=radio] {
-      border-radius: 50%;
     }
   }
 
@@ -133,7 +129,7 @@
 
 
   &.bsi-form-label-floating .bsi-form-element {
-    input[type="file"] {
+    input[type=file] {
       height: 58px;
       padding-top: 0px;
       padding-bottom: 0px;
