@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 06.02.2024
+
+### changes
+* Inside the HTML content element, ensure that non-decendent iframes are considered with proper height
+* Fix checkbox and radio formatting issues
+* Replace Twitter with X (@#371665)
+
+[1.4.2]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.4.2
+
+
 ## [1.4.1] - 24.01.2024
 
 ### changes
