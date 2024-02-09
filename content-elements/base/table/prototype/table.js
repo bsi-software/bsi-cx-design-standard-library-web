@@ -3,7 +3,9 @@ import Alpine from '@alpinejs/csp';
 Alpine.data('tableElement', () => ({
 
   // Set header text to td:before for reverse table on mobile screens
-  setHeaderTableMobile(table) {
+  setHeaderTableMobile() {
+    const table = this.$el;
+    
     let header = table.getElementsByTagName('th');
     let data = table.getElementsByTagName('td');
 
