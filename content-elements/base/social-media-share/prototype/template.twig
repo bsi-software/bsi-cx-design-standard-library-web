@@ -8,7 +8,11 @@
     {% set shareElementPartId = elementPartId ?: 'social-media-share-part-7duJql' %}
     {% set shareLabelPartId = labelPartId ?: 'social-media-share-part-label-gVreZk' %}
 
-    <div data-bsi-element="{{ shareElementId }}" class="{{ 'bsi-element-' ~ shareElementId }} d-flex flex-wrap bsi-icon-color-primary bsi-icon-size-medium" data-bsi-element-part="{{ shareElementPartId }}">
+    {% set shareIconColor = (iconColor ?: properties.shareIconColor) ?: 'bsi-icon-color-primary' %}
+    {% set shareIconHoverColor = (iconHoverColor ?: properties.shareIconHoverColor) ?: 'bsi-icon-hover-color-secondary' %}
+    {% set shareIconSize = (iconSize ?: properties.shareIconSize) ?: 'bsi-icon-size-medium' %}
+
+    <div data-bsi-element="{{ shareElementId }}" class="{{ 'bsi-element-' ~ shareElementId }} d-flex flex-wrap bsi-icon-color-primary bsi-icon-size-medium {{ shareIconColor }} {{ shareIconHoverColor }} {{ shareIconSize }}" data-bsi-element-part="{{ shareElementPartId }}">
         <div class="social-media-info">
             <label data-bsi-element-part="{{ shareLabelPartId }}">Share this page</label>
         </div>
