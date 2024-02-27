@@ -17,6 +17,7 @@
     {% set followWhatsappURL = (whatsappURL ?: properties.followWhatsappURL) ?: "https://api.whatsapp.com/" %}
     {% set followPinterestURL = (pinterestURL ?: properties.followPinterestURL) ?: "https://www.pinterest.com/" %}
     {% set followSnapchatURL = (snapchatURL ?: properties.followSnapchatURL) ?: "https://www.snapchat.com/" %}
+    {% set followTiktokURL = (tiktokURL ?: properties.followTiktokURL) ?: "https://www.tiktok.com/" %}
 
     {% set followLinkedinHidden = (linkedinHidden ?: properties.followLinkedinHidden) ?: false %}
     {% set followXingHidden = (xingHidden ?: properties.followXingHidden) ?: false %}
@@ -28,6 +29,7 @@
     {% set followWhatsappHidden = (whatsappHidden ?: properties.followWhatsappHidden) ?: true %}
     {% set followPinterestHidden = (pinterestHidden ?: properties.followPinterestHidden) ?: true %}
     {% set followSnapchatHidden = (snapchatHidden ?: properties.followSnapchatHidden) ?: true %}
+    {% set followTiktokHidden = (tiktokHidden ?: properties.followTiktokHidden) ?: true %}
 
     {% set followIconColor = (iconColor ?: properties.followIconColor) ?: 'bsi-icon-color-primary' %}
     {% set followIconHoverColor = (iconHoverColor ?: properties.followIconHoverColor) ?: 'bsi-icon-hover-color-secondary' %}
@@ -92,5 +94,10 @@
                 <i class="bi bi-snapchat"></i>
             </a>
         </div>
+        <div data-bsi-social-follow="Tiktok" {% if followTiktokHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
+            <a href="{{ followTiktokURL }}" title="Tiktok">
+                <i class="bi bi-tiktok"></i>
+            </a>
+        </div>        
     </div>
 {% endapply %}
