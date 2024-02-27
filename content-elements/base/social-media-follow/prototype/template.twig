@@ -26,10 +26,10 @@
     {% set followYoutubeHidden = (youtubeHidden ?: properties.followYoutubeHidden) ?: false %}
     {% set followInstagramHidden = (instagramHidden ?: properties.followInstagramHidden) ?: false %}
     {% set followKununuHidden = (kununuHidden ?: properties.followKununuHidden) ?: false %}
-    {% set followWhatsappHidden = (whatsappHidden ?: properties.followWhatsappHidden) ?: true %}
-    {% set followPinterestHidden = (pinterestHidden ?: properties.followPinterestHidden) ?: true %}
-    {% set followSnapchatHidden = (snapchatHidden ?: properties.followSnapchatHidden) ?: true %}
-    {% set followTiktokHidden = (tiktokHidden ?: properties.followTiktokHidden) ?: true %}
+    {% set followWhatsappHidden = (whatsappHidden ?: properties.followWhatsappHidden) ?: false %}
+    {% set followPinterestHidden = (pinterestHidden ?: properties.followPinterestHidden) ?: false %}
+    {% set followSnapchatHidden = (snapchatHidden ?: properties.followSnapchatHidden) ?: false %}
+    {% set followTiktokHidden = (tiktokHidden ?: properties.followTiktokHidden) ?: false %}
 
     {% set followIconColor = (iconColor ?: properties.followIconColor) ?: 'bsi-icon-color-primary' %}
     {% set followIconHoverColor = (iconHoverColor ?: properties.followIconHoverColor) ?: 'bsi-icon-hover-color-secondary' %}
