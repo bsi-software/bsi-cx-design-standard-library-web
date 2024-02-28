@@ -1,6 +1,6 @@
 {
   "name": "@bsi-cx/design-standard-library-web",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Standard content element library for BSI CX.",
   "license": "MIT",
   "repository": "github:bsi-software/bsi-cx-design-standard-library-web",
@@ -9,42 +9,36 @@
   },
   "contributors": [
     {
-      "name": "Yann Büchler",
-      "url": "https://www.bsi-software.com/"
+      "name": "Yann Büchler"
     },
     {
-      "name": "Oliver Fabel",
-      "url": "https://www.bsi-software.com/"
+      "name": "Oliver Fabel"
     },
     {
-      "name": "Lukas Heyer",
-      "url": "https://www.bsi-software.com/"
+      "name": "Lukas Heyer"
     },
     {
-      "name": "Marleen Jattke",
-      "url": "https://www.bsi-software.com/"
+      "name": "Marleen Jattke"
     },
     {
-      "name": "Lukas Steiger",
-      "url": "https://www.bsi-software.com/"
+      "name": "Lukas Steiger"
     },
     {
-      "name": "Benjamin Vier",
-      "url": "https://www.bsi-software.com/"
+      "name": "Benjamin Vier"
     }
   ],
   "dependencies": {
-    "@alpinejs/csp": "^3.13.3",
+    "@alpinejs/csp": "^3.13.5",
     "@bsi-cx/chart": "github:bsi-software/bsi-cx-chart#semver:1.3.1",
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.2",
+    "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.1",
     "flatpickr": "^4.6.13",
-    "intl-tel-input": "^19.2.16"
+    "intl-tel-input": "^19.5.3"
   },
   "devDependencies": {
-    "@bsi-cx/design-build": "^1.13.2",
+    "@bsi-cx/design-build": "^1.13.3",
     "file-loader": "^6.2.0"
   }
 }
