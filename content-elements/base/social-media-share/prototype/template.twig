@@ -12,7 +12,7 @@
     {% set shareIconHoverColor = (iconHoverColor ?: properties.shareIconHoverColor) ?: 'bsi-icon-hover-color-secondary' %}
     {% set shareIconSize = (iconSize ?: properties.shareIconSize) ?: 'bsi-icon-size-medium' %}
 
-    <div data-bsi-element="{{ shareElementId }}" class="{{ 'bsi-element-' ~ shareElementId }} d-flex flex-wrap bsi-icon-color-primary bsi-icon-size-medium {{ shareIconColor }} {{ shareIconHoverColor }} {{ shareIconSize }}" data-bsi-element-part="{{ shareElementPartId }}">
+    <div data-bsi-element="{{ shareElementId }}" class="{{ 'bsi-element-' ~ shareElementId }} d-flex flex-wrap {{ shareIconColor }} {{ shareIconHoverColor }} {{ shareIconSize }}" data-bsi-element-part="{{ shareElementPartId }}">
         <div class="social-media-info">
             <label data-bsi-element-part="{{ shareLabelPartId }}">Share this page</label>
         </div>
