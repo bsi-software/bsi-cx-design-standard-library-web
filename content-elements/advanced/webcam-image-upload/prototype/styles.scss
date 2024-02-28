@@ -3,6 +3,52 @@
         width: 100%;
         text-align: center;
 
+        .card > .card-body > .bsi-element-button-v3cFFn{
+
+            .btn {
+                &.bsi-corner-sharp .btn {
+                    border-radius: 0rem;
+                }
+              
+                &.bsi-corner-rounded .btn {
+                    border-radius: 0.375rem;
+                }
+            }
+
+            $colors: ("primary": bsiProperty('primaryColor'), "secondary": bsiProperty('secondaryColor'), "dark": bsiProperty('darkColor'), "light": bsiProperty('lightColor'));
+            @each $name, $color in $colors {
+                $contrast-color: bsiProperty('lightColor');
+                @if $name == "light" {
+                $contrast-color: bsiProperty('darkColor');
+                }
+                &.bsi-btn-color-#{$name} {
+                    &.permission .btn{
+                    color: $contrast-color;
+                    background-color: $color;
+                    border-color: $color;
+
+                        &:hover {
+                            color: $color;
+                            background-color: transparent;
+                            border-color: $color;
+                        }
+                    }
+
+                    &.upload .btn{
+                        color: $color;
+                        background-color: transparent;
+                        border-color: $color;
+                            
+                        &:hover{
+                            color: $contrast-color;
+                            background-color: $color;
+                            border-color: $color;
+                        }
+                    }
+                }
+            }
+        }
+
         .bsi-video-btn {
             display: block;
         }
