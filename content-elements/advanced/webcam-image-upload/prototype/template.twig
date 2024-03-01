@@ -16,11 +16,11 @@
 	{% set webcamImgModeManualTitleText = (modeManualTitleText ?: properties.webcamImgModeManualTitleText) ?: 'Bild hochladen' %} {# TODO: make translatable #}
 	{% set webcamImgModeManualDescriptionText = (modeManualDescriptionText ?: properties.webcamImgModeManualDescriptionText) ?: 'Kein Zugriff auf die Kamera gewünscht oder möglich. Laden Sie stattdessen ein Bild hoch.' %} {# TODO: make translatable #}
 	{% set webcamImgModeManualUploadImageButtonText = (modeManualUploadImageButtonText ?: properties.webcamImgModeManualUploadImageButtonText) ?: 'Bild hochladen' %} {# TODO: make translatable #}
-	{% set webcamImgBorderRadius = (webcamImgBorderRadius ?: properties.webcamImgBorderRadius) ?: 'bsi-corner-rounded' %}
-	{% set webcamImgButtonColor = (webcamImgButtonColor ?: properties.webcamImgButtonColor) ?: 'bsi-btn-color-dark' %}
-	{% set webcamImgUploadButtonColor = (webcamImgUploadButtonColor ?: properties.webcamImgUploadButtonColor) ?: 'bsi-btn-color-primary' %}
-    {% set webcamImgButtonLayout = (webcamImgButtonLayout ?: properties.webcamImgButtonLayout) ?: 'bsi-btn-filled' %}
-	{% set webcamImgUploadButtonLayout = (webcamImgUploadButtonLayout ?: properties.webcamImgUploadButtonLayout) ?: 'bsi-btn-outline' %}
+	{% set webcamImgBorderRadius = (BorderRadius ?: properties.webcamImgBorderRadius) ?: 'bsi-corner-rounded' %}
+	{% set webcamImgButtonColor = (ButtonColor ?: properties.webcamImgButtonColor) ?: 'bsi-btn-color-dark' %}
+	{% set webcamImgUploadButtonColor = (UploadButtonColor ?: properties.webcamImgUploadButtonColor) ?: 'bsi-btn-color-primary' %}
+    {% set webcamImgButtonLayout = (ButtonLayout ?: properties.webcamImgButtonLayout) ?: 'bsi-btn-filled' %}
+	{% set webcamImgUploadButtonLayout = (UploadButtonLayout ?: properties.webcamImgUploadButtonLayout) ?: 'bsi-btn-outline' %}
 
 
 	<div x-data="webcamImageUpload" x-ref="webcamImageUpload" data-bsi-element="{{ webcamImgElementId }}" class="{{ 'bsi-element-' ~ webcamImgElementId }} bsi-webcam-front">
