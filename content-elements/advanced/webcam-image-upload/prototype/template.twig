@@ -17,10 +17,10 @@
 	{% set webcamImgModeManualDescriptionText = (modeManualDescriptionText ?: properties.webcamImgModeManualDescriptionText) ?: 'Kein Zugriff auf die Kamera gewünscht oder möglich. Laden Sie stattdessen ein Bild hoch.' %} {# TODO: make translatable #}
 	{% set webcamImgModeManualUploadImageButtonText = (modeManualUploadImageButtonText ?: properties.webcamImgModeManualUploadImageButtonText) ?: 'Bild hochladen' %} {# TODO: make translatable #}
 	{% set webcamImgBorderRadius = (BorderRadius ?: properties.webcamImgBorderRadius) ?: 'bsi-corner-rounded' %}
-	{% set webcamImgButtonColor = (ButtonColor ?: properties.webcamImgButtonColor) ?: 'bsi-btn-color-dark' %}
-	{% set webcamImgUploadButtonColor = (UploadButtonColor ?: properties.webcamImgUploadButtonColor) ?: 'bsi-btn-color-primary' %}
-    {% set webcamImgButtonLayout = (ButtonLayout ?: properties.webcamImgButtonLayout) ?: 'bsi-btn-filled' %}
-	{% set webcamImgUploadButtonLayout = (UploadButtonLayout ?: properties.webcamImgUploadButtonLayout) ?: 'bsi-btn-outline' %}
+	{% set webcamImgMainButtonColor = (ButtonColor ?: properties.webcamImgMainButtonColor) ?: 'bsi-btn-color-dark' %}
+	{% set webcamImgAlternativeButtonColor = (UploadButtonColor ?: properties.webcamImgAlternativeButtonColor) ?: 'bsi-btn-color-primary' %}
+    {% set webcamImgMainButtonLayout = (ButtonLayout ?: properties.webcamImgMainButtonLayout) ?: 'bsi-btn-filled' %}
+	{% set webcamImgAlternativeButtonLayout = (UploadButtonLayout ?: properties.webcamImgAlternativeButtonLayout) ?: 'bsi-btn-outline' %}
 
 
 	<div x-data="webcamImageUpload" x-ref="webcamImageUpload" data-bsi-element="{{ webcamImgElementId }}" class="{{ 'bsi-element-' ~ webcamImgElementId }} bsi-webcam-front">
@@ -33,10 +33,10 @@
 			<div x-show="isAsk" class="card-body">
 				<h5 class="card-title" data-bsi-element-part="{{ webcamImgModeAskTitlePartId }}">{{ webcamImgModeAskTitleText }}</h5>
 				<p data-bsi-element-part="{{ webcamImgModeAskDescriptionPartId }}">{{ webcamImgModeAskDescriptionText }}</p>
-				<div class="bsi-element-button-v3cFFn bsi-btn-element {{ webcamImgButtonLayout }} bsi-btn-size-lg bsi-btn-width-default {{ webcamImgBorderRadius }} bsi-btn-letter-uppercase bsi-btn-icon-hide  {{ webcamImgButtonColor }} bsi-video-btn">
+				<div class="bsi-element-button-v3cFFn bsi-btn-element {{ webcamImgMainButtonLayout }} bsi-btn-size-lg bsi-btn-width-default {{ webcamImgBorderRadius }} bsi-btn-letter-uppercase bsi-btn-icon-hide  {{ webcamImgMainButtonColor }} bsi-video-btn">
 					<button @click="accessCamera" class="btn" data-bsi-element-part="{{ webcamImgModeAskButtonCameraPartId }}">{{ webcamImgModeAskButtonCameraText }}</button>
 				</div>
-				<div class="bsi-element-button-v3cFFn bsi-btn-element bsi-btn-width-default {{ webcamImgBorderRadius }} bsi-btn-icon-hide {{ webcamImgUploadButtonColor }} {{ webcamImgUploadButtonLayout }} bsi-btn-size-sm bsi-btn-letter-default bsi-video-btn">
+				<div class="bsi-element-button-v3cFFn bsi-btn-element bsi-btn-width-default {{ webcamImgBorderRadius }} bsi-btn-icon-hide {{ webcamImgAlternativeButtonColor }} {{ webcamImgAlternativeButtonLayout }} bsi-btn-size-sm bsi-btn-letter-default bsi-video-btn">
 					<button @click="showUploadDialog" class="btn" data-bsi-element-part="{{ webcamImgModeAskButtonManualPartId }}">{{ webcamImgModeAskButtonManualText }}</button>
 				</div>
 			</div>
