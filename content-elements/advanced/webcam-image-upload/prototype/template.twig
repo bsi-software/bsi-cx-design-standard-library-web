@@ -16,11 +16,11 @@
 	{% set webcamImgModeManualTitleText = (modeManualTitleText ?: properties.webcamImgModeManualTitleText) ?: 'Bild hochladen' %} {# TODO: make translatable #}
 	{% set webcamImgModeManualDescriptionText = (modeManualDescriptionText ?: properties.webcamImgModeManualDescriptionText) ?: 'Kein Zugriff auf die Kamera gewünscht oder möglich. Laden Sie stattdessen ein Bild hoch.' %} {# TODO: make translatable #}
 	{% set webcamImgModeManualUploadImageButtonText = (modeManualUploadImageButtonText ?: properties.webcamImgModeManualUploadImageButtonText) ?: 'Bild hochladen' %} {# TODO: make translatable #}
-	{% set webcamImgBorderRadius = (BorderRadius ?: properties.webcamImgBorderRadius) ?: 'bsi-corner-rounded' %}
-	{% set webcamImgMainButtonColor = (ButtonColor ?: properties.webcamImgMainButtonColor) ?: 'bsi-btn-color-dark' %}
-	{% set webcamImgAlternativeButtonColor = (UploadButtonColor ?: properties.webcamImgAlternativeButtonColor) ?: 'bsi-btn-color-primary' %}
-    {% set webcamImgMainButtonLayout = (ButtonLayout ?: properties.webcamImgMainButtonLayout) ?: 'bsi-btn-filled' %}
-	{% set webcamImgAlternativeButtonLayout = (UploadButtonLayout ?: properties.webcamImgAlternativeButtonLayout) ?: 'bsi-btn-outline' %}
+	{% set webcamImgBorderRadius = (borderRadius ?: properties.webcamImgBorderRadius) ?: 'bsi-corner-rounded' %}
+	{% set webcamImgMainButtonColor = (buttonColor ?: properties.webcamImgMainButtonColor) ?: 'bsi-btn-color-dark' %}
+	{% set webcamImgAlternativeButtonColor = (uploadButtonColor ?: properties.webcamImgAlternativeButtonColor) ?: 'bsi-btn-color-primary' %}
+    {% set webcamImgMainButtonLayout = (buttonLayout ?: properties.webcamImgMainButtonLayout) ?: 'bsi-btn-filled' %}
+	{% set webcamImgAlternativeButtonLayout = (uploadButtonLayout ?: properties.webcamImgAlternativeButtonLayout) ?: 'bsi-btn-outline' %}
 
 
 	<div x-data="webcamImageUpload" x-ref="webcamImageUpload" data-bsi-element="{{ webcamImgElementId }}" class="{{ 'bsi-element-' ~ webcamImgElementId }} bsi-webcam-front">
@@ -50,7 +50,7 @@
 					<button x-show="isCameraCapture" @click="capturePicture" class="camera-button camera-button-capture btn-primary bi bi-circle-fill" />
 					<button x-show="isPreview" @click="undoPicture" class="camera-button camera-button-undo btn-secondary bi bi-arrow-counterclockwise" />
 				</div>
-				<div class="card-body bsi-element-button-v3cFFn bsi-btn-element bsi-btn-filled bsi-btn-size-lg bsi-btn-width-default bsi-corner-sharp bsi-btn-letter-uppercase bsi-btn-icon-hide bsi-btn-color-primary bsi-video-btn ">
+				<div class="card-body bsi-element-button-v3cFFn bsi-btn-element {{ webcamImgMainButtonLayout }} bsi-btn-size-lg bsi-btn-width-default {{ webcamImgBorderRadius }} bsi-btn-letter-uppercase bsi-btn-icon-hide {{ webcamImgMainButtonColor }} bsi-video-btn ">
 					<button x-bind:disabled="isCameraCapture" @click="uploadImageCapture" class="btn">{{ webcamImgModeCameSubmitButtonText }}</button>
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 					</div>
 					<br>
 					<input type="reset" class="d-none" disabled />
-					<div class="bsi-element-button-v3cFFn bsi-btn-element bsi-btn-filled bsi-btn-size-lg bsi-btn-width-default bsi-corner-sharp bsi-btn-letter-uppercase bsi-btn-icon-hide bsi-btn-color-primary bsi-video-btn">
+					<div class="bsi-element-button-v3cFFn bsi-btn-element {{ webcamImgMainButtonLayout }} bsi-btn-size-lg bsi-btn-width-default {{ webcamImgBorderRadius }} bsi-btn-letter-uppercase bsi-btn-icon-hide {{ webcamImgMainButtonColor }} bsi-video-btn">
 						<input type="submit" class="btn" value="Bild übermitteln" /> 
 					</div>
 				</form>
