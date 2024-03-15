@@ -46,6 +46,75 @@ Alpine.data('formField', () => ({
       this.requiredErrorElement.style.display = "none";
     }
     this._validateMailInput();
+    this._validateNumberInput();
+    this._validateTextInput();
+    this._validateDateTimeInput();
+  },
+
+  _validateNumberInput() {
+    if (this.inputEl.type === 'number') {
+      let inputValue = parseInt(this.inputEl.value);
+      let minValue = parseInt(this.inputEl.min);
+      let maxValue = parseInt(this.inputEl.max);
+      let valid = minValue <= inputValue && inputValue <= maxValue && inputValue != '';
+
+      if (this.inputEl.value == '' || this.inputEl.value == this.inputEl.defaultValue) {
+        this.invalidErrorElement.setAttribute('hidden', 'true');
+        this.invalidErrorElement.setAttribute('aria-hidden', 'true');
+        return;
+      }
+      if (valid) {
+        this.invalidErrorElement.setAttribute('hidden', 'true');
+        this.invalidErrorElement.setAttribute('aria-hidden', 'true');
+      } else {
+        this.invalidErrorElement.removeAttribute('hidden', 'true');
+        this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
+      }
+    }
+  },
+
+  _validateTextInput() {
+    if (this.inputEl.type === 'text' || this.inputEl.type === 'password') {
+      let inputValue = this.inputEl.value;
+      let maxCharacters = parseInt(this.inputEl.maxLength);
+
+      if (inputValue.length > maxCharacters) {
+       this.invalidErrorElement.removeAttribute('hidden', 'true');
+       this.invalidErrorElement.removeAttribute('aria-hidden', 'true'); 
+      }
+      else {
+       this.invalidErrorElement.setAttribute('hidden', 'true');
+       this.invalidErrorElement.setAttribute('aria-hidden', 'true'); 
+      }
+    }
+  },
+
+  _validateDateTimeInput() {
+    if (this.inputEl.classList.contains('flatpickr-input')) {
+      switch (this.inputEl.value.length) {
+        case 5: // only time
+        case 10: // only date
+        case 16: // date + time
+        case 0: // empty
+          if ((this.inputEl.min != "" || this.inputEl.max != "") && this.inputEl.value) {
+            if (
+              new Date(this.inputEl.value).getTime() < new Date(this.inputEl.min).getTime() || new Date(this.inputEl.value).getTime() > new Date(this.inputEl.max).getTime() ) {
+
+                this.invalidErrorElement.removeAttribute('hidden', 'true');
+                this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
+              }
+              else {
+                this.invalidErrorElement.setAttribute('hidden', 'true');
+                this.invalidErrorElement.setAttribute('aria-hidden', 'true');
+              }
+        }
+          break;
+        default:
+          this.invalidErrorElement.removeAttribute('hidden', 'true');
+          this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
+          break;
+      } 
+    }
   },
 
   _validateMailInput() {
