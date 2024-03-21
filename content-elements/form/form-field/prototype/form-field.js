@@ -57,19 +57,14 @@ Alpine.data('formField', () => ({
       let minValue = parseInt(this.inputEl.min);
       let maxValue = parseInt(this.inputEl.max);
       let valid = minValue <= inputValue && inputValue <= maxValue && inputValue != '';
-
+      // don't check required validation
       if (this.inputEl.value == '' || this.inputEl.value == this.inputEl.defaultValue) {
         this.invalidErrorElement.setAttribute('hidden', 'true');
         this.invalidErrorElement.setAttribute('aria-hidden', 'true');
         return;
       }
-      if (valid) {
-        this.invalidErrorElement.setAttribute('hidden', 'true');
-        this.invalidErrorElement.setAttribute('aria-hidden', 'true');
-      } else {
-        this.invalidErrorElement.removeAttribute('hidden', 'true');
-        this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
-      }
+      this.calculateVisibility(valid);
+      this.inputEl.setCustomValidity(valid ? '' : this.errormessageInvalid);
     }
   },
 
@@ -77,43 +72,55 @@ Alpine.data('formField', () => ({
     if (this.inputEl.type === 'text' || this.inputEl.type === 'password') {
       let inputValue = this.inputEl.value;
       let maxCharacters = parseInt(this.inputEl.maxLength);
-
-      if (inputValue.length > maxCharacters) {
-       this.invalidErrorElement.removeAttribute('hidden', 'true');
-       this.invalidErrorElement.removeAttribute('aria-hidden', 'true'); 
-      }
-      else {
-       this.invalidErrorElement.setAttribute('hidden', 'true');
-       this.invalidErrorElement.setAttribute('aria-hidden', 'true'); 
-      }
+      let valid = inputValue.length <= maxCharacters;
+      this.calculateVisibility(valid);
+      this.inputEl.setCustomValidity(valid ? '' : this.errormessageInvalid);
     }
   },
 
   _validateDateTimeInput() {
     if (this.inputEl.classList.contains('flatpickr-input')) {
+      let valid = true;
       switch (this.inputEl.value.length) {
         case 5: // only time
+          let placeholderVal = new Date('2000-01-01T' + this.inputEl.value);
+          let placeholderMin = new Date('2000-01-01T' + this.inputEl.min);
+          let placeholderMax = new Date('2000-01-01T' + this.inputEl.max);
+          if ((this.inputEl.min != "" && this.inputEl.max != "")) {
+            valid = new Date(placeholderVal).getTime() >= new Date(placeholderMin).getTime() && new Date(placeholderVal).getTime() <= new Date(placeholderMax).getTime();
+          }
+          else {
+            if (this.inputEl.min != "") {
+              valid = new Date(placeholderVal).getTime() >= new Date(placeholderMin).getTime();
+            } else {
+              if (this.inputEl.max != "") {
+                valid = new Date(placeholderVal).getTime() <= new Date(placeholderMax).getTime();
+              }
+            }
+          }
+          break;
         case 10: // only date
         case 16: // date + time
-        case 0: // empty
-          if ((this.inputEl.min != "" || this.inputEl.max != "") && this.inputEl.value) {
-            if (
-              new Date(this.inputEl.value).getTime() < new Date(this.inputEl.min).getTime() || new Date(this.inputEl.value).getTime() > new Date(this.inputEl.max).getTime() ) {
-
-                this.invalidErrorElement.removeAttribute('hidden', 'true');
-                this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
+          if ((this.inputEl.min != "" && this.inputEl.max != "")) {
+            valid = new Date(this.inputEl.value).getTime() >= new Date(this.inputEl.min).getTime() && new Date(this.inputEl.value).getTime() <= new Date(this.inputEl.max).getTime();
+          }
+          else {
+            if (this.inputEl.min != "") {
+              valid = new Date(this.inputEl.value).getTime() >= new Date(this.inputEl.min).getTime();
+            } else {
+              if (this.inputEl.max != "") {
+                valid = new Date(this.inputEl.value).getTime() <= new Date(this.inputEl.min).getTime();
               }
-              else {
-                this.invalidErrorElement.setAttribute('hidden', 'true');
-                this.invalidErrorElement.setAttribute('aria-hidden', 'true');
-              }
-        }
+            }
+          }
           break;
         default:
-          this.invalidErrorElement.removeAttribute('hidden', 'true');
-          this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
+          this.invalidErrorElement.setAttribute('hidden', 'true');
+          this.invalidErrorElement.setAttribute('aria-hidden', 'true');
           break;
       } 
+      this.calculateVisibility(valid);
+      this.inputEl.setCustomValidity(valid ? '' : this.errormessageInvalid);
     }
   },
 
@@ -122,15 +129,18 @@ Alpine.data('formField', () => ({
       let inputValue = this.inputEl.value;
       let rgx = /^[^@\s]{1,}@[^@\[\]\s]{1,}\.[^@\[\]\s]{2,}$/;
       let valid = rgx.test(inputValue) || (!inputValue);
-
-      if (valid) {
-        this.invalidErrorElement.setAttribute('hidden', 'true');
-        this.invalidErrorElement.setAttribute('aria-hidden', 'true');
-      } else {
-        this.invalidErrorElement.removeAttribute('hidden', 'true');
-        this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
-      }
+      this.calculateVisibility(valid);
       this.inputEl.setCustomValidity(valid ? '' : this.errormessageInvalid);
+    }
+  },
+
+  calculateVisibility(valid) {
+    if (valid) {
+      this.invalidErrorElement.setAttribute('hidden', 'true');
+      this.invalidErrorElement.setAttribute('aria-hidden', 'true');
+    } else {
+      this.invalidErrorElement.removeAttribute('hidden', 'true');
+      this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
     }
   },
 
