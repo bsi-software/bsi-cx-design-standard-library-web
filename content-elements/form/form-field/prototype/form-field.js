@@ -12,7 +12,7 @@ Alpine.data('formField', () => ({
   maxDate: null,
   requiredErrorElement: null,
   invalidErrorElement: null,
-  errormessageInvalid: '',
+  errorMessageInvalid: '',
 
   initFormFieldInput() {
     this.rootEl = this.$root;
@@ -30,7 +30,7 @@ Alpine.data('formField', () => ({
 
   initInvalidError() {
     this.invalidErrorElement = this.$el;
-    this.errormessageInvalid = this.invalidErrorElement.getElementsByClassName('errormessage-invalid')[0].innerText;
+    this.errorMessageInvalid = this.invalidErrorElement.getElementsByClassName('errormessage-invalid')[0].innerText;
   },
 
   validateInput() {
@@ -64,7 +64,7 @@ Alpine.data('formField', () => ({
         return;
       }
       this.calculateVisibility(valid);
-      this.inputEl.setCustomValidity(valid ? '' : this.errormessageInvalid);
+      this.inputEl.setCustomValidity(valid ? '' : this.errorMessageInvalid);
     }
   },
 
@@ -74,7 +74,7 @@ Alpine.data('formField', () => ({
       let maxCharacters = parseInt(this.inputEl.maxLength);
       let valid = inputValue.length <= maxCharacters;
       this.calculateVisibility(valid);
-      this.inputEl.setCustomValidity(valid ? '' : this.errormessageInvalid);
+      this.inputEl.setCustomValidity(valid ? '' : this.errorMessageInvalid);
     }
   },
 
@@ -120,7 +120,7 @@ Alpine.data('formField', () => ({
           break;
       } 
       this.calculateVisibility(valid);
-      this.inputEl.setCustomValidity(valid ? '' : this.errormessageInvalid);
+      this.inputEl.setCustomValidity(valid ? '' : this.errorMessageInvalid);
     }
   },
 
@@ -130,7 +130,7 @@ Alpine.data('formField', () => ({
       let rgx = /^[^@\s]{1,}@[^@\[\]\s]{1,}\.[^@\[\]\s]{2,}$/;
       let valid = rgx.test(inputValue) || (!inputValue);
       this.calculateVisibility(valid);
-      this.inputEl.setCustomValidity(valid ? '' : this.errormessageInvalid);
+      this.inputEl.setCustomValidity(valid ? '' : this.errorMessageInvalid);
     }
   },
 
