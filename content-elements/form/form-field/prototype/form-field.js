@@ -104,14 +104,11 @@ Alpine.data('formField', () => ({
           if ((this.inputEl.min != "" && this.inputEl.max != "")) {
             valid = new Date(this.inputEl.value).getTime() >= new Date(this.inputEl.min).getTime() && new Date(this.inputEl.value).getTime() <= new Date(this.inputEl.max).getTime();
           }
-          else {
-            if (this.inputEl.min != "") {
-              valid = new Date(this.inputEl.value).getTime() >= new Date(this.inputEl.min).getTime();
-            } else {
-              if (this.inputEl.max != "") {
-                valid = new Date(this.inputEl.value).getTime() <= new Date(this.inputEl.min).getTime();
-              }
-            }
+          else if (this.inputEl.min != "") {
+            valid = new Date(this.inputEl.value).getTime() >= new Date(this.inputEl.min).getTime();
+          }
+          else if (this.inputEl.max != "") {
+            valid = new Date(this.inputEl.value).getTime() <= new Date(this.inputEl.min).getTime();
           }
           break;
         default:
