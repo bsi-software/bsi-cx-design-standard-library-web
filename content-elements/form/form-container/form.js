@@ -10,13 +10,13 @@ Alpine.data('formElement', () => ({
     this.root = this.$root;
 
     if (this.root.classList.contains('bsi-form-label-floating')) {
-      for(const floatingElement of this.form.getElementsByClassName('bsi-label-floating-element')) {
+      for (const floatingElement of this.form.getElementsByClassName('bsi-label-floating-element')) {
         this._initFloatingLabels(floatingElement);
       }
     }
 
     if (this.root.classList.contains('bsi-form-info-as-tooltip')
-        && ['bsi-form-label-top', 'bsi-form-label-left'].some(labelClass => this.root.classList.contains(labelClass))) {
+      && ['bsi-form-label-top', 'bsi-form-label-left'].some(labelClass => this.root.classList.contains(labelClass))) {
       this.form.querySelectorAll('.bsi-form-element').forEach((formElement) => {
         let infoTextField = formElement.querySelector('.form-text');
         let tooltipIcon = formElement.querySelector('i');
@@ -37,6 +37,7 @@ Alpine.data('formElement', () => ({
       this._validateFormFieldInput();
       this._validateTelInput();
       this._validateRadioInput();
+      this._validateCheckboxInput();
     }
     this.form.classList.add('was-validated');
   },
@@ -92,8 +93,8 @@ Alpine.data('formElement', () => ({
 
   _validateRadioInput() {
     let radioElements = this.form.getElementsByClassName('bsi-form-radio-element');
-    let radioValid = false;
     for (const radioElement of radioElements) {
+      let radioValid = false;
       let radioInputs = radioElement.getElementsByClassName('form-check-input');
       for (const radioInput of radioInputs) {
         if (radioInput.checked || !radioInput.hasAttribute('required')) {
@@ -107,5 +108,12 @@ Alpine.data('formElement', () => ({
         radioElement.getElementsByClassName('invalid-feedback')[0].style.display = "none";
       }
     }
+  },
+  _validateCheckboxInput() {
+    this.form.querySelectorAll('.form-check').forEach(checkboxEl => {
+      let checkbox = checkboxEl.querySelector('input')
+      let checkedOrNotRequired = checkbox.checked || !checkbox.hasAttribute('required');
+      checkboxEl.querySelector('.invalid-feedback').style.display = checkedOrNotRequired ? 'none' : 'block';
+    })
   },
 }))
