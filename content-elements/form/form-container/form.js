@@ -68,52 +68,39 @@ Alpine.data('formElement', () => ({
   },
 
   _validateFormFieldInput() {
-    let formFieldInputs = this.form.getElementsByClassName('bsi-form-field-element');
-    for (const formFieldInput of formFieldInputs) {
-      let input = formFieldInput.getElementsByClassName('bsi-form-field-input')[0];
-      if (!input.checkValidity() && !input.value) {
-        formFieldInput.getElementsByClassName('invalid-feedback')[0].style.display = "block";
-      } else {
-        formFieldInput.getElementsByClassName('invalid-feedback')[0].style.display = "none";
-      }
-    }
+    this.form.querySelectorAll('.bsi-form-field-element').forEach(formFieldInput => {
+      let input = formFieldInput.querySelector('.bsi-form-field-input');
+      let valid = input.checkValidity() || input.value;
+      this._displayRequiredError(formFieldInput, '.invalid-feedback', valid);
+    });
   },
 
   _validateTelInput() {
-    let telInputs = this.form.getElementsByClassName('bsi-form-tel-input');
-    for (const telInput of telInputs) {
-      let input = telInput.getElementsByClassName('bsi-form-tel-input-element')[0];
-      if (!input.checkValidity() && !input.value) {
-        telInput.getElementsByClassName('bsi-tel-input-error-required')[0].style.display = "block";
-      } else {
-        telInput.getElementsByClassName('bsi-tel-input-error-required')[0].style.display = "none";
-      }
-    }
+    this.form.querySelectorAll('.bsi-form-tel-input').forEach(telInput => {
+      let input = telInput.querySelector('.bsi-form-tel-input-element');
+      let valid = input.checkValidity() || input.value;
+      this._displayRequiredError(telInput, '.bsi-tel-input-error-required', valid);
+    });
   },
 
   _validateRadioInput() {
-    let radioElements = this.form.getElementsByClassName('bsi-form-radio-element');
-    for (const radioElement of radioElements) {
-      let radioValid = false;
-      let radioInputs = radioElement.getElementsByClassName('form-check-input');
-      for (const radioInput of radioInputs) {
-        if (radioInput.checked || !radioInput.hasAttribute('required')) {
-          radioValid = true;
-          break;
-        }
-      }
-      if (!radioValid) {
-        radioElement.getElementsByClassName('invalid-feedback')[0].style.display = "block";
-      } else {
-        radioElement.getElementsByClassName('invalid-feedback')[0].style.display = "none";
-      }
-    }
+    this.form.querySelectorAll('.bsi-form-radio-element').forEach(radioElement => {
+      let radioInputs = Array.from(radioElement.querySelectorAll('input[type="radio"]'));
+      let radioValid = radioInputs.some(this._validateCheckbox);
+      this._displayRequiredError(radioElement, '.invalid-feedback', radioValid);
+    });
   },
   _validateCheckboxInput() {
-    this.form.querySelectorAll('.form-check').forEach(checkboxEl => {
-      let checkbox = checkboxEl.querySelector('input')
-      let checkedOrNotRequired = checkbox.checked || !checkbox.hasAttribute('required');
-      checkboxEl.querySelector('.invalid-feedback').style.display = checkedOrNotRequired ? 'none' : 'block';
-    })
+    this.form.querySelectorAll('.bsi-form-checkbox-element').forEach(checkboxEl => {
+      let checkbox = checkboxEl.querySelector('input[type="checkbox"]');
+      let valid = this._validateCheckbox(checkbox);
+      this._displayRequiredError(checkboxEl, '.invalid-feedback', valid);
+    });
+  },
+  _validateCheckbox(checkbox) {
+    return checkbox.checked || !checkbox.hasAttribute('required');
+  },
+  _displayRequiredError(element, selector, valid) {
+    element.querySelector(selector).style.display = valid ? 'none' : 'block';
   },
 }))
