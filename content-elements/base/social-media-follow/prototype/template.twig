@@ -94,10 +94,12 @@
                 <i class="bi bi-snapchat"></i>
             </a>
         </div>
+        {# CAUTION! - adding new social elements would lead to uncaught errors while updating an existing design
+            #376364 - add again once this is fixed in CX
         <div data-bsi-social-follow="Tiktok" {% if followTiktokHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
             <a href="{{ followTiktokURL }}" title="Tiktok">
                 <i class="bi bi-tiktok"></i>
             </a>
-        </div>        
+        </div> #}
     </div>
 {% endapply %}

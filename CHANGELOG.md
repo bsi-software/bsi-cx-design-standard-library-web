@@ -5,13 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.4] - 25.03.2024
+
+### changes
+* Enhanced form field validation (#377590):
+  * For 'text' and 'password' the maximum length is now validated
+  * For 'number' the minimum and maximum are checked
+  * For 'date', 'datetime' and 'time', the minimum, maximum and length are now checked
+  * Note: for 'email', a plausibility check (@ and . as well as only certain characters) was already present before
+* Make webcam image upload element more configurable with additional properties (#375618)
+* Configurable social share colors
+* Correct boolean fallback values (#376041)
+* Fix table and news snippet element
+
+[1.4.4]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.4.4
+
 
 ## [1.4.3] - 09.02.2024
 
 ### changes
-* Update dependencies to resolve an issue where a devloper library used to permanently try to open a web socket (#344515)
+* Update dependencies to resolve an issue where a library used for development only was trying to permanently open a web socket (#344515)
 
 [1.4.3]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.4.3
+
 
 ## [1.4.2] - 06.02.2024
 
