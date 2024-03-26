@@ -36,8 +36,7 @@ Alpine.data('formElement', () => ({
       e.stopPropagation();
       this._validateFormFieldInput();
       this._validateTelInput();
-      this._validateRadioInput();
-      this._validateCheckboxInput();
+      this._validateRadioAndCheckboxInput();
     }
     this.form.classList.add('was-validated');
   },
@@ -83,22 +82,12 @@ Alpine.data('formElement', () => ({
     });
   },
 
-  _validateRadioInput() {
-    this.form.querySelectorAll('.bsi-form-radio-element').forEach(radioElement => {
-      let radioInputs = Array.from(radioElement.querySelectorAll('input[type="radio"]'));
-      let radioValid = radioInputs.some(this._validateCheckbox);
-      this._displayRequiredError(radioElement, '.invalid-feedback', radioValid);
+  _validateRadioAndCheckboxInput() {
+    this.form.querySelectorAll('.bsi-form-radio-element, .bsi-form-checkbox-element').forEach(radioOrCheckboxElement => {
+      let inputs = Array.from(radioOrCheckboxElement.querySelectorAll('input'));
+      let valid = inputs.some(input => (input.checked || !input.hasAttribute('required')));
+      this._displayRequiredError(radioOrCheckboxElement, '.invalid-feedback', valid);
     });
-  },
-  _validateCheckboxInput() {
-    this.form.querySelectorAll('.bsi-form-checkbox-element').forEach(checkboxEl => {
-      let checkbox = checkboxEl.querySelector('input[type="checkbox"]');
-      let valid = this._validateCheckbox(checkbox);
-      this._displayRequiredError(checkboxEl, '.invalid-feedback', valid);
-    });
-  },
-  _validateCheckbox(checkbox) {
-    return checkbox.checked || !checkbox.hasAttribute('required');
   },
   _displayRequiredError(element, selector, valid) {
     element.querySelector(selector).style.display = valid ? 'none' : 'block';
