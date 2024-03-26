@@ -35,7 +35,6 @@ Alpine.data('formElement', () => ({
       e.preventDefault();
       e.stopPropagation();
       this._validateFormFieldInput();
-      this._validateTelInput();
       this._validateRadioAndCheckboxInput();
     }
     this.form.classList.add('was-validated');
@@ -67,18 +66,10 @@ Alpine.data('formElement', () => ({
   },
 
   _validateFormFieldInput() {
-    this.form.querySelectorAll('.bsi-form-field-element').forEach(formFieldInput => {
-      let input = formFieldInput.querySelector('.bsi-form-field-input');
-      let valid = input.checkValidity() || input.value;
-      this._displayRequiredError(formFieldInput, '.invalid-feedback', valid);
-    });
-  },
-
-  _validateTelInput() {
-    this.form.querySelectorAll('.bsi-form-tel-input').forEach(telInput => {
-      let input = telInput.querySelector('.bsi-form-tel-input-element');
-      let valid = input.checkValidity() || input.value;
-      this._displayRequiredError(telInput, '.bsi-tel-input-error-required', valid);
+    this.form.querySelectorAll('.bsi-form-field-element, .bsi-form-tel-input').forEach(formFieldInput => {
+      let input = formFieldInput.querySelector('input');
+      let valid = input.checkValidity() || !!input.value;
+      this._displayRequiredError(formFieldInput,  valid);
     });
   },
 
@@ -86,10 +77,10 @@ Alpine.data('formElement', () => ({
     this.form.querySelectorAll('.bsi-form-radio-element, .bsi-form-checkbox-element').forEach(radioOrCheckboxElement => {
       let inputs = Array.from(radioOrCheckboxElement.querySelectorAll('input'));
       let valid = inputs.some(input => (input.checked || !input.hasAttribute('required')));
-      this._displayRequiredError(radioOrCheckboxElement, '.invalid-feedback', valid);
+      this._displayRequiredError(radioOrCheckboxElement, valid);
     });
   },
-  _displayRequiredError(element, selector, valid) {
-    element.querySelector(selector).style.display = valid ? 'none' : 'block';
+  _displayRequiredError(element, valid) {
+    element.querySelector('.invalid-feedback').style.display = valid ? 'none' : 'block';
   },
 }))
