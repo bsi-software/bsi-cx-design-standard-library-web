@@ -17,6 +17,7 @@ const contentElements = [
   require('./social-media-follow'),
   require('./social-media-share'),  
   require('./table'),
+  require('./table-pagination'),
   require('./text'),
   require('./video')
 ];

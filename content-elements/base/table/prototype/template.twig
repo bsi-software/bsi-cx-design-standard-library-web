@@ -7,7 +7,7 @@
     {% set tableElementId = elementId ?: 'table-FuXKu7' %}
     {% set tablePartId = partId ?: 'table-part-STrydn' %}
 
-    <div x-data="tableElement" data-bsi-element="{{ tableElementId }}" data-bsi-element-part="{{ tablePartId }}" class="{{ 'bsi-element-' ~ tableElementId }} mb-3 bsi-shadow-visible bsi-border-hide bsi-table-secondary bsi-table-mobile">
+    <div x-data="tableElement" data-bsi-element="{{ tableElementId }}" data-bsi-element-part="{{ tablePartId }}" data-bsi-show-pagination-field="" class="{{ 'bsi-element-' ~ tableElementId }} mb-3 bsi-shadow-visible bsi-border-hide bsi-table-secondary bsi-table-mobile">
         <table x-init="setHeaderTableMobile" class="table table-hover">
             <colgroup>
                 <col/>
