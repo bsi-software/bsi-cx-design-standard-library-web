@@ -12,17 +12,17 @@
     {% set checkboxInfoText = (infoText ?: properties.checkboxInfoText) ?: "" %}
     {% set checkboxErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
-    <div data-bsi-element="{{ checkboxElementId }}" class="{{ 'bsi-element-' ~ checkboxElementId }} mb-4 bsi-form-element form-check bsi-form-flex-label bsi-checkbox-spacing-visible bsi-form-switch-hide" data-bsi-element-part="{{ checkboxElementPartId }}">
+    <div x-data="checkbox" data-bsi-element="{{ checkboxElementId }}" class="{{ 'bsi-element-' ~ checkboxElementId }} mb-4 bsi-form-element form-check bsi-form-flex-label bsi-checkbox-spacing-visible bsi-form-switch-hide" data-bsi-element-part="{{ checkboxElementPartId }}">
         <div class="bsi-form-input-element">
-            <input class="form-check-input" type="checkbox" id="switch">
+            <input class="form-check-input" x-on:change="validateInput" type="checkbox" id="switch">
             <div class="checkbox-label-and-tooltip">
                 <label class="form-check-label" for="switch">{{ checkboxLabelText }}</label>
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ checkboxInfoText }}"></i>
             </div>
-        </div>
-        <div data-bsi-element-part="{{ checkboxFormTextPartId }}" class="form-text">{{ checkboxInfoText }}</div>
-        <div class="invalid-feedback">
-            <label data-bsi-element-part="{{ checkboxErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ checkboxErrorRequiredText }}</label>
+            <div data-bsi-element-part="{{ checkboxFormTextPartId }}" class="form-text">{{ checkboxInfoText }}</div>
+            <div x-init="initRequiredError" class="invalid-feedback">
+                <label data-bsi-element-part="{{ checkboxErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ checkboxErrorRequiredText }}</label>
+            </div>
         </div>
     </div>
 {% endapply %}
