@@ -8,11 +8,7 @@ Alpine.data('checkbox', () => ({
   },
 
   validateInput() {
-    if (this.$el.checked || !this.$el.hasAttribute('required')) {
-      this.requiredErrorElement.style.display = "none";
-    } else {
-      this.requiredErrorElement.style.display = "block";
-    }
+    this.requiredErrorElement.style.display = (this.$el.checked || !this.$el.hasAttribute('required')) ? 'none' : 'block';
   },
 
 }))
