@@ -12,9 +12,9 @@
     {% set checkboxInfoText = (infoText ?: properties.checkboxInfoText) ?: "" %}
     {% set checkboxErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
-    <div x-data="checkbox" data-bsi-element="{{ checkboxElementId }}" class="{{ 'bsi-element-' ~ checkboxElementId }} mb-4 bsi-form-element form-check bsi-form-flex-label bsi-checkbox-spacing-visible bsi-form-switch-hide" data-bsi-element-part="{{ checkboxElementPartId }}">
+    <div x-data="checkbox" data-bsi-element="{{ checkboxElementId }}" class="{{ 'bsi-element-' ~ checkboxElementId }} bsi-form-checkbox-element mb-4 bsi-form-element form-check bsi-form-flex-label bsi-checkbox-spacing-visible bsi-form-switch-hide" data-bsi-element-part="{{ checkboxElementPartId }}">
         <div class="bsi-form-input-element">
-            <input class="form-check-input" x-on:change="validateInput" type="checkbox" id="switch">
+            <input x-on:change="validateInput" class="form-check-input form-checkbox-input" type="checkbox" id="switch">
             <div class="checkbox-label-and-tooltip">
                 <label class="form-check-label" for="switch">{{ checkboxLabelText }}</label>
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ checkboxInfoText }}"></i>

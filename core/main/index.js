@@ -16,6 +16,7 @@ import '../../content-elements/form/form-field-tel/prototype/form-tel-input';
 import '../../content-elements/form/form-field/prototype/form-field';
 import '../../content-elements/form/poll/prototype/poll';
 import '../../content-elements/form/radio/prototype/radio';
+import '../../content-elements/form/checkbox/prototype/checkbox';
 import '../../content-elements/form/select/prototype/select';
 
 // start Alpine.js AFTER importing all module scripts
