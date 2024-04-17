@@ -37,6 +37,7 @@ Alpine.data('formElement', () => ({
       this._validateFormFieldInput();
       this._validateTelInput();
       this._validateRadioInput();
+      this._validateCheckboxInput();
     }
     this.form.classList.add('was-validated');
   },
@@ -105,6 +106,18 @@ Alpine.data('formElement', () => ({
         radioElement.getElementsByClassName('invalid-feedback')[0].style.display = "block";
       } else {
         radioElement.getElementsByClassName('invalid-feedback')[0].style.display = "none";
+      }
+    }
+  },
+
+  _validateCheckboxInput(){
+    let CheckboxInputs = this.form.getElementsByClassName('bsi-form-checkbox-element');
+    for (const CheckboxInput of CheckboxInputs) {
+      let input = CheckboxInput.getElementsByClassName('form-checkbox-input')[0];
+      if (input.checked || !input.hasAttribute('required')) {
+        CheckboxInput.getElementsByClassName('invalid-feedback')[0].style.display = "none";
+      } else {
+        CheckboxInput.getElementsByClassName('invalid-feedback')[0].style.display = "block";
       }
     }
   },
