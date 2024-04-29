@@ -8,7 +8,7 @@ module.exports = cx.style
     cx.cssClass
       /*.withLabel('No gradient')*/
       .withLabel('Mit Nummerierung')
-      .withCssClass('default'),
+      .withCssClass('pin-label-visible'),
     cx.cssClass
       /*.withLabel('Show gradient')*/
       .withLabel('Ohne Nummerierung')
