@@ -39,13 +39,22 @@ Alpine.data('formPin', () => ({
     inputPin.addEventListener('focusin', (e) => {
       inputPin.setAttribute('old', inputPin.value);
     });
+    inputPin.addEventListener('keydown', (e) => {
+      if (e.key==='Backspace' && !inputPin.value) {
+        this._autoFocusPreviousPinInput();
+      }
+    })
     inputPin.addEventListener('input', (e) => {
-      this._isCompletelyFilledIn();
+      if (this.$root.classList.contains('auto-submit')) {
+        this._autoSubmitIfFilledIn();
+      } else {
+        this._cleanUp();
+      }
       this._autoFocusNextPinInput();
     });
   },
 
-  _isCompletelyFilledIn() {
+  _autoSubmitIfFilledIn() {
     let form = this.$root.closest('form');
     const inputPinList = this.$root.querySelectorAll('input.pin');
     this._cleanUp();
@@ -59,11 +68,24 @@ Alpine.data('formPin', () => ({
 
   _autoFocusNextPinInput() {
     var inputPin = this.$el;
-    var inputWrapper = inputPin.parentNode.nextElementSibling;
+    var nextWrapper = inputPin.parentNode.nextElementSibling;
     if (inputPin.value && !this._LastPinElement()) {
-      var nextPinInput = inputWrapper.children[1];
+      var nextPinInput = nextWrapper.children[1];
       while (nextPinInput) {
         var pinInput = nextPinInput;
+        pinInput.focus();
+        break;
+      }
+    }
+  },
+
+  _autoFocusPreviousPinInput() {
+    var inputPin = this.$el;
+    var previousWrapper = inputPin.parentNode.previousSibling;
+    if (previousWrapper != null) {
+      var previousPinInput = previousWrapper.children[1];
+      while (previousPinInput) {
+        var pinInput = previousPinInput;
         pinInput.focus();
         break;
       }

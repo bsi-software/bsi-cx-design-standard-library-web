@@ -9,7 +9,8 @@ module.exports = cx.contentElement
   .withDescription('')
   .withIcon(Icon.FORMFIELD)
   .withStyleConfigs(
-    require('../../../configs/styles/pin-label'))
+    require('../../../configs/styles/pin-label'),
+    require('../../../configs/styles/pin-auto-submit'))
   .withParts(
     cx.part.formField
       .withId('form-field-part-eefc3ac5')
