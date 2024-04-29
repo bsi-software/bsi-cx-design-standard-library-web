@@ -60,7 +60,7 @@ Alpine.data('formPin', () => ({
   _autoFocusNextPinInput() {
     var inputPin = this.$el;
     var inputWrapper = inputPin.parentNode.nextElementSibling;
-    if (inputPin.value && this._LastPinElement()!=null) {
+    if (inputPin.value && !this._LastPinElement()) {
       var nextPinInput = inputWrapper.children[1];
       while (nextPinInput) {
         var pinInput = nextPinInput;
@@ -73,7 +73,7 @@ Alpine.data('formPin', () => ({
   _cleanUp() {
     var inputPin = this.$el;
     if (inputPin.value) {
-      if (this._LastPinElement() == null){
+      if (this._LastPinElement()){
         inputPin.value = inputPin.value.slice(-1);
       }
       if (inputPin.value.length > 1) {
@@ -94,6 +94,10 @@ Alpine.data('formPin', () => ({
 
   _LastPinElement() {
     var inputPin = this.$el;
-    return inputPin.parentNode.nextElementSibling;
+    if(inputPin.parentNode.nextElementSibling == null){
+      return true;
+    } else {
+      return false;
+    } ;
   },
 }));
