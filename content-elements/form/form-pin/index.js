@@ -17,4 +17,7 @@ module.exports = cx.contentElement
       .withLabel('Formularfeld'),
     cx.part.plainText
       .withId('form-field-part-text-cc1a1c62')
-      .withLabel('Formularfeld'));
+      .withLabel('Info Text'),
+    cx.part.plainText
+      .withId('form-field-part-error-required-f3cf3728')
+      .withLabel('Fehlermeldung bei leerem Pflichtfeld'));

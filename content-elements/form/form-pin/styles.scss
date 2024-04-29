@@ -2,14 +2,12 @@
 
 @include element.styles('form-pin-dafa5a0e');
 
-.hide { display: none; }
-.bsi-ce-edit-mode .show-if-edit { display: block; }
-
 .bsi-element-form-pin-dafa5a0e {
 
-    .bsi-form-input-element {
+    .hide { display: none; }
+
+    .bsi-form-pin-element {
         display: flex;
-        justify-content: center;
         text-align: center;
         column-gap: 2%;
 
@@ -24,15 +22,15 @@
             align-items: center;
             align-self: stretch;
         }
-    }
-
-    .bsi-form-pin-element {
-        flex-wrap: wrap;
 
         .input-wrapper{
             min-width: 40px;
             max-width: 7%;
         }
+    }
+
+    .generated-inputs{
+        flex-wrap: wrap;
     }
     
     &.pin-label-invisible .bsi-form-pin-element label.form-label {
