@@ -5,6 +5,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 // add module specific scripts in ALPHABETICAL order
 import '../../content-elements/advanced/webcam-image-upload/prototype/webcam-image-upload';
+import '../../content-elements/advanced/form-pin/form-pin';
 import '../../content-elements/base/accordion/prototype/accordion';
 import '../../content-elements/base/button/prototype/button';
 import '../../content-elements/base/chart/prototype/chart';
