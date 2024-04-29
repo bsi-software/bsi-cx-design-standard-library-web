@@ -2,14 +2,14 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('pin-label-numbering-ba3c80c7')
-  /*.withLabel('Footer gradient')*/
+  /*.withLabel('Numbered label')*/
   .withLabel('Nummerierung')
   .withCssClasses(
     cx.cssClass
-      /*.withLabel('No gradient')*/
+      /*.withLabel('Show numbering')*/
       .withLabel('Mit Nummerierung')
       .withCssClass('pin-label-visible'),
     cx.cssClass
-      /*.withLabel('Show gradient')*/
+      /*.withLabel('No numbering')*/
       .withLabel('Ohne Nummerierung')
       .withCssClass('pin-label-invisible'));

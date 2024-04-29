@@ -1,9 +1,8 @@
 import Alpine from '@alpinejs/csp';
-import { Tooltip } from 'bootstrap';
 
 Alpine.data('formPin', () => ({
   bsiInputElement: null, // Input field required for CX story / value flow
-  maxlength: null,
+  maxLength: null,
   requiredErrorElement: null,
   form: null,
   root: null,
@@ -16,20 +15,6 @@ Alpine.data('formPin', () => ({
       for(const floatingElement of this.form.getElementsByClassName('bsi-label-floating-element')) {
         this._initFloatingLabels(floatingElement);
       }
-    }
-
-    if (this.root.classList.contains('bsi-form-info-as-tooltip')
-        && ['bsi-form-label-top', 'bsi-form-label-left'].some(labelClass => this.root.classList.contains(labelClass))) {
-      this.form.querySelectorAll('.bsi-form-element').forEach((formElement) => {
-        let infoTextField = formElement.querySelector('.form-text');
-        let tooltipIcon = formElement.querySelector('i');
-        if (infoTextField && infoTextField.innerText && tooltipIcon) {
-          tooltipIcon.classList.add('tooltip-visible');
-          tooltipIcon.parentElement.classList.add('contains-tooltip');
-          tooltipIcon.setAttribute('title', infoTextField.innerText);
-          new Tooltip(tooltipIcon);
-        }
-      })
     }
   },
 
@@ -47,7 +32,7 @@ Alpine.data('formPin', () => ({
   },
 
   validateInput() {
-    if (this.bsiInputElement.value.length != this.maxlength) {
+    if (this.bsiInputElement.value.length != this.maxLength) {
       this.requiredErrorElement.style.display = "block";
     } else {
       this.requiredErrorElement.style.display = "none";
@@ -58,14 +43,9 @@ Alpine.data('formPin', () => ({
     this.bsiInputElement = this.$root.querySelector('.bsi-form-field-input-original');
     let containerDiv = this.$root.querySelector('.bsi-form-pin-element');
 
-    const maxLength = this.bsiInputElement.getAttribute('maxlength');
-    if (maxLength == null) {
-      this.maxlength = 6;
-    } else {
-      this.maxlength = this.bsiInputElement.getAttribute('maxlength');
-    }
+    this.maxLength = this.bsiInputElement.getAttribute('maxlength') ?? 6;
 
-    for (let i = 0; i < this.maxlength; i++) {
+    for (let i = 0; i < this.maxLength; i++) {
       this._initPinNumberField(containerDiv, i);
     }
   },
@@ -73,59 +53,52 @@ Alpine.data('formPin', () => ({
   _initPinNumberField(containerDiv, i) {
     let div = document.createElement('div');
     let label = document.createElement('label');
-    let pinInput = document.createElement('input');
+    let inputPin = document.createElement('input');
     
     div.classList = 'input-wrapper';
     label.classList = 'form-label';
     label.innerHTML = (i + 1) + ".";
-    pinInput.classList = 'bsi-form-field-input form-control bsi-form-field-input pin';
+    inputPin.classList = 'bsi-form-field-input form-control bsi-form-field-input pin';
     
-    pinInput.setAttribute('x-init', 'initFormPinInput');
-    pinInput.setAttribute('required', 'true');
+    inputPin.setAttribute('required', 'true');
+    inputPin.setAttribute('inputmode', 'numeric');
+    inputPin.setAttribute('type', "number");
 
     div.appendChild(label);
-    div.appendChild(pinInput);
+    div.appendChild(inputPin);
     containerDiv.appendChild(div);
-  },
-  
-  initFormPinInput() {
-    let inputPin = this.$el;
-    inputPin.setAttribute('inputmode', 'numeric');
-    inputPin.setAttribute('pattern', "[0-9]");
 
     inputPin.addEventListener('focusin', (e) => {
       inputPin.setAttribute('old', inputPin.value);
     });
 
     inputPin.addEventListener('keydown', (e) => {
-      if (e.key ==='Backspace' && !inputPin.value) {
-        this._autoFocusPreviousPinInput();
+      if ((e.key =='Backspace') && !inputPin.value) {
+        this._autoFocusPreviousPinInput(inputPin);
       }
     });
-
+    
     inputPin.addEventListener('input', (e) => {
       const inputPinList = this.$root.querySelectorAll('input.pin');
-      this._cleanUp();
+      this._cleanUp(inputPin);
       this.bsiInputElement.value = Array.from(inputPinList).reduce((result, input) => {
         return result + input.value;
       }, "");
       if (this.$root.classList.contains('auto-submit')) {
         this._autoSubmitIfFilledIn();
       }
-      this._autoFocusNextPinInput();
+      this._autoFocusNextPinInput(inputPin);
     });
   },
 
-  _autoFocusNextPinInput() {
-    let inputPin = this.$el;
+  _autoFocusNextPinInput(inputPin) {
     let nextWrapper = inputPin.parentNode.nextElementSibling;
-    if (inputPin.value && !this._isLastPinElement()) {
+    if (inputPin.value && !this._isLastPinElement(inputPin)) {
       this._autoFocus(nextWrapper);
     }
   },
 
-  _autoFocusPreviousPinInput() {
-    let inputPin = this.$el;
+  _autoFocusPreviousPinInput(inputPin) {
     let previousWrapper = inputPin.parentNode.previousSibling;
     if (previousWrapper != null) {
       this._autoFocus(previousWrapper);
@@ -140,40 +113,26 @@ Alpine.data('formPin', () => ({
   },
 
   _autoSubmitIfFilledIn() {
-    let form = this.$root.querySelector('.formular-pin');;
-    if (form && (this.bsiInputElement.value.length == this.maxlength)) {
+    let form = this.$root.querySelector('.formular-pin');
+    if (form && (this.bsiInputElement.value.length == this.maxLength)) {
       form.submit();
     }
   },
 
-  _cleanUp() {
-    // TODO: auch im DOM lösbar?
-    let inputPin = this.$el;
+  _cleanUp(inputPin) {
     if (inputPin.value) {
-      if (this._isLastPinElement()){
+      if (this._isLastPinElement(inputPin)){
         inputPin.value = inputPin.value.slice(-1);
-      }
-
-      const numberPattern = /^[0-9]+$/;
-      if (inputPin.value.length > 1) {
+      } else if (inputPin.value.length > 1) {
         var oldValue = inputPin.getAttribute('old');
-        var currentValue = inputPin.value;
-        
-        if (!numberPattern.test(inputPin.value)) {
-          inputPin.value = oldValue;
-        } else {
-          var newValue = currentValue.replace(oldValue, '');
-          inputPin.value = newValue;
-          oldValue = newValue;
+        var newValue = inputPin.value.replace(oldValue, '');
+        inputPin.value = newValue;
+        oldValue = newValue;
         }
-
-      } else if (!numberPattern.test(inputPin.value)) {
-        inputPin.value = null;
-      }
     }
   },
 
-  _isLastPinElement() {
-    return this.$el.parentNode.nextElementSibling == null; 
+  _isLastPinElement(inputPin) {
+    return inputPin.parentNode.nextElementSibling == null; 
   },
 }));
