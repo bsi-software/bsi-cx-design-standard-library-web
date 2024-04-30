@@ -44,10 +44,10 @@ Alpine.data('formPin', () => ({
     let containerDiv = this.$root.querySelector('.bsi-form-pin-element');
 
     this.maxLength = this.bsiInputElement.getAttribute('maxlength') ?? 6;
-
     for (let i = 0; i < this.maxLength; i++) {
       this._initPinNumberField(containerDiv, i);
     }
+    this._autoFocusFirstPinInput();
   },
 
   _initPinNumberField(containerDiv, i) {
@@ -89,6 +89,11 @@ Alpine.data('formPin', () => ({
       }
       this._autoFocusNextPinInput(inputPin);
     });
+  },
+
+  _autoFocusFirstPinInput() {
+    let wrapper = this.$root.querySelectorAll('.input-wrapper');
+    this._autoFocus(wrapper[0]);
   },
 
   _autoFocusNextPinInput(inputPin) {
