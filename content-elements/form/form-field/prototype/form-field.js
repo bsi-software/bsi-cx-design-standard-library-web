@@ -54,8 +54,8 @@ Alpine.data('formField', () => ({
   _validateNumberInput() {
     if (this.inputEl.type === 'number') {
       let inputValue = parseInt(this.inputEl.value);
-      let minValue = parseInt(this.inputEl.min);
-      let maxValue = parseInt(this.inputEl.max);
+      let minValue = parseInt(this.inputEl.min ? this.inputEl.min : Number.MIN_SAFE_INTEGER);
+      let maxValue = parseInt(this.inputEl.max ? this.inputEl.max : Number.MAX_SAFE_INTEGER);
       let valid = minValue <= inputValue && inputValue <= maxValue && inputValue != '';
       // don't check required validation
       if (this.inputEl.value == '' || this.inputEl.value == this.inputEl.defaultValue) {
@@ -71,7 +71,7 @@ Alpine.data('formField', () => ({
   _validateTextInput() {
     if (this.inputEl.type === 'text' || this.inputEl.type === 'password') {
       let inputValue = this.inputEl.value;
-      let maxCharacters = parseInt(this.inputEl.maxLength);
+      let maxCharacters = parseInt(this.inputEl.getAttribute("maxLength") ? this.inputEl.getAttribute("maxLength") : 256);
       let valid = inputValue.length <= maxCharacters;
       this.calculateVisibility(valid);
       this.inputEl.setCustomValidity(valid ? '' : this.errorMessageInvalid);
