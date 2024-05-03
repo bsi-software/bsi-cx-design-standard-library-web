@@ -31,6 +31,8 @@ Alpine.data('telInput', () => ({
 
     this.errormessageInvalid = this.rootElement.getElementsByClassName('errormessage-invalid')[0].innerText;
 
+    this._validateForSubmit();
+
     this.initHiddenInput();
 
     if (this.rootElement.closest('.bsi-form-label-floating')) {
@@ -85,6 +87,7 @@ Alpine.data('telInput', () => ({
     }
     this.iti.setNumber(this.iti.getNumber(intlTelInputUtils.numberFormat.E164)); // trigger formatting the number
     this._validate();
+    this._validateForSubmit();
   },
 
   onFocus() {
@@ -101,6 +104,10 @@ Alpine.data('telInput', () => ({
   changeCountry() {
     this.iti.setNumber(this.iti.getNumber(intlTelInputUtils.numberFormat.E164)); // trigger formatting the number
     this._validate();
+  },
+
+  _validateForSubmit() {
+    !this.$el.value && this.$el.hasAttribute('required') ? this.$root.classList.remove('validated') : this.$root.classList.add('validated');
   },
 
   _validate() {

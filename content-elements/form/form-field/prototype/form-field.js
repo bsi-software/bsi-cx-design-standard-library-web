@@ -22,6 +22,7 @@ Alpine.data('formField', () => ({
     } else if (['date', 'datetime-local', 'time'].includes(this.inputEl.type)) {
       this._initDateInput();
     }
+    this._validateForSubmit();
   },
 
   initRequiredError() {
@@ -45,17 +46,22 @@ Alpine.data('formField', () => ({
     } else {
       this.requiredErrorElement.style.display = "none";
     }
+    this._validateForSubmit();
     this._validateMailInput();
     this._validateNumberInput();
     this._validateTextInput();
     this._validateDateTimeInput();
   },
 
+  _validateForSubmit() {
+    !this.$el.value && this.$el.hasAttribute('required') ? this.$root.classList.remove('validated') : this.$root.classList.add('validated');
+  },
+
   _validateNumberInput() {
     if (this.inputEl.type === 'number') {
       let inputValue = parseInt(this.inputEl.value);
-      let minValue = parseInt(this.inputEl.min);
-      let maxValue = parseInt(this.inputEl.max);
+      let minValue = parseInt(this.inputEl.min ? this.inputEl.min : Number.MIN_VALUE);
+      let maxValue = parseInt(this.inputEl.max ? this.inputEl.max : Number.MAX_VALUE);
       let valid = minValue <= inputValue && inputValue <= maxValue && inputValue != '';
       // don't check required validation
       if (this.inputEl.value == '' || this.inputEl.value == this.inputEl.defaultValue) {
@@ -71,7 +77,7 @@ Alpine.data('formField', () => ({
   _validateTextInput() {
     if (this.inputEl.type === 'text' || this.inputEl.type === 'password') {
       let inputValue = this.inputEl.value;
-      let maxCharacters = parseInt(this.inputEl.maxLength);
+      let maxCharacters = parseInt(this.inputEl.maxLength ? this.inputEl.maxLength : 256);
       let valid = inputValue.length <= maxCharacters;
       this.calculateVisibility(valid);
       this.inputEl.setCustomValidity(valid ? '' : this.errorMessageInvalid);

@@ -42,6 +42,7 @@ Alpine.data('formPoll', () => ({
 
   initRequiredError() {
     this.requiredErrorElement = this.$el;
+    this._pollValid() ? this.$root.classList.add('validated') : this.$root.classList.remove('validated');
   },
 
   initLabel() {
@@ -89,6 +90,16 @@ Alpine.data('formPoll', () => ({
   },
 
   _validateInput() {
+    if (!this._pollValid()) {
+      this.requiredErrorElement.style.display = 'block';
+      this.$root.classList.remove('validated');
+    } else {
+      this.requiredErrorElement.style.display = 'none';
+      this.$root.classList.add('validated');
+    }
+  },
+
+  _pollValid(){
     let pollValid = false;
     let pollInputs = this.root.querySelectorAll('input[type="radio"]');
     for (const pollInput of pollInputs) {
@@ -97,11 +108,7 @@ Alpine.data('formPoll', () => ({
         break;
       }
     }
-    if (!pollValid) {
-      this.requiredErrorElement.style.display = 'block';
-    } else {
-      this.requiredErrorElement.style.display = 'none';
-    }
+    return pollValid;
   },
 
   _updateStatus(range) {
