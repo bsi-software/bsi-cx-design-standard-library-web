@@ -20,9 +20,7 @@
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ checkboxInfoText }}"></i>
             </div>
             <div data-bsi-element-part="{{ checkboxFormTextPartId }}" class="form-text">{{ checkboxInfoText }}</div>
-            <div x-init="initRequiredError" class="invalid-feedback">
-                <label data-bsi-element-part="{{ checkboxErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ checkboxErrorRequiredText }}</label>
-            </div>
+            <div class="invalid-feedback"> {{ checkboxErrorRequiredText }} </div>
         </div>
     </div>
 {% endapply %}

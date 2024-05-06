@@ -34,10 +34,10 @@ Alpine.data('formElement', () => ({
     if (!this.form.checkValidity()) {
       e.preventDefault();
       e.stopPropagation();
-      this._validateFormFieldInput();
-      this._validateTelInput();
+      // this._validateFormFieldInput();
+      // this._validateTelInput();
       this._validateRadioInput();
-      this._validateCheckboxInput();
+      // this._validateCheckboxInput();
     }
     this.form.classList.add('was-validated');
   },
