@@ -23,7 +23,7 @@
             <select x-init="initSelectField" class="form-select" id="select">
                 <option value="">{{ selectOptionText }}</option>
             </select>
-            <div class="invalid-feedback"> {{ selectErrorRequiredText }} </div>
+            <div data-bsi-element-part="{{ selectErrorRequiredPartId }}" class="invalid-feedback"> {{ selectErrorRequiredText }} </div>
         </div>
     </div>
 {% endapply %}
