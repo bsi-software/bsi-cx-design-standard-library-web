@@ -6,7 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-- hide banner link in content editor
+
+## [1.4.5] - 08.05.2024
+
+### changes
+* Remove link from banner element
+* Add form field validation to checkbox element
+* Fix form field validation for number and text
+
+[1.4.5]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.4.5
+
 
 ## [1.4.4] - 25.03.2024
 

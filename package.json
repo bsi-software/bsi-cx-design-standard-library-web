@@ -1,6 +1,6 @@
 {
   "name": "@bsi-cx/design-standard-library-web",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Standard content element library for BSI CX.",
   "license": "MIT",
   "repository": "github:bsi-software/bsi-cx-design-standard-library-web",
@@ -9,22 +9,16 @@
   },
   "contributors": [
     {
-      "name": "Yann Büchler"
-    },
-    {
-      "name": "Oliver Fabel"
+      "name": "Benjamin Vier"
     },
     {
       "name": "Lukas Heyer"
     },
     {
-      "name": "Marleen Jattke"
-    },
-    {
       "name": "Lukas Steiger"
     },
     {
-      "name": "Benjamin Vier"
+      "name": "Sophia Wild"
     }
   ],
   "dependencies": {
