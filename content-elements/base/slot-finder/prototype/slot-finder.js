@@ -29,34 +29,35 @@ import { initDayView, initWeekView } from "../src/slot/slot.js";
  * @property {Observable<Slot|null>} selectedSlot
  */
 
-/** @type {Model}  */
-const model = {
-  locale: '',
-  url: '',
-  selectedDate: Observable(new Date()),
-  slots: Observable([]),
-  selectedSlot: Observable(null),
-};
-
 Alpine.data('slotFinder', () => ({
+
+  /** @type {Model}  */
+  model: {
+    locale: '',
+    url: '',
+    selectedDate: Observable(new Date()),
+    slots: Observable([]),
+    selectedSlot: Observable(null),
+  },
+
   init() {
-    model.locale = document.documentElement.lang.slice(0, 2) ?? 'de';
-    model.url = this.$el.dataset.bsiUrl ?? '';
+    this.model.locale = document.documentElement.lang.slice(0, 2) ?? 'de';
+    this.model.url = this.$el.dataset.bsiUrl ?? '';
   },
   
   initCalendar() {
-    initCalendar(model, this.$el);
+    initCalendar(this.model, this.$el);
   },
 
   initDayView() {
-    initDayView(model, this.$el, this.$refs.noSlotsText, this.$refs.chooseAnotherDayText);
+    initDayView(this.model, this.$el, this.$refs.noSlotsText, this.$refs.chooseAnotherDayText);
   },
 
   initWeekView() {
-    initWeekView(model, this.$el, this.$refs.noSlotsText, this.$refs.chooseAnotherDayText);
+    initWeekView(this.model, this.$el, this.$refs.noSlotsText, this.$refs.chooseAnotherDayText);
   },
 
   initSummary() { 
-    initSummary(model, this.$el, this.$refs.bookButton);
+    initSummary(this.model, this.$el, this.$refs.bookButton);
   },
 }));
