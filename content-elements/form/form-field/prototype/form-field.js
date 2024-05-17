@@ -10,7 +10,6 @@ Alpine.data('formField', () => ({
   fp: null,
   minDate: null,
   maxDate: null,
-  requiredErrorElement: null,
   invalidErrorElement: null,
   errorMessageInvalid: '',
 
@@ -22,10 +21,6 @@ Alpine.data('formField', () => ({
     } else if (['date', 'datetime-local', 'time'].includes(this.inputEl.type)) {
       this._initDateInput();
     }
-  },
-
-  initRequiredError() {
-    this.requiredErrorElement = this.$el;
   },
 
   initInvalidError() {
@@ -40,11 +35,6 @@ Alpine.data('formField', () => ({
       label.style.transform = 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)';
     }
 
-    if (!this.inputEl.value && this.inputEl.hasAttribute('required')) {
-      this.requiredErrorElement.style.display = "block";
-    } else {
-      this.requiredErrorElement.style.display = "none";
-    }
     this._validateMailInput();
     this._validateNumberInput();
     this._validateTextInput();

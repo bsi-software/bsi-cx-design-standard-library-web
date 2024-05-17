@@ -43,9 +43,7 @@
                 <label data-bsi-element-part="{{ pollLeftPartId }}">{{ pollLabelLeftText }}</label>
                 <label data-bsi-element-part="{{ pollRightPartId }}">{{ pollLabelRightText }}</label>
             </div>
-            <div x-init="initRequiredError" class="invalid-feedback">
-                <label data-bsi-element-part="{{ pollErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ pollErrorRequiredText }}</label>
-            </div>
+            <div data-bsi-element-part="{{ pollErrorRequiredPartId }}" class="invalid-feedback"> {{ pollErrorRequiredText }} </div>
         </div>
     </div>
 {% endapply %}
