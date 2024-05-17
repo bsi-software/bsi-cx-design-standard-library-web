@@ -29,7 +29,7 @@
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.1",
     "flatpickr": "^4.6.13",
-    "intl-tel-input": "^19.5.3"
+    "intl-tel-input": "^23.0.5"
   },
   "devDependencies": {
     "@bsi-cx/design-build": "^1.13.3",
