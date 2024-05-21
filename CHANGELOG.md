@@ -6,7 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
+
+## [1.4.6] - 17.05.2024
 * Allow multiple slot finder instances on one site (#383421)
+
+[1.4.6]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.4.6
+
 
 ## [1.4.5] - 08.05.2024
 
