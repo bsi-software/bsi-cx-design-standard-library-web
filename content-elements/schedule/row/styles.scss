@@ -1,0 +1,13 @@
+.schedule-row {
+    margin-bottom: 10px;
+
+    .row-container {
+        display: flex;
+        gap: 10px;
+        hyphens: auto;
+
+        >* {
+            flex: 1 1 0;
+        }
+    }
+}
