@@ -3,9 +3,9 @@
     {% set inSignBaseUrl = inSignBaseUrl ?: '{inSignBaseUrl}' %}
     {% set signatureFieldElementId = elementId ?: 'signature-field-fKwfSc' %}
 
-    <div x-data="signatureField" data-bsi-element="{{ signatureFieldElementId }}" class="{{ 'bsi-element-' ~ signatureFieldElementId }} mb-4 bsi-form-element bsi-form-textarea bsi-form-flex-label">
+    <div x-data="signatureField" data-bsi-element="{{ signatureFieldElementId }}" class="{{ 'bsi-element-' ~ signatureFieldElementId }} mb-4 bsi-form-element bsi-form-textarea bsi-form-flex-label signature-field">
         <div x-ref="signaturePad">
-            <h4>Unterschreiben Sie bitte in folgendem Feld mit Maus oder Finger:</h4>
+            <h4 data-bsi-element-part="text-area-part-text-JYdz9N">Unterschreiben Sie bitte in folgendem Feld mit Maus oder Finger:</h4>
             <div class="signature-wrapper">
                 <canvas width="500px" height="150px"></canvas> <!-- TODO: change to dynamic width/height -->
             </div>

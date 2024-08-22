@@ -37,6 +37,7 @@ Alpine.data('formElement', () => ({
       this._validateFormFieldInput();
       this._validateTelInput();
       this._validateRadioInput();
+      this._validateSignatureField();
       this._validateCheckboxInput();
     }
     this.form.classList.add('was-validated');
@@ -121,4 +122,23 @@ Alpine.data('formElement', () => ({
       }
     }
   },
+
+  _validateSignatureField() {
+    let signatureFields = this.form.getElementsByClassName('signature-field');
+    let signatureValid = false;
+
+    for (const signatureField of signatureFields) {
+      let signatureImage = signatureField.getElementsByTagName('img');
+      if (!signatureImage) {
+        signatureValid = false;
+        // mark element as invalid, maybe red border
+        signatureField.style.border = "2px solid red";
+        break;
+      }
+      else {
+        signatureValid = true;
+        break;
+      }
+    }
+  }
 }))

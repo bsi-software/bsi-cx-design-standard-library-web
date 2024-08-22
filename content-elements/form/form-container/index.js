@@ -34,6 +34,7 @@ element.withFile(require('./template.twig'))
         ...formElements,
         require('../multi-column'),
         ...contentElements,
+        require('./../../advanced/signature-field'),
         require('../../layout/col-one'),
         require('../../layout/col-two'),
         require('../../layout/col-three'),
@@ -51,6 +52,7 @@ element.withFile(require('./template.twig'))
       .withDropzone('form-container-dropzone-bottom-cJFI8U')
       .withAllowedElements(
         ...contentElements,
+        require('./../../advanced/signature-field'),
         require('../../layout/col-one'),
         require('../../layout/col-two'),
         require('../../layout/col-three'),

@@ -16,6 +16,7 @@ module.exports = (
   /*elementLabel = 'Signature field',*/
   elementLabel = 'Unterschriftenfeld',
   formTextPartId = 'text-area-part-text-JYdz9N',
+  formTextPartLabel = 'Textunterschrift',
   /*formTextPartLabel = 'Info text',*/
   formTextPartLabel = 'Info Text',
   errorRequiredPartId = 'text-area-part-error-required-kKKMfm',
@@ -26,4 +27,8 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withParts(
+    cx.part.plainText
+      .withId(formTextPartId)
+      .withLabel(formTextPartLabel))
   .withIcon(Icon.HANDSHAKE);
