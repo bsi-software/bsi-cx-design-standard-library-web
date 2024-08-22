@@ -125,20 +125,27 @@ Alpine.data('formElement', () => ({
 
   _validateSignatureField() {
     let signatureFields = this.form.getElementsByClassName('signature-field');
-    let signatureValid = false;
 
     for (const signatureField of signatureFields) {
-      let signatureImage = signatureField.getElementsByTagName('img');
-      if (!signatureImage) {
-        signatureValid = false;
-        // mark element as invalid, maybe red border
-        signatureField.style.border = "2px solid red";
+      let validationField = signatureField.getElementsByClassName('canvas-validation-field')[0];
+      let signatureCanvas = signatureField.getElementsByTagName('canvas')[0];
+      let signatureImg = signatureField.getElementsByTagName('img')[0];
+      if (this._isCanvasEmpty(signatureCanvas) || typeof signatureImg == 'undefined') {
+        validationField.checked = false;
+        signatureCanvas.style.border = "1px solid #dc3545";
         break;
       }
       else {
-        signatureValid = true;
+        validationField.checked = true;
+        signatureCanvas.style.border = "1px solid #383e424d";
         break;
       }
     }
+  },
+
+  _isCanvasEmpty(canvas) {
+    const context = canvas.getContext("2d");
+    const pixelContent = new Uint32Array(context.getImageData(0,0,canvas.width,canvas.height).data.buffer);
+    return !pixelContent.some(color => color != 0);
   }
 }))

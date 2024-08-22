@@ -32,5 +32,5 @@ element.withElementId('col-one-l2ZclN')
         require('../spacer'),
         require('../../base/banner'),
         ...contentElements,
-        ...advancedElements,
+        require('../../advanced/webcam-image-upload'),
         require('../../form/form-container')));

@@ -13,22 +13,16 @@ const {cx, Icon} = require('@bsi-cx/design-build');
 module.exports = (
   template = require('../template.twig'),
   elementId = 'signature-field-fKwfSc',
-  /*elementLabel = 'Signature field',*/
   elementLabel = 'Unterschriftenfeld',
   formTextPartId = 'text-area-part-text-JYdz9N',
-  formTextPartLabel = 'Textunterschrift',
-  /*formTextPartLabel = 'Info text',*/
   formTextPartLabel = 'Info Text',
-  errorRequiredPartId = 'text-area-part-error-required-kKKMfm',
-  /*errorRequiredPartLabel = 'Required error message'*/
-  errorRequiredPartLabel = 'Fehlermeldung bei leerem Pflichtfeld'
 ) => cx
   .contentElement
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withIcon(Icon.HANDSHAKE)
   .withParts(
     cx.part.plainText
       .withId(formTextPartId)
-      .withLabel(formTextPartLabel))
-  .withIcon(Icon.HANDSHAKE);
+      .withLabel(formTextPartLabel));

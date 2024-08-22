@@ -5,11 +5,12 @@
 
     <div x-data="signatureField" data-bsi-element="{{ signatureFieldElementId }}" class="{{ 'bsi-element-' ~ signatureFieldElementId }} mb-4 bsi-form-element bsi-form-textarea bsi-form-flex-label signature-field">
         <div x-ref="signaturePad">
-            <h4 data-bsi-element-part="text-area-part-text-JYdz9N">Unterschreiben Sie bitte in folgendem Feld mit Maus oder Finger:</h4>
+            <label data-bsi-element-part="text-area-part-text-JYdz9N">Unterschreiben Sie bitte in folgendem Feld mit Maus oder Finger:</label>
+            <input type="checkbox" class="form-check-input form-control bsi-form-field-input canvas-validation-field" id="switch" value="false" data-bsi-form-field-type required>
             <div class="signature-wrapper">
                 <canvas width="500px" height="150px"></canvas> <!-- TODO: change to dynamic width/height -->
             </div>
-            <button x-on:click="submitSignature" class="btn btn-primary">Unterschrift übermitteln</button>
+            <button x-on:click="submitSignature" class="btn btn-primary">Unterschreiben</button>
             <button x-on:click="clearSignature" class="btn btn-light">Löschen</button>
         </div>
 
@@ -20,7 +21,7 @@
             <span x-ref="baseUrl">{{inSignBaseUrl}}</span>
         </div>
 
-        <script src="{{inSignBaseUrl}}/webjars/jquery/3.6.4/jquery.min.js?v34581"></script>
+        <script src="{{inSignBaseUrl}}/webjars/jquery/3.7.1/jquery.min.js?v34827979843491970462146"></script>
         <script src="{{inSignBaseUrl}}/js/insign-standalonesignature-pad.js" type="text/javascript"></script>
         <script src="{{inSignBaseUrl}}/configjs.js?sessionid={{inSignSessionId}}" type="text/javascript"></script>
     </div>

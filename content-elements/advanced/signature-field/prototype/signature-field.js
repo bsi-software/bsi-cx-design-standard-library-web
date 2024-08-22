@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs';
+import signatureField from '..';
 
 Alpine.data('signatureField', () => ({
     jqSigPad: null,
@@ -19,7 +20,7 @@ Alpine.data('signatureField', () => ({
                 // TODO: sobald SMS/Mail Version 
                 //INSIGNAPP.embedded.initSignatureObject(signaturedata.docid, signaturedata.id, $('#' + menuid), 0);
             } else {
-                alert("no valid signatures returned");
+                // alert("no valid signatures returned");
             }
         });
     },
@@ -30,10 +31,9 @@ Alpine.data('signatureField', () => ({
 
     submitSignature() {
         if (!INSIGNAPP.embedded.isSignatureReady(this.jqSigPad)) {
-            alert('zu wenig Punkte');
+            // TODO: use validation field within if condition
         } else {
             INSIGNAPP.embedded.sendSignature(this.jqSigPad, this.signingSuccessful, this.signingFailed);
-            // TODO hide signature
         }
     },
 
@@ -42,6 +42,7 @@ Alpine.data('signatureField', () => ({
     },
 
     signingFailed(id, imgB64, field) {
-        alert("signing failed...");
+        // alert("signing failed...");
+        // field.style.border = "1px solid #dc3545";
     },
 }))
