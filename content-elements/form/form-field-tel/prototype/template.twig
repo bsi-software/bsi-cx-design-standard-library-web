@@ -37,7 +37,7 @@
                 <label data-bsi-element-part="{{ phonePinnedCountriesPartId }}" class="preferred-countries">ch,de,at</label>
             </div>
 
-            <div class="invalid-feedback"> {{ phoneErrorRequiredText }} </div>
+            <div data-bsi-element-part="{{ phoneErrorRequiredPartId }}" class="invalid-feedback"> {{ phoneErrorRequiredText }} </div>
             <div x-ref="invalidErrorField" class="bsi-tel-input-error-invalid" hidden="true" aria-hidden="true">
                 <label data-bsi-element-part="{{ phoneErrorInvalidPartId }}" class="errormessage-invalid" role="alert" aria-live="assertive" aria-atomic="true">{{ phoneErrorInvalidText }}</label>
             </div>
