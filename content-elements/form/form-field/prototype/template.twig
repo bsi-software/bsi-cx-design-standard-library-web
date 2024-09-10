@@ -22,9 +22,7 @@
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ formFieldInfoText }}"></i>
             </div>
             <input x-init="initFormFieldInput" x-on:change="validateInput" type="text" class="form-control bsi-form-field-input" id="field" value="">
-            <div x-init="initRequiredError" class="invalid-feedback">
-                <label data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ formFieldErrorRequiredText }}</label>
-            </div>
+            <div class="invalid-feedback"> {{ formFieldErrorRequiredText }} </div>
             <div x-init="initInvalidError" class="format-invalid-feedback" hidden="true" aria-hidden="true">
                 <label data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="errormessage-invalid" role="alert" aria-live="assertive" aria-atomic="true">{{ formFieldErrorInvalidText }}</label>
             </div>
