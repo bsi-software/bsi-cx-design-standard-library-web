@@ -8,6 +8,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * Export text element with .editor() function where htmlEditorConfig can be customized
 * Accodion trigger button will not trigger form submission, when used within a form container
+* use font-size of headlines for all display sizes
+* add a new font-size option in headlines for mobile
+* large titles are now set depending on the normal font size of headlines
+* if the headlines have been extended, changes to the extension may be necessary
 
 ## [1.4.7] - 11.10.2024
 * Prevent spacer from shrinking to 0px if no other element is present (#386885)
