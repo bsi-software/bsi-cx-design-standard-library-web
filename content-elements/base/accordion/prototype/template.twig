@@ -6,7 +6,7 @@
 {% set accordionIconPosition = (iconPosition ?: properties.accordionIconPosition) ?: 'start' %} {# must be in ['start', 'end', 'none'] #}
 
 <div data-bsi-element="{{ accordionElementId }}" class="bsi-element-{{ accordionElementId }} inactive" x-data="accordionElement">
-	<button x-init="initAccordion" class="accordion-header element" @click="toggleActive" aria-expanded="false">
+	<button type="button" x-init="initAccordion" class="accordion-header element" @click="toggleActive" aria-expanded="false">
 		{% if accordionIconPosition == 'start' %}
 			{% block icon_before %}
 				<i class="bi inactive bi-plus-lg"></i>
