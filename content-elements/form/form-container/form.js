@@ -66,8 +66,8 @@ Alpine.data('formElement', () => ({
 
   _validateRadioInput() {
     let radioElements = this.form.getElementsByClassName('bsi-form-radio-element');
-    let radioValid = false;
     for (const radioElement of radioElements) {
+      let radioValid = false;
       let radioInputs = radioElement.getElementsByClassName('form-check-input');
       for (const radioInput of radioInputs) {
         if (radioInput.checked || !radioInput.hasAttribute('required')) {
