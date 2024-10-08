@@ -27,7 +27,7 @@ Alpine.data('formPoll', () => ({
       }
     } else if (this.root.classList.contains('bsi-poll-star')) {
       for (let value = max; value >= min; value -= step) {
-        this._initRadioElement(range, value, container, thisForm);
+        this._initStarElement(range, value, container, thisForm);
       }
     }
 
@@ -88,9 +88,24 @@ Alpine.data('formPoll', () => ({
     container.appendChild(div);
   },
 
+  _initStarElement(range, value, container, thisForm) {
+    this._initRadioElement(range, value, container, thisForm);
+    let star = this.root.querySelector(`input[value='${value}']`);
+    star.classList.add('bi', 'bi-star');
+    star.addEventListener('mouseover', (e) => {
+      this._highlightStars(value);
+    })
+    star.addEventListener('mouseout', (e) => {
+      this._resetStars();
+    })
+    star.addEventListener('click', (e) => {
+      this._setRating(value);
+    })
+  },
+
   _validateInput() {
-    let pollValid = false;
     let pollInputs = this.root.querySelectorAll('input[type="radio"]');
+    let pollValid = false;
     for (const pollInput of pollInputs) {
       if (pollInput.checked || !pollInput.hasAttribute('required')) {
         pollValid = true;
@@ -115,6 +130,46 @@ Alpine.data('formPoll', () => ({
         radio.parentElement.classList.remove('bsi-poll-radio-checked');
       }
     }
+  },
+
+  _highlightStars(value) {
+    let stars = this.root.querySelectorAll('input[type="radio"]');
+    stars.forEach(star => {
+      if (star.getAttribute('value') <= value) {
+        star.classList.add('bi-star-fill');
+        star.classList.remove('bi-star');
+      } else {
+        star.classList.add('bi-star')
+        star.classList.remove('bi-star-fill');
+      }
+    });
+  },
+
+  _resetStars() {
+    let stars = this.root.querySelectorAll('input[type="radio"]');
+    stars.forEach(star => {
+      if (star.classList.contains('rated')) {
+        star.classList.add('bi-star-fill')
+        star.classList.remove('bi-star');
+      }
+      if (!star.classList.contains('rated')) {
+        star.classList.add('bi-star')
+        star.classList.remove('bi-star-fill');
+      }
+    });
+  },
+
+  _setRating(value) {
+    let stars = this.root.querySelectorAll('input[type="radio"]');
+    stars.forEach(star => {
+      if (star.getAttribute('value') <= value) {
+        star.classList.add('bi-star-fill', 'rated');
+        star.classList.remove('bi-star');
+      } else {
+        star.classList.add('bi-star')
+        star.classList.remove('bi-star-fill', 'rated');
+      }
+    });
   },
 
 }))
