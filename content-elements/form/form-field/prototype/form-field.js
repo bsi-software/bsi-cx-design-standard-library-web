@@ -122,6 +122,9 @@ Alpine.data('formField', () => ({
     if (valid) {
       this.invalidErrorElement.setAttribute('hidden', 'true');
       this.invalidErrorElement.setAttribute('aria-hidden', 'true');
+      this.querySelector('invalid-feedback').style.display="none";
+      this.querySelector('invalid-feedback').setAttribute('hidden', 'true');
+      this.querySelector('invalid-feedback').setAttribute('aria-hidden', 'true');
     } else {
       this.invalidErrorElement.removeAttribute('hidden', 'true');
       this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
