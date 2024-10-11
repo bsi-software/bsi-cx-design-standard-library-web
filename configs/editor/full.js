@@ -33,7 +33,7 @@ module.exports = cx.htmlEditorConfig
     Feature.SELECT_ALL,
     Feature.HTML,
     Feature.HELP)
-  .withTextColors(bsiProperty('primaryColor', '#2F4E66'), bsiProperty('secondaryColor', '#93C120'), bsiProperty('lightColor', '#ffffff'), bsiProperty('darkColor', '#000000'))
+  .withTextColors(bsiProperty('textColor', '#383e42'), bsiProperty('primaryColor', '#2F4E66'), bsiProperty('secondaryColor', '#93C120'), bsiProperty('lightColor', '#ffffff'), bsiProperty('darkColor', '#000000'))
   .withBackgroundColors(bsiProperty('primaryColor', '#2F4E66'), bsiProperty('secondaryColor', '#93C120'), bsiProperty('lightColor', '#ffffff'), bsiProperty('darkColor', '#000000'))
   .withFormats(Format.P, Format.H1, Format.H2, Format.H3, Format.H4, Format.H5, Format.H6, Format.PRE)
   .withFontSizes(8, 9, 10, 11, 12, 14, 16, 18, 24, 30, 36, 48, 72)
