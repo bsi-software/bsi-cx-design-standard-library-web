@@ -8,6 +8,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * Export text element with .editor() function where htmlEditorConfig can be customized
 
+## [1.4.7] - 11.10.2024
+* Prevent spacer from shrinking to 0px if no other element is present (#386885)
+
 ## [1.4.6] - 17.05.2024
 * Allow multiple slot finder instances on one site (#383421)
 
