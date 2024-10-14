@@ -4,6 +4,7 @@
   $title-font-family: $titleH3FontFamily,
   $title-font-size: $titleH3FontSize,
   $title-font-size-mobile: $titleH3FontSizeMobile,
+  $big-title-font-size-factor: $bigTitleFontSizeFactor,
   $title-primary-color: $primary,
   $title-secondary-color: $secondary,
   $title-dark: $dark,
@@ -25,20 +26,16 @@
       color: $color;
     }
   }
-
-  @media (min-width: $xl) {
-    font-size: $title-font-size;
-
-    &.display-1 {
-      font-size: 4rem;
-    }
+  
+  &.display-3 {
+    font-size: $title-font-size * $big-title-font-size-factor;
   }
 
   @media (max-width: $md) {
     font-size: $title-font-size-mobile;
 
-    &.display-1 {
-      font-size: 4rem;
+    &.display-3 {
+      font-size: $title-font-size-mobile * $big-title-font-size-factor;
     }
   }
 }

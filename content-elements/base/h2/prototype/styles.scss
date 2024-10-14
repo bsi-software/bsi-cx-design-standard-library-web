@@ -4,6 +4,7 @@
   $title-font-family: $titleH2FontFamily,
   $title-font-size: $titleH2FontSize,
   $title-font-size-mobile: $titleH2FontSizeMobile,
+  $big-title-font-size-factor: $bigTitleFontSizeFactor,
   $title-primary-color: $primary,
   $title-secondary-color: $secondary,
   $title-dark: $dark,
@@ -26,19 +27,15 @@
     }
   }
 
-  @media (min-width: $xl) {
-    font-size: $title-font-size;
-
-    &.display-1 {
-      font-size: 4.5rem;
-    }
+  &.display-2 {
+    font-size: $title-font-size * $big-title-font-size-factor;
   }
 
   @media (max-width: $md) {
     font-size: $title-font-size-mobile;
 
-    &.display-1 {
-      font-size: 4.5rem;
+    &.display-2 {
+      font-size: $title-font-size-mobile * $big-title-font-size-factor;
     }
   }
 }
