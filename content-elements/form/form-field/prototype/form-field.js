@@ -22,6 +22,14 @@ Alpine.data('formField', () => ({
     } else if (['date', 'datetime-local', 'time'].includes(this.inputEl.type)) {
       this._initDateInput();
     }
+
+    if (this.inputEl.type === 'text' || this.inputEl.type === 'email' || this.inputEl.type === 'password') {
+      if (!this.inputEl.hasAttribute("maxlength")) {
+        console.log("Das Element hat kein maxlength Attribute, es wird jetzt geschrieben.")
+        this.inputEl.setAttribute("maxlength", 250);
+      } 
+    }
+      
   },
 
   initRequiredError() {
