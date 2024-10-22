@@ -1,20 +1,42 @@
 @import "../../../../styles/properties";
 
-@mixin styles($id: 'title-h3-gbnkTT', $title-font-family: $titleH3FontFamily, $title-font-size: $titleH3FontSize, $title-primary-color: $primary, $title-secondary-color: $secondary, $title-dark: $dark, $title-light: $light) {
+@mixin styles($id: 'title-h3-gbnkTT',
+  $title-font-family: $titleH3FontFamily,
+  $title-font-size: $titleH3FontSize,
+  $title-font-size-mobile: $titleH3FontSizeMobile,
+  $big-title-font-size-factor: $bigTitleFontSizeFactor,
+  $title-primary-color: $primary,
+  $title-secondary-color: $secondary,
+  $title-dark: $dark,
+  $title-light: $light) {
+
   .bsi-element-#{$id} {
     width: 100%;
+    font-size: $title-font-size;
     font-family: $title-font-family;
-    $colors: ("primary-color": $title-primary-color, "secondary-color": $title-secondary-color, "dark": $title-dark, "light": $title-light);
-    @each $name, $color in $colors {
-      &.bsi-text-#{$name} {
-        color: $color;
-      }
-    }
-    @media (min-width: 1200px) {
-      font-size: $title-font-size;
-      &.display-1 {
-        font-size: 4rem;
-      }
+    $colors: (
+      "primary-color": $title-primary-color,
+      "secondary-color": $title-secondary-color,
+      "dark": $title-dark,
+      "light": $title-light
+    );
+
+  @each $name, $color in $colors {
+    &.bsi-text-#{$name} {
+      color: $color;
     }
   }
+  
+  &.display-3 {
+    font-size: $title-font-size * $big-title-font-size-factor;
+  }
+
+  @media (max-width: $md) {
+    font-size: $title-font-size-mobile;
+
+    &.display-3 {
+      font-size: $title-font-size-mobile * $big-title-font-size-factor;
+    }
+  }
+}
 }
