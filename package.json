@@ -7,20 +7,11 @@
   "bugs": {
     "url": "https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues"
   },
-  "contributors": [
-    {
-      "name": "Benjamin Vier"
-    },
-    {
-      "name": "Lukas Heyer"
-    },
-    {
-      "name": "Lukas Steiger"
-    },
-    {
-      "name": "Sophia Wild"
-    }
-  ],
+  "author": {
+    "name": "Design Team BSI",
+    "email": "design@bsi-software.com",
+    "url": "https://bsi-software.github.io/bsi-cx-docs/"
+  },
   "dependencies": {
     "@alpinejs/csp": "^3.13.5",
     "@bsi-cx/chart": "github:bsi-software/bsi-cx-chart#semver:1.3.1",
