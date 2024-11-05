@@ -1,4 +1,4 @@
-{% macro render(elementId = null, elementPartId = null, linkedinURL = null, xingURL = null, twitterURL = null, facebookURL = null, youtubeURL = null, instagramURL = null, kununuURL = null, whatsappURL = null, pinterestURL = null, snapchatURL = null, linkedinHidden = null, xingHidden = null, twitterHidden = null, facebookHidden = null, youtubeHidden = null, instagramHidden = null, kununuHidden = null, whatsappHidden = null, pinterestHidden = null, snapchatHidden = null, iconColor = null, iconHoverColor = null, iconSize = null) %}{% apply spaceless %}
+{% macro render(elementId = null, elementPartId = null, linkedinURL = null, xingURL = null, XURL = null, facebookURL = null, youtubeURL = null, instagramURL = null, kununuURL = null, whatsappURL = null, pinterestURL = null, snapchatURL = null, linkedinHidden = null, xingHidden = null, XHidden = null, facebookHidden = null, youtubeHidden = null, instagramHidden = null, kununuHidden = null, whatsappHidden = null, pinterestHidden = null, snapchatHidden = null, iconColor = null, iconHoverColor = null, iconSize = null) %}{% apply spaceless %}
     {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
     {% include './template.twig' %}
 {% endapply %}{% endmacro %}
@@ -9,7 +9,7 @@
 
     {% set followLinkedinURL = (linkedinURL ?: properties.followLinkedinURL) ?: "https://www.linkedin.com/" %}
     {% set followXingURL = (xingURL ?: properties.followXingURL) ?: "https://www.xing.com/" %}
-    {% set followTwitterURL = (twitterURL ?: properties.followTwitterURL) ?: "https://www.x.com/" %}
+    {% set followXURL = (XURL ?: properties.followXURL) ?: "https://www.x.com/" %}
     {% set followFacebookURL = (facebookURL ?: properties.followFacebookURL) ?: "https://www.facebook.com/" %}
     {% set followYoutubeURL = (youtubeURL ?: properties.followYoutubeURL) ?: "https://www.youtube.com/" %}
     {% set followInstagramURL = (instagramURL ?: properties.followInstagramURL) ?: "https://www.instagram.com/" %}
@@ -21,7 +21,7 @@
 
     {% set followLinkedinHidden = (linkedinHidden ?: properties.followLinkedinHidden) ?: false %}
     {% set followXingHidden = (xingHidden ?: properties.followXingHidden) ?: false %}
-    {% set followTwitterHidden = (twitterHidden ?: properties.followTwitterHidden) ?: false %}
+    {% set followXHidden = (XHidden ?: properties.followXHidden) ?: false %}
     {% set followFacebookHidden = (facebookHidden ?: properties.followFacebookHidden) ?: false %}
     {% set followYoutubeHidden = (youtubeHidden ?: properties.followYoutubeHidden) ?: false %}
     {% set followInstagramHidden = (instagramHidden ?: properties.followInstagramHidden) ?: false %}
@@ -48,8 +48,8 @@
                 </svg>
             </a>
         </div>
-        <div data-bsi-social-follow="X (Twitter)" {% if followTwitterHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
-            <a href="{{ followTwitterURL }}" title="X (Twitter)">
+        <div data-bsi-social-follow="X (Twitter)" {% if followXHidden == true %} data-bsi-remove-if="live" {% endif %} class="social-media-item p-2">
+            <a href="{{ followXURL }}" title="X (Twitter)">
                 <i class="bi bi-twitter-x"></i>
             </a>
         </div>
