@@ -3,7 +3,7 @@
 @mixin styles($id: 'social-media-follow-2MlXWB', $icon-primary-color: $primary, $icon-secondary-color: $secondary, $icon-dark: $dark, $icon-light: $light) {
   .bsi-element-#{$id} {
     [data-bsi-remove-if] {
-      display: none !important;
+      opacity: 0.1;
     }
 
     .bsi-social-media-svg {
