@@ -12,7 +12,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * add a new font-size option in headlines for mobile
 * large titles are now set depending on the normal font size of headlines
 * if the headlines have been extended, changes to the extension may be necessary
-* show deactivated social follow icons in edit mode with less opacity
+* show deactivated social media follow icons in edit mode with less opacity
 * change twitter link to x link
 
 ## [1.4.7] - 11.10.2024
