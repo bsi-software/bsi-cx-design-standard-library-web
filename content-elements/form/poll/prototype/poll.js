@@ -128,6 +128,21 @@ Alpine.data("formPoll", () => ({
     container.appendChild(div);
   },
 
+  _initStarElement(range, value, container, thisForm) {
+    this._initRadioElement(range, value, container, thisForm);
+    let star = this.root.querySelector(`input[value='${value}']`);
+    star.classList.add('bi', 'bi-star');
+    star.addEventListener('mouseover', (e) => {
+      this._highlightStars(value);
+    })
+    star.addEventListener('mouseout', (e) => {
+      this._resetStars();
+    })
+    star.addEventListener('click', (e) => {
+      this._setRating(value);
+    })
+  },
+
   _updateStatus(range, isStar) {
     let radioItems = this.root.querySelectorAll('input[type="radio"]');
     let isFound = -1;

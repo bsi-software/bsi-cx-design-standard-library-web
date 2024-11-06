@@ -26,6 +26,7 @@
       }
 
       .bsi-poll-radio-input {
+        margin-left: -1.5em;
         float: left;
         margin: 0;
         padding: 0;
@@ -60,9 +61,19 @@
         margin-right: 0;
       }
 
+      .form-check {
+        margin-bottom: 0;
+      }
+
+      .bsi-poll-radio-item {
+        padding-left: 0;
+        padding-right: 0.5em;
+      }
+
       .bsi-poll-radio-input {
-        width: 2.5em;
-        height: 2.5em;
+        margin-left: 0;
+        // width: 2.5em;
+        height: 1.5em;
 
         &:hover {
           cursor: pointer;
@@ -98,12 +109,11 @@
   );
 
   @each $name, $color in $colors {
-    $star-icon: $star-icon-primary;
-    $star-fill-icon: $star-fill-icon-primary;
-
+    // $star-icon: $star-icon-primary;
+    // $star-fill-icon: $star-fill-icon-primary;
     @if $name == "secondary" {
-      $star-icon: $star-icon-secondary;
-      $star-fill-icon: $star-fill-icon-secondary;
+      // $star-icon: $star-icon-secondary;
+      // $star-fill-icon: $star-fill-icon-secondary;
     }
 
     .bsi-form-color-#{$name} .bsi-element-#{$id} {
@@ -123,33 +133,42 @@
       }
 
       &.bsi-poll-star .bsi-poll-radio-group {
-        .bsi-poll-radio-item input[type="radio"] {
-          background-image: $star-icon;
+        .bsi-poll-radio-item input {
+          font-size: 2rem;
+          color: $color;
         }
 
-        &:not(:hover) {
-          .bsi-poll-radio-checked {
-            input[type="radio"] {
-              background-image: $star-fill-icon !important;
-            }
+        // input[type="radio"] {
+        //   background-image: $star-icon;
+        // }
 
-            input[type="radio"]:checked {
-              background-image: $star-fill-icon !important;
-            }
-          }
-        }
+        // .bsi-poll-radio-item input[type="radio"]:checked {
+        //   background-image: $star-fill-icon;
+        // }
 
-        &:hover {
-          .bsi-poll-radio-item {
-            input[type="radio"] {
-              background-image: $star-fill-icon;
-            }
+        // &:not(:hover) {
+        //   .bsi-poll-radio-item {
+        //     &[data-form-radio-selected="true"] input[type="radio"]:checked,
+        //     &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"],
+        //     &.bsi-poll-radio-checked ~ .bsi-poll-radio-item input[type="radio"] {
+        //       background-image: $star-fill-icon;
+        //     }
+        //   }
+        // }
 
-            &:hover ~ .bsi-poll-radio-item input[type="radio"] {
-              background-image: $star-icon;
-            }
-          }
-        }
+        // &:hover {
+        //   .bsi-poll-radio-item {
+        //     &[data-form-radio-selected="true"] input[type="radio"],
+        //     &.bsi-poll-radio-checked input[type="radio"] {
+        //       background-image: $star-icon;
+        //     }
+
+        //     &:hover input[type="radio"],
+        //     &:hover ~ .bsi-poll-radio-item input[type="radio"] {
+        //       background-image: $star-fill-icon;
+        //     }
+        //   }
+        // }
       }
     }
   }
@@ -182,16 +201,21 @@
 
   .was-validated .bsi-element-#{$id}.bsi-poll-star .bsi-poll-radio-group {
     input[type="radio"] {
-      &:invalid,
-      &.is-invalid {
-        background-image: $star-icon-invalid !important;
+      &:invalid, &.is-invalid {
+        color: $invalid !important;
+        // background-image: $star-icon-invalid !important;
+      }
+
+      &:valid, &.is-valid {
+        color: $valid !important;
+        // background-image: $star-icon-valid !important;
       }
     }
 
     .bsi-poll-radio-item input[type="radio"]:checked {
-      &:valid,
-      &.is-valid {
-        background-image: $star-fill-icon-valid !important;
+      &:valid, &.is-valid {
+        color: $valid !important;
+        // background-image: $star-fill-icon-valid !important;
       }
     }
 
