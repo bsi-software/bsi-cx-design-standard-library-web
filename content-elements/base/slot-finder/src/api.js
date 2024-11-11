@@ -1,4 +1,4 @@
-import { getFirstDayOfMonth, getLastDayOfMonth, toLocalISOStringWithoutTAndZ } from "./utils/date-utils";
+import { addDays, getFirstDayOfMonth, getLastDayOfMonth, toLocalISOStringWithoutTAndZ } from "./utils/date-utils";
 
 /**
  * @typedef {import("./slot/slot").Slot} Slot
@@ -38,7 +38,9 @@ export async function bookSlot(url, slot) {
  * @returns {Promise<Slot[]>} slots
  */
 export async function fetchSlotsOfMonth(url, month) {
-  return fetchSlotsInRange(url, getFirstDayOfMonth(month), getLastDayOfMonth(month));
+  // Because the API takes the time into account, we need to fetch slots until the first day of the next month
+  // e.g. Fri Nov 01 2024 00:00:00 to Sun Dec 01 2024 00:00:00 will fetch all slots of November
+  return fetchSlotsInRange(url, getFirstDayOfMonth(month), addDays(getLastDayOfMonth(month), 1));
 }
 
 /**
