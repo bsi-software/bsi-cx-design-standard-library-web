@@ -1,4 +1,5 @@
 @import "../../../../styles/properties";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 @mixin styles(
   $id: "poll-wni8em",
@@ -109,12 +110,6 @@
   );
 
   @each $name, $color in $colors {
-    // $star-icon: $star-icon-primary;
-    // $star-fill-icon: $star-fill-icon-primary;
-    @if $name == "secondary" {
-      // $star-icon: $star-icon-secondary;
-      // $star-fill-icon: $star-fill-icon-secondary;
-    }
 
     .bsi-form-color-#{$name} .bsi-element-#{$id} {
       &.bsi-poll-nps .bsi-poll-radio-label {
@@ -133,42 +128,50 @@
       }
 
       &.bsi-poll-star .bsi-poll-radio-group {
-        .bsi-poll-radio-item input {
-          font-size: 2rem;
+        input[type="radio"] {
+          font-family: "bootstrap-icons";
+          font-size: 2em;
           color: $color;
+          &::before {
+            content: "\F588";
+          }
         }
 
-        // input[type="radio"] {
-        //   background-image: $star-icon;
-        // }
+        .bsi-poll-radio-item input[type="radio"]:checked {
+          &::before {
+            content: "\F586";
+          }
+        }
 
-        // .bsi-poll-radio-item input[type="radio"]:checked {
-        //   background-image: $star-fill-icon;
-        // }
+        &:not(:hover) {
+          .bsi-poll-radio-item {
+            &[data-form-radio-selected="true"] input[type="radio"]:checked,
+            &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"],
+            &.bsi-poll-radio-checked ~ .bsi-poll-radio-item input[type="radio"] {
+              &::before {
+                content: "\F586";
+              }
+            }
+          }
+        }
 
-        // &:not(:hover) {
-        //   .bsi-poll-radio-item {
-        //     &[data-form-radio-selected="true"] input[type="radio"]:checked,
-        //     &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"],
-        //     &.bsi-poll-radio-checked ~ .bsi-poll-radio-item input[type="radio"] {
-        //       background-image: $star-fill-icon;
-        //     }
-        //   }
-        // }
+        &:hover {
+          .bsi-poll-radio-item {
+            &[data-form-radio-selected="true"] input[type="radio"],
+            &.bsi-poll-radio-checked input[type="radio"] {
+              &::before {
+                content: "\F588";
+              }
+            }
 
-        // &:hover {
-        //   .bsi-poll-radio-item {
-        //     &[data-form-radio-selected="true"] input[type="radio"],
-        //     &.bsi-poll-radio-checked input[type="radio"] {
-        //       background-image: $star-icon;
-        //     }
-
-        //     &:hover input[type="radio"],
-        //     &:hover ~ .bsi-poll-radio-item input[type="radio"] {
-        //       background-image: $star-fill-icon;
-        //     }
-        //   }
-        // }
+            &:hover input[type="radio"],
+            &:hover ~ .bsi-poll-radio-item input[type="radio"] {
+              &::before {
+                content: "\F586";
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -180,58 +183,60 @@
   .was-validated .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-group {
     .bsi-poll-radio-input:invalid ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input.is-invalid ~ .bsi-poll-radio-label {
-      color: $invalid !important;
-      border: 1px solid $invalid !important;
+      color: $invalid;
+      border: 1px solid $invalid;
     }
 
     .bsi-poll-radio-input:valid ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input.is-valid ~ .bsi-poll-radio-label {
-      color: $valid !important;
-      border: 1px solid $valid !important;
+      color: $valid;
+      border: 1px solid $valid;
     }
 
     .bsi-poll-radio-input:valid:focus ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input.is-valid:focus ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input:valid:checked ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input.is-valid:checked ~ .bsi-poll-radio-label {
-      background-color: $valid !important;
-      color: $light !important;
+      background-color: $valid;
+      color: $light;
     }
   }
 
   .was-validated .bsi-element-#{$id}.bsi-poll-star .bsi-poll-radio-group {
     input[type="radio"] {
       &:invalid, &.is-invalid {
-        color: $invalid !important;
-        // background-image: $star-icon-invalid !important;
+        color: $invalid;
+        &::before {
+          content: "\F588";
+        }
       }
 
       &:valid, &.is-valid {
-        color: $valid !important;
-        // background-image: $star-icon-valid !important;
+        color: $valid;
+        &::before {
+          content: "\F588";
+        }
       }
     }
 
     .bsi-poll-radio-item input[type="radio"]:checked {
       &:valid, &.is-valid {
-        color: $valid !important;
-        // background-image: $star-fill-icon-valid !important;
+        color: $valid;
+        &::before {
+          content: "\F586";
+        }
       }
     }
 
     &:not(:hover) {
-      .bsi-poll-radio-checked {
-        input[type="radio"] {
-          &:valid,
-          &.is-valid {
-            background-image: $star-fill-icon-valid !important;
-          }
-        }
-
-        input[type="radio"]:checked {
-          &:valid,
-          &.is-valid {
-            background-image: $star-fill-icon-valid !important;
+      .bsi-poll-radio-item {
+        &[data-form-radio-selected="true"] input[type="radio"]:checked,
+        &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"],
+        &.bsi-poll-radio-checked ~ .bsi-poll-radio-item input[type="radio"] {
+          &:valid, &.is-valid {
+            &::before {
+              content: "\F586";
+            }
           }
         }
       }
@@ -239,12 +244,21 @@
 
     &:hover {
       .bsi-poll-radio-item {
-        input[type="radio"] {
-          background-image: $star-fill-icon-valid;
+        &[data-form-radio-selected="true"] input[type="radio"],
+        &.bsi-poll-radio-checked input[type="radio"] {
+          &:valid, &.is-valid {
+            &::before {
+              content: "\F588";
+            }
+          }
         }
 
         &:hover ~ .bsi-poll-radio-item input[type="radio"] {
-          background-image: $star-icon-valid;
+          &:valid, &.is-valid {
+            &::before {
+              content: "\F586";
+            }
+          }
         }
       }
     }
