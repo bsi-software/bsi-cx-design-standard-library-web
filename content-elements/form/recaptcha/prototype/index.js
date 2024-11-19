@@ -13,13 +13,15 @@ module.exports = (
   elementId = 'recaptcha-es8WAZ',
   elementLabel = 'reCAPTCHA',
   elementPartId = 'recaptcha-part-xMHmU5',
-  elementPartLabel = 'reCAPTCHA'
+  elementPartLabel = 'reCAPTCHA',
+  elementDescription = 'NUR für Login-Formulare'
 ) => cx
   .contentElement
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
   .withIcon(Icon.FORMFIELD)
+  .withDescription(elementDescription)
   .withParts(
     cx.part.formField
       .withId(elementPartId)
