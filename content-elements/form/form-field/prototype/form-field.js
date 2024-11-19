@@ -10,7 +10,6 @@ Alpine.data('formField', () => ({
   fp: null,
   minDate: null,
   maxDate: null,
-  requiredErrorElement: null,
   invalidErrorElement: null,
   errorMessageInvalid: '',
 
@@ -32,10 +31,6 @@ Alpine.data('formField', () => ({
       
   },
 
-  initRequiredError() {
-    this.requiredErrorElement = this.$el;
-  },
-
   initInvalidError() {
     this.invalidErrorElement = this.$el;
     this.errorMessageInvalid = this.invalidErrorElement.getElementsByClassName('errormessage-invalid')[0].innerText;
@@ -48,11 +43,6 @@ Alpine.data('formField', () => ({
       label.style.transform = 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)';
     }
 
-    if (!this.inputEl.value && this.inputEl.hasAttribute('required')) {
-      this.requiredErrorElement.style.display = "block";
-    } else {
-      this.requiredErrorElement.style.display = "none";
-    }
     this._validateMailInput();
     this._validateNumberInput();
     this._validateTextInput();
@@ -140,6 +130,9 @@ Alpine.data('formField', () => ({
     if (valid) {
       this.invalidErrorElement.setAttribute('hidden', 'true');
       this.invalidErrorElement.setAttribute('aria-hidden', 'true');
+      this.querySelector('invalid-feedback').style.display="none";
+      this.querySelector('invalid-feedback').setAttribute('hidden', 'true');
+      this.querySelector('invalid-feedback').setAttribute('aria-hidden', 'true');
     } else {
       this.invalidErrorElement.removeAttribute('hidden', 'true');
       this.invalidErrorElement.removeAttribute('aria-hidden', 'true');

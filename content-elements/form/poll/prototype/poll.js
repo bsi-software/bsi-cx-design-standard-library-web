@@ -80,7 +80,6 @@ Alpine.data('formPoll', () => ({
     radio.addEventListener('change', function() {
       range.value = label.getAttribute('data-value');
       thisForm._updateStatus(range);
-      thisForm._validateInput();
     });
 
     div.appendChild(radio);
@@ -88,21 +87,6 @@ Alpine.data('formPoll', () => ({
     container.appendChild(div);
   },
 
-  _validateInput() {
-    let pollValid = false;
-    let pollInputs = this.root.querySelectorAll('input[type="radio"]');
-    for (const pollInput of pollInputs) {
-      if (pollInput.checked || !pollInput.hasAttribute('required')) {
-        pollValid = true;
-        break;
-      }
-    }
-    if (!pollValid) {
-      this.requiredErrorElement.style.display = 'block';
-    } else {
-      this.requiredErrorElement.style.display = 'none';
-    }
-  },
 
   _updateStatus(range) {
     let radioItems = this.root.querySelectorAll('input[type="radio"]');

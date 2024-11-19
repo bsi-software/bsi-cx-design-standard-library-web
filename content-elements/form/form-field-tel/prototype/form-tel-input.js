@@ -9,7 +9,6 @@ Alpine.data('telInput', () => ({
   onlyCountries: '',
   preferredCountries: '',
   errormessageInvalid: '',
-  requiredErrorElement: null,
   invalidErrorElement: null,
   labelElement: null,
   labelText: null,
@@ -18,7 +17,6 @@ Alpine.data('telInput', () => ({
   init() {
     this.rootElement = this.$root;
     this.inputField = this.$refs.inputField;
-    this.requiredErrorElement = this.$refs.requiredErrorField;
     this.invalidErrorElement = this.$refs.invalidErrorField;
 
     let countryData = window.intlTelInputGlobals.getCountryData();
@@ -78,11 +76,6 @@ Alpine.data('telInput', () => ({
   },
 
   validateInput() {
-    if (!this.$el.value && this.$el.hasAttribute('required')) {
-      this.requiredErrorElement.style.display = "block";
-    } else {
-      this.requiredErrorElement.style.display = "none";
-    }
     this.iti.setNumber(this.iti.getNumber(intlTelInputUtils.numberFormat.E164)); // trigger formatting the number
     this._validate();
   },
