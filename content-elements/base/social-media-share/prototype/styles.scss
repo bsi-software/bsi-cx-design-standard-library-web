@@ -3,7 +3,7 @@
 @mixin styles($id: 'social-media-share-u9ppdj', $icon-primary-color: $primary, $icon-secondary-color: $secondary, $icon-dark: $dark, $icon-light: $light, $icon-info: $info) {
   .bsi-element-#{$id} {
     [data-bsi-remove-if] {
-      display: none !important;
+      opacity: 0.3;
     }
 
     .btn {
