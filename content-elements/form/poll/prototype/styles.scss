@@ -104,11 +104,13 @@
     }
   }
 
-  $colors: (
-    "primary": $poll-primary,
-    "secondary": $poll-secondary,
-  );
+  @media (max-width: $sm - 1px) {
+    .bsi-element-poll-wni8em .label-right {
+      text-align: right;
+    }
+  }
 
+  $colors: ("primary": $poll-primary, "secondary": $poll-secondary);
   @each $name, $color in $colors {
 
     .bsi-form-color-#{$name} .bsi-element-#{$id} {
