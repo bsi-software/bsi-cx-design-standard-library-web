@@ -18,7 +18,7 @@ const contentElements = [
   require('./social-media-share'),  
   require('./table'),
   require('./text'),
-  require('./video'),
+  require('./video')
 ];
 
 module.exports.titleElements = titleElements;
