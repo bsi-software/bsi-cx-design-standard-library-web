@@ -4,7 +4,7 @@ const {cx} = require('@bsi-cx/design-build');
 module.exports = (
     template = require('../template.twig'),
     elementId = 'listItemElement-ad97e5',
-    elementLabel = 'List item',
+    elementLabel = 'Listeneintrag',
   ) => cx
   .contentElement
   .withFile(template)
