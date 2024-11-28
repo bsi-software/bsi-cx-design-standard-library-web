@@ -6,7 +6,8 @@ const formElements = [
   require('./radio'),
   require('./recaptcha'),
   require('./select'),
-  require('./text-area')
+  require('./text-area'),
+  require('./list')
 ];
 
 module.exports.formElements = formElements;
