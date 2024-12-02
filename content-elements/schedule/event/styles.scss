@@ -1,0 +1,76 @@
+.schedule-event {
+    cursor: pointer;
+    display: grid;
+    grid: auto-flow / 75px 1fr;
+    gap: 10px;
+    font-size: 12px;
+
+    >* {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .time-room {
+        padding: 10px;
+        text-align: center;
+        font-weight: 600;
+
+        .time {
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .room:not(:empty) {
+            border-top: 2px solid #383e42;
+        }
+    }
+
+    .details {
+        padding: 10px 30px 10px 10px;
+        position: relative;
+
+        .title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .abs-triangles {
+            width: 25px;
+            position: absolute;
+            right: 0px;
+            top: 10px;
+
+            #swipe {
+                display: none;
+            }
+        }
+    }
+
+    .additional-information {
+        display: none;
+    }
+
+    &.is-active #plus-icon {
+        display: none;
+    }
+
+    /* Background color style */
+    $background-colors: bsiProperty('scheduleBackgroundColors', ('blue': '#B0DAEE',
+            'orange': '#FFDB9D',
+            'brown': '#EAE3CF',
+            'green':'#94DECF',
+            'lavender':'#c2c9e4',
+            'grey': '#e7e7ee'
+        ));
+
+    @each $name, $bg-color in $background-colors {
+        &.background-#{$name} .bg {
+            background-color: $bg-color;
+        }
+    }
+
+    &.background-grey .bg .abs-triangles #plus {
+        display: none;
+    }
+}

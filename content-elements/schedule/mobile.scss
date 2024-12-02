@@ -1,0 +1,29 @@
+@media (max-width: bsiProperty('gridBreakpointLG', '576px')) {
+    .event-info {
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .speaker-img img {
+            width: 40vw;
+        }
+    }
+
+    .schedule-event.mobile-hidden {
+        max-width: 20px;
+        overflow: hidden;
+
+        .time,
+        .room,
+        .details {
+            display: none;
+        }
+    }
+
+    .schedule-row:has(.mobile-hidden) .schedule-event {
+        min-height: 120px;
+
+        #swipe {
+            display: block;
+        }
+    }
+}

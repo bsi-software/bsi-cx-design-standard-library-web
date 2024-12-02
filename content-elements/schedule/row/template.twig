@@ -1,0 +1,11 @@
+<div data-bsi-element="schedule-row-XVVadl" class="schedule-row">
+	<div data-bsi-dropzone="row-events-dropzone-ANu4V7" class="row-container" @swipe="swipeRow">
+		{% block rowEvents %}
+			{% include "../event/template.twig" with {backgroundStyle:'grey'} %}
+			{% include "../event/template.twig" with {backgroundStyle:'orange'} %}
+			{% include "../event/template.twig" with {backgroundStyle:'blue'}%}
+			{% include "../event/template.twig"  with {backgroundStyle:'brown'}%}
+		{% endblock %}
+	</div>
+	<div class="event-details"></div>
+</div>
