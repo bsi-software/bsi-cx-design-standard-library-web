@@ -45,6 +45,15 @@
     }
   }
 
+  @media screen and (prefers-color-scheme: dark) {
+
+    .btn-dm-submit{
+      background-color: $primary !important;
+      color: white !important;
+    }
+
+  }
+
   &.bsi-form-label-left {
     @media (min-width: $md) {
       .bsi-form-btn-row, .bsi-multi-col-element {
@@ -224,6 +233,7 @@
       }
     }
   }
+  
 
   &.bsi-form-btn-filled .btn-outline-info {
     color: $light;
