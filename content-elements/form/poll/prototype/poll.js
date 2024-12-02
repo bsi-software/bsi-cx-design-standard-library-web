@@ -20,14 +20,14 @@ Alpine.data('formPoll', () => ({
     range.setAttribute('class', 'bsi-poll-number-input');
 
     let container = this.root.querySelector('.bsi-poll-radio-group');
-
+    let name = "bsi-poll-radios-" +  Math.floor(Math.random() * (100 - 1 + 1)) + 1;
     if (this.root.classList.contains('bsi-poll-nps')) {
       for (let value = min; value <= max; value += step) {
-        this._initRadioElement(range, value, container, thisForm);
+        this._initRadioElement(range, value, container, thisForm, name);
       }
     } else if (this.root.classList.contains('bsi-poll-star')) {
       for (let value = max; value >= min; value -= step) {
-        this._initRadioElement(range, value, container, thisForm);
+        this._initRadioElement(range, value, container, thisForm, name);
       }
     }
 
@@ -56,7 +56,7 @@ Alpine.data('formPoll', () => ({
     }
   },
 
-  _initRadioElement(range, value, container, thisForm) {
+  _initRadioElement(range, value, container, thisForm, name) {
     let div = document.createElement('div');
     let radio = document.createElement('input');
     let label = document.createElement('label');
@@ -68,6 +68,7 @@ Alpine.data('formPoll', () => ({
     radio.setAttribute('type', 'radio');
     radio.setAttribute('value', value);
     radio.setAttribute('id', id);
+    radio.setAttribute('name', name);
     if (range.hasAttribute('required')) {
       radio.required = true;
     }
