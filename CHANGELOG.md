@@ -8,6 +8,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * Add new "list/list item" element where it's possible to sort the list with checkbox via drag and drop or keyboard
 * Fix radio button survey validation
+* Let the radio tooltip (info) focusable in the form
 
 ## [1.4.8] - 11.10.2024
 * export text element with .editor() function where htmlEditorConfig can be customized
