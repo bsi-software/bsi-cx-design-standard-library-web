@@ -14,6 +14,7 @@ element.withFile(require('./template.twig'))
   /*.withLabel('3 Columns')*/
   .withLabel('3 Spalten')
   .withIcon(Icon.THREE_COLUMNS)
+  .withArchived(true)
   .withStyleConfigs(
     require('../../../configs/styles/col-width'),
     require('../../../configs/styles/col-three-ratio'),
