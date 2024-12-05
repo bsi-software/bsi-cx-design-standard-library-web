@@ -89,3 +89,6 @@ $spacers: map-merge(
         8: $spacer * 10,
     )
 );
+
+// enable bootstrap css Grid 
+$enable-cssgrid: true;
