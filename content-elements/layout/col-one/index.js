@@ -13,6 +13,7 @@ element.withElementId('col-one-l2ZclN')
   /*.withLabel('1 Column')*/
   .withLabel('1 Spalte')
   .withIcon(Icon.ONE_COLUMN)
+  .withArchived(true)
   .withStyleConfigs(
     require('../../../configs/styles/col-width'),
     require('../../../configs/styles/col-spacing'),
