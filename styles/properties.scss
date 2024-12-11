@@ -84,7 +84,6 @@ $grid-breakpoints: (
 
 $spacers: map-merge(
     $spacers, (
-        0: $spacer * bsiProperty('spacer0', 0),
         1: $spacer * bsiProperty('spacer1', 0.25),
         2: $spacer * bsiProperty('spacer2', 0.5),
         3: $spacer * bsiProperty('spacer3', 1),
