@@ -8,12 +8,14 @@ const element = cx.contentElement;
 /**
  * @param {string} template
  * @param {string} elementId
+ * @param {string} dropzoneId
  * @param {string} elementLabel
  * @returns {ContentElement}
  */
 module.exports = (
   template = require('../template.twig'),
   elementID = 'bsi-grid-column-d587a56d',
+  dropzoneId = 'bsi-grid-column-dropzone-0c2739f1',
   elementLabel = 'Spalte (Grid)',
 ) => cx.contentElement
   .withElementId(elementID)
@@ -30,7 +32,7 @@ module.exports = (
   )
   .withDropzones(
     cx.dropzone
-      .withDropzone("bsi-grid-column-dropzone-0c2739f1")
+      .withDropzone(dropzoneId)
       .withAllowedElements(
         element,
         require('../../../spacer'),

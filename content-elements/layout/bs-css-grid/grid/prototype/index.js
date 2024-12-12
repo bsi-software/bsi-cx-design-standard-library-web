@@ -1,8 +1,17 @@
 const { cx, Icon } = require("@bsi-cx/design-build");
 
+
+/**
+ * @param {string} template
+ * @param {string} elementId
+ * @param {string} dropzoneId
+ * @param {string} elementLabel
+ * @returns {ContentElement}
+ */
 module.exports = (
   template = require('../template.twig'),
   elementId = 'bsi-grid-24cb3f1c',
+  dropzoneId = 'bsi-grid-dropzone-f88c74f5',
   elementLabel = 'Grid',
 ) => cx.contentElement
   .withElementId(elementId)
@@ -16,6 +25,6 @@ module.exports = (
   )
   .withDropzones(
     cx.dropzone
-      .withDropzone('bsi-grid-dropzone-f88c74f5')
+      .withDropzone(dropzoneId)
       .withAllowedElements(require('../../column'))
   );
