@@ -11,5 +11,5 @@
     {% set titleH3Style = (style ?: properties.titleH3Style) ?: 'bsi-default' %}
     {% set titleH3Weight = (weight ?: properties.titleH3Weight) ?: 'fw-normal' %}
 
-    <h3 data-bsi-element="{{ titleH3ElementId }}" data-bsi-element-part="{{ titleH3PartId }}" class="{{ 'bsi-element-' ~ titleH3ElementId }} {{ titleH3Color }} {{ titleH3Style }} {{ titleH3Weight }}">{{ titleH3Text }}</h3>
+    <h3 tabindex = "0" data-bsi-element="{{ titleH3ElementId }}" data-bsi-element-part="{{ titleH3PartId }}" class="{{ 'bsi-element-' ~ titleH3ElementId }} {{ titleH3Color }} {{ titleH3Style }} {{ titleH3Weight }}">{{ titleH3Text }}</h3>
 {% endapply %}
