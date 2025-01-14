@@ -25,6 +25,28 @@
     }
   }
 
+  @media screen and (prefers-color-scheme: dark) {
+    .bsi-dm-bg-color{
+      background-color: bsiProperty('layoutColoredBackgroundColorDarkMode', #3b3b3b) !important;
+      color: white;
+    }
+
+    .bsi-dm-bg-color tr td {
+      background-color: bsiProperty('layoutColoredBackgroundColorDarkMode', #3b3b3b) !important;
+      color: white;
+    }
+
+    .bsi-dm-bg-color tr th{
+      background-color: bsiProperty('darkColor', #3b3b3b) !important;
+      color: white;
+    }
+    
+    .table-hover > tbody > tr:hover > * {
+      color: gray !important;
+    }
+  }
+
+
   $colors: ("primary": $primary, "secondary": $secondary, "dark": $dark);
   @each $name, $color in $colors {
     .bsi-element-#{$id}.bsi-table-#{$name} {
