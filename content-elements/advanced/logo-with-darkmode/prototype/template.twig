@@ -1,0 +1,21 @@
+{% macro render(elementId = null, imagePartId = null, textPartId = null, imageSrc = null, caption = null) %}{% apply spaceless %}
+    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
+    {% include './template.twig' %}
+{% endapply %}{% endmacro %}
+
+{% apply spaceless %}
+    {% set logoElementId = elementId ?: 'logo-4c8c3a' %}
+
+    {% set logoImagePartId = imagePartId ?: 'logo-lm-part-image-727593' %}
+    {% set logoImageSrc = imageSrc ?: bsi_cx_asset('../../../../static/logo-lm.svg')  %}
+
+    {% set logoDarkModeImagePartId = imageDarkModePartId ?: 'logo-dm-part-image-289935' %}
+    {% set logoDarkModeImageSrc = imageDarkModeSrc ?: bsi_cx_asset('../../../../static/logo-dm.svg') %}
+
+    <figure data-bsi-element="{{ logoElementId }}" class="figure {{ 'bsi-element-' ~ logoElementId }} bsi-caption-hide bsi-caption-medium bsi-shape-square bsi-orientation-landscape bsi-aspect-ratio-auto bsi-hover-effect-disabled bsi-overlay-hide bsi-overlay-opacity-0">
+        {# 'srcset' support removed until further notice. see: https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues/46 #}
+        <img src="{{ logoImageSrc }}" class="light-mode-logo figure-img img-fluid"  data-bsi-element-part="{{ logoImagePartId }}"/>
+        <img src="{{ logoDarkModeImageSrc }}" class="dark-mode-logo figure-img img-fluid"  data-bsi-element-part="{{ logoDarkModeImagePartId }}"/>
+    </figure>
+    
+{% endapply %}
