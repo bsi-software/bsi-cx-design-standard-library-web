@@ -27,11 +27,7 @@ element.withFile(require('./template.twig'))
     cx.part.form
       .withId('form-container-part-6eHZEX')
       /*.withLabel('Form'))*/
-      .withLabel('Formular'),
-    cx.part.plainText
-      .withId('validation-summary-1Ek3jS')
-      /*.withLabel('Validation summary text') */
-      .withLabel('Text für Fehlervalidierung'))
+      .withLabel('Formular'))
   .withDropzones(
     cx.dropzone
       .withDropzone('form-container-dropzone-zsY6UI')
