@@ -9,7 +9,7 @@
     overflow-x: hidden;
 
     .row {
-      @media (max-width: $md - 1px) {
+      @media (max-width: calc($md - 1px)) {
         --bs-gutter-x: 0;
       }
     }
@@ -26,7 +26,7 @@
       justify-content: center;
     }
 
-    p, h1, h2, h3 {
+    p, h1, h2, h3, h4, h5, h6 {
       text-align: center;
     }
 
@@ -42,7 +42,7 @@
       justify-content: right;
     }
 
-    p, h1, h2, h3 {
+    p, h1, h2, h3, h4, h5, h6 {
       text-align: right;
     }
 
@@ -75,6 +75,95 @@
         }
       }
     }
+  }
+}
+
+// headlines
+.bsi-title-element {
+
+  width: 100%;
+
+  $colors: (
+    "primary-color": $primary,
+    "secondary-color": $secondary,
+    "dark": $dark,
+    "light": $light
+  );
+
+  @each $name, $color in $colors {
+    &.bsi-text-#{$name} {
+      color: $color;
+    }
+  }
+
+  &.bsi-header-style-display {
+    font-size: $titleStyleDisplayFontSize;
+    line-height: 110%;
+    letter-spacing: -0.005em;
+    font-family: $titleStyleDisplayFontFamily;
+
+    @media (max-width: bsiProperty(gridBreakpointSM)) {
+      font-size: $titleStyleDisplayFontSizeMobile;
+    }
+  }
+
+  &.bsi-header-style-1 {
+      font-size: $titleStyle1FontSize;
+      line-height: 110%;
+      letter-spacing: 0em;
+      font-family: $titleStyle1FontFamily;
+
+      @media (max-width: bsiProperty(gridBreakpointSM)) {
+          font-size: $titleStyle1FontSizeMobile;
+          line-height: 130%;
+      }
+  }
+
+  &.bsi-header-style-2 {
+      font-size: $titleStyle2FontSize;
+      line-height: 110%;
+      letter-spacing: 0em;
+      font-family: $titleStyle2FontFamily;
+
+      @media (max-width: bsiProperty(gridBreakpointSM)) {
+          font-size: $titleStyle2FontSizeMobile;
+          line-height: 130%;
+      }
+  }
+
+  &.bsi-header-style-3 {
+      font-size: $titleStyle3FontSize;
+      line-height: 130%;
+      letter-spacing: 0em;
+      font-family: $titleStyle3FontFamily;
+
+      @media (max-width: bsiProperty(gridBreakpointSM)) {
+          font-size: $titleStyle3FontSizeMobile;
+          line-height: 150%;
+      }
+  }
+
+  &.bsi-header-style-4 {
+      font-size: $titleStyle4FontSize;
+      line-height: 130%;
+      letter-spacing: 0em;
+      font-family: $titleStyle4FontFamily;
+
+      @media (max-width: bsiProperty(gridBreakpointSM)) {
+          font-size: $titleStyle4FontSizeMobile;
+          line-height: 150%;
+      }
+  }
+
+  &.bsi-header-style-5 {
+      font-size: $titleStyle5FontSize;
+      line-height: 150%;
+      letter-spacing: 0em;
+      font-family: $titleStyle5FontFamily;
+
+      @media (max-width: bsiProperty(gridBreakpointSM)) {
+        font-size: $titleStyle5FontSizeMobile;
+      }
   }
 }
 
