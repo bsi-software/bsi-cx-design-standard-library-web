@@ -15,9 +15,9 @@
     <div data-bsi-element="{{ textAreaElementId }}" class="{{ 'bsi-element-' ~ textAreaElementId }} mb-4 bsi-form-element bsi-form-textarea bsi-form-flex-label" data-bsi-element-part="{{ textAreaElementPartId }}">
         <div class="bsi-form-input-element bsi-label-floating-element mb-3">
             <div class="form-label-and-info-text">
-                <label for="field" class="form-label">{{ textAreaLabelText }}</label>
-                <div data-bsi-element-part="{{ textAreaFormTextPartId }}" class="form-text">{{ textAreaInfoText }}</div>
-                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ textAreaInfoText }}"></i>
+                <label tabindex = "0" for="field" class="form-label">{{ textAreaLabelText }}</label>
+                <div tabindex = "0" data-bsi-element-part="{{ textAreaFormTextPartId }}" class="form-text">{{ textAreaInfoText }}</div>
+                <i tabindex = "0" class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ textAreaInfoText }}"></i>
             </div>
             <textarea class="form-control" id="field" rows="5" value=""></textarea>
             <div data-bsi-element-part="{{ textAreaErrorRequiredPartId }}" class="invalid-feedback"> {{ textAreaErrorRequiredText }} </div>

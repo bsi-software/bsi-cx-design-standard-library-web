@@ -16,7 +16,7 @@
     {% set buttonLetterCase = (buttonLetterCase ?: properties.buttonLetterCase) ?: 'bsi-btn-letter-default' %}
 
     <div x-data="btnElement" data-bsi-element="{{ buttonElementId }}" class="{{ 'bsi-element-' ~ buttonElementId }} bsi-btn-element {{ buttonColor }} {{ buttonLayout }} {{ buttonSize }} {{ buttonWidth }} {{ buttonBorderRadius }} {{ buttonLetterCase }} bsi-btn-icon-hide">
-        <a x-init="initBtn" class="btn" data-bsi-element-part="{{ buttonElementPartId }}" href="#">{{ buttonText }}</a>
-        <label hidden class="bsi-icon-identifier" data-bsi-element-part="{{ buttonIconPartId }}">arrow-right</label>
+        <a tabindex = "0" x-init="initBtn" class="btn" data-bsi-element-part="{{ buttonElementPartId }}" href="#">{{ buttonText }}</a>
+        <label tabindex = "0" hidden class="bsi-icon-identifier" data-bsi-element-part="{{ buttonIconPartId }}">arrow-right</label>
     </div>
 {% endapply %}
