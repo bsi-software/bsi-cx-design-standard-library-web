@@ -18,7 +18,9 @@ module.exports = (
   elementDescription = 'Bild überlagert mit Inhalten (Überschriften, Text, Buttons, …), Bildhöhe richtet sich am Inhalt',
   dropzoneId = 'banner-dropzone-Hh2fWF',
   imagePartId = 'banner-part-MIY0yR',
-  imagePartLabel = 'Banner'
+  imagePartLabel = 'Banner',
+  imageMobilePartId = 'banner-mobile-part-797cb6',
+  imageMobilePartLabel = 'Banner mobile'
 ) => cx
   .contentElement
   .withFile(template)
@@ -59,4 +61,7 @@ module.exports = (
   .withParts(
     cx.part.image
       .withId(imagePartId)
-      .withLabel(imagePartLabel));
+      .withLabel(imagePartLabel),
+    cx.part.image
+    .withId(imageMobilePartId)
+    .withLabel(imageMobilePartLabel));
