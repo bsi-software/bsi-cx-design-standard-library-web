@@ -14,12 +14,12 @@
     {% set radioErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
     <div x-data="formRadio" data-bsi-element="{{ radioElementId }}" class="{{ 'bsi-element-' ~ radioElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-form-flex-label bsi-radio-block" data-bsi-element-part="{{ radioElementPartId }}">
-        <div class="bsi-form-input-element">
-            <div class="form-label-and-info-text">
+        <fieldset class="bsi-form-input-element">
+            <legend class="form-label-and-info-text">
                 <label class="form-label pt-0">{{ radioGroupLabelText }}</label>
                 <div data-bsi-element-part="{{ radioFormTextPartId }}" class="form-text">{{ radioInfoText }}</div>
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ radioInfoText }}"></i>
-            </div>
+            </legend>
             <div data-bsi-radio-group="" class="form-radio">
                 <div class="form-check" data-bsi-radio-item="">
                     <input x-on:change="validateInput" class="form-check-input" type="radio" name="radio" id="radio1">
@@ -29,6 +29,6 @@
             <div x-init="initRequiredError" class="invalid-feedback">
                 <label data-bsi-element-part="{{ radioErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ radioErrorRequiredText }}</label>
             </div>
-        </div>
+        </fieldset>
     </div>
 {% endapply %}
