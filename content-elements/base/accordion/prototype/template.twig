@@ -6,21 +6,21 @@
 {% set accordionIconPosition = (iconPosition ?: properties.accordionIconPosition) ?: 'start' %} {# must be in ['start', 'end', 'none'] #}
 
 <div data-bsi-element="{{ accordionElementId }}" class="bsi-element-{{ accordionElementId }} inactive" x-data="accordionElement">
-	<button type="button" x-init="initAccordion" class="accordion-header element" @click="toggleActive" aria-expanded="false">
+	<button tabindex = "0" type="button" x-init="initAccordion" class="accordion-header element" @click="toggleActive" aria-expanded="false">
 		{% if accordionIconPosition == 'start' %}
 			{% block icon_before %}
-				<i class="bi inactive bi-plus-lg"></i>
-				<i class="bi active bi-dash-lg"></i>
+				<i tabindex = "0" class="bi inactive bi-plus-lg"></i>
+				<i tabindex = "0" class="bi active bi-dash-lg"></i>
 			{% endblock %}
 		{% endif %}
-		<div data-bsi-element-part="{{ accordionTitlePartId }}" class="accordion-title">{{ accordionTitleText }}</div>
+		<div tabindex = "0" data-bsi-element-part="{{ accordionTitlePartId }}" class="accordion-title">{{ accordionTitleText }}</div>
 		{% if accordionIconPosition == 'end' %}
 			{% block icon_after %}
-				<i class="bi bi-chevron-up rotate-180"></i>
+				<i tabindex = "0" class="bi bi-chevron-up rotate-180"></i>
 			{% endblock %}
 		{% endif %}
 	</button>
-	<div class="accordion-content" data-bsi-dropzone="{{ accordionContentDropzoneId }}">
+	<div tabindex = "0" class="accordion-content" data-bsi-dropzone="{{ accordionContentDropzoneId }}">
 		{% block accordionContent %}
 			{% include "@bsi-cx/design-standard-library-web/content-elements/base/text/template.twig" %}
 		{% endblock %}
