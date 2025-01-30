@@ -8,6 +8,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * Add new "list/list item" element where it's possible to sort the list with checkbox via drag and drop or keyboard
 * Fix radio button survey validation
+* Fix form-input validation
 * Add "aria-invalid" tag after form-validation
 * Show a summary of all validation errors above form
 
