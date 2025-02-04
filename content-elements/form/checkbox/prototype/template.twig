@@ -16,8 +16,8 @@
         <div class="bsi-form-input-element">
             <input x-on:change="validateInput" class="form-check-input form-checkbox-input" type="checkbox" id="switch">
             <div class="checkbox-label-and-tooltip">
-                <label class="form-check-label" for="switch">{{ checkboxLabelText }}</label>
-                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ checkboxInfoText }}"></i>
+                <label tabindex="0" class="form-check-label" for="switch">{{ checkboxLabelText }}</label>
+                <i tabindex="0" class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ checkboxInfoText }}"></i>
             </div>
             <div data-bsi-element-part="{{ checkboxFormTextPartId }}" class="form-text">{{ checkboxInfoText }}</div>
             <div data-bsi-element-part="{{ checkboxErrorRequiredPartId }}" class="invalid-feedback"> {{ checkboxErrorRequiredText }} </div>
