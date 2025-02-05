@@ -15,6 +15,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Show a summary of all validation errors above form
 * Fix error in the label and tooltip visualization
 * Fix telephone number form field validation
+* Columns displayed in grid not flex
 
 
 ## [1.4.8] - 11.10.2024
