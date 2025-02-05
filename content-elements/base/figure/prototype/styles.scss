@@ -156,10 +156,27 @@
       }
     }
   }
+
+  .bsi-ce-edit-mode .bsi-element-#{$id}.show-alt-warning {
+    &:has(img:not([alt], [aria-hidden])) {
+      img {
+        border: 2px red solid;
+      }
+
+      &::before {
+        content: "Bitte gebe eine Beschreibung an";
+        color: red;
+        position: absolute;
+        padding: 0.5rem 1rem;
+        background-color: #0005;
+      }
+    }
+  }
 }
 
 @mixin aspect-ratio($ratio) {
   position: relative;
+
   &:before {
     display: block;
     content: " ";
@@ -167,7 +184,7 @@
     padding-top: $ratio * 100%;
   }
 
-  > .figure-img {
+  >.figure-img {
     position: absolute;
     top: 0;
     left: 0;

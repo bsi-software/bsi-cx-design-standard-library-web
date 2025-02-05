@@ -15,7 +15,7 @@
 
     <div data-bsi-element="{{ bannerElementId }}" class="{{ 'bsi-element-' ~ bannerElementId }} {{ bannerHorizontalAlignment }} {{ bannerVerticalAlignment }} container-fluid mb-3 px-0 position-relative d-flex overflow-hidden bsi-overlay-hide bsi-overlay-opacity-0">
         {# 'srcset' support removed until further notice. see: https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues/46 #}
-        <img src="{{ bannerImageSrc }}" data-bsi-hide-link class="bsi-banner-desktop bsi-banner w-100 h-100 position-absolute" alt="" data-bsi-element-part="{{ bannerImagePartId }}"/>
+        <img tabindex="0" src="{{ bannerImageSrc }}" data-bsi-hide-link class="bsi-banner-desktop bsi-banner w-100 h-100 position-absolute" alt="" data-bsi-element-part="{{ bannerImagePartId }}"/>
         <img src="{{ bannerImageMobileSrc }}" data-bsi-hide-link class="bsi-banner-mobile bsi-banner w-100 h-100 position-absolute" alt="" data-bsi-element-part="{{ bannerImageMobilePartId }}"/>
         <div class="bsi-banner-dz container position-relative bsi-horizontal-align py-5 d-flex">
             <div class="bsi-vertical-align" data-bsi-dropzone="{{ bannerDropzoneId }}">

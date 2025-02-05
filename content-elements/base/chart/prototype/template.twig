@@ -22,7 +22,7 @@
     ] %}    
 
     {% if cx.version.TARGET >= cx.version.CX_22_0 %}
-        <div x-data="chartElement" x-init="initChart" data-bsi-element="{{ chartElementId }}"
+        <div tabindex = "0" x-data="chartElement" x-init="initChart" data-bsi-element="{{ chartElementId }}"
         class="mb-3 chart-js {{ 'bsi-element-' ~ chartElementId }}" data-bsi-element-part="{{ chartUrlPartId }}" data-bsi-url-provider="Diagramm"
         data-borderColors="{{ borderColors|join(',') }}" data-backgroundColors="{{ backgroundColors|join(',') }}">
             <img src="{{ chartImageSrc }}" alt="" class="w-100" data-bsi-element-part="{{ chartImagePartId }}"/>

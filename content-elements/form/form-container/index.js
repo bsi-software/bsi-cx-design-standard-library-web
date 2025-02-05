@@ -1,7 +1,7 @@
 require('./styles.scss');
-const {cx, Icon} = require('@bsi-cx/design-build');
-const {contentElements} = require('../../base');
-const {formElements} = require('../index');
+const { cx, Icon } = require('@bsi-cx/design-build');
+const { contentElements } = require('../../base');
+const { formElements } = require('../index');
 
 const element = cx.contentElement;
 
@@ -21,7 +21,8 @@ element.withFile(require('./template.twig'))
     require('../../../configs/styles/form-color'),
     require('../../../configs/styles/form-btn-layout'),
     require('../../../configs/styles/form-label'),
-    require('../../../configs/styles/form-info-text'))
+    require('../../../configs/styles/form-info-text'),
+    require('../../../configs/styles/form-validation-summary'))
   .withParts(
     cx.part.form
       .withId('form-container-part-6eHZEX')

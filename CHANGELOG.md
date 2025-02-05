@@ -8,6 +8,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * Add new "list/list item" element where it's possible to sort the list with checkbox via drag and drop or keyboard
 * Fix radio button survey validation
+* Show warning in Editor if "alt" tag ist not set
+* Let the radio tooltip (info) focusable in the form
+* Fix form-input validation
+* Add "aria-invalid" tag after form-validation
+* Show a summary of all validation errors above form
 
 ## [1.4.8] - 11.10.2024
 * export text element with .editor() function where htmlEditorConfig can be customized
@@ -21,6 +26,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * add further explanation to recaptcha
 * accodion trigger button will not trigger form submission, when used within a form container
 * update error-messages for formfields
+* add info-text and tooltip above formfields 
 
 ## [1.4.7] - 11.10.2024
 * Prevent spacer from shrinking to 0px if no other element is present (#386885)

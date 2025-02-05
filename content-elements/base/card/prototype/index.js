@@ -39,8 +39,11 @@ module.exports = (
     cx.dropzone
       .withDropzone(dropzoneContentId)
       .withAllowedElements(
-        require('../../h1'),
-        require('../../h2'),
-        require('../../h3'),
+        require('../../headlines/h1'),
+        require('../../headlines/h2'),
+        require('../../headlines/h3'),
+        require('../../headlines/h4'),
+        require('../../headlines/h5'),
+        require('../../headlines/h6'),
         require('../../text'),
         require('../../button')));

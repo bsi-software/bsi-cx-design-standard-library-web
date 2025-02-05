@@ -23,9 +23,9 @@ module.exports = (
   .withLabel(elementLabel)
   .withIcon(Icon.TEXT)
   .withStyleConfigs(
-    require('../../../../configs/styles/text-color'),
-    require('../../../../configs/styles/text-weight'),
-    require('../../../../configs/styles/text-size-h1'))
+    require('../../../../../configs/styles/text-color'),
+    require('../../../../../configs/styles/text-weight'),
+    require('../../../../../configs/styles/headline-style'))
   .withParts(
     cx.part.plainText
       .withId(titlePartId)
