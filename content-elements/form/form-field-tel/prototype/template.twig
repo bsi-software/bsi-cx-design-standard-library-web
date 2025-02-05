@@ -24,7 +24,7 @@
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ phoneInfoText }}"></i>
             </div>
 
-            <input x-ref="inputField" x-on:change="validateInput" x-on:countrychange="changeCountry" x-on:focus="onFocus" x-on:focusout="onFocusOut" class="form-control bsi-form-tel-input-element" id="tel-field" type="tel" value="">
+            <input x-ref="inputField" x-on:input="validateInput" x-on:change="validateInput" x-on:focus="onFocus" x-on:focusout="onFocusOut" class="form-control bsi-form-tel-input-element" id="tel-field" type="tel" value="">
 
             <!-- When live, the following section will hold hidden input field with the normalized phone number -->
             <div x-ref="hiddenInput" data-bsi-remove-if="draft" class="normalizedValueHolder" role="presentation" hidden="true" aria-hidden="true"></div>

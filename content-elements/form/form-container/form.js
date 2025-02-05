@@ -24,6 +24,7 @@ Alpine.data('formElement', () => ({
           tooltipIcon.classList.add('tooltip-visible');
           tooltipIcon.parentElement.classList.add('contains-tooltip');
           tooltipIcon.setAttribute('title', infoTextField.innerText);
+          infoTextField.setAttribute("style","display: none;"); 
           new Tooltip(tooltipIcon);
         }
       })
@@ -37,6 +38,7 @@ Alpine.data('formElement', () => ({
       this._validateRadioInput();
       this._setAriaInvalid();
       this._formValidationSummary();
+      this._validateFormFieldTel();
     }
     this.form.classList.add('was-validated');
   },
@@ -63,6 +65,21 @@ Alpine.data('formElement', () => ({
       floatingDiv.classList.add('form-floating');
       floatingElement.insertBefore(floatingDiv, labelAndInfo.nextSibling);
       floatingDiv.append(input, label);
+    }
+  },
+
+  _validateFormFieldTel() {
+    let formTelElements = this.form.getElementsByClassName('bsi-form-tel-input');
+  
+    for (const formTelElement of formTelElements) {
+      let formTelValid = false;
+      let formTelInput = formTelElement.getElementsByClassName('bsi-form-tel-input-element')[0];
+        formTelValid = formTelInput.value != '' || !formTelInput.hasAttribute('required');
+        if (!formTelValid) {
+          formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "block";
+        } else {
+          formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "none";
+        }
     }
   },
 
