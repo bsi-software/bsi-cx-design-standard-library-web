@@ -25,7 +25,7 @@ module.exports = (
   .withStyleConfigs(
     require('../../../../configs/styles/text-color'),
     require('../../../../configs/styles/text-weight'),
-    require('../../../../configs/styles/text-size-h2'))
+    require('../../../../configs/styles/headline-style'))
   .withParts(
     cx.part.plainText
       .withId(titlePartId)

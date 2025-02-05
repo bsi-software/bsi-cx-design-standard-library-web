@@ -8,8 +8,8 @@
     {% set titleH1PartId = titlePartId ?: 'title-h1-part-4D1dKG' %}
     {% set titleH1Text = (text ?: properties.titleH1Text) ?: bsi_cx_lorem(3) %}
     {% set titleH1Color = (color ?: properties.titleH1Color) ?: 'bsi-text-primary-color' %}
-    {% set titleH1Style = (style ?: properties.titleH1Style) ?: 'bsi-default' %}
+    {% set titleH1Style = (style ?: properties.titleH1Style) ?: 'bsi-header-style-display' %}
     {% set titleH1Weight = (weight ?: properties.titleH1Weight) ?: 'fw-normal' %}
 
-    <h1 tabindex = "0" data-bsi-element="{{ titleH1ElementId }}" data-bsi-element-part="{{ titleH1PartId }}" class="{{ 'bsi-element-' ~ titleH1ElementId }} {{ titleH1Color }} {{ titleH1Style }} {{ titleH1Weight }}">{{ titleH1Text }}</h1>
+    <h1 tabindex = "0" data-bsi-element="{{ titleH1ElementId }}" data-bsi-element-part="{{ titleH1PartId }}" class="{{ 'bsi-element-' ~ titleH1ElementId }} bsi-title-element {{ titleH1Color }} {{ titleH1Style }} {{ titleH1Weight }}">{{ titleH1Text }}</h1>
 {% endapply %}

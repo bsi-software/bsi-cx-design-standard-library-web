@@ -10,12 +10,12 @@ const {cx, Icon} = require('@bsi-cx/design-build');
  */
 module.exports = (
   template = require('../template.twig'),
-  elementId = 'title-h1-piICx1',
-  /*elementLabel = 'Heading H1',*/
-  elementLabel = 'H1 Überschrift',
-  titlePartId = 'title-h1-part-4D1dKG',
-  /*titlePartLabel = 'Heading H1'*/
-  titlePartLabel = 'H1 Überschrift'
+  elementId = 'title-h5-1f7dcc4a',
+  /*elementLabel = 'Heading h5',*/
+  elementLabel = 'H5 Überschrift',
+  titlePartId = 'title-h5-part-cbbd0541',
+  /*titlePartLabel = 'Heading h5'*/
+  titlePartLabel = 'H5 Überschrift'
 ) => cx
   .contentElement
   .withFile(template)

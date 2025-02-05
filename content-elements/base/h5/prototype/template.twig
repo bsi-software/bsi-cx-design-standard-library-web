@@ -1,0 +1,15 @@
+{% macro render(elementId = null, titlePartId = null, text = null, color = null, style = null, weight = null) %}{% apply spaceless %}
+    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
+    {% include './template.twig' %}
+{% endapply %}{% endmacro %}
+
+{% apply spaceless %}
+    {% set titleH5ElementId = elementId ?: 'title-h5-1f7dcc4a' %}
+    {% set titleH5PartId = titlePartId ?: 'title-h5-part-cbbd0541' %}
+    {% set titleH5Text = (text ?: properties.titleH5Text) ?: bsi_cx_lorem(3) %}
+    {% set titleH5Color = (color ?: properties.titleH5Color) ?: 'bsi-text-primary-color' %}
+    {% set titleH5Style = (style ?: properties.titleH5Style) ?: 'bsi-header-style-4' %}
+    {% set titleH5Weight = (weight ?: properties.titleH5Weight) ?: 'fw-normal' %}
+
+    <h5 data-bsi-element="{{ titleH5ElementId }}" data-bsi-element-part="{{ titleH5PartId }}" class="{{ 'bsi-element-' ~ titleH5ElementId }} bsi-title-element {{ titleH5Color }} {{ titleH5Style }} {{ titleH5Weight }}">{{ titleH5Text }}</h5>
+{% endapply %}
