@@ -78,6 +78,7 @@ Alpine.data('telInput', () => ({
   validateInput() {
     this.iti.setNumber(this.iti.getNumber(intlTelInputUtils.numberFormat.E164)); // trigger formatting the number
     this._validate();
+    this._calculateVisibility();
   },
 
   onFocus() {
@@ -98,7 +99,6 @@ Alpine.data('telInput', () => ({
 
   _validate() {
     let valid = !this.iti.getNumber() || this.iti.isValidNumber();
-
     if (valid) {
       this.invalidErrorElement.setAttribute('hidden', 'true');
       this.invalidErrorElement.setAttribute('aria-hidden', 'true');
@@ -107,12 +107,25 @@ Alpine.data('telInput', () => ({
       this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
     }
     this.inputField.setCustomValidity(valid ? '' : this.errormessageInvalid);
-
     if (valid) {
       this.normalizedValueField.value = this.iti.getNumber(intlTelInputUtils.numberFormat.E164);
     } else {
       this.normalizedValueField.value = "";
     }
+  },
+
+  _calculateVisibility() {
+      let formTelElements = this.form.getElementsByClassName('bsi-form-tel-input');
+      for (const formTelElement of formTelElements) {
+        let formTelValid = false;
+        let formTelInput = formTelElement.getElementsByClassName('bsi-form-tel-input-element')[0];
+        formTelValid = !(formTelInput.value == '' && formTelInput.hasAttribute('required'));
+        if (!formTelValid) {
+          formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "block";
+        } else {
+          formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "none";
+        }
+      }
   },
 
   _initFloatingLabel() {
