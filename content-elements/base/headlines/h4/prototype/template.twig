@@ -11,5 +11,5 @@
     {% set titleH4Style = (style ?: properties.titleH4Style) ?: 'bsi-header-style-4' %}
     {% set titleH4Weight = (weight ?: properties.titleH4Weight) ?: 'fw-normal' %}
 
-    <h4 data-bsi-element="{{ titleH4ElementId }}" data-bsi-element-part="{{ titleH4PartId }}" class="{{ 'bsi-element-' ~ titleH4ElementId }} bsi-title-element {{ titleH4Color }} {{ titleH4Style }} {{ titleH4Weight }}">{{ titleH4Text }}</h4>
+    <h4 tabindex="0" data-bsi-element="{{ titleH4ElementId }}" data-bsi-element-part="{{ titleH4PartId }}" class="{{ 'bsi-element-' ~ titleH4ElementId }} bsi-title-element {{ titleH4Color }} {{ titleH4Style }} {{ titleH4Weight }}">{{ titleH4Text }}</h4>
 {% endapply %}
