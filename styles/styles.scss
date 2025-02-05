@@ -19,10 +19,12 @@
     --bs-gutter-x: 0;
   }
 
+  .bsi-column, .card-body {
+    display: grid;
+  }
+
   &.bsi-col-align-center {
     .bsi-column, .card-body {
-      display: flex;
-      flex-wrap: wrap;
       justify-content: center;
     }
 
@@ -37,8 +39,6 @@
 
   &.bsi-col-align-right {
     .bsi-column, .card-body {
-      display: flex;
-      flex-wrap: wrap;
       justify-content: right;
     }
 
