@@ -15,8 +15,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Show a summary of all validation errors above form
 * Fix error in the label and tooltip visualization
 * Fix telephone number form field validation
-* Add "aria-invalid" tag after form-validation
-* Show a summary of all validation errors above form
+
 
 ## [1.4.8] - 11.10.2024
 * export text element with .editor() function where htmlEditorConfig can be customized
