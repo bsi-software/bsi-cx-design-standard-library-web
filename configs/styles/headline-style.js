@@ -5,9 +5,6 @@ module.exports = cx.style
   .withLabel('Überschriften Style')
   .withCssClasses(
     cx.cssClass
-      .withLabel('Display')
-      .withCssClass('bsi-header-style-display'),
-    cx.cssClass
       .withLabel('Überschrift 1')
       .withCssClass('bsi-header-style-1'),
     cx.cssClass
@@ -22,4 +19,7 @@ module.exports = cx.style
     cx.cssClass
       .withLabel('Überschrift 5')
       .withCssClass('bsi-header-style-5'),
+    cx.cssClass
+      .withLabel('Überschrift 6')
+      .withCssClass('bsi-header-style-6'),
     );

@@ -16,27 +16,27 @@ $textColor: bsiProperty('textColor', #383e42);
 
 // Fonts
 $primaryFont: bsiProperty('primaryFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
-$titleStyleDisplayFontFamily: bsiProperty('titleStyleDisplayFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle1FontFamily: bsiProperty('titleStyle1FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle2FontFamily: bsiProperty('titleStyle2FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle3FontFamily: bsiProperty('titleStyle3FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle4FontFamily: bsiProperty('titleStyle4FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle5FontFamily: bsiProperty('titleStyle5FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+$titleStyle6FontFamily: bsiProperty('titleStyle6FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $textFont: bsiProperty('textFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 
 // Sizes
-$titleStyleDisplayFontSize: bsiProperty('titleStyleDisplayFontSize', 2.5rem);
-$titleStyleDisplayFontSizeMobile: bsiProperty('titleStyleDisplayFontSizeMobile', $titleStyleDisplayFontSize);
-$titleStyle1FontSize: bsiProperty('titleStyle1FontSize', 2rem);
+$titleStyle1FontSize: bsiProperty('titleStyle1FontSize', 2.5rem);
 $titleStyle1FontSizeMobile: bsiProperty('titleStyle1FontSizeMobile', $titleStyle1FontSize);
-$titleStyle2FontSize: bsiProperty('titleStyle2FontSize', 1.75rem);
+$titleStyle2FontSize: bsiProperty('titleStyle2FontSize', 2rem);
 $titleStyle2FontSizeMobile: bsiProperty('titleStyle2FontSizeMobile', $titleStyle2FontSize);
-$titleStyle3FontSize: bsiProperty('titleStyle3FontSize', 1.5rem);
+$titleStyle3FontSize: bsiProperty('titleStyle3FontSize', 1.75rem);
 $titleStyle3FontSizeMobile: bsiProperty('titleStyle3FontSizeMobile', $titleStyle3FontSize);
-$titleStyle4FontSize: bsiProperty('titleStyle4FontSize', 1.2rem);
+$titleStyle4FontSize: bsiProperty('titleStyle4FontSize', 1.5rem);
 $titleStyle4FontSizeMobile: bsiProperty('titleStyle4FontSizeMobile', $titleStyle4FontSize);
-$titleStyle5FontSize: bsiProperty('titleStyle5FontSize', 1rem);
+$titleStyle5FontSize: bsiProperty('titleStyle5FontSize', 1.2rem);
 $titleStyle5FontSizeMobile: bsiProperty('titleStyle5FontSizeMobile', $titleStyle5FontSize);
+$titleStyle6FontSize: bsiProperty('titleStyle6FontSize', 1rem);
+$titleStyle6FontSizeMobile: bsiProperty('titleStyle6FontSizeMobile', $titleStyle6FontSize);
 $textSize: bsiProperty('textFontSize', 16px);
 $bannerHeight: bsiProperty('bannerHeight', 250px);
 

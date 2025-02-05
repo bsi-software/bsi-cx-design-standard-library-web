@@ -1,10 +1,10 @@
 const titleElements = [
-  require('./h1'),
-  require('./h2'),
-  require('./h3'),
-  require('./h4'),
-  require('./h5'),
-  require('./h6')
+  require('./headlines/h1'),
+  require('./headlines/h2'),
+  require('./headlines/h3'),
+  require('./headlines/h4'),
+  require('./headlines/h5'),
+  require('./headlines/h6')
 ];
 
 const contentElements = [
