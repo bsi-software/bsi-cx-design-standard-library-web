@@ -20,8 +20,8 @@
         <div class="bsi-form-input-element mb-3">
             <div class="form-label-and-info-text">
                 <label for="tel-field" class="form-label">{{ phoneLabelText }}</label>
-                <div data-bsi-element-part="{{ phoneFormTextPartId }}" class="form-text">{{ phoneInfoText }}</div>
-                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ phoneInfoText }}"></i>
+                <div tabindex="0" data-bsi-element-part="{{ phoneFormTextPartId }}" class="form-text">{{ phoneInfoText }}</div>
+                <i tabindex="0" class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ phoneInfoText }}"></i>
             </div>
 
             <input x-ref="inputField" x-on:input="validateInput" x-on:change="validateInput" x-on:focus="onFocus" x-on:focusout="onFocusOut" class="form-control bsi-form-tel-input-element" id="tel-field" type="tel" value="">
