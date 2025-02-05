@@ -18,8 +18,8 @@
         <div class="bsi-form-input-element mb-3 bsi-label-floating-element">
             <div class="form-label-and-info-text">
                 <label for="field" class="form-label">{{ formFieldLabelText }}</label>
-                <div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
-                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ formFieldInfoText }}"></i>
+                <div tabindex="0" data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
+                <i tabindex="0" class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ formFieldInfoText }}"></i>
             </div>
             <input x-init="initFormFieldInput" x-on:change="validateInput" type="text" class="form-control bsi-form-field-input" id="field" value="">
             <div data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" class="invalid-feedback"> {{ formFieldErrorRequiredText }} </div>
