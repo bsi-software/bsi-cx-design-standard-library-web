@@ -146,6 +146,19 @@ Alpine.data('formField', () => ({
   },
 
   _initDateInput() {
+    // Creiamo un nuovo elemento span per l'icona
+    const iconSpan = document.createElement('span');
+
+    // Creiamo l'icona Bootstrap
+    const icon = document.createElement('i');
+    icon.classList.add('bi', 'bi-calendar');
+
+    // Aggiungiamo l'icona all'elemento span
+    iconSpan.appendChild(icon);
+
+    // Aggiungiamo lo span (con l'icona) dopo l'input
+    this.inputEl.parentNode.classList.add('input-container'); // Aggiungiamo la classe di contenitore per posizionare l'icona
+    this.inputEl.parentNode.appendChild(iconSpan);
     let locale = document.documentElement.lang.slice(0, 2) ?? 'de-CH';
     if (this.inputEl.placeholder && (this.inputEl.type === 'date' || this.inputEl.type === 'datetime-local')) {
       let date = new Date(this.inputEl.placeholder);
@@ -213,6 +226,7 @@ Alpine.data('formField', () => ({
         minDate: this.minDate,
         maxDate: this.maxDate
       });
+      this.fb.add
     }
   },
 }))
