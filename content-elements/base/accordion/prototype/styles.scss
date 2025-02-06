@@ -3,8 +3,7 @@
 @mixin styles($id: 'accordion-OowSb3',
     $accordion-header-bg: $primary,
     $accordion-border-color: $primary,
-    $accordion-header-color: $light
-) {
+    $accordion-header-color: $light) {
     .bsi-element-#{$id} {
         .accordion-header {
             background-color: $accordion-header-bg;
@@ -19,7 +18,8 @@
             font-weight: 700;
             width: 100%;
 
-            i, svg {
+            i,
+            svg {
                 height: 1.5rem;
                 line-height: 1rem;
                 align-self: center;
@@ -59,9 +59,11 @@
                 .active {
                     display: block;
                 }
+
                 .inactive {
                     display: none;
                 }
+
                 .rotate-180 {
                     transition: 0.5s all;
                     transform: rotate(180deg);
@@ -75,4 +77,51 @@
     .accordion-content {
         display: block !important;
     }
+}
+
+.bg-acc-primary button:first-child {
+    background-color: $primary !important;
+    border-color: $primary !important;
+
+}
+
+.bg-acc-secondary button:first-child {
+    background-color: $secondary !important;
+    border-color: $secondary  !important;
+}
+
+.bg-acc-dark-color button:first-child {
+    background-color: $dark !important;
+    border-color: $dark !important;
+}
+
+.bg-acc-light-color button:first-child {
+    background-color: $light !important;
+    border-color: $light !important
+}
+
+.bg-acc-info-color button:first-child {
+    background-color: $info !important;
+    border-color: $info !important
+}
+
+
+.txt-acc-primary button:first-child {
+    color: $primary !important;
+}
+
+.txt-acc-secondary button:first-child {
+    color: $secondary !important;
+}
+
+.txt-acc-dark-color button:first-child {
+    color: $dark !important;
+}
+
+.txt-acc-light-color button:first-child {
+    color: $light !important;
+}
+
+.txt-acc-info-color button:first-child {
+    color: $info !important;
 }
