@@ -1,20 +1,20 @@
 @import "../../../../styles/properties";
 
-@mixin styles($id: 'poll-wni8em', $poll-primary: $primary, $poll-secondary: $secondary) {
+@mixin styles(
+  $id: "poll-wni8em",
+  $poll-primary: $primary,
+  $poll-secondary: $secondary
+) {
   .bsi-element-#{$id} {
     .bsi-poll-radio-group {
       margin-bottom: 0.75em;
     }
+
     .bsi-poll-number-input {
       display: none;
     }
 
     &.bsi-poll-nps {
-      .bsi-poll-radio-group {
-        display: flex;
-        gap: 0.1rem;
-      }
-
       .bsi-poll-radio-item {
         flex: 0 1 42px;
         margin-right: 0;
@@ -66,14 +66,12 @@
       .bsi-poll-radio-group {
         display: inline-flex;
         flex-flow: nowrap;
-        flex-direction: row-reverse;
         align-items: flex-start;
-        justify-content: flex-end;
 
         input[type="radio"] {
           display: inline-block;
           content: "";
-          vertical-align: -.125em;
+          vertical-align: -0.125em;
           background-repeat: no-repeat;
           background-size: 2rem 2rem;
           background-color: transparent;
@@ -84,14 +82,20 @@
     }
   }
 
-  $colors: ("primary": $poll-primary, "secondary": $poll-secondary);
+  $colors: (
+    "primary": $poll-primary,
+    "secondary": $poll-secondary,
+  );
+
   @each $name, $color in $colors {
     $star-icon: $star-icon-primary;
     $star-fill-icon: $star-fill-icon-primary;
+
     @if $name == "secondary" {
       $star-icon: $star-icon-secondary;
       $star-fill-icon: $star-fill-icon-secondary;
     }
+
     .bsi-form-color-#{$name} .bsi-element-#{$id} {
       &.bsi-poll-nps .bsi-poll-radio-label {
         color: $color;
@@ -109,34 +113,30 @@
       }
 
       &.bsi-poll-star .bsi-poll-radio-group {
-        input[type="radio"] {
+        .bsi-poll-radio-item input[type="radio"] {
           background-image: $star-icon;
         }
 
-        .bsi-poll-radio-item input[type="radio"]:checked {
-          background-image: $star-fill-icon;
-        }
-
         &:not(:hover) {
-          .bsi-poll-radio-item {
-            &[data-form-radio-selected="true"] input[type="radio"]:checked,
-            &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"],
-            &.bsi-poll-radio-checked ~ .bsi-poll-radio-item input[type="radio"] {
-              background-image: $star-fill-icon;
+          .bsi-poll-radio-checked {
+            input[type="radio"] {
+              background-image: $star-fill-icon !important;
+            }
+
+            input[type="radio"]:checked {
+              background-image: $star-fill-icon !important;
             }
           }
         }
 
         &:hover {
           .bsi-poll-radio-item {
-            &[data-form-radio-selected="true"] input[type="radio"],
-            &.bsi-poll-radio-checked input[type="radio"] {
-              background-image: $star-icon;
+            input[type="radio"] {
+              background-image: $star-fill-icon;
             }
 
-            &:hover input[type="radio"],
             &:hover ~ .bsi-poll-radio-item input[type="radio"] {
-              background-image: $star-fill-icon;
+              background-image: $star-icon;
             }
           }
         }
@@ -154,11 +154,13 @@
       color: $invalid !important;
       border: 1px solid $invalid !important;
     }
+
     .bsi-poll-radio-input:valid ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input.is-valid ~ .bsi-poll-radio-label {
       color: $valid !important;
       border: 1px solid $valid !important;
     }
+
     .bsi-poll-radio-input:valid:focus ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input.is-valid:focus ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input:valid:checked ~ .bsi-poll-radio-label,
@@ -170,27 +172,31 @@
 
   .was-validated .bsi-element-#{$id}.bsi-poll-star .bsi-poll-radio-group {
     input[type="radio"] {
-      &:invalid, &.is-invalid {
+      &:invalid,
+      &.is-invalid {
         background-image: $star-icon-invalid !important;
-      }
-
-      &:valid, &.is-valid {
-        background-image: $star-icon-valid !important;
       }
     }
 
     .bsi-poll-radio-item input[type="radio"]:checked {
-      &:valid, &.is-valid {
+      &:valid,
+      &.is-valid {
         background-image: $star-fill-icon-valid !important;
       }
     }
 
     &:not(:hover) {
-      .bsi-poll-radio-item {
-        &[data-form-radio-selected="true"] input[type="radio"]:checked,
-        &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"],
-        &.bsi-poll-radio-checked ~ .bsi-poll-radio-item input[type="radio"] {
-          &:valid, &.is-valid {
+      .bsi-poll-radio-checked {
+        input[type="radio"] {
+          &:valid,
+          &.is-valid {
+            background-image: $star-fill-icon-valid !important;
+          }
+        }
+
+        input[type="radio"]:checked {
+          &:valid,
+          &.is-valid {
             background-image: $star-fill-icon-valid !important;
           }
         }
@@ -199,18 +205,12 @@
 
     &:hover {
       .bsi-poll-radio-item {
-        &[data-form-radio-selected="true"] input[type="radio"],
-        &.bsi-poll-radio-checked input[type="radio"] {
-          &:valid, &.is-valid {
-            background-image: $star-icon-valid !important;
-          }
+        input[type="radio"] {
+          background-image: $star-fill-icon-valid;
         }
 
-        &:hover input[type="radio"],
         &:hover ~ .bsi-poll-radio-item input[type="radio"] {
-          &:valid, &.is-valid {
-            background-image: $star-fill-icon-valid !important;
-          }
+          background-image: $star-icon-valid;
         }
       }
     }
