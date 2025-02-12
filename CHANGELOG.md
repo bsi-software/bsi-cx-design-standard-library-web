@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
+* Update nps-survey element: logic and mobile layout
+
+
+## [1.4.9] - 05.02.2025
 * Add new "list/list item" element where it's possible to sort the list with checkbox via drag and drop or keyboard
 * Fix radio button survey validation
 * Show warning in Editor if "alt" tag ist not set
