@@ -146,18 +146,17 @@ Alpine.data('formField', () => ({
   },
 
   _initDateInput() {
-    // Creiamo un nuovo elemento span per l'icona
     const iconSpan = document.createElement('span');
 
-    // Creiamo l'icona Bootstrap
+    // Create bootstrap icon
     const icon = document.createElement('i');
     icon.classList.add('bi', 'bi-calendar');
 
-    // Aggiungiamo l'icona all'elemento span
+    // Add the icon to the span element
     iconSpan.appendChild(icon);
 
-    // Aggiungiamo lo span (con l'icona) dopo l'input
-    this.inputEl.parentNode.classList.add('input-container'); // Aggiungiamo la classe di contenitore per posizionare l'icona
+    // Add the span (with the icon) after the input
+    this.inputEl.parentNode.classList.add('input-container'); // Add the container class in order to set the icon position
     this.inputEl.parentNode.appendChild(iconSpan);
     let locale = document.documentElement.lang.slice(0, 2) ?? 'de-CH';
     if (this.inputEl.placeholder && (this.inputEl.type === 'date' || this.inputEl.type === 'datetime-local')) {
