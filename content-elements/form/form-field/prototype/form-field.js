@@ -146,6 +146,11 @@ Alpine.data('formField', () => ({
   },
 
   _initDateInput() {
+    const iconSpan = document.createElement('span');
+
+    // Create bootstrap icon
+    const icon = document.createElement('i');
+   
     let locale = document.documentElement.lang.slice(0, 2) ?? 'de-CH';
     if (this.inputEl.placeholder && (this.inputEl.type === 'date' || this.inputEl.type === 'datetime-local')) {
       let date = new Date(this.inputEl.placeholder);
@@ -179,6 +184,10 @@ Alpine.data('formField', () => ({
       this.maxDate = this.inputEl.max;
     }
     if (this.inputEl.type === 'date') {
+      icon.classList.add('bi', 'bi-calendar');
+      // Add the icon to the span element
+      iconSpan.appendChild(icon);
+  
       this.fp = flatpickr(this.inputEl, {
         locale: locale,
         altInput: true,
@@ -188,7 +197,11 @@ Alpine.data('formField', () => ({
         minDate: this.minDate,
         maxDate: this.maxDate
       });
+      
     } else if (this.inputEl.type === 'datetime-local') {
+      icon.classList.add('bi', 'bi-calendar');
+      // Add the icon to the span element
+      iconSpan.appendChild(icon);
       this.fp = flatpickr(this.inputEl, {
         locale: locale,
         altInput: true,
@@ -201,6 +214,9 @@ Alpine.data('formField', () => ({
         maxDate: this.maxDate
       });
     } else if (this.inputEl.type === 'time') {
+      icon.classList.add('bi', 'bi-clock');
+      // Add the icon to the span element
+      iconSpan.appendChild(icon);
       this.fp = flatpickr(this.inputEl, {
         locale: locale,
         altInput: true,
@@ -214,5 +230,10 @@ Alpine.data('formField', () => ({
         maxDate: this.maxDate
       });
     }
+
+    // Add the span (with the icon) after the input
+    this.inputEl.parentNode.classList.add('input-container'); // Add the container class in order to set the icon position
+    this.inputEl.parentNode.appendChild(iconSpan);
+          
   },
 }))

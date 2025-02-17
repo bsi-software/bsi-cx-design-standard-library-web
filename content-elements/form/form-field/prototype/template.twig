@@ -21,7 +21,9 @@
                 <div tabindex="0" data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
                 <i tabindex="0" class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ formFieldInfoText }}"></i>
             </div>
-            <input x-init="initFormFieldInput" x-on:change="validateInput" type="text" class="form-control bsi-form-field-input" id="field" value="">
+            <div class="input-container">
+                <input x-init="initFormFieldInput" x-on:change="validateInput" type="text" class="form-control bsi-form-field-input" id="field" value="">
+            </div>
             <div data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" class="invalid-feedback"> {{ formFieldErrorRequiredText }} </div>
             <div x-init="initInvalidError" class="format-invalid-feedback" hidden="true" aria-hidden="true">
                 <label data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="errormessage-invalid" role="alert" aria-live="assertive" aria-atomic="true">{{ formFieldErrorInvalidText }}</label>

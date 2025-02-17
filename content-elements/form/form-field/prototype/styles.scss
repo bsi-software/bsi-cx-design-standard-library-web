@@ -1,5 +1,5 @@
 @import "flatpickr/dist/flatpickr";
-
+@import "bootstrap-icons/font/bootstrap-icons.css";
 @mixin styles($id: 'form-field-REEhtN') {
   .bsi-element-#{$id} {
     .flatpickr-input {
@@ -8,6 +8,22 @@
       &.form-control[readonly] {
         background-color: #fff;
       }
+    }
+    .input-container {
+      position: relative;
+    }
+    
+    .input-container input {
+      width: 100%;
+      padding-right: 30px;
+    }
+    
+    .input-container i {
+      position: absolute;
+      right: 30px; 
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
     }
 
     .format-invalid-feedback {
