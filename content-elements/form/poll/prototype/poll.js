@@ -66,10 +66,9 @@ Alpine.data("formPoll", () => ({
       radio.required = true;
     }
 
-    label.setAttribute("class", "form-check-label bsi-poll-radio-label");
-    label.setAttribute("for", id);
-    label.setAttribute("tabindex", "0");
-    label.setAttribute("data-value", value);
+    label.setAttribute('class', 'form-check-label bsi-poll-radio-label bsi-dm-bg-color');
+    label.setAttribute('for', id);
+    label.setAttribute('data-value', value);
     label.innerHTML = value;
 
     radio.addEventListener("change", function () {
