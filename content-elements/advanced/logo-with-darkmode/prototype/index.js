@@ -13,15 +13,17 @@ const {cx, Icon} = require('@bsi-cx/design-build');
 module.exports = (
   template = require('../template.twig'),
   elementId = 'logo-4c8c3a',
-  elementLabel = 'Advanced logo',
+  elementLabel = 'Logo',
   imagePartId = 'logo-lm-part-image-727593',
+  elementDescription = 'Dark- & Light-Mode',
   imageDarkModePartId = 'logo-dm-part-image-289935',
-  textLmPartLabel = 'Logo light mode',
-  textDmPartLabel = 'Logo dark mode'
+  textLmPartLabel = 'Logo Light mode',
+  textDmPartLabel = 'Logo Dark mode'
 ) => cx
   .contentElement
   .withFile(template)
   .withElementId(elementId)
+  .withDescription(elementDescription)
   .withLabel(elementLabel)
   .withIcon(Icon.IMAGE)
   .withStyleConfigs()
