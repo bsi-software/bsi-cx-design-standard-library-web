@@ -24,7 +24,7 @@ Alpine.data('formElement', () => ({
           tooltipIcon.classList.add('tooltip-visible');
           tooltipIcon.parentElement.classList.add('contains-tooltip');
           tooltipIcon.setAttribute('title', infoTextField.innerText);
-          infoTextField.setAttribute("style","display: none;"); 
+          infoTextField.setAttribute("style", "display: none;");
           new Tooltip(tooltipIcon);
         }
       })
@@ -70,16 +70,15 @@ Alpine.data('formElement', () => ({
 
   _validateFormFieldTel() {
     let formTelElements = this.form.getElementsByClassName('bsi-form-tel-input');
-  
     for (const formTelElement of formTelElements) {
       let formTelValid = false;
       let formTelInput = formTelElement.getElementsByClassName('bsi-form-tel-input-element')[0];
-        formTelValid = formTelInput.value != '' || !formTelInput.hasAttribute('required');
-        if (!formTelValid) {
-          formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "block";
-        } else {
-          formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "none";
-        }
+      formTelValid = formTelInput.value != '' || !formTelInput.hasAttribute('required');
+      if (!formTelValid) {
+        formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "block";
+      } else {
+        formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "none";
+      }
     }
   },
 
@@ -103,10 +102,11 @@ Alpine.data('formElement', () => ({
 
   _formValidationSummary() {
     if (this.root.classList.contains('bsi-form-show-valdiation-summary')) {
+      let validationSummary = this.$root.querySelector('.form-validation-summary');
       let invalidElements = Array.from(this.form.querySelectorAll('.bsi-form-element:has([aria-invalid=true]) .form-label-and-info-text label'));
-      let valdiationMessageHTML = invalidElements.map(label => `<li>${label.innerText}</li>`).join('');
-      let messageContainerList = this.form.querySelector('.form-validation-summary ul');
-      messageContainerList.innerHTML = valdiationMessageHTML;
+      let messageContainerList = this.form.querySelector('.form-validation-summary ul') ?? document.createElement('ul');
+      messageContainerList.innerHTML = invalidElements.map(label => `<li>${label.innerText}</li>`).join('');
+      validationSummary.appendChild(messageContainerList);
     }
   },
 }));

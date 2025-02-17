@@ -7,6 +7,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
 * Update nps-survey element: logic and mobile layout
+* Remove empty `ul`-tag from form summary validation 
 
 
 ## [1.4.9] - 05.02.2025
