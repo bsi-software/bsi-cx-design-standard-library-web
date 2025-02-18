@@ -75,15 +75,10 @@ Alpine.data('formPin', () => ({
     div.appendChild(inputPin);
     containerDiv.appendChild(div);
 
-    inputPin.addEventListener('focusin', (e) => {
-      if (inputPin.value >= 0 && inputPin.value <= 9 && isNumber(inputPin.value)) {
-        console.log('input value is correct: ' + inputPin.value);
-        inputPin.setAttribute('old', inputPin.value);
-      }
-      else {
-        console.log('invalid pin value: ' + inputPin.value);
-        inputPin.setAttribute('old', '');
+    inputPin.addEventListener('change', (e) => {
+      if (inputPin.value < 0 || inputPin.value > 9 || !isNumber(inputPin.value)) {
         inputPin.value = '';
+        console.log('input value is correct: ' + inputPin.value);
       }
     });
 
@@ -95,7 +90,6 @@ Alpine.data('formPin', () => ({
     
     inputPin.addEventListener('input', (e) => {
       const inputPinList = this.$root.querySelectorAll('input.pin');
-      console.log('input pin: ' + inputPin);
       this._cleanUp(inputPin);
       this.bsiInputElement.value = Array.from(inputPinList).reduce((result, input) => {
         return result + input.value;
@@ -145,9 +139,9 @@ Alpine.data('formPin', () => ({
       if (this._isLastPinElement(inputPin)){
         inputPin.value = inputPin.value.slice(-1);
       }
-      else if (inputPin.value.length > 1) {
-        inputPin.value = inputPin.value.replace(inputPin.getAttribute('old'), '');
-      }
+      //else if (inputPin.value.length > 1) {
+      //  inputPin.value = inputPin.value.replace(inputPin.getAttribute('old'), '');
+      //}
     }
   },
 
