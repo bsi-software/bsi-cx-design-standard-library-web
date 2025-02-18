@@ -1,13 +1,62 @@
 import Alpine from '@alpinejs/csp';
+import { Tooltip } from 'bootstrap';
 
 Alpine.data('formPin', () => ({
   bsiInputElement: null, // Input field required for CX story / value flow
   maxlength: null,
   requiredErrorElement: null,
+  form: null,
+  root: null,
+
+  initForm() {
+    this.form = this.$el;
+    this.root = this.$root;
+
+    if (this.root.classList.contains('bsi-form-label-floating')) {
+      for(const floatingElement of this.form.getElementsByClassName('bsi-label-floating-element')) {
+        this._initFloatingLabels(floatingElement);
+      }
+    }
+
+    if (this.root.classList.contains('bsi-form-info-as-tooltip')
+        && ['bsi-form-label-top', 'bsi-form-label-left'].some(labelClass => this.root.classList.contains(labelClass))) {
+      this.form.querySelectorAll('.bsi-form-element').forEach((formElement) => {
+        let infoTextField = formElement.querySelector('.form-text');
+        let tooltipIcon = formElement.querySelector('i');
+        if (infoTextField && infoTextField.innerText && tooltipIcon) {
+          tooltipIcon.classList.add('tooltip-visible');
+          tooltipIcon.parentElement.classList.add('contains-tooltip');
+          tooltipIcon.setAttribute('title', infoTextField.innerText);
+          new Tooltip(tooltipIcon);
+        }
+      })
+    }
+  },
+
+  submitForm(e) {
+    if (!this.form.checkValidity()) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.validateInput();
+    }
+    this.form.classList.add('was-validated');
+  },
+
+  initRequiredError() {
+    this.requiredErrorElement = this.$el;
+  },
+
+  validateInput() {
+    if (this.bsiInputElement.value.length != this.maxlength) {
+      this.requiredErrorElement.style.display = "block";
+    } else {
+      this.requiredErrorElement.style.display = "none";
+    }
+  },
 
   initPinNumberFields() {
     this.bsiInputElement = this.$root.querySelector('.bsi-form-field-input-original');
-    let containerDiv = this.$root.querySelector('.generated-inputs');
+    let containerDiv = this.$root.querySelector('.bsi-form-pin-element');
 
     const maxLength = this.bsiInputElement.getAttribute('maxlength');
     if (maxLength == null) {
@@ -22,20 +71,21 @@ Alpine.data('formPin', () => ({
   },
 
   _initPinNumberField(containerDiv, i) {
-    let inputWrapper = document.createElement('div');
-    inputWrapper.classList = 'input-wrapper';
-    containerDiv.appendChild(inputWrapper);
-  
+    let div = document.createElement('div');
     let label = document.createElement('label');
+    let pinInput = document.createElement('input');
+    
+    div.classList = 'input-wrapper';
     label.classList = 'form-label';
     label.innerHTML = (i + 1) + ".";
-    inputWrapper.appendChild(label);
-  
-    let pinBox = document.createElement('input');
-    pinBox.setAttribute('x-init', 'initFormPinInput');
-    pinBox.setAttribute('required', 'true');
-    pinBox.classList = 'bsi-form-field-input form-control bsi-form-field-input pin';
-    inputWrapper.appendChild(pinBox);
+    pinInput.classList = 'bsi-form-field-input form-control bsi-form-field-input pin';
+    
+    pinInput.setAttribute('x-init', 'initFormPinInput');
+    pinInput.setAttribute('required', 'true');
+
+    div.appendChild(label);
+    div.appendChild(pinInput);
+    containerDiv.appendChild(div);
   },
   
   initFormPinInput() {
@@ -66,18 +116,6 @@ Alpine.data('formPin', () => ({
     });
   },
 
-  initRequiredError() {
-    this.requiredErrorElement = this.$el;
-  },
-
-  validateInput() {
-    if (this.bsiInputElement.value.length != this.maxlength) {
-      this.requiredErrorElement.style.display = "block";
-    } else {
-      this.requiredErrorElement.style.display = "none";
-    }
-  },
-
   _autoFocusNextPinInput() {
     let inputPin = this.$el;
     let nextWrapper = inputPin.parentNode.nextElementSibling;
@@ -102,8 +140,8 @@ Alpine.data('formPin', () => ({
   },
 
   _autoSubmitIfFilledIn() {
-    let form = this.$root.closest('form');
-    if (form && this.bsiInputElement.value.length == this.maxlength) {
+    let form = this.$root.querySelector('.formular-pin');;
+    if (form && (this.bsiInputElement.value.length == this.maxlength)) {
       form.submit();
     }
   },

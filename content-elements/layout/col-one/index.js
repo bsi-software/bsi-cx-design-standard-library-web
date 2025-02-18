@@ -34,4 +34,4 @@ element.withElementId('col-one-l2ZclN')
         ...contentElements,
         ...advancedElements,
         require('../../form/form-container'),
-        require('../../form/form-container-pin')));
+        require('../../form/form-pin')));
