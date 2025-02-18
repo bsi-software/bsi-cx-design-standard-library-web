@@ -16,7 +16,6 @@ element.withFile(require('./template.twig'))
     require('../../../configs/styles/form-width'),
     require('../../../configs/styles/form-layout'),
     require('../../../configs/styles/form-color'),
-    require('../../../configs/styles/form-info-text'),
     require('../../../configs/styles/pin-label'),
     require('../../../configs/styles/pin-auto-submit'))
   .withParts(

@@ -2,14 +2,14 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('pin-auto-submit-ae00c3ca')
-  /*.withLabel('Footer gradient')*/
+  /*.withLabel('Pin auto submit')*/
   .withLabel('automatisch versenden ')
   .withCssClasses(
     cx.cssClass
-      /*.withLabel('No gradient')*/
+      /*.withLabel('No auto submit')*/
       .withLabel('nein')
       .withCssClass('default'),
     cx.cssClass
-      /*.withLabel('Show gradient')*/
+      /*.withLabel('Show auto submit')*/
       .withLabel('ja')
       .withCssClass('auto-submit'));
