@@ -14,10 +14,10 @@
     {% set formFieldErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
     {# Pin-Container #}
-    <div x-data="formPin" data-bsi-element="form-container-pin-384aa4d6" class="bsi-element-form-container-692qIu container mb-3 {{ formWidth }} {{ formLayout }} {{ formBorderRadius }} {{ formTooltipStyle }} {{ formColor }} {{ formButtonLayout }} {{ formPinLabel }}">
+    <div x-data="formPin" data-bsi-element="form-container-pin-384aa4d6" class="form-container-pin-384aa4d6 container mb-3 {{ formWidth }} {{ formLayout }} {{ formBorderRadius }} {{ formTooltipStyle }} {{ formColor }} {{ formButtonLayout }} {{ formPinLabel }}">
         <div class="card border-light shadow">
             <div class="card-body">
-                <form x-init="initForm" x-on:submit="submitForm" id="form" data-bsi-show-form-type-field class="needs-validation formular-pin" novalidate>
+                <form x-init="initForm" x-on:submit="submitForm" id="pin-form" data-bsi-show-form-type-field class="needs-validation formular-pin" novalidate>
                     {# Pin-Element #}
                     <div data-bsi-form-field-fixed-type data-bsi-hide-required class="mb-4 bsi-form-element bsi-form-field-element bsi-form-flex-label" data-bsi-element-part="{{ formFieldElementPartId }}">
                         <div class="bsi-form-input-element bsi-label-floating-element mb-3">
@@ -28,12 +28,12 @@
                             <input x-init="initPinNumberFields" type="text" class="form-control bsi-form-field-input bsi-form-field-input-original hide required" id="field" value="" required>
                             <div class="bsi-form-pin-element">
                                 {# generated Inputs #}
-                                <input class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
-                                <input class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
-                                <input class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
-                                <input class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
-                                <input class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
-                                <input class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
+                                <input min="0" max="9" class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
+                                <input min="0" max="9" class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
+                                <input min="0" max="9" class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
+                                <input min="0" max="9" class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
+                                <input min="0" max="9" class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
+                                <input min="0" max="9" class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
                             </div>
                             <div x-init="initRequiredError" class="invalid-feedback">
                                 <label data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ formFieldErrorRequiredText }}</label>

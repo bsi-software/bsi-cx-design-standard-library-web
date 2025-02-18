@@ -1,4 +1,5 @@
 import Alpine from '@alpinejs/csp';
+import { isNumber } from 'chart.js/helpers';
 
 Alpine.data('formPin', () => ({
   bsiInputElement: null, // Input field required for CX story / value flow
@@ -34,8 +35,12 @@ Alpine.data('formPin', () => ({
   validateInput() {
     if (this.bsiInputElement.value.length != this.maxLength) {
       this.requiredErrorElement.style.display = "block";
+      this.requiredErrorElement.setAttribute('aria-hidden', 'true');
+      this.requiredErrorElement.removeAttribute('tabindex');
     } else {
       this.requiredErrorElement.style.display = "none";
+      this.requiredErrorElement.setAttribute('aria-hidden', 'false');
+      this.requiredErrorElement.setAttribute('tabindex', '0');
     }
   },
 
@@ -63,13 +68,23 @@ Alpine.data('formPin', () => ({
     inputPin.setAttribute('required', 'true');
     inputPin.setAttribute('inputmode', 'numeric');
     inputPin.setAttribute('type', "number");
+    inputPin.setAttribute('min', "0");
+    inputPin.setAttribute('max', "9");
 
     div.appendChild(label);
     div.appendChild(inputPin);
     containerDiv.appendChild(div);
 
     inputPin.addEventListener('focusin', (e) => {
-      inputPin.setAttribute('old', inputPin.value);
+      if (inputPin.value >= 0 && inputPin.value <= 9 && isNumber(inputPin.value)) {
+        console.log('input value is correct: ' + inputPin.value);
+        inputPin.setAttribute('old', inputPin.value);
+      }
+      else {
+        console.log('invalid pin value: ' + inputPin.value);
+        inputPin.setAttribute('old', '');
+        inputPin.value = '';
+      }
     });
 
     inputPin.addEventListener('keydown', (e) => {
@@ -80,6 +95,7 @@ Alpine.data('formPin', () => ({
     
     inputPin.addEventListener('input', (e) => {
       const inputPinList = this.$root.querySelectorAll('input.pin');
+      console.log('input pin: ' + inputPin);
       this._cleanUp(inputPin);
       this.bsiInputElement.value = Array.from(inputPinList).reduce((result, input) => {
         return result + input.value;
@@ -92,8 +108,8 @@ Alpine.data('formPin', () => ({
   },
 
   _autoFocusFirstPinInput() {
-    let wrapper = this.$root.querySelectorAll('.input-wrapper');
-    this._autoFocus(wrapper[0]);
+    let wrapper = this.$root.querySelector('.input-wrapper');
+    this._autoFocus(wrapper);
   },
 
   _autoFocusNextPinInput(inputPin) {
@@ -128,12 +144,10 @@ Alpine.data('formPin', () => ({
     if (inputPin.value) {
       if (this._isLastPinElement(inputPin)){
         inputPin.value = inputPin.value.slice(-1);
-      } else if (inputPin.value.length > 1) {
-        var oldValue = inputPin.getAttribute('old');
-        var newValue = inputPin.value.replace(oldValue, '');
-        inputPin.value = newValue;
-        oldValue = newValue;
-        }
+      }
+      else if (inputPin.value.length > 1) {
+        inputPin.value = inputPin.value.replace(inputPin.getAttribute('old'), '');
+      }
     }
   },
 
