@@ -13,7 +13,7 @@ $light: bsiProperty('lightColor', #ffffff);
 $valid: #198754;
 $invalid: #dc3545;
 $textColor: bsiProperty('textColor', #383e42);
-
+$dark-mode-text-color: bsiProperty('darkModeTextColor', #ffffff);
 // Fonts
 $primaryFont: bsiProperty('primaryFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle1FontFamily: bsiProperty('titleStyle1FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
