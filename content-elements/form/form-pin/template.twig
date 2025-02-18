@@ -2,26 +2,34 @@
     {% set formFieldElementId = elementId ?: 'form-pin-dafa5a0e' %}
     {% set formFieldElementPartId = elementPartId ?: 'form-field-part-eefc3ac5' %}
     {% set formFieldTextPartId = formTextPartId ?: 'form-field-part-text-cc1a1c62' %}
+    {% set formFieldErrorRequiredPartId = errorRequiredPartId ?: 'form-field-part-error-required-f3cf3728' %}
     {% set formFieldLabelText = (labelText ?: properties.formFieldLabelText) ?: bsi_cx_lorem(3) %}
     {% set formFieldInfoText = (infoText ?: properties.formFieldInfoText) ?: "" %}
+    {% set formFieldErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
     
     <div x-data="formPin" data-bsi-element="{{ formFieldElementId }}" data-bsi-form-field-fixed-type data-bsi-hide-required class="{{ 'bsi-element-' ~ formFieldElementId }} mb-4 bsi-form-element bsi-form-field-element bsi-form-flex-label" data-bsi-element-part="{{ formFieldElementPartId }}">
-        <div class="bsi-form-input-element bsi-label-floating-element mb-3 bsi-form-pin-element">
-            {# generated Inputs #}
-        </div>
         <div class="bsi-form-input-element bsi-label-floating-element mb-3">
-            <input x-init="initFormFieldInput" class="form-control bsi-form-field-input hide show-if-edit" type="text" value="" required>
-            {# Preview Pin Inputs #}
-            <input class="form-control bsi-form-field-input hide show-if-edit" type="text">
-            <input class="form-control bsi-form-field-input hide show-if-edit" type="text">
-            <input class="form-control bsi-form-field-input hide show-if-edit" type="text">
-            <input class="form-control bsi-form-field-input hide show-if-edit" type="text">
-            <input class="form-control bsi-form-field-input hide show-if-edit" type="text">
-        </div>
-        <div class="form-label-and-info-text show-if-edit">
-            <label for="field" class="form-label">{{ formFieldLabelText }}</label>
-            <div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
-            <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ formFieldInfoText }}"></i>
+            <div class="form-label-and-info-text">
+                <label for="field" class="form-label">{{ formFieldLabelText }}</label>
+                <div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
+                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ formFieldInfoText }}"></i>
+            </div>
+            <input x-init="initPinNumberFields" x-on:change="validateInput" type="text" class="form-control bsi-form-field-input bsi-form-field-input-original hide" id="field" value="" required>
+            <div class="bsi-form-pin-element">
+                {# Preview Pin Inputs #}
+                <input class="form-control bsi-form-field-input" type="text" data-bsi-remove-if="live">
+                <input class="form-control bsi-form-field-input" type="text" data-bsi-remove-if="live">
+                <input class="form-control bsi-form-field-input" type="text" data-bsi-remove-if="live">
+                <input class="form-control bsi-form-field-input" type="text" data-bsi-remove-if="live">
+                <input class="form-control bsi-form-field-input" type="text" data-bsi-remove-if="live">
+                <input class="form-control bsi-form-field-input" type="text" data-bsi-remove-if="live">
+            </div>
+            <div class="bsi-form-pin-element generated-inputs">
+                {# generated Inputs #}
+            </div>
+            <div x-init="initRequiredError" class="invalid-feedback">
+                <label data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" role="alert" aria-live="assertive" aria-atomic="true">{{ formFieldErrorRequiredText }}</label>
+            </div>
         </div>
     </div>
 {% endapply %}

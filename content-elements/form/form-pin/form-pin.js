@@ -1,125 +1,141 @@
 import Alpine from '@alpinejs/csp';
 
 Alpine.data('formPin', () => ({
-  rootEl: null,
+  bsiInputElement: null, // Input field required for CX story / value flow
   maxlength: null,
+  requiredErrorElement: null,
 
-  initFormFieldInput() {
-    this.rootEl = this.$root.querySelector('.bsi-form-field-input');
-    var containerDiv = this.$root.querySelector('.bsi-form-pin-element');
+  initPinNumberFields() {
+    this.bsiInputElement = this.$root.querySelector('.bsi-form-field-input-original');
+    let containerDiv = this.$root.querySelector('.generated-inputs');
 
-    if (this.rootEl.getAttribute('maxlength') == null) {
+    const maxLength = this.bsiInputElement.getAttribute('maxlength');
+    if (maxLength == null) {
       this.maxlength = 6;
     } else {
-      this.maxlength = this.rootEl.getAttribute('maxlength');
+      this.maxlength = this.bsiInputElement.getAttribute('maxlength');
     }
 
-    for (var i = 0; i < this.maxlength; i++) {
-      var inputWrapper = document.createElement('div');
-      inputWrapper.classList = 'input-wrapper';
-      containerDiv.appendChild(inputWrapper);
-
-      var label = document.createElement('label');
-      label.classList = 'form-label';
-      label.innerHTML = i + 1 + ".";
-      inputWrapper.appendChild(label);
-
-      var pinBox = document.createElement('input');
-      pinBox.setAttribute('x-init', 'initFormPinInput');
-      pinBox.setAttribute('required', 'true');
-      pinBox.classList = 'bsi-form-field-input form-control bsi-form-field-input pin';
-      inputWrapper.appendChild(pinBox);
+    for (let i = 0; i < this.maxlength; i++) {
+      this._initPinNumberField(containerDiv, i);
     }
   },
 
+  _initPinNumberField(containerDiv, i) {
+    let inputWrapper = document.createElement('div');
+    inputWrapper.classList = 'input-wrapper';
+    containerDiv.appendChild(inputWrapper);
+  
+    let label = document.createElement('label');
+    label.classList = 'form-label';
+    label.innerHTML = (i + 1) + ".";
+    inputWrapper.appendChild(label);
+  
+    let pinBox = document.createElement('input');
+    pinBox.setAttribute('x-init', 'initFormPinInput');
+    pinBox.setAttribute('required', 'true');
+    pinBox.classList = 'bsi-form-field-input form-control bsi-form-field-input pin';
+    inputWrapper.appendChild(pinBox);
+  },
+  
   initFormPinInput() {
-    var inputPin = this.$el;
+    let inputPin = this.$el;
     inputPin.setAttribute('inputmode', 'numeric');
     inputPin.setAttribute('pattern', "[0-9]");
+
     inputPin.addEventListener('focusin', (e) => {
       inputPin.setAttribute('old', inputPin.value);
     });
+
     inputPin.addEventListener('keydown', (e) => {
-      if (e.key==='Backspace' && !inputPin.value) {
+      if (e.key ==='Backspace' && !inputPin.value) {
         this._autoFocusPreviousPinInput();
       }
-    })
+    });
+
     inputPin.addEventListener('input', (e) => {
+      const inputPinList = this.$root.querySelectorAll('input.pin');
+      this._cleanUp();
+      this.bsiInputElement.value = Array.from(inputPinList).reduce((result, input) => {
+        return result + input.value;
+      }, "");
       if (this.$root.classList.contains('auto-submit')) {
         this._autoSubmitIfFilledIn();
-      } else {
-        this._cleanUp();
       }
       this._autoFocusNextPinInput();
     });
   },
 
-  _autoSubmitIfFilledIn() {
-    let form = this.$root.closest('form');
-    const inputPinList = this.$root.querySelectorAll('input.pin');
-    this._cleanUp();
-    this.rootEl.value = Array.from(inputPinList).reduce((result, input) => {
-      return result + input.value;
-    }, "");
-    if (form && this.rootEl.value.length == this.maxlength) {
-      form.submit();
+  initRequiredError() {
+    this.requiredErrorElement = this.$el;
+  },
+
+  validateInput() {
+    if (this.bsiInputElement.value.length != this.maxlength) {
+      this.requiredErrorElement.style.display = "block";
+    } else {
+      this.requiredErrorElement.style.display = "none";
     }
   },
 
   _autoFocusNextPinInput() {
-    var inputPin = this.$el;
-    var nextWrapper = inputPin.parentNode.nextElementSibling;
-    if (inputPin.value && !this._LastPinElement()) {
-      var nextPinInput = nextWrapper.children[1];
-      while (nextPinInput) {
-        var pinInput = nextPinInput;
-        pinInput.focus();
-        break;
-      }
+    let inputPin = this.$el;
+    let nextWrapper = inputPin.parentNode.nextElementSibling;
+    if (inputPin.value && !this._isLastPinElement()) {
+      this._autoFocus(nextWrapper);
     }
   },
 
   _autoFocusPreviousPinInput() {
-    var inputPin = this.$el;
-    var previousWrapper = inputPin.parentNode.previousSibling;
+    let inputPin = this.$el;
+    let previousWrapper = inputPin.parentNode.previousSibling;
     if (previousWrapper != null) {
-      var previousPinInput = previousWrapper.children[1];
-      while (previousPinInput) {
-        var pinInput = previousPinInput;
-        pinInput.focus();
-        break;
+      this._autoFocus(previousWrapper);
+    }
+  },
+
+  _autoFocus(wrapper){
+    var nextPinInput = wrapper.querySelector('input.pin');
+      if (nextPinInput) {
+        nextPinInput.focus();
       }
+  },
+
+  _autoSubmitIfFilledIn() {
+    let form = this.$root.closest('form');
+    if (form && this.bsiInputElement.value.length == this.maxlength) {
+      form.submit();
     }
   },
 
   _cleanUp() {
-    var inputPin = this.$el;
+    // TODO: auch im DOM lösbar?
+    let inputPin = this.$el;
     if (inputPin.value) {
-      if (this._LastPinElement()){
+      if (this._isLastPinElement()){
         inputPin.value = inputPin.value.slice(-1);
       }
+
+      const numberPattern = /^[0-9]+$/;
       if (inputPin.value.length > 1) {
-        var old = inputPin.getAttribute('old');
-        var value = inputPin.value;
-        if (!/^[0-9]+$/.test(inputPin.value)) {
-          inputPin.value = old;
+        var oldValue = inputPin.getAttribute('old');
+        var currentValue = inputPin.value;
+        
+        if (!numberPattern.test(inputPin.value)) {
+          inputPin.value = oldValue;
         } else {
-          var newVal = value.replace(old, '');
-          inputPin.value = newVal;
-          var old = newVal;
+          var newValue = currentValue.replace(oldValue, '');
+          inputPin.value = newValue;
+          oldValue = newValue;
         }
-      } else if (!/^[0-9]+$/.test(inputPin.value)) {
+
+      } else if (!numberPattern.test(inputPin.value)) {
         inputPin.value = null;
       }
     }
   },
 
-  _LastPinElement() {
-    var inputPin = this.$el;
-    if(inputPin.parentNode.nextElementSibling == null){
-      return true;
-    } else {
-      return false;
-    } ;
+  _isLastPinElement() {
+    return this.$el.parentNode.nextElementSibling == null; 
   },
 }));
