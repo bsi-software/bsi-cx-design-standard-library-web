@@ -6,9 +6,6 @@
 ) {
 
     .bsi-element-#{$id} {
-
-        overflow: hidden;
-        border-radius: 24px;
         
         @media (max-width: bsiProperty(gridBreakpointMD)) {
             border-radius: 16px;
@@ -20,6 +17,8 @@
                 @each $name, $color in $colors {
                     &.bsi-bg-color-#{$name}.bsi-opacity-#{$i} {
                         background-color: mix(white, $color, 100%-$opacity-percentage);
+                        overflow: hidden;
+                        border-radius: 24px;
                     }
                 }
             }
