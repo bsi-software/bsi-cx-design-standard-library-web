@@ -25,7 +25,7 @@
                                 <label for="field" class="form-label">{{ formFieldLabelText }}</label>
                                 <div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
                             </div>
-                            <input x-init="initPinNumberFields" type="text" class="form-control bsi-form-field-input bsi-form-field-input-original hide required" id="field" value="" required>
+                            <input x-init="initPinNumberFields" type="text" class="form-control bsi-form-field-input bsi-form-field-input-original hide required" id="field" aria-hidden="true" value="" required>
                             <div class="bsi-form-pin-element">
                                 {# generated Inputs #}
                                 <input min="0" max="9" class="form-control bsi-form-field-input preview-input" type="text" data-bsi-remove-if="live">
