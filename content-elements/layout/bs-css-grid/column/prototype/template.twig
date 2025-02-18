@@ -6,20 +6,15 @@
     {% set gridColumnWidthDesktop = (columnDesktopWidth ?: properties.gridColumnDesktopWidth ) ?: '12' %}
     {% set gridColumnWidthTablet = (columnTabletWidth ?: properties.gridColumnTabletWidth ) ?: '8' %}
     {% set gridColumnWidthMobile = (columnMobileWidth ?: properties.gridColumnMobileWidth ) ?: '4' %}
-    {% set gridColumnStartDesktop = (gridStartDesktop ?: properties.gridStartDesktop ) ?: 'auto' %}
-    {% set gridColumnStartTablet = (gridStartTablet ?: properties.gridStartTablet ) ?: 'auto' %}
-    {% set gridColumnStartMobile = (gridStartMobile ?: properties.gridStartMobile ) ?: 'auto' %}
 
-    <div data-bsi-element="{{gridColumnElementId}}" 
+    <div data-bsi-element="{{gridColumnElementId}}"
+      
         class="
             {{'bsi-element-' ~ gridColumnElementId}} 
             bsi-grid-column-element
             {{'g-col-xl-' ~ gridColumnWidthDesktop}}
             {{'g-col-md-' ~ gridColumnWidthTablet}}
             {{'g-col-' ~ gridColumnWidthMobile}}
-            {{'g-start-xl-' ~ gridColumnStartDesktop}}
-            {{'g-start-md-' ~ gridColumnStartTablet}}
-            {{'g-start-' ~ gridColumnStartMobile}}
             {{'bsi-bg-color-' ~ gridColumnBackgroundColor}}
             {{'bsi-opacity-' ~ gridColumnOpacity}}
             {{'align-content-' ~ gridColumnAlignContent}}
