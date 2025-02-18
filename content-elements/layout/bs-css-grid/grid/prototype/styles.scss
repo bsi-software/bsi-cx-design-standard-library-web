@@ -1,10 +1,11 @@
 @import "../../../../../styles/properties";
 
 @mixin styles(
-    $id: 'bsi-grid-24cb3f1c'
+    $id: 'bsi-grid-24cb3f1c',
+    $colors: ("primary": $primary, "secondary": $secondary, "tertiary": $tertiary, "dark": $dark),
 ) {
 
-    .bsi-element-bsi-grid-24cb3f1c {
+    .bsi-element-#{$id} {
 
         overflow: hidden;
 
@@ -22,9 +23,6 @@
         @media (max-width: bsiProperty(gridBreakpointMD)) {
             border-radius: 16px;
         }
-
-        $colors: ("primary": $primary, "secondary": $secondary, "tertiary": $tertiary, "dark": $dark);
-        
 
         @for $i from 10 through 100 {
             @if $i % 10 == 0 {

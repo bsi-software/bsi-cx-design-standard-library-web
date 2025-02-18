@@ -1,11 +1,13 @@
 {% apply spaceless %}
     {% set gridColumnElementId = elementId ?: 'bsi-grid-column-d587a56d' %}
+    {% set gridDropzoneId = gridDropzoneId ?: 'bsi-grid-column-dropzone-0c2739f1' %}
     {% set gridColumnBackgroundColor = (backgroundColor ?: properties.gridBackgroundColor) ?: 'transparent' %}
     {% set gridColumnOpacity = (opacity ?: properties.gridOpacity) ?: '100' %}
     {% set gridColumnAlignContent = (alignContent ?: properties.gridAlignContent) ?: 'center' %}
     {% set gridColumnWidthDesktop = (columnDesktopWidth ?: properties.gridColumnDesktopWidth ) ?: '12' %}
     {% set gridColumnWidthTablet = (columnTabletWidth ?: properties.gridColumnTabletWidth ) ?: '8' %}
     {% set gridColumnWidthMobile = (columnMobileWidth ?: properties.gridColumnMobileWidth ) ?: '4' %}
+    {% set customStyleClasses = customStyleClasses %}
 
     <div data-bsi-element="{{gridColumnElementId}}"
       
@@ -18,9 +20,10 @@
             {{'bsi-bg-color-' ~ gridColumnBackgroundColor}}
             {{'bsi-opacity-' ~ gridColumnOpacity}}
             {{'align-content-' ~ gridColumnAlignContent}}
+            {{ customStyleClasses }}
         "
     >
-        <div data-bsi-dropzone="bsi-grid-column-dropzone-0c2739f1">
+        <div data-bsi-dropzone="{{gridDropzoneId}}">
             {% block grid_column_dropzone %}{% endblock %}
         </div>
     </div>
