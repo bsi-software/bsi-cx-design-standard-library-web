@@ -75,10 +75,9 @@ Alpine.data('formPin', () => ({
     div.appendChild(inputPin);
     containerDiv.appendChild(div);
 
-    inputPin.addEventListener('change', (e) => {
+    inputPin.addEventListener('focusin', (e) => {
       if (inputPin.value < 0 || inputPin.value > 9 || !isNumber(inputPin.value)) {
         inputPin.value = '';
-        console.log('input value is correct: ' + inputPin.value);
       }
     });
 
