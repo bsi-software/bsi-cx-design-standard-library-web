@@ -16,6 +16,15 @@ Alpine.data('selectField', () => ({
       // The select field was initialized with an empty value for the placeholder. We need to quickly toggle the value for the required value to be properly handled by the form.
       this.selectElement.value = this.selectElement.options[0].value + '_temp';
       this.selectElement.value = this.selectElement.options[0].value;
+    } else if (this.rootElement.classList.contains('bsi-placeholder-not-defined')) {
+        let option = document.createElement("option");
+        option.value = '';
+        option.text = '';
+        this.selectElement.prepend(option);
+        this.selectElement.options[0].setAttribute('selected', '');
+
+        this.selectElement.value = this.selectElement.options[0].value + '_temp';
+        this.selectElement.value = this.selectElement.options[0].value;
     }
   },
 }))
