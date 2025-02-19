@@ -35,12 +35,12 @@ Alpine.data('formPin', () => ({
   validateInput() {
     if (this.bsiInputElement.value.length != this.maxLength) {
       this.requiredErrorElement.style.display = "block";
-      this.requiredErrorElement.setAttribute('aria-hidden', 'true');
-      this.requiredErrorElement.removeAttribute('tabindex');
-    } else {
-      this.requiredErrorElement.style.display = "none";
       this.requiredErrorElement.setAttribute('aria-hidden', 'false');
       this.requiredErrorElement.setAttribute('tabindex', '0');
+    } else {
+      this.requiredErrorElement.style.display = "none";
+      this.requiredErrorElement.setAttribute('aria-hidden', 'true');
+      this.requiredErrorElement.removeAttribute('tabindex');
     }
   },
 
@@ -138,9 +138,6 @@ Alpine.data('formPin', () => ({
       if (this._isLastPinElement(inputPin)){
         inputPin.value = inputPin.value.slice(-1);
       }
-      //else if (inputPin.value.length > 1) {
-      //  inputPin.value = inputPin.value.replace(inputPin.getAttribute('old'), '');
-      //}
     }
   },
 
