@@ -49,7 +49,12 @@
 
     .btn-dm-submit{
       background-color: $primary !important;
-      color: white !important;
+      color: bsiProperty('darkModeTextColor', #ffffff) !important;
+    }
+
+    .btn-outline-dark {
+      color: bsiProperty('darkModeTextColor', #ffffff) !important;
+      border-color: bsiProperty('darkModeTextColor', #ffffff) !important;
     }
 
   }
@@ -169,6 +174,7 @@
 
   $colors: ("primary": $primary, "secondary": $secondary);
   @each $name, $color in $colors {
+
     &.bsi-form-color-#{$name} {
       input:checked {
         background-color: $color;
