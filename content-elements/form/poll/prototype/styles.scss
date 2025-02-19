@@ -10,6 +10,16 @@
       margin-bottom: 0.75em;
     }
 
+    @media screen and (prefers-color-scheme: dark) {
+      .poll-label {
+        color: bsiProperty('darkModeTextColor', #ffffff);
+      }
+    }
+
+    .poll-label {
+      color: bsiProperty('darkColor', #383e42);
+    }
+
     .bsi-poll-number-input {
       display: none;
     }

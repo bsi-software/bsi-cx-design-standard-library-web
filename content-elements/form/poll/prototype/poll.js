@@ -71,6 +71,23 @@ Alpine.data("formPoll", () => ({
     label.setAttribute('data-value', value);
     label.innerHTML = value;
 
+    const selectRadio = () => {
+      if(radio.checked == true) {
+        radio.checked = false;
+      } else {
+        radio.checked = true;
+      }
+    };
+
+    label.addEventListener("click", selectRadio);
+    label.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            selectRadio();
+            range.value = label.getAttribute("data-value");
+            thisForm._updateStatus(range, isStar);
+        }
+    });
+
     radio.addEventListener("change", function () {
       range.value = label.getAttribute("data-value");
       thisForm._updateStatus(range, isStar);
