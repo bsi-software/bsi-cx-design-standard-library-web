@@ -1,5 +1,5 @@
 const advancedElements = [
-  require('./webcam-image-upload')
+  require('./webcam-image-upload'),
 ];
 
 module.exports.advancedElements = advancedElements;
