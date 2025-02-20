@@ -7,7 +7,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
 * Update nps-survey element: logic and mobile layout
-* Add dark mode
+* Add dark mode support for general layout and all elements
 
 ## [1.4.9] - 05.02.2025
 * Add new "list/list item" element where it's possible to sort the list with checkbox via drag and drop or keyboard
