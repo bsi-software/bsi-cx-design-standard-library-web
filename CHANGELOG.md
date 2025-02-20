@@ -7,6 +7,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
 * Update nps-survey element: logic and mobile layout
+* Add dark mode support for general layout and all elements
 * Remove empty `ul`-tag from form summary validation 
 * Fix the bootstrap date icon visualization
 

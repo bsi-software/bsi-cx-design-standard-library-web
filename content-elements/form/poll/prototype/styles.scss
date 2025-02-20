@@ -45,6 +45,13 @@
       }
     }
 
+    @media screen and (prefers-color-scheme: dark) {
+      .bsi-dm-bg-color{
+        background-color: $primary !important;
+        color: white !important;
+      }
+    }
+
     &.bsi-poll-star {
       .form-check-inline {
         margin-right: 0;

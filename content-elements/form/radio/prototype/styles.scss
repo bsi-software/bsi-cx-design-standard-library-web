@@ -8,5 +8,11 @@
     .form-check-input {
       -webkit-appearance: none;
     }
+
+    @media screen and (prefers-color-scheme: dark) {
+      .form-check-label {
+        color: bsiProperty('darkModeTextColor', #ffffff);
+      }
+    }
   }
 }

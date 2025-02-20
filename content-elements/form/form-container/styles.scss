@@ -45,6 +45,20 @@
     }
   }
 
+  @media screen and (prefers-color-scheme: dark) {
+
+    .btn-dm-submit{
+      background-color: $primary !important;
+      color: bsiProperty('darkModeTextColor', #ffffff) !important;
+    }
+
+    .btn-outline-dark {
+      color: bsiProperty('darkModeTextColor', #ffffff) !important;
+      border-color: bsiProperty('darkModeTextColor', #ffffff) !important;
+    }
+
+  }
+
   &.bsi-form-label-left {
     @media (min-width: $md) {
       .bsi-form-btn-row, .bsi-multi-col-element {
@@ -160,6 +174,7 @@
 
   $colors: ("primary": $primary, "secondary": $secondary);
   @each $name, $color in $colors {
+
     &.bsi-form-color-#{$name} {
       input:checked {
         background-color: $color;
@@ -224,6 +239,7 @@
       }
     }
   }
+  
 
   &.bsi-form-btn-filled .btn-outline-info {
     color: $light;
