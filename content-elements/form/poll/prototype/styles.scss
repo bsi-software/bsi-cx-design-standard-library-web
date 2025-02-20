@@ -50,11 +50,6 @@
     }
 
     @media screen and (prefers-color-scheme: dark) {
-      // .bsi-dm-bg-color{
-      //   background-color: $primary !important;
-      //   color: white !important;
-      // }
-
       .poll-label {
         color: bsiProperty('darkModeTextColor', #ffffff);
       }
