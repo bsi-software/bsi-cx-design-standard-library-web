@@ -10,12 +10,6 @@
       margin-bottom: 0.75em;
     }
 
-    @media screen and (prefers-color-scheme: dark) {
-      .poll-label {
-        color: bsiProperty('darkModeTextColor', #ffffff);
-      }
-    }
-
     .poll-label {
       color: bsiProperty('darkColor', #383e42);
     }
@@ -56,9 +50,13 @@
     }
 
     @media screen and (prefers-color-scheme: dark) {
-      .bsi-dm-bg-color{
-        background-color: $primary !important;
-        color: white !important;
+      // .bsi-dm-bg-color{
+      //   background-color: $primary !important;
+      //   color: white !important;
+      // }
+
+      .poll-label {
+        color: bsiProperty('darkModeTextColor', #ffffff);
       }
     }
 
