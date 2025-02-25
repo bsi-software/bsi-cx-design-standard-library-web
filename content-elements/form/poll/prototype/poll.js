@@ -82,7 +82,7 @@ Alpine.data("formPoll", () => ({
 
     label.addEventListener("click", selectRadio);
     label.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" || e.key === " ") {
             selectRadio();
             range.value = label.getAttribute("data-value");
             thisForm._updateStatus(range, isStar);
