@@ -8,7 +8,7 @@ Alpine.data("formPoll", () => ({
   initRadioGroup() {
     this.root = this.$root;
     let thisForm = this;
-    let range = this.root.querySelector("input");
+    let range = this.root.querySelector("input.bsi-poll-number-input");
     if (range === null) {
       return;
     }
@@ -16,20 +16,15 @@ Alpine.data("formPoll", () => ({
     let min = parseInt(range.getAttribute("min") || 1);
     let max = parseInt(range.getAttribute("max") || 10);
     let step = parseInt(range.getAttribute("step") || 1);
+    let name = range.getAttribute("name");
+    range.remove();
 
     range.setAttribute("class", "bsi-poll-number-input");
 
     let container = this.root.querySelector(".bsi-poll-radio-group");
-    let name =
-      "bsi-poll-radios-" + Math.floor(Math.random() * (100 - 1 + 1)) + 1;
-    if (this.root.classList.contains("bsi-poll-nps")) {
-      for (let value = min; value <= max; value += step) {
-        this._initRadioElement(range, value, container, thisForm, name, false);
-      }
-    } else if (this.root.classList.contains("bsi-poll-star")) {
-      for (let value = min; value <= max; value += step) {
-        this._initRadioElement(range, value, container, thisForm, name, true);
-      }
+    var isStar = this.root.classList.contains("bsi-poll-star");
+    for (let value = min; value <= max; value += step) {
+      this._initRadioElement(range, value, container, thisForm, name, isStar);
     }
 
     range.form.addEventListener("reset", function () {
@@ -75,19 +70,16 @@ Alpine.data("formPoll", () => ({
     if (range.hasAttribute("required")) {
       radio.required = true;
     }
+    radio.checked = value == range.value;
 
-    label.setAttribute('class', 'form-check-label bsi-poll-radio-label');
-    label.setAttribute('for', id);
+    label.setAttribute("class", "form-check-label bsi-poll-radio-label");
+    label.setAttribute("for", id);
     label.setAttribute("tabindex", "0")
-    label.setAttribute('data-value', value);
+    label.setAttribute("data-value", value);
     label.innerHTML = value;
 
     const selectRadio = () => {
-      if(radio.checked == true) {
-        radio.checked = false;
-      } else {
-        radio.checked = true;
-      }
+      radio.checked = !radio.checked;
     };
 
     if(isStar) {
@@ -111,11 +103,11 @@ Alpine.data("formPoll", () => ({
       thisForm._updateStatus(range, isStar);
     });
     label.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-            selectRadio();
-            range.value = label.getAttribute("data-value");
-            thisForm._updateStatus(range, isStar);
-        }
+      if (e.key === "Enter" || e.key === " ") {
+        selectRadio();
+        range.value = label.getAttribute("data-value");
+        thisForm._updateStatus(range, isStar);
+      }
     });
 
     radio.addEventListener("change", function () {
@@ -129,7 +121,7 @@ Alpine.data("formPoll", () => ({
   },
 
   _updateStatus(range, isStar) {
-    let radioItems = this.root.querySelectorAll('input[type="radio"]');
+    let radioItems = this.root.querySelectorAll("input[type=radio]");
     let isFound = -1;
     for (let i = 0; i < radioItems.length; i++) {
       let radio = radioItems[i];
@@ -142,12 +134,12 @@ Alpine.data("formPoll", () => ({
       }
     }
 
-    if (isStar && isFound > -1) {
-      for (let i = 0; i < radioItems.length; i++) {
-        let radio = radioItems[i];
-        if (isFound >= i)
+    if (isStar) {
+      Array.from(radioItems)
+        .filter((v, i) => isFound >= i)
+        .forEach(radio => {
           radio.parentElement.classList.add("bsi-poll-radio-checked");
-      }
+        })
     }
   },
 }));
