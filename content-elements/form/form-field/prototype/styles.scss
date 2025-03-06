@@ -50,4 +50,10 @@
       }
     }
   }
+  
+  @media screen and (prefers-color-scheme: dark) {
+    .form-label {
+      color: bsiProperty('darkModeTextColor', #ffffff);
+    }
+  }
 }

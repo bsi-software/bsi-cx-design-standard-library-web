@@ -42,4 +42,10 @@ $flagsImagePath: '~intl-tel-input/build/img/';
       background-color: rgba(0, 0, 0, 0.05) !important;
     }
   }
+
+  @media screen and (prefers-color-scheme: dark) {
+    .form-label {
+      color: bsiProperty('darkModeTextColor', #ffffff);
+    }
+  }
 }
