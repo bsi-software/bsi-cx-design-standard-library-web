@@ -14,6 +14,7 @@ import '../../content-elements/base/table/prototype/table';
 import '../../content-elements/form/form-container/form';
 import '../../content-elements/form/form-field-tel/prototype/form-tel-input';
 import '../../content-elements/form/form-field/prototype/form-field';
+import '../../content-elements/form/form-pin/form-pin';
 import '../../content-elements/form/poll/prototype/poll';
 import '../../content-elements/form/radio/prototype/radio';
 import '../../content-elements/form/select/prototype/select';
