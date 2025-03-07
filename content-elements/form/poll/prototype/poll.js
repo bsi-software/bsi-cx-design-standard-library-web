@@ -56,10 +56,20 @@ Alpine.data("formPoll", () => ({
       "form-check form-check-inline radio-group bsi-poll-radio-item"
     );
 
+    if(isStar) {
+      div.setAttribute(
+        "tabindex",
+        "0"
+      );
+    }
     radio.setAttribute("class", "form-check-input bsi-poll-radio-input");
     radio.setAttribute("type", "radio");
     radio.setAttribute("value", value);
-    radio.setAttribute("tabindex", "0");
+    if(!isStar){
+      radio.setAttribute("tabindex", "0");
+    } else {
+      radio.setAttribute("tabindex", "-1")
+    }
     radio.setAttribute("id", id);
     radio.setAttribute("name", name);
     if (range.hasAttribute("required")) {
@@ -80,7 +90,26 @@ Alpine.data("formPoll", () => ({
       }
     };
 
-    label.addEventListener("click", selectRadio);
+    if(isStar) {
+      div.addEventListener("click", selectRadio);
+      div.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            selectRadio();
+            range.value = label.getAttribute("data-value");
+            thisForm._updateStatus(range, isStar);
+        }
+      });
+      div.addEventListener("click", (e) => {
+        selectRadio();
+        range.value = label.getAttribute("data-value");
+        thisForm._updateStatus(range, isStar);
+      });
+    }
+    label.addEventListener("click", (e) => {
+      selectRadio();
+      range.value = label.getAttribute("data-value");
+      thisForm._updateStatus(range, isStar);
+    });
     label.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
             selectRadio();
