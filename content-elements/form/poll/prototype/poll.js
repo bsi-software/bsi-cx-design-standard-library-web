@@ -56,20 +56,67 @@ Alpine.data("formPoll", () => ({
       "form-check form-check-inline radio-group bsi-poll-radio-item"
     );
 
+    if(isStar) {
+      div.setAttribute(
+        "tabindex",
+        "0"
+      );
+    }
     radio.setAttribute("class", "form-check-input bsi-poll-radio-input");
     radio.setAttribute("type", "radio");
     radio.setAttribute("value", value);
-    radio.setAttribute("tabindex", "0");
+    if(!isStar){
+      radio.setAttribute("tabindex", "0");
+    } else {
+      radio.setAttribute("tabindex", "-1")
+    }
     radio.setAttribute("id", id);
     radio.setAttribute("name", name);
     if (range.hasAttribute("required")) {
       radio.required = true;
     }
 
-    label.setAttribute('class', 'form-check-label bsi-poll-radio-label bsi-dm-bg-color');
+    label.setAttribute('class', 'form-check-label bsi-poll-radio-label');
     label.setAttribute('for', id);
+    label.setAttribute("tabindex", "0")
     label.setAttribute('data-value', value);
     label.innerHTML = value;
+
+    const selectRadio = () => {
+      if(radio.checked == true) {
+        radio.checked = false;
+      } else {
+        radio.checked = true;
+      }
+    };
+
+    if(isStar) {
+      div.addEventListener("click", selectRadio);
+      div.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            selectRadio();
+            range.value = label.getAttribute("data-value");
+            thisForm._updateStatus(range, isStar);
+        }
+      });
+      div.addEventListener("click", (e) => {
+        selectRadio();
+        range.value = label.getAttribute("data-value");
+        thisForm._updateStatus(range, isStar);
+      });
+    }
+    label.addEventListener("click", (e) => {
+      selectRadio();
+      range.value = label.getAttribute("data-value");
+      thisForm._updateStatus(range, isStar);
+    });
+    label.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            selectRadio();
+            range.value = label.getAttribute("data-value");
+            thisForm._updateStatus(range, isStar);
+        }
+    });
 
     radio.addEventListener("change", function () {
       range.value = label.getAttribute("data-value");
