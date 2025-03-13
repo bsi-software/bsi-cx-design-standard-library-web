@@ -12,6 +12,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Fix the bootstrap date icon visualization
 * Update dark mode and accessibility for poll element
 * Add pin element
+* Fix poll submit
 
 ## [1.4.9] - 05.02.2025
 * Add new "list/list item" element where it's possible to sort the list with checkbox via drag and drop or keyboard
