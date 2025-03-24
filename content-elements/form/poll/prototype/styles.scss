@@ -11,6 +11,10 @@
       margin-bottom: 0.75em;
     }
 
+    .form-check-input:checked[type=radio] {
+      --bs-form-check-bg-image: unset !important;
+    }
+
     .poll-label {
       color: bsiProperty('darkColor', #383e42);
     }
@@ -27,7 +31,6 @@
       }
 
       .bsi-poll-radio-input {
-        margin-left: -1.5em;
         float: left;
         margin: 0;
         padding: 0;
@@ -62,19 +65,9 @@
         margin-right: 0;
       }
 
-      .form-check {
-        margin-bottom: 0;
-      }
-
-      .bsi-poll-radio-item {
-        padding-left: 0;
-        padding-right: 0.5em;
-      }
-
       .bsi-poll-radio-input {
-        margin-left: 0;
-        // width: 2.5em;
-        height: 1.5em;
+        width: 2.5em;
+        height: 2.5em;
 
         &:hover {
           cursor: pointer;
@@ -104,13 +97,11 @@
     }
   }
 
-  @media (max-width: $sm - 1px) {
-    .bsi-element-poll-wni8em .label-right {
-      text-align: right;
-    }
-  }
+  $colors: (
+    "primary": $poll-primary,
+    "secondary": $poll-secondary,
+  );
 
-  $colors: ("primary": $poll-primary, "secondary": $poll-secondary);
   @each $name, $color in $colors {
 
     .bsi-form-color-#{$name} .bsi-element-#{$id} {
@@ -130,7 +121,7 @@
       }
 
       &.bsi-poll-star .bsi-poll-radio-group {
-        input[type="radio"] {
+        .bsi-poll-radio-item input[type="radio"] {
           font-family: "bootstrap-icons";
           font-size: 2em;
           color: $color;
@@ -139,17 +130,15 @@
           }
         }
 
-        .bsi-poll-radio-item input[type="radio"]:checked {
-          &::before {
-            content: "\F586";
-          }
-        }
-
         &:not(:hover) {
-          .bsi-poll-radio-item {
-            &[data-form-radio-selected="true"] input[type="radio"]:checked,
-            &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"],
-            &.bsi-poll-radio-checked ~ .bsi-poll-radio-item input[type="radio"] {
+          .bsi-poll-radio-checked {
+            input[type="radio"] {
+                            &::before {
+                content: "\F586";
+              }
+            }
+
+            input[type="radio"]:checked {
               &::before {
                 content: "\F586";
               }
@@ -159,19 +148,17 @@
 
         &:hover {
           .bsi-poll-radio-item {
-            &[data-form-radio-selected="true"] input[type="radio"],
-            &.bsi-poll-radio-checked input[type="radio"] {
-              &::before {
-                content: "\F588";
-              }
+            input[type="radio"] {
+            	&::before {
+                	content: "\F586";
+              	}
             }
 
-            &:hover input[type="radio"],
             &:hover ~ .bsi-poll-radio-item input[type="radio"] {
-              &::before {
-                content: "\F586";
-              }
-            }
+             &::before {
+                content: "\F588";
+              }            
+	    }
           }
         }
       }
@@ -185,36 +172,30 @@
   .was-validated .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-group {
     .bsi-poll-radio-input:invalid ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input.is-invalid ~ .bsi-poll-radio-label {
-      color: $invalid;
-      border: 1px solid $invalid;
+      color: $invalid !important;
+      border: 1px solid $invalid !important;
     }
 
     .bsi-poll-radio-input:valid ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input.is-valid ~ .bsi-poll-radio-label {
-      color: $valid;
-      border: 1px solid $valid;
+      color: $valid !important;
+      border: 1px solid $valid !important;
     }
 
     .bsi-poll-radio-input:valid:focus ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input.is-valid:focus ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input:valid:checked ~ .bsi-poll-radio-label,
     .bsi-poll-radio-input.is-valid:checked ~ .bsi-poll-radio-label {
-      background-color: $valid;
-      color: $light;
+      background-color: $valid !important;
+      color: $light !important;
     }
   }
 
   .was-validated .bsi-element-#{$id}.bsi-poll-star .bsi-poll-radio-group {
     input[type="radio"] {
-      &:invalid, &.is-invalid {
-        color: $invalid;
-        &::before {
-          content: "\F588";
-        }
-      }
-
-      &:valid, &.is-valid {
-        color: $valid;
+      &:invalid,
+      &.is-invalid {
+      color: $invalid;
         &::before {
           content: "\F588";
         }
@@ -222,7 +203,8 @@
     }
 
     .bsi-poll-radio-item input[type="radio"]:checked {
-      &:valid, &.is-valid {
+      &:valid,
+      &.is-valid {
         color: $valid;
         &::before {
           content: "\F586";
@@ -231,14 +213,24 @@
     }
 
     &:not(:hover) {
-      .bsi-poll-radio-item {
-        &[data-form-radio-selected="true"] input[type="radio"]:checked,
-        &[data-form-radio-selected="true"] ~ .bsi-poll-radio-item input[type="radio"],
-        &.bsi-poll-radio-checked ~ .bsi-poll-radio-item input[type="radio"] {
-          &:valid, &.is-valid {
-            &::before {
-              content: "\F586";
-            }
+      .bsi-poll-radio-checked {
+        input[type="radio"] {
+          &:valid,
+          &.is-valid {
+	  color: $valid;
+          	&::before {
+              		content: "\F586";
+           	}
+          }
+        }
+
+        input[type="radio"]:checked {
+          &:valid,
+          &.is-valid {
+	  color: $valid;
+                      	&::before {
+              		content: "\F586";
+           	}
           }
         }
       }
@@ -246,21 +238,18 @@
 
     &:hover {
       .bsi-poll-radio-item {
-        &[data-form-radio-selected="true"] input[type="radio"],
-        &.bsi-poll-radio-checked input[type="radio"] {
-          &:valid, &.is-valid {
-            &::before {
-              content: "\F588";
-            }
-          }
+        input[type="radio"] {
+         color: $valid;
+                      	&::before {
+              		content: "\F586";
+           	}
         }
 
         &:hover ~ .bsi-poll-radio-item input[type="radio"] {
-          &:valid, &.is-valid {
-            &::before {
-              content: "\F586";
-            }
-          }
+          color: $valid;
+                      	&::before {
+              		content: "\F588";
+           	}
         }
       }
     }
