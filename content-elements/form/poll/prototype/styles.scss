@@ -1,35 +1,33 @@
 @import "../../../../styles/properties";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-
-@mixin styles(
-  $id: "poll-wni8em",
+ 
+@mixin styles($id: "poll-wni8em",
   $poll-primary: $primary,
-  $poll-secondary: $secondary
-) {
+  $poll-secondary: $secondary) {
   .bsi-element-#{$id} {
     .bsi-poll-radio-group {
       margin-bottom: 0.75em;
     }
-
+ 
     .form-check-input:checked[type=radio] {
       --bs-form-check-bg-image: unset !important;
     }
-
+ 
     .poll-label {
       color: bsiProperty('darkColor', #383e42);
     }
-
+ 
     .bsi-poll-number-input {
       display: none;
     }
-
+ 
     &.bsi-poll-nps {
       .bsi-poll-radio-item {
         flex: 0 1 42px;
         margin-right: 0;
         padding-left: 0;
       }
-
+ 
       .bsi-poll-radio-input {
         float: left;
         margin: 0;
@@ -40,49 +38,49 @@
         visibility: hidden;
         z-index: 0;
       }
-
+ 
       .bsi-poll-radio-label {
         border-radius: 0.25rem;
         width: 100%;
         text-align: center;
         font-size: 1.25rem;
         font-weight: 400;
-
+ 
         &:hover {
           cursor: pointer;
         }
       }
     }
-
+ 
     @media screen and (prefers-color-scheme: dark) {
       .poll-label {
         color: bsiProperty('darkModeTextColor', #ffffff);
       }
     }
-
+ 
     &.bsi-poll-star {
       .form-check-inline {
         margin-right: 0;
       }
-
+ 
       .bsi-poll-radio-input {
         width: 2.5em;
         height: 2.5em;
-
+ 
         &:hover {
           cursor: pointer;
         }
       }
-
+ 
       .bsi-poll-radio-label {
         display: none;
       }
-
+ 
       .bsi-poll-radio-group {
         display: inline-flex;
         flex-flow: nowrap;
         align-items: flex-start;
-
+ 
         input[type="radio"] {
           display: inline-block;
           content: "";
@@ -96,162 +94,166 @@
       }
     }
   }
-
+ 
   $colors: (
     "primary": $poll-primary,
     "secondary": $poll-secondary,
   );
-
-  @each $name, $color in $colors {
-
-    .bsi-form-color-#{$name} .bsi-element-#{$id} {
-      &.bsi-poll-nps .bsi-poll-radio-label {
-        color: $color;
-        border: 1px solid $color;
-
-        &:hover {
-          background-color: $color;
-          color: $light;
-        }
-      }
-
-      &.bsi-poll-nps .bsi-poll-radio-input:checked + .bsi-poll-radio-label {
+ 
+@each $name, $color in $colors {
+ 
+  .bsi-form-color-#{$name} .bsi-element-#{$id} {
+    &.bsi-poll-nps .bsi-poll-radio-label {
+      color: $color;
+      border: 1px solid $color;
+ 
+      &:hover {
         background-color: $color;
         color: $light;
       }
-
-      &.bsi-poll-star .bsi-poll-radio-group {
-        .bsi-poll-radio-item input[type="radio"] {
-          font-family: "bootstrap-icons";
-          font-size: 2em;
-          color: $color;
-          &::before {
-            content: "\F588";
-          }
-        }
-
-        &:not(:hover) {
-          .bsi-poll-radio-checked {
-            input[type="radio"] {
-                            &::before {
-                content: "\F586";
-              }
-            }
-
-            input[type="radio"]:checked {
-              &::before {
-                content: "\F586";
-              }
-            }
-          }
-        }
-
-        &:hover {
-          .bsi-poll-radio-item {
-            input[type="radio"] {
-            	&::before {
-                	content: "\F586";
-              	}
-            }
-
-            &:hover ~ .bsi-poll-radio-item input[type="radio"] {
-             &::before {
-                content: "\F588";
-              }            
-	    }
-          }
-        }
-      }
     }
-  }
-
-  .bsi-corner-sharp .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-label {
-    border-radius: 0;
-  }
-
-  .was-validated .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-group {
-    .bsi-poll-radio-input:invalid ~ .bsi-poll-radio-label,
-    .bsi-poll-radio-input.is-invalid ~ .bsi-poll-radio-label {
-      color: $invalid !important;
-      border: 1px solid $invalid !important;
+ 
+    &.bsi-poll-nps .bsi-poll-radio-input:checked+.bsi-poll-radio-label {
+      background-color: $color;
+      color: $light;
     }
-
-    .bsi-poll-radio-input:valid ~ .bsi-poll-radio-label,
-    .bsi-poll-radio-input.is-valid ~ .bsi-poll-radio-label {
-      color: $valid !important;
-      border: 1px solid $valid !important;
-    }
-
-    .bsi-poll-radio-input:valid:focus ~ .bsi-poll-radio-label,
-    .bsi-poll-radio-input.is-valid:focus ~ .bsi-poll-radio-label,
-    .bsi-poll-radio-input:valid:checked ~ .bsi-poll-radio-label,
-    .bsi-poll-radio-input.is-valid:checked ~ .bsi-poll-radio-label {
-      background-color: $valid !important;
-      color: $light !important;
-    }
-  }
-
-  .was-validated .bsi-element-#{$id}.bsi-poll-star .bsi-poll-radio-group {
-    input[type="radio"] {
-      &:invalid,
-      &.is-invalid {
-      color: $invalid;
+ 
+    &.bsi-poll-star .bsi-poll-radio-group {
+      .bsi-poll-radio-item span {
+        font-family: "bootstrap-icons";
+        font-size: 2em;
+        color: $color;
+ 
         &::before {
           content: "\F588";
         }
       }
+ 
+      &:not(:hover) {
+        .bsi-poll-radio-checked {
+          span {
+            &::before {
+              content: "\F586";
+            }
+          }
+ 
+          input[type="radio"]:checked ~ span {
+            &::before {
+              content: "\F586";
+            }
+          }
+        }
+      }
+ 
+      &:hover {
+        .bsi-poll-radio-item {
+          span {
+            &::before {
+              content: "\F586";
+            }
+          }
+ 
+          &:hover~.bsi-poll-radio-item span {
+            &::before {
+              content: "\F588";
+            }
+          }
+        }
+      }
     }
-
-    .bsi-poll-radio-item input[type="radio"]:checked {
-      &:valid,
-      &.is-valid {
+  }
+}
+ 
+.bsi-corner-sharp .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-label {
+  border-radius: 0;
+}
+ 
+.was-validated .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-group {
+ 
+  .bsi-poll-radio-input:invalid~.bsi-poll-radio-label,
+  .bsi-poll-radio-input.is-invalid~.bsi-poll-radio-label {
+    color: $invalid !important;
+    border: 1px solid $invalid !important;
+  }
+ 
+  .bsi-poll-radio-input:valid~.bsi-poll-radio-label,
+  .bsi-poll-radio-input.is-valid~.bsi-poll-radio-label {
+    color: $valid !important;
+    border: 1px solid $valid !important;
+  }
+ 
+  .bsi-poll-radio-input:valid:focus~.bsi-poll-radio-label,
+  .bsi-poll-radio-input.is-valid:focus~.bsi-poll-radio-label,
+  .bsi-poll-radio-input:valid:checked~.bsi-poll-radio-label,
+  .bsi-poll-radio-input.is-valid:checked~.bsi-poll-radio-label {
+    background-color: $valid !important;
+    color: $light !important;
+  }
+}
+ 
+.was-validated .bsi-element-#{$id}.bsi-poll-star .bsi-poll-radio-group {
+  input[type="radio"]  {
+ 
+    &:invalid,
+    &.is-invalid  {
+      ~span::before {
+        color: $invalid;
+        content: "\F588";
+      }
+    }
+  }
+ 
+  .bsi-poll-radio-item input[type="radio"]:checked {
+ 
+    &:valid,
+    &.is-valid {
+      ~span::before {
         color: $valid;
-        &::before {
+        content: "\F586";
+      }
+    }
+  }
+ 
+  &:not(:hover) {
+    .bsi-poll-radio-checked {
+      input[type="radio"]  {
+ 
+        &:valid,
+        &.is-valid  {
+          ~span::before {
+            color: $valid;
+            content: "\F586";
+          }
+        }
+      }
+ 
+      input[type="radio"]:checked {
+        &:valid,
+        &.is-valid {
+          ~span::before {
+            color: $valid;
+            content: "\F586";
+          }
+        }
+      }
+    }
+  
+ 
+  &:hover {
+    .bsi-poll-radio-item {       
+        span::before {
+          color: $valid;
           content: "\F586";
         }
       }
-    }
-
-    &:not(:hover) {
-      .bsi-poll-radio-checked {
-        input[type="radio"] {
-          &:valid,
-          &.is-valid {
-	  color: $valid;
-          	&::before {
-              		content: "\F586";
-           	}
-          }
-        }
-
-        input[type="radio"]:checked {
-          &:valid,
-          &.is-valid {
-	  color: $valid;
-                      	&::before {
-              		content: "\F586";
-           	}
-          }
-        }
-      }
-    }
-
-    &:hover {
-      .bsi-poll-radio-item {
-        input[type="radio"] {
-         color: $valid;
-                      	&::before {
-              		content: "\F586";
-           	}
-        }
-
-        &:hover ~ .bsi-poll-radio-item input[type="radio"] {
+ 
+      &:hover~.bsi-poll-radio-item  {
+        span::before {
           color: $valid;
-                      	&::before {
-              		content: "\F588";
-           	}
+          content: "\F588";
         }
       }
     }
+  }
   }
 }

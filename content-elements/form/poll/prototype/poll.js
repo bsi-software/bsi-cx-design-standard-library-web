@@ -49,6 +49,7 @@ Alpine.data("formPoll", () => ({
     let div = document.createElement("div");
     let radio = document.createElement("input");
     let label = document.createElement("label");
+    let span = document.createElement("span");
     let id = range.getAttribute("id") + "-" + value;
 
     div.setAttribute(
@@ -57,10 +58,14 @@ Alpine.data("formPoll", () => ({
     );
 
     if(isStar) {
-      div.setAttribute(
+      span.setAttribute(
         "tabindex",
         "0"
       );
+      span.setAttribute(
+        "style",
+        "cursor: pointer"
+      )
     }
     radio.setAttribute("class", "form-check-input bsi-poll-radio-input");
     radio.setAttribute("type", "radio");
@@ -82,6 +87,7 @@ Alpine.data("formPoll", () => ({
     label.setAttribute('data-value', value);
     label.innerHTML = value;
 
+
     const selectRadio = () => {
       if(radio.checked == true) {
         radio.checked = false;
@@ -91,26 +97,25 @@ Alpine.data("formPoll", () => ({
     };
 
     if(isStar) {
-      div.addEventListener("click", selectRadio);
-      div.addEventListener("keydown", (e) => {
+      span.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
             selectRadio();
             range.value = label.getAttribute("data-value");
             thisForm._updateStatus(range, isStar);
         }
       });
-      div.addEventListener("click", (e) => {
+      span.addEventListener("click", (e) => {
         selectRadio();
         range.value = label.getAttribute("data-value");
         thisForm._updateStatus(range, isStar);
       });
     }
-    label.addEventListener("click", (e) => {
+    div.addEventListener("click", (e) => {
       selectRadio();
       range.value = label.getAttribute("data-value");
       thisForm._updateStatus(range, isStar);
     });
-    label.addEventListener("keydown", (e) => {
+    div.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
             selectRadio();
             range.value = label.getAttribute("data-value");
@@ -122,9 +127,16 @@ Alpine.data("formPoll", () => ({
       range.value = label.getAttribute("data-value");
       thisForm._updateStatus(range, isStar);
     });
-
-    div.appendChild(radio);
-    div.appendChild(label);
+   
+    if(isStar){
+      div.appendChild(radio);
+      div.appendChild(span);
+      div.appendChild(label);
+    } else {
+      div.appendChild(radio);
+      div.appendChild(label);
+      div.appendChild(span);
+    }
     container.appendChild(div);
   },
 

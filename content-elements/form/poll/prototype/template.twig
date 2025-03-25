@@ -41,6 +41,7 @@
 			{% for value in pollRange %}
 				<div class="form-check form-check-inline radio-group bsi-poll-radio-item">
 					<input tabindex="0" class="form-check-input bsi-poll-radio-input" type="radio" id="poll-input-{{ value }}" value="{{ value }}"/>
+					<span></span>
 					<label tabindex="0" class="form-check-label bsi-poll-radio-label" for="poll-input-{{ value }}">{{ value }}</label>
 				</div>
 			{% endfor %}
