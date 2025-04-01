@@ -36,7 +36,7 @@
 			<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ pollInfoText }}"></i>
 		</div>
 		<input tabindex="0" type="number" name="poll-input" id="poll-input" min="1" max="10" step="1" value="" required="" class="bsi-poll-number-input"/>
-		<fieldset role="radiogroup" tabindex="0" x-init="initRadioGroup" @keydown="selectByKey" class="bsi-poll-radio-group d-flex flex-wrap justify-content-center" data-bsi-remove-if="draft"></fieldset>
+		<fieldset role="radiogroup" tabindex="0" x-init="initRadioGroup" class="bsi-poll-radio-group d-flex flex-wrap justify-content-center" data-bsi-remove-if="draft"></fieldset>
 		<div class="bsi-poll-radio-group d-flex flex-wrap justify-content-center" data-bsi-remove-if="live">
 			{% for value in pollRange %}
 				<div class="form-check form-check-inline radio-group bsi-poll-radio-item">
