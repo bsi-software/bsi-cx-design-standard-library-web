@@ -24,7 +24,6 @@ Alpine.data('formField', () => ({
 
     if (this.inputEl.type === 'text' || this.inputEl.type === 'email' || this.inputEl.type === 'password') {
       if (!this.inputEl.hasAttribute("maxlength")) {
-        
         this.inputEl.setAttribute("maxlength", 250);
       } 
     }
@@ -36,7 +35,6 @@ Alpine.data('formField', () => ({
     this.errorMessageInvalid = this.invalidErrorElement.getElementsByClassName('errormessage-invalid')[0].innerText;
   },
 
-  // TODO: add required logic to validate, so the required message gets calculated on-change
   validateInput() {
     if (this.inputEl.closest('.bsi-form-label-floating') && this.inputEl.classList.contains('flatpickr-input') && this.inputEl.value) {
       let label = this.rootEl.querySelector('.form-label');

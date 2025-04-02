@@ -75,10 +75,13 @@ Alpine.data('formElement', () => ({
     let formFieldInputs = this.form.getElementsByClassName('bsi-form-field-element');
     for (const formFieldInput of formFieldInputs) {
       let input = formFieldInput.getElementsByClassName('bsi-form-field-input')[0];
+      let invalidFeedback = formFieldInput.getElementsByClassName('invalid-feedback')[0];
       if (!input.checkValidity() && !input.value) {
-        formFieldInput.getElementsByClassName('invalid-feedback')[0].style.display = "block";
+        invalidFeedback.style.display = "block";
+        invalidFeedback.removeAttribute('aria-hidden');
       } else {
-        formFieldInput.getElementsByClassName('invalid-feedback')[0].style.display = "none";
+        invalidFeedback.style.display = "none";
+        invalidFeedback.setAttribute('aria-hidden', 'true');
       }
     }
   },
@@ -87,10 +90,15 @@ Alpine.data('formElement', () => ({
     let telInputs = this.form.getElementsByClassName('bsi-form-tel-input');
     for (const telInput of telInputs) {
       let input = telInput.getElementsByClassName('bsi-form-tel-input-element')[0];
-      if (!input.checkValidity() && !input.value) {
-        telInput.getElementsByClassName('bsi-tel-input-error-required')[0].style.display = "block";
-      } else {
-        telInput.getElementsByClassName('bsi-tel-input-error-required')[0].style.display = "none";
+      let validationMessage = telInput.getElementsByClassName('bsi-tel-input-error-required')[0];
+      if (validationMessage != null) { 
+        if (!input.checkValidity() && !input.value) {
+          validationMessage.style.display = "block";
+          validationMessage.removeAttribute('aria-hidden');
+        } else {
+          validationMessage.style.display = "none";
+          validationMessage.setAttribute('aria-hidden', 'true');
+        }
       }
     }
   },
@@ -100,11 +108,14 @@ Alpine.data('formElement', () => ({
     for (const formTelElement of formTelElements) {
       let formTelValid = false;
       let formTelInput = formTelElement.getElementsByClassName('bsi-form-tel-input-element')[0];
+      let invalidFeedback = formTelElement.getElementsByClassName('invalid-feedback')[0];
       formTelValid = formTelInput.value != '' || !formTelInput.hasAttribute('required');
       if (!formTelValid) {
-        formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "block";
+        invalidFeedback.style.display = "block";
+        invalidFeedback.removeAttribute('aria-hidden');
       } else {
-        formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "none";
+        invalidFeedback.style.display = "none";
+        invalidFeedback.setAttribute('aria-hidden', 'true');
       }
     }
   },
@@ -120,13 +131,16 @@ Alpine.data('formElement', () => ({
   },  
   
   _validateCheckboxInput(){
-    let CheckboxInputs = this.form.getElementsByClassName('bsi-form-checkbox-element');
-    for (const CheckboxInput of CheckboxInputs) {
-      let input = CheckboxInput.getElementsByClassName('form-checkbox-input')[0];
+    let checkboxInputs = this.form.getElementsByClassName('bsi-form-checkbox-element');
+    for (const checkboxInput of checkboxInputs) {
+      let input = checkboxInput.getElementsByClassName('form-checkbox-input')[0];
+      let invalidFeedback = checkboxInput.getElementsByClassName('invalid-feedback')[0];
       if (input.checked || !input.hasAttribute('required')) {
-        CheckboxInput.getElementsByClassName('invalid-feedback')[0].style.display = "none";
+        invalidFeedback.style.display = "none";
+        invalidFeedback.setAttribute('aria-hidden', 'true');
       } else {
-        CheckboxInput.getElementsByClassName('invalid-feedback')[0].style.display = "block";
+        invalidFeedback.style.display = "block";
+        invalidFeedback.removeAttribute('aria-hidden');
       }
     }
   },
