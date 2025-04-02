@@ -36,6 +36,7 @@ Alpine.data('formField', () => ({
     this.errorMessageInvalid = this.invalidErrorElement.getElementsByClassName('errormessage-invalid')[0].innerText;
   },
 
+  // TODO: add required logic to validate, so the required message gets calculated on-change
   validateInput() {
     if (this.inputEl.closest('.bsi-form-label-floating') && this.inputEl.classList.contains('flatpickr-input') && this.inputEl.value) {
       let label = this.rootEl.querySelector('.form-label');
@@ -127,15 +128,19 @@ Alpine.data('formField', () => ({
   },
 
   calculateVisibility(valid) {
+    let requiredErrorElement = this.rootEl.querySelector('.invalid-feedback');
     if (valid) {
       this.invalidErrorElement.setAttribute('hidden', 'true');
       this.invalidErrorElement.setAttribute('aria-hidden', 'true');
-      this.rootEl.querySelector('.invalid-feedback').style.display="none";
-      this.rootEl.querySelector('.invalid-feedback').setAttribute('hidden', 'true');
-      this.rootEl.querySelector('.invalid-feedback').setAttribute('aria-hidden', 'true');
+      requiredErrorElement.style.display="none";
+      requiredErrorElement.setAttribute('hidden', 'true');
+      requiredErrorElement.setAttribute('aria-hidden', 'true');
     } else {
-      this.invalidErrorElement.removeAttribute('hidden', 'true');
-      this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
+      this.invalidErrorElement.removeAttribute('hidden');
+      this.invalidErrorElement.removeAttribute('aria-hidden');
+      requiredErrorElement.style.display='none';
+      requiredErrorElement.setAttribute('hidden', 'true');
+      requiredErrorElement.setAttribute('aria-hidden', 'true');
     }
   },
 

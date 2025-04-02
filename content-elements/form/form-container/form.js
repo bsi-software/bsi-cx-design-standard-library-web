@@ -35,7 +35,10 @@ Alpine.data('formElement', () => ({
     if (!this.form.checkValidity()) {
       e.preventDefault();
       e.stopPropagation();
+      this._validateFormFieldInput();
+      this._validateTelInput();
       this._validateRadioInput();
+      this._validateCheckboxInput();
       this._setAriaInvalid();
       this._formValidationSummary();
       this._validateFormFieldTel();
@@ -68,6 +71,30 @@ Alpine.data('formElement', () => ({
     }
   },
 
+  _validateFormFieldInput() {
+    let formFieldInputs = this.form.getElementsByClassName('bsi-form-field-element');
+    for (const formFieldInput of formFieldInputs) {
+      let input = formFieldInput.getElementsByClassName('bsi-form-field-input')[0];
+      if (!input.checkValidity() && !input.value) {
+        formFieldInput.getElementsByClassName('invalid-feedback')[0].style.display = "block";
+      } else {
+        formFieldInput.getElementsByClassName('invalid-feedback')[0].style.display = "none";
+      }
+    }
+  },
+
+  _validateTelInput() {
+    let telInputs = this.form.getElementsByClassName('bsi-form-tel-input');
+    for (const telInput of telInputs) {
+      let input = telInput.getElementsByClassName('bsi-form-tel-input-element')[0];
+      if (!input.checkValidity() && !input.value) {
+        telInput.getElementsByClassName('bsi-tel-input-error-required')[0].style.display = "block";
+      } else {
+        telInput.getElementsByClassName('bsi-tel-input-error-required')[0].style.display = "none";
+      }
+    }
+  },
+
   _validateFormFieldTel() {
     let formTelElements = this.form.getElementsByClassName('bsi-form-tel-input');
     for (const formTelElement of formTelElements) {
@@ -89,6 +116,18 @@ Alpine.data('formElement', () => ({
       let radioValid = radioInputs.some(radio => radio.checked || !radio.hasAttribute('required'));
       radioElement.getElementsByClassName('invalid-feedback')[0].style.display = radioValid ? 'none' : 'block';
       radioElement.setAttribute('aria-invalid', !radioValid);
+    }
+  },  
+  
+  _validateCheckboxInput(){
+    let CheckboxInputs = this.form.getElementsByClassName('bsi-form-checkbox-element');
+    for (const CheckboxInput of CheckboxInputs) {
+      let input = CheckboxInput.getElementsByClassName('form-checkbox-input')[0];
+      if (input.checked || !input.hasAttribute('required')) {
+        CheckboxInput.getElementsByClassName('invalid-feedback')[0].style.display = "none";
+      } else {
+        CheckboxInput.getElementsByClassName('invalid-feedback')[0].style.display = "block";
+      }
     }
   },
 
