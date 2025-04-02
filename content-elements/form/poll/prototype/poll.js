@@ -15,6 +15,11 @@ Alpine.data("formPoll", () => ({
     this.$el.appendChild(legend);
     label.remove();
 
+    let infoText = this.$root.querySelector('.form-text');
+    if (infoText.innerText) {
+      this.$el.appendChild(infoText);
+    }
+  
     let definitionInput = this.root.querySelector("input.bsi-poll-number-input");
     if (definitionInput === null) {
       return;
