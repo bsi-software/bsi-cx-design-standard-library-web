@@ -71,19 +71,23 @@ Alpine.data('formElement', () => ({
     }
   },
 
-  _validateFormFieldInput() {
-    let formFieldInputs = this.form.getElementsByClassName('bsi-form-field-element');
-    for (const formFieldInput of formFieldInputs) {
-      let input = formFieldInput.getElementsByClassName('bsi-form-field-input')[0];
-      let invalidFeedback = formFieldInput.getElementsByClassName('invalid-feedback')[0];
-      if (!input.checkValidity() && !input.value) {
-        invalidFeedback.style.display = "block";
-        invalidFeedback.removeAttribute('aria-hidden');
-      } else {
-        invalidFeedback.style.display = "none";
-        invalidFeedback.setAttribute('aria-hidden', 'true');
-      }
+  _showValidationMessage(messageElement, show) {
+    messageElement.style.display = show ? 'block' : 'none';
+    if (show) {
+      messageElement.removeAttribute('hidden');
+      messageElement.removeAttribute('aria-hidden');
+    } else {
+      messageElement.setAttribute('hidden', 'true');
+      messageElement.setAttribute('aria-hidden', 'true');
     }
+  },
+
+  _validateFormFieldInput() {
+    this.form.querySelectorAll('.bsi-form-field-element').forEach(formFieldInput => {
+      let input = formFieldInput.querySelector('.bsi-form-field-input');
+      let invalidFeedback = formFieldInput.querySelector('.invalid-feedback');
+      this._showValidationMessage(invalidFeedback, !input.checkValidity() && !input.value);
+    });
   },
 
   _validateTelInput() {
@@ -91,14 +95,9 @@ Alpine.data('formElement', () => ({
     for (const telInput of telInputs) {
       let input = telInput.getElementsByClassName('bsi-form-tel-input-element')[0];
       let validationMessage = telInput.getElementsByClassName('bsi-tel-input-error-required')[0];
-      if (validationMessage != null) { 
-        if (!input.checkValidity() && !input.value) {
-          validationMessage.style.display = "block";
-          validationMessage.removeAttribute('aria-hidden');
-        } else {
-          validationMessage.style.display = "none";
-          validationMessage.setAttribute('aria-hidden', 'true');
-        }
+      if (validationMessage != null) {
+        var showMessage = !input.checkValidity() && !input.value;
+        this._showValidationMessage(validationMessage, showMessage);
       }
     }
   },
@@ -110,13 +109,7 @@ Alpine.data('formElement', () => ({
       let formTelInput = formTelElement.getElementsByClassName('bsi-form-tel-input-element')[0];
       let invalidFeedback = formTelElement.getElementsByClassName('invalid-feedback')[0];
       formTelValid = formTelInput.value != '' || !formTelInput.hasAttribute('required');
-      if (!formTelValid) {
-        invalidFeedback.style.display = "block";
-        invalidFeedback.removeAttribute('aria-hidden');
-      } else {
-        invalidFeedback.style.display = "none";
-        invalidFeedback.setAttribute('aria-hidden', 'true');
-      }
+      this._showValidationMessage(invalidFeedback, !formTelValid);
     }
   },
 
@@ -125,23 +118,19 @@ Alpine.data('formElement', () => ({
     for (const radioElement of radioElements) {
       let radioInputs = Array.from(radioElement.querySelectorAll('.form-check-input'));
       let radioValid = radioInputs.some(radio => radio.checked || !radio.hasAttribute('required'));
-      radioElement.getElementsByClassName('invalid-feedback')[0].style.display = radioValid ? 'none' : 'block';
+      var validationElement = radioElement.querySelector('.invalid-feedback');
       radioElement.setAttribute('aria-invalid', !radioValid);
+      this._showValidationMessage(validationElement, !radioValid);
     }
-  },  
-  
-  _validateCheckboxInput(){
+  },
+
+  _validateCheckboxInput() {
     let checkboxInputs = this.form.getElementsByClassName('bsi-form-checkbox-element');
     for (const checkboxInput of checkboxInputs) {
       let input = checkboxInput.getElementsByClassName('form-checkbox-input')[0];
       let invalidFeedback = checkboxInput.getElementsByClassName('invalid-feedback')[0];
-      if (input.checked || !input.hasAttribute('required')) {
-        invalidFeedback.style.display = "none";
-        invalidFeedback.setAttribute('aria-hidden', 'true');
-      } else {
-        invalidFeedback.style.display = "block";
-        invalidFeedback.removeAttribute('aria-hidden');
-      }
+      let invalid = !input.checkValidity();
+      this._showValidationMessage(invalidFeedback, invalid);
     }
   },
 
