@@ -39,7 +39,7 @@ Alpine.data("formPoll", () => ({
       this._initRadioElement(value, `${id}-${value}`, name, required, checked);
     }
 
-    this._updateStatus();
+    this.updateStatus();
   },
 
   initRequiredError() {
