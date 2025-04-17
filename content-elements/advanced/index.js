@@ -1,6 +1,5 @@
 const advancedElements = [
-  require('./webcam-image-upload'),
-  require('./logo-with-darkmode')
+  require('./webcam-image-upload')
 ];
 
 module.exports.advancedElements = advancedElements;
