@@ -35,13 +35,11 @@ Alpine.data('formElement', () => ({
     if (!this.form.checkValidity()) {
       e.preventDefault();
       e.stopPropagation();
-      this._validateFormFieldInput();
       this._validateTelInput();
       this._validateRadioInput();
       this._validateCheckboxInput();
       this._setAriaInvalid();
       this._formValidationSummary();
-      this._validateFormFieldTel();
     }
     this.form.classList.add('was-validated');
   },
@@ -82,34 +80,17 @@ Alpine.data('formElement', () => ({
     }
   },
 
-  _validateFormFieldInput() {
-    this.form.querySelectorAll('.bsi-form-field-element').forEach(formFieldInput => {
-      let input = formFieldInput.querySelector('.bsi-form-field-input');
-      let invalidFeedback = formFieldInput.querySelector('.invalid-feedback');
-      this._showValidationMessage(invalidFeedback, !input.checkValidity() && !input.value);
-    });
-  },
-
   _validateTelInput() {
     let telInputs = this.form.getElementsByClassName('bsi-form-tel-input');
     for (const telInput of telInputs) {
-      let input = telInput.getElementsByClassName('bsi-form-tel-input-element')[0];
-      let validationMessage = telInput.getElementsByClassName('bsi-tel-input-error-required')[0];
-      if (validationMessage != null) {
-        var showMessage = !input.checkValidity() && !input.value;
-        this._showValidationMessage(validationMessage, showMessage);
+      let visibleInput = telInput.querySelector('input[type=tel]');
+      if (!visibleInput.checkValidity()) {
+        let hasValue = !!visibleInput.value;
+        let requiredValidation = telInput.querySelector('.invalid-feedback');
+        let logicValidation = telInput.querySelector('.bsi-tel-input-error-invalid');
+        this._showValidationMessage(requiredValidation, !hasValue);
+        this._showValidationMessage(logicValidation, hasValue);
       }
-    }
-  },
-
-  _validateFormFieldTel() {
-    let formTelElements = this.form.getElementsByClassName('bsi-form-tel-input');
-    for (const formTelElement of formTelElements) {
-      let formTelValid = false;
-      let formTelInput = formTelElement.getElementsByClassName('bsi-form-tel-input-element')[0];
-      let invalidFeedback = formTelElement.getElementsByClassName('invalid-feedback')[0];
-      formTelValid = formTelInput.value != '' || !formTelInput.hasAttribute('required');
-      this._showValidationMessage(invalidFeedback, !formTelValid);
     }
   },
 
@@ -117,7 +98,7 @@ Alpine.data('formElement', () => ({
     let radioElements = this.form.getElementsByClassName('bsi-form-radio-element');
     for (const radioElement of radioElements) {
       let radioInputs = Array.from(radioElement.querySelectorAll('.form-check-input'));
-      let radioValid = radioInputs.some(radio => radio.checked || !radio.hasAttribute('required'));
+      let radioValid = radioInputs.some(radio => radio.checkValidity());
       var validationElement = radioElement.querySelector('.invalid-feedback');
       radioElement.setAttribute('aria-invalid', !radioValid);
       this._showValidationMessage(validationElement, !radioValid);
@@ -129,8 +110,7 @@ Alpine.data('formElement', () => ({
     for (const checkboxInput of checkboxInputs) {
       let input = checkboxInput.getElementsByClassName('form-checkbox-input')[0];
       let invalidFeedback = checkboxInput.getElementsByClassName('invalid-feedback')[0];
-      let invalid = !input.checkValidity();
-      this._showValidationMessage(invalidFeedback, invalid);
+      this._showValidationMessage(invalidFeedback, !input.checkValidity());
     }
   },
 

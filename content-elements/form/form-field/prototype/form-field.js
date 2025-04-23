@@ -5,17 +5,22 @@ import "flatpickr/dist/l10n/fr.js";
 import "flatpickr/dist/l10n/it.js";
 
 Alpine.data('formField', () => ({
-  rootEl: null,
   inputEl: null,
   fp: null,
   minDate: null,
   maxDate: null,
-  invalidErrorElement: null,
-  errorMessageInvalid: '',
+  requiredValidationMessage: '',
+  logicValidationMessage: '',
+  validationElement: null,
 
+  init() {
+    this.validationElement = this.$root.querySelector('.invalid-feedback')
+    this.requiredValidationMessage = this.validationElement.innerText;
+    this.logicValidationMessage = this.$root.querySelector('.logic-validation').innerText;
+  },
   initFormFieldInput() {
-    this.rootEl = this.$root;
     this.inputEl = this.$el;
+
     if (this.inputEl.type === 'range') {
       this._initRangeInput();
     } else if (['date', 'datetime-local', 'time'].includes(this.inputEl.type)) {
@@ -27,46 +32,22 @@ Alpine.data('formField', () => ({
         this.inputEl.setAttribute("maxlength", 250);
       }
     }
-  },
 
-  initInvalidError() {
-    this.invalidErrorElement = this.$el;
-    this.errorMessageInvalid = this.invalidErrorElement.getElementsByClassName('errormessage-invalid')[0].innerText;
+    if (this.inputEl.type === 'email') {
+      this.inputEl.setAttribute('pattern', '^[^@\s]{1,}@[^@\[\]\s]{1,}\.[^@\[\]\s]{2,}$');
+    }
   },
 
   validateInput() {
+    // TODO: replace by css - this is styling, not validation
     if (this.inputEl.closest('.bsi-form-label-floating') && this.inputEl.classList.contains('flatpickr-input') && this.inputEl.value) {
-      let label = this.rootEl.querySelector('.form-label');
+      let label = this.$root.querySelector('.form-label');
       label.style.opacity = 0.65;
       label.style.transform = 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)';
     }
 
-    this._validateMailInput();
-    this._validateNumberInput();
-    this._validateTextInput();
     this._validateDateTimeInput();
-  },
-
-  _validateNumberInput() {
-    if (this.inputEl.type === 'number') {
-      let valid = true;
-      if (this.inputEl.value && (this.inputEl.min || this.inputEl.max)) {
-        let inputValue = parseInt(this.inputEl.value);
-        let minValue = parseInt(this.inputEl.min ? this.inputEl.min : Number.MIN_SAFE_INTEGER);
-        let maxValue = parseInt(this.inputEl.max ? this.inputEl.max : Number.MAX_SAFE_INTEGER);
-        valid = minValue <= inputValue && inputValue <= maxValue;
-      }
-      this.calculateVisibility(valid);
-    }
-  },
-
-  _validateTextInput() {
-    if (this.inputEl.type === 'text' || this.inputEl.type === 'password') {
-      let inputValue = this.inputEl.value;
-      let maxCharacters = parseInt(this.inputEl.getAttribute("maxLength") ? this.inputEl.getAttribute("maxLength") : 256);
-      let valid = inputValue.length <= maxCharacters;
-      this.calculateVisibility(valid);
-    }
+    this.validationElement.innerText = !this.$el.checkValidity() && this.$el.value ? this.logicValidationMessage : this.requiredValidationMessage;
   },
 
   _validateDateTimeInput() {
@@ -75,42 +56,11 @@ Alpine.data('formField', () => ({
       if (this.inputEl.value && (this.inputEl.min || this.inputEl.max)) {
         let isTime = this.inputEl.value.length === 5;
         let valDate = new Date(isTime ? `2000-01-01T${this.inputEl.value}` : this.inputEl.value);
-        let minDate = new Date(isTime ? `2000-01-01T${this.inputEl.min}` : this.inputEl.min);
-        let maxDate = new Date(isTime ? `2000-01-01T${this.inputEl.max}` : this.inputEl.max);
-        valid = valid && (!this.inputEl.min || valDate >= minDate);
-        valid = valid && (!this.inputEl.max || valDate >= maxDate);
+        valid = valid && (!this.minDate || valDate >= this.minDate);
+        valid = valid && (!this.maxDate || valDate >= this.maxDate);
       }
-      this.calculateVisibility(valid);
+      this.inputEl.setCustomValidity(valid ? '' : this.logicValidationMessage);
     }
-  },
-
-  _validateMailInput() {
-    if (this.inputEl.type === 'email') {
-      let inputValue = this.inputEl.value;
-      let rgx = /^[^@\s]{1,}@[^@\[\]\s]{1,}\.[^@\[\]\s]{2,}$/;
-      let valid = rgx.test(inputValue) || (!inputValue);
-      this.calculateVisibility(valid);
-    }
-  },
-
-  _showValidationMessage(messageElement, show) {
-    messageElement.style.display = show ? 'block' : 'none';
-    if (show) {
-      messageElement.removeAttribute('hidden');
-      messageElement.removeAttribute('aria-hidden');
-    } else {
-      messageElement.setAttribute('hidden', 'true');
-      messageElement.setAttribute('aria-hidden', 'true');
-    }
-  },
-
-  calculateVisibility(logicValid) {
-    var requiredValid = this.inputEl.checkValidity();
-    var requiredErrorElement = this.rootEl.querySelector('.invalid-feedback');
-    var showLogicValidMessage = !logicValid && requiredValid; // Show logic validation message when value is present but fullfills not the constraint
-    this._showValidationMessage(requiredErrorElement, !requiredValid);
-    this._showValidationMessage(this.invalidErrorElement, showLogicValidMessage);
-    this.inputEl.setCustomValidity(showLogicValidMessage ? this.errorMessageInvalid : '');
   },
 
   // Adjust range input to bootstrap styling
@@ -130,11 +80,11 @@ Alpine.data('formField', () => ({
       let year = date.getFullYear();
       let hours = twoDigitNumber(date.getHours());
       let minutes = twoDigitNumber(date.getMinutes());
-      this.inputEl.placeholder = type === 'date' ? `${day}.${month}.${year}` : `${day}.${month}.${year} ${hours}:${minutes}`;
+      this.inputEl.placeholder = (type === 'date') ? `${day}.${month}.${year}` : `${day}.${month}.${year} ${hours}:${minutes}`;
     }
 
-    var minDate = this.inputEl.min;
-    var maxDate = this.inputEl.max;
+    this.minDate = this.inputEl.min ? new Date(isTime ? `2000-01-01T${this.inputEl.min}` : this.inputEl.min) : null;
+    this.maxDate = this.inputEl.max ? new Date(isTime ? `2000-01-01T${this.inputEl.max}` : this.inputEl.max) : null;
 
     var dateFormats = {
       'date': 'Y-m-d',
@@ -155,8 +105,8 @@ Alpine.data('formField', () => ({
       enableTime: type !== 'date',
       noCalendar: type === 'time',
       time_24hr: true,
-      minDate: minDate,
-      maxDate: maxDate
+      minDate: this.minDate,
+      maxDate: this.maxDate
     });
 
     // Change reference for form validation

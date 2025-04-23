@@ -23,11 +23,9 @@
             </div>
             <div class="input-container">
                 <input x-init="initFormFieldInput" x-on:change="validateInput" type="text" class="form-control bsi-form-field-input" id="field" value="">
+                <div data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" class="invalid-feedback"> {{ formFieldErrorRequiredText }} </div>
             </div>
-            <div data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" class="invalid-feedback"> {{ formFieldErrorRequiredText }} </div>
-            <div x-init="initInvalidError" class="format-invalid-feedback" hidden="true" aria-hidden="true">
-                <label data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="errormessage-invalid" role="alert" aria-live="assertive" aria-atomic="true">{{ formFieldErrorInvalidText }}</label>
-            </div>
+            <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="d-none logic-validation"> {{ formFieldErrorInvalidText }} </div>
         </div>
     </div>
 {% endapply %}
