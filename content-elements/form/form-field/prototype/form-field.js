@@ -34,7 +34,7 @@ Alpine.data('formField', () => ({
     }
 
     if (this.inputEl.type === 'email') {
-      this.inputEl.setAttribute('pattern', '^[^@\s]{1,}@[^@\[\]\s]{1,}\.[^@\[\]\s]{2,}$');
+      this.inputEl.setAttribute('pattern', '^[^@\\s]{1,}@[^@\\[\\]\\s]{1,}\\.[^@\\[\\]\\s]{2,}$');
     }
   },
 

@@ -37,7 +37,6 @@ Alpine.data('formElement', () => ({
       e.stopPropagation();
       this._validateTelInput();
       this._validateRadioInput();
-      this._validateCheckboxInput();
       this._setAriaInvalid();
       this._formValidationSummary();
     }
@@ -102,15 +101,6 @@ Alpine.data('formElement', () => ({
       var validationElement = radioElement.querySelector('.invalid-feedback');
       radioElement.setAttribute('aria-invalid', !radioValid);
       this._showValidationMessage(validationElement, !radioValid);
-    }
-  },
-
-  _validateCheckboxInput() {
-    let checkboxInputs = this.form.getElementsByClassName('bsi-form-checkbox-element');
-    for (const checkboxInput of checkboxInputs) {
-      let input = checkboxInput.getElementsByClassName('form-checkbox-input')[0];
-      let invalidFeedback = checkboxInput.getElementsByClassName('invalid-feedback')[0];
-      this._showValidationMessage(invalidFeedback, !input.checkValidity());
     }
   },
 
