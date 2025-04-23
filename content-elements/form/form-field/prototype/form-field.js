@@ -9,6 +9,7 @@ Alpine.data('formField', () => ({
   fp: null,
   minDate: null,
   maxDate: null,
+  isTime: false,
   requiredValidationMessage: '',
   logicValidationMessage: '',
   validationElement: null,
@@ -54,10 +55,9 @@ Alpine.data('formField', () => ({
     if (this.inputEl.classList.contains('flatpickr-input')) {
       let valid = true;
       if (this.inputEl.value && (this.inputEl.min || this.inputEl.max)) {
-        let isTime = this.inputEl.value.length === 5;
-        let valDate = new Date(isTime ? `2000-01-01T${this.inputEl.value}` : this.inputEl.value);
+        let valDate = new Date(this.isTime ? `2000-01-01T${this.inputEl.value}` : this.inputEl.value);
         valid = valid && (!this.minDate || valDate >= this.minDate);
-        valid = valid && (!this.maxDate || valDate >= this.maxDate);
+        valid = valid && (!this.maxDate || valDate <= this.maxDate);
       }
       this.inputEl.setCustomValidity(valid ? '' : this.logicValidationMessage);
     }
@@ -72,8 +72,9 @@ Alpine.data('formField', () => ({
   _initDateInput() {
     let locale = document.documentElement.lang.slice(0, 2) ?? 'de-CH';
     var type = this.inputEl.type;
-    if (this.inputEl.placeholder && type !== 'time') {
-      var twoDigitNumber = (number) => number.toString.padStart(2, '0');
+    this.isTime = (type === 'time');
+    if (this.inputEl.placeholder && !this.isTime) {
+      var twoDigitNumber = (number) => number.toString().padStart(2, '0');
       let date = new Date(this.inputEl.placeholder);
       let day = twoDigitNumber(date.getDate());
       let month = twoDigitNumber(date.getMonth() + 1); // month is 0 indexed
@@ -103,20 +104,16 @@ Alpine.data('formField', () => ({
       dateFormat: dateFormats[type],
       allowInput: true,
       enableTime: type !== 'date',
-      noCalendar: type === 'time',
+      noCalendar: this.isTime,
       time_24hr: true,
       minDate: this.minDate,
       maxDate: this.maxDate
     });
 
-    // Change reference for form validation
-    this.fp.input.classList.add('bsi-form-field-input');
-    this.inputEl.classList.remove('bsi-form-field-input');
-
     // Add the span (with the icon) after the input
     this.inputEl.parentNode.classList.add('input-container'); // Add the container class in order to set the icon position
     var iconSpan = document.createElement('span');
-    iconSpan.innerHTML = `<i class="bi ${type === 'time' ? 'bi-clock' : 'bi-calendar'}"></i>`;
+    iconSpan.innerHTML = `<i class="bi ${this.isTime ? 'bi-clock' : 'bi-calendar'}"></i>`;
     this.inputEl.parentNode.appendChild(iconSpan);
   },
 }))

@@ -35,10 +35,10 @@ Alpine.data('formElement', () => ({
     if (!this.form.checkValidity()) {
       e.preventDefault();
       e.stopPropagation();
-      this._validateTelInput();
       this._validateRadioInput();
       this._setAriaInvalid();
       this._formValidationSummary();
+      this._validateFormFieldTel();
     }
     this.form.classList.add('was-validated');
   },
@@ -79,9 +79,8 @@ Alpine.data('formElement', () => ({
     }
   },
 
-  _validateTelInput() {
-    let telInputs = this.form.getElementsByClassName('bsi-form-tel-input');
-    for (const telInput of telInputs) {
+  _validateFormFieldTel() {
+    this.form.querySelectorAll('.bsi-form-tel-input').forEach(telInput => {
       let visibleInput = telInput.querySelector('input[type=tel]');
       if (!visibleInput.checkValidity()) {
         let hasValue = !!visibleInput.value;
@@ -90,7 +89,7 @@ Alpine.data('formElement', () => ({
         this._showValidationMessage(requiredValidation, !hasValue);
         this._showValidationMessage(logicValidation, hasValue);
       }
-    }
+    });
   },
 
   _validateRadioInput() {
