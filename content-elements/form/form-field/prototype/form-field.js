@@ -84,8 +84,8 @@ Alpine.data('formField', () => ({
       this.inputEl.placeholder = (type === 'date') ? `${day}.${month}.${year}` : `${day}.${month}.${year} ${hours}:${minutes}`;
     }
 
-    this.minDate = this.inputEl.min ? new Date(isTime ? `2000-01-01T${this.inputEl.min}` : this.inputEl.min) : null;
-    this.maxDate = this.inputEl.max ? new Date(isTime ? `2000-01-01T${this.inputEl.max}` : this.inputEl.max) : null;
+    this.minDate = this.inputEl.min ? new Date(this.isTime ? `2000-01-01T${this.inputEl.min}` : this.inputEl.min) : null;
+    this.maxDate = this.inputEl.max ? new Date(this.isTime ? `2000-01-01T${this.inputEl.max}` : this.inputEl.max) : null;
 
     var dateFormats = {
       'date': 'Y-m-d',
