@@ -68,27 +68,38 @@ Alpine.data('formElement', () => ({
     }
   },
 
-  _validateFormFieldTel() {
-    let formTelElements = this.form.getElementsByClassName('bsi-form-tel-input');
-    for (const formTelElement of formTelElements) {
-      let formTelValid = false;
-      let formTelInput = formTelElement.getElementsByClassName('bsi-form-tel-input-element')[0];
-      formTelValid = formTelInput.value != '' || !formTelInput.hasAttribute('required');
-      if (!formTelValid) {
-        formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "block";
-      } else {
-        formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "none";
-      }
+  _showValidationMessage(messageElement, show) {
+    messageElement.style.display = show ? 'block' : 'none';
+    if (show) {
+      messageElement.removeAttribute('hidden');
+      messageElement.removeAttribute('aria-hidden');
+    } else {
+      messageElement.setAttribute('hidden', 'true');
+      messageElement.setAttribute('aria-hidden', 'true');
     }
+  },
+
+  _validateFormFieldTel() {
+    this.form.querySelectorAll('.bsi-form-tel-input').forEach(telInput => {
+      let visibleInput = telInput.querySelector('input[type=tel]');
+      if (!visibleInput.checkValidity()) {
+        let hasValue = !!visibleInput.value;
+        let requiredValidation = telInput.querySelector('.invalid-feedback');
+        let logicValidation = telInput.querySelector('.bsi-tel-input-error-invalid');
+        this._showValidationMessage(requiredValidation, !hasValue);
+        this._showValidationMessage(logicValidation, hasValue);
+      }
+    });
   },
 
   _validateRadioInput() {
     let radioElements = this.form.getElementsByClassName('bsi-form-radio-element');
     for (const radioElement of radioElements) {
       let radioInputs = Array.from(radioElement.querySelectorAll('.form-check-input'));
-      let radioValid = radioInputs.some(radio => radio.checked || !radio.hasAttribute('required'));
-      radioElement.getElementsByClassName('invalid-feedback')[0].style.display = radioValid ? 'none' : 'block';
+      let radioValid = radioInputs.some(radio => radio.checkValidity());
+      var validationElement = radioElement.querySelector('.invalid-feedback');
       radioElement.setAttribute('aria-invalid', !radioValid);
+      this._showValidationMessage(validationElement, !radioValid);
     }
   },
 
