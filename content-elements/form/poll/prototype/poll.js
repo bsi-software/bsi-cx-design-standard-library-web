@@ -30,7 +30,7 @@ Alpine.data("formPoll", () => ({
     let step = parseInt(definitionInput.getAttribute("step") || 1);
     let name = definitionInput.getAttribute("name");
     var id = definitionInput.getAttribute("id");
-    var required = definitionInput.hasAttribute('required')
+    var required = definitionInput.hasAttribute('required');
     definitionInput.remove();
 
     this.isStar = this.root.classList.contains("bsi-poll-star");
