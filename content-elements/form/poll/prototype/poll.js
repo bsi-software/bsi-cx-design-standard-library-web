@@ -4,150 +4,79 @@ Alpine.data("formPoll", () => ({
   root: null,
   labelElement: null,
   requiredErrorElement: null,
+  isStar: false,
 
   initRadioGroup() {
     this.root = this.$root;
-    let thisForm = this;
-    let range = this.root.querySelector("input");
-    if (range === null) {
+    let label = this.$root.querySelector('label');
+    let legend = document.createElement('legend');
+    legend.setAttribute("class", "form-label");
+    legend.innerText = label.innerText;
+    this.$el.appendChild(legend);
+    label.remove();
+
+    let infoText = this.$root.querySelector('.form-text');
+    if (infoText.innerText) {
+      this.$el.appendChild(infoText);
+    }
+  
+    let definitionInput = this.root.querySelector("input.bsi-poll-number-input");
+    if (definitionInput === null) {
       return;
     }
 
-    let min = parseInt(range.getAttribute("min") || 1);
-    let max = parseInt(range.getAttribute("max") || 10);
-    let step = parseInt(range.getAttribute("step") || 1);
+    let min = parseInt(definitionInput.getAttribute("min") || 1);
+    let max = parseInt(definitionInput.getAttribute("max") || 10);
+    let step = parseInt(definitionInput.getAttribute("step") || 1);
+    let name = definitionInput.getAttribute("name");
+    var id = definitionInput.getAttribute("id");
+    var required = definitionInput.hasAttribute('required');
+    definitionInput.remove();
 
-    range.setAttribute("class", "bsi-poll-number-input");
-
-    let container = this.root.querySelector(".bsi-poll-radio-group");
-    let name =
-      "bsi-poll-radios-" + Math.floor(Math.random() * (100 - 1 + 1)) + 1;
-    if (this.root.classList.contains("bsi-poll-nps")) {
-      for (let value = min; value <= max; value += step) {
-        this._initRadioElement(range, value, container, thisForm, name, false);
-      }
-    } else if (this.root.classList.contains("bsi-poll-star")) {
-      for (let value = min; value <= max; value += step) {
-        this._initRadioElement(range, value, container, thisForm, name, true);
-      }
+    this.isStar = this.root.classList.contains("bsi-poll-star");
+    for (let value = min; value <= max; value += step) {
+      var checked = value == definitionInput.getAttribute('value');
+      this._initRadioElement(value, `${id}-${value}`, name, required, checked);
     }
 
-    range.form.addEventListener("reset", function () {
-      window.setTimeout(function () {
-        thisForm._updateStatus(range);
-      });
-    });
-
-    this._updateStatus(range);
+    this.updateStatus();
   },
 
   initRequiredError() {
     this.requiredErrorElement = this.$el;
   },
 
-  _initRadioElement(range, value, container, thisForm, name, isStar) {
+  _initRadioElement(value, id, name, required, checked) {
     let div = document.createElement("div");
-    let radio = document.createElement("input");
-    let label = document.createElement("label");
-    let id = range.getAttribute("id") + "-" + value;
-
     div.setAttribute(
       "class",
       "form-check form-check-inline radio-group bsi-poll-radio-item"
     );
+    var radioHTML = `<input type="radio" 
+      class="form-check-input bsi-poll-radio-input" 
+      value="${value}" 
+      id="${id}" 
+      name="${name}"
+      @change="updateStatus" 
+      ${required ? "required" : ""} 
+      ${checked ? "checked" : ""}>`;
+    var labelHTML = `<label for="${id}" class="form-check-label bsi-poll-radio-label">${value}</label>`;
 
-    if(isStar) {
-      div.setAttribute(
-        "tabindex",
-        "0"
-      );
-    }
-    radio.setAttribute("class", "form-check-input bsi-poll-radio-input");
-    radio.setAttribute("type", "radio");
-    radio.setAttribute("value", value);
-    if(!isStar){
-      radio.setAttribute("tabindex", "0");
-    } else {
-      radio.setAttribute("tabindex", "-1")
-    }
-    radio.setAttribute("id", id);
-    radio.setAttribute("name", name);
-    if (range.hasAttribute("required")) {
-      radio.required = true;
-    }
-
-    label.setAttribute('class', 'form-check-label bsi-poll-radio-label');
-    label.setAttribute('for', id);
-    label.setAttribute("tabindex", "0")
-    label.setAttribute('data-value', value);
-    label.innerHTML = value;
-
-    const selectRadio = () => {
-      if(radio.checked == true) {
-        radio.checked = false;
-      } else {
-        radio.checked = true;
-      }
-    };
-
-    if(isStar) {
-      div.addEventListener("click", selectRadio);
-      div.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-            selectRadio();
-            range.value = label.getAttribute("data-value");
-            thisForm._updateStatus(range, isStar);
-        }
-      });
-      div.addEventListener("click", (e) => {
-        selectRadio();
-        range.value = label.getAttribute("data-value");
-        thisForm._updateStatus(range, isStar);
-      });
-    }
-    label.addEventListener("click", (e) => {
-      selectRadio();
-      range.value = label.getAttribute("data-value");
-      thisForm._updateStatus(range, isStar);
-    });
-    label.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-            selectRadio();
-            range.value = label.getAttribute("data-value");
-            thisForm._updateStatus(range, isStar);
-        }
-    });
-
-    radio.addEventListener("change", function () {
-      range.value = label.getAttribute("data-value");
-      thisForm._updateStatus(range, isStar);
-    });
-
-    div.appendChild(radio);
-    div.appendChild(label);
-    container.appendChild(div);
+    div.innerHTML = radioHTML + labelHTML;
+    this.$el.appendChild(div);
   },
 
-  _updateStatus(range, isStar) {
-    let radioItems = this.root.querySelectorAll('input[type="radio"]');
-    let isFound = -1;
-    for (let i = 0; i < radioItems.length; i++) {
-      let radio = radioItems[i];
-      radio.checked = range.value === radio.value;
-      if (radio.checked === true) {
-        radio.parentElement.classList.add("bsi-poll-radio-checked");
-        isFound = i;
+  updateStatus() {
+    let radioItems = Array.from(this.root.querySelectorAll("input[type=radio]"));
+    let selectedIndex = radioItems.findIndex(radio => radio.checked);
+    radioItems.forEach((radio, i) => {
+      let parentClassList = radio.parentElement.classList;
+      let isActive = this.isStar ? i <= selectedIndex : i === selectedIndex;
+      if (isActive) {
+        parentClassList.add("bsi-poll-radio-checked");
       } else {
-        radio.parentElement.classList.remove("bsi-poll-radio-checked");
+        parentClassList.remove("bsi-poll-radio-checked");
       }
-    }
-
-    if (isStar && isFound > -1) {
-      for (let i = 0; i < radioItems.length; i++) {
-        let radio = radioItems[i];
-        if (isFound >= i)
-          radio.parentElement.classList.add("bsi-poll-radio-checked");
-      }
-    }
+    });
   },
 }));

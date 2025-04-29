@@ -32,11 +32,11 @@
 	<div data-bsi-element-part="{{ pollElementPartId }}" data-bsi-form-field-fixed-type>
 		<div class="form-label-and-info-text">
 			<label tabindex="0" for="poll-input" class="form-label pt-0 d-block">{{ pollLabelText }}</label>
-			<div tabindex="0" data-bsi-element-part="{{ pollFormTextPartId }}" class="form-text">{{ pollInfoText }}</div>
-			<i tabindex="0" class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ pollInfoText }}"></i>
+			<div data-bsi-element-part="{{ pollFormTextPartId }}" class="form-text">{{ pollInfoText }}</div>
+			{# Remove support until requested <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ pollInfoText }}"></i> #}
 		</div>
 		<input tabindex="0" type="number" name="poll-input" id="poll-input" min="1" max="10" step="1" value="" required="" class="bsi-poll-number-input"/>
-		<div tabindex="0" x-init="initRadioGroup" class="bsi-poll-radio-group d-flex flex-wrap justify-content-center" data-bsi-remove-if="draft"></div>
+		<fieldset role="radiogroup" tabindex="0" x-init="initRadioGroup" class="bsi-poll-radio-group d-flex flex-wrap justify-content-center" data-bsi-remove-if="draft"></fieldset>
 		<div class="bsi-poll-radio-group d-flex flex-wrap justify-content-center" data-bsi-remove-if="live">
 			{% for value in pollRange %}
 				<div class="form-check form-check-inline radio-group bsi-poll-radio-item">
