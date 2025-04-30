@@ -28,7 +28,9 @@ module.exports = (
     .withLabel(elementLabel)
     .withIcon(Icon.DROPDOWN)
     .withStyleConfigs(
-        require('../../../../configs/styles/accordion-active')
+        require('../../../../configs/styles/accordion-active'),
+        require('../../../../configs/styles/accordion-bgcolor-header'),
+        require('../../../../configs/styles/accordion-text-color-header')
     )
     .withParts(
         cx.part.plainText
