@@ -32,13 +32,13 @@ Alpine.data('formElement', () => ({
   },
 
   submitForm(e) {
+    this._validateFormFieldTel(); // must be executed before form.checkValidity()
     if (!this.form.checkValidity()) {
       e.preventDefault();
       e.stopPropagation();
       this._validateRadioInput();
       this._setAriaInvalid();
       this._formValidationSummary();
-      this._validateFormFieldTel();
     }
     else {
       this._clearSelectValues();
@@ -85,13 +85,7 @@ Alpine.data('formElement', () => ({
   _validateFormFieldTel() {
     this.form.querySelectorAll('.bsi-form-tel-input').forEach(telInput => {
       let visibleInput = telInput.querySelector('input[type=tel]');
-      if (!visibleInput.checkValidity()) {
-        let hasValue = !!visibleInput.value;
-        let requiredValidation = telInput.querySelector('.invalid-feedback');
-        let logicValidation = telInput.querySelector('.bsi-tel-input-error-invalid');
-        this._showValidationMessage(requiredValidation, !hasValue);
-        this._showValidationMessage(logicValidation, hasValue);
-      }
+      visibleInput.dispatchEvent(new Event('change'));
     });
   },
 
