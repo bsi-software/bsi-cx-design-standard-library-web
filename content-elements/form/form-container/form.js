@@ -40,6 +40,9 @@ Alpine.data('formElement', () => ({
       this._formValidationSummary();
       this._validateFormFieldTel();
     }
+    else {
+      this._clearSelectValues();
+    }
     this.form.classList.add('was-validated');
   },
 
@@ -109,6 +112,10 @@ Alpine.data('formElement', () => ({
       let input = element.querySelector('input, select, textarea');
       input.setAttribute('aria-invalid', !input.checkValidity());
     });
+  },
+
+  _clearSelectValues() {
+    this.$root.querySelectorAll('select').forEach(select => select.value = select.value || null);
   },
 
   _formValidationSummary() {
