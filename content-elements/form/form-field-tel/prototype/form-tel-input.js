@@ -1,140 +1,52 @@
-import intlTelInput from 'intl-tel-input';
-import 'intl-tel-input/build/css/intlTelInput.css';
 import Alpine from '@alpinejs/csp';
+import intlTelInput from 'intl-tel-input';
 
 Alpine.data('telInput', () => ({
-  rootElement: null,
   inputField: null,
-  normalizedValueField: null,
-  onlyCountries: '',
-  preferredCountries: '',
-  errormessageInvalid: '',
-  invalidErrorElement: null,
-  labelElement: null,
-  labelText: null,
   iti: null,
+  validationElement: null,
+  requiredValidationMessage: '',
+  logicValidationMessage: '',
+  required: false,
 
   init() {
-    this.rootElement = this.$root;
-    this.inputField = this.$refs.inputField;
-    this.invalidErrorElement = this.$refs.invalidErrorField;
+    this.validationElement = this.$root.querySelector('.invalid-feedback');
+    this.requiredValidationMessage = this.validationElement.innerText;
+    this.logicValidationMessage = this.$root.querySelector('.logic-validation').innerText;
+    this.inputField = this.$root.querySelector('input');
 
-    let countryData = window.intlTelInputGlobals.getCountryData();
-    countryData.forEach((country) => {
-      country.name = country.name.replace(/.+\((.+)\)/, "$1");
+    let name = this.inputField.getAttribute('name');
+    let onlyCountries = this.$root.querySelector('.only-countries').innerText.split(',').map(c => c.trim()).filter(c => !!c);
+    let initialCountry = this.$root.querySelector('.initial-country').innerText.split(',')[0].trim() || 'auto';
+    let hasFloatingLabel = !!this.$root.closest('.bsi-form-label-floating');
+
+    this.iti = intlTelInput(this.inputField, {
+      onlyCountries: onlyCountries,
+      countrySearch: onlyCountries.length > 5,
+      loadUtils: () => import('intl-tel-input/build/js/utils.js'),
+      hiddenInput: () => ({ phone: name }),
+      separateDialCode: !hasFloatingLabel, // If floating label is selected, only show country flag without country code
+      initialCountry: initialCountry,
     });
 
-    this.onlyCountries = this.rootElement.getElementsByClassName('only-countries')[0].innerText.split(',').map(c => c.trim()).filter(c => !!c);
-    this.preferredCountries = this.rootElement.getElementsByClassName('preferred-countries')[0].innerText.split(',').map(c => c.trim()).filter(c => !!c);
-
-    this.errormessageInvalid = this.rootElement.getElementsByClassName('errormessage-invalid')[0].innerText;
-
-    this.initHiddenInput();
-
-    if (this.rootElement.closest('.bsi-form-label-floating')) {
-      // If floating label is selected, only show country flag without country code
-      this.iti = intlTelInput(this.inputField, {
-        onlyCountries: this.onlyCountries,
-        preferredCountries: this.preferredCountries,
-        countrySearch: false, // disable to be able to use 'preferredCountries'. See https://github.com/jackocnr/intl-tel-input/issues/1504
-        utilsScript: require('intl-tel-input/build/js/utils.js'),
-        showSelectedDialCode: false
-      });
-
-    } else {
-      // Otherwise show country flag and country code
-      this.iti = intlTelInput(this.inputField, {
-        onlyCountries: this.onlyCountries,
-        preferredCountries: this.preferredCountries,
-        countrySearch: false, // disable to be able to use 'preferredCountries'. See https://github.com/jackocnr/intl-tel-input/issues/1504
-        utilsScript: require('intl-tel-input/build/js/utils.js'),
-        showSelectedDialCode: true
-      });
-    }
-
-    this.iti.promise.then(() => {
-      this.changeCountry(); // necessary if input is prepopulated
-    });
-
-    if (this.rootElement.closest('.bsi-form-label-floating')) {
+    if (hasFloatingLabel) {
       this._initFloatingLabel();
     }
   },
 
-  initHiddenInput() {
-    this.normalizedValueField = document.createElement('input');
-    const inputHolder = this.$refs.hiddenInput;
-    if (inputHolder) {
-      this.normalizedValueField.setAttribute('type', 'hidden');
-      this.normalizedValueField.setAttribute('name', this.inputField.getAttribute('name'));
-      this.normalizedValueField.setAttribute('role', 'presentation');
-      this.normalizedValueField.setAttribute('hidden', 'true');
-      this.normalizedValueField.className = "form-control bsi-form-tel-input-element hidden";
-      inputHolder.appendChild(this.normalizedValueField);
-      this.inputField.removeAttribute('name');
-    }
-  },
-
-  validateInput() {
-    this.iti.setNumber(this.iti.getNumber(intlTelInputUtils.numberFormat.E164)); // trigger formatting the number
-    this._validate();
-    this._calculateVisibility();
-  },
-
-  onFocus() {
-    if (!this.inputField.value && this.labelElement !== null) {
-      this.labelElement.innerText = this.labelText;
-    }
-  },
-  onFocusOut() {
-    if (!this.inputField.value && this.labelElement !== null) {
-      this.labelElement.innerText = this.inputField.placeholder;
-    }
-  },
-
-  changeCountry() {
-    this.iti.setNumber(this.iti.getNumber(intlTelInputUtils.numberFormat.E164)); // trigger formatting the number
-    this._validate();
-  },
-
-  _validate() {
-    let valid = !this.iti.getNumber() || this.iti.isValidNumber();
-    if (valid) {
-      this.invalidErrorElement.setAttribute('hidden', 'true');
-      this.invalidErrorElement.setAttribute('aria-hidden', 'true');
-    } else {
-      this.invalidErrorElement.removeAttribute('hidden', 'true');
-      this.invalidErrorElement.removeAttribute('aria-hidden', 'true');
-    }
-    this.inputField.setCustomValidity(valid ? '' : this.errormessageInvalid);
-    if (valid) {
-      this.normalizedValueField.value = this.iti.getNumber(intlTelInputUtils.numberFormat.E164);
-    } else {
-      this.normalizedValueField.value = "";
-    }
-  },
-
-  _calculateVisibility() {
-      let formTelElements = this.form.getElementsByClassName('bsi-form-tel-input');
-      for (const formTelElement of formTelElements) {
-        let formTelValid = false;
-        let formTelInput = formTelElement.getElementsByClassName('bsi-form-tel-input-element')[0];
-        formTelValid = !(formTelInput.value == '' && formTelInput.hasAttribute('required'));
-        if (!formTelValid) {
-          formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "block";
-        } else {
-          formTelElement.getElementsByClassName('invalid-feedback')[0].style.display = "none";
-        }
-      }
+  validate() {
+    let logicValid = !this.inputField.value || this.iti.isValidNumber();
+    this.inputField.setCustomValidity(logicValid ? '' : this.logicValidationMessage);
+    this.validationElement.innerText = logicValid ? this.requiredValidationMessage : this.logicValidationMessage;
+    let classList = this.validationElement.classList;
+    this.inputField.checkValidity() ? classList.remove('d-block') : classList.add('d-block');
   },
 
   _initFloatingLabel() {
-    this.labelElement = this.rootElement.querySelector('.form-label');
-    let itiElement = this.rootElement.querySelector('.iti');
+    let labelElement = this.$root.querySelector('.form-label');
+    let itiElement = this.$root.querySelector('.iti');
     itiElement.classList.add('form-floating');
-    itiElement.append(this.labelElement);
-
-    this.labelText = this.labelElement.innerText;
-    this.labelElement.innerText = this.inputField.placeholder;
+    itiElement.append(labelElement);
+    labelElement.innerText = this.inputField.placeholder;
   },
 }));

@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
 * Fix aria-states for header-image
+* Alt-Text warning for video
+* Select: Submit empty values
+* Tel: Update onto newest version
+* Form: remove floating label style
 
 ## [1.4.11] - 29.04.2025
 * Fix poll submit

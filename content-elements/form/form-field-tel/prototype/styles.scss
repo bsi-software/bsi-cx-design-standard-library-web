@@ -1,51 +1,29 @@
-$flagsImagePath: '~intl-tel-input/build/img/';
+@import "~intl-tel-input/build/css/intlTelInput.min.css";
 
-@mixin styles($id: 'form-field-tel-fKUxNS') {
+$flagsImagePath: "~intl-tel-input/build/img/";
+
+@mixin styles($id: "form-field-tel-fKUxNS", $flags: $flagsImagePath) {
   .bsi-element-#{$id}.bsi-form-tel-input {
-    .iti__flag {
-      background-image: url($flagsImagePath + "flags.png");
-    }
-
     .iti {
-      margin-top: 0.5rem;
-      input.bsi-form-tel-input-element {
-        margin-top: 0 !important;
-      }
-    }
-
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      .iti__flag {
-        background-image: url($flagsImagePath + "flags@2x.png");
-      }
-    }
-
-    &.bsi-element-width-full .iti {
-      width: 100% !important;
       display: block;
-    }
+      --iti-path-flags-1x: url("#{$flags}flags.webp");
+      --iti-path-flags-2x: url("#{$flags}flags@2x.webp");
+      --iti-path-globe-1x: url("#{$flags}globe.webp");
+      --iti-path-globe-2x: url("#{$flags}globe@2x.webp");
 
-    .bsi-form-tel-input-element {
-      width: 100% !important;
-    }
-
-    .bsi-tel-input-error-invalid {
-      margin-top: 0.25rem;
-      font-size: 0.875em;
-      color: #dc3545;
+      .iti__dropdown-content {
+        width: fit-content !important;
+      }
     }
 
     .form-floating .form-label {
       margin-left: 40px;
     }
 
-    .iti__selected-flag {
-      background-color: rgba(0, 0, 0, 0.05) !important;
-    }
-  }
-
-  @media screen and (prefers-color-scheme: dark) {
-    .form-label {
-      color: bsiProperty('darkModeTextColor', #ffffff);
+    @media screen and (prefers-color-scheme: dark) {
+      .form-label {
+        color: bsiProperty("darkModeTextColor", #ffffff);
+      }
     }
   }
 }

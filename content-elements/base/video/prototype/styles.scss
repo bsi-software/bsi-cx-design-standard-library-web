@@ -17,4 +17,20 @@
       }
     }
   }
+  
+  .bsi-ce-edit-mode .bsi-element-#{$id}.show-alt-warning {
+    &:has(iframe:not([aria-label], [aria-hidden])) {
+      img {
+        border: 2px red solid;
+      }
+
+      &::before {
+        content: "Bitte gebe eine Beschreibung an";
+        color: red;
+        position: absolute;
+        padding: 0.5rem 1rem;
+        background-color: #0005;
+      }
+    }
+  }
 }
