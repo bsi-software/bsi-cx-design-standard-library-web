@@ -1,10 +1,14 @@
 @mixin styles($id: 'radio-O6XCY3') {
   .bsi-element-#{$id} {
-    &.bsi-radio-inline .form-check {
-      display: inline-block;
-      margin-right: 1rem;
+    &.bsi-radio-inline .form-radio {
+      flex-direction: row;
+      gap: 1rem;
     }
 
+    .form-radio {
+      display: flex;
+      flex-direction: column;
+    }
     .form-check-input {
       -webkit-appearance: none;
     }
