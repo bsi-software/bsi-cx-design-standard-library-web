@@ -1,5 +1,5 @@
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
 
 /* --------------------- Set style variables ------------------- */
 
@@ -10,8 +10,8 @@ $tertiary: bsiProperty('tertiaryColor', #ee941c);
 $info: bsiProperty('infoColor', #6c757d);
 $dark: bsiProperty('darkColor', #383e42);
 $light: bsiProperty('lightColor', #ffffff);
-$valid: #198754;
-$invalid: #dc3545;
+$valid: bsiProperty('validColor', #198754);
+$invalid: bsiProperty('invalidColor', #dc3545);
 $textColor: bsiProperty('textColor', #383e42);
 $dark-mode-text-color: bsiProperty('darkModeTextColor', #ffffff);
 // Fonts
@@ -66,11 +66,11 @@ $xxl: bsiProperty('gridBreakpointXXL', 1400px);
 
 // Customize colors
 $theme-colors: (
-        "primary": $primary,
-        "secondary": $secondary,
-        "info": $info,
-        "dark": $dark,
-        "light": $light
+    'primary': $primary,
+    'secondary': $secondary,
+    'info': $info,
+    'dark': $dark,
+    'light': $light
 );
 
 // Customize fonts
@@ -82,18 +82,16 @@ $table-bg-scale: -90%;
 
 // Customize breakpoints
 $grid-breakpoints: (
-        xs: $xs,
-        sm: $sm,
-        md: $md,
-        lg: $lg,
-        xl: $xl,
-        xxl: $xxl
+    xs: $xs,
+    sm: $sm,
+    md: $md,
+    lg: $lg,
+    xl: $xl,
+    xxl: $xxl
 );
 
-$spacers: map-merge(
-    $spacers, (
-        6: $spacer * 5,
-        7: $spacer * 7.5,
-        8: $spacer * 10,
-    )
-);
+$spacers: map-merge($spacers, (
+    6: $spacer * 5,
+    7: $spacer * 7.5,
+    8: $spacer * 10,
+));

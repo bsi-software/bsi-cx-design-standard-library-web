@@ -1,4 +1,4 @@
-@mixin styles($id: 'video-C4cbKm') {
+@mixin styles($id: 'video-C4cbKm', $altWarningMessage: bsiProperty('figureAltWarningMessage', 'Bitte gib eine Beschreibung an')) {
   .bsi-element-#{$id} {
     .responsive-video {
       padding-bottom: 56.25%;
@@ -25,7 +25,7 @@
       }
 
       &::before {
-        content: "Bitte gebe eine Beschreibung an";
+        content: $altWarningMessage;
         color: red;
         position: absolute;
         padding: 0.5rem 1rem;
