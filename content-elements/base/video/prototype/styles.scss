@@ -1,4 +1,4 @@
-@mixin styles($id: 'video-C4cbKm') {
+@mixin styles($id: 'video-C4cbKm', $altWarningMessage: bsiProperty('figureAltWarningMessage', 'Bitte gib eine Beschreibung an')) {
   .bsi-element-#{$id} {
     .responsive-video {
       padding-bottom: 56.25%;
@@ -14,6 +14,22 @@
         top: 0;
         max-height: 100%;
         width: 100%;
+      }
+    }
+  }
+  
+  .bsi-ce-edit-mode .bsi-element-#{$id}.show-alt-warning {
+    &:has(iframe:not([aria-label], [aria-hidden])) {
+      img {
+        border: 2px red solid;
+      }
+
+      &::before {
+        content: $altWarningMessage;
+        color: red;
+        position: absolute;
+        padding: 0.5rem 1rem;
+        background-color: #0005;
       }
     }
   }
