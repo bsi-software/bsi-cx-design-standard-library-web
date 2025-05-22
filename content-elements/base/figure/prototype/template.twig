@@ -14,9 +14,9 @@
 
     <figure data-bsi-element="{{ figureElementId }}" class="figure {{ 'bsi-element-' ~ figureElementId }} {{ figureAltWarning }} bsi-caption-hide bsi-caption-medium bsi-shape-square bsi-orientation-landscape bsi-aspect-ratio-auto bsi-hover-effect-disabled bsi-overlay-hide bsi-overlay-opacity-0">
         {# 'srcset' support removed until further notice. see: https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues/46 #}
-        <img tabindex = "0" src="{{ figureImageSrc }}" class="figure-img img-fluid" alt="{{ figureCaptionText }}" data-bsi-element-part="{{ figureImagePartId }}"/>
+        <img  src="{{ figureImageSrc }}" class="figure-img img-fluid" alt="{{ figureCaptionText }}" data-bsi-element-part="{{ figureImagePartId }}"/>
         {% if figureHasCaption == true %}
-            <figcaption tabindex = "0" class="figure-caption" data-bsi-element-part="{{ figureTextPartId }}">{{ figureCaptionText }}</figcaption>
+            <figcaption  class="figure-caption" data-bsi-element-part="{{ figureTextPartId }}">{{ figureCaptionText }}</figcaption>
         {% endif %}
     </figure>
 {% endapply %}

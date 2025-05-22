@@ -18,12 +18,12 @@
 <div data-bsi-element="{{ checkboxElementId }}" class="{{ 'bsi-element-' ~ checkboxElementId }} bsi-form-checkbox-element mb-4 bsi-form-element form-check bsi-form-flex-label bsi-checkbox-spacing-visible bsi-form-switch-hide" data-bsi-element-part="{{ checkboxElementPartId }}">
 	<div class="bsi-form-input-element">
 		<div class="checkbox-label-and-tooltip">
-			<div tabindex="0" data-bsi-element-part="{{ checkboxFormTextPartId }}" class="form-text">{{ checkboxInfoText }}</div>
-			<i tabindex="0" class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ checkboxInfoText }}"></i>
+			<div data-bsi-element-part="{{ checkboxFormTextPartId }}" class="form-text">{{ checkboxInfoText }}</div>
+			<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ checkboxInfoText }}"></i>
 		</div>
-		<input tabindex="0" class="form-check-input form-checkbox-input" type="checkbox" id="switch">
-		<label tabindex="0" class="form-check-label" for="switch">{{ checkboxLabelText }}</label>
-		<div tabindex="0" data-bsi-element-part="{{ checkboxErrorRequiredPartId }}" class="invalid-feedback">
+		<input class="form-check-input form-checkbox-input" type="checkbox" id="switch">
+		<label class="form-check-label" for="switch">{{ checkboxLabelText }}</label>
+		<div data-bsi-element-part="{{ checkboxErrorRequiredPartId }}" class="invalid-feedback">
 			{{ checkboxErrorRequiredText }}
 		</div>
 	</div>
