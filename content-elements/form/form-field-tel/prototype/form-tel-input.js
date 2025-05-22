@@ -22,7 +22,7 @@ Alpine.data('telInput', () => ({
 
     this.iti = intlTelInput(this.inputField, {
       onlyCountries: onlyCountries,
-      countrySearch: onlyCountries.length > 5,
+      countrySearch: onlyCountries.length > 5 || onlyCountries.length == 0,
       loadUtils: () => import('intl-tel-input/build/js/utils.js'),
       hiddenInput: () => ({ phone: name }),
       separateDialCode: !hasFloatingLabel, // If floating label is selected, only show country flag without country code
