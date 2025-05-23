@@ -37,7 +37,7 @@ Alpine.data('formElement', () => ({
       e.preventDefault();
       e.stopPropagation();
       this._validateRadioInput();
-      this._setAriaInvalid();
+      this._setAriaValues();
       this._formValidationSummary();
     }
     else {
@@ -95,21 +95,25 @@ Alpine.data('formElement', () => ({
       let radioInputs = Array.from(radioElement.querySelectorAll('.form-check-input'));
       let radioValid = radioInputs.some(radio => radio.checkValidity());
       var validationElement = radioElement.querySelector('.invalid-feedback');
-      radioElement.setAttribute('aria-invalid', !radioValid);
       this._showValidationMessage(validationElement, !radioValid);
     }
   },
 
-  _setAriaInvalid() {
-    var elements = this.form.querySelectorAll('.bsi-form-element:not(.bsi-form-radio-element)');
-    elements.forEach(element => {
-      let input = element.querySelector('input, select, textarea');
-      input.setAttribute('aria-invalid', !input.checkValidity());
-    });
-  },
-
   _clearSelectValues() {
     this.$root.querySelectorAll('select').forEach(select => select.value = select.value || null);
+  },
+
+  _setAriaValues() {
+    this.$root.querySelectorAll(".bsi-form-element")
+      .forEach(inputField => {
+        var input = inputField.querySelector('input, textarea, select');
+        input.setAttribute('aria-invalid', !input.checkValidity());
+        if ('ariaDescribedByElements' in Element.prototype) {
+          // TODO: add info text on-init to describedby-tag. Add errorMessage to info text
+          var errorMessage = Array.from(inputField.querySelectorAll('.invalid-feedback')).filter(errorMessage => window.getComputedStyle(errorMessage).display !== 'none');
+          input.ariaDescribedByElements = errorMessage;
+        }
+      })
   },
 
   _formValidationSummary() {
