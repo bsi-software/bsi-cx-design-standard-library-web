@@ -169,19 +169,19 @@
   input[type=number] {
     -moz-appearance: textfield;
   }
-}
 
-.was-validated .form-control:valid,
-.form-control.is-valid {
-  padding: 10px 10px;
-  background-image: none !important;
-  background-color:#ffff !important;
-}
+  .was-validated .form-control:valid,
+  .form-control.is-valid {
+    padding: 10px 10px;
+    background-image: none;
+    background-color:#ffff;
+  }
 
-.was-validated .form-control:invalid,
-.form-control.is-invalid {
-  padding: 10px 10px;
-  background-image: none !important;
-  background-color: rgb(217, 19, 41, 0.05) !important;
-  border: 1px solid #d91329 !important;
+  .was-validated .form-control:invalid,
+  .form-control.is-invalid {
+    padding: 10px 10px;
+    background-image: none;
+    background-color: rgb(217, 19, 41, 0.05);
+    border: 1px solid #d91329;
+  }
 }
