@@ -17,6 +17,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Pin-element: Add restrictions to styling
 * Select: Submit empty values
 * Tel: Update onto newest version
+* Update telephone number validation to support fix-line numbers
 
 ## [1.4.11] - 29.04.2025
 * Fix poll submit
