@@ -1,5 +1,6 @@
 @import "flatpickr/dist/flatpickr";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+
 @mixin styles($id: 'form-field-REEhtN') {
   .bsi-element-#{$id} {
     .flatpickr-input {
@@ -9,18 +10,19 @@
         background-color: #fff;
       }
     }
+
     .input-container {
       position: relative;
     }
-    
+
     .input-container input {
       width: 100%;
       padding-right: 30px;
     }
-    
+
     .input-container i {
       position: absolute;
-      right: 30px; 
+      right: 30px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
@@ -49,8 +51,14 @@
         background-color: rgba(0, 0, 0, 0.05) !important;
       }
     }
+
+
   }
-  
+
+  .was-validated .bsi-element-#{$id} .input-container:has(input:invalid) .invalid-feedback {
+    display: block;
+  }
+
   @media screen and (prefers-color-scheme: dark) {
     .form-label {
       color: bsiProperty('darkModeTextColor', #ffffff);
