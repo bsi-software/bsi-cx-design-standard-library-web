@@ -42,18 +42,15 @@ Alpine.data('telInput', () => ({
     let classList = this.validationElement.classList;
     this.inputField.checkValidity() ? classList.remove('d-block') : classList.add('d-block');
     // set Aria describedby attribute - also relevant in form.js and form-field.js
-    this.inputField.setAttribute("aria-invalid", !logicValid);
-    if (logicValid && !this.inputField.value.trim() === "") {
-      this.inputField.removeAttribute("aria-describedby");
-    } else if ("ariaDescribedByElements" in Element.prototype) {
+    this.inputField.setAttribute('aria-invalid', !logicValid);
+    if (logicValid && !this.inputField.value.trim() === '') {
+      this.inputField.removeAttribute('aria-describedby');
+    } else if ('ariaDescribedByElements' in Element.prototype) {
       var errorMessageElements = Array.from(
-        this.inputField
-          .closest(".bsi-form-element")
-          .querySelectorAll(".invalid-feedback")
-      ).filter(
+        this.inputField.closest('.bsi-form-element').querySelectorAll('.invalid-feedback'))
+      .filter(
         (errorMessageElement) =>
-          window.getComputedStyle(errorMessageElement).display !== "none"
-      );
+          window.getComputedStyle(errorMessageElement).display !== 'none');
       this.inputField.ariaDescribedByElements = errorMessageElements;
     }
   },
