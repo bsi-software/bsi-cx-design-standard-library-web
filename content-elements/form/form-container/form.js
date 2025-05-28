@@ -38,7 +38,6 @@ Alpine.data('formElement', () => ({
       e.preventDefault();
       e.stopPropagation();
       this._validateRadioInput();
-      
       this._setAriaValues();
       this._formValidationSummary();
     }
