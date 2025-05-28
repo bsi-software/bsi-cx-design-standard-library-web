@@ -8,7 +8,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * Fix aria-states for header-image
 * Fix tabindex for all Elements
-* Fix errormessages screenreader
+* Fix errormessages for screenreader
 * Fix telephon number validation also for fix line numbers
 * Add possibility to change telephone number field input type in properties
 * Add possibility to change date field input type in properties
