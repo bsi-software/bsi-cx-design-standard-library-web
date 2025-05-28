@@ -11,6 +11,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Fix errormessages screenreader
 * Fix telephon number validation also for fix line numbers
 * Add possibility to change telephone number field input type in properties
+* Add possibility to change date field input type in properties
 * Alt-Text warning for video
 * Form: remove floating label style
 * Pin-element: Add restrictions to styling
