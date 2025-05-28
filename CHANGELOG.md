@@ -8,11 +8,16 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * Fix aria-states for header-image
 * Fix tabindex for all Elements
+* Fix errormessages for screenreader
+* Fix telephon number validation also for fix line numbers
+* Add possibility to change telephone number field input type in properties
+* Add possibility to change date field input type in properties
 * Alt-Text warning for video
 * Form: remove floating label style
 * Pin-element: Add restrictions to styling
 * Select: Submit empty values
 * Tel: Update onto newest version
+* Update telephone number validation to support fix-line numbers
 
 ## [1.4.11] - 29.04.2025
 * Fix poll submit

@@ -33,17 +33,17 @@ Alpine.data('formElement', () => ({
 
   submitForm(e) {
     this._validateFormFieldTel(); // must be executed before form.checkValidity()
+    this.form.classList.add('was-validated');
     if (!this.form.checkValidity()) {
       e.preventDefault();
       e.stopPropagation();
       this._validateRadioInput();
-      this._setAriaInvalid();
+      this._setAriaValues();
       this._formValidationSummary();
     }
     else {
       this._clearSelectValues();
     }
-    this.form.classList.add('was-validated');
   },
 
   _initFloatingLabels(floatingElement) {
@@ -85,7 +85,7 @@ Alpine.data('formElement', () => ({
   _validateFormFieldTel() {
     this.form.querySelectorAll('.bsi-form-tel-input').forEach(telInput => {
       let visibleInput = telInput.querySelector('input[type=tel]');
-      visibleInput.dispatchEvent(new Event('change'));
+      visibleInput.dispatchEvent(new Event('input'));
     });
   },
 
@@ -95,21 +95,30 @@ Alpine.data('formElement', () => ({
       let radioInputs = Array.from(radioElement.querySelectorAll('.form-check-input'));
       let radioValid = radioInputs.some(radio => radio.checkValidity());
       var validationElement = radioElement.querySelector('.invalid-feedback');
-      radioElement.setAttribute('aria-invalid', !radioValid);
       this._showValidationMessage(validationElement, !radioValid);
     }
   },
 
-  _setAriaInvalid() {
-    var elements = this.form.querySelectorAll('.bsi-form-element:not(.bsi-form-radio-element)');
-    elements.forEach(element => {
-      let input = element.querySelector('input, select, textarea');
-      input.setAttribute('aria-invalid', !input.checkValidity());
-    });
-  },
-
   _clearSelectValues() {
     this.$root.querySelectorAll('select').forEach(select => select.value = select.value || null);
+  },
+
+  // set Aria describedby attribute - also relevant in form-tel-input.js and form-field.js
+  _setAriaValues() {
+    this.$root.querySelectorAll(".bsi-form-element")
+      .forEach(inputField => {
+          if (inputField.classList.contains("bsi-form-tel-input")) {
+            var input = inputField.querySelector('input.form-control:not([type=hidden]), textarea, select');
+          } else {
+            var input = inputField.querySelector('input:not([type=hidden]), textarea, select');
+          }
+          input.setAttribute('aria-invalid', !input.checkValidity());
+          if ('ariaDescribedByElements' in Element.prototype) {
+            // TODO: add info text on-init to describedby-tag. Add errorMessage to info text
+            var errorMessageElements = Array.from(inputField.querySelectorAll('.invalid-feedback')).filter(errorMessageElement => window.getComputedStyle(errorMessageElement).display !== 'none');
+            input.ariaDescribedByElements = errorMessageElements;
+          }
+      })
   },
 
   _formValidationSummary() {

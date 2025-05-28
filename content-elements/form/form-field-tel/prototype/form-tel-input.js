@@ -25,8 +25,9 @@ Alpine.data('telInput', () => ({
       countrySearch: onlyCountries.length > 5 || onlyCountries.length == 0,
       loadUtils: () => import('intl-tel-input/build/js/utils.js'),
       hiddenInput: () => ({ phone: name }),
-      separateDialCode: !hasFloatingLabel, // If floating label is selected, only show country flag without country code
+      separateDialCode: false, // If floating label is selected, only show country flag without country code
       initialCountry: initialCountry,
+      validationNumberTypes: ["FIXED_LINE_OR_MOBILE"],
     });
 
     if (hasFloatingLabel) {
@@ -40,6 +41,18 @@ Alpine.data('telInput', () => ({
     this.validationElement.innerText = logicValid ? this.requiredValidationMessage : this.logicValidationMessage;
     let classList = this.validationElement.classList;
     this.inputField.checkValidity() ? classList.remove('d-block') : classList.add('d-block');
+    // set Aria describedby attribute - also relevant in form.js and form-field.js
+    this.inputField.setAttribute('aria-invalid', !logicValid);
+    if (logicValid && !this.inputField.value.trim() === '') {
+      this.inputField.removeAttribute('aria-describedby');
+    } else if ('ariaDescribedByElements' in Element.prototype) {
+      var errorMessageElements = Array.from(
+        this.inputField.closest('.bsi-form-element').querySelectorAll('.invalid-feedback'))
+      .filter(
+        (errorMessageElement) =>
+          window.getComputedStyle(errorMessageElement).display !== 'none');
+      this.inputField.ariaDescribedByElements = errorMessageElements;
+    }
   },
 
   _initFloatingLabel() {
