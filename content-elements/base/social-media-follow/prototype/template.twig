@@ -1,8 +1,3 @@
-{% macro render(elementId = null, elementPartId = null, linkedinURL = null, xingURL = null, XURL = null, facebookURL = null, youtubeURL = null, instagramURL = null, kununuURL = null, whatsappURL = null, pinterestURL = null, snapchatURL = null, linkedinHidden = null, xingHidden = null, XHidden = null, facebookHidden = null, youtubeHidden = null, instagramHidden = null, kununuHidden = null, whatsappHidden = null, pinterestHidden = null, snapchatHidden = null, iconColor = null, iconHoverColor = null, iconSize = null) %}{% apply spaceless %}
-    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
-    {% include './template.twig' %}
-{% endapply %}{% endmacro %}
-
 {% apply spaceless %}
     {% set followElementId = elementId ?: 'social-media-follow-2MlXWB' %}
     {% set followElementPartId = elementPartId ?: 'social-media-follow-part-6oLWxR' %}

@@ -1,8 +1,3 @@
-{% macro render(elementId = null, elementPartId = null, formTextPartId = null, errorRequiredPartId = null, groupLabelText = null, labelText = null, infoText = null, errorRequiredText = null) %}{% apply spaceless %}
-    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
-    {% include './template.twig' %}
-{% endapply %}{% endmacro %}
-
 {% apply spaceless %}
     {% set radioElementId = elementId ?: 'radio-O6XCY3' %}
     {% set radioElementPartId = elementPartId ?: 'radio-part-I0iU7X' %}

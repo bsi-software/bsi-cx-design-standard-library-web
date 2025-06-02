@@ -1,10 +1,3 @@
-{% macro render(elementId = null, elementPartId = null, iconPartId = null, buttonText = null, buttonColor = null, buttonLayout = null, buttonSize = null, buttonWidth = null, buttonBorderRadius = null, buttonLetterCase = null) %}
-	{% apply spaceless %}
-	{% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
-	{% include './template.twig' %}
-	{% endapply %}
-{% endmacro %}
-
 {% apply spaceless %}
 {% set buttonElementId = elementId ?: 'button-v3cFFn' %}
 {% set buttonElementPartId = elementPartId ?: 'button-part-0Cq8Xc' %}
