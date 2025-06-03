@@ -1,10 +1,3 @@
-{% macro render(elementId = null, titlePartId = null, text = null, color = null, style = null, weight = null) %}
-	{% apply spaceless %}
-	{% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
-	{% include './template.twig' %}
-	{% endapply %}
-{% endmacro %}
-
 {% apply spaceless %}
 {% set titleH6ElementId = elementId ?: 'title-h6-f9a2d422' %}
 {% set titleH6PartId = titlePartId ?: 'title-h6-part-2ef79d06' %}

@@ -1,8 +1,3 @@
-{% macro render(elementId = null, elementPartId = null, videoURL = null) %}{% apply spaceless %}
-    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
-    {% include './template.twig' %}
-{% endapply %}{% endmacro %}
-
 {% apply spaceless %}
     {% set videoElementId = elementId ?: 'video-C4cbKm' %}
     {% set videoElementPartId = elementPartId ?: 'video-part-loPxhG' %}

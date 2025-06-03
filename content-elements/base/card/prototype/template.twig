@@ -1,8 +1,3 @@
-{% macro render(elementId = null, dropzoneImageId = null, dropzoneContentId = null) %}{% apply spaceless %}
-    {% deprecated 'The usage of "element.render(...)" is deprecated, use "include ... with {...}" instead. For detailed information, visit: https://github.com/bsi-software/bsi-cx-design-master-template-web/blob/main/MIGRATION_GUIDE.md"' %}
-    {% include './template.twig' %}
-{% endapply %}{% endmacro %}
-
 {% apply spaceless %}
     {% set cardElementId = elementId ?: 'card-crRST4' %}
     {% set cardDropzoneImageId = dropzoneImageId ?: 'card-dropzone-image-CIqKdf' %}
