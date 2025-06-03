@@ -18,7 +18,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Form: remove floating label style
 * Pin-element: add restrictions to styling
 * Select: submit empty values
-* Tel: update onto newest version
 * Update telephone number validation to support fix-line numbers
 
 ## [1.4.11] - 29.04.2025
