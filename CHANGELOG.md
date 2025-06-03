@@ -6,17 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
+
+
+## [1.4.12] - 03.06.2025
 * Fix aria-states for header-image
-* Fix tabindex for all Elements
+* Fix tabindex for all elements
 * Fix errormessages for screenreader
-* Fix telephon number validation also for fix line numbers
 * Add possibility to change telephone number field input type in properties
 * Add possibility to change date field input type in properties
-* Alt-Text warning for video
+* Alt-text warning for video
 * Form: remove floating label style
-* Pin-element: Add restrictions to styling
-* Select: Submit empty values
-* Tel: Update onto newest version
+* Pin-element: add restrictions to styling
+* Select: submit empty values
 * Update telephone number validation to support fix-line numbers
 
 ## [1.4.11] - 29.04.2025
