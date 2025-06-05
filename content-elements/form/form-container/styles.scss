@@ -7,7 +7,7 @@
   .form-text {
     margin-top: 0 !important;
   }
-  input:not([type=checkbox]):not([type=radio]), select, textarea, input.bsi-form-tel-input-element, .bsi-poll-radio-group, .form-radio {
+  input:not([type=checkbox]):not([type=radio]), select, textarea, input.bsi-form-tel-input-element, fieldset, .form-radio {
     margin-top: 0.5rem !important;
   }
   label {
