@@ -7,6 +7,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
 * Add role to button element
+* NPS Score BFSG improvement
 
 
 ## [1.4.12] - 03.06.2025
