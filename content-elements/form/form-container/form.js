@@ -119,29 +119,34 @@ Alpine.data("formElement", () => ({
   // set Aria describedby attribute - also relevant in form-tel-input.js and form-field.js
   _setAriaValues() {
     
-    this.$root.querySelectorAll(".bsi-form-element").forEach((inputField) => {
-      if (inputField.classList.contains("bsi-form-tel-input")) {
-        var input = inputField.querySelector(
+    this.$root.querySelectorAll(".bsi-form-element").forEach((formElement) => {
+      if (formElement.classList.contains("bsi-form-tel-input")) {
+        var inputFields = formElement.querySelectorAll(
           "input.form-control:not([type=hidden]), textarea, select"
         );
       } else {
-        var input = inputField.querySelector(
+        var inputFields = formElement.querySelectorAll(
           "input:not([type=hidden]), textarea, select"
         );
       }
-      if (input.hasAttribute("required")) {
-        input.setAttribute("aria-invalid", !input.checkValidity());
-        if ("ariaDescribedByElements" in Element.prototype) {
-          // TODO: add info text on-init to describedby-tag. Add errorMessage to info text
-          var errorMessageElements = Array.from(
-            inputField.querySelectorAll(".invalid-feedback")
-          ).filter(
-            (errorMessageElement) =>
-              window.getComputedStyle(errorMessageElement).display !== "none"
-          );
-          input.ariaDescribedByElements = errorMessageElements;
+      inputFields.forEach(input => {
+        if (input.hasAttribute("required")) {
+          console.log("Input Element: " + input.id + " ist required");
+          input.setAttribute("aria-invalid", !input.checkValidity());
+          if (!input.checkValidity()) {
+            if ("ariaDescribedByElements" in Element.prototype) {
+              // TODO: add info text on-init to describedby-tag. Add errorMessage to info text
+              var errorMessageElements = Array.from(
+                formElement.querySelectorAll(".invalid-feedback")
+              ).filter(
+                (errorMessageElement) =>
+                  window.getComputedStyle(errorMessageElement).display !== "none"
+              );
+              input.ariaDescribedByElements = errorMessageElements;
+            }
+          }
         }
-      }
+      });
     });
   },
 
