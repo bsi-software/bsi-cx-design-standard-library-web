@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-
+* Fix select field accessability
+* Fix radiobuttons accessability
+* Fix checkbox accessability
 
 ## [1.4.12] - 03.06.2025
 * Fix aria-states for header-image
