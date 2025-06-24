@@ -131,3 +131,20 @@ Alpine.data('formElement', () => ({
     }
   },
 }));
+
+// Necessary to show the bootstrap validation icon when autofill is used
+function fixAutocompleteBrowserError() {
+  setTimeout(() => {
+      const inputs = document.querySelectorAll('.form-control');
+      inputs.forEach((input) => {
+          if (input.matches(':-internal-autofill-selected')) {
+              const clone = input.cloneNode(true);
+              input.parentNode.replaceChild(clone, input);
+          }
+      });
+  }, 10);
+}
+
+document.querySelectorAll('.form-control').forEach((input) => {
+  input.addEventListener('input', fixAutocompleteBrowserError);
+});
