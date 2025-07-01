@@ -15,7 +15,7 @@
                 <div data-bsi-element-part="{{ selectFormTextPartId }}" class="form-text">{{ selectInfoText }}</div>
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ selectInfoText }}"></i>
             </div>
-            <select x-init="initSelectField" class="form-select" id="select">
+            <select x-init="initSelectField" class="form-select" id="select" x-on:input="onInputChanged">
                 <option value="">{{ selectOptionText }}</option>
             </select>
             <div data-bsi-element-part="{{ selectErrorRequiredPartId }}" class="invalid-feedback"> {{ selectErrorRequiredText }} </div>
