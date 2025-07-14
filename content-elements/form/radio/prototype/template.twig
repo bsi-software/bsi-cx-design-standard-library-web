@@ -12,7 +12,6 @@
         <div class="bsi-form-input-element">
             <div class="form-label-and-info-text">
                 <label class="form-label pt-0">{{ radioGroupLabelText }}</label>
-                <div data-bsi-element-part="{{ radioFormTextPartId }}" class="form-text">{{ radioInfoText }}</div>
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ radioInfoText }}"></i>
             </div>
             <div data-bsi-radio-group="" class="form-radio">
@@ -21,7 +20,10 @@
                     <label class="form-check-label" for="radio1">{{ radioLabelText }}</label>
                 </div>
             </div>
-            <div data-bsi-element-part="{{ radioErrorRequiredPartId }}" class="invalid-feedback"> {{ radioErrorRequiredText }} </div>
+            <div class="radio-info">
+                <div data-bsi-element-part="{{ radioFormTextPartId }}" class="form-text">{{ radioInfoText }}</div>
+                <div data-bsi-element-part="{{ radioErrorRequiredPartId }}" class="invalid-feedback">{{ radioErrorRequiredText }}</div>
+            </div>
         </div>
     </div>
 {% endapply %}
