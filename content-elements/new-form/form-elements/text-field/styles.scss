@@ -1,26 +1,7 @@
-@import "../../../styles/properties";
+@import "../../../../styles/properties.scss";
+@import "../styles.scss";
 
 .bsi-element-form-field-2217aee4 {
-
-    display: flex;
-    flex-direction: column;
-    gap: $spacing100;
-
-    $colorSchemes: ("light": $light, "dark": $dark);
-    @each $name, $colorScheme in $colorSchemes {
-        @if $name == "light" {
-
-        }
-        @if name == "dark" {
-
-        }
-        @else {
-
-        }
-        &.form-scheme-#{$name} {
-            
-        }
-    }
 
     .input-field-container {
         display: flex;
@@ -34,8 +15,6 @@
 
             .text-input {
                 padding: $spacing300;
-                border-radius: $borderRadius100;
-                background-color: $light;
             }
         }
 

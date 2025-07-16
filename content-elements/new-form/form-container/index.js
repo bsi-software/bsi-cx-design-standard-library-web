@@ -15,6 +15,8 @@ element
   .withIcon(Icon.ONE_COLUMN)
   .withStyleConfigs(
     require("../../../configs/styles/form-color-scheme.js"),
+    require("../../../configs/styles/form-button-alignment.js"),
+
   )
   .withParts(
     cx.part.form

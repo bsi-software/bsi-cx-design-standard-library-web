@@ -17,5 +17,6 @@ element
     cx.part.FormField("Formularfeld: Text", "form-field-part-740b4e74"),
     cx.part.PlainText("Helper Text", "form-field-part-text-fb1cdc8d"),
     cx.part.PlainText("Fehlermeldung bei leerem Pflichtfeld", "form-field-part-error-required-94125730"),
+    cx.part.PlainText("Hinweis bei erfolgreicher Eingabe", "form-field-part-success-6586bf6f"),
     cx.part.PlainText("Fehlermeldung bei ungültiger Eingabe", "form-field-part-error-invalid-21769f4a"),
   )
