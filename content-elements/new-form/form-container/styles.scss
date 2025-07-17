@@ -25,20 +25,20 @@
                     .input-field-with-error-text:has(input:user-valid) {
                         input {
                             border-color: $lightSuccessColor;
-                            .success-feedback {
-                                display: flex;
-                                color: $lightSuccessColor;
-                            }
+                        }
+                        .success-feedback {
+                            display: flex;
+                            color: $lightSuccessColor;
                         }
                     }
 
                     .input-field-with-error-text:has(input:user-invalid) {
                         input {
                             border-color: $lightErrorColor;
-                            .invalid-feedback {
-                                display: flex;
-                                color: $lightErrorColor;
-                            }
+                        }
+                        .invalid-feedback {
+                            display: flex;
+                            color: $lightErrorColor;
                         }
                     }
                 }
