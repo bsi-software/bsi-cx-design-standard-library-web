@@ -18,8 +18,7 @@
             }
 
             // hide error and success messages
-            // .success-feedback, // TODO: entfernen, wenn es in bsi Websiet übernommen wurde
-            .invalid-feedback {
+            .success-feedback, .invalid-feedback, .logic-validation {
                 display: none;
             }
 
@@ -28,6 +27,18 @@
         .info-text {
             display: flex;
             gap: $spacing100;
+
+            .bi-info-circle {
+                width: 1rem;
+                height: 1rem;
+                align-items: center;
+                justify-content: center;
+
+                &:before {
+                    display: block;
+                    font-size: 0.75rem;
+                }
+            }
         }
     }
 
