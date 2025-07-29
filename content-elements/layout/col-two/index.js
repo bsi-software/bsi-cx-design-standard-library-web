@@ -36,7 +36,8 @@ element.withFile(require('./template.twig'))
         require('../spacer'),
         ...contentElements,
         require('../../base/banner'),
-        require('../../form/form-container')),
+        require('../../form/form-container'),
+        require('../../new-form/form-container')),
     cx.dropzone
       .withDropzone('col-two-dropzone-2-BSeopF')
       .withAllowedElements(
@@ -47,4 +48,5 @@ element.withFile(require('./template.twig'))
         require('../spacer'),
         ...contentElements,
         require('../../base/banner'),
-        require('../../form/form-container')));
+        require('../../form/form-container'),
+        require('../../new-form/form-container')));

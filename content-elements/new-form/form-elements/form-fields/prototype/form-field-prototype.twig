@@ -1,14 +1,10 @@
 {% set formFieldElementId = elementId ?: 'form-field-2217aee4' %}
 {% set formFieldElementPartId = elementPartId ?: 'form-field-part-740b4e74' %}
 {% set formFieldHelperTextPartId = formHelperTextPartId ?: 'form-field-helper-text-part-fb1cdc8d' %}
-{# TODO: löschen, wenn es in bsi Website übernommen wurde #}
-{# {% set formFieldSuccessPartId = successPartId ?: 'form-field-part-success-6586bf6f' %} #}
 {% set formFieldErrorInvalidPartId = errorInvalidPartId ?: 'form-field-part-error-invalid-21769f4a' %}
 {% set formFieldLabelText = labelText ?: bsi_cx_lorem(3) %}
 {% set formFieldHelperText = infoText ?: "" %}
 {% set formFieldErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
-{# TODO: löschen, wenn es in bsi Website übernommen wurde #}
-{# {% set formFieldSuccessText = successText ?: 'Sie haben dieses Feld erfolgreich ausgefüllt.' %} #}
 {% set formFieldInputType = inputType ?: "text" %}
 
 <div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="text">
@@ -19,10 +15,6 @@
                 <input id="{{ formFieldInputType }}-field" type="{{ formFieldInputType }}" class="{{ formFieldInputType }}-input"></input>
             {% endblock %}
             {% block input_field_error_text %}
-                {# TODO: löschen, wenn es in bsi Website übernommen wurde #}
-                {# <div data-bsi-element-part="{{ formFieldSuccessPartId }}" class="success-feedback">
-                    {{ formFieldSuccessText }}
-                </div> #}
 
                 {# TODO: nur einen Fehlertext, vielleicht einen für leere Felder die requiered sind auf Formularebene einfügen #}
                 <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="invalid-feedback">
