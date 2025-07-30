@@ -26,6 +26,7 @@ module.exports = (
       .withDropzone(dropzoneId)
       .withAllowedElements(
         require("../../../base/h3"),
-        require("../../form-elements/form-fields/text-field")
+        require("../../form-elements/form-fields/text-field"),
+        require('../../form-elements/checkbox')
       ),
   );
