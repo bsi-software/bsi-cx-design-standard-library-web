@@ -21,7 +21,7 @@
             color: $labelColor;
         }
 
-        input {
+        input, .visual-checkbox {
             color: $labelColor;
             outline-color: $borderColor;
             background-color: $elementBackgroundColor;
@@ -31,21 +31,40 @@
             color: $helperTextColor;
         }
 
-        // TODO: user-valid und user-invalid austauschen, es muss immer bei einer Änderung die richtige Validierung laufen, die die entsprechenden Fehlertexte setzt.
         // TODO: scheinabr wird bei der checkbox diser Style nicht angewendet, prüfen wieso und ob es einen eigenen Style braucht.
-        .input-field-with-error-text:has(input:user-valid) {
-            input {
-                outline-color: $successColor;
+        .input-field-with-error-text {
+            &:has(input:user-valid) {
+                input {
+                    outline-color: $successColor;
+                }
+            }
+
+            &:has(input:user-invalid) {
+                input {
+                    outline-color: $errorColor;
+                }
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
             }
         }
 
-        .input-field-with-error-text:has(input:user-invalid) {
-            input {
-                outline-color: $errorColor;
+        .checkbox-container {
+            &:has(input.custom-valid) {
+                .visual-checkbox {
+                    outline-color: $successColor;
+                }
             }
-            .invalid-feedback {
-                display: flex;
-                color: $errorColor;
+
+            &:has(input.custom-invalid) {
+                .visual-checkbox {
+                    outline-color: $errorColor;
+                }
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
             }
         }
 
@@ -94,7 +113,7 @@
         $borderRadiuses: ("100": properties.$borderRadius100, "200": properties.$borderRadius200, "300": properties.$borderRadius300, "400": properties.$borderRadius400, "circle": properties.$borderRadiusCircle);
         @each $name, $borderRadius in $borderRadiuses {
             &.border-radius-form-elements-#{$name} {
-                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], select, textarea {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], .visual-checkbox, select, textarea {
                     border-radius: $borderRadius;
                 }
             }
@@ -103,7 +122,7 @@
         $borderWidths: ("100": properties.$borderWidth100, "200": properties.$borderWidth200, "300": properties.$borderWidth300);
         @each $name, $borderWidth in $borderWidths {
             &.border-width-form-elements-#{$name} {
-                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], select, textarea {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], .visual-checkbox, select, textarea {
                     outline-width: $borderWidth;
                 }
             }
