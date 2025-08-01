@@ -36,6 +36,7 @@ module.exports = (
   .withIcon(Icon.TEXT)
   .withStyleConfigs(
     require("../../../../../configs/styles/group-required"),
+    require("../../../../../configs/styles/group-alignment"),
   )
   .withParts(
     cx.part.PlainText(checkboxGroupPartLabel, checkboxGroupLabelTextPartId),
