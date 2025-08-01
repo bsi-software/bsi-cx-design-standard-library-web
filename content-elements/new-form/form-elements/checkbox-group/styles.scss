@@ -1,0 +1,3 @@
+@use './prototype/_styles.scss' as prototypeCheckboxGroupStyling;
+
+@include prototypeCheckboxGroupStyling.checkboxGroupStyling();
