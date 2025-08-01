@@ -69,7 +69,6 @@
             }
         }
 
-        // TODO: custom valid und custom-invalid wird für dei checkbox-group noch nicht gesetzt.
         // validation style for checkbox groups
         .checkbox-group.custom-valid {
             .visual-checkbox {
@@ -117,6 +116,17 @@
                         .input-field-with-error-text {
                             gap: $spacing;
                         }
+                    }
+                }
+
+                .form-element {
+                    gap: $spacing;
+                    .checkbox-container {
+                        gap: $spacing;
+                    }
+
+                    fieldset {
+                        gap: $spacing;
                     }
                 }
             }
@@ -197,6 +207,15 @@
             .form-elements-container {
                 display: flex;
                 flex-direction: column;
+
+                // style for headlines of the form elements
+                legend, .form-label {
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 150%;
+                    letter-spacing: 0;
+                }
             }
         
             .form-buttons {
