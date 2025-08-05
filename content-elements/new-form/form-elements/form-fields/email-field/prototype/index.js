@@ -13,24 +13,23 @@ const { cx, Icon } = require("@bsi-cx/design-build");
  * @param {string} errorTextPartId
  * @returns {ContentElement}
  */
-
 module.exports = (
-    template = require("./template.twig"),
-    elementId = "checkbox-49f468e6",
-    elementLabel = "Checkbox",
-    formCheckboxPartLabel = "Formularfeld: Checkbox",
-    formCheckboxPartId = "checkbox-part-7f02c9ea",
-    helperTextPartLabel = "Helper Text",
-    helperTextPartId = "checkbox-helper-text-part-5989e5eb",
-    errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-    errorTextPartId = "checkbox-error-invalid-part-21861f61",
-  ) => cx.contentElement
+  template = require("../template.twig"),
+  elementId = "form-field-bdcd8d55",
+  elementLabel = "E-mail Input",
+  formFieldPartLabel = "Formularfeld: Text",
+  formFieldPartId = "form-field-part-71d76c77",
+  helperTextPartLabel = "Helper Text",
+  helperTextPartId = "form-field-part-email-033f20a1",
+  errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
+  errorTextPartId = "form-field-part-error-invalid-b8da3758",
+) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
-  .withIcon(Icon.CHECKBOX)
+  .withIcon(Icon.ENVELOPE)
   .withParts(
-    cx.part.FormCheckbox(formCheckboxPartLabel, formCheckboxPartId),
+    cx.part.FormField(formFieldPartLabel, formFieldPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
     cx.part.PlainText(errorTextPartLabel, errorTextPartId),
   );

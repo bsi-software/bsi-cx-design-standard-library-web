@@ -18,7 +18,6 @@ module.exports = (
     template = require("../template.twig"),
     elementId = "checkbox-group-95a8d908",
     elementLabel = "Checkbox Gruppe",
-    elementDescription = "Element Beschreibung",
     checkboxGroupPartLabel = "Label Chackbox Gruppe",
     checkboxGroupLabelTextPartId = "checkbox-group-label-a7bf5a38",
     helperTextPartLabel = "Helper Text",
@@ -29,9 +28,8 @@ module.exports = (
   ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
-  .withDescription(elementDescription)
   .withLabel(elementLabel)
-  .withIcon(Icon.TEXT)
+  .withIcon(Icon.CHECKBOX)
   .withStyleConfigs(
     require("../../../../../configs/styles/group-required"),
     require("../../../../../configs/styles/group-alignment"),

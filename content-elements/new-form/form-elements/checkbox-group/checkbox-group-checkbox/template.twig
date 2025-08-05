@@ -3,7 +3,7 @@
     {% set formCheckboxElementPartId = elementPartId ?: 'checkbox-group-checkbox-part-6cee4307' %}
     {% set formCheckboxLabelText = labelText ?: bsi_cx_lorem(3) %}
     
-    <div x-data="checkbox" data-bsi-element="{{ formCheckboxElementId }}" class="bsi-element-{{ formCheckboxElementId }} form-element" data-bsi-element-part="{{ formCheckboxElementPartId }}" data-bsi-hide-required>
+    <div x-data="checkbox" data-bsi-element="{{ formCheckboxElementId }}" class="bsi-element-{{ formCheckboxElementId }}" data-bsi-element-part="{{ formCheckboxElementPartId }}" data-bsi-hide-required>
         <div class="checkbox-container">
             <div class="checkbox-with-label">
                 <input @change="formGroupValidationOnChange" id="checkbox-element" type="checkbox" class="native-checkbox checkbox-in-group"></input>
