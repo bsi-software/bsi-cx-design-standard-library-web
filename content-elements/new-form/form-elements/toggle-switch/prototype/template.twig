@@ -13,13 +13,13 @@
             <div class="toggle-switch-with-label">
                 <input 
                     @change="formElementValidationOnChange"
-                    :id="toggleId"
+                    id="toggleId"
                     type="checkbox"
                     role="switch" 
                     hidden
                     :checked="checked"
                     :aria-checked="checked"
-                    :aria-labelledby="labelId"
+                    aria-labelledby="labelId"
                     class="native-checkbox">
                 </input>
                 <span
@@ -30,13 +30,13 @@
                     tabindex="0"
                     role="switch"
                     :aria-checked="checked"
-                    :aria-labelledby="labelId"
+                    aria-labelledby="labelId"
                 >
                     <span class="toggle-indicator"></span>
                 </span>
                 <label
-                    :id="labelId"
-                    :for="toggleId"
+                    id="labelId"
+                    for="toggleId"
                     class="form-label">{{ formToggleSwitchLabelText }}
                 </label>
             </div>
