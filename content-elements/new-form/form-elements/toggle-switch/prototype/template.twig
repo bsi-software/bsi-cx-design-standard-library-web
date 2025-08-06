@@ -1,0 +1,54 @@
+{% apply spaceless %}
+    {% set formToggleSwitchElementId = elementId ?: 'toggle-switch-b0ae602a' %}
+    {% set formToggleSwitchElementPartId = elementPartId ?: 'toggle-switch-part-76e700be' %}
+    {% set formToggleSwitchHelperTextPartId = formToggleSwitchHelperTextPartId ?: 'toggle-switch-helper-text-part-772277fc' %}
+    {% set formToggleSwitchErrorInvalidPartId = errorInvalidPartId ?: 'toggle-switch-error-invalid-part-a8889dc9' %}
+    {% set formToggleSwitchLabelText = labelText ?: bsi_cx_lorem(3) %}
+    {% set formToggleSwitchHelperText = infoText  ?: "" %}
+    {% set formToggleSwitchErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
+
+    <div x-data="toggleSwitch" data-bsi-element="{{ formToggleSwitchElementId }}" class="bsi-element-{{ formToggleSwitchElementId }} form-element" data-bsi-element-part="{{ formToggleSwitchElementPartId }}">
+        <div class="empty-element"></div> {# This Element is only for the option, that the label from other Form Elements stands on the left side insted of in the top of the element #}
+        <div class="toggle-switch-container">
+            <div class="toggle-switch-with-label">
+                <input 
+                    @change="formElementValidationOnChange"
+                    :id="toggleId"
+                    type="checkbox"
+                    role="switch" 
+                    hidden
+                    :checked="checked"
+                    :aria-checked="checked"
+                    :aria-labelledby="labelId"
+                    class="native-checkbox">
+                </input>
+                <span
+                    @click="toggle"
+                    @keydown.space.prevent="toggle"
+                    @keydown.enter.prevent="toggle"
+                    class="visual-toggle-switch"
+                    tabindex="0"
+                    role="switch"
+                    :aria-checked="checked"
+                    :aria-labelledby="labelId"
+                >
+                    <span class="toggle-indicator"></span>
+                </span>
+                <label
+                    :id="labelId"
+                    :for="toggleId"
+                    class="form-label">{{ formToggleSwitchLabelText }}
+                </label>
+            </div>
+            {% block toggle_switch_info_texts %}
+                {# TODO: Dieser Fehlertext wird nie angezeigt, da ein patternMissmatch nie stattfinden kann bei diesem Element.  #}
+                <div data-bsi-element-part="{{ formToggleSwitchErrorInvalidPartId }}" class="bsi-invalid-feedback">
+                    {{ formToggleSwitchErrorInvalidText }}
+                </div>
+                <div class="helper-text-container">
+                    <div data-bsi-element-part="{{ formToggleSwitchHelperTextPartId }}" class="helper-text">{{ formToggleSwitchHelperText }}</div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+{% endapply %}
