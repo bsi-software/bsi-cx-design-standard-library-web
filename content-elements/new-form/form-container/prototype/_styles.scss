@@ -1,5 +1,7 @@
 @use "../../../../styles/properties" as properties;
 
+@use "./validation" as formValidationStyleSheet;
+
 @mixin formContainerStyling(
     $elementId: "form-container-84c6581f",
     $elementBackgroundColor: properties.$light,  
@@ -13,6 +15,12 @@
     $buttonSubmitBackgroundColor: properties.$primary,
     $buttonResetBackgroundColor: properties.$light,
 ) {
+
+    @include formValidationStyleSheet.formValidationStyling(
+        $elementId: $elementId,
+        $errorColor: $errorColor,
+        $successColor: $successColor
+    );
 
     .bsi-element-#{$elementId} {
         padding: properties.$spacing0;
@@ -29,101 +37,6 @@
 
         .helper-text-container, .helper-text {
             color: $helperTextColor;
-        }
-
-        // validation style for normal input fields
-        .input-field-with-error-text, .radio-button-group {
-            &:has(input:user-valid) {
-                input {
-                    outline-color: $successColor;
-                }
-            }
-
-            &:has(input:user-invalid) {
-                input {
-                    outline-color: $errorColor;
-                }
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
-                }
-            }
-        }
-
-        // validation style for toggle switch elements
-        .toggle-switch-container {
-            &:has(input:user-valid), &:has(input.custom-valid) {
-                .visual-toggle-switch {
-                    outline-color: $successColor;
-                }
-            }
-
-            &:has(input:user-invalid), &:has(input.custom-invalid)  {
-                .visual-toggle-switch {
-                    outline-color: $errorColor;
-                }
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
-                }
-            }
-        }
-
-        // validation style for checkboxes
-        .checkbox-container {
-            &:has(input.custom-valid) {
-                .visual-checkbox {
-                    outline-color: $successColor;
-                }
-            }
-
-            &:has(input.custom-invalid) {
-                .visual-checkbox {
-                    outline-color: $errorColor;
-                }
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
-                }
-            }
-        }
-
-        // validation for radio-button groups
-        .radio-group {
-            &:has(input:user-valid), &:has(input.custom-valid) {
-                .visual-radio {
-                    outline-color: $successColor;
-                }
-            }
-
-            &:has(input:user-invalid), &:has(input.custom-invalid) {
-                .visual-radio {
-                    outline-color: $errorColor;
-                }
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
-                }
-            }
-        }
-
-        // validation style for checkbox groups
-        .checkbox-group.custom-valid {
-            .visual-checkbox {
-                outline-color: $successColor;
-            }
-        }
-
-        .checkbox-group.custom-invalid {
-            .visual-checkbox {
-                outline-color: $errorColor;
-            }
-            .error-and-helper-text-container {
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
-                }
-            }
         }
 
         $spacings: ("0": properties.$spacing0, "100": properties.$spacing100, "200": properties.$spacing200, "300": properties.$spacing300, "400": properties.$spacing400, "500": properties.$spacing500, "600": properties.$spacing600, "700": properties.$spacing700, "800": properties.$spacing800);
@@ -147,24 +60,28 @@
 
             // Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.)
             &.space-within-form-elements-#{$name} {
-                .form-field {
-                    gap: $spacing;
-                    .input-field-container {
-                        gap: $spacing;
-                        .input-field-with-error-text {
-                            gap: $spacing;
-                        }
-                    }
-                }
-
                 .form-element {
                     gap: $spacing;
-                    .checkbox-container, .radio-button-group-container {
+                    .checkbox-container, .radio-button-group-container, .toggle-switch-container {
                         gap: $spacing;
                     }
 
                     fieldset {
                         gap: $spacing;
+                    }
+
+                    .error-and-helper-text-wrapper, .error-and-helper-text-container {
+                        gap: $spacing;
+                    }
+                }
+
+                .form-field {
+                    // gap: $spacing;
+                    .input-field-container {
+                        gap: $spacing;
+                        .input-field-with-error-text {
+                            gap: $spacing;
+                        }
                     }
                 }
             }
