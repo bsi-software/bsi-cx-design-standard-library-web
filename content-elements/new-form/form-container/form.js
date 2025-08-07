@@ -91,7 +91,7 @@ Alpine.data("form", () => ({
      */
     _formValidation() {
         console.log("SubmitForm wurde aufgerufen");
-        const formElementInputs = this.$root.querySelectorAll(".form-element input"); // TODO: ggf erweitern, sodass auch Form Elemente die kein input Feld als Grundlage haben funktionieren
+        const formElementInputs = this.$root.querySelectorAll(".form-element input, .form-element textarea"); // TODO: ggf erweitern, sodass auch Form Elemente die kein input Feld als Grundlage haben funktionieren
         const formGroups = this.$root.querySelectorAll(".checkbox-group, .radio-group");
 
         console.warn("Es wurden " + formGroups.length + "Gruppen gefunden.");

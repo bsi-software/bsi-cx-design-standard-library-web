@@ -45,6 +45,7 @@
             &.space-between-form-sections-#{$name} {
                 form {
                     gap: $spacing;
+                    
                     .form-elements-container {
                         gap: $spacing; 
                     }
@@ -62,26 +63,24 @@
             &.space-within-form-elements-#{$name} {
                 .form-element {
                     gap: $spacing;
-                    .checkbox-container, .radio-button-group-container, .toggle-switch-container {
-                        gap: $spacing;
-                    }
 
+                    .error-and-helper-text-wrapper,
+                    .error-and-helper-text-container,
+                    .checkbox-container,
+                    .radio-button-group-container,
+                    .toggle-switch-container,
+                    .textarea-container,
+                    .textarea-and-error-text,
                     fieldset {
-                        gap: $spacing;
-                    }
-
-                    .error-and-helper-text-wrapper, .error-and-helper-text-container {
                         gap: $spacing;
                     }
                 }
 
-                .form-field {
-                    // gap: $spacing;
-                    .input-field-container {
+                .form-field .input-field-container {
+                    gap: $spacing;
+
+                    .input-field-with-error-text {
                         gap: $spacing;
-                        .input-field-with-error-text {
-                            gap: $spacing;
-                        }
                     }
                 }
             }
