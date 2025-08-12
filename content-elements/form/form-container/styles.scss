@@ -7,14 +7,24 @@
   .form-text {
     margin-top: 0 !important;
   }
-  input:not([type=checkbox]):not([type=radio]), select, textarea, input.bsi-form-tel-input-element, .bsi-poll-radio-group, .form-radio {
+
+  input:not([type=checkbox]):not([type=radio]),
+  select,
+  textarea,
+  input.bsi-form-tel-input-element,
+  .bsi-poll-radio-group,
+  .form-radio {
     margin-top: 0.5rem !important;
   }
+
   label {
     margin-bottom: 0;
   }
 
-  .card, input, select, textarea {
+  .card,
+  input,
+  select,
+  textarea {
     border: 1px solid rgba(56, 62, 66, .3);
   }
 
@@ -40,35 +50,46 @@
   }
 
   &.bsi-corner-sharp {
-    .card, input:not([type=checkbox]):not([type=radio]), select, textarea {
+
+    .card,
+    input:not([type=checkbox]):not([type=radio]),
+    select,
+    textarea {
       border-radius: 0;
     }
   }
 
-  @media screen and (prefers-color-scheme: dark) {
+  @if $darkModeActive == true {
+    @media screen and (prefers-color-scheme: dark) {
 
-    .btn-dm-submit{
-      background-color: $primary !important;
-      color: bsiProperty('darkModeTextColor', #ffffff) !important;
+      .btn-dm-submit {
+        background-color: $primary !important;
+        color: bsiProperty('darkModeTextColor', #ffffff) !important;
+      }
+
+      .btn-outline-dark {
+        color: bsiProperty('darkModeTextColor', #ffffff) !important;
+        border-color: bsiProperty('darkModeTextColor', #ffffff) !important;
+      }
+
     }
-
-    .btn-outline-dark {
-      color: bsiProperty('darkModeTextColor', #ffffff) !important;
-      border-color: bsiProperty('darkModeTextColor', #ffffff) !important;
-    }
-
   }
 
   &.bsi-form-label-left {
     @media (min-width: $md) {
-      .bsi-form-btn-row, .bsi-multi-col-element {
+
+      .bsi-form-btn-row,
+      .bsi-multi-col-element {
         display: flex;
         justify-content: flex-end;
       }
-      .bsi-form-btn, .bsi-multi-col {
+
+      .bsi-form-btn,
+      .bsi-multi-col {
         flex: 0 1 80%;
       }
-      :not(.bsi-multi-col) > .bsi-form-element.bsi-form-flex-label {
+
+      :not(.bsi-multi-col)>.bsi-form-element.bsi-form-flex-label {
         .bsi-form-input-element {
           display: flex;
           flex-wrap: wrap;
@@ -80,11 +101,17 @@
             padding-right: 10px;
           }
 
-          .form-control, .form-select, .form-radio, .form-range, .iti {
+          .form-control,
+          .form-select,
+          .form-radio,
+          .form-range,
+          .iti {
             flex: 0 1 80%;
           }
 
-          .invalid-feedback, .bsi-tel-input-error-invalid, .form-text {
+          .invalid-feedback,
+          .bsi-tel-input-error-invalid,
+          .form-text {
             flex: 0 1 80%;
             margin-left: auto;
           }
@@ -97,7 +124,9 @@
           justify-content: flex-end;
           padding: 0;
 
-          .bsi-form-input-element, .form-text, .invalid-feedback {
+          .bsi-form-input-element,
+          .form-text,
+          .invalid-feedback {
             flex: 0 1 80%;
             margin-left: 0;
           }
@@ -110,7 +139,8 @@
             margin-left: 1.5em;
           }
 
-          .form-text, .invalid-feedback {
+          .form-text,
+          .invalid-feedback {
             padding-left: 1.75em;
           }
 
@@ -123,7 +153,8 @@
               margin-left: 2.5em;
             }
 
-            .form-text, .invalid-feedback {
+            .form-text,
+            .invalid-feedback {
               padding-left: 3em;
             }
           }
@@ -153,7 +184,7 @@
         height: 62px;
       }
 
-      ~ .form-label {
+      ~.form-label {
         margin-left: 106px;
       }
     }
@@ -172,122 +203,138 @@
     border: 0 !important;
   }
 
-  $colors: ("primary": $primary, "secondary": $secondary);
-  @each $name, $color in $colors {
+  $colors: (
+    "primary": $primary,
+    "secondary": $secondary
+  );
 
-    &.bsi-form-color-#{$name} {
-      input:checked {
-        background-color: $color;
-        border-color: $color;
-      }
+@each $name, $color in $colors {
 
-      input:focus, select:focus, textarea:focus {
-        border-color: rgba($color, .25);
-        box-shadow: 0 0 0 .25rem rgba($color, .25);
-      }
+  &.bsi-form-color-#{$name} {
+    input:checked {
+      background-color: $color;
+      border-color: $color;
+    }
 
-      &.bsi-form-btn-outline .btn-submit {
-        color: $color;
-        background-color: transparent;
-        border-color: $color;
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba($color, .25);
+      box-shadow: 0 0 0 .25rem rgba($color, .25);
+    }
 
-        &:hover {
-          color: $light;
-          background-color: $color;
-          border-color: $color;
-        }
-      }
+    &.bsi-form-btn-outline .btn-submit {
+      color: $color;
+      background-color: transparent;
+      border-color: $color;
 
-      &.bsi-form-btn-filled .btn-submit {
+      &:hover {
         color: $light;
         background-color: $color;
         border-color: $color;
-
-        &:hover {
-          color: $color;
-          background-color: transparent;
-          border-color: $color;
-        }
       }
+    }
 
-      input[type=range]::-webkit-slider-thumb {
-        background: $color;
-      }
+    &.bsi-form-btn-filled .btn-submit {
+      color: $light;
+      background-color: $color;
+      border-color: $color;
 
-      input[type=range]::-moz-range-thumb {
-        background: $color;
-      } /* Firefox */
-
-      input[type=range]::-ms-thumb {
-        background: $color;
-      } /* IE */
-
-      input[type=range]:focus::-webkit-slider-thumb {
-        box-shadow: 0 0 0 .25rem rgba($color, .25);
-      }
-
-      input[type=range]:focus::-moz-range-thumb {
-        box-shadow: 0 0 0 .25rem rgba($color, .25);
-      } /* Firefox */
-
-      input[type=range]:focus::-ms-thumb {
-        box-shadow: 0 0 0 .25rem rgba($color, .25);
-      } /* IE */
-
-      i.bi-info-circle {
+      &:hover {
         color: $color;
+        background-color: transparent;
+        border-color: $color;
       }
     }
-  }
-  
 
-  &.bsi-form-btn-filled .btn-outline-info {
-    color: $light;
-    background-color: $dark;
-    border-color: $dark;
-
-    &:hover {
-      color: $dark;
-      background-color: transparent;
-      border-color: $dark;
+    input[type=range]::-webkit-slider-thumb {
+      background: $color;
     }
-  }
 
-  input[type=submit], input[type=reset], .bsi-btn-element {
-    margin: 0 0.25rem 0.25rem 0 !important;
-  }
-
-  input[type=reset][disabled] {
-    display: none;
-  }
-
-  .text-danger {
-    list-style-type: none;
-  }
-
-  .form-label-and-info-text,
-  .checkbox-label-and-tooltip {
-    &.contains-tooltip {
-      display: flex;
-      gap: 0.5rem;
-
-      .form-text {
-        display: none;
-      }
+    input[type=range]::-moz-range-thumb {
+      background: $color;
     }
+
+    /* Firefox */
+
+    input[type=range]::-ms-thumb {
+      background: $color;
+    }
+
+    /* IE */
+
+    input[type=range]:focus::-webkit-slider-thumb {
+      box-shadow: 0 0 0 .25rem rgba($color, .25);
+    }
+
+    input[type=range]:focus::-moz-range-thumb {
+      box-shadow: 0 0 0 .25rem rgba($color, .25);
+    }
+
+    /* Firefox */
+
+    input[type=range]:focus::-ms-thumb {
+      box-shadow: 0 0 0 .25rem rgba($color, .25);
+    }
+
+    /* IE */
 
     i.bi-info-circle {
-      display: none;
+      color: $color;
+    }
+  }
+}
 
-      &.tooltip-visible {
-        display: block;
-      }
+
+&.bsi-form-btn-filled .btn-outline-info {
+  color: $light;
+  background-color: $dark;
+  border-color: $dark;
+
+  &:hover {
+    color: $dark;
+    background-color: transparent;
+    border-color: $dark;
+  }
+}
+
+input[type=submit],
+input[type=reset],
+.bsi-btn-element {
+  margin: 0 0.25rem 0.25rem 0 !important;
+}
+
+input[type=reset][disabled] {
+  display: none;
+}
+
+.text-danger {
+  list-style-type: none;
+}
+
+.form-label-and-info-text,
+.checkbox-label-and-tooltip {
+  &.contains-tooltip {
+    display: flex;
+    gap: 0.5rem;
+
+    .form-text {
+      display: none;
     }
   }
 
-  &.bsi-form-show-valdiation-summary form.was-validated .form-validation-summary {
-    display: block;
+  i.bi-info-circle {
+    display: none;
+
+    &.tooltip-visible {
+      display: block;
+    }
   }
+}
+
+&.bsi-form-show-valdiation-summary form.was-validated .form-validation-summary {
+  display: block;
+}
 }
 
 .bsi-tooltip {

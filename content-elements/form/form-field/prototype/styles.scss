@@ -1,5 +1,6 @@
 @import "flatpickr/dist/flatpickr";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+@import "./../../../../styles/properties.scss";
 
 @mixin styles($id: 'form-field-REEhtN') {
   .bsi-element-#{$id} {
@@ -59,9 +60,11 @@
     display: block;
   }
 
-  @media screen and (prefers-color-scheme: dark) {
-    .form-label {
-      color: bsiProperty('darkModeTextColor', #ffffff);
+  @if $darkModeActive == true {
+    @media screen and (prefers-color-scheme: dark) {
+      .form-label {
+        color: bsiProperty('darkModeTextColor', #ffffff);
+      }
     }
   }
 }
