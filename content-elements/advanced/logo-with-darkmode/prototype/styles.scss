@@ -1,21 +1,23 @@
 @import "../../../../styles/properties";
 
 @mixin styles($id: 'logo-4c8c3a', $overlay-primary-color: $primary, $overlay-secondary-color: $secondary, $overlay-dark: $dark, $overlay-light: $light) {
-  
+
   .bsi-element-#{$id} {
     width: 100%;
     position: relative;
 
-    @media screen and (prefers-color-scheme: dark) {
+    @if $darkModeActive == true {
+      @media screen and (prefers-color-scheme: dark) {
 
-      .light-mode-logo {
-        display: none !important;
-      }
+        .light-mode-logo {
+          display: none !important;
+        }
 
-      .dark-mode-logo {
-        display: block !important;
+        .dark-mode-logo {
+          display: block !important;
+        }
+
       }
-      
     }
 
     .light-mode-logo {
@@ -129,40 +131,54 @@
       border-bottom-left-radius: 0.5rem;
     }
 
-    $font-sizes: ("small": 0.875em, "medium": 1.2em, "large": 1.5em);
-    @each $name, $font-size in $font-sizes {
-      &.bsi-caption-#{$name} .figure-caption {
-        font-size: $font-size;
-      }
-    }
+    $font-sizes: (
+      "small": 0.875em,
+      "medium": 1.2em,
+      "large": 1.5em
+    );
 
-    &.bsi-caption-medium.bsi-caption-overlay .figure-caption {
-      padding-top: 10px;
-    }
-
-    &.bsi-caption-large.bsi-caption-overlay .figure-caption {
-      padding-top: 5px;
-    }
-
-    $colors: ("primary-color": $overlay-primary-color, "secondary-color": $overlay-secondary-color, "dark": $overlay-dark, "light": $overlay-light);
-    @each $name, $color in $colors {
-      &.bsi-overlay-#{$name} {
-        background-color: $color;
-      }
-    }
-    @for $i from 0 through 100 {
-      @if $i % 10 == 0 {
-        $opacity-percentage: $i*1%;
-        &.bsi-overlay-opacity-#{$i} > img {
-          opacity: 100%-$opacity-percentage;
-        }
-      }
+  @each $name, $font-size in $font-sizes {
+    &.bsi-caption-#{$name} .figure-caption {
+      font-size: $font-size;
     }
   }
+
+  &.bsi-caption-medium.bsi-caption-overlay .figure-caption {
+    padding-top: 10px;
+  }
+
+  &.bsi-caption-large.bsi-caption-overlay .figure-caption {
+    padding-top: 5px;
+  }
+
+  $colors: (
+    "primary-color": $overlay-primary-color,
+    "secondary-color": $overlay-secondary-color,
+    "dark": $overlay-dark,
+    "light": $overlay-light
+  );
+
+@each $name, $color in $colors {
+  &.bsi-overlay-#{$name} {
+    background-color: $color;
+  }
+}
+
+@for $i from 0 through 100 {
+  @if $i % 10==0 {
+    $opacity-percentage: $i*1%;
+
+    &.bsi-overlay-opacity-#{$i}>img {
+      opacity: 100%-$opacity-percentage;
+    }
+  }
+}
+}
 }
 
 @mixin aspect-ratio($ratio) {
   position: relative;
+
   &:before {
     display: block;
     content: " ";
@@ -170,7 +186,7 @@
     padding-top: $ratio * 100%;
   }
 
-  > .figure-img {
+  >.figure-img {
     position: absolute;
     top: 0;
     left: 0;
