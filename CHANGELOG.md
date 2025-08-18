@@ -56,6 +56,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * add further explanation to recaptcha
 * accodion trigger button will not trigger form submission, when used within a form container
 * update error-messages for formfields
+* add info-text and tooltip above formfields
 
 ## [1.4.7] - 11.10.2024
 * Prevent spacer from shrinking to 0px if no other element is present (#386885)
