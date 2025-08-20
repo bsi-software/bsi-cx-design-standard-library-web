@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-
+* Add the possibility to have a preselected value on a select while the attribute "First option is a placeholder" is set
 
 ## [1.4.12] - 03.06.2025
 * Fix aria-states for header-image
@@ -56,7 +56,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * add further explanation to recaptcha
 * accodion trigger button will not trigger form submission, when used within a form container
 * update error-messages for formfields
-* add info-text and tooltip above formfields 
+* add info-text and tooltip above formfields
 
 ## [1.4.7] - 11.10.2024
 * Prevent spacer from shrinking to 0px if no other element is present (#386885)
