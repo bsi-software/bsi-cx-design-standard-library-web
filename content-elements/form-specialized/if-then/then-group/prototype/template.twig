@@ -1,0 +1,11 @@
+{% set thenGroupElementId = elementId ?: 'then-group-0HfARz' %}
+{% set thenGroupConditionPartId = conditionPartId ?: 'then-group-condition-part-UF47Zh' %}
+{% set thenGroupConditions = conditions ?: '"Option 1; Option 2" oder "Ja/Nein"' %}
+{% set thenGroupDependingDropzone = dependingDropzone ?:  'depending-dropzone-MUq0Kd' %}
+
+<div data-bsi-element="{{ thenGroupElementId }}"
+     class="{{ 'bsi-element-' ~ thenGroupElementId }} then-group"
+     aria-controls="TODO">
+    <div data-bsi-element-part="{{ thenGroupConditionPartId }}" class="condition">{{ thenGroupConditions }}</div>
+    <div data-bsi-dropzone="{{ thenGroupDependingDropzone }}"></div>
+</div>
