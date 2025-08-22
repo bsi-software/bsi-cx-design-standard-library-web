@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
 * Add the possibility to have a preselected value on a select while the attribute "First option is a placeholder" is set
+* Allow positioning of info-text below form-fields
+* Fix positioning of info-text of checkbox
+* Date-Input: enable 24121990 => 24.12.1990 as input
+
 
 ## [1.4.12] - 03.06.2025
 * Fix aria-states for header-image
