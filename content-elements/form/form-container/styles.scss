@@ -288,6 +288,15 @@
   &.bsi-form-show-valdiation-summary form.was-validated .form-validation-summary {
     display: block;
   }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.bsi-form-info-below-input .input-container{
+    flex-direction: column-reverse;
+  }
 }
 
 .bsi-tooltip {

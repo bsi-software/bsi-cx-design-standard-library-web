@@ -19,30 +19,32 @@
         <div class="bsi-form-input-element mb-3">
             <div class="form-label-and-info-text">
                 <label for="tel-field" class="form-label">{{ phoneLabelText }}</label>
-                <div data-bsi-element-part="{{ phoneFormTextPartId }}"
-                    class="form-text">{{ phoneInfoText }}</div>
                 <i  class="bi bi-info-circle"
                     data-bs-toggle="tooltip"
                     data-bs-custom-class="bsi-tooltip"
                     role="tooltip"
                     aria-label="{{ phoneInfoText }}"></i>
             </div>
-            <input x-ref="inputField"
-                @input="validate"
-                class="form-control bsi-form-tel-input-element"
-                id="tel-field"
-                type="tel"
-                required>
-            <div class="d-none">
-                <div data-bsi-element-part="{{ phoneCountriesPartId }}"
-                    class="only-countries">ch,de,at</div>
-                <div data-bsi-element-part="{{ phoneInitialCountriesPartId }}"
-                    class="initial-country">de</div>
+            <div class="input-container">
+                <div data-bsi-element-part="{{ phoneFormTextPartId }}"
+                    class="form-text">{{ phoneInfoText }}</div>
+                <input x-ref="inputField"
+                    @input="validate"
+                    class="form-control bsi-form-tel-input-element"
+                    id="tel-field"
+                    type="tel"
+                    required>
+                <div class="d-none">
+                    <div data-bsi-element-part="{{ phoneCountriesPartId }}"
+                        class="only-countries">ch,de,at</div>
+                    <div data-bsi-element-part="{{ phoneInitialCountriesPartId }}"
+                        class="initial-country">de</div>
+                </div>
+                <div data-bsi-element-part="{{ phoneErrorRequiredPartId }}"
+                    class="invalid-feedback">{{ phoneErrorRequiredText }}</div>
+                <div data-bsi-element-part="{{ phoneErrorInvalidPartId }}"
+                    class="d-none logic-validation">{{ phoneErrorInvalidText }}</div>
             </div>
-            <div data-bsi-element-part="{{ phoneErrorRequiredPartId }}"
-                class="invalid-feedback">{{ phoneErrorRequiredText }}</div>
-            <div data-bsi-element-part="{{ phoneErrorInvalidPartId }}"
-                class="d-none logic-validation">{{ phoneErrorInvalidText }}</div>
         </div>
     </div>
 {% endapply %}
