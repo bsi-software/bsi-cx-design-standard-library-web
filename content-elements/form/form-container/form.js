@@ -33,6 +33,7 @@ Alpine.data('formElement', () => ({
 
   submitForm(e) {
     this._validateFormFieldTel(); // must be executed before form.checkValidity()
+    this._handleEmptySelect(); // must be executed before form.checkValidity()
     this.form.classList.add('was-validated');
     if (!this.form.checkValidity()) {
       e.preventDefault();
@@ -80,6 +81,14 @@ Alpine.data('formElement', () => ({
       messageElement.setAttribute('hidden', 'true');
       messageElement.setAttribute('aria-hidden', 'true');
     }
+  },
+
+  _handleEmptySelect() {
+    this.form.querySelectorAll('.bsi-form-element select').forEach(select => {
+      if(!select.value){
+        select.value = null;
+      }
+    });
   },
 
   _validateFormFieldTel() {
