@@ -25,7 +25,8 @@ module.exports = (
   .withStyleConfigs(
     require('../../../../configs/styles/table-color'),
     require('../../../../configs/styles/shadow'),
-    require('../../../../configs/styles/border'))
+    require('../../../../configs/styles/border'),
+    require('../../../../configs/styles/table-layout'))
   .withParts(
     cx.part.table
       .withId(partId)
