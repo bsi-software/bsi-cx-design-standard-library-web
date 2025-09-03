@@ -4,6 +4,7 @@ const formElements = [
   require('./form-field-tel'),
   require('./poll'),
   require('./radio'),
+  require('./friendly-captcha'),
   require('./recaptcha'),
   require('./select'),
   require('./text-area'),

@@ -14,12 +14,12 @@ import '../../content-elements/base/table/prototype/table';
 import '../../content-elements/form/form-container/form';
 import '../../content-elements/form/form-field-tel/prototype/form-tel-input';
 import '../../content-elements/form/form-field/prototype/form-field';
+import '../../content-elements/form/friendly-captcha/prototype/friendly-captcha';
 import '../../content-elements/form/form-pin/form-pin';
 import '../../content-elements/form/poll/prototype/poll';
 import '../../content-elements/form/radio/prototype/radio';
 import '../../content-elements/form/select/prototype/select';
 import '../../content-elements/form/list/prototype/list';
-
 
 // start Alpine.js AFTER importing all module scripts
 window.Alpine = Alpine;
