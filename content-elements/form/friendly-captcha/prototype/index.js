@@ -13,12 +13,12 @@ const {cx, Icon} = require('@bsi-cx/design-build');
  */
 module.exports = (
   template = require('./template.twig'),
-  elementId = 'frindly-captcha-03c21de7',
-  elementLabel = 'Frindly Captcha',
-  elementDescription = 'Eine Friendly Captcha Lizens wird benötigt',
-  sideKeyPartId = 'frindly-captcha-part-968cbea9',
+  elementId = 'friendly-captcha-03c21de7',
+  elementLabel = 'Friendly Captcha',
+  elementDescription = 'Eine Friendly Captcha Lizenz wird benötigt',
+  sideKeyPartId = 'friendly-captcha-part-968cbea9',
   sideKeyPartLabel = 'SiteKey',
-  friendlyCaptchaPartId = 'frindly-captcha-form-field-part-5e65c6ba',
+  friendlyCaptchaPartId = 'friendly-captcha-form-field-part-5e65c6ba',
   friendlyCaptchaLabel = 'Nicht ändern!'
 
 ) => cx
