@@ -14,73 +14,87 @@
   .bsi-element-#{$id} {
     &.audio-recorder {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 10px;
       font-family: sans-serif;
     
-      .record-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: none;
-        background-color: #25D366;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &.recording {
-          background-color: red;
-          animation: pulse 1.5s infinite;
-        }
-      }
-
-      .recording-ui {
+      .recorder-top {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
 
-        .waveform {
+        .record-btn {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: none;
+          background-color: #25D366;
+          color: white;
+          font-size: 24px;
+          cursor: pointer;
           display: flex;
-          gap: 3px;
+          justify-content: center;
           align-items: center;
-          span {
-            width: 4px;
-            height: 8px;
-            background: #25D366;
-            border-radius: 2px;
+
+          &.recording {
+            background-color: red;
+            animation: pulse 1.5s infinite;
           }
-          &.recording span {
-            animation: bounce 1.2s infinite ease-in-out;
-          }
-          &.recording span:nth-child(2) { animation-delay: 0.2s; }
-          &.recording span:nth-child(3) { animation-delay: 0.4s; }
-          &.recording span:nth-child(4) { animation-delay: 0.6s; }
-          &.recording span:nth-child(5) { animation-delay: 0.8s; }
-          &.recording span:nth-child(6) { animation-delay: 1s; }
-          &.recording span:nth-child(7) { animation-delay: 1.2s; }
-          &.recording span:nth-child(8) { animation-delay: 1.4s; }
-          &.recording span:nth-child(9) { animation-delay: 1.6s; }
         }
 
-        .timer {
-          font-size: 14px;
-          color: #333;
-          min-width: 45px;
-          text-align: center;
+        .recording-ui {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .waveform {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+            span {
+              width: 4px;
+              height: 8px;
+              background: #25D366;
+              border-radius: 2px;
+            }
+            &.recording span {
+              animation: bounce 1.2s infinite ease-in-out;
+            }
+            &.recording span:nth-child(2) { animation-delay: 0.2s; }
+            &.recording span:nth-child(3) { animation-delay: 0.4s; }
+            &.recording span:nth-child(4) { animation-delay: 0.6s; }
+            &.recording span:nth-child(5) { animation-delay: 0.8s; }
+            &.recording span:nth-child(6) { animation-delay: 1s; }
+            &.recording span:nth-child(7) { animation-delay: 1.2s; }
+            &.recording span:nth-child(8) { animation-delay: 1.4s; }
+            &.recording span:nth-child(9) { animation-delay: 1.6s; }
+          }
+
+          .timer {
+            font-size: 14px;
+            color: #333;
+            min-width: 45px;
+            text-align: center;
+            display: none;
+          }
+        }
+      }
+
+      .audio-wrapper {
+        display: flex;
+        align-items: flex-start;
+        margin-top: 10px;
+
+        .audio-playback {
           display: none;
+
+          &.visible {
+            display: block;
+            width: 100%;
+          }
         }
       }
 
-      .audio-playback { 
-        display: none; 
-      
-        &.visible {
-          display: inline;
-        }
-      }
       .audio-input { display: none; }
 
       @media screen and (prefers-color-scheme: dark) {
