@@ -5,8 +5,15 @@ module.exports = (
   template = require('../template.twig'),
   elementId = 'audiorecorder-e89a2a',
   elementLabel = 'Audio Recorder',
+  formTextPartId = 'id-file-input-c1db98',
+  formTextPartLabel = 'Field ID',
 ) => cx
   .contentElement
   .withFile(template)
   .withElementId(elementId)
-  .withLabel(elementLabel);
+  .withLabel(elementLabel)
+  .withParts(
+    cx.part.plainText
+      .withId(formTextPartId)
+      .withLabel(formTextPartLabel)
+  );
