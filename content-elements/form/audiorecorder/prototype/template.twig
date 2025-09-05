@@ -1,0 +1,11 @@
+{% set audiorecorderElementId = elementId ?: 'audiorecorder-e89a2a' %}
+
+<div data-bsi-element="{{audiorecorderElementId}}" x-data="audioRecorder" class="{{ 'bsi-element-' ~ audiorecorderElementId }} audio-recorder">
+  <div x-on:click="toggleRecording" class="record-btn">🎤</div>
+  <div class="waveform">
+    <div class="progress-bar"></div>
+  </div>
+  <audio class="audio-playback" controls></audio>
+
+  <input class="audio-input" type="file" accept="audio/*" style="display:none;">
+</div>

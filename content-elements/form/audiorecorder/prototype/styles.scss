@@ -1,0 +1,58 @@
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@mixin styles($id: 'audiorecorder-e89a2a') {
+  .bsi-element-#{$id} {
+    &.audio-recorder {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: sans-serif;
+    
+      .record-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        background-color: #25D366;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.recording {
+          background-color: red;
+          animation: pulse 1s infinite;
+        }
+      }
+
+      .waveform {
+        width: 200px;
+        height: 10px;
+        background: #e0e0e0;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+
+        .progress-bar {
+          height: 100%;
+          width: 0%;
+          background: #25D366;
+          transition: width 0.1s linear;
+        }
+      }
+
+      .audio-playback { display: none; }
+      .audio-input { display: none; }
+
+      @media screen and (prefers-color-scheme: dark) {
+
+      }
+    }
+  }
+}
