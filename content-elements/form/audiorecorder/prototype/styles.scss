@@ -16,30 +16,43 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      font-family: sans-serif;
+      font-family: bsiProperty('primaryFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
     
       .recorder-top {
         display: flex;
         align-items: center;
         gap: 10px;
 
+        &.recording {
+          .record-btn {
+            background-color: bsiProperty('recordingColor', '#ff0000');
+            animation: pulse 1.5s infinite;
+          }
+          .waveform span {
+            animation: bounce 1.2s infinite ease-in-out;
+          }
+          .waveform span:nth-child(2) { animation-delay: 0.2s; }
+          .waveform span:nth-child(3) { animation-delay: 0.4s; }
+          .waveform span:nth-child(4) { animation-delay: 0.6s; }
+          .waveform span:nth-child(5) { animation-delay: 0.8s; }
+          .waveform span:nth-child(6) { animation-delay: 1s; }
+          .waveform span:nth-child(7) { animation-delay: 1.2s; }
+          .waveform span:nth-child(8) { animation-delay: 1.4s; }
+          .waveform span:nth-child(9) { animation-delay: 1.6s; }
+        }
+
         .record-btn {
           width: 40px;
           height: 40px;
           border-radius: 50%;
           border: none;
-          background-color: #25D366;
-          color: white;
+          background-color: bsiProperty('audioRecorderColor', '#25D366');
+          color: bsiProperty('lightColor', '#ffffff');
           font-size: 24px;
           cursor: pointer;
           display: flex;
           justify-content: center;
           align-items: center;
-
-          &.recording {
-            background-color: red;
-            animation: pulse 1.5s infinite;
-          }
         }
 
         .recording-ui {
@@ -54,25 +67,14 @@
             span {
               width: 4px;
               height: 8px;
-              background: #25D366;
+              background: bsiProperty('audioRecorderColor', '#25D366');
               border-radius: 2px;
             }
-            &.recording span {
-              animation: bounce 1.2s infinite ease-in-out;
-            }
-            &.recording span:nth-child(2) { animation-delay: 0.2s; }
-            &.recording span:nth-child(3) { animation-delay: 0.4s; }
-            &.recording span:nth-child(4) { animation-delay: 0.6s; }
-            &.recording span:nth-child(5) { animation-delay: 0.8s; }
-            &.recording span:nth-child(6) { animation-delay: 1s; }
-            &.recording span:nth-child(7) { animation-delay: 1.2s; }
-            &.recording span:nth-child(8) { animation-delay: 1.4s; }
-            &.recording span:nth-child(9) { animation-delay: 1.6s; }
           }
 
           .timer {
             font-size: 14px;
-            color: #333;
+            color:bsiProperty('darkColor', '#383e42');
             min-width: 45px;
             text-align: center;
             display: none;
@@ -99,16 +101,9 @@
 
       @media screen and (prefers-color-scheme: dark) {
         .recording-ui .timer {
-          color: #fff;
+          color: bsiProperty('lightColor', '#ffffff');
         }
       }
-
-      /* @media (max-width: 768px) {
-        .audio-playback.visible {
-          display: block;
-          margin-top: 10px;
-        }
-      } */
     }
   }
 }

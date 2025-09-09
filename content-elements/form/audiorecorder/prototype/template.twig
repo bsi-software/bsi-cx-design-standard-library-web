@@ -22,6 +22,9 @@
     <audio class="audio-playback" controls></audio>
   </div>
 
-  <div data-bsi-element-part="{{ audiorecorderFormTextPartId }}" class="id-file-input" style="display:none;"></div> 
-  {# <input class="audio-input" type="file" accept="audio/*" style="display:none;"> #}
+  <div class="form-field" data-bsi-form-field-fixed-type="" data-bsi-element-part="{{ audiorecorderFormTextPartId }}">
+    <label for='field' class="label">File Audio</label>
+    <input type="file" class="input form-control bsi-form-field-input" id="" value="" accept="audio/*"></input>
+  </div>
+
 </div>

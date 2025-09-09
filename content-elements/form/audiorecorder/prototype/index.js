@@ -12,8 +12,9 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withIcon(Icon.MEGAPHONE)
   .withParts(
-    cx.part.plainText
+    cx.part.formField
       .withId(formTextPartId)
       .withLabel(formTextPartLabel)
   );

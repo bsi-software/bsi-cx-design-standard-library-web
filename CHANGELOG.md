@@ -8,6 +8,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * Add the possibility to have a preselected value on a select while the attribute "First option is a placeholder" is set
 * Add style for mobile layout to table element
+* Add audio recorder element
 
 ## [1.4.12] - 03.06.2025
 * Fix aria-states for header-image

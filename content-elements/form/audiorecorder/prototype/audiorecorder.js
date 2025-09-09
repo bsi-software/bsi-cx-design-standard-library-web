@@ -10,18 +10,13 @@ Alpine.data('audioRecorder', () => ({
     waveform: null,
     timer: null,
     audioPlayback: null,
-    audioInput: null,
     
     init(){
         this.recordBtn = this.$root.querySelector('.record-btn');
         this.waveform = this.$root.querySelector('.waveform');
         this.timer = this.$root.querySelector('.timer');
         this.audioPlayback = this.$root.querySelector('.audio-playback');
-        this.audioInput = this.$root.querySelector('.audio-input');
-        this.inputFile = this.$root.querySelector('.id-file-input').innerHTML;
-        this.$root.querySelector('.id-file-input').remove();
-        //console.log(this.inputFile);
-        document.getElementById(this.inputFile)?.setAttribute("accept","audio/*");
+        this.inputFile = this.$root.querySelector('.form-field input').id;
     },
 
     formatTime(ms) {
@@ -41,7 +36,7 @@ Alpine.data('audioRecorder', () => ({
                     document.getElementById(this.inputFile).value = "";
                 }   
             }
-            // Inizio registrazione
+            // Registration start
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             this.mediaRecorder = new MediaRecorder(stream);
             this.chunks = [];
@@ -56,25 +51,22 @@ Alpine.data('audioRecorder', () => ({
                 this.audioPlayback.src = url;
                 this.audioPlayback.classList.add("visible");
 
-                // Inserisci il file nell’input nascosto
+                // Insert file in input
                 const file = new File([blob], "registrazione.webm", { type: 'audio/webm' });
                 const dataTransfer = new DataTransfer();
                 dataTransfer.items.add(file);
                 if(document.getElementById(this.inputFile)){
                     document.getElementById(this.inputFile).files = dataTransfer.files;
                 }
-                //this.audioInput.files = dataTransfer.files;
 
                 clearInterval(this.timerInterval);
-                this.waveform.classList.remove('recording');
-                this.recordBtn.classList.remove('recording');
+                this.$root.querySelector('.recorder-top').classList.remove('recording');
                 this.timer.textContent = "00:00";
                 this.timer.style.display = "none";
             };
 
             this.mediaRecorder.start();
-            this.recordBtn.classList.add('recording');
-            this.waveform.classList.add('recording');
+            this.$root.querySelector('.recorder-top').classList.add('recording');
 
             // Timer
             this.startTime = Date.now();
@@ -83,10 +75,9 @@ Alpine.data('audioRecorder', () => ({
             }, 500);
 
         } else if (this.mediaRecorder.state === "recording") {
-            // Ferma registrazione
+            // Stop recording
             this.mediaRecorder.stop();
-            this.recordBtn.classList.remove('recording');
-            this.waveform.classList.remove('recording');
+            this.$root.querySelector('.recorder-top').classList.remove('recording');
         } 
     }
 
