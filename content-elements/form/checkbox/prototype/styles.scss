@@ -1,3 +1,5 @@
+@import "./../../../../styles/properties.scss";
+
 @mixin styles($id: 'checkbox-24CNSe') {
   .bsi-element-#{$id} {
     &.bsi-checkbox-spacing-hide {
@@ -8,9 +10,11 @@
       -webkit-appearance: none;
     }
 
-    @media screen and (prefers-color-scheme: dark) {
-      .form-check-label {
-        color: bsiProperty('darkModeTextColor', #ffffff);
+    @if $darkModeActive == true {
+      @media screen and (prefers-color-scheme: dark) {
+        .form-check-label {
+          color: bsiProperty('darkModeTextColor', #ffffff);
+        }
       }
     }
   }

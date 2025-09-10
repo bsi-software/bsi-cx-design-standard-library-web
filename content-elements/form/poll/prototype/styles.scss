@@ -1,10 +1,8 @@
 @import "../../../../styles/properties";
 
-@mixin styles(
-  $id: "poll-wni8em",
+@mixin styles($id: "poll-wni8em",
   $poll-primary: $primary,
-  $poll-secondary: $secondary
-) {
+  $poll-secondary: $secondary) {
   .bsi-element-#{$id} {
     .bsi-poll-radio-group {
       margin-bottom: 0.75em;
@@ -49,9 +47,11 @@
       }
     }
 
-    @media screen and (prefers-color-scheme: dark) {
-      .poll-label {
-        color: bsiProperty('darkModeTextColor', #ffffff);
+    @if $darkModeActive == true {
+      @media screen and (prefers-color-scheme: dark) {
+        .poll-label {
+          color: bsiProperty('darkModeTextColor', #ffffff);
+        }
       }
     }
 
@@ -97,136 +97,141 @@
     "secondary": $poll-secondary,
   );
 
-  @each $name, $color in $colors {
-    $star-icon: $star-icon-primary;
-    $star-fill-icon: $star-fill-icon-primary;
+@each $name, $color in $colors {
+  $star-icon: $star-icon-primary;
+  $star-fill-icon: $star-fill-icon-primary;
 
-    @if $name == "secondary" {
-      $star-icon: $star-icon-secondary;
-      $star-fill-icon: $star-fill-icon-secondary;
-    }
+  @if $name =="secondary" {
+    $star-icon: $star-icon-secondary;
+    $star-fill-icon: $star-fill-icon-secondary;
+  }
 
-    .bsi-form-color-#{$name} .bsi-element-#{$id} {
-      &.bsi-poll-nps .bsi-poll-radio-label {
-        color: $color;
-        border: 1px solid $color;
+  .bsi-form-color-#{$name} .bsi-element-#{$id} {
+    &.bsi-poll-nps .bsi-poll-radio-label {
+      color: $color;
+      border: 1px solid $color;
 
-        &:hover {
-          background-color: $color;
-          color: $light;
-        }
-      }
-
-      &.bsi-poll-nps .bsi-poll-radio-input:checked + .bsi-poll-radio-label {
+      &:hover {
         background-color: $color;
         color: $light;
       }
+    }
 
-      &.bsi-poll-star .bsi-poll-radio-group {
-        .bsi-poll-radio-item input[type="radio"] {
-          background-image: $star-icon;
-        }
+    &.bsi-poll-nps .bsi-poll-radio-input:checked+.bsi-poll-radio-label {
+      background-color: $color;
+      color: $light;
+    }
 
-        &:not(:hover) {
-          .bsi-poll-radio-checked {
-            input[type="radio"] {
-              background-image: $star-fill-icon !important;
-            }
+    &.bsi-poll-star .bsi-poll-radio-group {
+      .bsi-poll-radio-item input[type="radio"] {
+        background-image: $star-icon;
+      }
 
-            input[type="radio"]:checked {
-              background-image: $star-fill-icon !important;
-            }
+      &:not(:hover) {
+        .bsi-poll-radio-checked {
+          input[type="radio"] {
+            background-image: $star-fill-icon !important;
           }
-        }
 
-        &:hover {
-          .bsi-poll-radio-item {
-            input[type="radio"] {
-              background-image: $star-fill-icon;
-            }
-
-            &:hover ~ .bsi-poll-radio-item input[type="radio"] {
-              background-image: $star-icon;
-            }
+          input[type="radio"]:checked {
+            background-image: $star-fill-icon !important;
           }
         }
       }
-    }
-  }
 
-  .bsi-corner-sharp .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-label {
-    border-radius: 0;
-  }
-
-  .was-validated .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-group {
-    .bsi-poll-radio-input:invalid ~ .bsi-poll-radio-label,
-    .bsi-poll-radio-input.is-invalid ~ .bsi-poll-radio-label {
-      color: $invalid !important;
-      border: 1px solid $invalid !important;
-    }
-
-    .bsi-poll-radio-input:valid ~ .bsi-poll-radio-label,
-    .bsi-poll-radio-input.is-valid ~ .bsi-poll-radio-label {
-      color: $valid !important;
-      border: 1px solid $valid !important;
-    }
-
-    .bsi-poll-radio-input:valid:focus ~ .bsi-poll-radio-label,
-    .bsi-poll-radio-input.is-valid:focus ~ .bsi-poll-radio-label,
-    .bsi-poll-radio-input:valid:checked ~ .bsi-poll-radio-label,
-    .bsi-poll-radio-input.is-valid:checked ~ .bsi-poll-radio-label {
-      background-color: $valid !important;
-      color: $light !important;
-    }
-  }
-
-  .was-validated .bsi-element-#{$id}.bsi-poll-star .bsi-poll-radio-group {
-    input[type="radio"] {
-      &:invalid,
-      &.is-invalid {
-        background-image: $star-icon-invalid !important;
-      }
-    }
-
-    .bsi-poll-radio-item input[type="radio"]:checked {
-      &:valid,
-      &.is-valid {
-        background-image: $star-fill-icon-valid !important;
-      }
-    }
-
-    &:not(:hover) {
-      .bsi-poll-radio-checked {
-        input[type="radio"] {
-          &:valid,
-          &.is-valid {
-            background-image: $star-fill-icon-valid !important;
+      &:hover {
+        .bsi-poll-radio-item {
+          input[type="radio"] {
+            background-image: $star-fill-icon;
           }
-        }
 
-        input[type="radio"]:checked {
-          &:valid,
-          &.is-valid {
-            background-image: $star-fill-icon-valid !important;
+          &:hover~.bsi-poll-radio-item input[type="radio"] {
+            background-image: $star-icon;
           }
         }
       }
     }
+  }
+}
 
-    &:hover {
-      .bsi-poll-radio-item {
-        input[type="radio"] {
-          background-image: $star-fill-icon-valid;
+.bsi-corner-sharp .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-label {
+  border-radius: 0;
+}
+
+.was-validated .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-group {
+
+  .bsi-poll-radio-input:invalid~.bsi-poll-radio-label,
+  .bsi-poll-radio-input.is-invalid~.bsi-poll-radio-label {
+    color: $invalid !important;
+    border: 1px solid $invalid !important;
+  }
+
+  .bsi-poll-radio-input:valid~.bsi-poll-radio-label,
+  .bsi-poll-radio-input.is-valid~.bsi-poll-radio-label {
+    color: $valid !important;
+    border: 1px solid $valid !important;
+  }
+
+  .bsi-poll-radio-input:valid:focus~.bsi-poll-radio-label,
+  .bsi-poll-radio-input.is-valid:focus~.bsi-poll-radio-label,
+  .bsi-poll-radio-input:valid:checked~.bsi-poll-radio-label,
+  .bsi-poll-radio-input.is-valid:checked~.bsi-poll-radio-label {
+    background-color: $valid !important;
+    color: $light !important;
+  }
+}
+
+.was-validated .bsi-element-#{$id}.bsi-poll-star .bsi-poll-radio-group {
+  input[type="radio"] {
+
+    &:invalid,
+    &.is-invalid {
+      background-image: $star-icon-invalid !important;
+    }
+  }
+
+  .bsi-poll-radio-item input[type="radio"]:checked {
+
+    &:valid,
+    &.is-valid {
+      background-image: $star-fill-icon-valid !important;
+    }
+  }
+
+  &:not(:hover) {
+    .bsi-poll-radio-checked {
+      input[type="radio"] {
+
+        &:valid,
+        &.is-valid {
+          background-image: $star-fill-icon-valid !important;
         }
+      }
 
-        &:hover ~ .bsi-poll-radio-item input[type="radio"] {
-          background-image: $star-icon-valid;
+      input[type="radio"]:checked {
+
+        &:valid,
+        &.is-valid {
+          background-image: $star-fill-icon-valid !important;
         }
       }
     }
   }
 
-  fieldset .form-text {
-    width: 100%;
+  &:hover {
+    .bsi-poll-radio-item {
+      input[type="radio"] {
+        background-image: $star-fill-icon-valid;
+      }
+
+      &:hover~.bsi-poll-radio-item input[type="radio"] {
+        background-image: $star-icon-valid;
+      }
+    }
   }
+}
+
+fieldset .form-text {
+  width: 100%;
+}
 }

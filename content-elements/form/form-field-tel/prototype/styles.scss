@@ -1,4 +1,5 @@
 @import "~intl-tel-input/build/css/intlTelInput.min.css";
+@import "./../../../../styles/properties.scss";
 
 $flagsImagePath: "~intl-tel-input/build/img/";
 
@@ -24,9 +25,11 @@ $flagsImagePath: "~intl-tel-input/build/img/";
       margin-left: 40px;
     }
 
-    @media screen and (prefers-color-scheme: dark) {
-      .form-label {
-        color: bsiProperty("darkModeTextColor", #ffffff);
+    @if $darkModeActive == true {
+      @media screen and (prefers-color-scheme: dark) {
+        .form-label {
+          color: bsiProperty("darkModeTextColor", #ffffff);
+        }
       }
     }
   }
