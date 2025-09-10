@@ -1,0 +1,109 @@
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,0,0,0.6); }
+  70%  { box-shadow: 0 0 0 20px rgba(255,0,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,0,0,0); }
+}
+
+@keyframes bounce {
+  0%,100% { height: 8px; }
+  50% { height: 20px; }
+}
+
+
+@mixin styles($id: 'audiorecorder-e89a2a') {
+  .bsi-element-#{$id} {
+    &.audio-recorder {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-family: bsiProperty('primaryFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+    
+      .recorder-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &.recording {
+          .record-btn {
+            background-color: bsiProperty('recordingColor', '#ff0000');
+            animation: pulse 1.5s infinite;
+          }
+          .waveform span {
+            animation: bounce 1.2s infinite ease-in-out;
+          }
+          .waveform span:nth-child(2) { animation-delay: 0.2s; }
+          .waveform span:nth-child(3) { animation-delay: 0.4s; }
+          .waveform span:nth-child(4) { animation-delay: 0.6s; }
+          .waveform span:nth-child(5) { animation-delay: 0.8s; }
+          .waveform span:nth-child(6) { animation-delay: 1s; }
+          .waveform span:nth-child(7) { animation-delay: 1.2s; }
+          .waveform span:nth-child(8) { animation-delay: 1.4s; }
+          .waveform span:nth-child(9) { animation-delay: 1.6s; }
+        }
+
+        .record-btn {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: none;
+          background-color: bsiProperty('audioRecorderColor', '#25D366');
+          color: bsiProperty('lightColor', '#ffffff');
+          font-size: 24px;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .recording-ui {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .waveform {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+            span {
+              width: 4px;
+              height: 8px;
+              background: bsiProperty('audioRecorderColor', '#25D366');
+              border-radius: 2px;
+            }
+          }
+
+          .timer {
+            font-size: 14px;
+            color:bsiProperty('darkColor', '#383e42');
+            min-width: 45px;
+            text-align: center;
+            display: none;
+          }
+        }
+      }
+
+      .audio-wrapper {
+        display: flex;
+        align-items: flex-start;
+        margin-top: 10px;
+
+        .audio-playback {
+          display: none;
+
+          &.visible {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+
+      .audio-input { display: none; }
+
+      @media screen and (prefers-color-scheme: dark) {
+        .recording-ui .timer {
+          color: bsiProperty('lightColor', '#ffffff');
+        }
+      }
+    }
+  }
+}
