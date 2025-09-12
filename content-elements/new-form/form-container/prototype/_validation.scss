@@ -142,5 +142,22 @@
                 }
             }
         }
+
+        .file-upload-and-error-text {
+            &:has(input:user-valid) {
+                .file-upload {
+                    outline-color: $successColor;
+                }
+            }
+            &:has(input:user-invalid) {
+                .file-upload {
+                    outline-color: $errorColor;
+                }
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
     }
 }

@@ -70,6 +70,7 @@ Alpine.data("form", () => ({
      * @param {Event} event for every change
      */
     formElementValidationOnChange(event) {
+        console.log("formElementValidationOnChange wurde aufgerufen");
         this._formElementValidation(event.target);
     },
 
@@ -141,6 +142,7 @@ Alpine.data("form", () => ({
             if (element.type === "checkbox" && !element.classList.contains("checkbox-in-group")) {
                 this._setCustomValidClass(element);
             }
+            // TODO: ist das notwendig?
             if (element.type === "radio") {
                 element.closest(".radio-button-group").querySelectorAll(".native-radio").forEach(nativeRadio => {
                     this._setCustomValidClass(nativeRadio)
