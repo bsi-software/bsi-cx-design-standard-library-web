@@ -31,6 +31,8 @@
             color: $helperTextColor;
         }
 
+        // TODO: user-valid und user-invalid austauschen, es muss immer bei einer Änderung die richtige Validierung laufen, die die entsprechenden Fehlertexte setzt.
+        // TODO: scheinabr wird bei der checkbox diser Style nicht angewendet, prüfen wieso und ob es einen eigenen Style braucht.
         .input-field-with-error-text:has(input:user-valid) {
             input {
                 outline-color: $successColor;
@@ -115,13 +117,20 @@
         }
 
         &.bsi-form-label-info-top-bottom {
-            
+            form .form-elements-container .form-section .form-field {
+                .empty-element {
+                    display: contents;
+                }
+            }
         }
 
         &.bsi-form-label-info-top-top {
             form .form-elements-container .form-section .form-field {
                 .input-field-container {
                     flex-direction: column-reverse;
+                }
+                .empty-element {
+                    display: contents;
                 }
             }
         }
@@ -140,6 +149,10 @@
         form {
             display: flex;
             flex-direction: column;
+
+            .hiddenElement {
+                display: none;
+            }
 
             .form-elements-container {
                 display: flex;
