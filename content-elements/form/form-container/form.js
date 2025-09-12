@@ -10,11 +10,7 @@ Alpine.data("formElement", () => ({
     this.root = this.$root;
 
     if (this.root.classList.contains("bsi-form-label-floating")) {
-      for (const floatingElement of this.form.getElementsByClassName(
-        "bsi-label-floating-element"
-      )) {
-        this._initFloatingLabels(floatingElement);
-      }
+      this.form.querySelectorAll(".bsi-label-floating-element").forEach(this._initFloatingLabels);
     }
 
     if (
@@ -79,7 +75,6 @@ Alpine.data("formElement", () => ({
   },
 
   _showValidationMessage(messageElement, show) {
-    messageElement.style.display = show ? "block" : "none";
     if (show) {
       messageElement.removeAttribute("hidden");
       messageElement.removeAttribute("aria-hidden");
@@ -131,7 +126,6 @@ Alpine.data("formElement", () => ({
       }
       inputFields.forEach(input => {
         if (input.hasAttribute("required")) {
-          console.log("Input Element: " + input.id + " ist required");
           input.setAttribute("aria-invalid", !input.checkValidity());
           if (!input.checkValidity()) {
             if ("ariaDescribedByElements" in Element.prototype) {
