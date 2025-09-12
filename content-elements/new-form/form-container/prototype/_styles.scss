@@ -136,7 +136,7 @@
         }
 
         &.bsi-form-label-info-top-bottom {
-            form .form-elements-container .form-section .form-field {
+            form .form-elements-container .form-section .form-element {
                 .empty-element {
                     display: contents;
                 }
@@ -144,7 +144,7 @@
         }
 
         &.bsi-form-label-info-top-top {
-            form .form-elements-container .form-section .form-field {
+            form .form-elements-container .form-section .form-element {
                 .input-field-container {
                     flex-direction: column-reverse;
                 }
@@ -155,7 +155,7 @@
         }
 
         &.bsi-form-label-info-left-bottom {
-            form .form-elements-container .form-section .form-field {
+            form .form-elements-container .form-section .form-element {
                 display: grid;
                 grid-template-columns: 1fr 6fr;
 
