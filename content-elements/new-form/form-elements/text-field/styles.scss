@@ -16,6 +16,12 @@
             .text-input {
                 padding: $spacing300;
             }
+
+            // hide error and success messages
+            .success-feedback, .invalid-feedback, .logic-validation {
+                display: none;
+            }
+
         }
 
         .info-text {
