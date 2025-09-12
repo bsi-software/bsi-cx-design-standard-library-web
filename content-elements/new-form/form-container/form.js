@@ -13,6 +13,11 @@ Alpine.data("form", () => ({
         this.formOtherError = this.$root.querySelector(".form-other-error-text"); 
     },
     
+    /**
+     * Funktion that calles, if the formular is submited
+     * 
+     * @param {*} event submit event
+     */
     submitForm(event) {
         this.form.classList.add('form-was-validated');
         if (!this._formValidation()) {
@@ -43,6 +48,17 @@ Alpine.data("form", () => ({
     },
 
     /**
+     * validate an group after change one Element of the group
+     * 
+     * @param {Event} event that changed
+     */
+    formGroupValidationOnChange(event) {
+        console.log("formGroupValidationOnChange wurde aufgerufen");
+        this._formGroupValidation(event.target);
+
+    },
+
+    /**
      * Validate the whole form
      *
      * @returns {boolean} true if valid, false if invalid
@@ -50,18 +66,22 @@ Alpine.data("form", () => ({
     _formValidation() {
         console.log("SubmitForm wurde aufgerufen");
         const formElementInputs = this.$root.querySelectorAll(".form-element input"); // TODO: ggf erweitern, sodass auch Form Elemente die kein input Feld als Grundlage haben funktionieren
+        const formGroups = this.$root.querySelectorAll(".checkbox-group, .radio-group");
+
+        console.warn("Es wurden " + formGroups.length + "Gruppen gefunden.");
+
         let formIsValid = true;
 
         formElementInputs.forEach(formElementInput => {
             console.log("FormularElementId: " + formElementInput.id);
-            if (!formElementInput.checkValidity()) {
-                console.debug("Das Formularelement ist nicht valide.");
-                this._setCustomInValidClass(formElementInput);
+            if (!this._formElementValidation(formElementInput)) {
                 formIsValid = false;
-                this._createErrorMessage(formElementInput);
-            } else {
-                console.debug("Das Formularelement ist valide.");
-                this._setCustomValidClass(formElementInput);
+            }
+        });
+
+        formGroups.forEach(formGroup => {
+            if (!this._formGroupValidation(formGroup.querySelector("input"))) {
+                formIsValid = false;
             }
         });
         return formIsValid;
@@ -69,16 +89,58 @@ Alpine.data("form", () => ({
 
     /**
      * validate the element
+     * 
      * @param {Element} element to validate
+     * 
+     * @returns {boolean} true if element is valid, false if element is invalid
      */
     _formElementValidation(element) {
-        console.log("Das Formularelement ist valide");
-        this._setCustomValidClass(element);
+        let elementIsValid = true;
         if (!element.checkValidity()) {
             console.debug("Das Formularelement ist nicht valide.");
-            this._setCustomInValidClass(element);
+            elementIsValid = false;
+            // all checkboxes that are not in a group
+            if (element.type === "checkbox" && !element.classList.contains("checkbox-in-group")) {
+                this._setCustomInvalidClass(element);
+            }
             this._createErrorMessage(element);
+        } else {
+            console.log("Das Formularelement ist valide");
+            // all checkboxes that are not in a group
+            if (element.type === "checkbox" && !element.classList.contains("checkbox-in-group")) {
+                this._setCustomValidClass(element);
+            }
         }
+        return elementIsValid;
+    },
+
+    /**
+     * validate the group
+     * 
+     * @param {Element} element that changed in group
+     */
+    _formGroupValidation(element) {
+        let groupIsValid = true;
+        // Checkbox group
+        if (element.type === "checkbox" && element.classList.contains("checkbox-in-group")) {
+            const checkboxGroup = element.closest(".checkbox-group");
+            const checkboxes = checkboxGroup.querySelectorAll("input");
+            const oneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+            if (!oneChecked && checkboxGroup.classList.contains("bsi-group-required")) {
+                console.log("Es wurde nicht mindestnes eine checkbox ausgewählt");
+                groupIsValid = false;
+                this._setCustomInvalidClass(checkboxGroup);
+                this._createGroupErrorMessage(checkboxGroup);
+            } else {
+                this._setCustomValidClass(checkboxGroup);
+            }
+        }
+
+        // Radiobutton group
+        if (element.type === "radio") {
+            
+        }
+        return groupIsValid;
     },
 
     /**
@@ -110,6 +172,19 @@ Alpine.data("form", () => ({
     },
 
     /**
+     * set an error message for an group if no error message is set on the group element
+     * 
+     * @param {Element} group that have a related error message Element
+     */
+    _createGroupErrorMessage(group) {
+        const errorMessageElement = group.querySelector(".bsi-invalid-feedback");
+
+        if (errorMessageElement.textContent === '') {
+            errorMessageElement.textContent = this.formErrorValueMissingText.textContent
+        }
+    },
+
+    /**
      * change a class name from an element from the oldClassName to the newClassName.
      * 
      * @param {*} element on which the class is to be changed
@@ -121,20 +196,26 @@ Alpine.data("form", () => ({
         element.classList.add(newClassName);
     },
 
+    /**
+     * Set for all elements the custom valid state
+     * 
+     * @param  {...Element} elements 
+     */
     _setCustomValidClass(...elements) {
         elements.forEach(element => {
-            if (element.type === "checkbox") {
-                this._toggleClass(element, "custom-invalid", "custom-valid");
-            }
+            this._toggleClass(element, "custom-invalid", "custom-valid");
         });
         
     },
 
-    _setCustomInValidClass(...elements) {
+    /**
+     * Set for all elements the custom invalid state
+     * 
+     * @param  {...Element} elements 
+     */
+    _setCustomInvalidClass(...elements) {
         elements.forEach(element => {
-            if (element.type === "checkbox") {
-                this._toggleClass(element, "custom-valid", "custom-invalid");
-            }
+            this._toggleClass(element, "custom-valid", "custom-invalid");
         });
     },
 

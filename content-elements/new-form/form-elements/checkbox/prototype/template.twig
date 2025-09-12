@@ -3,9 +3,9 @@
     {% set formCheckboxElementPartId = elementPartId ?: 'checkbox-part-7f02c9ea' %}
     {% set formCheckboxHelperTextPartId = formCheckboxHelperTextPartId ?: 'checkbox-helper-text-part-5989e5eb' %}
     {% set formCheckboxErrorInvalidPartId = errorInvalidPartId ?: 'checkbox-error-invalid-part-21861f61' %}
-    {% set formCheckboxLabelText = (labelText ?: properties.formCheckboxLabelText) ?: bsi_cx_lorem(3) %}
-    {% set formCheckboxHelperText = (infoText ?: properties.formCheckboxHelperText) ?: "" %}
-    {% set formCheckboxErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
+    {% set formCheckboxLabelText = labelText ?: bsi_cx_lorem(3) %}
+    {% set formCheckboxHelperText = infoText  ?: "" %}
+    {% set formCheckboxErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 
     <div x-data="checkbox" data-bsi-element="{{ formCheckboxElementId }}" class="bsi-element-{{ formCheckboxElementId }} form-element" data-bsi-element-part="{{ formCheckboxElementPartId }}">
         <div class="empty-element"></div> {# This Element is only for the option, that the label from other Form Elements stands on the left side insted of in the top of the element #}
@@ -19,8 +19,8 @@
                 <div data-bsi-element-part="{{ formCheckboxErrorInvalidPartId }}" class="bsi-invalid-feedback">
                     {{ formCheckboxErrorInvalidText }}
                 </div>
-                <div class="helper-text">
-                    <div data-bsi-element-part="{{ formCheckboxHelperTextPartId }}" class="form-text">{{ formCheckboxHelperText }}</div>
+                <div class="helper-text-container">
+                    <div data-bsi-element-part="{{ formCheckboxHelperTextPartId }}" class="helper-text">{{ formCheckboxHelperText }}</div>
                 </div>
             {% endblock %}
         </div>
