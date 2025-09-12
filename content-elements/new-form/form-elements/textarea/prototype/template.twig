@@ -1,0 +1,26 @@
+{% apply spaceless %}
+    {% set formTextareaElementId = elementId ?: 'textarea-a4af575b' %}
+    {% set formTextareaElementPartId = elementPartId ?: 'textarea-part-18ad4cb0' %}
+    {% set formTextareaHelperTextPartId = formTextareaHelperTextPartId ?: 'textarea-helper-text-part-47792922' %}
+    {% set formTextareaErrorInvalidPartId = errorInvalidPartId ?: 'textarea-error-invalid-part-52eb82f6' %}
+    {% set formTextareaLabelText = labelText ?: bsi_cx_lorem(3) %}
+    {% set formTextareaHelperText = infoText  ?: "" %}
+    {% set formTextareaErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
+
+    <div data-bsi-element="{{ formTextareaElementId }}" class="bsi-element-{{ formTextareaElementId }} form-element" data-bsi-element-part="{{ formTextareaElementPartId }}">
+        <label for="textarea-element" class="form-label">{{ formTextareaLabelText }}</label>
+        <div class="textarea-container">
+            <div class="textarea-and-error-text">
+                <textarea class="textarea-input" id="textarea-element" rows="5" value=""></textarea>
+                {% block textarea_error_texts %}
+                    <div data-bsi-element-part="{{ formTextareaErrorInvalidPartId }}" class="bsi-invalid-feedback">
+                        {{ formTextareaErrorInvalidText }}
+                    </div>
+                {% endblock %}
+            </div>
+            <div class="helper-text-container">
+                <div data-bsi-element-part="{{ formTextareaHelperTextPartId }}" class="helper-text">{{ formTextareaHelperText }}</div>
+            </div>
+        </div>
+    </div>
+{% endapply %}
