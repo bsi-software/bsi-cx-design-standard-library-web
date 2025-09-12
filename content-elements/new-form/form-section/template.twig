@@ -1,7 +1,5 @@
 
-{% set spaceBetweenFormElements = (spaceBetweenFormElements ?: properties.spaceBetweenFormElements) ?:  "space-between-form-elements-600" %}
-
-<div data-bsi-element="form-section-4cc6cfe4" class="bsi-element-form-section-4cc6cfe4 {{ spaceBetweenFormElements }}">
+<div data-bsi-element="form-section-4cc6cfe4" data-bsi-hide-edit-button="true" class="bsi-element-form-section-4cc6cfe4">
     <div data-bsi-dropzone="form-section-dropzone-a1788622" class="form-section">
         {% block form_container_dropzone %}
             {% include "../../base/h3/template.twig" with {
