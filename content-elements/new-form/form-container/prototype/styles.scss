@@ -1,0 +1,191 @@
+@import "../../../../styles/properties";
+
+// TODO: nur eine Farbgebung plus Elementclass dann kann man die Funktion mehrfach aufrufen
+@mixin formContainerStyling(
+    $lightElementBackgroundColor: $light,  
+    $lightBorderColor: $dark, 
+    $lightLabelColor: $textColor, 
+    $lightHelperTextColor: $textColor, 
+    $lightErrorColor: $invalid, 
+    $lightSuccessColor: $valid, 
+
+    $darkElementBackgroundColor: $info,
+    $darkBorderColor: $light, 
+    $darkLabelColor: $light, 
+    $darkHelperTextColor: $light, 
+    $darkErrorColor: $invalid,
+    $darkSuccessColor: $valid
+) {
+
+    .bsi-element-form-container-84c6581f {
+        padding: $spacing0;
+
+        $colorSchemes: ("light", "dark");
+        @each $colorScheme in $colorSchemes {
+            &.form-scheme-#{$colorScheme} {
+                @if $colorScheme == "light" {
+                    label {
+                        color: $lightLabelColor;
+                    }
+
+                    input {
+                        color: $lightLabelColor;
+                        outline-color: $lightBorderColor;
+                        background-color: $lightElementBackgroundColor;
+                    }
+
+                    .helper-text, .form-text {
+                        color: $lightHelperTextColor;
+                    }
+
+                    .input-field-with-error-text:has(input:user-valid) {
+                        input {
+                            outline-color: $lightSuccessColor;
+                        }
+                        .success-feedback {
+                            display: flex;
+                            color: $lightSuccessColor;
+                        }
+                    }
+
+                    .input-field-with-error-text:has(input:user-invalid) {
+                        input {
+                            outline-color: $lightErrorColor;
+                        }
+                        .invalid-feedback {
+                            display: flex;
+                            color: $lightErrorColor;
+                        }
+                    }
+                }
+                @if $colorScheme == "dark" {
+                    label {
+                        color: $darkLabelColor;
+                    }
+                    input {
+                        color: $darkLabelColor;
+                        outline-color: $darkBorderColor;
+                        background-color: $darkElementBackgroundColor;
+                    }
+
+                    .helper-text, .form-text {
+                        color: $darkHelperTextColor;
+                    }
+
+                    .input-field-with-error-text:has(input:user-valid) {
+                        input {
+                            outline-color: $darkSuccessColor;
+                            .success-feedback {
+                                display: flex;
+                                color: $darkSuccessColor;
+                            }
+                        }
+                    }
+
+                    .input-field-with-error-text:has(input:user-invalid) {
+                        input {
+                            outline-color: $darkErrorColor;
+                            .invalid-feedback {
+                                display: flex;
+                                color: $darkErrorColor;
+                            }
+                        }
+                    }
+                } 
+            }
+        }
+
+        $spacings: ("0": $spacing0, "100": $spacing100, "200": $spacing200, "300": $spacing300, "400": $spacing400, "500": $spacing500, "600": $spacing600, "700": $spacing700, "800": $spacing800);
+        @each $name, $spacing in $spacings {
+            // Set space between every form section and buttons in a form
+            &.space-between-form-sections-#{$name} {
+                form {
+                    gap: $spacing;
+                    .form-elements-container {
+                        gap: $spacing; 
+                    }
+                }
+            }
+
+            // Set space between every form element in a form section.
+            &.space-between-form-elements-#{$name} {
+                .form-section {
+                    gap: $spacing;
+                }
+            }
+
+            // Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.)
+            &.space-within-form-elements-#{$name} {
+                .form-field {
+                    gap: $spacing;
+                    .input-field-container {
+                        gap: $spacing;
+                        .input-field-with-error-text {
+                            gap: $spacing;
+                        }
+                    }
+                }
+            }
+        }
+
+        $alignments: (start, center, end, space-between);
+        @each $alignment in $alignments {
+            &.form-button-alignment-#{$alignment} {
+                form .form-buttons {
+                    justify-content: $alignment;
+                }
+            }
+        }
+
+        $borderRadiuses: ("100": $borderRadius100, "200": $borderRadius200, "300": $borderRadius300, "400": $borderRadius400, "circle": $borderRadiusCircle);
+
+        @each $name, $borderRadius in $borderRadiuses {
+            &.border-radius-form-elements-#{$name} {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], select, textarea {
+                    border-radius: $borderRadius;
+                }
+            }
+        }
+
+        $borderWidths: ("100": $borderWidth100, "200": $borderWidth200, "300": $borderWidth300);
+        @each $name, $borderWidth in $borderWidths {
+            &.border-width-form-elements-#{$name} {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], select, textarea {
+                    outline-width: $borderWidth;
+                }
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            .form-elements-container {
+                display: flex;
+                flex-direction: column;
+            }
+        
+            .form-buttons {
+                display: flex;
+                gap: $spacing400;
+        
+                .form-button-submit {
+                    background-color: $primary;
+                    color: $light;
+                }
+        
+                .form-button-reset {
+                    background-color: $light;
+                    color: $textColor;
+                }
+                
+        
+                input[type=reset]:disabled {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@include formContainerStyling();
