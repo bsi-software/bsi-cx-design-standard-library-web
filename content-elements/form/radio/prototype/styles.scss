@@ -6,6 +6,16 @@
       gap: 1rem;
     }
 
+    .invalid-feedback {
+      display: none;
+    }
+
+    &:not(:has(input[type="radio"]:checked)):has(input[type="radio"]:user-invalid) {
+      .invalid-feedback {
+        display: block;
+      }
+    }
+
     .form-radio {
       display: flex;
       flex-direction: column;
