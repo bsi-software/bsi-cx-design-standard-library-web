@@ -17,7 +17,6 @@ module.exports = (
   template = require("../template.twig"),
   elementId = "form-field-2217aee4",
   elementLabel = "Text Input",
-  elementDescription = "Element Beschreibung",
   formFieldPartLabel = "Formularfeld: Text",
   formFieldPartId = "form-field-part-740b4e74",
   helperTextPartLabel = "Helper Text",
@@ -27,7 +26,6 @@ module.exports = (
 ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
-  .withDescription(elementDescription)
   .withLabel(elementLabel)
   .withIcon(Icon.TEXT)
   .withParts(

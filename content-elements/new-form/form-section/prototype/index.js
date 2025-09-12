@@ -1,5 +1,7 @@
 const { cx, Icon } = require("@bsi-cx/design-build");
 
+const { newFormFields } = require("../../form-elements/form-fields/index.js");
+
 /**
  * @param {string} template
  * @param {string} elementId
@@ -12,21 +14,19 @@ module.exports = (
   template = require("./template.twig"),
   elementId = "form-section-4cc6cfe4",
   elementLabel = "Formuar Sektion",
-  elementDescription = "Element Beschreibung",
   dropzoneId = "form-section-dropzone-a1788622"
 ) => cx
   .contentElement
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
-  .withDescription(elementDescription)
   .withIcon(Icon.ONE_COLUMN)
   .withDropzones(
     cx.dropzone
       .withDropzone(dropzoneId)
       .withAllowedElements(
         require("../../../base/h3"),
-        require("../../form-elements/form-fields/text-field"),
+        ...newFormFields,
         require('../../form-elements/checkbox'),
         require('../../form-elements/checkbox-group'),
         require('../../form-elements/radio-group')

@@ -12,7 +12,14 @@
     <div class="input-field-container">
         <div class="input-field-with-error-text">
             {% block input_field %}
-                <input @change="formElementValidationOnChange" @input="formElementValidationOnInput" id="{{ formFieldInputType }}-field" type="{{ formFieldInputType }}" class="{{ formFieldInputType }}-input"></input>
+                <input
+                    @change="formElementValidationOnChange"
+                    @input="formElementValidationOnInput"
+                    id="{{ formFieldInputType }}-field"
+                    type="{{ formFieldInputType }}"
+                    class="{{ formFieldInputType }}-input"
+                >
+                </input>
             {% endblock %}
             {% block input_field_error_text %}
                 <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="bsi-invalid-feedback">
