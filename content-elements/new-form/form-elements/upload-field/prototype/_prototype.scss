@@ -4,30 +4,54 @@
 // @include prototypeStyleSheet.formFieldsStyling();
 
 @mixin fileUploadFieldStyling(
-    
+    $borderColor: properties.$dark,
+    $backgroundColor: properties.$light,
+    $borderColorDropover: properties.$primary, 
+    $backgroundColorDropover: rgba(properties.$primary, 0.1),
+    $buttonColor: properties.$primary,
+    $buttonFontColor: properties.$light,
+    $buttonHoverColor: properties.$light,
+    $iconUploadFontName: "bootstrap-icons",
+    $iconUploadFontCharacter: "\F296",
+    $iconDeleteFontName: "bootstrap-icons",
+    $iconDeleteFontCharacter: "\F622",
 ) {
     .bsi-element-form-field-5674018a {
-        // .file-input {
-        //     padding: properties.$spacing400;
-            
-        // }
+
+        // Only display element after Alpine has been executed
+        [x-cloak] { 
+            display: none !important;
+        }
 
         .file-upload-container {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: flex-start;
+            align-self: stretch;
             padding: 1rem;
             border-radius: 8px;
             outline: 2px dashed #ccc;
-            outline-offset: -4px;
+            outline-offset: -2px;
             transition: outline-color 0.2s, background-color 0.2s;
           
             &.dragover {
-              outline-color: #3b82f6;
-              background-color: #f0f8ff;
+              outline-color: $borderColorDropover;
+              background-color: $backgroundColorDropover;
+            }
+
+            &:has(.upload-button:focus), &:has(.upload-button:focus-visible) {
+                outline-width: properties.$borderWidth200;
+                outline-style: solid;
+                outline-color: properties.$dark;
             }
 
             .file-upload-with-error-text {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                align-self: stretch;
+                gap: properties.$spacing400;
+
                 > .left {
                     display: flex;
                     align-items: center;
@@ -37,17 +61,31 @@
                         display: inline-flex;
                         align-items: center;
                         gap: 0.5rem;
-                        background: #3b82f6;
-                        color: white;
+                        background: $buttonColor;
+                        border: 1px solid $buttonColor;
+                        color: $buttonFontColor;
                         padding: 0.5rem 0.75rem;
                         border-radius: 6px;
                         cursor: pointer;
-                        font-size: 0.9rem;
-                        border: none;
+                        font-size: 1rem;
+                        line-height: 1.5rem;
                         user-select: none;
+                        transition: border-color 0.2s, background-color 0.2s, color 0.2s;
                 
                         &:hover {
-                        background: #2563eb;
+                            background: $buttonHoverColor;
+                            color: $buttonColor;
+                        }
+
+                        &:focus-visible {
+                            outline: unset;
+                        }
+
+                        &::after {
+                            font-family: $iconUploadFontName;
+                            content: $iconUploadFontCharacter;
+                            font-size: 1.5rem;
+                            line-height: 1.5rem;
                         }
                     }
                 
@@ -57,10 +95,15 @@
                         gap: 0.5rem;
                 
                         .file-name {
-                        max-width: 180px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
+                            max-width: 180px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                        .preview-image {
+                            height: 3rem;
+                            aspect-ratio: 1 / 1;
+                            object-fit: contain;
                         }
                     }
                 }
@@ -70,8 +113,10 @@
                     align-items: center;
                 
                     .drop-text {
-                        font-size: 0.9rem;
-                        color: #444;
+                        font-size: 1rem;
+                        line-height: 1.5rem;
+                        font-weight: 700;
+                        color: properties.$textColor;
                         user-select: none;
                     }
                 
@@ -90,14 +135,28 @@
                         &:hover {
                         color: #b91c1c;
                         }
+
+                        &::before {
+                            font-family: $iconDeleteFontName;
+                            content: $iconDeleteFontCharacter;
+                            font-size: 1.5rem;
+                            line-height: 1.5rem;
+                        }
                     }
                 }
             }
           
-            /* Sichtbarkeit per Klasse steuern */
             .hidden {
               display: none !important;
             }
-          }  
+        }
+
+        &:has(input:disabled) {
+            opacity: 0.3;
+        }  
+
+        .bsi-invalid-feedback {
+            display: none;
+        }
     }
 }
