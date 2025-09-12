@@ -1,0 +1,19 @@
+{% apply spaceless %}
+    {% embed "../prototype/form-field-prototype.twig" with {
+        elementId: "form-field-2217aee4",
+        elementPartId: "form-field-part-740b4e74",
+        formHelperTextPartId: "form-field-part-text-fb1cdc8d",
+        errorInvalidPartId: "form-field-part-error-invalid-21769f4a",
+        labelText: "Text Feld",
+        inputType: "text",
+    } only %} 
+        {% block input_field %}
+            <input id="text-field" type="text" class="text-input"></input>
+        {% endblock %}
+        {% block input_field_error_text %}
+            <div data-bsi-element-part="{{ errorInvalidPartId }}" class="invalid-feedback">
+                {{ formFieldErrorInvalidText }}
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endapply %}

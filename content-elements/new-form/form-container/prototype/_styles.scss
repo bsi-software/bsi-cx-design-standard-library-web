@@ -1,0 +1,141 @@
+@use "../../../../styles/properties" as properties;
+
+@mixin formContainerStyling(
+    $elementId: "form-container-84c6581f",
+    $elementBackgroundColor: properties.$light,  
+    $borderColor: properties.$dark, 
+    $labelColor: properties.$textColor, 
+    $helperTextColor: properties.$textColor, 
+    $errorColor: properties.$invalid, 
+    $successColor: properties.$valid,
+    $buttonSubmitColor: properties.$light,
+    $buttonResetColor: properties.$textColor,
+    $buttonSubmitBackgroundColor: properties.$primary,
+    $buttonResetBackgroundColor: properties.$light,
+) {
+
+    .bsi-element-#{$elementId} {
+        padding: properties.$spacing0;
+
+        label {
+            color: $labelColor;
+        }
+
+        input {
+            color: $labelColor;
+            outline-color: $borderColor;
+            background-color: $elementBackgroundColor;
+        }
+
+        .helper-text, .form-text {
+            color: $helperTextColor;
+        }
+
+        .input-field-with-error-text:has(input:user-valid) {
+            input {
+                outline-color: $successColor;
+            }
+        }
+
+        .input-field-with-error-text:has(input:user-invalid) {
+            input {
+                outline-color: $errorColor;
+            }
+            .invalid-feedback {
+                display: flex;
+                color: $errorColor;
+            }
+        }
+
+        $spacings: ("0": properties.$spacing0, "100": properties.$spacing100, "200": properties.$spacing200, "300": properties.$spacing300, "400": properties.$spacing400, "500": properties.$spacing500, "600": properties.$spacing600, "700": properties.$spacing700, "800": properties.$spacing800);
+        @each $name, $spacing in $spacings {
+            // Set space between every form section and buttons in a form
+            &.space-between-form-sections-#{$name} {
+                form {
+                    gap: $spacing;
+                    .form-elements-container {
+                        gap: $spacing; 
+                    }
+                }
+            }
+
+            // Set space between every form element in a form section.
+            &.space-between-form-elements-#{$name} {
+                .form-section {
+                    gap: $spacing;
+                }
+            }
+
+            // Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.)
+            &.space-within-form-elements-#{$name} {
+                .form-field {
+                    gap: $spacing;
+                    .input-field-container {
+                        gap: $spacing;
+                        .input-field-with-error-text {
+                            gap: $spacing;
+                        }
+                    }
+                }
+            }
+        }
+
+        $alignments: (start, center, end, space-between);
+        @each $alignment in $alignments {
+            &.form-button-alignment-#{$alignment} {
+                form .form-buttons {
+                    justify-content: $alignment;
+                }
+            }
+        }
+
+        $borderRadiuses: ("100": properties.$borderRadius100, "200": properties.$borderRadius200, "300": properties.$borderRadius300, "400": properties.$borderRadius400, "circle": properties.$borderRadiusCircle);
+
+        @each $name, $borderRadius in $borderRadiuses {
+            &.border-radius-form-elements-#{$name} {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], select, textarea {
+                    border-radius: $borderRadius;
+                }
+            }
+        }
+
+        $borderWidths: ("100": properties.$borderWidth100, "200": properties.$borderWidth200, "300": properties.$borderWidth300);
+        @each $name, $borderWidth in $borderWidths {
+            &.border-width-form-elements-#{$name} {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], select, textarea {
+                    outline-width: $borderWidth;
+                }
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            .form-elements-container {
+                display: flex;
+                flex-direction: column;
+            }
+        
+            .form-buttons {
+                display: flex;
+                gap: properties.$spacing400;
+        
+                .form-button-submit {
+                    background-color: $buttonSubmitBackgroundColor;
+                    color: $buttonSubmitColor;
+                }
+        
+                .form-button-reset {
+                    background-color: $buttonResetBackgroundColor;
+                    color: $buttonResetColor;
+                }
+                
+        
+                input[type=reset]:disabled {
+                    display: none;
+                }
+            }
+        }
+    }
+}
