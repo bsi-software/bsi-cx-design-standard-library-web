@@ -90,7 +90,6 @@
         }
 
         $borderRadiuses: ("100": properties.$borderRadius100, "200": properties.$borderRadius200, "300": properties.$borderRadius300, "400": properties.$borderRadius400, "circle": properties.$borderRadiusCircle);
-
         @each $name, $borderRadius in $borderRadiuses {
             &.border-radius-form-elements-#{$name} {
                 input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], select, textarea {
@@ -104,6 +103,32 @@
             &.border-width-form-elements-#{$name} {
                 input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], select, textarea {
                     outline-width: $borderWidth;
+                }
+            }
+        }
+
+        $LabelInfoPositions: ("top-bottom", "top-top", "left-bottom");
+        @each $labelInfoPosition in $LabelInfoPositions {
+            &.bsi-form-label-info-#{$labelInfoPosition} {
+
+            }
+        }
+
+        &.bsi-form-label-info-top-top {
+            form .form-elements-container .form-section .form-field {
+                .input-field-container {
+                    flex-direction: column-reverse;
+                }
+            }
+        }
+
+        &.bsi-form-label-info-left-bottom {
+            form .form-elements-container .form-section .form-field {
+                display: grid;
+                grid-template-columns: 1fr 6fr;
+
+                .form-label {
+                    display: block;
                 }
             }
         }
