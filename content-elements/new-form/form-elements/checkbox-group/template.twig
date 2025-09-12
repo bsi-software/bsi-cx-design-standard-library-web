@@ -2,6 +2,7 @@
     {% set formCheckboxGroupElementId = elementId ?: 'checkbox-group-95a8d908' %}
     {% set formCheckboxGroupElementPartId = elementPartId ?: 'checkbox-group-part-8cdc938a' %}
     {% set formCheckboxGroupRequired = required ?: 'bsi-group-not-required' %} {# alternative 'bsi-group-required' #}
+    {% set formCheckboxGroupAlignment = alignment ?: 'form-group-alignment-vertical' %} {# alternative 'form-group-alignment-horizontal' #}
     {% set formCheckboxGroupLabel = groupLabel ?: 'Checkbox Gruppe' %}
     {% set formCheckboxGroupLabelId = groupLabelId ?: 'checkbox-group-label-a7bf5a38' %}
     {% set formCheckboxGroupHelperTextPartId = formCheckboxGroupHelperTextPartId ?: 'checkbox-group-helper-text-part-1cf1d475' %}
@@ -10,7 +11,7 @@
     {% set formCheckboxGroupHelperText = infoText ?: "" %}
     {% set formCheckboxGroupErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 
-    <div data-bsi-element="{{ formCheckboxGroupElementId }}" class="bsi-element-{{ formCheckboxGroupElementId }} form-element checkbox-group {{ formCheckboxGroupRequired }}">
+    <div data-bsi-element="{{ formCheckboxGroupElementId }}" class="bsi-element-{{ formCheckboxGroupElementId }} form-element checkbox-group {{ formCheckboxGroupRequired }} {{ formCheckboxGroupAlignment }}">
         <fieldset>
             <legend data-bsi-element-part="{{ formCheckboxGroupLabelId }}">{{ formCheckboxGroupLabel }}</legend>
             <div data-bsi-dropzone="checkbox-group-dropzone-id-4f4a7409" class="checkbox-group-container">
