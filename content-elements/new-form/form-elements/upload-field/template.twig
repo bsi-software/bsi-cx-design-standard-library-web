@@ -1,0 +1,86 @@
+{% set formFieldElementId = elementId ?: 'form-field-5674018a' %}
+{% set formFieldElementPartId = elementPartId ?: 'form-field-part-c21742af' %}
+{% set formFieldHelperTextPartId = formHelperTextPartId ?: 'form-field-helper-text-part-0a34ce3d' %}
+{% set formFieldErrorInvalidPartId = errorInvalidPartId ?: 'form-field-part-error-invalid-6ca6d1fd' %}
+{% set formFieldLabelText = labelText ?: bsi_cx_lorem(3) %}
+{% set formFieldHelperText = infoText ?: "" %}
+{% set formFieldErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
+
+<div x-data="fileUpload" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
+    <label for="file-upload-field" class="form-label">{{ formFieldLabelText }}</label>
+    <div 
+        class="file-upload-container"
+        @dragover.prevent="onDragOver"
+        @dragleave.prevent="onDragLeave"
+        @drop.prevent="onDrop"
+    >
+        <div
+            class="file-upload-with-error-text"
+            :class="{
+                'dragover': isDragOver,
+            }"
+            x-cloak
+        >
+            {% block input_field %}
+                <input
+                    @change="onFileChange(event); formElementValidationOnChange"
+                    @blur="formElementValidationOnBlur"
+                    id="file-upload-field"
+                    type="file"
+                    x-ref="fileInput"
+                    class="native-file-upload-input hidden"
+                >
+                </input>
+
+                <div class="left">
+                    <button
+                        type="button"
+                        class="upload-button"
+                        @click="triggerFileUpload"
+                        :class="{'hidde' : files.lenght > 0 }"
+                        aria-label="Datei auswählen"
+                    >
+                        <span>Datei auswählen</span>
+                        <i class="icon-upload">
+                    </button>
+                    <div
+                        class="file-info"
+                        aria-live="polite"
+                        :class="{ 'hidden' : file.length > 0 }"
+                    >
+                        <span class="file-name" x-text="files[0]?.name"></span>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <span
+                        class="drop-text"
+                        aria-hidden="true"
+                        :class="{ 'hidden': files.length > 0 }"
+                    >
+                        Datei hier ablegen
+                    </span>
+
+                    <button
+                        type="button"
+                        class="remove-button"
+                        aria-label="Datei entfernen"
+                        @click="removeFile"
+                        :class="{ 'hidden': files.length === 0 }"
+                    >
+                        <i class="icon-delete"></i>
+                    </button>
+                </div>
+
+            {% endblock %}
+            {% block input_field_error_text %}
+                <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="bsi-invalid-feedback">
+                    {{ formFieldErrorInvalidText }}
+                </div>
+            {% endblock %}
+        </div>
+        <div class="helper-text-container">
+            <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
+        </div>
+    </div>
+</div>

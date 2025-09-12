@@ -1,0 +1,103 @@
+// @use '../../_prototype/styles' as prototypeStyleSheet;
+@use "../../../../../styles/properties.scss" as properties;
+
+// @include prototypeStyleSheet.formFieldsStyling();
+
+@mixin fileUploadFieldStyling(
+    
+) {
+    .bsi-element-form-field-5674018a {
+        // .file-input {
+        //     padding: properties.$spacing400;
+            
+        // }
+
+        .file-upload-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-radius: 8px;
+            outline: 2px dashed #ccc;
+            outline-offset: -4px;
+            transition: outline-color 0.2s, background-color 0.2s;
+          
+            &.dragover {
+              outline-color: #3b82f6;
+              background-color: #f0f8ff;
+            }
+
+            .file-upload-with-error-text {
+                > .left {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                
+                    .upload-button {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        background: #3b82f6;
+                        color: white;
+                        padding: 0.5rem 0.75rem;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        font-size: 0.9rem;
+                        border: none;
+                        user-select: none;
+                
+                        &:hover {
+                        background: #2563eb;
+                        }
+                    }
+                
+                    .file-info {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                
+                        .file-name {
+                        max-width: 180px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        }
+                    }
+                }
+            
+                > .right {
+                    display: flex;
+                    align-items: center;
+                
+                    .drop-text {
+                        font-size: 0.9rem;
+                        color: #444;
+                        user-select: none;
+                    }
+                
+                    .remove-button {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        color: #dc2626;
+                        font-size: 1.2rem;
+                        padding: 0;
+                        user-select: none;
+                
+                        &:hover {
+                        color: #b91c1c;
+                        }
+                    }
+                }
+            }
+          
+            /* Sichtbarkeit per Klasse steuern */
+            .hidden {
+              display: none !important;
+            }
+          }  
+    }
+}
