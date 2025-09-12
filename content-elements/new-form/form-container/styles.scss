@@ -1,6 +1,21 @@
 @import "../../../styles/properties";
 
-@mixin formContainerStyling($lightElementBackgroundColor: $light, $darkElementBackgroundColor: $info, $lightBorderColor: $dark, $darkBorderColor: $light, $lightLabelColor: $textColor, $darkLabelColor: $light, $lightHelperTextColor: $textColor, $darkHelperTextColor: $light, $lightErrorColor: $invalid, $darkErrorColor: $invalid, $lightSuccessColor: $valid, $darkSuccessColor: $valid) {
+// TODO: nur eine Farbgebung plus Elementclass dann kann man die Funktion mehrfach aufrufen
+@mixin formContainerStyling(
+    $lightElementBackgroundColor: $light,  
+    $lightBorderColor: $dark, 
+    $lightLabelColor: $textColor, 
+    $lightHelperTextColor: $textColor, 
+    $lightErrorColor: $invalid, 
+    $lightSuccessColor: $valid, 
+
+    $darkElementBackgroundColor: $info,
+    $darkBorderColor: $light, 
+    $darkLabelColor: $light, 
+    $darkHelperTextColor: $light, 
+    $darkErrorColor: $invalid,
+    $darkSuccessColor: $valid
+) {
 
     .bsi-element-form-container-84c6581f {
         padding: $spacing0;
@@ -14,17 +29,18 @@
                     }
 
                     input {
-                        border-color: $lightBorderColor;
+                        color: $lightLabelColor;
+                        outline-color: $lightBorderColor;
                         background-color: $lightElementBackgroundColor;
                     }
 
-                    .helper-text {
+                    .helper-text, .form-text {
                         color: $lightHelperTextColor;
                     }
 
                     .input-field-with-error-text:has(input:user-valid) {
                         input {
-                            border-color: $lightSuccessColor;
+                            outline-color: $lightSuccessColor;
                         }
                         .success-feedback {
                             display: flex;
@@ -34,7 +50,7 @@
 
                     .input-field-with-error-text:has(input:user-invalid) {
                         input {
-                            border-color: $lightErrorColor;
+                            outline-color: $lightErrorColor;
                         }
                         .invalid-feedback {
                             display: flex;
@@ -47,13 +63,18 @@
                         color: $darkLabelColor;
                     }
                     input {
-                        border-color: $darkBorderColor;
+                        color: $darkLabelColor;
+                        outline-color: $darkBorderColor;
                         background-color: $darkElementBackgroundColor;
+                    }
+
+                    .helper-text, .form-text {
+                        color: $darkHelperTextColor;
                     }
 
                     .input-field-with-error-text:has(input:user-valid) {
                         input {
-                            border-color: $darkSuccessColor;
+                            outline-color: $darkSuccessColor;
                             .success-feedback {
                                 display: flex;
                                 color: $darkSuccessColor;
@@ -63,7 +84,7 @@
 
                     .input-field-with-error-text:has(input:user-invalid) {
                         input {
-                            border-color: $darkErrorColor;
+                            outline-color: $darkErrorColor;
                             .invalid-feedback {
                                 display: flex;
                                 color: $darkErrorColor;
@@ -94,7 +115,7 @@
             }
 
             // Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.)
-            &.space-in-form-elements-#{$name} {
+            &.space-within-form-elements-#{$name} {
                 .form-field {
                     gap: $spacing;
                     .input-field-container {
@@ -126,11 +147,11 @@
             }
         }
 
-        $borderWidths: ("100": $borderWidth100, "200": $borderWidth200);
+        $borderWidths: ("100": $borderWidth100, "200": $borderWidth200, "300": $borderWidth300);
         @each $name, $borderWidth in $borderWidths {
             &.border-width-form-elements-#{$name} {
                 input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], select, textarea {
-                    border-width: $borderWidth;
+                    outline-width: $borderWidth;
                 }
             }
         }
@@ -146,7 +167,7 @@
         
             .form-buttons {
                 display: flex;
-                gap: $spacing600;
+                gap: $spacing400;
         
                 .form-button-submit {
                     background-color: $primary;
@@ -165,12 +186,6 @@
             }
         }
     }
-
-
-    // Styles for dark Scheme
-
-    // Styles for light Scheme
-
 }
 
 @include formContainerStyling();

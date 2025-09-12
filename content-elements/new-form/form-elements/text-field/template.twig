@@ -1,39 +1,18 @@
-{# TODO: Naming anpassen, da es nur für das Text Input Field ist (je nachdem ob ich das noch auslagere oder nicht) #}
-
-{% set formFieldElementId = elementId ?: 'form-field-2217aee4' %}
-{% set formFieldElementPartId = elementPartId ?: 'form-field-part-740b4e74' %}
-{% set formFieldTextPartId = formTextPartId ?: 'form-field-part-text-fb1cdc8d' %}
-{% set formFieldErrorRequiredPartId = errorRequiredPartId ?: 'form-field-part-error-required-94125730' %}
-{% set formFieldSuccessPartId = successPartId ?: 'form-field-part-success-6586bf6f' %}
-{% set formFieldErrorInvalidPartId = errorInvalidPartId ?: 'form-field-part-error-invalid-21769f4a' %}
-{% set formFieldLabelText = (labelText ?: properties.formFieldLabelText) ?: bsi_cx_lorem(3) %}
-{% set formFieldHelperText = (infoText ?: properties.formFieldHelperText) ?: "" %}
-{% set formFieldErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
-{% set formFieldErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
-{% set formFieldSuccessText = (successText ?: properties.successText) ?: 'Sie haben dieses Feld erfolgreich ausgefüllt.' %}
-
-<div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="text">
-    <label for="text-field" class="form-label">{{ formFieldLabelText }}</label>
-    <div class="input-field-container">
-        <div class="input-field-with-error-text">
-
-
-        {# TODO: Das nachfolgene eventeull auslagern? Dann ist die Struktur immer gleich und der Style greift besser (es passieren weniger Fehler) #}
-            <input id="text-field" type="text" class="text-input"></input>
-            <div data-bsi-element-part="{{ formFieldSuccessPartId }}" class="success-feedback">
-                {{ formFieldSuccessText }}
-            </div>
-            <div data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" class="invalid-feedback">
-                {{ formFieldErrorRequiredText }}
-            </div>
-            <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="logic-validation">
-                {{ formFieldErrorInvalidText }}
-            </div>
-
-
-
+{% embed "../form-field-prototype.twig" with {
+    elementId: "form-field-2217aee4",
+    elementPartId: "form-field-part-740b4e74",
+    formHelperTextPartId: "form-field-part-text-fb1cdc8d",
+    errorInvalidPartId: "form-field-part-error-invalid-21769f4a",
+    labelText: "Text Feld",
+    inputType: "text",
+}
+%} 
+    {% block input_field %}
+        <input id="text-field" type="text" class="text-input"></input>
+    {% endblock %}
+    {% block input_field_with_error_text %}
+        <div data-bsi-element-part="{{ errorInvalidPartId }}" class="invalid-feedback">
+            {{ formFieldErrorInvalidText }}
         </div>
-        <div class="helper-text">
-            <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ formFieldHelperText }}"></i>
-    </div>
-</div>
+    {% endblock %}
+{% endembed %}
