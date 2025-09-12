@@ -1,69 +1,62 @@
 @use "../../../../../styles/properties.scss" as properties;
 
-@mixin checkboxStyling(
-    $elementId: "checkbox-49f468e6",
+@mixin toggleSwitchStyling(
+    $elementId: "toggle-switch-b0ae602a",
 ) {
     .bsi-element-#{$elementId} {
-        .checkbox-container {
+        .toggle-switch-container {
             display: flex;
             flex-direction: column;
             
-            .checkbox-with-label {
+            .toggle-switch-with-label {
                 position: relative;
                 display: flex;
                 flex-direction: row;
                 gap: bsiProperty("spacing.200", 8px);
                 cursor: pointer;
+                align-items: center;
 
-                user-select: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                
-
-                .native-checkbox {
-                    position: absolute;
-                    opacity: 0;
-                    pointer-events: none;
-                }
-
-                // create a custom checkbox
-                .visual-checkbox {
-                    display: inline-flex;
-                    width: 24px;
+                // create a custom toggle-switch
+                .visual-toggle-switch {
+                    position: relative;
+                    width: 40px;
                     height: 24px;
+                    border-radius: properties.$borderRadiusCircle;
                     border: unset;
                     outline-style: solid;
                     background-color: properties.$light;
-                    align-items: center;
-                    justify-content: center;
                     cursor: pointer;
                     color: transparent;
                     transition: opacity 0.2s ease;
-
-                    &::before {
-                        line-height: 1;
-                        opacity: 0;
-                        font-family: "bootstrap-icons";
-                        content: "\F26E"; /* check bootstrap icon */
-                    }
                 }
 
-                .native-checkbox:checked + .visual-checkbox::before {
-                    opacity: 1;
+                .toggle-indicator {
+                    width: 16px;
+                    height: 16px;
+                    background-color: properties.$dark;
+                    border-radius: properties.$borderRadiusCircle;
+                    position: absolute;
+                    top: properties.$spacing100;
+                    left: properties.$spacing100;
+                    transition: transform 0.2s;
                 }
 
-                .native-checkbox:checked + .visual-checkbox {
+                .native-checkbox:checked + .visual-toggle-switch {
                     background-color: properties.$dark;
                     outline-color: properties.$dark;
                     color: properties.$light;
+
+                    .toggle-indicator {
+                        background-color: properties.$light;
+                        transform: translateX(16px);
+                    }
                 }
 
-                .native-checkbox:focus-visible + .visual-checkbox  {
+                .visual-toggle-switch:focus-visible {
                     outline-width: properties.$borderWidth300;
                 }
 
-                .form-label, .group-checkbox-label {
+                .form-label {
                     cursor: pointer;
                     margin-bottom: properties.$spacing0;
                     align-self: stretch;

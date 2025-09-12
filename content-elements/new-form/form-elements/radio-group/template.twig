@@ -14,8 +14,16 @@
         <div class="radio-button-group-container">
             <div data-bsi-radio-group="" class="radio-button-group">
                 <div class="radiobutton-with-label" data-bsi-radio-item="">
-                    <input @change="formElementValidationOnChange" id="radio-element" type="radio" class="native-radio"></input>
-                    <span @click="toggle" class="visual-radio"></span>
+                    <input 
+                        @change="formElementValidationOnChange"
+                        id="radio-element"
+                        type="radio"
+                        class="native-radio">
+                    </input>
+                    <span 
+                        @click="toggle"
+                        class="visual-radio">
+                    </span>
                     <label for="radio-element" class="group-radio-label">{{ formRadioButtonLabelText }}</label>  
                 </div>
             </div>
