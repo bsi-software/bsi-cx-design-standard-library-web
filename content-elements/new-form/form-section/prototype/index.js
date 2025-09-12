@@ -30,6 +30,7 @@ module.exports = (
         require('../../form-elements/checkbox'),
         require('../../form-elements/checkbox-group'),
         require('../../form-elements/radio-group'),
-        require('../../form-elements/toggle-switch')
+        require('../../form-elements/toggle-switch'),
+        require('../../form-elements/select')
       ),
   );

@@ -1,0 +1,78 @@
+@use "../../../../../styles/properties.scss" as properties;
+
+@mixin selectStyling(
+    $elementId: "select-51fb02b4",
+) {
+    .bsi-element-#{$elementId} {
+
+        // Sets a required flag on the label if field is required.
+        &.required label {
+            display: flex;
+            gap: properties.$spacing100;
+
+            &::after {
+                content: "*";
+            }
+        }
+
+        .form-label {
+            margin-bottom: properties.$spacing100;
+            align-self: stretch;
+        }
+
+        .select-container {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+
+            .select-and-error-text {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+
+                select {
+                    appearance: none;
+                    cursor: pointer;
+                    border: unset;
+                    outline-width: properties.$borderWidth100;
+                    outline-style: solid;
+                    padding: properties.$spacing300;
+
+                    &:focus {
+                        outline-width: properties.$borderWidth200;
+                    }
+
+                    &:focus-visible {
+                        outline-width: properties.$borderWidth300;
+                    }
+                }
+
+                &::after {
+                    // TODO: Soll das icon noch animiert werden?
+                    position: absolute;
+                    right: properties.$spacing300;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    line-height: 1;
+                    font-size: 24px;
+                    font-family: "bootstrap-icons";
+                    content: "\F282";
+                    pointer-events: none;
+                }
+                
+                .bsi-invalid-feedback {
+                    display: none;
+                }
+            }
+        }
+
+        .helper-text-container {
+            display: flex;
+            align-self: stretch;
+        }
+
+        &:has(input:disabled) {
+            opacity: 0.3;
+        }
+    }
+}
