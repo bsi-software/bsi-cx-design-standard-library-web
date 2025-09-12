@@ -13,6 +13,8 @@ Alpine.data("checkbox", () => ({
     if (input && !input.disabled) {
         input.checked = !input.checked;
         input.dispatchEvent(new Event("change", { bubbles: true }));
+        input.dispatchEvent(new Event("input", {bubbles: true }));
+        input.dispatchEvent(new Event("click", {bubbles: true }));
     }
   },
 
