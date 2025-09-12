@@ -1,0 +1,106 @@
+@use "../../../../styles/properties" as properties;
+
+@mixin formValidationStyling(
+    $elementId: "form-container-84c6581f",
+    $errorColor: properties.$invalid, 
+    $successColor: properties.$valid,
+) {
+
+    .bsi-element-#{$elementId} {
+
+        // validation style for normal input fields
+        .input-field-with-error-text, .radio-button-group {
+            &:has(input:user-valid) {
+                input {
+                    outline-color: $successColor;
+                }
+            }
+
+            &:has(input:user-invalid) {
+                input {
+                    outline-color: $errorColor;
+                }
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
+
+        // validation style for toggle switch elements
+        .toggle-switch-container {
+            &:has(input:user-valid), &:has(input.custom-valid) {
+                .visual-toggle-switch {
+                    outline-color: $successColor;
+                }
+            }
+
+            &:has(input:user-invalid), &:has(input.custom-invalid)  {
+                .visual-toggle-switch {
+                    outline-color: $errorColor;
+                }
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
+
+        // validation style for checkboxes
+        .checkbox-container {
+            &:has(input.custom-valid) {
+                .visual-checkbox {
+                    outline-color: $successColor;
+                }
+            }
+
+            &:has(input.custom-invalid) {
+                .visual-checkbox {
+                    outline-color: $errorColor;
+                }
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
+
+        // validation for radio-button groups
+        .radio-group {
+            &:has(input:user-valid), &:has(input.custom-valid) {
+                .visual-radio {
+                    outline-color: $successColor;
+                }
+            }
+
+            &:has(input:user-invalid), &:has(input.custom-invalid) {
+                .visual-radio {
+                    outline-color: $errorColor;
+                }
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
+
+        // validation style for checkbox groups
+        .checkbox-group.custom-valid {
+            .visual-checkbox {
+                outline-color: $successColor;
+            }
+        }
+
+        .checkbox-group.custom-invalid {
+            .visual-checkbox {
+                outline-color: $errorColor;
+            }
+            .error-and-helper-text-container {
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
+    }
+}
