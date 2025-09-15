@@ -30,17 +30,6 @@
             flex-direction: column;
             align-items: flex-start;
             align-self: stretch;
-          
-            &.dragover {
-              outline-color: $borderColorDropover;
-              background-color: $backgroundColorDropover;
-            }
-
-            &:has(.upload-button:focus), &:has(.upload-button:focus-visible) {
-                outline-width: properties.$borderWidth200;
-                outline-style: solid;
-                outline-color: properties.$dark;
-            }
 
             .file-upload-and-error-text {
                 display: flex;
@@ -59,6 +48,28 @@
                     outline: 2px dashed #ccc;
                     outline-offset: -2px;
                     transition: outline-color 0.2s, background-color 0.2s;
+
+                    &:not(:has(input.custom-invalid), :has(input:user-invalid)) {
+                        &:has(.upload-button:focus-visible) {
+                            outline-color: $borderColor;
+                        }
+                    }
+                    &:has(.upload-button:focus-visible) {
+                        outline-width: properties.$borderWidth300;
+                        outline-style: solid;
+                        
+                    }
+
+                    &.dragover {
+                        outline-color: $borderColorDropover;
+                        background-color: $backgroundColorDropover;
+                    }
+
+                    &:not(:has(.file-info.hidden)) {
+                        outline-color: $borderColor;
+                        outline-width: properties.$borderWidth100;
+                        outline-style: solid;
+                    }
 
                     > .left {
                         display: flex;
@@ -141,7 +152,7 @@
                             user-select: none;
                     
                             &:hover {
-                            color: #b91c1c;
+                                color: #b91c1c;
                             }
 
                             &::before {
