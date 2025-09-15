@@ -6,6 +6,7 @@ Alpine.data("fileUpload", () => ({
     isDragOver: false,
 
     init() {
+      this.$root.closest('form').addEventListener('reset', this.removeFile.bind(this), true);
     },
 
     triggerFileUpload() {
