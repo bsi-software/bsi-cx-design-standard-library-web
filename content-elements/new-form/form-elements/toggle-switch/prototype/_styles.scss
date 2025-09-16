@@ -67,15 +67,5 @@
                 display: none;
             }
         }
-        
-        // Sets a required flag on the label if field is required.
-        &.required .form-label {
-            display: flex;
-            gap: properties.$spacing100;
-
-            &::after {
-                content: "*";
-            }
-        }
     }
 }

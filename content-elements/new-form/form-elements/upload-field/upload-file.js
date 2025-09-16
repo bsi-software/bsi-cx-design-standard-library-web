@@ -6,7 +6,7 @@ Alpine.data("fileUpload", () => ({
     isDragOver: false,
 
     init() {
-      this.$root.closest('form').addEventListener('reset', this.removeFile.bind(this), true);
+      this.$root.closest('form').addEventListener('reset', this.removeFile.bind(this), true); // last parameter for run in the capturing phase (true) or in the bubbling-phase (false)
     },
 
     triggerFileUpload() {
