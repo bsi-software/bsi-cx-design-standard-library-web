@@ -11,6 +11,7 @@ const formElements = [
   require("./textarea"),
   require("./toggle-switch"),
   require("./upload-field"),
+  require("./polls/nps"),
 
 ];
 

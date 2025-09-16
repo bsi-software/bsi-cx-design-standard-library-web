@@ -1,0 +1,29 @@
+@use "../../../../../../styles/properties.scss" as properties;
+
+@mixin pollNpsStyling (
+    $elementId: "form-poll-nps-a026d07b",
+) {
+    .bsi-element-#{$elementId} {
+        .nps-container {
+            .nps-preview {
+                display: flex;
+                gap: properties.$spacing100;
+                .nps-input {
+                    position: absolute;
+                    opacity: 0;
+                    pointer-events: none;
+                }
+                .nps-label {
+                    display: flex;
+                    padding: properties.$spacing300 properties.$spacing200;
+                    justify-content: center;
+                    align-items: center;
+                    min-width: 40px;
+                    min-height: 56px;
+                    border: properties.$borderWidth100 solid properties.$dark;
+                    border-radius: properties.$borderRadius100;
+                }
+            }
+        }
+    }
+}
