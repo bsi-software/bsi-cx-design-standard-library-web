@@ -20,6 +20,6 @@ Alpine.data("selectField", () => ({
 
   onInputChanged() {
     this.$el.removeAttribute("aria-describedby");
-    this.$el.setAttribute("aria-invalid", false);
+    this.$el.setAttribute("aria-invalid", !this.selectElement.checkValidity());
   },
 }))
