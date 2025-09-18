@@ -11,6 +11,7 @@ import '../../content-elements/base/chart/prototype/chart';
 import '../../content-elements/base/news-snippet/prototype/news-snippet';
 import '../../content-elements/base/slot-finder/prototype/slot-finder';
 import '../../content-elements/base/table/prototype/table';
+import '../../content-elements/form/checkbox/prototype/checkbox';
 import '../../content-elements/form/audiorecorder/prototype/audiorecorder';
 import '../../content-elements/form/form-container/form';
 import '../../content-elements/form/form-field-tel/prototype/form-tel-input';
