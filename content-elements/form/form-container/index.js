@@ -33,6 +33,8 @@ element.withFile(require('./template.twig'))
       .withDropzone('form-container-dropzone-zsY6UI')
       .withAllowedElements(
         ...formElements,
+        require('../if-then/if-layout'),
+        require('../if-then/then-group'),
         require('../multi-column'),
         ...contentElements,
         require('../../layout/col-one'),

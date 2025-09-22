@@ -20,6 +20,7 @@ import '../../content-elements/form/form-pin/form-pin';
 import '../../content-elements/form/poll/prototype/poll';
 import '../../content-elements/form/radio/prototype/radio';
 import '../../content-elements/form/select/prototype/select';
+import '../../content-elements/form/if-then/if-then-group';
 import '../../content-elements/form/list/prototype/list';
 
 

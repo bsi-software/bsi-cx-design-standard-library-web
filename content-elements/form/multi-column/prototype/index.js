@@ -28,8 +28,11 @@ module.exports = (
   .withDropzones(
     cx.dropzone
       .withDropzone(dropzoneId)
-      .withAllowedElements(
-        ...formElements,
-        ...titleElements,
-        require('../../../base/text'),
-        require('../../../base/figure')));
+      .withRawAllowedElements('if-layout-TljhJw',
+        ...formElements.map(el => el.elementId),
+        require('../../if-then/then-group').elementId,
+        ...titleElements.map(el => el.elementId),
+        require('../../../base/text').elementId,
+        require('../../../base/figure').elementId
+      )
+  );
