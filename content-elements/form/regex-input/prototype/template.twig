@@ -1,0 +1,35 @@
+{% apply spaceless %}
+{% set regexElementId = elementId ?: 'regex-input-J37djj' %}
+{% set regexInputPartId = inputPartId ?: 'regex-input-field-zSVF1f' %}
+{% set regexPartId = regexPartId ?: 'regex-plain-text-wGtYy5' %}
+{% set regexInfoTextPartId = infoTextPartId ?: 'regex-input-info-15YMmu' %}
+{% set regexErrorRequiredPartId = errorRequiredPartId ?: 'regex-input-error-required-27e49U' %}
+{% set regexErrorInvalidPartId = errorInvalidPartId ?: 'regex-input-error-invalid-Bx7ztq' %}
+{% set regexLabelText = (labelText ?: properties.regexLabelText) ?: bsi_cx_lorem(3) %}
+{% set regexInfoText = (infoText ?: properties.regexInfoText) ?: "" %}
+{% set regexErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
+{% set regexErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'Bitte geben Sie den Wert im Format TODO an.' %}
+
+<div x-data="regexInput"
+	 data-bsi-element="{{ regexElementId }}"
+	 data-bsi-element-part="{{ regexInputPartId }}"
+	 data-bsi-form-field-fixed-type class="{{ 'bsi-element-' ~ regexElementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-form-regex-input bsi-element-width-full">
+	<div class="d-none">
+		<div data-bsi-element-part="{{ regexPartId }}" class="regex-text"></div>
+	</div>
+	<div class="bsi-form-input-element mb-3">
+		<div class="form-label-and-info-text">
+			<label for="regex-field" class="form-label">{{ regexLabelText }}</label>
+			<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ regexInfoText }}"></i>
+		</div>
+		<div class="input-container">
+			<div data-bsi-element-part="{{ regexInfoTextPartId }}" class="form-text">{{ regexInfoText }}</div>
+			<div>
+				<input @input="validate" class="form-control" id="regex-field" type="text" required>
+				<div data-bsi-element-part="{{ regexErrorRequiredPartId }}" class="invalid-feedback">{{ regexErrorRequiredText }}</div>
+			</div>
+		</div>
+		<div data-bsi-element-part="{{ regexErrorInvalidPartId }}" class="d-none logic-validation">{{ regexErrorInvalidText }}</div>
+	</div>
+</div>
+{% endapply %}

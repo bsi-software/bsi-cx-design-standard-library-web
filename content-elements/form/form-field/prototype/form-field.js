@@ -21,6 +21,10 @@ Alpine.data("formField", () => ({
   },
   initFormFieldInput() {
     this.inputEl = this.$el;
+    let pattern = this.inputEl.getAttribute('pattern');
+    if(pattern) {
+      this.inputEl.setAttribute('pattern', pattern.replaceAll('\\{', '{').replaceAll('\\[', '['))
+    }
 
     if (this.inputEl.type === 'range') {
       this._initRangeInput();
