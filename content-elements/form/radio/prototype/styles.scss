@@ -32,5 +32,10 @@
         }
       }
     }
+
+    .radio-info {
+      display: flex;
+      flex-direction: column-reverse;
+    }
   }
 }

@@ -330,6 +330,15 @@ input[type=reset][disabled] {
       display: block;
     }
   }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.bsi-form-info-below-input .input-container{
+    flex-direction: column-reverse;
+  }
 }
 
 &.bsi-form-show-valdiation-summary form.was-validated .form-validation-summary {
