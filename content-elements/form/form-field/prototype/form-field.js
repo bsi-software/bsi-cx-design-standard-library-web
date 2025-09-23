@@ -135,7 +135,7 @@ Alpine.data("formField", () => ({
       altInput: true,
       altFormat: altFormats[type],
       dateFormat: dateFormats[type],
-      allowInput: this.inputEl.classList.contains('allowInput'),
+      allowInput: this.inputEl.classList.contains('allow-input'),
       enableTime: type !== 'date',
       noCalendar: this.isTime,
       time_24hr: true,
