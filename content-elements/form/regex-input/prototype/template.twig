@@ -10,13 +10,9 @@
 {% set regexErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
 {% set regexErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'Bitte geben Sie den Wert im Format TODO an.' %}
 
-<div x-data="regexInput"
-	 data-bsi-element="{{ regexElementId }}"
+<div data-bsi-element="{{ regexElementId }}"
 	 data-bsi-element-part="{{ regexInputPartId }}"
 	 data-bsi-form-field-fixed-type class="{{ 'bsi-element-' ~ regexElementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-form-regex-input bsi-element-width-full">
-	<div class="d-none">
-		<div data-bsi-element-part="{{ regexPartId }}" class="regex-text"></div>
-	</div>
 	<div class="bsi-form-input-element mb-3">
 		<div class="form-label-and-info-text">
 			<label for="regex-field" class="form-label">{{ regexLabelText }}</label>
@@ -29,7 +25,6 @@
 				<div data-bsi-element-part="{{ regexErrorRequiredPartId }}" class="invalid-feedback">{{ regexErrorRequiredText }}</div>
 			</div>
 		</div>
-		<div data-bsi-element-part="{{ regexErrorInvalidPartId }}" class="d-none logic-validation">{{ regexErrorInvalidText }}</div>
 	</div>
 </div>
 {% endapply %}

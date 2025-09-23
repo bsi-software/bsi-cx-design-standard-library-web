@@ -41,7 +41,6 @@ module.exports = (
   .withLabel(elementLabel)
   .withDescription(elementDescription)
   .withIcon(Icon.FORMFIELD)
-  .withAddStyleConfigs(require('../../../../configs/styles/form-field-pattern'))
   .withParts(
     cx.part.formField
       .withId(elementPartId)

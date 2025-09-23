@@ -1,4 +1,4 @@
-const {cx, Icon} = require('@bsi-cx/design-build');
+const {cx, Icon, Version} = require('@bsi-cx/design-build');
 
 /**
  * @param {string} template
@@ -29,18 +29,12 @@ module.exports = (
   inputPartId = 'regex-input-field-zSVF1f',
   /*elementPartLabel = 'Phone number',*/
   inputPartLabel = 'Formularfeld',
-  regexPartId = 'regex-plain-text-wGtYy5',
-  /*regexPartLabel = 'Regex constraint',*/
-  regexPartLabel = 'Regex Bedingung',
   infoTextPartId = 'regex-input-info-15YMmu',
   /*formTextPartLabel = 'Info text',*/
   infoTextPartLabel = 'Info Text',
   errorRequiredPartId = 'regex-input-error-required-27e49U',
-  /*errorRequiredPartLabel = 'Required error message',*/
-  errorRequiredPartLabel = 'Fehlermeldung bei leerem Pflichtfeld',
-  errorInvalidPartId = 'regex-input-error-invalid-Bx7ztq',
-  /*errorInvalidPartLabel = 'Invalid error message',*/
-  errorInvalidPartLabel = 'Fehlermeldung bei ungültiger Eingabe',
+  /*errorRequiredPartLabel = 'Error message with correction hint',*/
+  errorRequiredPartLabel = 'Fehlermeldung mit Korrekturvorschlag',
 ) => cx
   .contentElement
   .withFile(template)
@@ -48,19 +42,15 @@ module.exports = (
   .withLabel(elementLabel)
   .withDescription(elementDescription)
   .withIcon(Icon.FORMFIELD)
+  .withMinVersion(Version.CX_23_1)
+  .withStyleConfigs(require('../../../../configs/styles/form-field-pattern'))
   .withParts(
     cx.part.formField
       .withId(inputPartId)
       .withLabel(inputPartLabel),
     cx.part.plainText
-      .withId(regexPartId)
-      .withLabel(regexPartLabel),
-    cx.part.plainText
       .withId(infoTextPartId)
       .withLabel(infoTextPartLabel),
     cx.part.plainText
       .withId(errorRequiredPartId)
-      .withLabel(errorRequiredPartLabel),
-    cx.part.plainText
-      .withId(errorInvalidPartId)
-      .withLabel(errorInvalidPartLabel));
+      .withLabel(errorRequiredPartLabel));
