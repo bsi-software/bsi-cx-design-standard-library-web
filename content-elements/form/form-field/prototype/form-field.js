@@ -21,10 +21,6 @@ Alpine.data("formField", () => ({
   },
   initFormFieldInput() {
     this.inputEl = this.$el;
-    let pattern = this.inputEl.getAttribute('pattern');
-    if(pattern) {
-      this.inputEl.setAttribute('pattern', pattern.replaceAll('\\{', '{').replaceAll('\\[', '['))
-    }
 
     if (this.inputEl.type === 'range') {
       this._initRangeInput();
@@ -60,8 +56,7 @@ Alpine.data("formField", () => ({
     }
 
     this._validateDateTimeInput();
-    this.validationElement.innerText = !this.$el.checkValidity()
-      && this.$el.value
+    this.validationElement.innerText = !this.$el.checkValidity() && this.$el.value
       ? this.logicValidationMessage
       : this.requiredValidationMessage;
     // set Aria describedby attribute - also relevant in form.js and form-tel-input.js
@@ -122,16 +117,10 @@ Alpine.data("formField", () => ({
             : '--:--';
     }
 
-    this.minDate = this.inputEl.min
-      ? new Date(
-        this.isTime ? `2000-01-01T${this.inputEl.min}` : this.inputEl.min
-      )
-      : null;
-    this.maxDate = this.inputEl.max
-      ? new Date(
-        this.isTime ? `2000-01-01T${this.inputEl.max}` : this.inputEl.max
-      )
-      : null;
+    let _dateTimeCast = (dateStr) => dateStr ? new Date(this.isTime ? `2000-01-01T${dateStr}` : dateStr) : null;
+
+    this.minDate = _dateTimeCast(this.inputEl.min);
+    this.maxDate = _dateTimeCast(this.inputEl.max);
 
     var dateFormats = {
       date: 'Y-m-d', 'datetime-local': 'Y-m-dTH:i',
@@ -159,7 +148,7 @@ Alpine.data("formField", () => ({
     // Add the span (with the icon) after the input
     this.inputEl.parentNode.classList.add('input-container'); // Add the container class in order to set the icon position
     var iconSpan = document.createElement('span');
-    iconSpan.innerHTML = `<i class="bi ${this.isTime ? 'bi-clock' : 'bi-calendar' }"></i>`;
+    iconSpan.innerHTML = `<i class="bi ${this.isTime ? 'bi-clock' : 'bi-calendar'}"></i>`;
     this.inputEl.parentNode.appendChild(iconSpan);
 
     this.$root.querySelector('input[type=text]').addEventListener('change', (event) => {
