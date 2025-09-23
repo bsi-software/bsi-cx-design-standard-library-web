@@ -13,7 +13,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Add style for mobile layout to table element
 * Add audio recorder element
 * Add dark mode property
-* Add new wenn-dann group element
+* Add new if-else-group element
 
 ## [1.4.12] - 03.06.2025
 * Fix aria-states for header-image
