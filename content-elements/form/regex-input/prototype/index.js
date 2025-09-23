@@ -1,4 +1,9 @@
-const {cx, Icon, Version} = require('@bsi-cx/design-build');
+/**
+ * !IMPORTANT!
+ * to use this element the property "regexPattern" has to be set
+ */
+
+const { cx, Icon, Version } = require('@bsi-cx/design-build');
 
 /**
  * @param {string} template
@@ -7,16 +12,10 @@ const {cx, Icon, Version} = require('@bsi-cx/design-build');
  * @param {string} elementDescription
  * @param {string} inputPartId
  * @param {string} inputPartLabel
- * @param {string} regexPartId
- * @param {string} regexPartLabel
- * @param {string} pinnedCountriesPartId
- * @param {string} pinnedCountriesPartLabel
  * @param {string} infoTextPartId
  * @param {string} infoTextPartLabel
  * @param {string} errorRequiredPartId
  * @param {string} errorRequiredPartLabel
- * @param {string} errorInvalidPartId
- * @param {string} errorInvalidPartLabel
  * @returns {ContentElement}
  */
 module.exports = (

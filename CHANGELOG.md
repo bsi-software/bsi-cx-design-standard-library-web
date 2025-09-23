@@ -17,6 +17,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Allow positioning of info-text below form-fields
 * Fix positioning of info-text of checkbox
 * Date-Input: enable 24121990 => 24.12.1990 as input
+* New Input "Regex-Input"
 
 
 ## [1.4.12] - 03.06.2025
