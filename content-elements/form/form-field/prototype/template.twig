@@ -15,15 +15,17 @@
 	<div class="bsi-form-input-element mb-3 bsi-label-floating-element">
 		<div class="form-label-and-info-text">
 			<label for="field" class="form-label">{{ formFieldLabelText }}</label>
-			<div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
 			<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ formFieldInfoText }}"></i>
 		</div>
 		<div class="input-container">
-			<div class="input-field-and-icon-container">
-				<input x-init="initFormFieldInput" x-on:input="validateInput" type="text" class="form-control bsi-form-field-input {{ properties.flatpickrInput }}" id="field" value="">
-			</div>
-			<div data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" class="invalid-feedback">
-				{{ formFieldErrorRequiredText }}
+			<div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
+			<div>
+				<div class="input-field-and-icon-container">
+					<input x-init="initFormFieldInput" x-on:input="validateInput" type="text" class="form-control bsi-form-field-input {{ properties.flatpickrInput }}" id="field" value="">
+				</div>
+				<div data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" class="invalid-feedback">
+					{{ formFieldErrorRequiredText }}
+				</div>
 			</div>
 		</div>
 		<div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="d-none logic-validation">
