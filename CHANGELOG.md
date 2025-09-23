@@ -16,6 +16,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Add new if-else-group element
 * Allow positioning of info-text below form-fields
 * Fix positioning of info-text of checkbox
+* Date-Input: enable text-input and fix validation
 * Date-Input: enable 24121990 => 24.12.1990 as input
 * New Input "Regex-Input"
 * Fix Accordion import
