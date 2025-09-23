@@ -18,6 +18,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Fix positioning of info-text of checkbox
 * Date-Input: enable 24121990 => 24.12.1990 as input
 * New Input "Regex-Input"
+* Fix Accordion import
+* Radio orientation prefill by property
 
 
 ## [1.4.12] - 03.06.2025

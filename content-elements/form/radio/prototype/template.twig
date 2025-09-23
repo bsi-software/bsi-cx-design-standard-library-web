@@ -1,5 +1,6 @@
 {% apply spaceless %}
 {% set radioElementId = elementId ?: 'radio-O6XCY3' %}
+{% set radioOrientationStyle = (orientationStyle ?: properties.radioOrientationStyle) ?: 'bsi-radio-block' %}
 {% set radioElementPartId = elementPartId ?: 'radio-part-I0iU7X' %}
 {% set radioFormTextPartId = formTextPartId ?: 'radio-part-text-NyYl9g' %}
 {% set radioErrorRequiredPartId = errorRequiredPartId ?: 'radio-part-error-required-KCNwQh' %}
@@ -10,7 +11,7 @@
 {# TODO: make translatable #}
 
 {# TODO: check if working (insb tooltip info und validation) #}
-    <div x-data="formRadio" data-bsi-element="{{ radioElementId }}" class="{{ 'bsi-element-' ~ radioElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-form-flex-label bsi-radio-block" data-bsi-element-part="{{ radioElementPartId }}">
+    <div x-data="formRadio" data-bsi-element="{{ radioElementId }}" class="{{ 'bsi-element-' ~ radioElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-form-flex-label {{ radioOrientationStyle }}" data-bsi-element-part="{{ radioElementPartId }}">
         <fieldset class="bsi-form-input-element">
             <legend class="form-label-and-info-text">
                 <label class="form-label pt-0">{{ radioGroupLabelText }}</label>
