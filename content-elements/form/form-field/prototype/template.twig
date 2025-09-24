@@ -7,7 +7,6 @@
 {% set formFieldLabelText = (labelText ?: properties.formFieldLabelText) ?: bsi_cx_lorem(3) %}
 {% set formFieldInfoText = (infoText ?: properties.formFieldInfoText) ?: "" %}
 {% set formFieldErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
-{% set flatpickrInput = (flatpickrInput ?: properties.flatpickrInput) ?: 'allow-input' %}
 {# TODO: make translatable #}
 {% set formFieldErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 {# TODO: make translatable #}
@@ -22,7 +21,7 @@
 			<div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
 			<div>
 				<div class="input-field-and-icon-container">
-					<input x-init="initFormFieldInput" x-on:input="validateInput" type="text" class="form-control bsi-form-field-input {{ flatpickrInput }}" id="field" value="">
+					<input x-init="initFormFieldInput" x-on:input="validateInput" type="text" class="form-control bsi-form-field-input" id="field" value="">
 				</div>
 				<div data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" class="invalid-feedback">
 					{{ formFieldErrorRequiredText }}
