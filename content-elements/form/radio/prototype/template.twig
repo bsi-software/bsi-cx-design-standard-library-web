@@ -10,7 +10,6 @@
 {% set radioErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
 {# TODO: make translatable #}
 
-{# TODO: check if working (insb tooltip info und validation) #}
     <div x-data="formRadio" data-bsi-element="{{ radioElementId }}" class="{{ 'bsi-element-' ~ radioElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-form-flex-label {{ radioOrientationStyle }}" data-bsi-element-part="{{ radioElementPartId }}">
         <fieldset class="bsi-form-input-element">
             <legend class="form-label-and-info-text">
