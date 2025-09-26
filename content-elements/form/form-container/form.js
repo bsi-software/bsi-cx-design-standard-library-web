@@ -113,35 +113,23 @@ Alpine.data("formElement", () => ({
 
   // set Aria describedby attribute - also relevant in form-tel-input.js and form-field.js
   _setAriaValues() {
-    
-    this.$root.querySelectorAll(".bsi-form-element").forEach((formElement) => {
-      if (formElement.classList.contains("bsi-form-tel-input")) {
-        var inputFields = formElement.querySelectorAll(
-          "input.form-control:not([type=hidden]), textarea, select"
-        );
-      } else {
-        var inputFields = formElement.querySelectorAll(
-          "input:not([type=hidden]), textarea, select"
-        );
-      }
-      inputFields.forEach(input => {
-        if (input.hasAttribute("required")) {
-          input.setAttribute("aria-invalid", !input.checkValidity());
-          if (!input.checkValidity()) {
-            if ("ariaDescribedByElements" in Element.prototype) {
-              // TODO: add info text on-init to describedby-tag. Add errorMessage to info text
-              var errorMessageElements = Array.from(
-                formElement.querySelectorAll(".invalid-feedback")
-              ).filter(
-                (errorMessageElement) =>
-                  window.getComputedStyle(errorMessageElement).display !== "none"
-              );
-              input.ariaDescribedByElements = errorMessageElements;
-            }
-          }
+    this.form.querySelectorAll(".bsi-form-element")
+      .forEach(formField => {
+        var inputs = formField.querySelectorAll("input:not([type=hidden]), textarea, select");
+        if (formField.classList.contains("bsi-form-tel-input")) {
+          inputs = formField.querySelectorAll("input.form-control:not([type=hidden])");
         }
+        inputs.forEach(input => {
+          input.setAttribute("aria-invalid", !input.checkValidity());
+          if ("ariaDescribedByElements" in Element.prototype) {
+            // Array should be empty if element is valid
+            var errorMessageElements = Array
+              .from(formField.querySelectorAll(".invalid-feedback"))
+              .filter((errorMessageElement) => window.getComputedStyle(errorMessageElement).display !== "none");
+            input.ariaDescribedByElements = errorMessageElements;
+          }
+        });
       });
-    });
   },
 
   _formValidationSummary() {

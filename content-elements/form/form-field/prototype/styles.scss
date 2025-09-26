@@ -12,21 +12,21 @@
       }
     }
 
-    .input-container {
+    .input-field-and-icon-container {
       position: relative;
-    }
 
-    .input-container input {
-      width: 100%;
-      padding-right: 30px;
-    }
+      input {
+        width: 100%;
+        padding-right: 30px;
+      }
 
-    .input-container i {
-      position: absolute;
-      right: 30px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
+      i {
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
     }
 
     .format-invalid-feedback {
@@ -52,8 +52,6 @@
         background-color: rgba(0, 0, 0, 0.05) !important;
       }
     }
-
-
   }
 
   .was-validated .bsi-element-#{$id} .input-container:has(input:invalid) .invalid-feedback {

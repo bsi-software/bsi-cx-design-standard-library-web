@@ -56,10 +56,9 @@ Alpine.data("formField", () => ({
     }
 
     this._validateDateTimeInput();
-    this.validationElement.innerText = !this.$el.checkValidity() 
-      && this.$el.value
-        ? this.logicValidationMessage
-        : this.requiredValidationMessage;
+    this.validationElement.innerText = !this.$el.checkValidity() && this.$el.value
+      ? this.logicValidationMessage
+      : this.requiredValidationMessage;
     // set Aria describedby attribute - also relevant in form.js and form-tel-input.js
     this.inputEl.setAttribute('aria-invalid', !this.inputEl.checkValidity());
     if (this.inputEl.checkValidity()) {
@@ -69,8 +68,8 @@ Alpine.data("formField", () => ({
         this.inputEl
           .closest('.bsi-form-element')
           .querySelectorAll('.invalid-feedback'))
-      .filter(
-        (errorMessageElement) => window.getComputedStyle(errorMessageElement).display !== 'none');
+        .filter(
+          (errorMessageElement) => window.getComputedStyle(errorMessageElement).display !== 'none');
       this.inputEl.ariaDescribedByElements = errorMessageElements;
     }
   },
@@ -114,20 +113,14 @@ Alpine.data("formField", () => ({
         type === 'date'
           ? 'TT.mm.jjjj'
           : type === 'datetime-local'
-          ? 'TT.mm.jjj --:--'
-          : '--:--';
+            ? 'TT.mm.jjj --:--'
+            : '--:--';
     }
 
-    this.minDate = this.inputEl.min
-      ? new Date(
-          this.isTime ? `2000-01-01T${this.inputEl.min}` : this.inputEl.min
-        )
-      : null;
-    this.maxDate = this.inputEl.max
-      ? new Date(
-          this.isTime ? `2000-01-01T${this.inputEl.max}` : this.inputEl.max
-        )
-      : null;
+    let _dateTimeCast = (dateStr) => dateStr ? new Date(this.isTime ? `2000-01-01T${dateStr}` : dateStr) : null;
+
+    this.minDate = _dateTimeCast(this.inputEl.min);
+    this.maxDate = _dateTimeCast(this.inputEl.max);
 
     var dateFormats = {
       date: 'Y-m-d', 'datetime-local': 'Y-m-dTH:i',
@@ -142,7 +135,7 @@ Alpine.data("formField", () => ({
       altInput: true,
       altFormat: altFormats[type],
       dateFormat: dateFormats[type],
-      allowInput: this.inputEl.classList.contains('allowInput'),
+      allowInput: true,
       enableTime: type !== 'date',
       noCalendar: this.isTime,
       time_24hr: true,
@@ -155,9 +148,12 @@ Alpine.data("formField", () => ({
     // Add the span (with the icon) after the input
     this.inputEl.parentNode.classList.add('input-container'); // Add the container class in order to set the icon position
     var iconSpan = document.createElement('span');
-    iconSpan.innerHTML = `<i class="bi ${
-      this.isTime ? 'bi-clock' : 'bi-calendar'
-    }"></i>`;
+    iconSpan.innerHTML = `<i class="bi ${this.isTime ? 'bi-clock' : 'bi-calendar'}"></i>`;
     this.inputEl.parentNode.appendChild(iconSpan);
+
+    this.$root.querySelector('input[type=text]').addEventListener('input', (event) => {
+      let value = event.target.value;
+      event.target.value = value.replace(/(\d{2})(\d{2})(\d{4})/gm, '$1.$2.$3');
+    })
   },
 }));

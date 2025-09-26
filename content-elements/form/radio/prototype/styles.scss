@@ -25,12 +25,23 @@
       -webkit-appearance: none;
     }
 
+    // Do not apply legend styles
+    legend {
+      all: revert;
+      padding: 0;
+    }
+
     @if $darkModeActive == true {
       @media screen and (prefers-color-scheme: dark) {
         .form-check-label {
           color: bsiProperty('darkModeTextColor', #ffffff);
         }
       }
+    }
+
+    .radio-info {
+      display: flex;
+      flex-direction: column-reverse;
     }
   }
 }

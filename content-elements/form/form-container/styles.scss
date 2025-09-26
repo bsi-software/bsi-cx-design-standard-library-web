@@ -93,7 +93,6 @@
         .bsi-form-input-element {
           display: flex;
           flex-wrap: wrap;
-          align-items: center;
 
           .form-label-and-info-text {
             flex: 0 1 20%;
@@ -107,13 +106,6 @@
           .form-range,
           .iti {
             flex: 0 1 80%;
-          }
-
-          .invalid-feedback,
-          .bsi-tel-input-error-invalid,
-          .form-text {
-            flex: 0 1 80%;
-            margin-left: auto;
           }
         }
 
@@ -330,6 +322,21 @@ input[type=reset][disabled] {
       display: block;
     }
   }
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .form-text {
+    margin: 0;
+  }
+}
+
+&.bsi-form-info-below-input .input-container {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 &.bsi-form-show-valdiation-summary form.was-validated .form-validation-summary {
