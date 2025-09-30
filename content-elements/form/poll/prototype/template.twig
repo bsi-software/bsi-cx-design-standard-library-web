@@ -16,35 +16,26 @@
 {# TODO: make translatable #}
 {% set pollDefaultType = (defaultType ?: properties.pollDefaultType) ?: 'poll-nps' %}
 
-{% set pollRange = range(1,10) %}
-{% set pollValueList = '' %}
-{% for value in pollRange %}
-	{% set pollValueList = pollValueList ~ value ~ (loop.last == false ? "\n" : '') %}
-{% endfor %}
-
 <div x-data="formPoll" data-bsi-element="{{ pollElementId }}" class="{{ 'bsi-element-' ~ pollElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-{{ pollDefaultType }}">
-	<div data-bsi-element-part="{{ pollElementPartId }}" data-bsi-form-field-fixed-type class="d-none">
-		<div>
-			<label for="poll-input">{{ pollLabelText }}</label>
-			{# TODO: fix info-text #}
-			<div data-bsi-element-part="{{ pollFormTextPartId }}" class="form-text">{{ pollInfoText }}</div>
-			{# Remove support until requested <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ pollInfoText }}"></i> #}
+	<fieldset data-bsi-element-part="{{ pollElementPartId }}" data-bsi-form-field-fixed-type>
+		<legend class="form-label"><label for="poll-input">{{ pollLabelText }}</label></legend>
+		<div data-bsi-element-part="{{ pollFormTextPartId }}" class="form-text">{{ pollInfoText }}</div>
+		<input type="number" readonly="readonly" name="poll-input" id="poll-input" min="1" max="10" step="1" value="" required="" class="d-none" />
+		<div role="radiogroup" class="bsi-poll-radio-group d-flex flex-wrap">
+			{% for value in range(0,10) %}
+				<div class="bsi-poll-radio-item">
+					<input class="form-check-input" type="radio" id="poll-input-{{ value }}" value="{{ value }}"/>
+					<label class="form-check-label" for="poll-input-{{ value }}">
+						<i class="bi bi-star"></i><i class="bi bi-star-fill"></i>
+						<div class="number-label">{{ value }}</div>
+					</label>
+				</div>
+			{% endfor %}
 		</div>
-		<input type="number" name="poll-input" id="poll-input" min="1" max="10" step="1" value="" required="" class="bsi-poll-number-input"/>
-	</div>
-	<fieldset role="radiogroup" x-init="initRadioGroup" class="bsi-poll-radio-group" data-bsi-remove-if="draft"></fieldset>
-	{# TODO: better include / new structure #}
-	{# <div class="bsi-poll-radio-group d-flex flex-wrap justify-content-center" data-bsi-remove-if="live">
-		{% for value in pollRange %}
-			<div class="form-check form-check-inline radio-group bsi-poll-radio-item">
-				<input class="form-check-input bsi-poll-radio-input" type="radio" id="poll-input-{{ value }}" value="{{ value }}"/>
-				<label class="form-check-label bsi-poll-radio-label" for="poll-input-{{ value }}">{{ value }}</label>
-			</div>
-		{% endfor %}
-	</div> #}
+	</fieldset>
 	<div class="d-flex justify-content-between mt-1 text-nowrap small nps-description">
-		<label class="poll-label" data-bsi-element-part="{{ pollLeftPartId }}">{{ pollLabelLeftText }}</label>
-		<label class="poll-label" data-bsi-element-part="{{ pollRightPartId }}">{{ pollLabelRightText }}</label>
+		<div data-bsi-element-part="{{ pollLeftPartId }}">{{ pollLabelLeftText }}</div>
+		<div data-bsi-element-part="{{ pollRightPartId }}">{{ pollLabelRightText }}</div>
 	</div>
 
 	<div data-bsi-element-part="{{ pollErrorRequiredPartId }}" class="invalid-feedback">
