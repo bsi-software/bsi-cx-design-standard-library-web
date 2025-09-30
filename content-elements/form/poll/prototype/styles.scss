@@ -2,11 +2,9 @@
 
 @mixin styles($id: "poll-wni8em",
   $poll-primary: $primary,
-  $poll-secondary: $secondary) {
+  $poll-secondary: $secondary,
+  $poll-label-size: 1.25rem) {
   .bsi-element-#{$id} {
-    .bsi-poll-radio-group {
-      margin-bottom: 0.75em;
-    }
 
     .poll-label {
       color: bsiProperty('darkColor', #383e42);
@@ -16,222 +14,124 @@
       display: none;
     }
 
-    &.bsi-poll-nps {
-      .bsi-poll-radio-item {
-        flex: 0 1 42px;
-        margin-right: 0;
-        padding-left: 0;
-      }
+    fieldset {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75em;
 
-      .bsi-poll-radio-input {
-        float: left;
-        margin: 0;
-        padding: 0;
-        height: 0;
-        width: 0;
-        position: absolute;
-        visibility: hidden;
-        z-index: 0;
-      }
+      .poll-check {
+        position: relative;
+        font-size: $poll-label-size;
 
-      .bsi-poll-radio-label {
-        border-radius: 0.25rem;
-        width: 100%;
-        text-align: center;
-        font-size: 1.25rem;
-        font-weight: 400;
+        input {
+          appearance: none;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          --bs-form-check-bg-image: none !important;
+        }
 
-        &:hover {
-          cursor: pointer;
+        label {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          align-content: center;
+          text-align: center;
+          left: 0;
         }
       }
     }
 
-    @if $darkModeActive == true {
-      @media screen and (prefers-color-scheme: dark) {
-        .poll-label {
-          color: bsiProperty('darkModeTextColor', #ffffff);
+    &.bsi-poll-nps fieldset {
+      gap: 0.5rem;
+
+      .poll-check {
+        width: 3 * $poll-label-size;
+        height: 2 * $poll-label-size;
+
+        input {
+          appearance: none;
+          border: 1px solid $poll-primary;
+          border-radius: 0.25rem;
+          margin: 0;
+          --bs-form-check-bg-image: none;
+
+          &:checked {
+            background-color: $poll-primary;
+          }
+
+          &:has(input:checked) label {
+            color: #fff;
+          }
         }
       }
     }
 
-    &.bsi-poll-star {
-      .form-check-inline {
-        margin-right: 0;
-      }
+    &.bsi-poll-star fieldset {
+      justify-content: start;
 
-      .bsi-poll-radio-input {
-        width: 2.5em;
-        height: 2.5em;
+      .poll-check {
+        width: 3.25rem; // TODO: editable?
+        height: 3.25rem; // TODO: editable?
+        font-size: 2rem; // TODO: editable?
 
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      .bsi-poll-radio-label {
-        display: none;
-      }
-
-      .bsi-poll-radio-group {
-        display: inline-flex;
-        flex-flow: nowrap;
-        align-items: flex-start;
-
-        input[type="radio"] {
-          display: inline-block;
-          content: "";
-          vertical-align: -0.125em;
-          background-repeat: no-repeat;
-          background-size: 2rem 2rem;
+        input {
           background-color: transparent;
           border: none;
-          box-shadow: none;
         }
-      }
-    }
-  }
 
-  $colors: (
-    "primary": $poll-primary,
-    "secondary": $poll-secondary,
-  );
-
-@each $name, $color in $colors {
-  $star-icon: $star-icon-primary;
-  $star-fill-icon: $star-fill-icon-primary;
-
-  @if $name =="secondary" {
-    $star-icon: $star-icon-secondary;
-    $star-fill-icon: $star-fill-icon-secondary;
-  }
-
-  .bsi-form-color-#{$name} .bsi-element-#{$id} {
-    &.bsi-poll-nps .bsi-poll-radio-label {
-      color: $color;
-      border: 1px solid $color;
-
-      &:hover {
-        background-color: $color;
-        color: $light;
-      }
-    }
-
-    &.bsi-poll-nps .bsi-poll-radio-input:checked+.bsi-poll-radio-label {
-      background-color: $color;
-      color: $light;
-    }
-
-    &.bsi-poll-star .bsi-poll-radio-group {
-      .bsi-poll-radio-item input[type="radio"] {
-        background-image: $star-icon;
-      }
-
-      &:not(:hover) {
-        .bsi-poll-radio-checked {
-          input[type="radio"] {
-            background-image: $star-fill-icon !important;
-          }
-
-          input[type="radio"]:checked {
-            background-image: $star-fill-icon !important;
-          }
+        label {
+          align-content: start;
+          color: $poll-primary;
         }
-      }
 
-      &:hover {
-        .bsi-poll-radio-item {
-          input[type="radio"] {
-            background-image: $star-fill-icon;
+        i.bi-star-fill {
+          display: none;
+        }
+
+        &.bsi-poll-radio-checked label {
+          i.bi-star {
+            display: none;
           }
 
-          &:hover~.bsi-poll-radio-item input[type="radio"] {
-            background-image: $star-icon;
+          i.bi-star-fill {
+            display: block;
           }
         }
       }
     }
-  }
-}
 
-.bsi-corner-sharp .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-label {
-  border-radius: 0;
-}
-
-.was-validated .bsi-element-#{$id}.bsi-poll-nps .bsi-poll-radio-group {
-
-  .bsi-poll-radio-input:invalid~.bsi-poll-radio-label,
-  .bsi-poll-radio-input.is-invalid~.bsi-poll-radio-label {
-    color: $invalid !important;
-    border: 1px solid $invalid !important;
-  }
-
-  .bsi-poll-radio-input:valid~.bsi-poll-radio-label,
-  .bsi-poll-radio-input.is-valid~.bsi-poll-radio-label {
-    color: $valid !important;
-    border: 1px solid $valid !important;
-  }
-
-  .bsi-poll-radio-input:valid:focus~.bsi-poll-radio-label,
-  .bsi-poll-radio-input.is-valid:focus~.bsi-poll-radio-label,
-  .bsi-poll-radio-input:valid:checked~.bsi-poll-radio-label,
-  .bsi-poll-radio-input.is-valid:checked~.bsi-poll-radio-label {
-    background-color: $valid !important;
-    color: $light !important;
-  }
-}
-
-.was-validated .bsi-element-#{$id}.bsi-poll-star .bsi-poll-radio-group {
-  input[type="radio"] {
-
-    &:invalid,
-    &.is-invalid {
-      background-image: $star-icon-invalid !important;
+    &.bsi-poll-star .nps-description {
+      display: none;
     }
-  }
 
-  .bsi-poll-radio-item input[type="radio"]:checked {
+    @media screen and (prefers-color-scheme: dark) {
 
-    &:valid,
-    &.is-valid {
-      background-image: $star-fill-icon-valid !important;
-    }
-  }
-
-  &:not(:hover) {
-    .bsi-poll-radio-checked {
-      input[type="radio"] {
-
-        &:valid,
-        &.is-valid {
-          background-image: $star-fill-icon-valid !important;
-        }
-      }
-
-      input[type="radio"]:checked {
-
-        &:valid,
-        &.is-valid {
-          background-image: $star-fill-icon-valid !important;
-        }
+      .poll-label,
+      &.bsi-poll-star fieldset .poll-check label {
+        color: bsiProperty('darkModeTextColor', #ffffff) !important;
       }
     }
   }
 
-  &:hover {
-    .bsi-poll-radio-item {
-      input[type="radio"] {
-        background-image: $star-fill-icon-valid;
+  .bsi-form-color-secondary .bsi-element-#{$id} {
+    &.bsi-poll-nps fieldset .poll-check input {
+      border: $poll-secondary;
+
+      &:checked {
+        background-color: $poll-secondary;
       }
 
-      &:hover~.bsi-poll-radio-item input[type="radio"] {
-        background-image: $star-icon-valid;
-      }
+    }
+
+    &.bsi-poll-star fieldset .poll-check label {
+      color: $poll-secondary;
     }
   }
-}
 
-fieldset .form-text {
-  width: 100%;
-}
+  .bsi-corner-sharp .bsi-element-#{$id}.bsi-poll-nps fieldset .poll-check input {
+    border-radius: 0;
+  }
 }
