@@ -6,23 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-* Fix select field accessability
-* Fix radiobuttons accessability
-* Fix checkbox accessability
+
+
+## [1.4.13] - 01.10.2025
 * Add the possibility to have a preselected value on a select while the attribute "First option is a placeholder" is set
 * Add style for mobile layout to table element
 * Add audio recorder element
 * Add dark mode property
 * Add new if-else-group element
+* Add new Input "Regex-Input"
+* Add role to button element
 * Allow positioning of info-text below form-fields
-* Fix positioning of info-text of checkbox
 * Date-Input: enable text-input and fix validation
 * Date-Input: enable 24121990 => 24.12.1990 as input
-* New Input "Regex-Input"
+* Fix select field accessability
+* Fix radiobuttons accessability
+* Fix checkbox accessability
+* Fix positioning of info-text of checkbox
 * Fix Accordion import
-* Radio orientation prefill by property
-* Add role to button element
 * NPS Score BFSG improvement
+* Radio orientation prefill by property
 
 
 ## [1.4.12] - 03.06.2025
