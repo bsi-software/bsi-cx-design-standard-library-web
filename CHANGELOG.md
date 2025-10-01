@@ -21,6 +21,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * New Input "Regex-Input"
 * Fix Accordion import
 * Radio orientation prefill by property
+* Add role to button element
+* NPS Score BFSG improvement
 
 
 ## [1.4.12] - 03.06.2025
