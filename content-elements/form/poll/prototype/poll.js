@@ -16,10 +16,6 @@ const starLabels = [
 ]
 
 Alpine.data('formPoll', () => ({
-  root: null,
-  labelElement: null,
-  requiredErrorElement: null,
-  isStar: false,
   init() {
     let isStar = this.$root.classList.contains('bsi-poll-star');
     let numberInput = this.$root.querySelector('input[readonly]');
@@ -35,9 +31,12 @@ Alpine.data('formPoll', () => ({
       input.setAttribute('name', name);
       input.setAttribute('id', id);
       radioItem.querySelector('label').setAttribute('for', id);
-      if(required) input.setAttribute('required', 'required');
-      if(checked) input.setAttribute('checked', 'checked');
-      if(isStar) {
+      if (required) input.setAttribute('required', 'required');
+      if (checked) {
+        input.setAttribute('checked', 'checked');
+        input.checked = true;
+      }
+      if (isStar) {
         input.setAttribute('aria-label', starLabels[Number(value)])
         input.setAttribute('x-on:change', 'updateStar')
       }
