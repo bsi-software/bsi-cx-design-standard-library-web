@@ -6,8 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
+
+
+## [1.4.14] - 02.10.2025
 * Fix possible npm security issues
 * Update audio recorder element: change filetype to .ogg
+
 
 ## [1.4.13] - 01.10.2025
 * Add the possibility to have a preselected value on a select while the attribute "First option is a placeholder" is set
