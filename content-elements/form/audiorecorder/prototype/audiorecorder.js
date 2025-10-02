@@ -46,13 +46,13 @@ Alpine.data('audioRecorder', () => ({
 
             this.mediaRecorder.ondataavailable = e => this.chunks.push(e.data);
             this.mediaRecorder.onstop = () => {
-                const blob = new Blob(this.chunks, { type: 'audio/webm' });
+                const blob = new Blob(this.chunks, { type: 'audio/ogg' });
                 const url = URL.createObjectURL(blob);
                 this.audioPlayback.src = url;
                 this.audioPlayback.classList.add("visible");
 
                 // Insert file in input
-                const file = new File([blob], "registrazione.webm", { type: 'audio/webm' });
+                const file = new File([blob], "registration.ogg", { type: 'audio/ogg' });
                 const dataTransfer = new DataTransfer();
                 dataTransfer.items.add(file);
                 if(document.getElementById(this.inputFile)){
