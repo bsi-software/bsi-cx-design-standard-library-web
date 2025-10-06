@@ -1,4 +1,6 @@
 import Alpine from '@alpinejs/csp';
+import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
+
 
 Alpine.data('audioRecorder', () => ({
     mediaRecorder: null,
@@ -10,8 +12,15 @@ Alpine.data('audioRecorder', () => ({
     waveform: null,
     timer: null,
     audioPlayback: null,
+    isConverting: false,
+    ffmpeg: null, 
+    fetchFile: null, 
     
-    init(){
+    async init(){
+        this.ffmpeg = createFFmpeg({ log: true });
+        this.fetchFile = fetchFile;
+
+
         this.recordBtn = this.$root.querySelector('.record-btn');
         this.waveform = this.$root.querySelector('.waveform');
         this.timer = this.$root.querySelector('.timer');
@@ -27,8 +36,8 @@ Alpine.data('audioRecorder', () => ({
     },
 
     async toggleRecording() {
-
         if (!this.mediaRecorder || this.mediaRecorder.state === "inactive") {
+            // reset
             if(this.audioPlayback.classList.contains("visible")){
                 this.audioPlayback.classList.remove("visible");
                 this.audioPlayback.src = "";
@@ -36,6 +45,7 @@ Alpine.data('audioRecorder', () => ({
                     document.getElementById(this.inputFile).value = "";
                 }   
             }
+
             // Registration start
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             this.mediaRecorder = new MediaRecorder(stream);
@@ -45,24 +55,31 @@ Alpine.data('audioRecorder', () => ({
             this.timer.style.display = "block";
 
             this.mediaRecorder.ondataavailable = e => this.chunks.push(e.data);
-            this.mediaRecorder.onstop = () => {
-                const blob = new Blob(this.chunks, { type: 'audio/ogg' });
-                const url = URL.createObjectURL(blob);
-                this.audioPlayback.src = url;
-                this.audioPlayback.classList.add("visible");
+            this.mediaRecorder.onstop = async () => {
+                const webmBlob = new Blob(this.chunks, { type: 'audio/webm' });
 
-                // Insert file in input
-                const file = new File([blob], "registration.ogg", { type: 'audio/ogg' });
+                // Convertion
+                this.isConverting = true;
+                this.timer.textContent = 'Converting...';
+
+                const oggBlob = await this.convertToOgg(webmBlob);
+                const url = URL.createObjectURL(oggBlob);
+
+                this.audioPlayback.src = url;
+                this.audioPlayback.classList.add('visible');
+
+                // Insert file in the form field
+                const file = new File([oggBlob], 'registration.ogg', { type: 'audio/ogg' });
                 const dataTransfer = new DataTransfer();
                 dataTransfer.items.add(file);
-                if(document.getElementById(this.inputFile)){
-                    document.getElementById(this.inputFile).files = dataTransfer.files;
-                }
+                const input = document.getElementById(this.inputFile);
+                if (input) input.files = dataTransfer.files;
 
+                this.isConverting = false;
                 clearInterval(this.timerInterval);
                 this.$root.querySelector('.recorder-top').classList.remove('recording');
-                this.timer.textContent = "00:00";
-                this.timer.style.display = "none";
+                this.timer.textContent = '00:00';
+                this.timer.style.display = 'none';
             };
 
             this.mediaRecorder.start();
@@ -79,6 +96,30 @@ Alpine.data('audioRecorder', () => ({
             this.mediaRecorder.stop();
             this.$root.querySelector('.recorder-top').classList.remove('recording');
         } 
-    }
+    },
+
+    async convertToOgg(webmBlob) {
+        if (!this.ffmpeg) {
+            this.ffmpeg = createFFmpeg({ log: true });
+            await this.ffmpeg.load();
+        }
+
+        const ffmpeg = this.ffmpeg;
+        const fetchFile = this.fetchFile;
+
+        if (!ffmpeg.loaded) {
+            console.log('Loading FFmpeg...');
+            await ffmpeg.load();
+        }
+
+        const data = await fetchFile(webmBlob);
+        ffmpeg.FS('writeFile', 'input.webm', data);
+
+        // .ogg convertion
+        await ffmpeg.run('-i', 'input.webm', '-c:a', 'libopus', 'output.ogg');
+
+        const oggData = ffmpeg.FS('readFile', 'output.ogg');
+        return new Blob([oggData.buffer], { type: 'audio/ogg' });
+    },
 
 }));
