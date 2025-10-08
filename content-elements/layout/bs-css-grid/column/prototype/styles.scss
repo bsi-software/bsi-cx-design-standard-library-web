@@ -7,6 +7,7 @@
     .bsi-element-bsi-grid-column-d587a56d {
 
         border-radius: 24px;
+        overflow: hidden;
         
         @media (max-width: bsiProperty(gridBreakpointMD)) {
             border-radius: 16px;
