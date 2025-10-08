@@ -1,19 +1,24 @@
 import Alpine from '@alpinejs/csp';
+import { FriendlyCaptchaSDK } from "@friendlycaptcha/sdk";
+
+// Re-use this SDK if you are creating multiple widgets.
+const sdk = new FriendlyCaptchaSDK();
 
 Alpine.data('friendlyCaptcha', () => ({ 
 
-    setSideKeyAsAttribute() {
-
-        let siteKey = this.$root.querySelector(".siteKey").innerHTML;
-        this.$root.querySelector(".frc-captcha").setAttribute("data-sitekey", siteKey);
+    init() {
+        let mySiteKey = this.$root.querySelector(".siteKey").innerHTML;
         this.$root.querySelector(".siteKeyWrapper").remove();
         this.$root.querySelector(".response-friendly-captcha").remove();
 
-        return this.$root.innerHTML;
-    },
+        // HTML element that you want to mount the widget to.
+        const mount = document.querySelector(".frc-captcha");
 
-    init() {
-
+        // Create the widget
+        const widget = sdk.createWidget({
+            element: mount,
+            sitekey: mySiteKey
+        });
     }
 
 }))
