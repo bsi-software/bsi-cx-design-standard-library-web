@@ -1,23 +1,7 @@
-@mixin styles($id: 'frindly-captcha-03c21de7') {
-    .bsi-element-#{id} {
-        .hide {
-            display: none;
-        }
-    
+@mixin styles($id: 'friendly-captcha-03c21de7') {
+    .bsi-element-#{id} {    
         .frc-image {
             height: 80px;
-        }
-    
-        .show-edit {
-            display: none;
-        }
-    }
-    
-    .bsi-ce-edit-mode {
-        .bsi-element-#{id} {
-            .show-edit {
-                display: block;
-            }
         }
     }
 }

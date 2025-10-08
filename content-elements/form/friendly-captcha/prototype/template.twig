@@ -1,13 +1,13 @@
 {% set friendlyCaptchaImageSrc = imageSrc ?: bsi_cx_asset('./friendly-captcha.png') %}
 
-<div x-data="friendlyCaptcha" data-bsi-element="frindly-captcha-03c21de7" class="bsi-element-frindly-captcha-03c21de7">
-    <div class="siteKeyWrapper hide">
-        <p class="siteKey" data-bsi-element-part="frindly-captcha-part-968cbea9">SiteKey</p>
+<div x-data="friendlyCaptcha" data-bsi-element="friendly-captcha-03c21de7" class="bsi-element-friendly-captcha-03c21de7">
+    <div class="siteKeyWrapper d-none">
+        <p class="siteKey" data-bsi-element-part="friendly-captcha-part-968cbea9">SiteKey</p>
     </div>
-    <img data-bsi-remove-if="live" src="{{ friendlyCaptchaImageSrc }}" class="frc-image show-edit" alt="friendly Captcha Logo" />
+    <img data-bsi-remove-if="live" src="{{ friendlyCaptchaImageSrc }}" class="frc-image" alt="friendly Captcha Logo" />
     <div class="frc-captcha hide-edit" data-sitekey=""></div>
-    <div class="response-friendly-captcha hide" data-bsi-element-part="frindly-captcha-form-field-part-5e65c6ba" data-bsi-form-field-fixed-type="text" data-bsi-hide-required>
-        <label for="response" class="hide">Friendly Captcha</label>
-        <input id="response" class="hide" type="text" value="" name="frc-captcha-response" required="true">
+    <div class="response-friendly-captcha d-none" data-bsi-element-part="friendly-captcha-form-field-part-5e65c6ba" data-bsi-form-field-fixed-type="text" data-bsi-hide-required>
+        <label for="response" class="d-none">Friendly Captcha</label>
+        <input id="response" class="d-none" type="text" value="" name="frc-captcha-response" required="true">
     </div>
 </div>

@@ -32,8 +32,6 @@ import '../../content-elements/new-form/form-elements/select/select';
 import '../../content-elements/new-form/form-elements/toggle-switch/toggle-switch';
 import '../../content-elements/new-form/form-elements/upload-field/upload-file';
 
-
-
 // start Alpine.js AFTER importing all module scripts
 window.Alpine = Alpine;
 Alpine.start();
