@@ -24,9 +24,9 @@
     }
 
 
-    $colors: ("text-Color": $text-color, "primary-color": $text-primary-color, "secondary-color": $text-secondary-color, "dark-color": $text-dark-color, "light-color": $text-light-color);
+    $colors: ("primary-color": $text-primary-color, "secondary-color": $text-secondary-color, "dark": $text-dark-color, "light": $text-light-color);
     @each $name, $color in $colors {
-      &.bsi-text-#{$name} {
+      &.bsi-text-#{$name} p {
         color: $color;
       }
     }

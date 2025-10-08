@@ -22,7 +22,8 @@ module.exports = (
   .withLabel(elementLabel)
   .withIcon(Icon.TEXT)
   .withStyleConfigs(
-    require('../../../../configs/styles/text-size'))
+    require('../../../../configs/styles/text-editor-color')
+  )
   .withParts(
     cx.part.formattedText
       .withHtmlEditorConfig(textEditorConfig)
