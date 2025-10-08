@@ -19,9 +19,25 @@
             margin-right: 48px;
             border-radius: 24px;
         }
+
+        // Tablet
+        @media (max-width: bsiProperty(gridBreakpointXXL)) {
+            .grid {
+                margin-left: 24px;
+                margin-right: 24px;
+
+            }
+        }
         
+        // Mobile
         @media (max-width: bsiProperty(gridBreakpointMD)) {
-            border-radius: 16px;
+            
+            .grid {
+                margin-left: 16px;
+                margin-right: 16px;
+                border-radius: 16px;
+
+            }
         }
 
         @for $i from 10 through 100 {
