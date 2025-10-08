@@ -1,20 +1,21 @@
 {% apply spaceless %}
 
-    {% set gridColumnElementId = elementId ?: 'bsi-grid-24cb3f1c' %}
-    {% set gridColumnBackgroundColor = (backgroundColor ?: properties.gridBackgroundColors) ?: 'transparent' %}
-    {% set gridColumnOpacity = (opacity ?: properties.gridOpacity) ?: '100' %}
+    {% set gridElementId = elementId ?: 'bsi-grid-24cb3f1c' %}
+    {% set gridBackgroundColor = (backgroundColor ?: properties.gridBackgroundColors) ?: 'transparent' %}
+    {% set gridOpacity = (opacity ?: properties.gridOpacity) ?: '100' %}
+    {% set gridHideDropzone = hideDropzone %}
 
-    <div data-bsi-element="bsi-grid-24cb3f1c" 
+    <div data-bsi-element="{{gridElementId}}"
         class="
-            {{'bsi-element-' ~ gridColumnElementId}}
+            {{'bsi-element-' ~ gridElementId}}
             bsi-grid-element
             container
-            {{'bsi-bg-color-' ~ gridColumnBackgroundColor}}
-            {{'bsi-opacity-' ~ gridColumnOpacity}}
+            {{'bsi-bg-color-' ~ gridBackgroundColor}}
+            {{'bsi-opacity-' ~ gridOpacity}}
         "
     >
-        <div class="grid" data-bsi-dropzone="bsi-grid-dropzone-f88c74f5">
-            {% block grid_dropzone %}{% endblock %}
+        <div class="grid" {% if not gridHideDropzone %} data-bsi-dropzone="bsi-grid-dropzone-f88c74f5"{% endif %}>
+            {% block grid_content %}{% endblock %}
         </div>
     </div>
 {% endapply %}
