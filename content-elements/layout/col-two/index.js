@@ -14,6 +14,7 @@ element.withFile(require('./template.twig'))
   /*.withLabel('2 Columns')*/
   .withLabel('2 Spalten')
   .withIcon(Icon.TWO_COLUMNS)
+  .withArchived(true)
   .withStyleConfigs(
     require('../../../configs/styles/col-width'),
     require('../../../configs/styles/col-two-ratio'),

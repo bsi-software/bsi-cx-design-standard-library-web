@@ -14,6 +14,7 @@ element.withFile(require('./template.twig'))
   /*.withLabel('4 Columns')*/
   .withLabel('4 Spalten')
   .withIcon(Icon.THREE_COLUMNS)
+  .withArchived(true)
   .withStyleConfigs(
     require('../../../configs/styles/col-width'),
     require('../../../configs/styles/col-spacing'),
