@@ -1,0 +1,28 @@
+@import "../../../../../styles/properties";
+
+@mixin styles(
+    $id: 'bsi-grid-column-d587a56d'
+) {
+
+    .bsi-element-bsi-grid-column-d587a56d {
+
+        border-radius: 24px;
+        
+        @media (max-width: bsiProperty(gridBreakpointMD)) {
+            border-radius: 16px;
+        }
+
+        $colors: ("primary": $primary, "secondary": $secondary, "tertiary": $tertiary, "dark": $dark);
+
+        @for $i from 10 through 100 {
+            @if $i % 10 == 0 {
+                $opacity-percentage: $i*1%;
+                @each $name, $color in $colors {
+                    &.bsi-bg-color-#{$name}.bsi-opacity-#{$i} {
+                        background-color: mix(white, $color, 100%-$opacity-percentage);
+                    }
+                }
+            }
+        }
+    }
+}
