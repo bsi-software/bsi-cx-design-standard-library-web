@@ -16,6 +16,7 @@ import '../../content-elements/form/audiorecorder/prototype/audiorecorder';
 import '../../content-elements/form/form-container/form';
 import '../../content-elements/form/form-field-tel/prototype/form-tel-input';
 import '../../content-elements/form/form-field/prototype/form-field';
+import '../../content-elements/form/friendly-captcha/prototype/friendly-captcha';
 import '../../content-elements/form/form-pin/form-pin';
 import '../../content-elements/form/poll/prototype/poll';
 import '../../content-elements/form/radio/prototype/radio';
@@ -30,6 +31,7 @@ import '../../content-elements/new-form/form-elements/radio-group/radio-buttons'
 import '../../content-elements/new-form/form-elements/select/select';
 import '../../content-elements/new-form/form-elements/toggle-switch/toggle-switch';
 import '../../content-elements/new-form/form-elements/upload-field/upload-file';
+
 
 
 // start Alpine.js AFTER importing all module scripts
