@@ -13,6 +13,8 @@ Alpine.data('formField', () => ({
   requiredErrorElement: null,
   invalidErrorElement: null,
   errorMessageInvalid: '',
+  fileArray: null,
+  fileIndex: 1,
 
   initFormFieldInput() {
     this.rootEl = this.$root;
@@ -40,6 +42,10 @@ Alpine.data('formField', () => ({
       label.style.transform = 'scale(0.85) translateY(-0.5rem) translateX(0.15rem)';
     }
 
+    if(this.requiredErrorElement == null) {
+      this.requiredErrorElement = this.rootEl.querySelector('.invalid-feedback');
+    }
+
     if (!this.inputEl.value && this.inputEl.hasAttribute('required')) {
       this.requiredErrorElement.style.display = "block";
     } else {
@@ -49,6 +55,66 @@ Alpine.data('formField', () => ({
     this._validateNumberInput();
     this._validateTextInput();
     this._validateDateTimeInput();
+  },
+
+  validateFileInput() {
+    if(this.requiredErrorElement == null) {
+      this.requiredErrorElement = this.rootEl.querySelector('.invalid-feedback');
+    }
+
+    if (!this.inputEl.value && this.inputEl.hasAttribute('required')) {
+      this.requiredErrorElement.style.display = "block";
+    } else {
+      this.requiredErrorElement.style.display = "none";
+    }
+    this._validateAdvFileInput();
+    this.fileArray = Array.from(this.$el.files);
+
+
+    this.fileArray.forEach((file, index) => this._moveFilesToInputFields(file, index+1));
+    },
+    _moveFilesToInputFields(file, index) {
+      // fill hidden input
+      let hiddenInputID = '#file-input-' + this.fileIndex;
+      var dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      this.$root.querySelector(hiddenInputID).files = dataTransfer.files;
+
+      // create label for filename and append div
+      let filenameContainer = document.createElement('div');
+      filenameContainer.classList.add('adv-fileupload-name');
+      filenameContainer.classList.add('bi');
+      filenameContainer.classList.add('bi-x-square');
+      filenameContainer.innerHTML = file.name;
+      let inputId = 'file-input-' + this.fileIndex;
+      let inputNameId = 'file-input-name' + this.fileIndex;
+      filenameContainer.setAttribute('id', inputNameId);
+      this.inputEl.after(filenameContainer);
+
+      // set listener to remove files on click
+      filenameContainer.addEventListener("click", function() {
+        document.getElementById(inputId).value = "";
+        document.getElementById(inputNameId).remove();
+      });
+      this.fileIndex += 1;
+    },
+
+  _validateAdvFileInput() {
+    if (this.inputEl.classList.contains('advanced-file-upload-input')) {
+      let valid = false;
+      let maxFiles = this.inputEl.parentNode.parentNode.querySelector('.max-files').innerHTML;
+      this.inputEl.files.length <= maxFiles ? valid = true : valid = false;
+      if (valid) {
+        this.inputEl.setCustomValidity('');
+        this.$root.querySelector('.logic-validation').classList.remove('logic-validation-negative');
+        this.$root.querySelector('.logic-validation').classList.add('d-none');
+      }
+      else {
+        this.inputEl.setCustomValidity('Invalid');
+        this.$root.querySelector('.logic-validation').classList.add('logic-validation-negative');
+        this.$root.querySelector('.logic-validation').classList.remove('d-none');
+      }
+    }
   },
 
   _validateNumberInput() {
