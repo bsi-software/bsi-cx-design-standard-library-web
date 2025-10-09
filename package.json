@@ -1,6 +1,6 @@
 {
   "name": "@bsi-cx/design-standard-library-web",
-  "version": "1.4.14",
+  "version": "1.4.15",
   "description": "Standard content element library for BSI CX.",
   "license": "MIT",
   "repository": "github:bsi-software/bsi-cx-design-standard-library-web",
