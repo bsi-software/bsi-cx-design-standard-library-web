@@ -32,6 +32,5 @@ module.exports = (
       cx.dropzone.withDropzone(dropzoneId)
       .withRawAllowedElements('if-layout-TljhJw',
         ...formElements.map(el => el.elementId),
-        require('../../../multi-column').elementId
-  ));
+        'multi-column-VxWXpr'));
   
