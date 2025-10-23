@@ -13,6 +13,8 @@ Alpine.data("formField", () => ({
   requiredValidationMessage: '',
   logicValidationMessage: '',
   validationElement: null,
+  fileArray: null,
+  fileIndex: 1,
 
   init() {
     this.validationElement = this.$root.querySelector('.invalid-feedback');
@@ -155,5 +157,79 @@ Alpine.data("formField", () => ({
       let value = event.target.value;
       event.target.value = value.replace(/(\d{2})(\d{2})(\d{4})/gm, '$1.$2.$3');
     })
+  },
+
+  validateFileInput() {
+    if(this.requiredErrorElement == null) {
+      this.requiredErrorElement = this.$root.querySelector('.invalid-feedback');
+    }
+
+    if (!this.inputEl.value && this.inputEl.hasAttribute('required')) {
+      this.requiredErrorElement.style.display = "block";
+    } else {
+      this.requiredErrorElement.style.display = "none";
+    }
+    this._validateAdvFileInput();
+    this.fileArray = Array.from(this.$el.files);
+
+    this.fileArray.forEach((file, index) => this._moveFilesToInputFields(file, index+1));
+    },
+
+    _moveFilesToInputFields(file, index) {
+
+      // create label for filename and append div
+      let filenameContainer = document.createElement('div');
+      filenameContainer.classList.add('adv-fileupload-name');
+      filenameContainer.classList.add('bi');
+      filenameContainer.classList.add('bi-x-square');
+      filenameContainer.innerHTML = file.name;
+      let inputId = 'file-input-' + this.fileIndex;
+      let inputNameId = 'file-input-name' + this.fileIndex;
+      filenameContainer.setAttribute('id', inputNameId);
+
+      // set listener to remove files on click
+      filenameContainer.addEventListener("click", function() {
+        document.getElementById(inputId).value = "";
+        document.getElementById(inputNameId).remove();
+      });
+      
+      // don't upload large files, set invalid-message instead
+      if(file && file.size > 1000000) {
+        filenameContainer.classList.add('invalid-file-size');
+        filenameContainer.innerHTML = this.logicValidationMessage + ' ' + filenameContainer.innerHTML;
+        this.inputEl.after(filenameContainer);
+        return;
+      }
+      
+      // fill hidden input
+      let hiddenInputID = '#file-input-' + this.fileIndex;
+      var dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      this.$root.querySelector(hiddenInputID).files = dataTransfer.files;
+      
+      // add file description to file list
+      this.inputEl.after(filenameContainer);
+
+      this.fileIndex += 1;
+    },
+
+  _validateAdvFileInput() {
+    if (this.inputEl.classList.contains('advanced-file-upload-input')) {
+      let valid = false;
+      let maxFiles = 30;
+      let currentNumberOfFiles = this.$root.querySelector('.file-input-container').querySelectorAll('.file-input-container').length;
+
+      currentNumberOfFiles <= maxFiles ? valid = true : valid = false;
+      if (valid) {
+        this.inputEl.setCustomValidity('');
+        this.$root.querySelector('.logic-validation').classList.remove('logic-validation-negative');
+        this.$root.querySelector('.logic-validation').classList.add('d-none');
+      }
+      else {
+        this.inputEl.setCustomValidity('Invalid');
+        this.$root.querySelector('.logic-validation').classList.add('logic-validation-negative');
+        this.$root.querySelector('.logic-validation').classList.remove('d-none');
+      }
+    }
   },
 }));

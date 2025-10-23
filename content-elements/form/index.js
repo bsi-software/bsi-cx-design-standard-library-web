@@ -9,7 +9,8 @@ const formElements = [
   require('./select'),
   require('./text-area'),
   require('./list'),
-  require('./audiorecorder')
+  require('./audiorecorder'),
+  require('./advanced-file-upload')
 ];
 
 module.exports.formElements = formElements;
