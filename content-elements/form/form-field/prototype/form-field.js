@@ -192,6 +192,7 @@ Alpine.data("formField", () => ({
         document.getElementById(inputId).value = "";
         document.getElementById(inputNameId).remove();
       });
+      this.fileIndex += 1;
       
       // don't upload large files, set invalid-message instead
       if(file && file.size > 1000000) {
@@ -210,7 +211,6 @@ Alpine.data("formField", () => ({
       // add file description to file list
       this.inputEl.after(filenameContainer);
 
-      this.fileIndex += 1;
     },
 
   _validateAdvFileInput() {
