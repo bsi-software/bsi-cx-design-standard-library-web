@@ -3,6 +3,7 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/l10n/de.js";
 import "flatpickr/dist/l10n/fr.js";
 import "flatpickr/dist/l10n/it.js";
+import intlTelInput from 'intl-tel-input';
 
 Alpine.data("formField", () => ({
   inputEl: null,
@@ -24,6 +25,8 @@ Alpine.data("formField", () => ({
 
     if (this.inputEl.type === 'range') {
       this._initRangeInput();
+    } if (this.inputEl.type === 'tel') {
+      this._initTelInput();
     } else if (['date', 'datetime-local', 'time'].includes(this.inputEl.type)) {
       this._initDateInput();
     }
@@ -56,6 +59,8 @@ Alpine.data("formField", () => ({
     }
 
     this._validateDateTimeInput();
+    this._validateFileInput();
+    this._validateTelInput();
     this.validationElement.innerText = !this.$el.checkValidity() && this.$el.value
       ? this.logicValidationMessage
       : this.requiredValidationMessage;
@@ -85,6 +90,58 @@ Alpine.data("formField", () => ({
       this.inputEl.setCustomValidity(valid ? '' : this.logicValidationMessage);
     }
   },
+
+  _validateFileInput() {
+    if (this.inputEl.type !== 'file') return;
+
+    const files = this.inputEl.files;
+    let valid = true;
+
+    if (files.length === 0) {
+      this.inputEl.setCustomValidity('');
+      return;
+    }
+
+    const accepted = (this.inputEl.accept || '')
+      .split(',')
+      .map(a => a.trim().toLowerCase())
+      .filter(a => a !== '');
+
+    if (accepted.length > 0) {
+      for (let file of files) {
+        const ext = '.' + file.name.split('.').pop().toLowerCase();
+        const mime = file.type.toLowerCase();
+        const isValid =
+          accepted.some(acc =>
+            acc.endsWith('/*') ? mime.startsWith(acc.replace('/*', '')) : (mime === acc || ext === acc)
+          );
+
+        if (!isValid) {
+          valid = false;
+          break;
+        }
+      }
+    }
+
+    this.inputEl.setCustomValidity(valid ? '' : this.logicValidationMessage);
+  },
+
+  _validateTelInput() {
+    if (this.inputEl.type !== 'tel' || !this.iti) return;
+
+    const value = this.inputEl.value.trim();
+
+    if (!value) {
+      this.inputEl.setCustomValidity('');
+      return;
+    }
+
+    const isValid = this.iti.isValidNumber();
+
+    this.inputEl.setCustomValidity(isValid ? '' : this.logicValidationMessage);
+  },
+
+
 
   // Adjust range input to bootstrap styling
   _initRangeInput() {
@@ -156,4 +213,20 @@ Alpine.data("formField", () => ({
       event.target.value = value.replace(/(\d{2})(\d{2})(\d{4})/gm, '$1.$2.$3');
     })
   },
+
+  _initTelInput() {
+    this.iti = intlTelInput(this.inputEl, {
+      initialCountry: 'auto',
+      nationalMode: false,
+      utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js',
+      geoIpLookup: (callback) => {
+        fetch('https://ipapi.co/json')
+          .then(res => res.json())
+          .then(callback('de'))
+          .catch(() => callback('de')); 
+      }
+    });
+  },
+
 }));
+
