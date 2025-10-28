@@ -229,6 +229,11 @@
       background-color: bsiProperty('layoutColoredBackgroundColorDarkMode', #3b3b3b) !important;
     }
   }
+} @else {
+  :root {
+    color-scheme: light;
+    supported-color-schemes: light;
+  }
 }
 
 p {
