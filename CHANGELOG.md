@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-
+* Dark mode activation/deactivation using properties.js value
 
 ## [1.4.15] - 09.10.2025
 * Make multi-column form dropzone extendable again
