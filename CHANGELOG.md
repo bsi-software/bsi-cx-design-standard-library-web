@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-
+* fix shadow issue and add new hover configuration for table
 
 ## [1.4.15] - 09.10.2025
 * Make multi-column form dropzone extendable again
