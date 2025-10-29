@@ -20,6 +20,10 @@
       box-shadow: none !important;
     }
 
+    &.bsi-shadow-visible {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.125) !important;
+    }
+
     &.bsi-border-visible {
       border: 1px solid rgba(0, 0, 0, 0.125);
     }
@@ -42,7 +46,7 @@
         color: white;
       }
 
-      .table-hover>tbody>tr:hover>* {
+      .bsi-table-hover>tbody>tr:hover>* {
         color: gray !important;
       }
     }
@@ -69,9 +73,16 @@
       border-bottom: 1.75px solid mix(white, $color, 70%);
     }
 
-    .table-hover>tbody>tr:hover>* {
-      color: mix(black, $color, 40%);
+    &.bsi-table-hover{
+      .table-hover>tbody>tr:hover>* {
+        color: mix(black, $color, 40%);
+      }
     }
+
+    &.bsi-table-hover-hide{
+      pointer-events: none;
+    }
+
 
     @media (max-width: $lg - 1px) {
       tr:nth-child(2n+1) {
