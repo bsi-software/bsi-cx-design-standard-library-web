@@ -107,7 +107,7 @@ Alpine.data("formField", () => ({
       .map(a => a.trim().toLowerCase())
       .filter(a => !!a);
 
-    if (accepted.length > 0) {
+    if (accepted.length) {
       let valid = Array.from(files).every( file => {
         let ext = '.' + file.name.split('.').pop().toLowerCase();
         let mime = file.type.toLowerCase();
