@@ -10,5 +10,5 @@ module.exports = cx.style
       .withCssClass('bsi-table-hover-hide'),
     cx.cssClass
       /*.withLabel('Show Hover')*/
-      .withLabel('Anzeigen Hover')
+      .withLabel('Hervorheben')
       .withCssClass('bsi-table-hover'));
