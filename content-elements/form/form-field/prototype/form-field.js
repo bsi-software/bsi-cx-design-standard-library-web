@@ -105,7 +105,7 @@ Alpine.data("formField", () => ({
     const accepted = (this.inputEl.accept || '')
       .split(',')
       .map(a => a.trim().toLowerCase())
-      .filter(a => a !== '');
+      .filter(a => !!a);
 
     if (accepted.length > 0) {
       let valid = Array.from(files).every( file => {
