@@ -2,14 +2,13 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('hover-mW41Ti')
-  /*.withLabel('Hover')*/
-  .withLabel('Schwebe')
+  .withLabel('Hover')
   .withCssClasses(
     cx.cssClass
       /*.withLabel('Hide Hover')*/
-      .withLabel('Ausblenden Hover')
+      .withLabel('Kein Hervorheben')
       .withCssClass('bsi-table-hover-hide'),
     cx.cssClass
       /*.withLabel('Show Hover')*/
-      .withLabel('Anzeigen Hover')
+      .withLabel('Hervorheben')
       .withCssClass('bsi-table-hover'));
