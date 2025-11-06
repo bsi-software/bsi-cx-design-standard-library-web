@@ -205,7 +205,6 @@
 @if $darkModeActive == true {
   :root {
     color-scheme: light dark;
-    supported-color-schemes: light dark;
   }
 
   @media screen and (prefers-color-scheme: dark) {
@@ -232,7 +231,6 @@
 } @else {
   :root {
     color-scheme: light;
-    supported-color-schemes: light;
   }
 }
 
