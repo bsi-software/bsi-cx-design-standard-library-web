@@ -25,7 +25,7 @@
     }
 
     &.bsi-border-visible {
-      border: 1px solid rgba(0, 0, 0, 0.125);
+      border: 1px solid rgba(251, 81, 81, 0.125);
     }
   }
 
@@ -44,10 +44,6 @@
       .bsi-dm-bg-color tr th {
         background-color: bsiProperty('darkColor', #3b3b3b) !important;
         color: white;
-      }
-
-      .bsi-table-hover>tbody>tr:hover>* {
-        color: gray !important;
       }
     }
   }
@@ -73,14 +69,26 @@
       border-bottom: 1.75px solid mix(white, $color, 70%);
     }
 
-    &.bsi-table-hover{
-      .table-hover>tbody>tr:hover>* {
+    &.bsi-table-hover {
+
+      .table-hover > tbody > tr:hover>* {
         color: mix(black, $color, 40%);
       }
+
     }
 
-    &.bsi-table-hover-hide{
-      pointer-events: none;
+    &.bsi-table-hover-hide {
+
+      .table-hover > tbody > tr:hover>* {
+          --bs-table-color-state: initial !important;
+          --bs-table-bg-state: transparent !important;
+      }
+
+      .table-hover > thead > tr:hover > * {
+          --bs-table-color-state: initial !important;
+          --bs-table-bg-state: transparent !important;
+      }
+
     }
 
 
