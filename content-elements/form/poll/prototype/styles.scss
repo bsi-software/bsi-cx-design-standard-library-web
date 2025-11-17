@@ -35,6 +35,7 @@
           align-content: center;
           text-align: center;
           left: 0;
+          transition: all 0.3s ease;
         }
       }
     }
@@ -71,12 +72,12 @@
         height: 2 * $poll-label-size;
 
         // style input as box
-        input {
+        input, .form-check-label {
           border: 1px solid $poll-primary;
           border-radius: 0.25rem;
         }
 
-        &:has(input:checked) label {
+        &:has(input:checked) label, label:hover {
           color: #fff;
         }
       }
@@ -102,6 +103,13 @@
         // Star icon filled / not filled style
         i {
           display: block;
+          &::before  {
+            // set icons to the optical center
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) translate(0, -1px);
+          }
         }
 
         i.bi-star-fill {
@@ -140,8 +148,10 @@
   }
 
   // Sharp border Style
-  .bsi-corner-sharp .bsi-element-#{$id}.bsi-poll-nps fieldset .bsi-poll-radio-item input {
-    border-radius: 0;
+  .bsi-corner-sharp .bsi-element-#{$id}.bsi-poll-nps fieldset .bsi-poll-radio-item {
+    .form-check-label, input {
+      border-radius: 0;
+    }
   }
 
 }
@@ -153,12 +163,16 @@
     &.bsi-poll-nps fieldset .bsi-poll-radio-item {
       input {
         border-color: $color;
-
       }
-
+      
       &:has(input:checked) label {
         background-color: $color;
       }
+
+      label:hover {
+        background-color: $color; 
+      }
+
     }
 
     &.bsi-poll-star fieldset .bsi-poll-radio-item label {
