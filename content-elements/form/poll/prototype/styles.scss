@@ -57,6 +57,12 @@
       }
     }
 
+    .nps-description {
+      @media screen and (prefers-color-scheme: dark) {
+        color: bsiProperty('lightColor', #ffffff);
+      }
+    }
+
     // NPS-Style
     &.bsi-poll-nps fieldset .bsi-poll-radio-group {
       justify-content: center;
