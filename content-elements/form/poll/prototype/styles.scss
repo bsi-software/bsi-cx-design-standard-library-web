@@ -35,6 +35,7 @@
           align-content: center;
           text-align: center;
           left: 0;
+          transition: all 0.3s ease;
         }
       }
     }
@@ -56,6 +57,12 @@
       }
     }
 
+    .nps-description {
+      @media screen and (prefers-color-scheme: dark) {
+        color: bsiProperty('lightColor', #ffffff);
+      }
+    }
+
     // NPS-Style
     &.bsi-poll-nps fieldset .bsi-poll-radio-group {
       justify-content: center;
@@ -71,12 +78,12 @@
         height: 2 * $poll-label-size;
 
         // style input as box
-        input {
+        input, .form-check-label {
           border: 1px solid $poll-primary;
           border-radius: 0.25rem;
         }
 
-        &:has(input:checked) label {
+        &:has(input:checked) label, label:hover {
           color: #fff;
         }
       }
@@ -102,6 +109,8 @@
         // Star icon filled / not filled style
         i {
           display: block;
+          // set icons to the optical center
+          margin-top: -6px;
         }
 
         i.bi-star-fill {
@@ -140,8 +149,10 @@
   }
 
   // Sharp border Style
-  .bsi-corner-sharp .bsi-element-#{$id}.bsi-poll-nps fieldset .bsi-poll-radio-item input {
-    border-radius: 0;
+  .bsi-corner-sharp .bsi-element-#{$id}.bsi-poll-nps fieldset .bsi-poll-radio-item {
+    .form-check-label, input {
+      border-radius: 0;
+    }
   }
 
 }
@@ -153,12 +164,16 @@
     &.bsi-poll-nps fieldset .bsi-poll-radio-item {
       input {
         border-color: $color;
-
       }
-
+      
       &:has(input:checked) label {
         background-color: $color;
       }
+
+      label:hover {
+        background-color: $color; 
+      }
+
     }
 
     &.bsi-poll-star fieldset .bsi-poll-radio-item label {

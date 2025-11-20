@@ -60,7 +60,7 @@
 
   @if $darkModeActive == true {
     @media screen and (prefers-color-scheme: dark) {
-      .form-label {
+      .form-label, .bsi-form-element .form-text {
         color: bsiProperty('darkModeTextColor', #ffffff);
       }
     }
