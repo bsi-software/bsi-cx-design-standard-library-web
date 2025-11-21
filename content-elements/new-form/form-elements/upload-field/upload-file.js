@@ -15,6 +15,7 @@ Alpine.data("fileUpload", () => ({
     onFileChange(event) {
       this._handleFiles(event.target.files);
       this._formElementValidationOnChange();
+      this.$refs.fileInput.classList.remove("custom-invalid");
       this.$dispatch('after-change', event);
     },
 
@@ -42,7 +43,7 @@ Alpine.data("fileUpload", () => ({
       });
       this.files = [];
       this.$refs.fileInput.value = "";
-      this.$refs.fileInput.dispatchEvent(new Event('change', { bubbles: true }));
+      this.$refs.fileInput.required ? this.$refs.fileInput.classList.add("custom-invalid") : '';
     },
 
     _handleFiles(fileList) {

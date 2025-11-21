@@ -149,7 +149,7 @@
                     outline-color: $successColor;
                 }
             }
-            &:has(input:user-invalid) {
+            &:has(input:user-invalid), &:has(input.custom-invalid) {
                 .file-upload {
                     outline-color: $errorColor;
                 }
