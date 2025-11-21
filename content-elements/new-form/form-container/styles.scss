@@ -1,0 +1,52 @@
+@import "../../../styles/properties";
+
+.bsi-element-form-container-84c6581f {
+    padding: $spacing0;
+
+    $spacings: ("0": $spacing0, "100": $spacing100, "200": $spacing200, "300": $spacing300, "400": $spacing400, "500": $spacing500, "600": $spacing600, "700": $spacing700, "800": $spacing800);
+    @each $name, $spacing in $spacings {
+        &.space-between-form-sections-#{$name} {
+            form {
+                gap: $spacing;
+                .form-elements-container {
+                    gap: $spacing; 
+                }
+            }
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        .form-elements-container {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .form-buttons {
+            display: flex;
+            gap: $spacing600;
+    
+            .form-button-submit {
+                background-color: $primary;
+                color: $light;
+            }
+    
+            .form-button-reset {
+                background-color: $light;
+                color: $textColor;
+            }
+            
+    
+            input[type=reset]:disabled {
+                display: none;
+            }
+        }
+    }
+}
+
+
+// Styles for dark Scheme
+
+// Styles for light Scheme
