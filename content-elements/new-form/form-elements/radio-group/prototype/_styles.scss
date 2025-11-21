@@ -19,7 +19,6 @@
                     display: flex;
                     flex-direction: row;
                     gap: properties.$spacing200;
-                    cursor: pointer;
     
                     user-select: none;
                     -webkit-user-select: none;
@@ -63,10 +62,6 @@
         .error-and-helper-text-container {
             display: flex;
             flex-direction: column;
-
-            .bsi-invalid-feedback {
-                display: none;
-            }
         }
 
         &.form-group-alignment-horizontal .radio-button-group {

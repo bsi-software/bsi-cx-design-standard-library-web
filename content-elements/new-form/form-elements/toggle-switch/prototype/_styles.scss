@@ -22,10 +22,8 @@
                     width: 40px;
                     height: 24px;
                     border-radius: properties.$borderRadiusCircle;
-                    // background-color: properties.$light;
                     cursor: pointer;
                     color: transparent;
-                    // transition: opacity 0.2s ease;
                 }
 
                 .toggle-indicator {
@@ -40,29 +38,16 @@
                 }
 
                 .native-checkbox:checked + .visual-toggle-switch {
-                    // background-color: properties.$dark;
-                    // outline-color: properties.$dark;
-                    // color: properties.$light;
-
                     .toggle-indicator {
-                        // background-color: properties.$light;
                         transform: translateX(16px);
                     }
                 }
-
-                // .native-checkbox:focus-visible + .visual-toggle-switch {
-                //     outline-width: properties.$borderWidth300;
-                // }
 
                 .form-label {
                     cursor: pointer;
                     margin-bottom: properties.$spacing0;
                     align-self: stretch;
                 }
-            }
-
-            .bsi-invalid-feedback {
-                display: none;
             }
         }
     }

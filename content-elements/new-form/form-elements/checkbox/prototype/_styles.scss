@@ -13,7 +13,6 @@
                 display: flex;
                 flex-direction: row;
                 gap: bsiProperty("spacing.200", 8px);
-                cursor: pointer;
 
                 user-select: none;
                 -webkit-user-select: none;
@@ -48,10 +47,6 @@
                     margin-bottom: properties.$spacing0;
                     align-self: stretch;
                 }
-            }
-
-            .bsi-invalid-feedback {
-                display: none;
             }
         }
     }

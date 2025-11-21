@@ -8,6 +8,13 @@
 
     .bsi-element-#{$elementId} {
 
+        &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid) {
+            div.bsi-invalid-feedback {
+                display: flex;
+                color: $errorColor;
+            }
+        }
+
         // validation style for normal input fields
         .input-field-with-error-text, .radio-button-group {
             &:has(input:user-valid) {
@@ -20,10 +27,7 @@
                 input {
                     --form-element-border-color: #{$errorColor};
                 }
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
-                }
+
             }
         }
 
@@ -39,10 +43,6 @@
                 .visual-toggle-switch {
                     --form-element-border-color: #{$errorColor};
                 }
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
-                }
             }
         }
 
@@ -57,10 +57,6 @@
             &:has(input.custom-invalid) {
                 .visual-checkbox {
                     --form-element-border-color: #{$errorColor};
-                }
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
                 }
             }
         }
@@ -96,9 +92,27 @@
                 .visual-radio {
                     --form-element-border-color: #{$errorColor};
                 }
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
+            }
+        }
+
+        // validation for poll 
+        .nps-radio-group {
+            &:has(input:user-valid) {
+                .visual-nps-input, .visual-star-input {
+                    --form-element-border-color: #{$successColor};
+                }
+
+                .visual-star-input {
+                    color: #{$successColor};
+                }
+            }
+
+            &:has(input:user-invalid) {
+                .visual-nps-input, .visual-star-input {
+                    --form-element-border-color: #{$errorColor};
+                }
+                .visual-star-input {
+                    color: #{$errorColor};
                 }
             }
         }
@@ -115,11 +129,6 @@
                 select {
                     --form-element-border-color: #{$errorColor};
                 }
-
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
-                }
             }
         }
 
@@ -134,11 +143,6 @@
             &:has(textarea:user-invalid) {
                 textarea {
                     --form-element-border-color: #{$errorColor};
-                }
-
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
                 }
             }
         }
@@ -155,10 +159,6 @@
                 .file-upload {
                     // field invalid (0, 6, 1)
                     outline-color: #{$errorColor};
-                }
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
                 }
             }
         }

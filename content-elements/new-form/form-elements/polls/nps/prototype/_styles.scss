@@ -33,6 +33,7 @@
                     min-width: 40px;
                     min-height: 56px;
                     border-radius: properties.$borderRadius100;
+                    cursor: pointer;
 
                     &:hover {
                         color: $hoverColor;
