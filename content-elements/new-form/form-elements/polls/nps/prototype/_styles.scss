@@ -1,37 +1,54 @@
 @use "../../../../../../styles/properties.scss" as properties;
 
-@mixin pollNpsStyling (
-    $elementId: "form-poll-nps-a026d07b",
+@mixin pollNpsStyling ($elementId: "form-poll-nps-a026d07b",
     $hoverColor: properties.$formPollHoverColor,
     $hoverBackgroundColor: properties.$formPollHoverBackgroundColor,
 ) {
     .bsi-element-#{$elementId} {
+        .scale-label-wrapper {
+            display: flex;
+            width: fit-content;
+            flex-direction: column;
+        }
+
+        &.scale-label-above-input .scale-label-wrapper {
+            flex-direction: column-reverse;
+        }
+
         .nps-scale-labels {
             display: flex;
             justify-content: space-between;
+            gap: 1rem;
+
+            label {
+                width: min-content;
+                flex-grow: 1;
+            }
 
             .right-nps-scale-label {
                 text-align: end;
             }
         }
+
         .nps-container {
             width: fit-content;
 
             .number-input {
                 display: none;
             }
+
             .nps-preview {
                 display: flex;
                 flex-wrap: wrap;
-                gap: properties.$spacing100;
-                
+                gap: properties.$spacing200;
+
                 .visual-nps-input {
                     display: flex;
                     padding: properties.$spacing300 properties.$spacing200;
                     justify-content: center;
                     align-items: center;
-                    min-width: 40px;
-                    min-height: 56px;
+                    min-width: 3.5rem;
+                    min-height: 3.5rem;
                     border-radius: properties.$borderRadius100;
                     cursor: pointer;
 
