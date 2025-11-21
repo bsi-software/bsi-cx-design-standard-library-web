@@ -121,14 +121,14 @@ Alpine.data("fileUpload", () => ({
         } else {
           console.log("Validierung des Files fehlgeschlagen! (falscher Dateityp)");
           this.$refs.fileInput.classList.add("custom-invalid");
-          this.$refs.fileInput.setCustomValidity("custom-error");
+          this.$refs.fileInput.setCustomValidity("wrong file type");
         }
       } 
       else {
         if (this.$refs.fileInput.required) {
           console.log("Validierung des Files fehlgeschlagen! (keine Datei)");
           this.$refs.fileInput.classList.add("custom-invalid");
-          this.$refs.fileInput.setCustomValidity("custom-error");
+          this.$refs.fileInput.setCustomValidity("no file");
         } else {
           this.$refs.fileInput.classList.remove("custom-invalid");
           this.$refs.fileInput.setCustomValidity("");
