@@ -21,8 +21,6 @@ module.exports = (
   formFieldPartId = "form-poll-nps-part-0f3d03c5",
   helperTextPartLabel = "Helper Text",
   helperTextPartId = "form-poll-nps-helper-text-part-18d96c98",
-  errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-  errorTextPartId = "form-poll-nps-part-error-invalid-8fbaf46c",
   leftLabel = "Angabe Skala (links)",
   leftLabelId = "left-label-nps-part-210cf3a6",
   rightLabel = "Angabe Skala (rechts)",
@@ -35,7 +33,6 @@ module.exports = (
   .withParts(
     cx.part.FormField(formFieldPartLabel, formFieldPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
-    cx.part.PlainText(errorTextPartLabel, errorTextPartId),
     cx.part.PlainText(leftLabel, leftLabelId),
     cx.part.PlainText(rightLabel, rightLabelId),
   );

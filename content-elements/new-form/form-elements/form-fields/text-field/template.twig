@@ -3,7 +3,6 @@
         elementId: "form-field-2217aee4",
         elementPartId: "form-field-part-740b4e74",
         formHelperTextPartId: "form-field-part-text-fb1cdc8d",
-        errorInvalidPartId: "form-field-part-error-invalid-21769f4a",
         labelText: "Text Feld",
         inputType: "text",
     } only %}
@@ -19,9 +18,7 @@
             </input>
         {% endblock %}
         {% block input_field_error_text %}
-            <div data-bsi-element-part="{{ errorInvalidPartId }}" class="bsi-invalid-feedback">
-                {{ formFieldErrorInvalidText }}
-            </div>
+            <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
         {% endblock %}
     {% endembed %}
 {% endapply %}

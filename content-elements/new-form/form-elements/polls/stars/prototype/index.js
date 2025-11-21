@@ -21,8 +21,6 @@ module.exports = (
   formFieldPartId = "form-poll-star-part-7abccf42",
   helperTextPartLabel = "Helper Text",
   helperTextPartId = "form-poll-star-helper-text-part-3ecf0459",
-  errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-  errorTextPartId = "form-poll-star-part-error-invalid-5e251558",
 ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
@@ -31,5 +29,4 @@ module.exports = (
   .withParts(
     cx.part.FormField(formFieldPartLabel, formFieldPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
-    cx.part.PlainText(errorTextPartLabel, errorTextPartId),
   );

@@ -5,7 +5,6 @@
     {% set formTextareaErrorInvalidPartId = errorInvalidPartId ?: 'textarea-error-invalid-part-52eb82f6' %}
     {% set formTextareaLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set formTextareaHelperText = infoText  ?: "" %}
-    {% set formTextareaErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 
     <div data-bsi-element="{{ formTextareaElementId }}" class="bsi-element-{{ formTextareaElementId }} form-element" data-bsi-element-part="{{ formTextareaElementPartId }}">
         <label for="textarea-element" class="form-label">{{ formTextareaLabelText }}</label>
@@ -13,9 +12,7 @@
             <div class="textarea-and-error-text">
                 <textarea class="textarea-input" id="textarea-element" rows="5" value=""></textarea>
                 {% block textarea_error_texts %}
-                    <div data-bsi-element-part="{{ formTextareaErrorInvalidPartId }}" class="bsi-invalid-feedback">
-                        {{ formTextareaErrorInvalidText }}
-                    </div>
+                    <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
                 {% endblock %}
             </div>
             <div class="helper-text-container">

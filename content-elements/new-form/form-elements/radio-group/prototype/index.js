@@ -22,8 +22,6 @@ module.exports = (
     radioGroupLabelPartId = "radio-group-label-84ad37f1",
     helperTextPartLabel = "Helper Text",
     helperTextPartId = "radio-group-helper-text-part-c034d086",
-    errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-    errorTextPartId = "radio-group-error-invalid-part-67e4dde8",
   ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
@@ -35,5 +33,4 @@ module.exports = (
   .withParts(
     cx.part.FormRadio(radioGroupPartLabel, radioGroupLabelPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
-    cx.part.PlainText(errorTextPartLabel, errorTextPartId),
   );

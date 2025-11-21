@@ -22,8 +22,6 @@ module.exports = (
     formTextareaPartId = "textarea-part-18ad4cb0",
     helperTextPartLabel = "Helper Text",
     helperTextPartId = "textarea-helper-text-part-47792922",
-    errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-    errorTextPartId = "textarea-error-invalid-part-52eb82f6",
   ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
@@ -32,5 +30,4 @@ module.exports = (
   .withParts(
     cx.part.FormTextarea(formTextareaPartLabel, formTextareaPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
-    cx.part.PlainText(errorTextPartLabel, errorTextPartId),
   );

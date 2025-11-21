@@ -22,8 +22,8 @@ module.exports = (
     formToggleSwitchPartId = "toggle-switch-part-76e700be",
     helperTextPartLabel = "Helper Text",
     helperTextPartId = "toggle-switch-helper-text-part-772277fc",
-    errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-    errorTextPartId = "toggle-switch-error-invalid-part-a8889dc9",
+    // errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
+    // errorTextPartId = "toggle-switch-error-invalid-part-a8889dc9",
   ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
@@ -32,5 +32,5 @@ module.exports = (
   .withParts(
     cx.part.FormCheckbox(formToggleSwitchPartLabel, formToggleSwitchPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
-    cx.part.PlainText(errorTextPartLabel, errorTextPartId),
+    // cx.part.PlainText(errorTextPartLabel, errorTextPartId),
   );

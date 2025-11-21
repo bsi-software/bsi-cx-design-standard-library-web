@@ -22,8 +22,6 @@ module.exports = (
     formCheckboxPartId = "checkbox-part-7f02c9ea",
     helperTextPartLabel = "Helper Text",
     helperTextPartId = "checkbox-helper-text-part-5989e5eb",
-    errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-    errorTextPartId = "checkbox-error-invalid-part-21861f61",
   ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
@@ -32,5 +30,4 @@ module.exports = (
   .withParts(
     cx.part.FormCheckbox(formCheckboxPartLabel, formCheckboxPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
-    cx.part.PlainText(errorTextPartLabel, errorTextPartId),
   );

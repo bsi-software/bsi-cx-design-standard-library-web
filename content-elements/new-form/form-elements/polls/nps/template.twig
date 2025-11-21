@@ -8,7 +8,6 @@
 {% set formFieldLeftLabelText = leftLabelText ?: bsi_cx_lorem(3) %}
 {% set formFieldRightLabelText = rightLabelText ?: bsi_cx_lorem(3) %}
 {% set formFieldHelperText = infoText ?: "" %}
-{% set formFieldErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 
 {% set pollMin = 1 %}
 {% set pollMax = 10 %}
@@ -45,9 +44,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="bsi-invalid-feedback">
-                {{ formFieldErrorInvalidText }}
-            </div>
+            <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
         </div>
         <div class="helper-text-container">
             <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>

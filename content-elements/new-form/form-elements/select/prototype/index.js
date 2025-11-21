@@ -22,8 +22,6 @@ module.exports = (
     formSelectPartId = "select-part-c1cbbcc6",
     helperTextPartLabel = "Helper Text",
     helperTextPartId = "select-helper-text-part-5989e5eb",
-    errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-    errorTextPartId = "select-error-invalid-part-ad209a4c",
   ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
@@ -32,5 +30,4 @@ module.exports = (
   .withParts(
     cx.part.FormSelect(formSelectPartLabel, formSelectPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
-    cx.part.PlainText(errorTextPartLabel, errorTextPartId),
   );

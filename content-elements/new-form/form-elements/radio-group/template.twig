@@ -7,7 +7,6 @@
     {% set formRadioGroupErrorInvalidPartId = errorInvalidPartId ?: 'radio-group-error-invalid-part-67e4dde8' %}
     {% set formRadioButtonLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set formRadioGroupHelperText = infoText ?: "" %}
-    {% set formRadioGroupErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 
     <div x-data="radioButton" data-bsi-element="{{ formRadioGroupElementId }}" class="bsi-element-{{ formRadioGroupElementId }} form-element radio-group {{ formRadioGroupAlignment }}" data-bsi-element-part="{{ formRadioGroupElementPartId }}">
         <label class="form-label">{{ formRadioGroupLabel }}</label>
@@ -29,10 +28,7 @@
             </div>
             <div class="error-and-helper-text-container">
                 {% block radio_info_and_error_texts %}
-                    {# TODO: Dieser Fehlertext wird nie angezeigt, da ein patternMissmatch nie stattfinden kann bei diesem Element.  #}
-                    <div data-bsi-element-part="{{ formRadioGroupErrorInvalidPartId }}" class="bsi-invalid-feedback">
-                        {{ formRadioGroupErrorInvalidText }}
-                    </div>
+                    <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
                     <div class="helper-text-container">
                         <div data-bsi-element-part="{{ formRadioGroupHelperTextPartId }}" class="helper-text">{{ formRadioGroupHelperText }}</div>
                     </div>

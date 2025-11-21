@@ -22,8 +22,6 @@ module.exports = (
     checkboxGroupLabelTextPartId = "checkbox-group-label-a7bf5a38",
     helperTextPartLabel = "Helper Text",
     helperTextPartId = "checkbox-group-helper-text-part-1cf1d475",
-    errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-    errorTextPartId = "checkbox-group-error-invalid-part-6209efa8",
     dropzoneId = "checkbox-group-dropzone-id-4f4a7409",
   ) => cx.contentElement
   .withFile(template)
@@ -37,7 +35,6 @@ module.exports = (
   .withParts(
     cx.part.PlainText(checkboxGroupPartLabel, checkboxGroupLabelTextPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
-    cx.part.PlainText(errorTextPartLabel, errorTextPartId),
   )
   .withDropzones(
     cx.dropzone

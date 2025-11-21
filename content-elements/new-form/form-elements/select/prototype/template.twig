@@ -6,7 +6,6 @@
     {% set formSelectLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set formSelectOptionText = optionText ?: 'Bitte wählen' %}
     {% set formSelectHelperText = infoText  ?: "" %}
-    {% set formSelectErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 
     <div data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element" data-bsi-element-part="{{ formSelectElementPartId }}">
         <label for="select-element" class="form-label">{{ formSelectLabelText }}</label>
@@ -17,10 +16,7 @@
                     <option value="">{{ formSelectOptionText }}</option>
                 </select>
                 {% block select_error_texts %}
-                    {# TODO: Dieser Fehlertext wird nie angezeigt, da ein patternMissmatch nie stattfinden kann bei diesem Element.  #}
-                    <div data-bsi-element-part="{{ formSelectErrorInvalidPartId }}" class="bsi-invalid-feedback">
-                        {{ formSelectErrorInvalidText }}
-                    </div>
+                    <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
                 {% endblock %}
             </div>
             <div class="helper-text-container">
