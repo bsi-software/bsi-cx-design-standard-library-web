@@ -29,8 +29,8 @@
                     display: inline-flex;
                     width: 24px;
                     height: 24px;
-                    border: properties.$borderWidth100 solid properties.$dark;
-                    border-radius: properties.$borderRadius100;
+                    border: unset;
+                    outline-style: solid;
                     background-color: properties.$light;
                     align-items: center;
                     justify-content: center;
@@ -40,13 +40,10 @@
                     transition: all 0.2s ease;
 
                     &::before {
-                        // display: inline-block;
                         line-height: 1;
                         opacity: 0;
-                        // transition: opacity 0.2s;
                         font-family: "bootstrap-icons";
                         content: "\F26E"; /* check bootstrap icon */
-                        // color: properties.$light;
                     }
                 }
 
@@ -56,19 +53,34 @@
 
                 .native-checkbox:checked + .visual-checkbox {
                     background-color: properties.$dark;
-                    border-color: properties.$dark;
+                    outline-color: properties.$dark;
                     color: properties.$light;
                 }
 
                 .native-checkbox:focus-visible + .visual-checkbox  {
-                    border-width: properties.$borderWidth300;
+                    outline-width: properties.$borderWidth300;
                 }
 
                 .form-label {
                     cursor: pointer;
+                    margin-bottom: properties.$spacing0;
+                    align-self: stretch;
                 }
+            }
+
+            .bsi-invalid-feedback {
+                display: none;
             }
         }
         
+        // Sets a required flag on the label if field is required.
+        &.required .form-label {
+            display: flex;
+            gap: properties.$spacing100;
+
+            &::after {
+                content: "*";
+            }
+        }
     }
 }

@@ -12,12 +12,12 @@
     <div class="input-field-container">
         <div class="input-field-with-error-text">
             {% block input_field %}
-                <input id="{{ formFieldInputType }}-field" type="{{ formFieldInputType }}" class="{{ formFieldInputType }}-input"></input>
+                <input @change="formElementValidationOnChange" @input="formElementValidationOnInput" id="{{ formFieldInputType }}-field" type="{{ formFieldInputType }}" class="{{ formFieldInputType }}-input"></input>
             {% endblock %}
             {% block input_field_error_text %}
 
                 {# TODO: nur einen Fehlertext, vielleicht einen für leere Felder die requiered sind auf Formularebene einfügen #}
-                <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="invalid-feedback">
+                <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="bsi-invalid-feedback">
                     {{ formFieldErrorInvalidText }}
                 </div>
             {% endblock %}

@@ -7,11 +7,11 @@
         labelText: "Text Feld",
         inputType: "text",
     } only %} 
-        {% block input_field %}
+        {# {% block input_field %}
             <input id="text-field" type="text" class="text-input"></input>
-        {% endblock %}
+        {% endblock %} #}
         {% block input_field_error_text %}
-            <div data-bsi-element-part="{{ errorInvalidPartId }}" class="invalid-feedback">
+            <div data-bsi-element-part="{{ errorInvalidPartId }}" class="bsi-invalid-feedback">
                 {{ formFieldErrorInvalidText }}
             </div>
         {% endblock %}
