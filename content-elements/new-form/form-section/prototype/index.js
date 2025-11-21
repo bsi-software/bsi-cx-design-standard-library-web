@@ -28,6 +28,7 @@ module.exports = (
         require("../../../base/h3"),
         require("../../form-elements/form-fields/text-field"),
         require('../../form-elements/checkbox'),
-        require('../../form-elements/checkbox-group')
+        require('../../form-elements/checkbox-group'),
+        require('../../form-elements/radio-group')
       ),
   );

@@ -16,6 +16,7 @@
                 <label for="checkbox-element" class="form-label">{{ formCheckboxLabelText }}</label>  
             </div>
             {% block checkbox_info_texts %}
+                {# TODO: Dieser Fehlertext wird nie angezeigt, da ein patternMissmatch nie stattfinden kann bei diesem Element.  #}
                 <div data-bsi-element-part="{{ formCheckboxErrorInvalidPartId }}" class="bsi-invalid-feedback">
                     {{ formCheckboxErrorInvalidText }}
                 </div>

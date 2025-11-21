@@ -40,7 +40,7 @@
                     cursor: pointer;
                     color: transparent;
                     background-color: properties.$light;
-                    transition: all 0.2s ease;
+                    transition: opacity 0.2s ease;
 
                     &::before {
                         line-height: 1;

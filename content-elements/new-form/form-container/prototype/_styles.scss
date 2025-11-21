@@ -21,7 +21,7 @@
             color: $labelColor;
         }
 
-        input, .visual-checkbox {
+        input, .visual-checkbox, .visual-radio {
             color: $labelColor;
             outline-color: $borderColor;
             background-color: $elementBackgroundColor;
@@ -69,6 +69,25 @@
             }
         }
 
+        // validation for radio-buttzon groups
+        .radio-group{
+            &:has(input:user-valid) {
+                input {
+                    outline-color: $successColor;
+                }
+            }
+
+            &:has(input:user-invalid) {
+                input {
+                    outline-color: $errorColor;
+                }
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
+
         // validation style for checkbox groups
         .checkbox-group.custom-valid {
             .visual-checkbox {
@@ -81,6 +100,25 @@
                 outline-color: $errorColor;
             }
             .error-and-helper-text-container {
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
+
+        // validation style for radio groups
+        .radio-button-group {
+            &:has(input:user-valid) {
+                input {
+                    outline-color: $successColor;
+                }
+            }
+
+            &:has(input:user-invalid) {
+                input {
+                    outline-color: $errorColor;
+                }
                 .bsi-invalid-feedback {
                     display: flex;
                     color: $errorColor;
@@ -121,7 +159,7 @@
 
                 .form-element {
                     gap: $spacing;
-                    .checkbox-container {
+                    .checkbox-container, .radio-button-group-container {
                         gap: $spacing;
                     }
 
@@ -153,8 +191,9 @@
         $borderWidths: ("100": properties.$borderWidth100, "200": properties.$borderWidth200, "300": properties.$borderWidth300);
         @each $name, $borderWidth in $borderWidths {
             &.border-width-form-elements-#{$name} {
-                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], .visual-checkbox, select, textarea {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox],  .visual-checkbox, input[type=radio], .visual-radio, select, textarea {
                     outline-width: $borderWidth;
+                    outline-offset: -$borderWidth;
                 }
             }
         }

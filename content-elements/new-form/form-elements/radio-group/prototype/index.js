@@ -5,8 +5,8 @@ const { cx, Icon } = require("@bsi-cx/design-build");
  * @param {string} elementId
  * @param {string} elementLabel
  * @param {string} elementDescription
- * @param {string} checkboxGroupPartLabel
- * @param {string} checkboxGroupLabelTextPartId
+ * @param {string} radioGroupPartLabel
+ * @param {string} radioGroupLabelPartId
  * @param {string} helperTextPartLabel
  * @param {string} helperTextPartId
  * @param {string} errorTextPartLabel
@@ -16,36 +16,26 @@ const { cx, Icon } = require("@bsi-cx/design-build");
 
 module.exports = (
     template = require("../template.twig"),
-    elementId = "checkbox-group-95a8d908",
-    elementLabel = "Checkbox Gruppe",
+    elementId = "radio-group-6e279f5e",
+    elementLabel = "Radio Gruppe",
     elementDescription = "Element Beschreibung",
-    checkboxGroupPartLabel = "Label Chackbox Gruppe",
-    checkboxGroupLabelTextPartId = "checkbox-group-label-a7bf5a38",
+    radioGroupPartLabel = "Label Radio Gruppe",
+    radioGroupLabelPartId = "radio-group-label-84ad37f1",
     helperTextPartLabel = "Helper Text",
-    helperTextPartId = "checkbox-group-helper-text-part-1cf1d475",
+    helperTextPartId = "radio-group-helper-text-part-c034d086",
     errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-    errorTextPartId = "checkbox-group-error-invalid-part-6209efa8",
-    dropzoneId = "checkbox-group-dropzone-id-4f4a7409",
+    errorTextPartId = "radio-group-error-invalid-part-67e4dde8",
   ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
   .withDescription(elementDescription)
   .withLabel(elementLabel)
-  .withIcon(Icon.TEXT)
+  .withIcon(Icon.RADIOBUTTON)
   .withStyleConfigs(
-    require("../../../../../configs/styles/group-required"),
     require("../../../../../configs/styles/group-alignment"),
   )
   .withParts(
-    cx.part.PlainText(checkboxGroupPartLabel, checkboxGroupLabelTextPartId),
+    cx.part.FormRadio(radioGroupPartLabel, radioGroupLabelPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
     cx.part.PlainText(errorTextPartLabel, errorTextPartId),
-  )
-  .withDropzones(
-    cx.dropzone
-      .withDropzone(dropzoneId)
-      .withAllowedElements(
-        require("../checkbox-group-checkbox"),
-      )
-  )
-  ;
+  );

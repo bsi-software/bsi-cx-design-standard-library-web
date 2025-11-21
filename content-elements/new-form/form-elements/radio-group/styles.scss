@@ -1,0 +1,3 @@
+@use './prototype/_styles.scss' as prototypeRadioGroupStyling;
+
+@include prototypeRadioGroupStyling.radioGroupStyling();
