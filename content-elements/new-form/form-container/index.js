@@ -1,3 +1,3 @@
-require('./styles.scss');
+require('./prototype/_styles.scss');
 
 module.exports = require('./prototype')();

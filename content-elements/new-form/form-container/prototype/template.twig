@@ -3,17 +3,17 @@
     {% set borderRadiusFormElements = (borderRadiusFormElements ?: properties.borderRadiusFormElements) ?: 'border-radius-form-elements-100' %}
     {% set borderWidthFormElements = (borderWidthFormElements ?: properties.borderWidthFormElements) ?: 'border-width-form-elements-100' %}
     {% set formButtonAlignment = (formButtonAlignment ?: properties.formButtonAlignment) ?: 'form-button-alignment-start' %}
-    {% set colorScheme = (colorScheme ?: properties.formularColorScheme) ?: 'form-scheme-light' %}
     {% set formHelperTextStyle = (formHelperTextStyle ?: properties.formHelperTextStyle) ?: 'bsi-form-helper-text-as-text' %}
     {% set spaceBetweenFormSections = (spaceBetweenFormSections ?: properties.spaceBetweenFormSections) ?:  "space-between-form-sections-600" %} {# Set space between every form section. #}
     {% set spaceBetweenFormElements = (spaceBetweenFormElements ?: properties.spaceBetweenFormElements) ?:  "space-between-form-elements-400" %} {# Set space between every form element in a form section. #}
     {% set spaceWithinFormelements = (spaceWithinFormelements ?: properties.spaceWithinFormelements) ?:  "space-within-form-elements-100" %} {# Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.) #}
+    {% set customStyleClasses = customStyleClasses %}
  
-    <div data-bsi-element="form-container-84c6581f" class="bsi-element-form-container-84c6581f {{ colorScheme }} {{ formHelperTextStyle }} {{ spaceBetweenFormSections }} {{ spaceBetweenFormElements }} {{ spaceWithinFormelements }} {{ borderRadiusFormElements }} {{ borderWidthFormElements }}">
+    <div data-bsi-element="form-container-84c6581f" class="bsi-element-form-container-84c6581f {{ formHelperTextStyle }} {{ spaceBetweenFormSections }} {{ spaceBetweenFormElements }} {{ spaceWithinFormelements }} {{ borderRadiusFormElements }} {{ borderWidthFormElements }} {{ customStyleClasses }}">
         <form data-bsi-element-part="form-container-part-06acb819" id="form" {{ properties.showFormFieldTypeField ?: data-bsi-show-form-type-field }} class="">
             <div data-bsi-dropzone="form-container-dropzone-cd1f258c" class="form-elements-container">
                 {% block form_container_dropzone %}
-                    {% include "../../form-section/template.twig" only %}
+                    {% include "../../form-section/prototype/template.twig" only %}
                 {% endblock %}
             </div>
             <div class="form-buttons">

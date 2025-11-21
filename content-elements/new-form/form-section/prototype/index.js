@@ -9,7 +9,7 @@ const { cx, Icon } = require("@bsi-cx/design-build");
  * @returns {ContentElement}
  */
 module.exports = (
-  template = require("../template.twig"),
+  template = require("./template.twig"),
   elementId = "form-section-4cc6cfe4",
   elementLabel = "Formuar Sektion",
   elementDescription = "Element Beschreibung",
@@ -25,6 +25,7 @@ module.exports = (
     cx.dropzone
       .withDropzone(dropzoneId)
       .withAllowedElements(
-        require("../../form-elements/text-field")
+        require("../../../base/h3"),
+        require("../../form-elements/form-fields/text-field")
       ),
   );

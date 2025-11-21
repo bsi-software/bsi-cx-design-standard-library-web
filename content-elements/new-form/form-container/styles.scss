@@ -1,3 +1,3 @@
-@use 'prototype/styles' as element;
+@use 'prototype/styles' as formContainerStyleSheet;
 
-@include element.formContainerStyling();
+@include formContainerStyleSheet.formContainerStyling();

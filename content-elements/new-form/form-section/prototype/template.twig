@@ -1,11 +1,12 @@
-
-<div data-bsi-element="form-section-4cc6cfe4" data-bsi-hide-edit-button="true" class="bsi-element-form-section-4cc6cfe4">
-    <div data-bsi-dropzone="form-section-dropzone-a1788622" class="form-section">
-        {% block form_section_dropzone %}
-            {% include "../../../base/h3/template.twig" with {
-                style: "bsi-header-style-5",
-                weight: 'fw-bold',
-            } only %}
-        {% endblock %}
+{% apply spaceless %}
+    <div data-bsi-element="form-section-4cc6cfe4" data-bsi-hide-edit-button="true" class="bsi-element-form-section-4cc6cfe4">
+        <div data-bsi-dropzone="form-section-dropzone-a1788622" class="form-section">
+            {% block form_section_dropzone %}
+                {% include "../../../base/h3/template.twig" with {
+                    style: "bsi-header-style-5",
+                    weight: 'fw-bold',
+                } only %}
+            {% endblock %}
+        </div>
     </div>
-</div>
+{% endapply %}
