@@ -186,12 +186,27 @@
         }
 
         &.bsi-form-label-info-left-bottom {
-            form .form-elements-container .form-section .form-element {
+            form .form-elements-container .form-section .form-element:not(.checkbox-group) {
                 display: grid;
                 grid-template-columns: 1fr 6fr;
 
                 .form-label {
                     display: block;
+                }
+            }
+
+            form .form-elements-container .form-section .form-element.checkbox-group {
+                fieldset {
+                    display: grid;
+                    grid-template-columns: 1fr 6fr;
+
+                    .checkbox-group-container .form-element{
+                        display: flex;
+                    }
+                }
+                .error-and-helper-text-wrapper {
+                    display: grid;
+                    grid-template-columns: 1fr 6fr;
                 }
             }
         }
