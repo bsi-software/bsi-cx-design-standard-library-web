@@ -1,0 +1,40 @@
+{# TODO: Naming anpassen, da es nur für das Text Input Field ist (je nachdem ob ich das noch auslagere oder nicht) #}
+
+{% set formFieldElementId = elementId ?: 'checkbox-49f468e6' %}
+{% set formFieldElementPartId = elementPartId ?: 'checkbox-part-7f02c9ea' %}
+{% set formFieldTextPartId = formTextPartId ?: 'form-field-part-text-fb1cdc8d' %}
+{% set formFieldErrorRequiredPartId = errorRequiredPartId ?: 'form-field-part-error-required-94125730' %}
+{% set formFieldSuccessPartId = successPartId ?: 'form-field-part-success-6586bf6f' %}
+{% set formFieldErrorInvalidPartId = errorInvalidPartId ?: 'form-field-part-error-invalid-21769f4a' %}
+{% set formFieldLabelText = (labelText ?: properties.formFieldLabelText) ?: bsi_cx_lorem(3) %}
+{% set formFieldHelperText = (infoText ?: properties.formFieldHelperText) ?: "" %}
+{% set formFieldErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
+{% set formFieldErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
+{% set formFieldSuccessText = (successText ?: properties.successText) ?: 'Sie haben dieses Feld erfolgreich ausgefüllt.' %}
+
+<div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="text">
+    <label for="text-field" class="form-label">{{ formFieldLabelText }}</label>
+    <div class="input-field-container">
+        <div class="input-field-with-error-text">
+
+
+        {# TODO: Das nachfolgene eventuell auslagern? Dann ist die Struktur immer gleich und der Style greift besser (es passieren weniger Fehler) #}
+            <input id="text-field" type="text" class="text-input"></input>
+            <div data-bsi-element-part="{{ formFieldSuccessPartId }}" class="success-feedback">
+                {{ formFieldSuccessText }}
+            </div>
+            <div data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" class="invalid-feedback">
+                {{ formFieldErrorRequiredText }}
+            </div>
+            <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="logic-validation">
+                {{ formFieldErrorInvalidText }}
+            </div>
+
+
+
+        </div>
+        <div class="helper-text">
+           <div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldHelperText }}</div>
+        </div>
+    </div>
+</div>
