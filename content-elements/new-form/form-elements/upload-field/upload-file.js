@@ -20,6 +20,12 @@ Alpine.data("fileUpload", () => ({
       this.$dispatch('after-change', event);
     },
 
+    onFileChangeAfterDrop(event) {
+      console.log("onFileChangeAfterDrop")
+      this._formElementValidationOnChange();
+      this.$dispatch('after-change', event);
+    },
+
     onDragOver() {
       this.isDragOver = true;
       this.$el.classList.add("dragover");
@@ -36,8 +42,12 @@ Alpine.data("fileUpload", () => ({
         this._handleFiles(event.dataTransfer.files);
       }
 
-      // const changeEvent = new CustomEvent('change', { bubbles: true });
-      // this.$refs.fileInput.dispatchEvent(changeEvent, event);
+      this.$refs.fileInput.files = event.dataTransfer.files;
+
+      const changeAfterDropEvent = new CustomEvent('change-after-drop', { 
+        bubbles: true,
+      });
+      this.$refs.fileInput.dispatchEvent(changeAfterDropEvent, event);
       
       this.isDragOver = false;
       this.$el.classList.remove("dragover");
@@ -62,8 +72,9 @@ Alpine.data("fileUpload", () => ({
       if (uploadedFiles.length > 0) {
         const file = uploadedFiles[0]; // multiple upload is not allowed
         this.files[0] = {
-          name: file.name,
+          name: file.name.split('.').slice(0, -1).join('.'),
           size: this._formatSize(file.size),
+          suffix: file.name.split('.').pop(),
           preview: this._isImage(file) ? URL.createObjectURL(file) : null
         };
       }
@@ -83,6 +94,7 @@ Alpine.data("fileUpload", () => ({
     },
 
     _isImage(file) {
+      console.log("Datei ist ein Bild: " + file.type.startsWith('image/'));
       return file.type.startsWith('image/');
     },
 

@@ -16,6 +16,8 @@
     $iconUploadFontCharacter: properties.$fileUploadIconUploadFontCharacter,
     $iconDeleteFontName: properties.$fileUploadIconDeleteFontName,
     $iconDeleteFontCharacter: properties.$fileUploadIconDeleteFontCharacter,
+    $deleteButtomBackgroundColor: properties.$fileUploadDeleteButtomBackgroundColor,
+    $deleteButtomHoverBackgroundColor: properties.$fileUploadDeleteButtomHoverBackgroundColor,
     $deleteButtomColor: properties.$fileUploadDeleteButtomColor,
     $deleteButtomHoverColor: properties.$fileUploadDeleteButtomHoverColor,
 ) {
@@ -39,6 +41,7 @@
                 align-self: stretch;
                 
                 .file-upload {
+                    min-width: 0;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -56,6 +59,11 @@
                     &:not(:has(.file-info.hidden)) {
                         // file uploaded (0, 6, 0)
                         outline-style: solid;
+                        justify-content: space-between;
+
+                        > .left {
+                            width: 70%;
+                        }
                     }
 
                     &:has(.upload-button:focus-visible), &:has(.remove-button:focus-visible) {
@@ -111,17 +119,34 @@
                             display: flex;
                             align-items: center;
                             gap: 0.5rem;
+                            width: 100%;
+
+                            .file-text-wrapper {
+                                width: 100%;
+                                display: flex;
+                                min-width: 0;
+                            }
                     
                             .file-name {
-                                max-width: 180px;
                                 overflow: hidden;
                                 text-overflow: ellipsis;
                                 white-space: nowrap;
+                            }
+                            .file-suffix {
+                                flex-shrink: 0;
+                            }
+                            .file-size {
+                                padding-left: properties.$spacing300;
+                                flex-shrink: 0;
                             }
                             .preview-image {
                                 height: 3rem;
                                 aspect-ratio: 1 / 1;
                                 object-fit: contain;
+                                
+                                &:not([src]), img[src=""] {
+                                    display: none;
+                                }
                             }
                         }
                     }
@@ -138,14 +163,18 @@
                         }
                     
                         .remove-button {
-                            display: inline-flex;
+                            height: 40px;
+                            aspect-ratio: 1 / 1;
+                            border-radius: properties.$borderRadius100;
+                            background-color: $deleteButtomBackgroundColor;
+                            // display: inline-flex;
                             align-items: center;
                             justify-content: center;
-                            background: none;
+                            // background: none;
                             border: none;
                             cursor: pointer;
                             color: $deleteButtomColor;
-                            font-size: 1.2rem;
+                            // font-size: 1.2rem;
                             padding: 0;
                             user-select: none;
 
@@ -155,13 +184,14 @@
                     
                             &:hover {
                                 color: $deleteButtomHoverColor;
+                                background-color: $deleteButtomHoverBackgroundColor;
                             }
 
                             &::before {
                                 font-family: $iconDeleteFontName;
                                 content: $iconDeleteFontCharacter;
-                                font-size: 1.5rem;
-                                line-height: 1.5rem;
+                                font-size: 24px;
+                                line-height: 40px;
                             }
                         }
                     }

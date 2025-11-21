@@ -95,9 +95,11 @@ $fileUploadButtonHoverColor: bsiProperty('fileUploadButtonHoverColor', #ffffff);
 $fileUploadIconUploadFontName: 'bootstrap-icons';
 $fileUploadIconUploadFontCharacter: '\F296';
 $fileUploadIconDeleteFontName: 'bootstrap-icons';
-$fileUploadIconDeleteFontCharacter: '\F622';
-$fileUploadDeleteButtomColor: bsiProperty('fileUploadDeleteButtomColor', #dc3545);
-$fileUploadDeleteButtomHoverColor: bsiProperty('fileUploadDeleteButtomHoverColor', rgbs(#dc3545, 0.3));
+$fileUploadIconDeleteFontCharacter: '\F62A';
+$fileUploadDeleteButtomBackgroundColor: bsiProperty('fileUploadDeleteButtomBackgroundColor', #383e42);
+$fileUploadDeleteButtomHoverBackgroundColor: bsiProperty('fileUploadDeleteButtomHoverBackgroundColor', rgbs(#383e42, 0.3));
+$fileUploadDeleteButtomColor: bsiProperty('fileUploadDeleteButtomColor', #ffffff);
+$fileUploadDeleteButtomHoverColor: bsiProperty('fileUploadDeleteButtomHoverColor', rgbs(#ffffff, 0.3));
 
 //new formular poll
 $formPollHoverColor: bsiProperty("pollHoverColor", #ffffff);

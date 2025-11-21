@@ -3,7 +3,7 @@
 @use "./validation" as formValidationStyleSheet;
 @use "../../form-elements/form-element-styles" as formElementStyleSheet;
 
-// TODO: Sollten hier eventuell noch neue Properties ersetllt werden, sodass man gezielt Sachen nur für das Formular ändern kann?
+// TODO: Sollten hier eventuell noch neue Properties erstellt werden, sodass man gezielt Sachen nur für das Formular ändern kann?
 @mixin formContainerStyling(
     $elementId: "form-container-84c6581f",
     $elementBackgroundColor: properties.$formElementBackgroundColor,  
@@ -28,6 +28,7 @@
     .bsi-element-#{$elementId} {
         --form-element-border-color: #{$borderColor};
         padding: properties.$spacing0;
+        min-width: 0; // important: allows element to shrink below content size - requiered for text-overflow to work
 
         // spacing of the form elements
         $spacings: ("0": properties.$spacing0, "100": properties.$spacing100, "200": properties.$spacing200, "300": properties.$spacing300, "400": properties.$spacing400, "500": properties.$spacing500, "600": properties.$spacing600, "700": properties.$spacing700, "800": properties.$spacing800);
