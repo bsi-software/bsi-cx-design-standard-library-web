@@ -6,6 +6,7 @@
     .bsi-element-#{$elementId} {
 
         // Sets a required flag on the label if field is required.
+        // TODO: könnte vielleicht ins globale Styling ausgelagert werden.
         &.required label {
             display: flex;
             gap: properties.$spacing100;
@@ -15,6 +16,7 @@
             }
         }
 
+        // TODO: könnte vielleicht ins globale Styling des Formulars wandern
         .form-label {
             margin-bottom: properties.$spacing100;
             align-self: stretch;
@@ -71,7 +73,7 @@
             align-self: stretch;
         }
 
-        &:has(input:disabled) {
+        &:has(select:disabled) {
             opacity: 0.3;
         }
     }

@@ -65,6 +65,25 @@
             }
         }
 
+        // validation style for checkbox groups
+        .checkbox-group.custom-valid {
+            .visual-checkbox {
+                outline-color: $successColor;
+            }
+        }
+
+        .checkbox-group.custom-invalid {
+            .visual-checkbox {
+                outline-color: $errorColor;
+            }
+            .error-and-helper-text-container {
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
+
         // validation for radio-button groups
         .radio-group {
             &:has(input:user-valid), &:has(input.custom-valid) {
@@ -84,18 +103,39 @@
             }
         }
 
-        // validation style for checkbox groups
-        .checkbox-group.custom-valid {
-            .visual-checkbox {
-                outline-color: $successColor;
+        // validation style for select element
+        .select-and-error-text {
+            &:has(select:user-valid) {
+                select {
+                    outline-color: $successColor;
+                }
+            }
+
+            &:has(select:user-invalid) {
+                select {
+                    outline-color: $errorColor;
+                }
+
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
             }
         }
 
-        .checkbox-group.custom-invalid {
-            .visual-checkbox {
-                outline-color: $errorColor;
+        // validation style for textarea element
+        .textarea-and-error-text {
+            &:has(textarea:user-valid) {
+                textarea {
+                    outline-color: $successColor;
+                }
             }
-            .error-and-helper-text-container {
+
+            &:has(textarea:user-invalid) {
+                textarea {
+                    outline-color: $errorColor;
+                }
+
                 .bsi-invalid-feedback {
                     display: flex;
                     color: $errorColor;

@@ -8,7 +8,7 @@
     {% set formSelectHelperText = infoText  ?: "" %}
     {% set formSelectErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 
-    <div x-data="select" data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element" data-bsi-element-part="{{ formSelectElementPartId }}">
+    <div data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element" data-bsi-element-part="{{ formSelectElementPartId }}">
         <label for="select-element" class="form-label">{{ formSelectLabelText }}</label>
         <div class="select-container">
             <div class="select-and-error-text">
