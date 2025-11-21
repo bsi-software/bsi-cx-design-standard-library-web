@@ -10,12 +10,14 @@
 {% set formFieldHelperText = infoText ?: "" %}
 {% set npsScaleLabelPosition = scaleLabelPosition ?: 'scale-label-below-input' %}
 
-{% set pollMin = (npsStart ?: properties.npsStart) ?: 1 %}
+{% set pollMin = (npsStartWith0 or properties.npsStartWith0) ? 0 : 1 %}
 {% set pollMax = 10 %}
 {% set pollRange = range(pollMin, pollMax) %}
 
-<div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} {{ npsScaleLabelPosition }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="radio">
-    <label for="poll-input" class="form-label">{{ formFieldLabelText }}</label>
+<div
+    data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} {{ npsScaleLabelPosition }} form-element form-field"
+    data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-value-list="{% for i in pollRange %}{{ i ~ '\n' }}{% endfor %}" id="nps-poll">
+    <label for="nps-poll" class="form-label">{{ formFieldLabelText }}</label>
     <div class="input-field-container">
         <div class="scale-label-wrapper">
             <div class="nps-container input-field-with-error-text">
@@ -23,8 +25,8 @@
                     {% for value in pollRange %}
                         {% block npsTemplate %}
                             <div class="nps-item" data-bsi-radio-item="">
-                                <input class="native-nps-input native-input" type="radio" id="poll-input-{{ value }}" value="{{ value }}" name="poll-input"/>
-                                <label class="visual-nps-input visual-input" for="poll-input-{{ value }}">{{ value }}</label>
+                                <input class="native-nps-input native-input" type="radio" id="nps-poll-{{ value }}" value="{{ value }}" name="nps-poll"/>
+                                <label class="visual-nps-input visual-input" for="nps-poll">{{ value }}</label>
                             </div>
                         {% endblock %}
                     {% endfor %}

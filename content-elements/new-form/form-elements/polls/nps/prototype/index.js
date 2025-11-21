@@ -33,7 +33,7 @@ module.exports = (
   .withDescription(elementDescription)
   .withIcon(Icon.HEART)
   .withParts(
-    cx.part.FormField(formFieldPartLabel, formFieldPartId),
+    cx.part.FormRadio(formFieldPartLabel, formFieldPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
     cx.part.PlainText(leftLabel, leftLabelId),
     cx.part.PlainText(rightLabel, rightLabelId),
