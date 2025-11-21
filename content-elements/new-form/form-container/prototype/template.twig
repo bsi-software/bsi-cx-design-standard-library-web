@@ -2,8 +2,8 @@
 
     {% set borderRadiusFormElements = (borderRadiusFormElements ?: properties.borderRadiusFormElements) ?: 'border-radius-form-elements-100' %}
     {# {% set borderWidthFormElements = (borderWidthFormElements ?: properties.borderWidthFormElements) ?: 'border-width-form-elements-100' %} #}
-    {% set formButtonAlignment = (formButtonAlignment ?: properties.formButtonAlignment) ?: 'form-button-alignment-start' %} {# Alternative: 'form-button-alignment-end' or 'form-button-alignment-center' 'form-button-alignment-space-between' #}
-    {% set formLabelInfoPosition = (formLabelInfoPosition ?: properties.formLabelInfoPosition) ?: 'bsi-form-label-info-top-bottom' %} {# Alternative: 'bsi-form-label-info-top-top' or 'bsi-form-label-info-left-bottom' #}
+    {% set formButtonAlignment = (formButtonAlignment ?: properties.formButtonAlignment) ?: 'form-button-alignment-start' %} {# Optionen: 'form-button-alignment-start' or 'form-button-alignment-end' or 'form-button-alignment-center' 'form-button-alignment-space-between' #}
+    {% set formLabelInfoPosition = (formLabelInfoPosition ?: properties.formLabelInfoPosition) ?: 'bsi-form-label-info-top-bottom' %} {# Optionen: 'bsi-form-label-info-top-bottom' or 'bsi-form-label-info-top-top' or 'bsi-form-label-info-left-bottom' #}
     {% set formFieldErrorValueMissingText = (errorValueMissingText ?: properties.formErrorValueMissingText) ?: "Bitte füllen Sie dieses Feld aus." %}
     {% set formFieldErrorTypeMissmatchText = (errorTypeMissmatchText ?: properties.formErrorTypeMissmatchText) ?: "Das Format ist ungültig" %}
     {% set formFieldOtherError = (otherError ?: properties.formOtherError) ?: "Ungültige Eingabe" %}

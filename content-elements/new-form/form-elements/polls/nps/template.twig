@@ -8,7 +8,7 @@
 {% set formFieldLeftLabelText = leftLabelText ?: bsi_cx_lorem(3) %}
 {% set formFieldRightLabelText = rightLabelText ?: bsi_cx_lorem(3) %}
 {% set formFieldHelperText = infoText ?: "" %}
-{% set npsScaleLabelPosition = scaleLabelPosition ?: 'scale-label-below-input' %}
+{% set npsScaleLabelPosition = scaleLabelPosition ?: 'scale-label-below-input' %} {# Optionen: 'scale-label-above-input' or 'scale-label-below-input' #}
 
 {% set pollMin = (npsStartWith0 or properties.npsStartWith0) ? 0 : 1 %}
 {% set pollMax = 10 %}
