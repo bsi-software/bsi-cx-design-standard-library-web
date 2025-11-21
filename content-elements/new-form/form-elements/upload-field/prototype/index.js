@@ -17,6 +17,7 @@ module.exports = (
   template = require("../template.twig"),
   elementId = "form-field-5674018a",
   elementLabel = "Datei Upload",
+  elementDescription = "Formular Element, das Dateien von verschiedenen Typen akzeptiert.",
   formFieldPartLabel = "Formularfeld: Datei Upload",
   formFieldPartId = "form-field-part-c21742af",
   helperTextPartLabel = "Helper Text",
@@ -27,6 +28,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.PAPERCLIP)
   .withParts(
     cx.part.FormField(formFieldPartLabel, formFieldPartId),

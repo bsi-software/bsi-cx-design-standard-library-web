@@ -18,6 +18,7 @@ module.exports = (
     template = require("./template.twig"),
     elementId = "checkbox-49f468e6",
     elementLabel = "Checkbox",
+    elementDescription="Formular Element, das eome Option aktiviert oder deaktiviert",
     formCheckboxPartLabel = "Formularfeld: Checkbox",
     formCheckboxPartId = "checkbox-part-7f02c9ea",
     helperTextPartLabel = "Helper Text",
@@ -26,6 +27,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.CHECKBOX)
   .withParts(
     cx.part.FormCheckbox(formCheckboxPartLabel, formCheckboxPartId),

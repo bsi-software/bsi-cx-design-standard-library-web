@@ -17,6 +17,7 @@ module.exports = (
   template = require("../template.twig"),
   elementId = "form-poll-nps-a026d07b",
   elementLabel = "Umfrage NPS",
+  elementDescription = "Formular Element, um einen NPS-Wert zwischen 0 und 10 anzugeben.",
   formFieldPartLabel = "Formularfeld: Umfrage NPS",
   formFieldPartId = "form-poll-nps-part-0f3d03c5",
   helperTextPartLabel = "Helper Text",
@@ -29,6 +30,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.HEART)
   .withParts(
     cx.part.FormField(formFieldPartLabel, formFieldPartId),

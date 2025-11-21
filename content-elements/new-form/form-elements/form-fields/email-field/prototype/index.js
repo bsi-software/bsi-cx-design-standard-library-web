@@ -17,6 +17,7 @@ module.exports = (
   template = require("../template.twig"),
   elementId = "form-field-bdcd8d55",
   elementLabel = "E-mail Input",
+  elementDescription = "Formular Element, um eine gültige E-Mail-Adresse zu erfasst.",
   formFieldPartLabel = "Formularfeld: Text",
   formFieldPartId = "form-field-part-71d76c77",
   helperTextPartLabel = "Helper Text",
@@ -27,6 +28,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.ENVELOPE)
   .withParts(
     cx.part.FormField(formFieldPartLabel, formFieldPartId),

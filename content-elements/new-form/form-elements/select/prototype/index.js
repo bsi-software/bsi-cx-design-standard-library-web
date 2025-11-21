@@ -18,6 +18,7 @@ module.exports = (
     template = require("./template.twig"),
     elementId = "select-51fb02b4",
     elementLabel = "Select",
+    elementDescription = "Formular Element, um eine Option aus einem Dropdown zu wählen.",
     formSelectPartLabel = "Formularfeld: Select",
     formSelectPartId = "select-part-c1cbbcc6",
     helperTextPartLabel = "Helper Text",
@@ -26,6 +27,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.DROPDOWN)
   .withParts(
     cx.part.FormSelect(formSelectPartLabel, formSelectPartId),

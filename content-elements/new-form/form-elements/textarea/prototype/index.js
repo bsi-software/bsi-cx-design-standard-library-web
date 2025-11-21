@@ -18,6 +18,7 @@ module.exports = (
     template = require("./template.twig"),
     elementId = "textarea-a4af575b",
     elementLabel = "Textfeld",
+    elementDescription = "Formular Element für mehrzeilige Textinformationen.",
     formTextareaPartLabel = "Formularfeld: Textfeld",
     formTextareaPartId = "textarea-part-18ad4cb0",
     helperTextPartLabel = "Helper Text",
@@ -26,6 +27,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.TEXTAREA)
   .withParts(
     cx.part.FormTextarea(formTextareaPartLabel, formTextareaPartId),

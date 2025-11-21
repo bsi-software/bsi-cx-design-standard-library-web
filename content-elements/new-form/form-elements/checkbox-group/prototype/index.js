@@ -18,6 +18,7 @@ module.exports = (
     template = require("../template.twig"),
     elementId = "checkbox-group-95a8d908",
     elementLabel = "Checkbox Gruppe",
+    elementDescription = "Formular Element, das Checkboxen gruppiert.",
     checkboxGroupPartLabel = "Label Chackbox Gruppe",
     checkboxGroupLabelTextPartId = "checkbox-group-label-a7bf5a38",
     helperTextPartLabel = "Helper Text",
@@ -27,6 +28,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.CHECKBOX)
   .withStyleConfigs(
     require("../../../../../configs/styles/group-required"),

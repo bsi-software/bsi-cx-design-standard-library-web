@@ -18,6 +18,7 @@ module.exports = (
     template = require("../template.twig"),
     elementId = "radio-group-6e279f5e",
     elementLabel = "Radio Gruppe",
+    elementDescription = "Formular Element, das eine Auswahl aus mehreren Optionen erlaubt.",
     radioGroupPartLabel = "Label Radio Gruppe",
     radioGroupLabelPartId = "radio-group-label-84ad37f1",
     helperTextPartLabel = "Helper Text",
@@ -26,6 +27,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.RADIOBUTTON)
   .withStyleConfigs(
     require("../../../../../configs/styles/group-alignment"),

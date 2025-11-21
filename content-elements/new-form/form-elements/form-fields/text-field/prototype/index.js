@@ -17,6 +17,7 @@ module.exports = (
   template = require("../template.twig"),
   elementId = "form-field-2217aee4",
   elementLabel = "Text Input",
+  elementDescription = "Formular Element, das Texteingaben ermöglicht.",
   formFieldPartLabel = "Formularfeld: Text",
   formFieldPartId = "form-field-part-740b4e74",
   helperTextPartLabel = "Helper Text",
@@ -25,6 +26,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.TEXT)
   .withParts(
     cx.part.FormField(formFieldPartLabel, formFieldPartId),

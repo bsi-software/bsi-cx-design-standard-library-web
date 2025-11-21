@@ -12,12 +12,14 @@ module.exports = (
   template = require("./template.twig"),
   elementId = "form-container-84c6581f",
   elementLabel = "Neues Formular",
+  elementDescription = "Wrapper, der alle Formularbestandteile gruppiert und organisiert.",
   dropzoneId = "form-container-dropzone-cd1f258c"
 ) => cx
   .contentElement
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.ONE_COLUMN)
   .withStyleConfigs(
     require("../../../../configs/styles/form-button-alignment.js"),

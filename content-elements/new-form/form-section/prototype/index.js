@@ -14,12 +14,14 @@ module.exports = (
   template = require("./template.twig"),
   elementId = "form-section-4cc6cfe4",
   elementLabel = "Formuar Sektion",
+  elementDescription = "Abschnitt, der mehrere Formular-Elemente strukturiert.",
   dropzoneId = "form-section-dropzone-a1788622"
 ) => cx
   .contentElement
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.ONE_COLUMN)
   .withDropzones(
     cx.dropzone

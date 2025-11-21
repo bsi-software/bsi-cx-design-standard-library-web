@@ -18,6 +18,7 @@ module.exports = (
     template = require("./template.twig"),
     elementId = "toggle-switch-b0ae602a",
     elementLabel = "Toggle Switch",
+    elementDescription = "Formular Element, das zwischen zwei Zuständen wechselt",
     formToggleSwitchPartLabel = "Formularfeld: Toggle Switch",
     formToggleSwitchPartId = "toggle-switch-part-76e700be",
     helperTextPartLabel = "Helper Text",
@@ -28,6 +29,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.CHECKBOX)
   .withParts(
     cx.part.FormCheckbox(formToggleSwitchPartLabel, formToggleSwitchPartId),

@@ -17,6 +17,7 @@ module.exports = (
   template = require("../template.twig"),
   elementId = "form-poll-star-2c7c0910",
   elementLabel = "Umfrage Sterne",
+  elementDescription = "Formular Element, das Feedback als Sterne-Bewertung erfasst.",
   formFieldPartLabel = "Formularfeld: Umfrage Sterne",
   formFieldPartId = "form-poll-star-part-7abccf42",
   helperTextPartLabel = "Helper Text",
@@ -25,6 +26,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withDescription(elementDescription)
   .withIcon(Icon.HEART)
   .withParts(
     cx.part.FormField(formFieldPartLabel, formFieldPartId),
