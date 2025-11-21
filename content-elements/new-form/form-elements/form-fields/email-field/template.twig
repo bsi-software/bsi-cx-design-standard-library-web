@@ -10,12 +10,13 @@
     } only %}
         {% block input_field %}
             <input 
+                x-data="emailField"
                 @change="formElementValidationOnChange"
                 @blur="formElementValidationOnBlur"
                 id="{{ inputType }}-field"
                 class="{{ inputType }}-input"
                 type="{{ inputType }}"
-                pattern="^\[^@\s]+@\[^@\[]\s]+\.\[^@\[]\s]\{2,}$"
+                {# pattern="^\[^@\s]+@\[^@\[]\s]+\.\[^@\[]\s]\{2,}$" #}
                 maxlength="250"
             >
             </input>
