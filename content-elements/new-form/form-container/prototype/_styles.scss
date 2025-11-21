@@ -21,7 +21,7 @@
             color: $labelColor;
         }
 
-        input, .visual-checkbox, .visual-radio {
+        input, .visual-checkbox, .visual-radio, .visual-toggle-switch {
             color: $labelColor;
             outline-color: $borderColor;
             background-color: $elementBackgroundColor;
@@ -32,7 +32,7 @@
         }
 
         // validation style for normal input fields
-        .input-field-with-error-text {
+        .input-field-with-error-text, .radio-button-group {
             &:has(input:user-valid) {
                 input {
                     outline-color: $successColor;
@@ -41,6 +41,25 @@
 
             &:has(input:user-invalid) {
                 input {
+                    outline-color: $errorColor;
+                }
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
+
+        // validation style for toggle switch elements
+        .toggle-switch-container {
+            &:has(input:user-valid), &:has(input.custom-valid) {
+                .visual-toggle-switch {
+                    outline-color: $successColor;
+                }
+            }
+
+            &:has(input:user-invalid), &:has(input.custom-invalid)  {
+                .visual-toggle-switch {
                     outline-color: $errorColor;
                 }
                 .bsi-invalid-feedback {
@@ -69,16 +88,16 @@
             }
         }
 
-        // validation for radio-buttzon groups
-        .radio-group{
-            &:has(input:user-valid) {
-                input {
+        // validation for radio-button groups
+        .radio-group {
+            &:has(input:user-valid), &:has(input.custom-valid) {
+                .visual-radio {
                     outline-color: $successColor;
                 }
             }
 
-            &:has(input:user-invalid) {
-                input {
+            &:has(input:user-invalid), &:has(input.custom-invalid) {
+                .visual-radio {
                     outline-color: $errorColor;
                 }
                 .bsi-invalid-feedback {
@@ -100,25 +119,6 @@
                 outline-color: $errorColor;
             }
             .error-and-helper-text-container {
-                .bsi-invalid-feedback {
-                    display: flex;
-                    color: $errorColor;
-                }
-            }
-        }
-
-        // validation style for radio groups
-        .radio-button-group {
-            &:has(input:user-valid) {
-                input {
-                    outline-color: $successColor;
-                }
-            }
-
-            &:has(input:user-invalid) {
-                input {
-                    outline-color: $errorColor;
-                }
                 .bsi-invalid-feedback {
                     display: flex;
                     color: $errorColor;
@@ -191,7 +191,7 @@
         $borderWidths: ("100": properties.$borderWidth100, "200": properties.$borderWidth200, "300": properties.$borderWidth300);
         @each $name, $borderWidth in $borderWidths {
             &.border-width-form-elements-#{$name} {
-                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox],  .visual-checkbox, input[type=radio], .visual-radio, select, textarea {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox],  .visual-checkbox, input[type=radio], .visual-radio, .visual-toggle-switch, select, textarea {
                     outline-width: $borderWidth;
                     outline-offset: -$borderWidth;
                 }

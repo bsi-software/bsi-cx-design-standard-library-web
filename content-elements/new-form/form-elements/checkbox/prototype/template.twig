@@ -11,7 +11,7 @@
         <div class="empty-element"></div> {# This Element is only for the option, that the label from other Form Elements stands on the left side insted of in the top of the element #}
         <div class="checkbox-container">
             <div class="checkbox-with-label">
-                <input @change="formElementValidationOnChange" @input="formElementValidationOnInput" id="checkbox-element" type="checkbox" class="native-checkbox"></input>
+                <input @change="formElementValidationOnChange" id="checkbox-element" type="checkbox" class="native-checkbox"></input>
                 <span @click="toggle" class="visual-checkbox"></span>
                 <label for="checkbox-element" class="form-label">{{ formCheckboxLabelText }}</label>  
             </div>

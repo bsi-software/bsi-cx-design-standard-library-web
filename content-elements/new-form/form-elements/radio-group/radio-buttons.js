@@ -13,7 +13,6 @@ Alpine.data("radio-button", () => ({
     if (input && !input.disabled) {
         input.checked = true;
         input.dispatchEvent(new Event("change", { bubbles: true }));
-        input.dispatchEvent(new Event("click", {bubbles: true }));
     }
   },
 

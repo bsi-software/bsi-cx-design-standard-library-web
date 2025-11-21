@@ -43,25 +43,34 @@ Alpine.data("form", () => ({
     },
 
     /**
-     * validate an element after input, if form was validated yet
+     * validate an element after leaf it
      * 
      * @param {InputEvent} event for every input
      */
-    formElementValidationOnInput(event) {
-        if (this.form.classList.contains(".form-was-validated") || event.target.value === "") {
-            this._formElementValidation(event.target);
-        }
+    formElementValidationOnBlur(event) {
+        this._formElementValidation(event.target);
     },
 
+    // /**
+    //  * validate an element after input, if form was validated yet
+    //  * 
+    //  * @param {InputEvent} event for every input
+    //  */
+    // formElementValidationOnInput(event) {
+    //     console.log("Die OnInput Funktion wurde aufgerufen");
+    //     if (this.form.classList.contains("form-was-validated") && event.target.type === "email") {
+    //         console.log("Die OnInput Funktion wurde auf einem Text oder Email Feld aufgerufen");
+    //         this._formElementValidation(event.target);
+    //     }
+    // },
+
     /**
-     * validate an element after change, if form was not validated yet
+     * validate an element after change
      * 
      * @param {Event} event for every change
      */
     formElementValidationOnChange(event) {
-        if (!this.form.classList.contains(".form-was-validated")) {
-            this._formElementValidation(event.target);
-        }
+        this._formElementValidation(event.target);
     },
 
     /**
@@ -120,12 +129,22 @@ Alpine.data("form", () => ({
             if (element.type === "checkbox" && !element.classList.contains("checkbox-in-group")) {
                 this._setCustomInvalidClass(element);
             }
+            if (element.type === "radio") {
+                element.closest(".radio-button-group").querySelectorAll(".native-radio").forEach(nativeRadio => {
+                    this._setCustomInvalidClass(nativeRadio)
+                });
+            }
             this._createErrorMessage(element);
         } else {
             console.log("Das Formularelement ist valide");
             // all checkboxes that are not in a group
             if (element.type === "checkbox" && !element.classList.contains("checkbox-in-group")) {
                 this._setCustomValidClass(element);
+            }
+            if (element.type === "radio") {
+                element.closest(".radio-button-group").querySelectorAll(".native-radio").forEach(nativeRadio => {
+                    this._setCustomValidClass(nativeRadio)
+                });
             }
         }
         return elementIsValid;

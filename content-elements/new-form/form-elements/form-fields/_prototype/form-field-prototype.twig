@@ -14,7 +14,7 @@
             {% block input_field %}
                 <input
                     @change="formElementValidationOnChange"
-                    @input="formElementValidationOnInput"
+                    @blur="formElementValidationOnBlur"
                     id="{{ formFieldInputType }}-field"
                     type="{{ formFieldInputType }}"
                     class="{{ formFieldInputType }}-input"
