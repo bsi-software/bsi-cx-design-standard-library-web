@@ -37,7 +37,7 @@
                         type="button"
                         class="upload-button"
                         @click="triggerFileUpload"
-                        :class="{'hidde' : files.lenght > 0 }"
+                        {# :class="{'hidden' : files.lenght > 0 }" #}
                         aria-label="Datei auswählen"
                     >
                         <span>Datei auswählen</span>
@@ -46,9 +46,9 @@
                     <div
                         class="file-info"
                         aria-live="polite"
-                        :class="{ 'hidden' : file.length > 0 }"
+                        {# :class="{ 'hidden' : file.length > 0 }" #}
                     >
-                        <span class="file-name" x-text="files[0]?.name"></span>
+                        {# <span class="file-name" x-text="files[0]?.name"></span> #}
                     </div>
                 </div>
 
