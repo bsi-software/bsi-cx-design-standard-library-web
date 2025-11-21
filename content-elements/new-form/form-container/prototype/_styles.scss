@@ -131,7 +131,7 @@
 
         &.bsi-form-label-info-top-top {
             form .form-elements-container .form-section .form-element {
-                .input-field-container {
+                .input-field-container, .textarea-container, .select-container, .file-upload-container {
                     flex-direction: column-reverse;
                 }
                 .empty-element {

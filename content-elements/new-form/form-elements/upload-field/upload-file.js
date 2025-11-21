@@ -15,7 +15,7 @@ Alpine.data("fileUpload", () => ({
     onFileChange(event) {
       this._handleFiles(event.target.files);
       this._formElementValidationOnChange();
-      // event.target.value = "";
+      this.$dispatch('after-change', event);
     },
 
     onDragOver() {
@@ -42,18 +42,20 @@ Alpine.data("fileUpload", () => ({
       });
       this.files = [];
       this.$refs.fileInput.value = "";
+      this.$refs.fileInput.dispatchEvent(new Event('change', { bubbles: true }));
     },
 
     _handleFiles(fileList) {
       const uploadedFiles = Array.from(fileList);
 
-      const file = uploadedFiles[0]; // multiple upload is not allowed
-  
-      this.files[0] = {
+      if (uploadedFiles.length > 0) {
+        const file = uploadedFiles[0]; // multiple upload is not allowed
+        this.files[0] = {
           name: file.name,
           size: this._formatSize(file.size),
           preview: this._isImage(file) ? URL.createObjectURL(file) : null
-      };
+        };
+      }
     },
 
     _formElementValidationOnChange() {

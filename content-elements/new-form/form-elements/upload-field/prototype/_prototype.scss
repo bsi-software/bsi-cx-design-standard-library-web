@@ -15,9 +15,11 @@
     $iconUploadFontCharacter: "\F296",
     $iconDeleteFontName: "bootstrap-icons",
     $iconDeleteFontCharacter: "\F622",
+    $deleteButtomColor: properties.$invalid,
+    $deleteButtomHoverColor: rgba(properties.$invalid, 0.3),
 ) {
     .bsi-element-form-field-5674018a {
-
+        
         // Only display element after Alpine has been executed
         [x-cloak] { 
             display: none !important;
@@ -28,11 +30,6 @@
             flex-direction: column;
             align-items: flex-start;
             align-self: stretch;
-            padding: 1rem;
-            border-radius: 8px;
-            outline: 2px dashed #ccc;
-            outline-offset: -2px;
-            transition: outline-color 0.2s, background-color 0.2s;
           
             &.dragover {
               outline-color: $borderColorDropover;
@@ -45,118 +42,142 @@
                 outline-color: properties.$dark;
             }
 
-            .file-upload-with-error-text {
+            .file-upload-and-error-text {
                 display: flex;
-                align-items: center;
-                justify-content: center;
+                flex-direction: column;
+                align-items: flex-start;
                 align-self: stretch;
-                gap: properties.$spacing400;
-
-                > .left {
+                
+                .file-upload {
                     display: flex;
                     align-items: center;
-                    gap: 0.75rem;
-                
-                    .upload-button {
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 0.5rem;
-                        background: $buttonColor;
-                        border: 1px solid $buttonColor;
-                        color: $buttonFontColor;
-                        padding: 0.5rem 0.75rem;
-                        border-radius: 6px;
-                        cursor: pointer;
-                        font-size: 1rem;
-                        line-height: 1.5rem;
-                        user-select: none;
-                        transition: border-color 0.2s, background-color 0.2s, color 0.2s;
-                
-                        &:hover {
-                            background: $buttonHoverColor;
-                            color: $buttonColor;
-                        }
+                    justify-content: center;
+                    align-self: stretch;
+                    gap: properties.$spacing400;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    outline: 2px dashed #ccc;
+                    outline-offset: -2px;
+                    transition: outline-color 0.2s, background-color 0.2s;
 
-                        &:focus-visible {
-                            outline: unset;
-                        }
-
-                        &::after {
-                            font-family: $iconUploadFontName;
-                            content: $iconUploadFontCharacter;
-                            font-size: 1.5rem;
-                            line-height: 1.5rem;
-                        }
-                    }
-                
-                    .file-info {
+                    > .left {
                         display: flex;
                         align-items: center;
-                        gap: 0.5rem;
-                
-                        .file-name {
-                            max-width: 180px;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
+                        gap: 0.75rem;
+                    
+                        .upload-button {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            background: $buttonColor;
+                            border: 1px solid $buttonColor;
+                            color: $buttonFontColor;
+                            padding: 0.5rem 0.75rem;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            font-size: 1rem;
+                            line-height: 1.5rem;
+                            user-select: none;
+                            transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+                    
+                            &:hover {
+                                background: $buttonHoverColor;
+                                color: $buttonColor;
+                            }
+
+                            &:focus-visible {
+                                outline: unset;
+                            }
+
+                            &::after {
+                                font-family: $iconUploadFontName;
+                                content: $iconUploadFontCharacter;
+                                font-size: 1.5rem;
+                                line-height: 1.5rem;
+                            }
                         }
-                        .preview-image {
-                            height: 3rem;
-                            aspect-ratio: 1 / 1;
-                            object-fit: contain;
+                    
+                        .file-info {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                    
+                            .file-name {
+                                max-width: 180px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+                            .preview-image {
+                                height: 3rem;
+                                aspect-ratio: 1 / 1;
+                                object-fit: contain;
+                            }
                         }
                     }
+                
+                    > .right {
+                        display: flex;
+                        align-items: center;
+                    
+                        .drop-text {
+                            font-size: 1rem;
+                            line-height: 1.5rem;
+                            font-weight: 700;
+                            color: properties.$textColor;
+                            user-select: none;
+                        }
+                    
+                        .remove-button {
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            color: $deleteButtomColor;
+                            font-size: 1.2rem;
+                            padding: 0;
+                            user-select: none;
+                    
+                            &:hover {
+                            color: #b91c1c;
+                            }
+
+                            &::before {
+                                font-family: $iconDeleteFontName;
+                                content: $iconDeleteFontCharacter;
+                                font-size: 1.5rem;
+                                line-height: 1.5rem;
+                            }
+                        }
+                    }
+                }
+
+                .bsi-invalid-feedback {
+                    display: none;
                 }
             
-                > .right {
-                    display: flex;
-                    align-items: center;
-                
-                    .drop-text {
-                        font-size: 1rem;
-                        line-height: 1.5rem;
-                        font-weight: 700;
-                        color: properties.$textColor;
-                        user-select: none;
-                    }
-                
-                    .remove-button {
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        background: none;
-                        border: none;
-                        cursor: pointer;
-                        color: #dc2626;
-                        font-size: 1.2rem;
-                        padding: 0;
-                        user-select: none;
-                
-                        &:hover {
-                        color: #b91c1c;
-                        }
-
-                        &::before {
-                            font-family: $iconDeleteFontName;
-                            content: $iconDeleteFontCharacter;
-                            font-size: 1.5rem;
-                            line-height: 1.5rem;
-                        }
-                    }
+                .hidden {
+                    display: none !important;
                 }
-            }
-          
-            .hidden {
-              display: none !important;
             }
         }
 
         &:has(input:disabled) {
             opacity: 0.3;
         }  
+    }
 
-        .bsi-invalid-feedback {
-            display: none;
+    .bsi-ce-edit-mode .bsi-element-form-field-5674018a {
+        [x-cloak] { 
+            display: flex !important;
+        }
+
+        .file-upload-container .file-upload {
+            .preview-image, > .right .remove-button {
+                display: none;
+            }
         }
     }
 }
