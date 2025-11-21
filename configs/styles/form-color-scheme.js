@@ -8,8 +8,8 @@ module.exports = cx.style
     cx.cssClass
       /*.withLabel('Primary color')*/
       .withLabel('Hell')
-      .withCssClass('form-light-scheme'),
+      .withCssClass('form-scheme-light'),
     cx.cssClass
       /*.withLabel('Secondary color')*/
       .withLabel('Dunkel')
-      .withCssClass('form-dark-scheme'));
+      .withCssClass('form-scheme-dark'));
