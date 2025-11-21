@@ -3,11 +3,11 @@
 
 @include prototypeStyleSheet.formFieldsStyling();
 
-@mixin textFieldStyling(
+@mixin emailFieldStyling(
     
 ) {
-    .bsi-element-form-field-2217aee4 {
-        .text-input {
+    .bsi-element-form-field-bdcd8d55 {
+        .email-input {
             padding: properties.$spacing300;
         }
     }

@@ -18,7 +18,6 @@ module.exports = (
     template = require("../template.twig"),
     elementId = "radio-group-6e279f5e",
     elementLabel = "Radio Gruppe",
-    elementDescription = "Element Beschreibung",
     radioGroupPartLabel = "Label Radio Gruppe",
     radioGroupLabelPartId = "radio-group-label-84ad37f1",
     helperTextPartLabel = "Helper Text",
@@ -28,7 +27,6 @@ module.exports = (
   ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
-  .withDescription(elementDescription)
   .withLabel(elementLabel)
   .withIcon(Icon.RADIOBUTTON)
   .withStyleConfigs(

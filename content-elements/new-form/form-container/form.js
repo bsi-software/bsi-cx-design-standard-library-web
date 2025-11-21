@@ -5,12 +5,29 @@ Alpine.data("form", () => ({
     formErrorValueMissingText: null,
     formErrorTypeMissmatchText: null,
     formOtherError: null,
+    inputErrorMessages: [],
+    errorMessageMap: null,
     
     init() {
         this.form = this.$root;
         this.formErrorValueMissingText = this.$root.querySelector(".form-value-missing-error-text");
         this.formErrorTypeMissmatchText = this.$root.querySelector(".form-type-missmatch-error-text");
-        this.formOtherError = this.$root.querySelector(".form-other-error-text"); 
+        this.formOtherError = this.$root.querySelector(".form-other-error-text");
+
+        // save all invalid-feedback error messages with id from element
+        this.form.querySelectorAll(".form-element input").forEach(inputElement => {
+            console.log("ID: " + inputElement.id);
+            console.log("ErrorMessage: " + inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent.trim());
+            this.inputErrorMessages.push( {
+                id: inputElement.id,
+                errorMessage: inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent.trim()
+            })
+        });
+
+        // create a map of inputErrorMessages
+        this.errorMessageMap = Object.fromEntries(
+            this.inputErrorMessages.map(entry => [entry.id, entry.errorMessage])
+        );
     },
     
     /**
@@ -127,7 +144,7 @@ Alpine.data("form", () => ({
             const checkboxes = checkboxGroup.querySelectorAll("input");
             const oneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
             if (!oneChecked && checkboxGroup.classList.contains("bsi-group-required")) {
-                console.log("Es wurde nicht mindestnes eine checkbox ausgewählt");
+                console.log("Es wurde nicht mindestens eine Checkbox ausgewählt");
                 groupIsValid = false;
                 this._setCustomInvalidClass(checkboxGroup);
                 this._createGroupErrorMessage(checkboxGroup);
@@ -162,8 +179,8 @@ Alpine.data("form", () => ({
             errorMessageElement.textContent = this.formErrorTypeMissmatchText.textContent;
         }
         else if (validity.patternMismatch) {
-            console.debug("Das Formularelement hat das falsche pattern. Fehlertext: " + inputElement.textContent);
-            errorMessageElement.textContent = inputElement.textContent;
+            console.debug("Das Formularelement hat das falsche pattern. Fehlertext: " + this.errorMessageMap[inputElement.id]);
+            errorMessageElement.textContent = this.errorMessageMap[inputElement.id];
         }
         else {
             console.debug("Das Formularelement ist nicht korrekt ausgefüllt. Fehlertext: " + this.formOtherError.textContent);
