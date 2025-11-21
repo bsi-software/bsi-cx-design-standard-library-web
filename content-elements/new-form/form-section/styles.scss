@@ -1,9 +1,3 @@
-@import "../../../styles/properties.scss";
+@use 'prototype/styles' as element;
 
-.bsi-element-form-section-4cc6cfe4 {
-    .form-section {
-        display: flex;
-        flex-direction: column;
-    }
-
-}
+@include element.formSectionStyles();
