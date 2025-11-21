@@ -21,6 +21,8 @@ module.exports = (
     elementDescription = "Formular Element, um eine Option aus einem Dropdown zu wählen.",
     formSelectPartLabel = "Formularfeld: Select",
     formSelectPartId = "select-part-c1cbbcc6",
+    placeholderTextLabel = "Platzhaltertext (Keinen, wenn kein Platzhalter gewünscht ist)",
+    placeholderTextId = "placeholder-text-part-4f08e438",
     helperTextPartLabel = "Helper Text",
     helperTextPartId = "select-helper-text-part-5989e5eb",
   ) => cx.contentElement
@@ -32,4 +34,5 @@ module.exports = (
   .withParts(
     cx.part.FormSelect(formSelectPartLabel, formSelectPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
+    cx.part.PlainText(placeholderTextLabel, placeholderTextId),
   );

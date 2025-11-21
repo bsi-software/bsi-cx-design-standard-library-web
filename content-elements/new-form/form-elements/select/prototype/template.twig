@@ -1,20 +1,24 @@
 {% apply spaceless %}
     {% set formSelectElementId = elementId ?: 'select-51fb02b4' %}
     {% set formSelectElementPartId = elementPartId ?: 'select-part-c1cbbcc6' %}
+    {% set formSelectPlaceholderTextPartId = formSelecPlaceholderTextPartId ?: 'placeholder-text-part-4f08e438' %}
     {% set formSelectHelperTextPartId = formSelectHelperTextPartId ?: 'select-helper-text-part-5989e5eb' %}
     {% set formSelectErrorInvalidPartId = errorInvalidPartId ?: 'select-error-invalid-part-ad209a4c' %}
     {% set formSelectLabelText = labelText ?: bsi_cx_lorem(3) %}
-    {% set formSelectOptionText = optionText ?: 'Bitte wählen' %}
+    {% set formSelectPlaceholderText = placeholderText ?: 'Bitte wählen' %}
     {% set formSelectHelperText = infoText  ?: "" %}
 
-    <div data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element" data-bsi-element-part="{{ formSelectElementPartId }}">
+    <div x-data="selectInputField"data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element" data-bsi-element-part="{{ formSelectElementPartId }}">
         <label for="select-element" class="form-label">{{ formSelectLabelText }}</label>
         <div class="select-container">
             <div class="select-and-error-text">
                 {# TODO: Was ist mit dem Platzhalter? Können wir das sauber umsetzen? Oder lassen wir das raus, bis die Produktentwicklung das sauber umgesetzt hat? #}
-                <select class="select-input" id="select-element">
-                    <option value="">{{ formSelectOptionText }}</option>
-                </select>
+                <div data-bsi-element-part="{{ formSelectPlaceholderTextPartId }}" class="d-none placeholder">{{ formSelectPlaceholderText }}</div>
+                <div class="wrapper-select">
+                    <select x-init="initSelectInputField" @change="onChangeSelection" @after-change="formElementValidationOnChange" class="select-input" id="select-element">
+                        <option value="">{{ formSelectPlaceholderText }}</option>
+                    </select>
+                </div>
                 {% block select_error_texts %}
                     <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
                 {% endblock %}

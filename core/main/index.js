@@ -27,6 +27,7 @@ import '../../content-elements/new-form/form-elements/checkbox/checkbox';
 import '../../content-elements/new-form/form-elements/form-fields/email-field/email';
 import '../../content-elements/new-form/form-elements/polls/stars/stars';
 import '../../content-elements/new-form/form-elements/radio-group/radio-buttons';
+import '../../content-elements/new-form/form-elements/select/select';
 import '../../content-elements/new-form/form-elements/toggle-switch/toggle-switch';
 import '../../content-elements/new-form/form-elements/upload-field/upload-file';
 

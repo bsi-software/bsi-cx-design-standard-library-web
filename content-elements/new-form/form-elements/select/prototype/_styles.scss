@@ -21,17 +21,22 @@
                     padding: properties.$spacing300;
                 }
 
-                &::after {
-                    // TODO: Soll das icon noch animiert werden?
-                    position: absolute;
-                    right: properties.$spacing300;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    line-height: 1;
-                    font-size: 24px;
-                    font-family: "bootstrap-icons";
-                    content: "\F282";
-                    pointer-events: none;
+                .wrapper-select {
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    &::after {
+                        // TODO: Soll das icon noch animiert werden?
+                        position: absolute;
+                        right: properties.$spacing300;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        line-height: 1;
+                        font-size: 24px;
+                        font-family: "bootstrap-icons";
+                        content: "\F282";
+                        pointer-events: none;
+                    }
                 }
             }
         }
