@@ -1,0 +1,97 @@
+@use "../../../../../../styles/properties.scss" as properties;
+
+@mixin pollStarStyling (
+    $elementId: "form-poll-star-2c7c0910",
+    $hoverColor: properties.$formPollHoverColor,
+    $hoverBackgroundColor: properties.$formPollHoverBackgroundColor,
+    $borderColor: properties.$formBorderColor,
+    $activeBackgroundColor: properties.$formActiveBackgroundColor,
+) {
+    .bsi-element-#{$elementId} {
+        .star-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: properties.$spacing300;
+            padding: properties.$spacing100 properties.$spacing0;
+
+            .number-input {
+                display: none;
+            }
+            .star-preview {
+                display: flex;
+                flex-wrap: wrap;
+                color: $borderColor;
+                // gap: properties.$spacing100;
+
+                .star-item {
+                    padding: 0 calc(properties.$spacing100 / 2);
+                    cursor: pointer;
+                }
+
+                div:first-child {
+                    padding-right: 0;
+                }
+
+                div:last-child {
+                    padding-left: 0;
+                }
+                
+                .visual-star-input {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 24px;
+                    height: 24px;
+                    box-shadow: unset;
+                    position: relative;
+                    cursor: pointer;
+
+                    &::before {
+                        position: absolute;
+                        font-family: "bootstrap-icons";
+                        font-size: 20px;
+                        width: 24px;
+                        line-height: 24px;
+                        text-align: center;
+                        opacity: 1;
+                        content: "\F588"; /* star-stroke bootstrap icon */
+                    }
+
+                    &::after {
+                        position: absolute;
+                        font-family: "bootstrap-icons";
+                        font-size: 20px;
+                        width: 24px;
+                        line-height: 24px;
+                        text-align: center;
+                        opacity: 0;
+                        transition: all 0.2s ease;
+                        content: "\F586"; /* star-fill bootstrap icon */
+                    }
+                }
+
+                &:not(:has(.star-poll-radio-hovered)) .star-poll-radio-checked {
+                    .visual-star-input {
+                        &::after {
+                            color: $activeBackgroundColor;
+                            opacity: 1;
+                        } 
+                    }
+                }
+
+                .native-star-input {
+                    &:focus-visible + .visual-star-input::before {
+                        font-weight: bold;
+                    }
+                }
+
+                .star-poll-radio-hovered {
+                    .visual-star-input::after {
+                        color: $activeBackgroundColor;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}

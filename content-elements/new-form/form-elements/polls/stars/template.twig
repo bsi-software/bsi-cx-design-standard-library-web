@@ -1,0 +1,56 @@
+{% set formFieldElementId = elementId ?: 'form-poll-star-2c7c0910' %}
+{% set formFieldElementPartId = elementPartId ?: 'form-poll-star-part-7abccf42' %}
+{% set formFieldHelperTextPartId = formHelperTextPartId ?: 'form-poll-star-helper-text-part-3ecf0459' %}
+{% set formFieldErrorInvalidPartId = errorInvalidPartId ?: 'form-poll-star-part-error-invalid-5e251558' %}
+{% set formFieldLabelText = labelText ?: bsi_cx_lorem(3) %}
+{% set formFieldLeftLabelText = leftLabelText ?: bsi_cx_lorem(3) %}
+{% set formFieldRightLabelText = rightLabelText ?: bsi_cx_lorem(3) %}
+{% set formFieldHelperText = infoText ?: "" %}
+{% set formFieldErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
+
+{% set pollMin = 1 %}
+{% set pollMax = 10 %}
+{% set pollStep = 1 %}
+{% set pollRange = range(pollMin, pollMax)%}
+{% set pollValueList = '' %}
+{% for value in pollRange %}
+	{% set pollValueList = pollValueList ~ value ~ (loop.last == false ? "\n" : '') %}
+{% endfor %}
+
+<div x-data="starPoll" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="number">
+    <label for="number-field" class="form-label">{{ formFieldLabelText }}</label>
+    <div class="input-field-container">
+        <div class="input-field-with-error-text">
+            <div class="star-container">
+                <input
+                    id="number-field"
+                    name="star-poll-input"
+                    type="number"
+                    class="number-input"
+                    min="{{ pollMin }}",
+                    max="{{ pollMax }}",
+                    step="{{ pollStep }}",
+                    value="",
+                >
+                </input>
+                <div x-init="initStar" class="star-preview nps-radio-group">
+                    {% for value in pollRange %}
+                        <div class="star-item" data-bsi-remove-if="live">
+                            <input class="native-star-input native-input" type="radio" id="poll-input-{{ value }}" value="{{ value }}"/>
+                            <span class="visual-star-input" for="poll-input-{{ value }}"></span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="star-rating-fill">
+                    <label class="star-rating-fill-label"></label>
+                </div>
+            </div>
+            <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="bsi-invalid-feedback">
+                {{ formFieldErrorInvalidText }}
+            </div>
+        </div>
+        <div class="helper-text-container">
+            <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
+        </div>
+    </div>
+</div>

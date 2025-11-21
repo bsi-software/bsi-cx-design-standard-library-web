@@ -12,6 +12,7 @@ const formElements = [
   require("./toggle-switch"),
   require("./upload-field"),
   require("./polls/nps"),
+  require("./polls/stars"),
 
 ];
 
