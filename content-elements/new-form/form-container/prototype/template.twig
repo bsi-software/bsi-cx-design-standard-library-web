@@ -1,7 +1,7 @@
 {% apply spaceless %}
 
     {% set borderRadiusFormElements = (borderRadiusFormElements ?: properties.borderRadiusFormElements) ?: 'border-radius-form-elements-100' %}
-    {% set borderWidthFormElements = (borderWidthFormElements ?: properties.borderWidthFormElements) ?: 'border-width-form-elements-100' %}
+    {# {% set borderWidthFormElements = (borderWidthFormElements ?: properties.borderWidthFormElements) ?: 'border-width-form-elements-100' %} #}
     {% set formButtonAlignment = (formButtonAlignment ?: properties.formButtonAlignment) ?: 'form-button-alignment-start' %} {# Alternative: 'form-button-alignment-end' or 'form-button-alignment-center' 'form-button-alignment-space-between' #}
     {% set formLabelInfoPosition = (formLabelInfoPosition ?: properties.formLabelInfoPosition) ?: 'bsi-form-label-info-top-bottom' %} {# Alternative: 'bsi-form-label-info-top-top' or 'bsi-form-label-info-left-bottom' #}
     {% set formFieldErrorValueMissingText = (errorValueMissingText ?: properties.formErrorValueMissingText) ?: "Bitte füllen Sie dieses Feld aus." %}
@@ -16,7 +16,7 @@
         class="
             bsi-element-form-container-84c6581f
             {{ borderRadiusFormElements }}
-            {{ borderWidthFormElements }}
+            {# {{ borderWidthFormElements }} #}
             {{ formButtonAlignment }}
             {{ formLabelInfoPosition }}
             {{ spaceBetweenFormSections }}

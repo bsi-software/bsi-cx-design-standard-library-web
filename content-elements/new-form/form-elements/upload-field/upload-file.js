@@ -31,8 +31,10 @@ Alpine.data("fileUpload", () => ({
     },
 
     onDrop(event) {
+      if (this.files.length == 0) {
+        this._handleFiles(event.dataTransfer.files);
+      }
       this.isDragOver = false;
-      this._handleFiles(event.dataTransfer.files);
       this.$el.classList.remove("dragover");
     },
 

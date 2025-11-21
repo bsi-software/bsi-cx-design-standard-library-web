@@ -3,23 +3,21 @@
 @use "./validation" as formValidationStyleSheet;
 @use "../../form-elements/form-element-styles" as formElementStyleSheet;
 
+// TODO: Sollten hier eventuell noch neue Properties ersetllt werden, sodass man gezielt Sachen nur für das Formular ändern kann?
 @mixin formContainerStyling(
     $elementId: "form-container-84c6581f",
-    $elementBackgroundColor: properties.$light,  
-    // $borderColor: properties.$dark, 
-    $borderColor: #0000ff, 
-    $labelColor: properties.$textColor,
-    // $activeColor: properties.$light,
-    $activeColor: #ff0000,
-    // $activeBackgroundColor: properties.$dark,
-    $activeBackgroundColor: #00ff00,
-    $helperTextColor: properties.$textColor, 
-    $errorColor: properties.$invalid, 
-    $successColor: properties.$valid,
-    $buttonSubmitColor: properties.$light,
-    $buttonResetColor: properties.$textColor,
-    $buttonSubmitBackgroundColor: properties.$primary,
-    $buttonResetBackgroundColor: properties.$light,
+    $elementBackgroundColor: properties.$formElementBackgroundColor,  
+    $borderColor: properties.$formBorderColor, 
+    $labelColor: properties.$formLabelColor,
+    $activeColor: properties.$formActiveColor,
+    $activeBackgroundColor: properties.$formActiveBackgroundColor,
+    $helperTextColor: properties.$formHelperTextColor, 
+    $errorColor: properties.$formErrorColor, 
+    $successColor: properties.$formSuccessColor,
+    $buttonSubmitColor: properties.$formButtonSubmitColor,
+    $buttonResetColor: properties.$formButtonResetColor,
+    $buttonSubmitBackgroundColor: properties.$formButtonSubmitBackgroundColor,
+    $buttonResetBackgroundColor: properties.$formButtonResetBackgroundColor,
 ) {
 
     @include formValidationStyleSheet.formValidationStyling(
@@ -28,7 +26,7 @@
         $successColor: $successColor
     );
     .bsi-element-#{$elementId} {
-        --input-box-shadow-color: #{$borderColor};
+        --form-element-border-color: #{$borderColor};
         padding: properties.$spacing0;
 
         // spacing of the form elements
@@ -97,17 +95,6 @@
             &.border-radius-form-elements-#{$name} {
                 input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], .visual-checkbox, select, textarea {
                     border-radius: $borderRadius;
-                }
-            }
-        }
-
-        // border width from form elements
-        $borderWidths: ("100": properties.$borderWidth100, "200": properties.$borderWidth200, "300": properties.$borderWidth300);
-        @each $name, $borderWidth in $borderWidths {
-            &.border-width-form-elements-#{$name} {
-                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox],  .visual-checkbox, input[type=radio], input[type=file], .visual-radio, .visual-toggle-switch, select, textarea {
-                    outline-width: $borderWidth;
-                    outline-offset: -$borderWidth;
                 }
             }
         }

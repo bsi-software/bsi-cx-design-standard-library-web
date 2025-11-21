@@ -1,22 +1,23 @@
 // @use '../../_prototype/styles' as prototypeStyleSheet;
 @use "../../../../../styles/properties.scss" as properties;
 
-// @include prototypeStyleSheet.formFieldsStyling();
-
+// TODO: Sollten hier eventuell noch neue Properties ersetllt werden, sodass man gezielt Sachen nur für das Formular ändern kann?
 @mixin fileUploadFieldStyling(
-    $borderColor: properties.$dark,
-    $backgroundColor: properties.$light,
-    $borderColorDropover: properties.$primary, 
-    $backgroundColorDropover: rgba(properties.$primary, 0.1),
-    $buttonColor: properties.$primary,
-    $buttonFontColor: properties.$light,
-    $buttonHoverColor: properties.$light,
-    $iconUploadFontName: "bootstrap-icons",
-    $iconUploadFontCharacter: "\F296",
-    $iconDeleteFontName: "bootstrap-icons",
-    $iconDeleteFontCharacter: "\F622",
-    $deleteButtomColor: properties.$invalid,
-    $deleteButtomHoverColor: rgba(properties.$invalid, 0.3),
+    $borderColor: properties.$fileUploadBorderColor,
+    $borderActiveColor: properties.$fileUploadBorderActiveColor,
+    $borderFocusColor: properties.$fileUploadBorderFocusColor,
+    $borderColorDropover: properties.$fileUploadBorderColorDropover,
+    $backgroundColor: properties.$fileUploadBackgroundColor,
+    $backgroundColorDropover: properties.$fileUploadBackgroundColorDropover,
+    $buttonColor: properties.$fileUploadButtonColor,
+    $buttonFontColor: properties.$fileUploadButtonFontColor,
+    $buttonHoverColor: properties.$fileUploadButtonHoverColor,
+    $iconUploadFontName: properties.$fileUploadIconUploadFontName,
+    $iconUploadFontCharacter: properties.$fileUploadIconUploadFontCharacter,
+    $iconDeleteFontName: properties.$fileUploadIconDeleteFontName,
+    $iconDeleteFontCharacter: properties.$fileUploadIconDeleteFontCharacter,
+    $deleteButtomColor: properties.$fileUploadDeleteButtomColor,
+    $deleteButtomHoverColor: properties.$fileUploadDeleteButtomHoverColor,
 ) {
     .bsi-element-form-field-5674018a {
         
@@ -44,31 +45,30 @@
                     align-self: stretch;
                     gap: properties.$spacing400;
                     padding: 1rem;
-                    border-radius: 8px;
-                    outline: 2px dashed #ccc;
-                    outline-offset: -2px;
                     transition: outline-color 0.2s, background-color 0.2s;
-
-                    &:not(:has(input.custom-invalid), :has(input:user-invalid)) {
-                        &:has(.upload-button:focus-visible) {
-                            outline-color: $borderColor;
-                        }
-                    }
-                    &:has(.upload-button:focus-visible) {
-                        outline-width: properties.$borderWidth300;
-                        outline-style: solid;
-                        
-                    }
-
-                    &.dragover {
-                        outline-color: $borderColorDropover;
-                        background-color: $backgroundColorDropover;
-                    }
+                    background-color: $backgroundColor;
+                    
+                    // no file (0, 4, 0)
+                    outline: properties.$borderWidth100 dashed $borderColor;
+                    outline-offset: -(properties.$borderWidth100);
+                    border-radius: properties.$borderRadius200;
 
                     &:not(:has(.file-info.hidden)) {
-                        outline-color: $borderColor;
-                        outline-width: properties.$borderWidth100;
+                        // file uploaded (0, 6, 0)
+                        outline-color: $borderActiveColor;
                         outline-style: solid;
+                    }
+
+                    &:has(.upload-button:focus-visible), &:has(.remove-button:focus-visible) {
+                        // focus-visible (0, 6, 0)
+                        outline-width: properties.$borderWidth300;
+                        outline-style: solid;
+                    }
+
+                    &.dragover:has(.file-info.hidden)  {
+                        // dragover some file if no file is uploaded yet (0, 7, 0)
+                        outline-color: $borderColorDropover;
+                        background-color: $backgroundColorDropover;
                     }
 
                     > .left {
@@ -149,9 +149,13 @@
                             font-size: 1.2rem;
                             padding: 0;
                             user-select: none;
+
+                            &:focus-visible {
+                                outline: unset;
+                            }
                     
                             &:hover {
-                                color: #b91c1c;
+                                color: $deleteButtomHoverColor;
                             }
 
                             &::before {
