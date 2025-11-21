@@ -24,6 +24,7 @@ import '../../content-elements/form/if-then/if-then-group';
 import '../../content-elements/form/list/prototype/list';
 import '../../content-elements/new-form/form-container/form';
 import '../../content-elements/new-form/form-elements/checkbox/checkbox';
+import '../../content-elements/new-form/form-elements/polls/nps/nps';
 import '../../content-elements/new-form/form-elements/radio-group/radio-buttons';
 import '../../content-elements/new-form/form-elements/toggle-switch/toggle-switch';
 import '../../content-elements/new-form/form-elements/upload-field/upload-file';

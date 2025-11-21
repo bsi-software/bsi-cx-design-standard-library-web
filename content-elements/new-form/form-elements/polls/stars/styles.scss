@@ -1,0 +1,3 @@
+@use './prototype/_styles.scss' as prototypeSurveyStarsStyling;
+
+@include prototypeSurveyStarsStyling.surveyStarsStyling();

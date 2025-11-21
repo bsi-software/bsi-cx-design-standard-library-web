@@ -1,0 +1,61 @@
+{% set formFieldElementId = elementId ?: 'form-poll-nps-a026d07b' %}
+{% set formFieldElementPartId = elementPartId ?: 'form-poll-nps-part-0f3d03c5' %}
+{% set formFieldHelperTextPartId = formHelperTextPartId ?: 'form-poll-nps-helper-text-part-18d96c98' %}
+{% set formFieldErrorInvalidPartId = errorInvalidPartId ?: 'form-poll-nps-part-error-invalid-8fbaf46c' %}
+{% set formFieldLeftLabelPartId = errorInvalidPartId ?: 'left-label-nps-part-210cf3a6' %}
+{% set formFieldRightLabelPartId = errorInvalidPartId ?: 'right-label-nps-part-312d8b6e' %}
+{% set formFieldLabelText = labelText ?: bsi_cx_lorem(3) %}
+{% set formFieldLeftLabelText = leftLabelText ?: bsi_cx_lorem(3) %}
+{% set formFieldRightLabelText = rightLabelText ?: bsi_cx_lorem(3) %}
+{% set formFieldHelperText = infoText ?: "" %}
+{% set formFieldErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
+
+{% set pollMin = 1 %}
+{% set pollMax = 10 %}
+{% set pollStep = 1 %}
+{% set pollRange = range(pollMin, pollMax) %}
+{% set pollValueList = '' %}
+{% for value in pollRange %}
+	{% set pollValueList = pollValueList ~ value ~ (loop.last == false ? "\n" : '') %}
+{% endfor %}
+
+<div x-data="npsPoll" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="number">
+    <label for="number-field" class="form-label">{{ formFieldLabelText }}</label>
+    <div class="input-field-container">
+        <div class="input-field-with-error-text">
+            
+            <div class="nps-scale-labels">
+                <label data-bsi-element-part="{{ formFieldLeftLabelPartId }}" class="left-nps-scale-label">{{ formFieldLeftLabelText }}</label>
+                <label data-bsi-element-part="{{ formFieldRightLabelPartId }}" class="right-nps-scale-label">{{ formFieldRightLabelText }}</label>
+            </div>
+            <div class="nps-container">
+                <input
+                    id="number-field"
+                    name="nps-poll-input"
+                    type="number"
+                    class="number-input"
+                    min="{{ pollMin }}",
+                    max="{{ pollMax }}",
+                    step="{{ pollStep }}",
+                    value="",
+                >
+                </input>
+                <div x-init="initNps" class="nps-preview">
+                    {% for value in pollRange %}
+                        <div class="nps-item" data-bsi-remove-if="live">
+                            <input class="nps-input" type="radio" id="poll-input-{{ value }}" value="{{ value }}"/>
+                            <span class="nps-label" for="poll-input-{{ value }}">{{ value }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="bsi-invalid-feedback">
+                {{ formFieldErrorInvalidText }}
+            </div>
+        </div>
+        <div class="helper-text-container">
+            <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
+        </div>
+    </div>
+</div>
