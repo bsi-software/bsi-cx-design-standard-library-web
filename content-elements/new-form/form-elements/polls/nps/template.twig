@@ -12,12 +12,7 @@
 
 {% set pollMin = 1 %}
 {% set pollMax = 10 %}
-{% set pollStep = 1 %}
 {% set pollRange = range(pollMin, pollMax) %}
-{% set pollValueList = '' %}
-{% for value in pollRange %}
-	{% set pollValueList = pollValueList ~ value ~ (loop.last == false ? "\n" : '') %}
-{% endfor %}
 
 <div x-data="npsPoll" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="number">
     <label for="number-field" class="form-label">{{ formFieldLabelText }}</label>
@@ -29,17 +24,19 @@
             </div>
             <div class="nps-container">
                 <input
+                    type="number"
+                    readonly="readonly"
                     id="number-field"
                     name="nps-poll-input"
-                    type="number"
                     class="number-input"
                     min="{{ pollMin }}",
                     max="{{ pollMax }}",
-                    step="{{ pollStep }}",
+                    step="1",
                     value="",
+                    required="",
                 >
                 </input>
-                <div x-init="initNps" class="nps-preview">
+                <div x-init="initNps" class="nps-preview nps-radio-group" role="radiogroup">
                     {% for value in pollRange %}
                         <div class="nps-item" data-bsi-remove-if="live">
                             <input class="native-nps-input native-input" type="radio" id="poll-input-{{ value }}" value="{{ value }}"/>

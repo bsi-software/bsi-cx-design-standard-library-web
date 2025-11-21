@@ -3,17 +3,14 @@ import Alpine from "@alpinejs/csp";
 Alpine.data("npsPoll", () => ({
     initNps() {
 
-        let definitionInput = this.$root.querySelector("input.number-input");
-        if (definitionInput === null) {
-            return;
-        }
+        let definitionInput = this.$root.querySelector("input.number-input[readonly]");
 
         let min = parseInt(definitionInput.getAttribute("min") || 1);
         let max = parseInt(definitionInput.getAttribute("max") || 10);
         let step = parseInt(definitionInput.getAttribute("step") || 1);
         let name = definitionInput.getAttribute("name");
-        var id = definitionInput.getAttribute("id");
-        var required = definitionInput.hasAttribute('required');
+        let id = definitionInput.getAttribute("id");
+        let required = definitionInput.hasAttribute('required');
         definitionInput.remove();
 
         for (let value = min; value <= max; value += step) {
