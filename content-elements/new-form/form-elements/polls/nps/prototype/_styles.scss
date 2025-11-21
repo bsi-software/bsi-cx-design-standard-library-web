@@ -31,7 +31,8 @@
         }
 
         .nps-container {
-            width: fit-content;
+            width: 100%;
+            container-type: inline-size;
 
             .number-input {
                 display: none;
@@ -48,7 +49,7 @@
                     padding: properties.$spacing300 properties.$spacing200;
                     justify-content: center;
                     align-items: center;
-                    min-width: 2.5rem;
+                    min-width: 3.5rem;
                     max-width: 3.5rem;
                     border-radius: properties.$borderRadius100;
                     cursor: pointer;
@@ -56,6 +57,23 @@
                     &:hover {
                         color: $hoverColor;
                         background-color: $hoverBackgroundColor;
+                    }
+                }
+            }
+
+            $max-width: calc(calc(3.5rem * 10) + calc(9 * properties.$spacing100)); // min-width * amount of elements + amount of gaps * gap-width
+            @container (max-width: #{$max-width}) {
+                .scale-label-wrapper {
+                    width: 100%;
+
+                    .nps-item {
+                        flex: 1;
+                        min-width: 1.5rem;
+
+                        label {
+                            min-width: unset;
+                            max-width: unset;
+                        }
                     }
                 }
             }

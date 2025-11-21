@@ -5,7 +5,12 @@
 
         display: flex;
         gap: bsiProperty("spacing.400", 24px);
+        flex-direction: row;
         flex-wrap: wrap;
+
+        @media (max-width: calc($md - 1px)) {
+            flex-direction: column;
+        }
 
         .form-section.left-side {
             display: flex;
