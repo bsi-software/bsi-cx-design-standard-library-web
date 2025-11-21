@@ -3,26 +3,6 @@
 @mixin formFieldsStyling () {
 
     .form-field {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-
-        // Sets a required flag on the label if field is required.
-        // TODO: könnte vielleicht ins globale Styling ausgelagert werden.
-        &.required label {
-            display: flex;
-            gap: properties.$spacing100;
-
-            &::after {
-                content: "*";
-            }
-        }
-
-        // TODO: könnte vielleicht ins globale Styling des Formulars wandern
-        .form-label {
-            margin-bottom: properties.$spacing100;
-            align-self: stretch;
-        }
 
         .input-field-container {
             display: flex;

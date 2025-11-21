@@ -4,14 +4,11 @@
     $elementId: "checkbox-group-95a8d908",
 ) {
     .bsi-element-#{$elementId} {
-        display: flex;
-        flex-direction: column;
+        // display: flex;
+        // flex-direction: column;
 
         fieldset {
             display: grid;
-            legend {
-                margin-bottom: properties.$spacing100;
-            }
             .checkbox-group-container {
                 display: flex;
                 flex-direction: column;
@@ -27,16 +24,6 @@
                 .bsi-invalid-feedback {
                     display: none;
                 }
-            }
-        }
-        
-
-        &.bsi-group-required legend {
-            display: flex;
-            gap: properties.$spacing100;
-
-            &::after {
-                content: "*";
             }
         }
 
