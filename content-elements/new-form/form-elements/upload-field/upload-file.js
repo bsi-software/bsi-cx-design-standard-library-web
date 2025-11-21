@@ -14,9 +14,9 @@ Alpine.data("fileUpload", () => ({
     },
 
     onFileChange(event) {
+      console.log("onFileChange")
       this._handleFiles(event.target.files);
       this._formElementValidationOnChange();
-      this.$refs.fileInput.classList.remove("custom-invalid");
       this.$dispatch('after-change', event);
     },
 
@@ -31,14 +31,20 @@ Alpine.data("fileUpload", () => ({
     },
 
     onDrop(event) {
+      console.log("onDrop");
       if (this.files.length == 0) {
         this._handleFiles(event.dataTransfer.files);
       }
+
+      // const changeEvent = new CustomEvent('change', { bubbles: true });
+      // this.$refs.fileInput.dispatchEvent(changeEvent, event);
+      
       this.isDragOver = false;
       this.$el.classList.remove("dragover");
     },
 
     removeFile() {
+      console.log("removeFile");
       this.files.forEach((file) => {
         if (file.preview) {
           URL.revokeObjectURL(file.preview);
@@ -50,6 +56,7 @@ Alpine.data("fileUpload", () => ({
     },
 
     _handleFiles(fileList) {
+      console.log("handleFile");
       const uploadedFiles = Array.from(fileList);
 
       if (uploadedFiles.length > 0) {
@@ -64,7 +71,8 @@ Alpine.data("fileUpload", () => ({
 
     _formElementValidationOnChange() {
       console.log("Validierung des Files");
-      console.log("Es ist nun " + this.files.length + "File hochgeladen worden.")
+      console.log("Es ist nun " + this.files.length + " File hochgeladen worden.")
+      this.$refs.fileInput.classList.remove("custom-invalid");
     },
 
     _formatSize(bytes) {

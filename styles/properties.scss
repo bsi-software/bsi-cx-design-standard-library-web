@@ -66,13 +66,10 @@ $flatpickrInput: bsiProperty('flatpickrInput', 'allowInput');
 
 //new formular
 $formElementBackgroundColor: bsiProperty('formElementBackgroundColor', #ffffff);
-// $formBorderColor: bsiProperty('formBorderColor', #383e42);
-$formBorderColor: #0000ff;
+$formBorderColor: bsiProperty('formBorderColor', #383e42);
 $formLabelColor: bsiProperty('formLabelColor', #383e42);
-// $formActiveColor: bsiProperty('formActiveColor', #ffffff);
-$formActiveColor: #ff0000;
-// $formActiveBackgroundColor: bsiProperty('formActiveBackgroundColor', #383e42);
-$formActiveBackgroundColor: #00ff00;
+$formActiveColor: bsiProperty('formActiveColor', #ffffff);
+$formActiveBackgroundColor: bsiProperty('formActiveBackgroundColor', #383e42);
 $formHelperTextColor: bsiProperty('formHelperTextColor', #383e42);
 $formErrorColor: bsiProperty('formErrorColor', #dc3545);
 $formSuccessColor: bsiProperty('formSuccessColor', #198754);
@@ -82,17 +79,12 @@ $formButtonSubmitBackgroundColor: bsiProperty('formButtonSubmitBackgroundColor',
 $formButtonResetBackgroundColor: bsiProperty('formButtonResetBackgroundColor', #ffffff);
 
 // new formular fileupload
-// $fileUploadBorderColor: bsiProperty('fileUploadBorderColor', rgba(#383e42, 0.1));
-$fileUploadBorderColor: rgba(#0000ff, 0.1);
-// $fileUploadBorderActiveColor: bsiProperty('fileUploadBorderActiveColor', #383e42);
-$fileUploadBorderActiveColor: #0000ff;
-// $fileUploadBorderFocusColor: bsiProperty('fileUploadBorderFocusColor', #383e42);
-$fileUploadBorderFocusColor: #0000ff;
-// $fileUploadBorderColorDropover: bsiProperty('fileUploadBorderColorDropover', #2F4E66);
-$fileUploadBorderColorDropover: #0000ff;
+$fileUploadBorderColor: bsiProperty('fileUploadBorderColor', rgba(#383e42, 0.1));
+$fileUploadBorderActiveColor: bsiProperty('fileUploadBorderActiveColor', #383e42);
+$fileUploadBorderFocusColor: bsiProperty('fileUploadBorderFocusColor', #383e42);
+$fileUploadBorderColorDropover: bsiProperty('fileUploadBorderColorDropover', #2F4E66);
 $fileUploadBackgroundColor: bsiProperty('fileUploadBackgroundColor', #ffffff);
-// $fileUploadBackgroundColorDropover: bsiProperty('fileUploadBackgroundColorDropover', rgbs(#2F4E66, 0.1));
-$fileUploadBackgroundColorDropover: rgba(#0000ff, 0.1);
+$fileUploadBackgroundColorDropover: bsiProperty('fileUploadBackgroundColorDropover', rgbs(#2F4E66, 0.1));
 $fileUploadButtonColor: bsiProperty('fileUploadButtonColor', #2F4E66);
 $fileUploadButtonFontColor: bsiProperty('fileUploadButtonFontColor', #ffffff);
 $fileUploadButtonHoverColor: bsiProperty('fileUploadButtonHoverColor', #ffffff);
@@ -104,10 +96,8 @@ $fileUploadIconUploadFontName: 'bootstrap-icons';
 $fileUploadIconUploadFontCharacter: '\F296';
 $fileUploadIconDeleteFontName: 'bootstrap-icons';
 $fileUploadIconDeleteFontCharacter: '\F622';
-// $fileUploadDeleteButtomColor: bsiProperty('fileUploadDeleteButtomColor', #dc3545);
-$fileUploadDeleteButtomColor: #00ff00;
-// $fileUploadDeleteButtomHoverColor: bsiProperty('fileUploadDeleteButtomHoverColor', rgbs(#dc3545, 0.3));
-$fileUploadDeleteButtomHoverColor: rgbs(#00ff00, 0.3);
+$fileUploadDeleteButtomColor: bsiProperty('fileUploadDeleteButtomColor', #dc3545);
+$fileUploadDeleteButtomHoverColor: bsiProperty('fileUploadDeleteButtomHoverColor', rgbs(#dc3545, 0.3));
 
 //new formular poll
 $formPollHoverColor: bsiProperty("pollHoverColor", #ffffff);
