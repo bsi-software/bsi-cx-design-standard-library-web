@@ -25,7 +25,7 @@
             {{ customStyleClasses }}
         "
     >
-        <form x-data="form" @submit="submitForm" data-bsi-element-part="form-container-part-06acb819" id="form" {{ properties.showFormFieldTypeField ?: data-bsi-show-form-type-field }} novalidate>
+        <form x-data="form" @submit="submitForm" @reset="resetForm" data-bsi-element-part="form-container-part-06acb819" id="form" {{ properties.showFormFieldTypeField ?: data-bsi-show-form-type-field }} novalidate>
             <div class="hiddenElement form-value-missing-error-text" data-bsi-element-part="form-element-value-missing-error-part-d090104c">{{ formFieldErrorValueMissingText }}</div>
             <div class="hiddenElement form-type-missmatch-error-text" data-bsi-element-part="form-element-type-missmatch-error-part-8cbc022e">{{ formFieldErrorTypeMissmatchText }}</div>
             <div class="hiddenElement form-other-error-text" data-bsi-element-part="form-element-other-error-part-01ae5355">{{ formFieldOtherError }}</div>

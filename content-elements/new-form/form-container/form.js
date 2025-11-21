@@ -1,4 +1,5 @@
 import Alpine from "@alpinejs/csp";
+import { each } from "chart.js/helpers";
 
 Alpine.data("form", () => ({
     form: null,
@@ -40,6 +41,21 @@ Alpine.data("form", () => ({
         if (!this._formValidation()) {
             event.preventDefault();
         }
+    },
+
+    /**
+     * Funktion that calles, if the formular is reseted
+     * Anything beyond removing custom-valid and custom-invalid is handled in the element itself. This is already the case with the file-upload element.
+     */
+    resetForm() {
+        this.form.querySelectorAll(".custom-invalid").forEach(element => {
+            element.classList.remove("custom-invalid");
+        });
+        
+        this.form.querySelectorAll(".custom-valid").forEach(element => {
+            element.classList.remove("custom-valid");
+        })
+        
     },
 
     /**
