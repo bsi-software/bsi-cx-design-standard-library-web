@@ -67,26 +67,13 @@ Alpine.data("form", () => ({
         this._formElementValidation(event.target);
     },
 
-    // /**
-    //  * validate an element after input, if form was validated yet
-    //  * 
-    //  * @param {InputEvent} event for every input
-    //  */
-    // formElementValidationOnInput(event) {
-    //     console.log("Die OnInput Funktion wurde aufgerufen");
-    //     if (this.form.classList.contains("form-was-validated") && event.target.type === "email") {
-    //         console.log("Die OnInput Funktion wurde auf einem Text oder Email Feld aufgerufen");
-    //         this._formElementValidation(event.target);
-    //     }
-    // },
-
     /**
      * validate an element after change
      * 
      * @param {Event} event for every change
      */
     formElementValidationOnChange(event) {
-        console.log("formElementValidationOnChange wurde aufgerufen");
+        console.log("Form.js: formElementValidationOnChange wurde aufgerufen");
         this._formElementValidation(event.target);
     },
 
@@ -96,7 +83,7 @@ Alpine.data("form", () => ({
      * @param {Event} event that changed
      */
     formGroupValidationOnChange(event) {
-        console.log("formGroupValidationOnChange wurde aufgerufen");
+        console.log("Form.js: formGroupValidationOnChange wurde aufgerufen");
         this._formGroupValidation(event.target);
 
     },
@@ -107,7 +94,7 @@ Alpine.data("form", () => ({
      * @returns {boolean} true if valid, false if invalid
      */
     _formValidation() {
-        console.log("SubmitForm wurde aufgerufen");
+        console.log("Form.js: SubmitForm wurde aufgerufen");
         const formElementInputs = this.$root.querySelectorAll(".form-element input, .form-element textarea"); // TODO: ggf erweitern, sodass auch Form Elemente die kein input Feld als Grundlage haben funktionieren
         const formGroups = this.$root.querySelectorAll(".checkbox-group, .radio-group");
 

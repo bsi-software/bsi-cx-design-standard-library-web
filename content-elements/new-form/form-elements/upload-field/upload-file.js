@@ -4,9 +4,18 @@ Alpine.data("fileUpload", () => ({
 
     files: [],
     isDragOver: false,
+    allowedMimes: [],
+    allowedExtensions: [],
 
     init() {
       this.$root.closest('form').addEventListener('reset', this.removeFile.bind(this), true); // last parameter for run in the capturing phase (true) or in the bubbling-phase (false)
+      const allowedEntries = this.$refs.fileInput.getAttribute("accept")?.split(",")
+        .map(atribute => atribute.trim().toLowerCase())
+        .filter(attribute => attribute.replace(".", ""));
+
+      this.allowedMimes = allowedEntries?.filter(fileType => fileType.includes("/")) ?? [];
+      this.allowedExtensions = allowedEntries?.filter(fileType => fileType.startsWith("."))
+        .map(fileType => fileType.replace(".", "")) ?? [];
     },
 
     triggerFileUpload() {
@@ -14,14 +23,14 @@ Alpine.data("fileUpload", () => ({
     },
 
     onFileChange(event) {
-      console.log("onFileChange")
+      console.log("upload-file.js: onFileChange")
       this._handleFiles(event.target.files);
       this._formElementValidationOnChange();
       this.$dispatch('after-change', event);
     },
 
     onFileChangeAfterDrop(event) {
-      console.log("onFileChangeAfterDrop")
+      console.log("upload-file.js: onFileChangeAfterDrop")
       this._formElementValidationOnChange();
       this.$dispatch('after-change', event);
     },
@@ -37,7 +46,7 @@ Alpine.data("fileUpload", () => ({
     },
 
     onDrop(event) {
-      console.log("onDrop");
+      console.log("upload-file.js: onDrop");
       if (this.files.length == 0) {
         this._handleFiles(event.dataTransfer.files);
       }
@@ -54,7 +63,7 @@ Alpine.data("fileUpload", () => ({
     },
 
     removeFile() {
-      console.log("removeFile");
+      console.log("upload-file.js: removeFile");
       this.files.forEach((file) => {
         if (file.preview) {
           URL.revokeObjectURL(file.preview);
@@ -62,11 +71,15 @@ Alpine.data("fileUpload", () => ({
       });
       this.files = [];
       this.$refs.fileInput.value = "";
-      this.$refs.fileInput.required ? this.$refs.fileInput.classList.add("custom-invalid") : '';
+
+      const changeAfterDropEvent = new CustomEvent('change-after-drop', { 
+        bubbles: true,
+      });
+      this.$refs.fileInput.dispatchEvent(changeAfterDropEvent, event);
     },
 
     _handleFiles(fileList) {
-      console.log("handleFile");
+      console.log("upload-file.js: handleFile");
       const uploadedFiles = Array.from(fileList);
 
       if (uploadedFiles.length > 0) {
@@ -74,16 +87,53 @@ Alpine.data("fileUpload", () => ({
         this.files[0] = {
           name: file.name.split('.').slice(0, -1).join('.'),
           size: this._formatSize(file.size),
-          suffix: file.name.split('.').pop(),
+          suffix: file.name.split('.').pop().toLowerCase(),
+          type: file.type,
           preview: this._isImage(file) ? URL.createObjectURL(file) : null
         };
       }
     },
 
     _formElementValidationOnChange() {
-      console.log("Validierung des Files");
+      console.log("upload-file.js: Validierung des Files");
       console.log("Es ist nun " + this.files.length + " File hochgeladen worden.")
-      this.$refs.fileInput.classList.remove("custom-invalid");
+      console.log("Folgende Dateiendungen sind erlaubt: " + this.allowedExtensions);
+      console.log("Folgende MIMEs sind erlaubt: " + this.allowedMimes);
+
+      if (this.files.length > 0) {
+        let validType = false;
+        if (this.allowedMimes.length > 0 || this.allowedExtensions.length > 0) {
+          this.files.forEach(file => {
+            if (this.allowedMimes?.includes(file.type.toLowerCase())) {
+              validType = true;
+            }
+            if (this.allowedExtensions?.includes(file.suffix)) {
+              validType = true;
+            }
+          });
+        } else {
+          validType = true;
+        }
+        if (validType ) {
+          console.log("Validierung des Files erfolgreich!");
+          this.$refs.fileInput.classList.remove("custom-invalid");
+          this.$refs.fileInput.setCustomValidity("");
+        } else {
+          console.log("Validierung des Files fehlgeschlagen! (falscher Dateityp)");
+          this.$refs.fileInput.classList.add("custom-invalid");
+          this.$refs.fileInput.setCustomValidity("custom-error");
+        }
+      } 
+      else {
+        if (this.$refs.fileInput.required) {
+          console.log("Validierung des Files fehlgeschlagen! (keine Datei)");
+          this.$refs.fileInput.classList.add("custom-invalid");
+          this.$refs.fileInput.setCustomValidity("custom-error");
+        } else {
+          this.$refs.fileInput.classList.remove("custom-invalid");
+          this.$refs.fileInput.setCustomValidity("");
+        }
+      }
     },
 
     _formatSize(bytes) {
