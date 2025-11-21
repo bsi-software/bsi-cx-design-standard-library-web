@@ -2,6 +2,8 @@
 
 @mixin pollNpsStyling (
     $elementId: "form-poll-nps-a026d07b",
+    $hoverColor: properties.$formPollHoverColor,
+    $hoverBackgroundColor: properties.$formPollHoverBackgroundColor,
 ) {
     .bsi-element-#{$elementId} {
         .nps-scale-labels {
@@ -31,6 +33,11 @@
                     min-width: 40px;
                     min-height: 56px;
                     border-radius: properties.$borderRadius100;
+
+                    &:hover {
+                        color: $hoverColor;
+                        background-color: $hoverBackgroundColor;
+                    }
                 }
             }
         }
