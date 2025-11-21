@@ -1,6 +1,6 @@
 import Alpine from "@alpinejs/csp";
 
-Alpine.data("radio-button", () => ({
+Alpine.data("radioButton", () => ({
 
   init() {
     

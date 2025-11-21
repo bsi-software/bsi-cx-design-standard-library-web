@@ -4,32 +4,34 @@ Alpine.data("fileUpload", () => ({
 
     files: [],
     isDragOver: false,
-    // multiple: false,
 
     init() {
-        // this.multiple = this.$root.querySelector(".native-file-upload-input").hasAttribute("muliple");
     },
 
-    triggerFileInput() {
+    triggerFileUpload() {
       this.$refs.fileInput.click();
     },
 
     onFileChange(event) {
-        _handleFiles(event.target.files)
-        event.target.value = null; // if user updates the same file again, the onChange event is trigger again
+      this._handleFiles(event.target.files);
+      this._formElementValidationOnChange();
+      // event.target.value = "";
     },
 
     onDragOver() {
       this.isDragOver = true;
+      this.$el.classList.add("dragover");
     },
 
     onDragLeave() {
       this.isDragOver = false;
+      this.$el.classList.remove("dragover");
     },
 
     onDrop(event) {
       this.isDragOver = false;
-      _handleFiles(event.dataTransfer.files)
+      this._handleFiles(event.dataTransfer.files);
+      this.$el.classList.remove("dragover");
     },
 
     removeFile() {
@@ -39,21 +41,24 @@ Alpine.data("fileUpload", () => ({
         }
       });
       this.files = [];
+      this.$refs.fileInput.value = "";
     },
 
     _handleFiles(fileList) {
-        const files = Array.from(fileList);
-    
-        // Beispiel: nur erste Datei, wenn multiple nicht gesetzt ist
-        // const file = this.multiple ? files : files[0];
+      const uploadedFiles = Array.from(fileList);
 
-        const file = files[0]; // multiple upload is not allowed
-    
-        this.file = {
-            name: file.name,
-            size: this.formatFileSize(file.size),
-            preview: this.isImage(file) ? URL.createObjectURL(file) : null
-        };
+      const file = uploadedFiles[0]; // multiple upload is not allowed
+  
+      this.files[0] = {
+          name: file.name,
+          size: this._formatSize(file.size),
+          preview: this._isImage(file) ? URL.createObjectURL(file) : null
+      };
+    },
+
+    _formElementValidationOnChange() {
+      console.log("Validierung des Files");
+      console.log("Es ist nun " + this.files.length + "File hochgeladen worden.")
     },
 
     _formatSize(bytes) {

@@ -9,7 +9,7 @@
     {% set formRadioGroupHelperText = infoText ?: "" %}
     {% set formRadioGroupErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 
-    <div x-data="radio-button" data-bsi-element="{{ formRadioGroupElementId }}" class="bsi-element-{{ formRadioGroupElementId }} form-element radio-group {{ formRadioGroupAlignment }}" data-bsi-element-part="{{ formRadioGroupElementPartId }}">
+    <div x-data="radioButton" data-bsi-element="{{ formRadioGroupElementId }}" class="bsi-element-{{ formRadioGroupElementId }} form-element radio-group {{ formRadioGroupAlignment }}" data-bsi-element-part="{{ formRadioGroupElementPartId }}">
         <label class="form-label">{{ formRadioGroupLabel }}</label>
         <div class="radio-button-group-container">
             <div data-bsi-radio-group="" class="radio-button-group">

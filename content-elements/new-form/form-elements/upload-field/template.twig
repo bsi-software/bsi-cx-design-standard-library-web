@@ -16,15 +16,13 @@
     >
         <div
             class="file-upload-with-error-text"
-            :class="{
-                'dragover': isDragOver,
-            }"
+            :class="\{ 'dragover': isDragOver }"
             x-cloak
         >
             {% block input_field %}
                 <input
-                    @change="onFileChange(event); formElementValidationOnChange"
-                    @blur="formElementValidationOnBlur"
+                    @change="onFileChange(event)" {# TODO: Hier muss vermutlich auch noch die formElementValidationOnChange aus dem form.js aufgerufen werden auf jeden Fall fhelt noch das Error HAndling! #}
+                    {# @blur="formElementValidationOnBlur" #}
                     id="file-upload-field"
                     type="file"
                     x-ref="fileInput"
@@ -37,18 +35,24 @@
                         type="button"
                         class="upload-button"
                         @click="triggerFileUpload"
-                        {# :class="{'hidden' : files.lenght > 0 }" #}
+                        :class="\{ 'hidden': files.length > 0 }"
                         aria-label="Datei auswählen"
                     >
-                        <span>Datei auswählen</span>
-                        <i class="icon-upload">
+                        <span>Datei auswählen</span> {# TODO: muss noch übersetzt werden #}
+                        <i class="icon-upload"></i>
                     </button>
                     <div
                         class="file-info"
                         aria-live="polite"
-                        {# :class="{ 'hidden' : file.length > 0 }" #}
+                        :class="\{ 'hidden': files.length === 0 }"
                     >
-                        {# <span class="file-name" x-text="files[0]?.name"></span> #}
+                        <span class="file-name" x-text="files.length > 0 ? files\[0].name : ''"></span>
+                        <img 
+                            class="preview-image"
+                            :class="\{ 'hidden': files.length === 0 }"
+                            :src="files.length > 0 ? files\[0].preview: ''"
+                            :alt="files.length > 0 ? files\[0].name : ''"
+                        />
                     </div>
                 </div>
 
@@ -56,31 +60,32 @@
                     <span
                         class="drop-text"
                         aria-hidden="true"
-                        :class="{ 'hidden': files.length > 0 }"
-                    >
-                        Datei hier ablegen
-                    </span>
+                        :class="\{ 'hidden': files.length > 0 }"
+                    > oder hier ablegen </span> {# TODO: muss noch übersetzt werden #}
 
                     <button
                         type="button"
                         class="remove-button"
                         aria-label="Datei entfernen"
-                        @click="removeFile"
-                        :class="{ 'hidden': files.length === 0 }"
+                        @click="removeFile(event)"
+                        :class="\{ 'hidden': files.length === 0 }"
                     >
                         <i class="icon-delete"></i>
                     </button>
                 </div>
 
             {% endblock %}
-            {% block input_field_error_text %}
-                <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="bsi-invalid-feedback">
-                    {{ formFieldErrorInvalidText }}
-                </div>
-            {% endblock %}
-        </div>
-        <div class="helper-text-container">
-            <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
         </div>
     </div>
+
+    {% block input_field_error_text %}
+        <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="bsi-invalid-feedback">
+            {{ formFieldErrorInvalidText }}
+        </div>
+    {% endblock %}
+    
+    <div class="helper-text-container">
+        <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
+    </div>
+    
 </div>
