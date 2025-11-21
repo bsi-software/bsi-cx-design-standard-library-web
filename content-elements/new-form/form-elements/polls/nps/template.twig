@@ -19,8 +19,8 @@
     data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-value-list="{% for i in pollRange %}{{ i ~ '\n' }}{% endfor %}" id="nps-poll">
     <label for="nps-poll" class="form-label">{{ formFieldLabelText }}</label>
     <div class="input-field-container">
-        <div class="scale-label-wrapper">
-            <div class="nps-container input-field-with-error-text">
+        <div class="nps-container input-field-with-error-text">
+            <div class="scale-label-wrapper">
                 <fieldset class="nps-preview nps-radio-group" data-bsi-radio-group="" role="radiogroup">
                     {% for value in pollRange %}
                         {% block npsTemplate %}
@@ -31,12 +31,12 @@
                         {% endblock %}
                     {% endfor %}
                 </fieldset>
-                <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+                <div class="nps-scale-labels">
+                    <label data-bsi-element-part="{{ formFieldLeftLabelPartId }}" class="left-nps-scale-label">{{ formFieldLeftLabelText }}</label>
+                    <label data-bsi-element-part="{{ formFieldRightLabelPartId }}" class="right-nps-scale-label">{{ formFieldRightLabelText }}</label>
+                </div>
             </div>
-            <div class="nps-scale-labels">
-                <label data-bsi-element-part="{{ formFieldLeftLabelPartId }}" class="left-nps-scale-label">{{ formFieldLeftLabelText }}</label>
-                <label data-bsi-element-part="{{ formFieldRightLabelPartId }}" class="right-nps-scale-label">{{ formFieldRightLabelText }}</label>
-            </div>
+            <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
         </div>
         <div class="helper-text-container">
             <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>

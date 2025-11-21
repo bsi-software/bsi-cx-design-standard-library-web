@@ -41,14 +41,15 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: properties.$spacing200;
+                padding: properties.$spacing100 0;
 
                 .visual-nps-input {
                     display: flex;
                     padding: properties.$spacing300 properties.$spacing200;
                     justify-content: center;
                     align-items: center;
-                    min-width: 3.5rem;
-                    min-height: 3.5rem;
+                    min-width: 2.5rem;
+                    max-width: 3.5rem;
                     border-radius: properties.$borderRadius100;
                     cursor: pointer;
 

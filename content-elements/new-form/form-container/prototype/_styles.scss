@@ -73,7 +73,7 @@
                 .form-field .input-field-container {
                     gap: $spacing;
 
-                    .input-field-with-error-text {
+                    .input-field-with-error-text, .scale-label-wrapper {
                         gap: $spacing;
                     }
                 }
