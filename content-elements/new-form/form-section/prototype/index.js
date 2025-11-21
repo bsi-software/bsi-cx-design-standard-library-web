@@ -1,6 +1,6 @@
 const { cx, Icon } = require("@bsi-cx/design-build");
 
-const { newFormFields } = require("../../form-elements/form-fields/index.js");
+const { newFormElements } = require("../../form-elements");
 
 /**
  * @param {string} template
@@ -26,12 +26,6 @@ module.exports = (
       .withDropzone(dropzoneId)
       .withAllowedElements(
         require("../../../base/h3"),
-        ...newFormFields,
-        require('../../form-elements/checkbox'),
-        require('../../form-elements/checkbox-group'),
-        require('../../form-elements/radio-group'),
-        require('../../form-elements/toggle-switch'),
-        require('../../form-elements/select'),
-        require('../../form-elements/textarea'),
+        ...newFormElements,
       ),
   );

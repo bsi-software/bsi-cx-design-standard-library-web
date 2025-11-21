@@ -1,6 +1,17 @@
+
+const { newFormFields } = require("../form-elements/form-fields");
+
 const formElements = [
-  require("./form-fields/text-field"),
+  ...newFormFields,
   require("./checkbox"),
+  require("./checkbox-group"),
+  require("./checkbox-group/checkbox-group-checkbox"),
+  require("./radio-group"),
+  require("./select"),
+  require("./textarea"),
+  require("./toggle-switch"),
+  require("./upload-field"),
+
 ];
 
-module.exports.formElements = formElements;
+module.exports.newFormElements = formElements;

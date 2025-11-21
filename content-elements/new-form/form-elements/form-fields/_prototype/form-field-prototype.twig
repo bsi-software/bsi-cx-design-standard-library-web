@@ -7,7 +7,7 @@
 {% set formFieldErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 {% set formFieldInputType = inputType ?: "text" %}
 
-<div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="text">
+<div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
     <label for="{{ formFieldInputType }}-field" class="form-label">{{ formFieldLabelText }}</label>
     <div class="input-field-container">
         <div class="input-field-with-error-text">

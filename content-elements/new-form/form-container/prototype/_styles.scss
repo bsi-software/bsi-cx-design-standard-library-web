@@ -98,7 +98,7 @@
         $borderRadiuses: ("100": properties.$borderRadius100, "200": properties.$borderRadius200, "300": properties.$borderRadius300, "400": properties.$borderRadius400, "circle": properties.$borderRadiusCircle);
         @each $name, $borderRadius in $borderRadiuses {
             &.border-radius-form-elements-#{$name} {
-                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], .visual-checkbox, select, textarea {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], .visual-checkbox, select, textarea {
                     border-radius: $borderRadius;
                 }
             }
@@ -107,7 +107,7 @@
         $borderWidths: ("100": properties.$borderWidth100, "200": properties.$borderWidth200, "300": properties.$borderWidth300);
         @each $name, $borderWidth in $borderWidths {
             &.border-width-form-elements-#{$name} {
-                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox],  .visual-checkbox, input[type=radio], .visual-radio, .visual-toggle-switch, select, textarea {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox],  .visual-checkbox, input[type=radio], input[type=file], .visual-radio, .visual-toggle-switch, select, textarea {
                     outline-width: $borderWidth;
                     outline-offset: -$borderWidth;
                 }
