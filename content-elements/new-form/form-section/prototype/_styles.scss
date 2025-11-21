@@ -2,9 +2,26 @@
 
 @mixin formSectionStyles() {
     .bsi-element-form-section-4cc6cfe4 {
-        .form-section {
+
+        display: flex;
+        gap: bsiProperty("spacing.400", 24px);
+        flex-wrap: wrap;
+
+        .form-section.left-side {
             display: flex;
             flex-direction: column;
+            flex: 1;
+
+        }
+        .form-section.right-side {
+            display: none;
+        }
+        &.new-form-column-amount-2 {
+            .form-section.right-side {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
         }
     }
 }

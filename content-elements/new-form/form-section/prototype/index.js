@@ -7,7 +7,8 @@ const { newFormElements } = require("../../form-elements");
  * @param {string} elementId
  * @param {string} elementLabel
  * @param {string} elementDescription
- * @param {string} dropzoneId
+ * @param {string} dropzoneIdLeft
+ * @param {string} dropzoneIdRight
  * @returns {ContentElement}
  */
 module.exports = (
@@ -15,7 +16,8 @@ module.exports = (
   elementId = "form-section-4cc6cfe4",
   elementLabel = "Formuar Sektion",
   elementDescription = "Abschnitt, der mehrere Formular-Elemente strukturiert.",
-  dropzoneId = "form-section-dropzone-a1788622"
+  dropzoneIdLeft = "form-section-dropzone-a1788622",
+  dropzoneIdRight = "form-section-right-dropzone-e4dd6542"
 ) => cx
   .contentElement
   .withFile(template)
@@ -23,9 +25,18 @@ module.exports = (
   .withLabel(elementLabel)
   .withDescription(elementDescription)
   .withIcon(Icon.ONE_COLUMN)
+  .withStyleConfigs(
+    require("../../../../configs/styles/new-form-section-column-amount.js"),
+  )
   .withDropzones(
     cx.dropzone
-      .withDropzone(dropzoneId)
+      .withDropzone(dropzoneIdLeft)
+      .withAllowedElements(
+        require("../../../base/h3"),
+        ...newFormElements,
+      ),
+    cx.dropzone
+      .withDropzone(dropzoneIdRight)
       .withAllowedElements(
         require("../../../base/h3"),
         ...newFormElements,
