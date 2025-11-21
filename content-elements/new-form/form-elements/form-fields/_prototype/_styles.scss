@@ -15,22 +15,10 @@
 
 
                 input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], select, textarea {
-                    border: unset;
-                    outline-width: properties.$borderWidth100;
-                    outline-style: solid;
-
                     &:placeholder-shown {
                         &::placeholder {
                             opacity: 0.5;
                         }
-                    }
-
-                    &:focus {
-                        outline-width: properties.$borderWidth200;
-                    }
-
-                    &:focus-visible {
-                        outline-width: properties.$borderWidth300;
                     }
                 }
 

@@ -2,9 +2,10 @@ import Alpine from "@alpinejs/csp";
 
 Alpine.data("toggleSwitch", () => ({
 
-  checked: false,
+  isChecked: false,
 
   init() {
+    this.isChecked = this.$root.querySelector(".native-checkbox").checked;
   },
   
   toggle(event) {

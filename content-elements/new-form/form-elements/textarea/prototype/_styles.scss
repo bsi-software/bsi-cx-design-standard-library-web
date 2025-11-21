@@ -16,19 +16,7 @@
                 position: relative;
 
                 textarea {
-                    // appearance: none;
-                    border: unset;
-                    outline-width: properties.$borderWidth100;
-                    outline-style: solid;
                     padding: properties.$spacing300;
-
-                    &:focus {
-                        outline-width: properties.$borderWidth200;
-                    }
-
-                    &:focus-visible {
-                        outline-width: properties.$borderWidth300;
-                    }
                 }
                 
                 .bsi-invalid-feedback {

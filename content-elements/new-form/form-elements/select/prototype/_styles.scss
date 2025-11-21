@@ -18,18 +18,7 @@
                 select {
                     appearance: none;
                     cursor: pointer;
-                    border: unset;
-                    outline-width: properties.$borderWidth100;
-                    outline-style: solid;
                     padding: properties.$spacing300;
-
-                    &:focus {
-                        outline-width: properties.$borderWidth200;
-                    }
-
-                    &:focus-visible {
-                        outline-width: properties.$borderWidth300;
-                    }
                 }
 
                 &::after {

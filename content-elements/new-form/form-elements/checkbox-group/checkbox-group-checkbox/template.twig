@@ -6,8 +6,8 @@
     <div x-data="checkbox" data-bsi-element="{{ formCheckboxElementId }}" class="bsi-element-{{ formCheckboxElementId }}" data-bsi-element-part="{{ formCheckboxElementPartId }}" data-bsi-hide-required>
         <div class="checkbox-container">
             <div class="checkbox-with-label">
-                <input @change="formGroupValidationOnChange" id="checkbox-element" type="checkbox" class="native-checkbox checkbox-in-group"></input>
-                <span @click="toggle" class="visual-checkbox"></span>
+                <input @change="formGroupValidationOnChange" id="checkbox-element" type="checkbox" class="native-checkbox native-input checkbox-in-group"></input>
+                <span @click="toggle" class="visual-checkbox visual-input"></span>
                 <label for="checkbox-element" class="group-checkbox-label">{{ formCheckboxLabelText }}</label>  
             </div>
         </div>

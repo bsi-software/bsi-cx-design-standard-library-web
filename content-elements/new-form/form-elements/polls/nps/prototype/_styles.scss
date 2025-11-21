@@ -4,23 +4,32 @@
     $elementId: "form-poll-nps-a026d07b",
 ) {
     .bsi-element-#{$elementId} {
+        .nps-scale-labels {
+            display: flex;
+            justify-content: space-between;
+
+            .right-nps-scale-label {
+                text-align: end;
+            }
+        }
         .nps-container {
+            width: fit-content;
+
+            .number-input {
+                display: none;
+            }
             .nps-preview {
                 display: flex;
+                flex-wrap: wrap;
                 gap: properties.$spacing100;
-                .nps-input {
-                    position: absolute;
-                    opacity: 0;
-                    pointer-events: none;
-                }
-                .nps-label {
+                
+                .visual-nps-input {
                     display: flex;
                     padding: properties.$spacing300 properties.$spacing200;
                     justify-content: center;
                     align-items: center;
                     min-width: 40px;
                     min-height: 56px;
-                    border: properties.$borderWidth100 solid properties.$dark;
                     border-radius: properties.$borderRadius100;
                 }
             }

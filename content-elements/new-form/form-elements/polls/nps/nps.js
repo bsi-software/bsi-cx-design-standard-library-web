@@ -21,6 +21,9 @@ Alpine.data("npsPoll", () => ({
             this._initRadioElement(value, `${id}-${value}`, name, required, checked);
         }
 
+        // calculate the maxWidth for the labels above the nps poll - its not possible to style it in css
+        this.$root.querySelector(".nps-scale-labels").style.maxWidth = this.$el.scrollWidth + 'px';
+
     },
 
     _initRadioElement(value, id, name, required, checked) {
@@ -29,7 +32,7 @@ Alpine.data("npsPoll", () => ({
         var radioHTML = `
             <input 
                 type="radio" 
-                class="nps-input" 
+                class="native-nps-input native-input" 
                 value="${value}" 
                 id="${id}" 
                 name="${name}"
@@ -39,16 +42,30 @@ Alpine.data("npsPoll", () => ({
             >
         `;
         var spanHTML = `
-            <span 
+            <label 
                 for="${id}"
-                class="nps-label"
+                class="visual-nps-input visual-input"
             >
                 ${value}
-            </span>
+            </label>
         `;
 
         div.innerHTML = radioHTML + spanHTML;
         this.$el.appendChild(div);
+    },
+
+    updateStatus() {
+        let radioItems = Array.from(this.$root.querySelectorAll("input[type=radio]"));
+        let selectedIndex = radioItems.findIndex(radio => radio.checked);
+        radioItems.forEach((radio, i) => {
+            let parentClassList = radio.parentElement.classList;
+            let isActive = i === selectedIndex;
+            if (isActive) {
+                parentClassList.add("nps-poll-radio-checked");
+            } else {
+                parentClassList.remove("nps-poll-radio-checked");
+            }
+        });
     },
 
 

@@ -19,31 +19,21 @@
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
-                
-
-                .native-checkbox {
-                    position: absolute;
-                    opacity: 0;
-                    pointer-events: none;
-                }
 
                 // create a custom checkbox
                 .visual-checkbox {
                     display: inline-flex;
                     width: 24px;
+                    min-width: 24px;
                     height: 24px;
-                    border: unset;
-                    outline-style: solid;
-                    background-color: properties.$light;
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
-                    color: transparent;
-                    transition: opacity 0.2s ease;
 
                     &::before {
-                        line-height: 1;
                         opacity: 0;
+                        transition: opacity 0.2s ease;
+                        line-height: 1;
                         font-family: "bootstrap-icons";
                         content: "\F26E"; /* check bootstrap icon */
                     }
@@ -51,16 +41,6 @@
 
                 .native-checkbox:checked + .visual-checkbox::before {
                     opacity: 1;
-                }
-
-                .native-checkbox:checked + .visual-checkbox {
-                    background-color: properties.$dark;
-                    outline-color: properties.$dark;
-                    color: properties.$light;
-                }
-
-                .native-checkbox:focus-visible + .visual-checkbox  {
-                    outline-width: properties.$borderWidth300;
                 }
 
                 .form-label, .group-checkbox-label {

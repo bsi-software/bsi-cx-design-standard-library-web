@@ -15,21 +15,19 @@
                     @change="formElementValidationOnChange"
                     id="toggleId"
                     type="checkbox"
-                    role="switch" 
                     hidden
-                    :checked="checked"
-                    :aria-checked="checked"
-                    aria-labelledby="labelId"
-                    class="native-checkbox">
+                    aria-hidden="true"
+                    x-model="isChecked"
+                    class="native-checkbox native-input">
                 </input>
                 <span
                     @click="toggle"
                     @keydown.space.prevent="toggle"
                     @keydown.enter.prevent="toggle"
-                    class="visual-toggle-switch"
+                    class="visual-toggle-switch visual-input"
                     tabindex="0"
                     role="switch"
-                    :aria-checked="checked"
+                    :aria-checked="isChecked"
                     aria-labelledby="labelId"
                 >
                     <span class="toggle-indicator"></span>

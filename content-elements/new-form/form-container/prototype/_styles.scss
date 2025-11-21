@@ -1,12 +1,18 @@
 @use "../../../../styles/properties" as properties;
 
 @use "./validation" as formValidationStyleSheet;
+@use "../../form-elements/form-element-styles" as formElementStyleSheet;
 
 @mixin formContainerStyling(
     $elementId: "form-container-84c6581f",
     $elementBackgroundColor: properties.$light,  
-    $borderColor: properties.$dark, 
-    $labelColor: properties.$textColor, 
+    // $borderColor: properties.$dark, 
+    $borderColor: #0000ff, 
+    $labelColor: properties.$textColor,
+    // $activeColor: properties.$light,
+    $activeColor: #ff0000,
+    // $activeBackgroundColor: properties.$dark,
+    $activeBackgroundColor: #00ff00,
     $helperTextColor: properties.$textColor, 
     $errorColor: properties.$invalid, 
     $successColor: properties.$valid,
@@ -21,24 +27,11 @@
         $errorColor: $errorColor,
         $successColor: $successColor
     );
-
     .bsi-element-#{$elementId} {
+        --input-box-shadow-color: #{$borderColor};
         padding: properties.$spacing0;
 
-        label {
-            color: $labelColor;
-        }
-
-        input, .visual-checkbox, .visual-radio, .visual-toggle-switch {
-            color: $labelColor;
-            outline-color: $borderColor;
-            background-color: $elementBackgroundColor;
-        }
-
-        .helper-text-container, .helper-text {
-            color: $helperTextColor;
-        }
-
+        // spacing of the form elements
         $spacings: ("0": properties.$spacing0, "100": properties.$spacing100, "200": properties.$spacing200, "300": properties.$spacing300, "400": properties.$spacing400, "500": properties.$spacing500, "600": properties.$spacing600, "700": properties.$spacing700, "800": properties.$spacing800);
         @each $name, $spacing in $spacings {
             // Set space between every form section and buttons in a form
@@ -88,6 +81,7 @@
             }
         }
 
+        // formular button alligments
         $alignments: (start, center, end, space-between);
         @each $alignment in $alignments {
             &.form-button-alignment-#{$alignment} {
@@ -97,6 +91,7 @@
             }
         }
 
+        // border radius from form elements
         $borderRadiuses: ("100": properties.$borderRadius100, "200": properties.$borderRadius200, "300": properties.$borderRadius300, "400": properties.$borderRadius400, "circle": properties.$borderRadiusCircle);
         @each $name, $borderRadius in $borderRadiuses {
             &.border-radius-form-elements-#{$name} {
@@ -106,6 +101,7 @@
             }
         }
 
+        // border width from form elements
         $borderWidths: ("100": properties.$borderWidth100, "200": properties.$borderWidth200, "300": properties.$borderWidth300);
         @each $name, $borderWidth in $borderWidths {
             &.border-width-form-elements-#{$name} {
@@ -116,13 +112,8 @@
             }
         }
 
-        $LabelInfoPositions: ("top-bottom", "top-top", "left-bottom");
-        @each $labelInfoPosition in $LabelInfoPositions {
-            &.bsi-form-label-info-#{$labelInfoPosition} {
-
-            }
-        }
-
+        // label and infotext positions
+        // label on top and infotext on button
         &.bsi-form-label-info-top-bottom {
             form .form-elements-container .form-section .form-element {
                 .empty-element {
@@ -131,6 +122,7 @@
             }
         }
 
+        // label on top and infotext on top
         &.bsi-form-label-info-top-top {
             form .form-elements-container .form-section .form-element {
                 .input-field-container, .textarea-container, .select-container, .file-upload-container {
@@ -142,8 +134,10 @@
             }
         }
 
+        // label left and infotext on button
         &.bsi-form-label-info-left-bottom {
             form .form-elements-container .form-section .form-element:not(.checkbox-group) {
+                width: 100%;
                 display: grid;
                 grid-template-columns: 1fr 6fr;
 
@@ -154,6 +148,7 @@
 
             form .form-elements-container .form-section .form-element.checkbox-group {
                 fieldset {
+                    width: 100%;
                     display: grid;
                     grid-template-columns: 1fr 6fr;
 
@@ -162,6 +157,7 @@
                     }
                 }
                 .error-and-helper-text-wrapper {
+                    width: 100%;
                     display: grid;
                     grid-template-columns: 1fr 6fr;
                 }
@@ -180,33 +176,14 @@
                 display: flex;
                 flex-direction: column;
 
-                .form-element {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-
-                    &.required, &.bsi-group-required {
-                        .form-label, legend {
-                            display: flex;
-                            gap: properties.$spacing100;
-
-                            &::after {
-                                content: "*";
-                            }
-                        }
-                    }
-                }
-
-                // style for headlines of the form elements
-                legend, .form-label {
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 150%;
-                    letter-spacing: 0;
-                    margin-bottom: properties.$spacing100;
-                    align-self: stretch;    
-                }
+                @include formElementStyleSheet.formElementStyling(
+                    $labelColor: $labelColor,
+                    $helperTextColor: $helperTextColor,
+                    $elementBackgroundColor: $elementBackgroundColor,
+                    $borderColor: $borderColor,
+                    $activeBackgroundColor: $activeBackgroundColor,
+                    $activeColor: $activeColor,
+                );
             }
         
             .form-buttons {
@@ -222,7 +199,6 @@
                     background-color: $buttonResetBackgroundColor;
                     color: $buttonResetColor;
                 }
-                
         
                 input[type=reset]:disabled {
                     display: none;

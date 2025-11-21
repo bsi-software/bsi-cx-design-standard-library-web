@@ -23,7 +23,6 @@
     <label for="number-field" class="form-label">{{ formFieldLabelText }}</label>
     <div class="input-field-container">
         <div class="input-field-with-error-text">
-            
             <div class="nps-scale-labels">
                 <label data-bsi-element-part="{{ formFieldLeftLabelPartId }}" class="left-nps-scale-label">{{ formFieldLeftLabelText }}</label>
                 <label data-bsi-element-part="{{ formFieldRightLabelPartId }}" class="right-nps-scale-label">{{ formFieldRightLabelText }}</label>
@@ -43,13 +42,12 @@
                 <div x-init="initNps" class="nps-preview">
                     {% for value in pollRange %}
                         <div class="nps-item" data-bsi-remove-if="live">
-                            <input class="nps-input" type="radio" id="poll-input-{{ value }}" value="{{ value }}"/>
-                            <span class="nps-label" for="poll-input-{{ value }}">{{ value }}</span>
+                            <input class="native-nps-input native-input" type="radio" id="poll-input-{{ value }}" value="{{ value }}"/>
+                            <span class="visual-nps-input visual-input" for="poll-input-{{ value }}">{{ value }}</span>
                         </div>
                     {% endfor %}
                 </div>
             </div>
-
             <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="bsi-invalid-feedback">
                 {{ formFieldErrorInvalidText }}
             </div>

@@ -146,7 +146,7 @@ Alpine.data("form", () => ({
             if (element.type === "checkbox" && !element.classList.contains("checkbox-in-group")) {
                 this._setCustomInvalidClass(element);
             }
-            if (element.type === "radio") {
+            if (element.type === "radio" && element.classList.contains("native-radio")) {
                 element.closest(".radio-button-group").querySelectorAll(".native-radio").forEach(nativeRadio => {
                     this._setCustomInvalidClass(nativeRadio)
                 });
@@ -159,7 +159,7 @@ Alpine.data("form", () => ({
                 this._setCustomValidClass(element);
             }
             // TODO: ist das notwendig?
-            if (element.type === "radio") {
+            if (element.type === "radio" && element.classList.contains("native-radio")) {
                 element.closest(".radio-button-group").querySelectorAll(".native-radio").forEach(nativeRadio => {
                     this._setCustomValidClass(nativeRadio)
                 });

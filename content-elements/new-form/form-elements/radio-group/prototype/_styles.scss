@@ -26,31 +26,21 @@
                     -moz-user-select: none;
                     -ms-user-select: none;
     
-                    .native-radio {
-                        position: absolute;
-                        opacity: 0;
-                        pointer-events: none;
-                    }
-    
                     // create a custom checkbox
                     .visual-radio {
                         display: inline-flex;
                         width: 24px;
+                        min-width: 24px;
                         height: 24px;
-                        border: unset;
-                        outline-style: solid;
-                        background-color: properties.$light;
                         border-radius: properties.$borderRadiusCircle;
                         align-items: center;
                         justify-content: center;
                         cursor: pointer;
-                        color: transparent;
-                        background-color: properties.$light;
-                        transition: opacity 0.2s ease;
     
                         &::before {
-                            line-height: 1;
                             opacity: 0;
+                            transition: opacity 0.2s ease;
+                            line-height: 1;
                             font-family: "bootstrap-icons";
                             font-size: 8px;
                             content: "\F287"; /* circle-fill bootstrap icon */
@@ -59,16 +49,6 @@
     
                     .native-radio:checked + .visual-radio::before {
                         opacity: 1;
-                    }
-    
-                    .native-radio:checked + .visual-radio {
-                        background-color: properties.$dark;
-                        outline-color: properties.$dark;
-                        color: properties.$light;
-                    }
-    
-                    .native-radio:focus-visible + .visual-radio  {
-                        outline-width: properties.$borderWidth300;
                     }
     
                     .form-label, .group-radio-label {

@@ -12,13 +12,13 @@
         .input-field-with-error-text, .radio-button-group {
             &:has(input:user-valid) {
                 input {
-                    outline-color: $successColor;
+                    --input-box-shadow-color: #{$successColor};
                 }
             }
 
             &:has(input:user-invalid) {
                 input {
-                    outline-color: $errorColor;
+                    --input-box-shadow-color: #{$errorColor};
                 }
                 .bsi-invalid-feedback {
                     display: flex;
@@ -31,13 +31,13 @@
         .toggle-switch-container {
             &:has(input:user-valid), &:has(input.custom-valid) {
                 .visual-toggle-switch {
-                    outline-color: $successColor;
+                    --input-box-shadow-color: #{$successColor};
                 }
             }
 
             &:has(input:user-invalid), &:has(input.custom-invalid)  {
                 .visual-toggle-switch {
-                    outline-color: $errorColor;
+                    --input-box-shadow-color: #{$errorColor};
                 }
                 .bsi-invalid-feedback {
                     display: flex;
@@ -50,13 +50,13 @@
         .checkbox-container {
             &:has(input.custom-valid) {
                 .visual-checkbox {
-                    outline-color: $successColor;
+                    --input-box-shadow-color: #{$successColor};
                 }
             }
 
             &:has(input.custom-invalid) {
                 .visual-checkbox {
-                    outline-color: $errorColor;
+                    --input-box-shadow-color: #{$errorColor};
                 }
                 .bsi-invalid-feedback {
                     display: flex;
@@ -68,13 +68,13 @@
         // validation style for checkbox groups
         .checkbox-group.custom-valid {
             .visual-checkbox {
-                outline-color: $successColor;
+                --input-box-shadow-color: #{$successColor};
             }
         }
 
         .checkbox-group.custom-invalid {
             .visual-checkbox {
-                outline-color: $errorColor;
+                --input-box-shadow-color: #{$errorColor};
             }
             .error-and-helper-text-container {
                 .bsi-invalid-feedback {
@@ -88,13 +88,13 @@
         .radio-group {
             &:has(input:user-valid), &:has(input.custom-valid) {
                 .visual-radio {
-                    outline-color: $successColor;
+                    --input-box-shadow-color: #{$successColor};
                 }
             }
 
             &:has(input:user-invalid), &:has(input.custom-invalid) {
                 .visual-radio {
-                    outline-color: $errorColor;
+                    --input-box-shadow-color: #{$errorColor};
                 }
                 .bsi-invalid-feedback {
                     display: flex;
@@ -107,13 +107,13 @@
         .select-and-error-text {
             &:has(select:user-valid) {
                 select {
-                    outline-color: $successColor;
+                    --input-box-shadow-color: #{$successColor};
                 }
             }
 
             &:has(select:user-invalid) {
                 select {
-                    outline-color: $errorColor;
+                    --input-box-shadow-color: #{$errorColor};
                 }
 
                 .bsi-invalid-feedback {
@@ -127,13 +127,13 @@
         .textarea-and-error-text {
             &:has(textarea:user-valid) {
                 textarea {
-                    outline-color: $successColor;
+                    --input-box-shadow-color: #{$successColor};
                 }
             }
 
             &:has(textarea:user-invalid) {
                 textarea {
-                    outline-color: $errorColor;
+                    --input-box-shadow-color: #{$errorColor};
                 }
 
                 .bsi-invalid-feedback {
@@ -146,12 +146,12 @@
         .file-upload-and-error-text {
             &:has(input:user-valid) {
                 .file-upload {
-                    outline-color: $successColor;
+                    --input-box-shadow-color: #{$successColor};
                 }
             }
             &:has(input:user-invalid), &:has(input.custom-invalid) {
                 .file-upload {
-                    outline-color: $errorColor;
+                    --input-box-shadow-color: #{$errorColor};
                 }
                 .bsi-invalid-feedback {
                     display: flex;
