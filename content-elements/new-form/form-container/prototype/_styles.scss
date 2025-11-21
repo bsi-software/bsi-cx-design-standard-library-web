@@ -124,30 +124,32 @@
 
         // label left and infotext on button
         &.bsi-form-label-info-left-bottom {
-            form .form-elements-container .form-section .form-element:not(.checkbox-group) {
-                width: 100%;
-                display: grid;
-                grid-template-columns: 1fr 6fr;
-
-                .form-label {
-                    display: block;
-                }
-            }
-
-            form .form-elements-container .form-section .form-element.checkbox-group {
-                fieldset {
+            @media (min-width: properties.$md) {
+                form .form-elements-container .form-section .form-element:not(.checkbox-group) {
                     width: 100%;
                     display: grid;
                     grid-template-columns: 1fr 6fr;
-
-                    .checkbox-group-container .form-element{
-                        display: flex;
+                    
+                    .form-label {
+                        display: block;
                     }
                 }
-                .error-and-helper-text-wrapper {
-                    width: 100%;
-                    display: grid;
-                    grid-template-columns: 1fr 6fr;
+                
+                form .form-elements-container .form-section .form-element.checkbox-group {
+                    fieldset {
+                        width: 100%;
+                        display: grid;
+                        grid-template-columns: 1fr 6fr;
+                        
+                        .checkbox-group-container .form-element{
+                            display: flex;
+                        }
+                    }
+                    .error-and-helper-text-wrapper {
+                        width: 100%;
+                        display: grid;
+                        grid-template-columns: 1fr 6fr;
+                    }
                 }
             }
         }
