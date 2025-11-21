@@ -25,9 +25,10 @@ module.exports = (
     require("../../../../configs/styles/form-button-alignment.js"),
   )
   .withParts(
-    cx.part.form
-      .withId("form-container-part-06acb819")
-      .withLabel("Formular Einstellungen")
+    cx.part.Form("Formular Einstellungen", "form-container-part-06acb819"),
+    cx.part.PlainText("Fehlertext bei nicht ausgefüllten Pflichtfeldern.", "form-element-value-missing-error-part-d090104c"),
+    cx.part.PlainText("Fehlertext bei falschem Typ.", "form-element-type-missmatch-error-part-8cbc022e"),
+    cx.part.PlainText("Fehlertext bei anderen Fehlern.", "form-element-other-error-part-01ae5355"),
   )
   .withDropzones(
     cx.dropzone
