@@ -8,157 +8,43 @@
 
     .bsi-element-#{$elementId} {
 
-        &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid) {
-            div.bsi-invalid-feedback {
-                display: flex;
-                color: $errorColor;
-            }
-        }
-
-        // validation style for normal input fields
-        .input-field-with-error-text, .radio-button-group {
-            &:has(input:user-valid) {
-                input {
-                    --form-element-border-color: #{$successColor};
-                }
-            }
-
-            &:has(input:user-invalid) {
-                input {
-                    --form-element-border-color: #{$errorColor};
-                }
-
-            }
-        }
-
-        // validation style for toggle switch elements
-        .toggle-switch-container {
-            &:has(input:user-valid), &:has(input.custom-valid) {
-                .visual-toggle-switch {
-                    --form-element-border-color: #{$successColor};
-                }
-            }
-
-            &:has(input:user-invalid), &:has(input.custom-invalid)  {
-                .visual-toggle-switch {
-                    --form-element-border-color: #{$errorColor};
-                }
-            }
-        }
-
-        // validation style for checkboxes
-        .checkbox-container {
-            &:has(input.custom-valid) {
-                .visual-checkbox {
-                    --form-element-border-color: #{$successColor};
-                }
-            }
-
-            &:has(input.custom-invalid) {
-                .visual-checkbox {
-                    --form-element-border-color: #{$errorColor};
-                }
-            }
-        }
-
-        // validation style for checkbox groups
-        .checkbox-group.custom-valid {
-            .visual-checkbox {
-                --form-element-border-color: #{$successColor};
-            }
-        }
-
-        .checkbox-group.custom-invalid {
-            .visual-checkbox {
-                --form-element-border-color: #{$errorColor};
-            }
-            .error-and-helper-text-container {
-                .bsi-invalid-feedback {
+        .form-element {
+            &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid), &:has(select:user-invalid), &.checkbox-group.custom-invalid {
+                div.bsi-invalid-feedback {
                     display: flex;
                     color: $errorColor;
                 }
             }
-        }
 
-        // validation for radio-button groups
-        .radio-group {
-            &:has(input:user-valid), &:has(input.custom-valid) {
-                .visual-radio {
+            &:has(input:user-valid), &:has(input.custom-valid), &:has(textarea:user-valid), &:has(select:user-valid) {
+                input, .visual-input, select, textarea, .file-upload {
                     --form-element-border-color: #{$successColor};
                 }
-            }
-
-            &:has(input:user-invalid), &:has(input.custom-invalid) {
-                .visual-radio {
-                    --form-element-border-color: #{$errorColor};
-                }
-            }
-        }
-
-        // validation for poll 
-        .nps-radio-group {
-            &:has(input:user-valid) {
-                .visual-nps-input, .visual-star-input {
-                    --form-element-border-color: #{$successColor};
-                }
-
                 .visual-star-input {
                     color: #{$successColor};
                 }
             }
 
-            &:has(input:user-invalid) {
-                .visual-nps-input, .visual-star-input {
+            &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid), &:has(select:user-invalid) {
+                input, .visual-input, select, textarea, .file-upload {
                     --form-element-border-color: #{$errorColor};
                 }
                 .visual-star-input {
                     color: #{$errorColor};
                 }
-            }
-        }
 
-        // validation style for select element
-        .select-and-error-text {
-            &:has(select:user-valid) {
-                select {
+            }
+
+            // validation style for checkbox groups
+            &.checkbox-group.custom-valid {
+                .visual-checkbox.visual-input {
                     --form-element-border-color: #{$successColor};
                 }
             }
 
-            &:has(select:user-invalid) {
-                select {
+            &.checkbox-group.custom-invalid {
+                .visual-checkbox.visual-input {
                     --form-element-border-color: #{$errorColor};
-                }
-            }
-        }
-
-        // validation style for textarea element
-        .textarea-and-error-text {
-            &:has(textarea:user-valid) {
-                textarea {
-                    --form-element-border-color: #{$successColor};
-                }
-            }
-
-            &:has(textarea:user-invalid) {
-                textarea {
-                    --form-element-border-color: #{$errorColor};
-                }
-            }
-        }
-
-        // validation style for upload element
-        .form-element .file-upload-container .file-upload-and-error-text {
-            &:has(input:user-valid) {
-                .file-upload {
-                    // field valid (0, 6, 1)
-                    outline-color: #{$successColor};
-                }
-            }
-            &:has(input:user-invalid), &:has(input.custom-invalid) {
-                .file-upload {
-                    // field invalid (0, 6, 1)
-                    outline-color: #{$errorColor};
                 }
             }
         }

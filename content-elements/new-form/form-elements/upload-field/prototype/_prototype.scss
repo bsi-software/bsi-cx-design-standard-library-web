@@ -49,13 +49,12 @@
                     background-color: $backgroundColor;
                     
                     // no file (0, 4, 0)
-                    outline: properties.$borderWidth100 dashed $borderColor;
+                    outline: properties.$borderWidth100 dashed var(--form-element-border-color);
                     outline-offset: -(properties.$borderWidth100);
                     border-radius: properties.$borderRadius200;
 
                     &:not(:has(.file-info.hidden)) {
                         // file uploaded (0, 6, 0)
-                        outline-color: $borderActiveColor;
                         outline-style: solid;
                     }
 
