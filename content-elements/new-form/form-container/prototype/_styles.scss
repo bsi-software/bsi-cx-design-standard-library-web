@@ -27,11 +27,11 @@
             background-color: $elementBackgroundColor;
         }
 
-        .helper-text, .form-text {
+        .helper-text-container, .helper-text {
             color: $helperTextColor;
         }
 
-        // TODO: scheinabr wird bei der checkbox diser Style nicht angewendet, prüfen wieso und ob es einen eigenen Style braucht.
+        // validation style for normal input fields
         .input-field-with-error-text {
             &:has(input:user-valid) {
                 input {
@@ -50,6 +50,7 @@
             }
         }
 
+        // validation style for checkboxes
         .checkbox-container {
             &:has(input.custom-valid) {
                 .visual-checkbox {
@@ -61,6 +62,26 @@
                 .visual-checkbox {
                     outline-color: $errorColor;
                 }
+                .bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+        }
+
+        // TODO: custom valid und custom-invalid wird für dei checkbox-group noch nicht gesetzt.
+        // validation style for checkbox groups
+        .checkbox-group.custom-valid {
+            .visual-checkbox {
+                outline-color: $successColor;
+            }
+        }
+
+        .checkbox-group.custom-invalid {
+            .visual-checkbox {
+                outline-color: $errorColor;
+            }
+            .error-and-helper-text-container {
                 .bsi-invalid-feedback {
                     display: flex;
                     color: $errorColor;

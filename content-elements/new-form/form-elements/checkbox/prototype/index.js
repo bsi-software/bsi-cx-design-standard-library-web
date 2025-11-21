@@ -30,7 +30,7 @@ module.exports = (
   .withElementId(elementId)
   .withDescription(elementDescription)
   .withLabel(elementLabel)
-  .withIcon(Icon.TEXT)
+  .withIcon(Icon.CHECKBOX)
   .withParts(
     cx.part.FormCheckbox(formCheckboxPartLabel, formCheckboxPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),

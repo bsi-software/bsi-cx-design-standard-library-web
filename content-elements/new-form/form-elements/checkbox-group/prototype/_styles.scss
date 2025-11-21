@@ -1,0 +1,31 @@
+@use "../../../../../styles/properties.scss" as properties;
+
+@mixin checkboxGroupStyling(
+    $elementId: "checkbox-group-95a8d908",
+) {
+    .bsi-element-#{$elementId} {
+        fieldset {
+            legend {
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 150%;
+                letter-spacing: 0;
+            }
+
+            .checkbox-group-container {
+                display: flex;
+                flex-direction: column;
+                gap: properties.$spacing200;
+            }
+        }
+
+        .error-and-helper-text-wrapper {
+            .error-and-helper-text-container {
+                .bsi-invalid-feedback {
+                    display: none;
+                }
+            }
+        }
+    }
+}
