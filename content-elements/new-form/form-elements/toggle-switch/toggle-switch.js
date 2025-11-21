@@ -3,12 +3,8 @@ import Alpine from "@alpinejs/csp";
 Alpine.data("toggleSwitch", () => ({
 
   checked: false,
-  toggleId: '',
-  labelId: '',
 
   init() {
-    this.toggleId = this.$id('toggle');
-    this.labelId = this.$id('toggle-label');
   },
   
   toggle(event) {
