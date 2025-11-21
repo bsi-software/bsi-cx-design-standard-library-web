@@ -6,6 +6,7 @@
     $hoverBackgroundColor: properties.$formPollHoverBackgroundColor,
     $borderColor: properties.$formBorderColor,
     $activeBackgroundColor: properties.$formActiveBackgroundColor,
+    $activeColor: properties.$formActiveColor,
 ) {
     .bsi-element-#{$elementId} {
         .star-container {
@@ -53,8 +54,8 @@
                         width: 24px;
                         line-height: 24px;
                         text-align: center;
-                        opacity: 1;
-                        content: "\F588"; /* star-stroke bootstrap icon */
+                        opacity: 0;
+                        content: "\F586"; /* star-fill bootstrap icon */
                     }
 
                     &::after {
@@ -64,15 +65,15 @@
                         width: 24px;
                         line-height: 24px;
                         text-align: center;
-                        opacity: 0;
+                        opacity: 1;
                         transition: all 0.2s ease;
-                        content: "\F586"; /* star-fill bootstrap icon */
+                        content: "\F588"; /* star-stroke bootstrap icon */
                     }
                 }
 
                 &:not(:has(.star-poll-radio-hovered)) .star-poll-radio-checked {
                     .visual-star-input {
-                        &::after {
+                        &::before {
                             color: $activeBackgroundColor;
                             opacity: 1;
                         } 
@@ -80,13 +81,19 @@
                 }
 
                 .native-star-input {
-                    &:focus-visible + .visual-star-input::before {
+                    &:focus-visible + .visual-star-input::after {
                         font-weight: bold;
+                    }
+
+                    &:checked:focus-visible + .visual-star-input::after {
+                        font-size: 16px;
+                        font-weight: normal;
+                        color: $activeColor;
                     }
                 }
 
                 .star-poll-radio-hovered {
-                    .visual-star-input::after {
+                    .visual-star-input::before {
                         color: $activeBackgroundColor;
                         opacity: 1;
                     }

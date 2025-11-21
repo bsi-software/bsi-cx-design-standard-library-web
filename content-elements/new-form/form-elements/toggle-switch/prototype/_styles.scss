@@ -43,6 +43,12 @@
                     }
                 }
 
+                .native-checkbox:checked:focus-visible + .visual-toggle-switch {
+                    .toggle-indicator {
+                        transform: scale(0.7) translateX(22px);
+                    }
+                }
+
                 .form-label {
                     cursor: pointer;
                     margin-bottom: properties.$spacing0;
