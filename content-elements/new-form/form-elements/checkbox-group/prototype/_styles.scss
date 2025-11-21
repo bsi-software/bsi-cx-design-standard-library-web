@@ -21,11 +21,15 @@
 
         .error-and-helper-text-wrapper {
             .error-and-helper-text-container {
+                display: flex;
+                flex-direction: column;
+                
                 .bsi-invalid-feedback {
                     display: none;
                 }
             }
         }
+        
 
         &.bsi-group-required legend {
             display: flex;
