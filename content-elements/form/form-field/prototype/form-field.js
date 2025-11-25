@@ -105,22 +105,17 @@ Alpine.data("formField", () => ({
     const accepted = (this.inputEl.accept || '')
       .split(',')
       .map(a => a.trim().toLowerCase())
-      .filter(a => a !== '');
+      .filter(a => !!a);
 
-    if (accepted.length > 0) {
-      for (let file of files) {
-        const ext = '.' + file.name.split('.').pop().toLowerCase();
-        const mime = file.type.toLowerCase();
-        const isValid =
-          accepted.some(acc =>
+    if (accepted.length) {
+      let valid = Array.from(files).every( file => {
+        let ext = '.' + file.name.split('.').pop().toLowerCase();
+        let mime = file.type.toLowerCase();
+        let valid =  accepted.some(acc =>
             acc.endsWith('/*') ? mime.startsWith(acc.replace('/*', '')) : (mime === acc || ext === acc)
           );
-
-        if (!isValid) {
-          valid = false;
-          break;
-        }
-      }
+          return valid;
+      })
     }
 
     this.inputEl.setCustomValidity(valid ? '' : this.logicValidationMessage);
