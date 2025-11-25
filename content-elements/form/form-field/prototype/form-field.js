@@ -211,15 +211,9 @@ Alpine.data("formField", () => ({
 
   _initTelInput() {
     this.iti = intlTelInput(this.inputEl, {
-      initialCountry: 'auto',
+      initialCountry: 'de',
       nationalMode: false,
-      utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js',
-      geoIpLookup: (callback) => {
-        fetch('https://ipapi.co/json')
-          .then(res => res.json())
-          .then(callback('de'))
-          .catch(() => callback('de')); 
-      }
+      loadUtils: () => import('intl-tel-input/build/js/utils.js'),
     });
   },
 
