@@ -203,7 +203,9 @@ Alpine.data("formField", () => ({
     iconSpan.innerHTML = `<i class="bi ${this.isTime ? 'bi-clock' : 'bi-calendar'}"></i>`;
     this.inputEl.parentNode.appendChild(iconSpan);
 
-    this.$root.querySelector('input[type=text]').addEventListener('input', (event) => {
+
+    // Formats the input of a date on the desktop if it is entered without periods. 03121996 -> 03.12.1996
+    this.$root.querySelector('input[type=text]')?.addEventListener('input', (event) => {
       let value = event.target.value;
       event.target.value = value.replace(/(\d{2})(\d{2})(\d{4})/gm, '$1.$2.$3');
     })
