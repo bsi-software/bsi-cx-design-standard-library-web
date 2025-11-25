@@ -17,6 +17,14 @@
     margin-top: 0.5rem !important;
   }
 
+  .input-field-and-icon-container {
+    margin-top: 0.5rem;
+
+    input:not([type=checkbox]):not([type=radio]) {
+      margin-top: 0 !important;
+    }
+  }
+
   label {
     margin-bottom: 0;
   }
