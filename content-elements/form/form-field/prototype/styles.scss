@@ -27,6 +27,18 @@
         transform: translateY(-50%);
         cursor: pointer;
       }
+
+      .iti {
+        display: block;
+
+        .iti__dropdown-content {
+          width: fit-content !important;
+        }
+
+        .iti__tel-input {
+          margin-top: 0.5rem !important;
+        }
+      }
     }
 
     .format-invalid-feedback {
