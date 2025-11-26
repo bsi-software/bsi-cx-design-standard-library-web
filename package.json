@@ -24,7 +24,7 @@
     "sortablejs": "^1.15.0"
   },
   "devDependencies": {
-    "@bsi-cx/design-build": "^1.13.3",
+    "@bsi-cx/design-build": "^2.0.0",
     "file-loader": "^6.2.0"
   }
 }
