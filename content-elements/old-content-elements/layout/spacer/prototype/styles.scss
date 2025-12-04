@@ -1,0 +1,8 @@
+@import "../../../../../styles/properties";
+
+@mixin styles($id: 'spacer-jarY9b') {
+  // ensure spacer is visible when no other items are present (e.g. in banner)
+  .bsi-ce-edit-mode .bsi-element-#{$id} {
+    min-width: 160px;
+  }
+}

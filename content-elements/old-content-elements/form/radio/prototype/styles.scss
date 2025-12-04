@@ -1,0 +1,39 @@
+@import "./../../../../../styles/properties.scss";
+@mixin styles($id: 'radio-O6XCY3') {
+  .bsi-element-#{$id} {
+    &.bsi-radio-inline .form-radio {
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .invalid-feedback {
+      display: none;
+    }
+
+    &:not(:has(input[type="radio"]:checked)):has(input[type="radio"]:user-invalid) {
+      .invalid-feedback {
+        display: block;
+      }
+    }
+
+    .form-radio {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-check-input {
+      -webkit-appearance: none;
+    }
+
+    // Do not apply legend styles
+    legend {
+      all: revert;
+      padding: 0;
+    }
+
+    .radio-info {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+}

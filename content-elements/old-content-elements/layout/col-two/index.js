@@ -1,0 +1,51 @@
+require('./styles.scss');
+
+const {cx, Icon} = require('@bsi-cx/design-build');
+const {contentElements} = require('../../base');
+
+const element = cx.contentElement;
+
+/**
+ * @returns {ContentElement}
+ */
+module.exports = element;
+element.withFile(require('./template.twig'))
+  .withElementId('col-two-ILRIL0')
+  /*.withLabel('2 Columns')*/
+  .withLabel('2 Spalten')
+  .withIcon(Icon.TWO_COLUMNS)
+  .withStyleConfigs(
+    require('../../../../configs/styles/old-elements-styles/col-width'),
+    require('./col-two-ratio'),
+    require('./col-two-order'),
+    require('../col-spacing'),
+    require('../col-gap'),
+    require('../col-alignment'),
+    require('../col-mobile'),
+    require('../../../../configs/styles/old-elements-styles/background-color'),
+    require('../../../../configs/styles/old-elements-styles/color-gradient'),
+    require('../../../../configs/styles/old-elements-styles/background-opacity'))
+  .withDropzones(
+    cx.dropzone
+      .withDropzone('col-two-dropzone-1-aDxFmN')
+      .withAllowedElements(
+        element,
+        require('../col-one'),
+        require('../col-three'),
+        require('../col-four'),
+        require('../spacer'),
+        ...contentElements,
+        require('../../base/banner'),
+        require('../../form/form-container')),
+    cx.dropzone
+      .withDropzone('col-two-dropzone-2-BSeopF')
+      .withAllowedElements(
+        element,
+        require('../col-one'),
+        require('../col-three'),
+        require('../col-four'),
+        require('../spacer'),
+        ...contentElements,
+        require('../../base/banner'),
+        require('../../form/form-container')))
+  .withArchived(true);

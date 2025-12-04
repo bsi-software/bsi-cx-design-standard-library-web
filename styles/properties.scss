@@ -1,5 +1,7 @@
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
 
 /* --------------------- Set style variables ------------------- */
 
@@ -18,14 +20,10 @@ $textColor: bsiProperty('textColor', #282322);
 $primaryFont: bsiProperty('primaryFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $textSize: bsiProperty('textFontSize', 16px);
 
-// Grid Breakpoints (bootstrap)
-$xs: 0;
-$mobile: bsiProperty('gridBreakpointMobile', 375px); 
-$tablet: bsiProperty('gridBreakpointTablet', 768px);
-$lg: bsiProperty('gridBreakpointLG', 992px);
-$desktop: bsiProperty('gridBreakpointDesktop', 1025px);
-$xxl: bsiProperty('gridBreakpointXXL', 1400px);
-
+// breakpoint naming
+$mobile: sm;
+$tablet: md;
+$desktop: lg;
 
 /* -------------- Customizing bootstrap variables -------------- */
 
@@ -50,12 +48,12 @@ $table-bg-scale: -90%; // TODO: brauchen wir das noch? Was tut das?
 
 // Customize breakpoints
 $grid-breakpoints: (
-    xs: $xs,
-    sm: $mobile,
-    md: $tablet,
-    lg: $lg,
-    xl: $desktop,
-    xxl: $xxl
+    xs: 0,
+    sm: bsiProperty('gridBreakpointMobile', 375px), // mobile
+    md: bsiProperty('gridBreakpointTablet', 768px), // tablet
+    lg: bsiProperty('gridBreakpointDesktop', 1025px), // desktop
+    xl: 9998px,
+    xxl: 9999px,
 );
 
 $spacers: map-merge($spacers, (
@@ -63,3 +61,52 @@ $spacers: map-merge($spacers, (
     7: $spacer * 7.5,
     8: $spacer * 10,
 ));
+
+
+
+/* ----------------- Old properties (delete if possible) ------------------------*/
+
+// Fonts
+$textFont: bsiProperty('textFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+
+$titleStyle1FontFamily: bsiProperty('titleStyle1FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+$titleStyle2FontFamily: bsiProperty('titleStyle2FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+$titleStyle3FontFamily: bsiProperty('titleStyle3FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+$titleStyle4FontFamily: bsiProperty('titleStyle4FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+$titleStyle5FontFamily: bsiProperty('titleStyle5FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+$titleStyle6FontFamily: bsiProperty('titleStyle6FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+
+$titleStyle1FontSize: bsiProperty('titleStyle1FontSize', 2.5rem);
+$titleStyle1FontSizeMobile: bsiProperty('titleStyle1FontSizeMobile', $titleStyle1FontSize);
+$titleStyle2FontSize: bsiProperty('titleStyle2FontSize', 2rem);
+$titleStyle2FontSizeMobile: bsiProperty('titleStyle2FontSizeMobile', $titleStyle2FontSize);
+$titleStyle3FontSize: bsiProperty('titleStyle3FontSize', 1.75rem);
+$titleStyle3FontSizeMobile: bsiProperty('titleStyle3FontSizeMobile', $titleStyle3FontSize);
+$titleStyle4FontSize: bsiProperty('titleStyle4FontSize', 1.5rem);
+$titleStyle4FontSizeMobile: bsiProperty('titleStyle4FontSizeMobile', $titleStyle4FontSize);
+$titleStyle5FontSize: bsiProperty('titleStyle5FontSize', 1.2rem);
+$titleStyle5FontSizeMobile: bsiProperty('titleStyle5FontSizeMobile', $titleStyle5FontSize);
+$titleStyle6FontSize: bsiProperty('titleStyle6FontSize', 1rem);
+$titleStyle6FontSizeMobile: bsiProperty('titleStyle6FontSizeMobile', $titleStyle6FontSize);
+
+// Banner
+$bannerHeight: bsiProperty('bannerHeight', 250px);
+
+// Icons
+$icon-primary-color: '%23' + str-slice(#{$primary}, 2);
+$star-icon-primary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-primary-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
+$star-fill-icon-primary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='" + $icon-primary-color + "' class='bi bi-star-fill' viewBox='0 0 16 16'> <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/> </svg>");
+$icon-secondary-color: '%23' + str-slice(#{$secondary}, 2);
+$star-icon-secondary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-secondary-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
+$star-fill-icon-secondary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='" + $icon-secondary-color + "' class='bi bi-star-fill' viewBox='0 0 16 16'> <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/> </svg>");
+$icon-invalid-color: '%23' + str-slice(#{$invalid}, 2);
+$star-icon-invalid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-invalid-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
+$icon-valid-color: '%23' + str-slice(#{$valid}, 2);
+$star-icon-valid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-valid-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
+$star-fill-icon-valid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='" + $icon-valid-color + "' class='bi bi-star-fill' viewBox='0 0 16 16'> <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/> </svg>");
+
+//Flatpickr
+$flatpickrInput: bsiProperty('flatpickrInput', 'allowInput');
+
+// Customize table styling
+$table-bg-scale: -90%;
