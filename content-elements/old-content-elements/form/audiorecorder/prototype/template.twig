@@ -1,0 +1,30 @@
+{% set audiorecorderElementId = elementId ?: 'audiorecorder-e89a2a' %}
+{% set audiorecorderFormTextPartId = formTextPartId ?: 'id-file-input-c1db98' %}
+
+
+<div data-bsi-element="{{audiorecorderElementId}}" x-data="audioRecorder" class="{{ 'bsi-element-' ~ audiorecorderElementId }} audio-recorder">
+  <div class="recorder-top">
+    <div x-on:click="toggleRecording" class="record-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+        <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+        <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3"/>
+      </svg>
+    </div>
+    <div class="recording-ui">
+      <div class="waveform">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="timer" x-ref="timer">00:00</div>
+    </div>
+  </div>
+
+  <div class="audio-wrapper">
+    <audio class="audio-playback" controls></audio>
+  </div>
+
+  <div class="form-field" data-bsi-form-field-fixed-type="" data-bsi-element-part="{{ audiorecorderFormTextPartId }}">
+    <label for='field' class="label">File Audio</label>
+    <input type="file" class="input form-control bsi-form-field-input" id="" value="" accept="audio/*"></input>
+  </div>
+
+</div>

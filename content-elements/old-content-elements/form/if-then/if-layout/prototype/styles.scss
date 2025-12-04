@@ -1,0 +1,35 @@
+@mixin styles($elementId: 'if-layout-TljhJw', $editorBorderColor: #333333) {
+    .bsi-element-#{$elementId} .then-group {
+        display: block;
+
+        &[aria-hidden] {
+            display: none;
+        }
+
+        .condition {
+            display: none;
+        }
+    }
+
+    .bsi-ce-edit-mode .bsi-element-#{$elementId} {
+        .then-group {
+            margin-left: 1rem;
+            display: block;
+        }
+
+        &:has(.if-container input[type=radio],
+            .if-container input[type=checkbox],
+            .if-container select) {
+            .then-group .condition {
+                display: block;
+                color: $editorBorderColor;
+
+                &::before {
+                    content: "Sichtbar, wenn: "
+                }
+            }
+        }
+
+    }
+
+}

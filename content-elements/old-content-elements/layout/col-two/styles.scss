@@ -1,0 +1,52 @@
+@import "../../../../styles/properties";
+
+.bsi-element-col-two-ILRIL0 {
+    @include media-breakpoint-up($tablet) {
+        &.bsi-ratio-6-6 {
+            > .row > .bsi-column-1 {
+                width: 50%;
+            }
+            > .row > .bsi-column-2 {
+                width: 50%;
+            }
+        }
+
+        &.bsi-ratio-4-8 {
+            > .row > .bsi-column-1 {
+                width: 33.33333333%;
+            }
+            > .row > .bsi-column-2 {
+                width: 66.66666667%;
+            }
+        }
+
+        &.bsi-ratio-8-4 {
+            > .row > .bsi-column-1 {
+                width: 66.66666667%;
+            }
+            > .row > .bsi-column-2 {
+                width: 33.33333333%;
+            }
+        }        
+    }
+    @include media-breakpoint-down($tablet) {
+        &.bsi-col-order-swapped,
+        &.bsi-col-order-swapped-desktop {
+            > .row {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+    @include media-breakpoint-down($tablet) {
+        &.bsi-col-order-swapped,
+        &.bsi-col-order-swapped-mobile {
+            > .row {
+                flex-direction: column-reverse;
+            }
+        }
+
+        &.bsi-mobile-keep .row .bsi-column {
+            width: 50%!important;
+        }
+    }
+}

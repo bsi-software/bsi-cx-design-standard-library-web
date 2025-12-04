@@ -1,0 +1,10 @@
+{% set ifLayoutElementId = elementId ?: "if-layout-TljhJw" %}
+
+<div data-bsi-element="{{ ifLayoutElementId }}" class="bsi-element-{{ ifLayoutElementId }} mb-3 legend-size-h4" x-data="ifThenGroup">
+	<div class="if-container" data-bsi-dropzone="if-container-Ys0IFw">
+		{% include "../../../checkbox/template.twig" %}
+	</div>
+	<div class="then-container" data-bsi-dropzone="then-container-KQoqAa">
+		{% include "../../then-group/template.twig" %}
+	</div>
+</div>
