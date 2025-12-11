@@ -25,7 +25,7 @@
 
         &.recording {
           .record-btn {
-            background-color: bsiProperty('recordingColor', '#ff0000');
+            background-color: bsiProperty('recordingColor', #ff0000);
             animation: pulse 1.5s infinite;
           }
           .waveform span {
@@ -46,8 +46,8 @@
           height: 40px;
           border-radius: 50%;
           border: none;
-          background-color: bsiProperty('audioRecorderColor', '#25D366');
-          color: bsiProperty('lightColor', '#ffffff');
+          background-color: bsiProperty('audioRecorderColor', #25D366);
+          color: bsiProperty('lightColor', #ffffff);
           font-size: 24px;
           cursor: pointer;
           display: flex;
@@ -67,14 +67,14 @@
             span {
               width: 4px;
               height: 8px;
-              background: bsiProperty('audioRecorderColor', '#25D366');
+              background: bsiProperty('audioRecorderColor', #25D366);
               border-radius: 2px;
             }
           }
 
           .timer {
             font-size: 14px;
-            color:bsiProperty('darkColor', '#383e42');
+            color:bsiProperty('darkColor', #383e42);
             min-width: 45px;
             text-align: center;
             display: none;
@@ -101,7 +101,7 @@
 
       @media screen and (prefers-color-scheme: dark) {
         .recording-ui .timer {
-          color: bsiProperty('lightColor', '#ffffff');
+          color: bsiProperty('lightColor', #ffffff);
         }
       }
     }
