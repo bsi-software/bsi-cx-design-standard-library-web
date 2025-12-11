@@ -20,6 +20,8 @@ module.exports = (
   .withDropzones(
     cx.dropzone
     .withDropzone(dropzoneContentId)
-    .withAllowedElements(
-      require('../../list-item')))
+    // TODO: .withAllowedElements(
+      // require('../../list-item')
+    // )
+  )
   .withArchived(true);
