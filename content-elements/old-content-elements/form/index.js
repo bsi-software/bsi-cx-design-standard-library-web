@@ -7,7 +7,7 @@ const formElements = [
   require('./poll'),
   require('./radio'),
   require('./recaptcha'),
-  require('./regex-input'),
+  // require('./regex-input'),
   require('./select'),
   require('./text-area'),
 ];
