@@ -15,3 +15,9 @@ const oldContentElements = [
 ];
 
 module.exports.oldContentElements = oldContentElements;
+module.exports.group = cx.contentElementGroup
+  .withGroupId('old-content-elements-6657fcec')
+  .withLabel('Alte Content Elemente')
+  .withContentElements(
+    ...oldContentElements
+  );
