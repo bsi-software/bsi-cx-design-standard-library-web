@@ -2,8 +2,8 @@
 @import "bootstrap/scss/bootstrap";
 
 // TODO: Remove if old headlines and/or layout elements are removed
-@import "../content-elements/old-content-elements/base/headlines/styles.scss";
-@import "../content-elements/old-content-elements/layout/styles.scss";
+@import "../content-elements/_old-content-elements/base/headlines/styles.scss";
+@import "../content-elements/_old-content-elements/layout/styles.scss";
 
 // Styles used by multiple content elements:
 body p {

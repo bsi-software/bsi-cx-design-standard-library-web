@@ -8,10 +8,10 @@ const oldContentElements = [
   ...contentElements,
   ...advancedElements,
   ...formElements,
-  require('../../content-elements/old-content-elements/form/form-container'),
-  require('../../content-elements/old-content-elements/form/if-then/if-layout'),
-  require('../../content-elements/old-content-elements/form/if-then/then-group'),
-  require('../../content-elements/old-content-elements/form/multi-column'),
+  require('../../content-elements/_old-content-elements/form/form-container'),
+  require('../../content-elements/_old-content-elements/form/if-then/if-layout'),
+  require('../../content-elements/_old-content-elements/form/if-then/then-group'),
+  require('../../content-elements/_old-content-elements/form/multi-column'),
 ];
 
 module.exports.oldContentElements = oldContentElements;
