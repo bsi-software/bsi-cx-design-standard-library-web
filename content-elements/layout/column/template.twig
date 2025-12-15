@@ -1,0 +1,20 @@
+{% import "../../_macros/preset-macro.twig" as presets %}
+
+{% set paddingClasses = {
+    'small': 'col-pad-small',
+    'medium': 'col-pad-medium',
+    'large': 'col-pad-large'
+} %}
+
+{% set gridColumnElementId = elementId ?: 'bsi-grid-column-7972a004' %}
+{% set gridColumnDropzoneId = dropzoneId ?: 'bsi-grid-column-dropzone-57ce4d08' %}
+{% set paddingClass = presets.resolvePreset(padding, properties.columnPadding, paddingClasses, 'medium') %}
+
+{% apply spaceless %}
+    <div data-bsi-element="{{ gridColumnElementId }}" class="bsi-grid-column-element {{ paddingClass }}">
+        <div data-bsi-dropzone="{{ gridColumnDropzoneId }}"> 
+            {% block grid_column_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endapply %}

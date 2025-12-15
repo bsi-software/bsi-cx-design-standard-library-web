@@ -1,0 +1,39 @@
+{% import "../../_macros/preset-macro.twig" as presets %}
+
+{% set validGaps = {
+    'small': 'grid-gap-small',
+    'medium': 'grid-gap-medium',
+    'large': 'grid-gap-large'
+} %}
+
+{% set expandBackground = {
+    'yes': 'grid-expand-background',
+    'no': 'grid-normal-background',
+} %}
+
+{% set backgroundColors = {
+    'transparent': 'grid-background-color-transparent',
+    'primary': 'grid-background-color-primary',
+    'secondary': 'grid-background-color-secondary',
+    'tertiary': 'grid-background-color-tertiary',
+    'dark': 'grid-background-color-dark',
+} %}
+
+
+{% set gridElementId = elementId ?: 'bsi-grid-1814ad2b' %}
+{% set gridDropzoneId = dropzoneId ?: 'bsi-grid-dropzone-7da41088' %}
+
+{% set gapClass = presets.resolvePreset(gap, properties.gap, validGaps, 'medium') %}
+{% set expandBackgroundClass = presets.resolvePreset(expandBackground, properties.expandBackground, expandBackground, 'no') %}
+{% set backgroundColorClass = presets.resolvePreset(backgroundColor, properties.backgroundColor, backgroundColors, 'transparent') %}
+
+{% apply spaceless %}
+    <div data-bsi-element="{{gridElementId}}" class="{{ 'bsi-element-' ~ gridElementId }} bsi-grid-element {{ gapClass }} {{ expandBackgroundClass }} {{ backgroundColorClass }}">
+        <div class="container">
+            <div data-bsi-dropzone="{{ gridDropzoneId }}" data-bsi-dropzone-max-number-of-elements="12" class="grid" >
+                {% block grid_content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endapply %}

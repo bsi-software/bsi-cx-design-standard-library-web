@@ -1,0 +1,51 @@
+@import "../../../styles/properties";
+
+.bsi-grid-element {
+
+    $gaps: (
+        "small": bsiProperty("gridGapSmall", 0.5rem),
+        "medium": bsiProperty("gridGapMedium", 1rem),
+        "large": bsiProperty("gridGapLarge", 2rem),
+    );
+
+    @each $name, $gap in $gaps {
+        &.grid-gap-#{$name} .grid {
+            gap: $gap;
+
+            /* Mobile: max 4 Columns */
+            grid-template-columns: repeat(auto-fit, minmax(calc((100% - 3*#{$gap})/4), 1fr));
+
+            
+            /* Tablet: max 8 Columns */
+            @include media-breakpoint-up($tablet) {
+                grid-template-columns: repeat(auto-fit, minmax(calc((100% - 7*#{$gap})/8), 1fr));
+            }
+
+            /* Desktop: max 12 Columns */
+            @include media-breakpoint-up($desktop) {
+                grid-template-columns: repeat(auto-fit, minmax(calc((100% - 11*#{$gap})/12), 1fr));
+            }
+        }
+    }
+
+    $backgroundColors: (
+        "transparent": "transperent",
+        "primary": bsiProperty("primary", #fe9915),
+        "secondary": bsiProperty("secondary", #0082a1),
+        "tertiary": bsiProperty("tertiary", #2bb198),
+        "dark": bsiProperty("dark", #333333),
+    );
+
+    @each $name, $color in $backgroundColors {
+        &.grid-background-color-#{$name} {
+            &.grid-expand-background {
+                background-color: $color;
+            }
+
+            &.grid-normal-background .container {
+                background-color: $color;
+            }
+        }
+    }
+    
+}

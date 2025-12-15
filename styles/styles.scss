@@ -5,6 +5,19 @@
 @import "../content-elements/_old-content-elements/base/headlines/styles.scss";
 @import "../content-elements/_old-content-elements/layout/styles.scss";
 
+// Bootstrap css Grid styles
+.bsi-grid-element {
+    --bs-columns: 12;
+    --bs-gap: 1.5rem;
+
+    @include media-breakpoint-down($tablet) {
+        --bs-columns: 8;
+    }
+
+    @include media-breakpoint-down($mobile) {
+        --bs-columns: 4;
+    }
+}
 // Styles used by multiple content elements:
 body p {
   margin-bottom: 0;

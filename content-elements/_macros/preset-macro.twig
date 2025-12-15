@@ -1,0 +1,46 @@
+{#
+    Macro: resolvePreset
+    -------------------
+
+    This macro selects and returns a preset value from a predefined collection of valid presets,
+    primarily intended for assigning CSS classes, while enforcing a clear set of allowed options.
+
+    Parameters:
+
+    - preset (string): The primary preset key. This is the value that can be specified when including or
+        extending the element where the macro is used.
+
+    - propertiesPreset (string, optional): A secondary preset key. This is a value that can be defined in a properties file
+        and is used if preset is not provided or invalid. Defaults to null.
+
+    - validPresets (dict): A dictionary of valid preset keys and their corresponding values.
+
+    - defaultKey (string): The key to use if neither preset nor propertiesPreset are valid.
+
+    Behavior:
+
+    If preset exists as a key in validPresets, its corresponding value is returned.
+    If preset is not valid but propertiesPreset exists in validPresets, that value is returned.
+    If neither are valid, the value corresponding to defaultKey is returned.
+
+    The output is rendered without extra whitespace, thanks to the spaceless filter.
+
+    Use Case:
+    This macro is especially useful for dynamically assigning CSS classes in templates.
+    It allows developers to specify presets either directly when using the element (preset) or
+    via a centralized properties file (propertiesPreset). It ensures that only predefined,
+    valid class options are applied, enforcing a clear set of allowed values and preventing invalid classes.
+#}
+
+{% macro resolvePreset(preset, propertiesPreset = null, validPresets, defaultKey) %}
+{% apply spaceless %}
+	{% if preset in validPresets|keys %}
+		{% set key = preset %}
+	{% elseif propertiesPreset in validPresets|keys %}
+		{% set key = propertiesPreset %}
+	{% else %}
+		{% set key = defaultKey %}
+	{% endif %}
+	{{- validPresets[key] -}}
+{% endapply %}
+{% endmacro %}
