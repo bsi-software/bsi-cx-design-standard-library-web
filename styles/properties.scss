@@ -1,30 +1,81 @@
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
 
 /* --------------------- Set style variables ------------------- */
 
 // Colors
-$primary: bsiProperty('primaryColor', #2F4E66);
-$secondary: bsiProperty('secondaryColor', #93C120);
-$tertiary: bsiProperty('tertiaryColor', #ee941c);
-$info: bsiProperty('infoColor', #6c757d);
-$dark: bsiProperty('darkColor', #383e42);
+$primary: bsiProperty('primaryColor', #fe9915);
+$secondary: bsiProperty('secondaryColor', #0082a1);
+$tertiary: bsiProperty('tertiaryColor', #2bb198);
+$dark: bsiProperty('darkColor', #333333);
 $light: bsiProperty('lightColor', #ffffff);
-$valid: bsiProperty('validColor', #198754);
-$invalid: bsiProperty('invalidColor', #dc3545);
-$textColor: bsiProperty('textColor', #383e42);
-$dark-mode-text-color: bsiProperty('darkModeTextColor', #ffffff);
+$info: bsiProperty('infoColor', #abb3b8);
+$invalid: bsiProperty('invalidColor', #d11928);
+$valid: bsiProperty('validColor', #19804b);
+$textColor: bsiProperty('textColor', #282322);
+
 // Fonts
 $primaryFont: bsiProperty('primaryFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+$textSize: bsiProperty('textFontSize', 16px);
+
+// breakpoint naming
+$mobile: sm;
+$tablet: md;
+$desktop: lg;
+
+/* -------------- Customizing bootstrap variables -------------- */
+
+// Customize colors
+$theme-colors: (
+    'primary':    $primary,
+    'secondary':  $secondary,
+    'success':    $valid,
+    'info':       $info,
+    'warning':    $warning,
+    'danger':     $invalid,
+    'light':      $light,
+    'dark':       $dark
+);
+
+// Customize fonts
+$font-family-sans-serif: $primaryFont;
+$font-family-monospace: $primaryFont;
+
+// Customize table styling
+$table-bg-scale: -90%; // TODO: brauchen wir das noch? Was tut das?
+
+// Customize breakpoints
+$grid-breakpoints: (
+    xs: 0,
+    sm: bsiProperty('gridBreakpointMobile', 375px), // mobile
+    md: bsiProperty('gridBreakpointTablet', 768px), // tablet
+    lg: bsiProperty('gridBreakpointDesktop', 1025px), // desktop
+    xl: 9998px,
+    xxl: 9999px,
+);
+
+$spacers: map-merge($spacers, (
+    6: $spacer * 5,
+    7: $spacer * 7.5,
+    8: $spacer * 10,
+));
+
+
+
+/* ----------------- Old properties (delete if possible) ------------------------*/
+
+// Fonts
+$textFont: bsiProperty('textFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
+
 $titleStyle1FontFamily: bsiProperty('titleStyle1FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle2FontFamily: bsiProperty('titleStyle2FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle3FontFamily: bsiProperty('titleStyle3FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle4FontFamily: bsiProperty('titleStyle4FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle5FontFamily: bsiProperty('titleStyle5FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle6FontFamily: bsiProperty('titleStyle6FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
-$textFont: bsiProperty('textFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 
-// Sizes
 $titleStyle1FontSize: bsiProperty('titleStyle1FontSize', 2.5rem);
 $titleStyle1FontSizeMobile: bsiProperty('titleStyle1FontSizeMobile', $titleStyle1FontSize);
 $titleStyle2FontSize: bsiProperty('titleStyle2FontSize', 2rem);
@@ -37,7 +88,8 @@ $titleStyle5FontSize: bsiProperty('titleStyle5FontSize', 1.2rem);
 $titleStyle5FontSizeMobile: bsiProperty('titleStyle5FontSizeMobile', $titleStyle5FontSize);
 $titleStyle6FontSize: bsiProperty('titleStyle6FontSize', 1rem);
 $titleStyle6FontSizeMobile: bsiProperty('titleStyle6FontSizeMobile', $titleStyle6FontSize);
-$textSize: bsiProperty('textFontSize', 16px);
+
+// Banner
 $bannerHeight: bsiProperty('bannerHeight', 250px);
 
 // Icons
@@ -53,49 +105,8 @@ $icon-valid-color: '%23' + str-slice(#{$valid}, 2);
 $star-icon-valid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-valid-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
 $star-fill-icon-valid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='" + $icon-valid-color + "' class='bi bi-star-fill' viewBox='0 0 16 16'> <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/> </svg>");
 
-// Grid
-$xs: bsiProperty('gridBreakpointXS', 0);
-$sm: bsiProperty('gridBreakpointSM', 576px);
-$md: bsiProperty('gridBreakpointMD', 768px);
-$lg: bsiProperty('gridBreakpointLG', 940px);
-$xl: bsiProperty('gridBreakpointXL', 1200px);
-$xxl: bsiProperty('gridBreakpointXXL', 1400px);
-
-//Flatpickr
+// Flatpickr
 $flatpickrInput: bsiProperty('flatpickrInput', 'allowInput');
-
-//darkMode
-$darkModeActive: bsiProperty('darkModeActiveProperty');
-/* -------------- Customizing bootstrap variables -------------- */
-
-// Customize colors
-$theme-colors: (
-    'primary': $primary,
-    'secondary': $secondary,
-    'info': $info,
-    'dark': $dark,
-    'light': $light
-);
-
-// Customize fonts
-$font-family-sans-serif: $primaryFont;
-$font-family-monospace: $primaryFont;
 
 // Customize table styling
 $table-bg-scale: -90%;
-
-// Customize breakpoints
-$grid-breakpoints: (
-    xs: $xs,
-    sm: $sm,
-    md: $md,
-    lg: $lg,
-    xl: $xl,
-    xxl: $xxl
-);
-
-$spacers: map-merge($spacers, (
-    6: $spacer * 5,
-    7: $spacer * 7.5,
-    8: $spacer * 10,
-));
