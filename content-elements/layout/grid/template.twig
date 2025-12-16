@@ -11,12 +11,12 @@
     'no': 'grid-normal-background',
 } %}
 
-{% set backgroundColors = {
-    'transparent': 'grid-background-color-transparent',
-    'primary': 'grid-background-color-primary',
-    'secondary': 'grid-background-color-secondary',
-    'tertiary': 'grid-background-color-tertiary',
-    'dark': 'grid-background-color-dark',
+{% set validBackgroundColors = {
+    'transparent': 'bg-color-transparent',
+    'primary': 'bg-color-primary',
+    'secondary': 'bg-color-secondary',
+    'tertiary': 'bg-color-tertiary',
+    'dark': 'bg-color-dark',
 } %}
 
 
@@ -25,13 +25,14 @@
 
 {% set gapClass = presets.resolvePreset(gap, properties.gap, validGaps, 'medium') %}
 {% set expandBackgroundClass = presets.resolvePreset(expandBackground, properties.expandBackground, expandBackground, 'no') %}
-{% set backgroundColorClass = presets.resolvePreset(backgroundColor, properties.backgroundColor, backgroundColors, 'transparent') %}
+{% set backgroundColorClass = presets.resolvePreset(backgroundColor, properties.gridBackgroundColor, validBackgroundColors, 'transparent') %}
 
 {% apply spaceless %}
     <div data-bsi-element="{{gridElementId}}" class="{{ 'bsi-element-' ~ gridElementId }} bsi-grid-element {{ gapClass }} {{ expandBackgroundClass }} {{ backgroundColorClass }}">
         <div class="container">
             <div data-bsi-dropzone="{{ gridDropzoneId }}" data-bsi-dropzone-max-number-of-elements="12" class="grid" >
                 {% block grid_content %}
+                    {% include "../column/template.twig" %}
                 {% endblock %}
             </div>
         </div>

@@ -1,22 +1,25 @@
 const { cx } = require('@bsi-cx/design-build');
 
 module.exports = cx.style
-    .withIdentifier('grid-background-color-d053edf9')
+    .withIdentifier('column-background-color-80ed9ce9')
     .withLabel('Hintergrundfarbe')
     .withCssClasses(
         cx.cssClass
             .withLabel('Transparent')
-            .withCssClass('grid-background-color-transparent'),
+            .withCssClass('bg-color-transparent'),
         cx.cssClass
             .withLabel('Primary')
-            .withCssClass('grid-background-color-primary'),
+            .withCssClass('bg-color-primary'),
         cx.cssClass
             .withLabel('Secondary')
-            .withCssClass('grid-background-color-secondary'),
+            .withCssClass('bg-color-secondary'),
         cx.cssClass
             .withLabel('Tertiary')
-            .withCssClass('grid-background-color-tertiary'),
+            .withCssClass('bg-color-tertiary'),
+        cx.cssClass
+            .withLabel('Light')
+            .withCssClass('bg-color-light'),
         cx.cssClass
             .withLabel('Dark')
-            .withCssClass('grid-background-color-dark'),
+            .withCssClass('bg-color-dark'),
     );

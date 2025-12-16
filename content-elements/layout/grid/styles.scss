@@ -2,6 +2,10 @@
 
 .bsi-grid-element {
 
+    &.grid-rounded-corners {
+        border-radius: bsiProperty("gridRoundetCorner", 0.5rem);
+    }
+
     $gaps: (
         "small": bsiProperty("gridGapSmall", 0.5rem),
         "medium": bsiProperty("gridGapMedium", 1rem),
@@ -29,7 +33,7 @@
     }
 
     $backgroundColors: (
-        "transparent": "transperent",
+        "transparent": transparent,
         "primary": bsiProperty("primary", #fe9915),
         "secondary": bsiProperty("secondary", #0082a1),
         "tertiary": bsiProperty("tertiary", #2bb198),
@@ -37,7 +41,7 @@
     );
 
     @each $name, $color in $backgroundColors {
-        &.grid-background-color-#{$name} {
+        &.bg-color-#{$name} {
             &.grid-expand-background {
                 background-color: $color;
             }

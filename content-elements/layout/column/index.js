@@ -7,6 +7,12 @@ module.exports = cx.contentElement
   .withLabel("Spalte (Grid)")
   .withFile(require("./template.twig"))
   .withIcon(Icon.ONE_COLUMN)
+  .withAddStyleConfigs(
+    require("./configs/backgroundColor"),
+    require("./configs/roundedCorners"),
+    require("./configs/verticalAlignment"),
+    require("./configs/horizontalAlignment"),
+  )
   .withDropzones(
     cx.dropzone
       .withDropzone("bsi-grid-column-dropzone-57ce4d08")
