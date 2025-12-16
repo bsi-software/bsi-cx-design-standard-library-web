@@ -8,9 +8,9 @@ module.exports = cx.contentElement
   .withFile(require("./template.twig"))
   .withIcon(Icon.ONE_COLUMN)
   .withAddStyleConfigs(
-    require("./configs/gap"),
     require("./configs/expandBackground"),
     require("./configs/backgroundColor"),
+    require("./configs/gridTemplate"),
   )
   .withDropzones(
     cx.dropzone
