@@ -1,0 +1,14 @@
+{% set gridElementId = elementId ?: 'bsi-grid-v68Eos' %}
+{% set gridDropzoneId = dropzoneId ?: 'bsi-grid-dropzone-QYpcxP' %}
+
+{% apply spaceless %}
+    <div data-bsi-element="{{gridElementId}}" class="{{ 'bsi-element-' ~ gridElementId }} bsi-grid-element-temlate-part {{ '{{ grid-background-color-cN3IpC.value }} {{#if grid-expand-background-7h1Mpz.value}}grid-expand-background{{/if}}' }}">
+        <div class="container {{ '{{#unless grid-expand-background-7h1Mpz.value}}grid-normal-background{{/unless}}' }}">
+            <div data-bsi-dropzone="{{ gridDropzoneId }}" class="grid {{ '{{ grid-template-XepNDf.value }}' }}" >
+                {% block grid_content %}
+                    {# {% include "../../column/template.twig" %} #}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endapply %}

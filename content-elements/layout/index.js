@@ -3,6 +3,8 @@ const { cx } = require('@bsi-cx/design-build');
 const layoutElements = [
     require("./grid"),
     require("./column"),
+    require("./template-parts/grid"),
+    require("./template-parts/column"),
 ];
 
 module.exports.layoutElements = layoutElements;

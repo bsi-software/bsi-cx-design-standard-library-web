@@ -1,0 +1,11 @@
+{% set gridColumnElementId = elementId ?: 'bsi-grid-column-G0PwWz' %}
+{% set gridColumnDropzoneId = dropzoneId ?: 'bsi-grid-column-dropzone-0Dv7Uo' %}
+
+{% apply spaceless %}
+    <div data-bsi-element="{{ gridColumnElementId }}" class="bsi-grid-column-element-template-part {{ '{{ column-background-color-XzF28g.value }} {{ column-horizontal-alignment-2AmT0r.value }} {{ column-vertical-alignment-LuY0Fn.value }} {{#if column-rounded-corners-J2lsXv.value}}column-rounded-corners{{/if}}' }}">
+        <div data-bsi-dropzone="{{ gridColumnDropzoneId }}" class="{{ '{{ column-direction-YjtUbZ.value }}' }}"> 
+            {% block grid_column_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endapply %}

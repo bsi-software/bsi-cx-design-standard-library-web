@@ -1,6 +1,6 @@
-@import "../../../styles/properties";
+@import "../../../../styles/properties";
 
-.bsi-grid-element {
+.bsi-grid-element-temlate-part {
 
     &.grid-rounded-corners {
         border-radius: bsiProperty("gridRoundetCorner", 0.5rem);
@@ -48,7 +48,7 @@
     );
 
     @each $name, $templates in $gridTemplates {
-        &.grid-template-#{$name} .grid {
+        .grid-template-#{$name} {
             /* Mobile */
             grid-template-columns: map-get($templates, mobile);
             
@@ -78,7 +78,7 @@
                 background-color: $color;
             }
 
-            .grid-normal-background .container {
+            .grid-normal-background {
                 background-color: $color;
             }
         }
