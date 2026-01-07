@@ -1,4 +1,5 @@
-.bsi-grid-column-element {
+.bsi-grid-column-element-template-part {
+
 
     $backgroundColors: (
         "transparent": transparent,
@@ -15,9 +16,9 @@
             @if $name == "transparent" {
                 border-radius: unset;
             } @else {
-                padding: bsiProperty("columnRoundetCorner", 0.5rem);
+                padding: bsiProperty("colPadding", 16px);
                 &.column-rounded-corners {
-                    border-radius: bsiProperty("columnRoundetCorner", 0.5rem);
+                    border-radius: bsiProperty("columnRoundetCorner", 8px);
                 }
             }
         }
@@ -44,6 +45,21 @@
     @each $name, $alignment in $horizontalAlignment {
         &.column-horizontal-alignment-#{$name} {
             justify-items: $alignment;
+        }
+    };
+
+    $directions: (
+        "vertical": column,
+        "horizontal": row,
+    );
+
+    @each $name, $direction in $directions {
+        .column-direction-#{$name} {
+            width: 100%;
+            display: flex;
+            flex-direction: $direction;
+            flex-wrap: wrap;
+            gap: bsiProperty("gapBetweenElementsInColumns", 8px);
         }
     };
 
