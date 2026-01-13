@@ -24,14 +24,16 @@ $buttonTextColor: #333333 !default;
 
     .bsi-button {
         display: flex;
-        gap: bsiProperty("buttonGap", 4px);
+        // gap: bsiProperty("buttonGap", 4px);
+        gap: $buttonGap;
         justify-content: center;
         padding: bsiProperty("buttonPadding", 0.25rem);
         // border-color: bsiProperty("buttonBorderColor", #ffffff);
         // border-width: bsiProperty("buttonBorderWidth", 2px);
         border: bsiProperty("buttonBorderStyle", 2px solid #fff);
         text-decoration: none;
-        color: bsiProperty("buttonTextColor", #333333);
+        // color: bsiProperty("buttonTextColor", #333333);
+        color: $keriTestColor;
 
         i {
             display: flex;
