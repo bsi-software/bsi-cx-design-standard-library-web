@@ -73,15 +73,17 @@ $buttonTextColor: #333333 !default;
             "left" : row-reverse,
             "right" : row,
         );
-
+        
         @each $name, $position in $iconPosition {
-            &.button-icon-#{$name} {
+            &:has(.icon[class*="-#{$name}"]) {
+                flex-direction: $position;
+            }
+            .icon[class*="-#{$name}"] {
                 @if $name == "none" {
                     i {
                         display: none;
                     }
                 }
-                flex-direction: $position;
             }
         }
     }
