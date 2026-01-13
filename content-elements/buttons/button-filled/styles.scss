@@ -4,7 +4,7 @@
         @if (lightness($background) > 50%) {
             @return #333333; // dark text color
         } @else {
-            @return #381919; // light text color
+            @return #ffffff; // light text color
         }
     }
 
