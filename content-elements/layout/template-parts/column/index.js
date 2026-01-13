@@ -1,45 +1,49 @@
 // require("./styles.scss");
 
-const { TemplateElement, Icon, cx } = require("@bsi-cx/design-build");
+const { TemplateElement, Icon, cx, bsiProperty } = require("@bsi-cx/design-build");
 
 /**
  * @type {TemplateElement}
  */
 module.exports = cx.templateElement
   .withElementId("bsi-grid-column-G0PwWz")
-  .withLabel("Spalte (Grid) (Template Part)")
+  .withLabel(bsiProperty("column.label", "Spalte (Grid) (Template Part)"))
   .withFile(require("./template.hbs.twig"))
   .withIcon(Icon.ONE_COLUMN)
   .withTemplateParts(
     // Tooltip: Gibt an, ob die Splaten abgerundete Ecken haben oder nicht. Dies hat nur auswirkungen auf Spalten, die keinen transparenten hintergrund haben.
-    cx.templatePart.Checkbox("Abgerundete Ecken? (nur bei nicht transparentem Hintergrund relevant)", "column-rounded-corners-J2lsXv").withCheckboxPrefill(true),
+    cx.templatePart.Checkbox(bsiProperty("column.roundedCorners", "Abgerundete Ecken? (nur bei nicht transparentem Hintergrund relevant)"), "column-rounded-corners-J2lsXv").withCheckboxPrefill(true),
     // Tooltip: Gibt die Hintergundfarbe der Spalte an.
-    cx.templatePart.Option("Hintergrundfarbe der Spalte", "column-background-color-XzF28g", {
-        "Transparent" : "bg-color-transparent",
-        "Primary" : "bg-color-primary",
-        "Secondary" : "bg-color-secondary",
-        "Tertiary" : "bg-color-tertiary",
-        "Light": "bg-color-light",
-        "Dark" : "bg-color-dark",
+    cx.templatePart.Option(bsiProperty("column.backgroundColorLabel", "Hintergrundfarbe der Spalte"), "column-background-color-XzF28g", {
+      // TODO: Wie machen wir die Übersetzug von den Optionen?  
+      "Transparent" : "bg-color-transparent",
+      "Primary" : "bg-color-primary",
+      "Secondary" : "bg-color-secondary",
+      "Tertiary" : "bg-color-tertiary",
+      "Light": "bg-color-light",
+      "Dark" : "bg-color-dark",
     }).withOptionPrefill("bg-color-transparent"),
     // Tooltip: Bestimmt, wie die Elemente innerhalb der Spalte horizontal angeordnert werden.
-    cx.templatePart.Option("Elemente horizontal ausrichten", "column-horizontal-alignment-2AmT0r", {
-        "Links" : "column-horizontal-alignment-left",
-        "Zentriert" : "column-horizontal-alignment-center",
-        "Rechts" : "column-horizontal-alignment-right",
+    cx.templatePart.Option(bsiProperty("column.horizontalAlignmentLabel", "Elemente horizontal ausrichten"), "column-horizontal-alignment-2AmT0r", {
+      // TODO: Wie machen wir die Übersetzug von den Optionen?  
+      "Links" : "column-horizontal-alignment-left",
+      "Zentriert" : "column-horizontal-alignment-center",
+      "Rechts" : "column-horizontal-alignment-right",
     }).withOptionPrefill("column-horizontal-alignment-left"),
     // TODO: When complexity levels are introduced, move this code to the appropriate complexity layer.
     // Tooltip: Legt fest, wie die Elemente innerhalb in der Höhe der Spalte positioniert werden.
-    cx.templatePart.Option("Elemente vertikal ausrichten", "column-vertical-alignment-LuY0Fn", {
-        "Oben" : "column-vertical-alignment-top",
-        "Mittig" : "column-vertical-alignment-center",
-        "Unten" : "column-vertical-alignment-bottom",
+    cx.templatePart.Option(bsiProperty("column.verticalAlignmentLabel", "Elemente vertikal ausrichten"), "column-vertical-alignment-LuY0Fn", {
+      // TODO: Wie machen wir die Übersetzug von den Optionen?  
+      "Oben" : "column-vertical-alignment-top",
+      "Mittig" : "column-vertical-alignment-center",
+      "Unten" : "column-vertical-alignment-bottom",
     }).withOptionPrefill("column-vertical-alignment-top"),
     // TODO: When complexity levels are introduced, move this code to the appropriate complexity layer.
     // Tooltip: Bestimmt, ob die Elemente in der Spalte untereinander oder nebeneinander angeordnet sind.
-    cx.templatePart.Option("Anordnung der Elemente", "column-direction-YjtUbZ", {
-        "Untereinander" : "column-direction-vertical",
-        "Nebeneinander" : "column-direction-horizontal",
+    cx.templatePart.Option(bsiProperty("column.directionLabel", "Anordnung der Elemente"), "column-direction-YjtUbZ", {
+      // TODO: Wie machen wir die Übersetzug von den Optionen?
+      "Untereinander" : "column-direction-vertical",
+      "Nebeneinander" : "column-direction-horizontal",
     }).withOptionPrefill("column-direction-vertical"),
   )
   .withDropzones(

@@ -26,6 +26,7 @@ module.exports = cx.templateElement
     }).withOptionPrefill("bg-color-transparent"),
     // Tooltip: Legt fest, welches Icon auf dem Button angezeigt wird (nur wirkungsvoll, wenn Icon Position gesetzt wurde).
     cx.templatePart.Option(bsiProperty("buttons.iconLabel", "Icon (wird nur angezeigt, wenn bei Icon Position nicht 'kein Icon' ausgewählt ist)"), "button-icon-qj3zlU", {
+      // TODO: Wie machen wir die Übersetzug von den Optionen?
       "Kein Icon" : "button-icon-none",
       "Chevron rechts" : "bi-chevron-compact-right",
       "Chevron links" : "bi-chevron-compact-left",
