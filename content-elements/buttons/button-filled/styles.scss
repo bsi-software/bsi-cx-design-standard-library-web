@@ -1,0 +1,67 @@
+.bsi-button-template-part {
+
+    @function text-color($background) {
+        @if (lightness($background) > 50%) {
+            @return #333333; // dark text color
+        } @else {
+            @return #381919; // light text color
+        }
+    }
+
+    &.button-wide {
+        width: 100%;
+    }
+
+    .bsi-button {
+        display: flex;
+        gap: bsiProperty("buttonGap", 4px);
+        justify-content: center;
+        padding: bsiProperty("buttonPadding", 0.25rem);
+        // border-color: bsiProperty("buttonBorderColor", #ffffff);
+        // border-width: bsiProperty("buttonBorderWidth", 2px);
+        border: bsiProperty("buttonBorderStyle", 2px solid #fff);
+        text-decoration: none;
+        color: bsiProperty("buttonTextColor", #333333);
+
+        i {
+            display: flex;
+            align-items: center;
+        }
+
+        &.button-rounded-corners {
+            border-radius: bsiProperty("buttonBorderRadius", 8px);
+        }
+
+        $backgroundColor: (
+            "transparent" : transparent,
+            "primary" : bsiProperty("primaryColor", #fe9915),
+            "secondary" : bsiProperty("secondaryColor", #0082a1),
+            "tertiary" : bsiProperty("tertiaryColor", #2bb198),
+            "light": bsiProperty("lightColor", #ffffff),
+            "dark" : bsiProperty("darkColor", #333333),
+        );
+        @each $name, $color in $backgroundColor {
+            &.bg-color-#{$name} {
+                background-color: $color;
+                color: text-color($color);
+            }
+        }
+
+        $iconPosition: (
+            "none" : unset,
+            "left" : row-reverse,
+            "right" : row,
+        );
+
+        @each $name, $position in $iconPosition {
+            &.button-icon-#{$name} {
+                @if $name == "none" {
+                    i {
+                        display: none;
+                    }
+                }
+                flex-direction: $position;
+            }
+        }
+    }
+}
