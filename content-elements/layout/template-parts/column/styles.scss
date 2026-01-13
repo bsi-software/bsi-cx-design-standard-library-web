@@ -25,28 +25,16 @@
     };
 
     $verticalAlignment: (
-        "top": start,
+        "top": flex-start,
         "center": center,
-        "bottom": end
+        "bottom": flex-end
     );
-
-    @each $name, $alignment in $verticalAlignment {
-        &.column-vertical-alignment-#{$name} {
-            align-content: $alignment;
-        }
-    };
 
     $horizontalAlignment: (
-        "left": left,
+        "left": flex-start,
         "center": center,
-        "right": right
+        "right": flex-end
     );
-
-    @each $name, $alignment in $horizontalAlignment {
-        &.column-horizontal-alignment-#{$name} {
-            justify-items: $alignment;
-        }
-    };
 
     $directions: (
         "vertical": column,
@@ -54,11 +42,44 @@
     );
 
     @each $name, $direction in $directions {
-        &.column-direction-#{$name} {
+        .column-direction-#{$name} {
             display: flex;
             flex-direction: $direction;
+            height: 100%;
+
+            @if $name == "vertical" {
+                // main axis: vertical
+                // cross axis: horizontal
+                @each $name, $alignment in $verticalAlignment {
+                    //column - elemente vertikal alignen
+                    &.column-vertical-alignment-#{$name} {
+                        justify-content: $alignment;
+                    }
+                };
+
+                @each $name, $alignment in $horizontalAlignment {
+                    //column - elemente horizontal alignen
+                    &.column-horizontal-alignment-#{$name} {
+                        align-items: $alignment;
+                    }
+                };
+            }  @else {
+                // main axis: horizontal
+                // cross axis: vertical
+                @each $name, $alignment in $verticalAlignment {
+                    //row - elemente vertikal alignen
+                    &.column-vertical-alignment-#{$name} {
+                        align-content: $alignment;
+                    }
+                };
+
+                @each $name, $alignment in $horizontalAlignment {
+                    //row - elemente horizontal alignen
+                    &.column-horizontal-alignment-#{$name} {
+                        justify-content: $alignment;
+                    }
+                };   
+            }
         }
     };
-
-    min-height: 100px; // TODO: Löschen, ist nur zum testen
 }

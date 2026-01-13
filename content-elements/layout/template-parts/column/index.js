@@ -29,12 +29,14 @@ module.exports = cx.templateElement
         "Zentriert" : "column-horizontal-alignment-center",
         "Rechts" : "column-horizontal-alignment-right",
     }),
+    // TODO: When complexity levels are introduced, move this code to the appropriate complexity layer.
     // Tooltip: Legt fest, wie die Elemente innerhalb in der Höhe der Spalte positioniert werden.
     cx.templatePart.Option("Elemente vertikal ausrichten", "column-vertical-alignment-LuY0Fn", {
         "Oben" : "column-vertical-alignment-top",
         "Mittig" : "column-vertical-alignment-center",
         "Unten" : "column-vertical-alignment-bottom",
     }),
+    // TODO: When complexity levels are introduced, move this code to the appropriate complexity layer.
     // Tooltip: Bestimmt, ob die Elemente in der Spalte untereinander oder nebeneinander angeordnet sind.
     cx.templatePart.Option("Anordnung der Elemente", "column-direction-YjtUbZ", {
         "Untereinander" : "column-direction-vertical",
