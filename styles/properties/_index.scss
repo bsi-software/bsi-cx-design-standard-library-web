@@ -1,0 +1,25 @@
+// ------------------------------------------------------------
+// Properties Index
+//
+// This is the central entry point for all library design properties.
+//
+// Purpose:
+// - Forwards all property files (colors, typography, spacing, layout, semantic) 
+//   *without prefixes*, so they are accessible with a flat namespace.
+// - Library components and consuming projects can use these properties
+//   consistently and override them via library-config.scss if needed.
+// - Keeps the property structure organized and maintainable.
+//
+// Notes:
+// - All variable names across the property files must be unique 
+//   to avoid naming conflicts.
+// - Only property files are forwarded here; Bootstrap logic should
+//   remain in the bootstrap/ folder.
+// - Not all properties need to be overridable; only those intended 
+//   for project customization should use !default.
+// ------------------------------------------------------------
+
+@forward "./colors.scss";
+@forward "./typography.scss";
+@forward "./spacing.scss";
+@forward "./border.scss";

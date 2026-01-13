@@ -1,0 +1,30 @@
+// bsi standardLib spacing properties
+// every properties that shoud be overrideable needs the !default flag
+
+$spacing: (
+    0: 0px,
+    100: 4px,
+    200: 8px,
+    300: 16px,
+    400: 24px,
+    500: 32px,
+    600: 48px,
+    700: 60px,
+    800: 80px
+) !default;
+
+@function spacing($key) {
+  @return map.get($spacing, $key);
+};
+
+// this ist the standard gap for the bootstrap css grid
+$gridGap: 24px !default;
+// this is the gap between every Element in the content.
+// If you set it to 0 there is no gap because Elements has no margin.
+$gapBetweenElements: 24px !default;
+// this is the gap between elements inside of an column
+$gapBetweenElementsInColumns: 8px !default;
+// this ist the padding of each column
+$colPadding: 16px !default;
+// border-radius for column element
+$columnRoundetCorner: 8px !default;

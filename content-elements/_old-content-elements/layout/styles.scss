@@ -4,7 +4,7 @@
     overflow-x: hidden;
 
     .row {
-      @include media-breakpoint-down($tablet) {
+      @media (max-width: calc(bsiProperty('gridBreakpointTablet', 768px) - 0.02px)) {
         --bs-gutter-x: 0;
       }
     }

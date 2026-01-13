@@ -1,4 +1,4 @@
-@import "../../../../../styles/properties";
+@import "../../../../../styles/old_properties";
 
 @mixin styles($id: 'card-crRST4', $card-primary-color: $primary, $card-secondary-color: $secondary, $card-tertiary-color: $tertiary, $card-dark: $dark) {
   .bsi-element-#{$id} {
@@ -19,13 +19,13 @@
       width: 100%;
       object-fit: cover;
       overflow: hidden;
-      @include media-breakpoint-down(md) {
+      @media (max-width: calc(bsiProperty('gridBreakpointTablet', 768px) - 0.02px)) {
         border-top-left-radius: 0.25rem !important;
         border-top-right-radius: 0.25rem !important;
       }
     }
 
-    @include media-breakpoint-up($tablet) {
+    @media (min-width: bsiProperty('gridBreakpointTablet', 768px)) {
       &.bsi-ratio-2-10.bsi-image-left,
       &.bsi-ratio-2-10.bsi-image-right {
         .bsi-card-image {
@@ -106,7 +106,7 @@
       }
 
       .bsi-card-image img {
-        @include media-breakpoint-up($tablet) {
+        @media (min-width: bsiProperty('gridBreakpointTablet', 768px)) {
           border-bottom-left-radius: 0.25rem !important;
           border-top-left-radius: 0.25rem !important;
         }
@@ -119,7 +119,7 @@
       }
 
       .bsi-card-image img {
-        @include media-breakpoint-up($tablet) {
+        @media (min-width: bsiProperty('gridBreakpointTablet', 768px)) {
           border-bottom-right-radius: 0.25rem !important;
           border-top-right-radius: 0.25rem !important;
         }

@@ -1,26 +1,27 @@
-@import "../../../styles/properties";
+@use "../../../styles/bootstrap/bs_index" as bs;
+@use "../../../styles/properties/index.scss" as p;
 
 .bsi-grid-element {
 
     &.grid-rounded-corners {
-        border-radius: bsiProperty("gridRoundetCorner", 0.5rem);
+        border-radius: p.border-radius(400);
     };
 
     // auto templating
     .grid {
 
         /* Mobile: max 4 Columns */
-        grid-template-columns: repeat(auto-fit, minmax(calc((100% - 3*bsiProperty("gridGap", 1rem))/4), 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(calc((100% - 3*p.$gridGap)/4), 1fr));
 
         
         /* Tablet: max 8 Columns */
-        @include media-breakpoint-up($tablet) {
-            grid-template-columns: repeat(auto-fit, minmax(calc((100% - 7*bsiProperty("gridGap", 1rem))/8), 1fr));
+        @include bs.media-breakpoint-up(tablet) {
+            grid-template-columns: repeat(auto-fit, minmax(calc((100% - 7*p.$gridGap)/8), 1fr));
         }
 
         /* Desktop: max 12 Columns */
-        @include media-breakpoint-up($desktop) {
-            grid-template-columns: repeat(auto-fit, minmax(calc((100% - 11*bsiProperty("gridGap", 1rem))/12), 1fr));
+        @include bs.media-breakpoint-up(desktop) {
+            grid-template-columns: repeat(auto-fit, minmax(calc((100% - 11*p.$gridGap)/12), 1fr));
         }
     };
 
@@ -53,12 +54,12 @@
             grid-template-columns: map-get($templates, mobile);
             
             /* Tablet*/
-            @include media-breakpoint-up($tablet) {
+            @include bs.media-breakpoint-up(tablet) {
                 grid-template-columns: map-get($templates, tablet);
             }
             
             /* Desktop */
-            @include media-breakpoint-up($desktop) {
+            @include bs.media-breakpoint-up(desktop) {
                 grid-template-columns: map-get($templates, desktop);
             }
         }
@@ -66,10 +67,10 @@
 
     $backgroundColors: (
         "transparent": transparent,
-        "primary": bsiProperty("primary", #fe9915),
-        "secondary": bsiProperty("secondary", #0082a1),
-        "tertiary": bsiProperty("tertiary", #2bb198),
-        "dark": bsiProperty("dark", #333333),
+        "primary": p.$primary,
+        "secondary": p.$secondary,
+        "tertiary": p.$tertiary,
+        "dark": p.$dark,
     );
 
     @each $name, $color in $backgroundColors {

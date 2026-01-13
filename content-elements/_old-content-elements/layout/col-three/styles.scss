@@ -1,7 +1,7 @@
-@import "../../../../styles/properties";
+@import "../../../../styles/old_properties";
 
 .bsi-element-col-three-MEOl1p {
-    @include media-breakpoint-up($tablet) {
+    @media (min-width: bsiProperty('gridBreakpointTablet', 768px)) {
         &.bsi-ratio-4-4-4 {
             > .row > .bsi-column-1 {
                 width: 33.33333333%;
@@ -27,7 +27,7 @@
         }      
     }
 
-    @include media-breakpoint-down($tablet) {
+    @media (max-width: calc(bsiProperty('gridBreakpointTablet', 768px) - 0.02px)) {
         &.bsi-mobile-keep .row .bsi-column {
             width: 33.3%!important;
         }

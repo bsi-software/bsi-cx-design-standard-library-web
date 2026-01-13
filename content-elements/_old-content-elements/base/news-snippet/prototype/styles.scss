@@ -1,4 +1,4 @@
-@import "../../../../../styles/properties";
+@import "../../../../../styles/old_properties";
 
 @mixin styles($id: 'news-snippet-4E7jFg', $primary-color: $primary, $secondary-color: $secondary, $dark-color: $dark, $light-color: $light) {
   .bsi-element-#{$id} {
@@ -7,7 +7,7 @@
       border: none;
     }
 
-    @include media-breakpoint-up($tablet) {
+    @media (min-width: bsiProperty('gridBreakpointTablet', 768px)) {
       &.bsi-ratio-2-10.bsi-image-left,
       &.bsi-ratio-2-10.bsi-image-right {
         .bsi-col-image {
@@ -80,7 +80,7 @@
         flex-direction: row;
       }
       .bsi-news-image {
-        @include media-breakpoint-up($tablet) {
+        @media (min-width: bsiProperty('gridBreakpointTablet', 768px)) {
           border-bottom-left-radius: 0.25rem !important;
           border-top-left-radius: 0.25rem !important;
         }
@@ -92,7 +92,7 @@
         flex-direction: row-reverse;
       }
       .bsi-news-image {
-        @include media-breakpoint-up($tablet) {
+        @media (min-width: bsiProperty('gridBreakpointTablet', 768px)) {
           border-bottom-right-radius: 0.25rem !important;
           border-top-right-radius: 0.25rem !important;
         }
@@ -167,7 +167,7 @@
       width: 100%;
       object-fit: cover;
       overflow: hidden;
-      @include media-breakpoint-down(md) {
+      @media (max-width: calc(bsiProperty('gridBreakpointTablet', 768px) - 0.02px)) {
         border-top-left-radius: 0.25rem !important;
         border-top-right-radius: 0.25rem !important;
       }

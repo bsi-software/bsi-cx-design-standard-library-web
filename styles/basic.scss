@@ -1,0 +1,31 @@
+// ------------------------------------------------------------
+// Basic Library Styles
+//
+// Purpose:
+// - Contains core base styles for the library components,
+//   such as resets, global typography, default layout rules, etc.
+// - Provides a consistent starting point for all library components.
+//
+// Notes:
+// - Do not include project-specific styles (Landingpage, Website, etc.).
+// ------------------------------------------------------------
+
+@use "../styles/bootstrap/bs_index" as bs;
+@use "../styles/properties/index.scss" as p;
+// Bootstrap css Grid styles
+.bsi-grid-element {
+    --bs-columns: 4;
+    --bs-gap: p.$gridGap;
+
+    @include bs.media-breakpoint-down(tablet) {
+        --bs-columns: 8;
+    }
+
+    @include bs.media-breakpoint-down(desktop) {
+        --bs-columns: 12;
+    }
+}
+// Styles used by multiple content elements:
+body p {
+  margin-bottom: 0;
+}

@@ -1,4 +1,4 @@
-@import "../../../../../styles/properties";
+@import "../../../../../styles/old_properties";
 
 @mixin styles($id: 'table-FuXKu7') {
   .bsi-element-#{$id} {
@@ -50,7 +50,7 @@
       color: mix(black, $color, 40%);
     }
 
-    @include media-breakpoint-down($desktop) {
+    @media (max-width: calc(bsiProperty('gridBreakpointDesktop', 1025px) - 0.02px)) {
       tr:nth-child(2n+1) {
         background-color: mix(white, $color, 90%);
         ;
@@ -67,7 +67,7 @@
   }
 }
 
-@include media-breakpoint-down($desktop) {
+@media (max-width: calc(bsiProperty('gridBreakpointDesktop', 1025px) - 0.02px)) {
 
   .bsi-element-#{$id}.bsi-table-mobile {
     padding-top: 16px;

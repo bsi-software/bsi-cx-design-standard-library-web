@@ -1,6 +1,6 @@
 @import "flatpickr/dist/flatpickr";
 @import "bootstrap-icons/font/bootstrap-icons.css";
-@import "./../../../../../styles/properties.scss";
+@import "./../../../../../styles/old_properties.scss";
 
 @mixin styles($id: 'form-field-REEhtN') {
   .bsi-element-#{$id} {

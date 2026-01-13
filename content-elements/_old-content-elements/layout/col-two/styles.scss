@@ -1,7 +1,7 @@
-@import "../../../../styles/properties";
+@import "../../../../styles/old_properties";
 
 .bsi-element-col-two-ILRIL0 {
-    @include media-breakpoint-up($tablet) {
+    @media (min-width: bsiProperty('gridBreakpointTablet', 768px)) {
         &.bsi-ratio-6-6 {
             > .row > .bsi-column-1 {
                 width: 50%;
@@ -29,7 +29,7 @@
             }
         }        
     }
-    @include media-breakpoint-down($tablet) {
+    @media (max-width: calc(bsiProperty('gridBreakpointTablet', 768px) - 0.02px)) {
         &.bsi-col-order-swapped,
         &.bsi-col-order-swapped-desktop {
             > .row {
@@ -37,7 +37,7 @@
             }
         }
     }
-    @include media-breakpoint-down($tablet) {
+    @media (max-width: calc(bsiProperty('gridBreakpointTablet', 768px) - 0.02px)) {
         &.bsi-col-order-swapped,
         &.bsi-col-order-swapped-mobile {
             > .row {

@@ -1,4 +1,4 @@
-require("./styles.scss");
+// require("./styles.scss");
 
 const { cx, Icon } = require("@bsi-cx/design-build");
 

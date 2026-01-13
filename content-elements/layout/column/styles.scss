@@ -1,13 +1,15 @@
+@use "../../../styles/properties/index.scss" as p;
+
 .bsi-grid-column-element-template-part {
 
 
     $backgroundColors: (
         "transparent": transparent,
-        "primary": bsiProperty("primary", #fe9915),
-        "secondary": bsiProperty("secondary", #0082a1),
-        "tertiary": bsiProperty("tertiary", #2bb198),
-        "light": bsiProperty("light", #ffffff),
-        "dark": bsiProperty("dark", #333333),
+        "primary": p.$primary,
+        "secondary": p.$secondary,
+        "tertiary": p.$tertiary,
+        "light": p.$light,
+        "dark": p.$dark,
     );
 
     @each $name, $color in $backgroundColors {
@@ -16,9 +18,9 @@
             @if $name == "transparent" {
                 border-radius: unset;
             } @else {
-                padding: bsiProperty("colPadding", 16px);
+                padding: p.$colPadding;
                 &.column-rounded-corners {
-                    border-radius: bsiProperty("columnRoundetCorner", 8px);
+                    border-radius: p.$columnRoundetCorner;
                 }
             }
         }
@@ -59,7 +61,7 @@
             display: flex;
             flex-direction: $direction;
             flex-wrap: wrap;
-            gap: bsiProperty("gapBetweenElementsInColumns", 8px);
+            gap: p.$gapBetweenElementsInColumns;
         }
     };
 

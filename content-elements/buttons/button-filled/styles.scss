@@ -9,10 +9,20 @@ $buttonTextColor: #333333 !default;
 .bsi-button-template-part {
 
     @function text-color($background) {
-        @if (lightness($background) > 50%) {
-            @return #333333; // dark text color
+        // Get the RGB values of the background color (0-255)
+        $r: red($background);
+        $g: green($background);
+        $b: blue($background);
+
+        // Calculate perceived brightness using the YIQ formula
+        // Humans perceive green as brighter than red, and blue as darker
+        $brightness: ($r * 0.299) + ($g * 0.587) + ($b * 0.114);
+
+        // If brightness is greater than 128, use dark text, otherwise white text
+        @if ($brightness > 128) {
+            @return #333333; // dark text
         } @else {
-            @return #ffffff; // light text color
+            @return #ffffff; // light text
         }
     }
 
@@ -27,13 +37,12 @@ $buttonTextColor: #333333 !default;
         // gap: bsiProperty("buttonGap", 4px);
         gap: $buttonGap;
         justify-content: center;
-        padding: bsiProperty("buttonPadding", 0.25rem);
+        padding: $buttonPadding;
         // border-color: bsiProperty("buttonBorderColor", #ffffff);
         // border-width: bsiProperty("buttonBorderWidth", 2px);
-        border: bsiProperty("buttonBorderStyle", 2px solid #fff);
+        border: $buttonBorder;
         text-decoration: none;
-        // color: bsiProperty("buttonTextColor", #333333);
-        color: $keriTestColor;
+        color: $buttonTextColor;
 
         i {
             display: flex;
@@ -41,16 +50,16 @@ $buttonTextColor: #333333 !default;
         }
 
         &.button-rounded-corners {
-            border-radius: bsiProperty("buttonBorderRadius", 8px);
+            border-radius: $buttonBorderRadius;
         }
 
         $backgroundColor: (
             "transparent" : transparent,
-            "primary" : bsiProperty("primaryColor", #fe9915),
-            "secondary" : bsiProperty("secondaryColor", #0082a1),
-            "tertiary" : bsiProperty("tertiaryColor", #2bb198),
-            "light": bsiProperty("lightColor", #ffffff),
-            "dark" : bsiProperty("darkColor", #333333),
+            "primary" : p.$primary,
+            "secondary" : p.$secondary,
+            "tertiary" : p.$tertiary,
+            "light": p.$light,
+            "dark" : p.$dark,
         );
         @each $name, $color in $backgroundColor {
             &.bg-color-#{$name} {

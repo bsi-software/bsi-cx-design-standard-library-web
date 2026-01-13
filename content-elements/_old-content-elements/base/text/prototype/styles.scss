@@ -1,4 +1,4 @@
-@import "../../../../../styles/properties";
+@import "../../../../../styles/old_properties";
 
 @mixin styles($id: 'text-kkq2fq', $text-color: $textColor, $text-size: $textSize, $text-font-family: $textFont) {
   .bsi-element-#{$id} {

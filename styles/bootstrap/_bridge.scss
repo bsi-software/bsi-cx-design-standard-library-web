@@ -1,0 +1,32 @@
+// ------------------------------------------------------------
+// Bootstrap Bridge
+//
+// This file provides a clean separation between our design tokens
+// (properties) and Bootstrap variables. 
+//
+// Purpose:
+// - Maps internal tokens like $primary, $secondary, etc.
+//   to Bootstrap-compatible variables (e.g., $theme-colors).
+// - Makes it easy to override Bootstrap variables via our tokens
+//   without mixing library tokens with Bootstrap logic.
+// - Improves maintainability and clarity for library and
+//   project developers.
+//
+// Note:
+// - This file is optional; Bootstrap variables could also
+//   be set directly. The bridge is mainly for better organization
+//   and separation of concerns.
+// ------------------------------------------------------------
+
+@use "../properties/index.scss" as p;
+
+$theme-colors: (
+    'primary':      p.$primary,
+    'secondary':    p.$secondary,
+    'success':      p.$valid,
+    'info':         p.$info,
+    'danger':       p.$invalid,
+    'light':        p.$light,
+    'dark':         p.$dark
+) !default;
+

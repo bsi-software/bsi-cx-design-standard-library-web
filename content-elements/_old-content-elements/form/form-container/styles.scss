@@ -1,4 +1,4 @@
-@import "../../../../styles/properties";
+@import "../../../../styles/old_properties";
 
 .bsi-element-form-container-692qIu {
   padding-right: 0px;
@@ -68,7 +68,7 @@
   }
 
   &.bsi-form-label-left {
-    @include media-breakpoint-up($tablet) {
+    @media (min-width: bsiProperty('gridBreakpointTablet', 768px)) {
 
       .bsi-form-btn-row,
       .bsi-multi-col-element {

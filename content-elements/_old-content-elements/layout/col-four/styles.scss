@@ -1,7 +1,7 @@
-@import "../../../../styles/properties";
+@import "../../../../styles/old_properties";
 
 .bsi-element-col-four-yFAGKM {
-    @include media-breakpoint-down($tablet) {
+    @media (max-width: calc(bsiProperty('gridBreakpointTablet', 768px) - 0.02px)) {
         &.bsi-mobile-keep .row .bsi-column {
             width: 25%!important;
         }

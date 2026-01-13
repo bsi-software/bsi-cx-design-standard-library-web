@@ -21,7 +21,7 @@
     letter-spacing: -0.005em;
     font-family: $titleStyle1FontFamily;
 
-    @include media-breakpoint-down($mobile) {
+    @media (max-width: calc(bsiProperty('gridBreakpointMobile', 375px) - 0.02px)) {
       font-size: $titleStyle1FontSizeMobile;
     }
   }
@@ -32,7 +32,7 @@
     letter-spacing: 0em;
     font-family: $titleStyle2FontFamily;
 
-    @include media-breakpoint-down($mobile) {
+    @media (max-width: calc(bsiProperty('gridBreakpointMobile', 375px) - 0.02px)) {
       font-size: $titleStyle2FontSizeMobile;
       line-height: 130%;
     }
@@ -44,7 +44,7 @@
     letter-spacing: 0em;
     font-family: $titleStyle3FontFamily;
 
-    @include media-breakpoint-down($mobile) {
+    @media (max-width: calc(bsiProperty('gridBreakpointMobile', 375px) - 0.02px)) {
       font-size: $titleStyle3FontSizeMobile;
       line-height: 130%;
     }
@@ -56,7 +56,7 @@
     letter-spacing: 0em;
     font-family: $titleStyle4FontFamily;
 
-    @include media-breakpoint-down($mobile) {
+    @media (max-width: calc(bsiProperty('gridBreakpointMobile', 375px) - 0.02px)) {
       font-size: $titleStyle4FontSizeMobile;
       line-height: 150%;
     }
@@ -68,7 +68,7 @@
     letter-spacing: 0em;
     font-family: $titleStyle5FontFamily;
 
-    @include media-breakpoint-down($mobile) {
+    @media (max-width: calc(bsiProperty('gridBreakpointMobile', 375px) - 0.02px)) {
       font-size: $titleStyle5FontSizeMobile;
       line-height: 150%;
     }
@@ -80,7 +80,7 @@
     letter-spacing: 0em;
     font-family: $titleStyle6FontFamily;
 
-    @include media-breakpoint-down($mobile) {
+    @media (max-width: calc(bsiProperty('gridBreakpointMobile', 375px) - 0.02px)) {
       font-size: $titleStyle6FontSizeMobile;
     }
   }
