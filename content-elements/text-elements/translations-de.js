@@ -18,8 +18,7 @@ module.exports = {
 
     bodyText: {
         label: "Text",
-        prefillText: "Lorem Impsum",
-        language: "de-DE",
+        prefillText: "Lorem Impsum",      
     }
 
 }
