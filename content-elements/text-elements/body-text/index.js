@@ -9,6 +9,6 @@ module.exports = cx.templateElement
   .withFile(require("./template.hbs.twig"))
   .withIcon(Icon.TEXT)
   .withTemplateParts(
-    cx.templatePart.FormattedText("Text", "body-text-OastHh", require("./editor-config.js")).withFormattedTextPrefill("<div>" + bsiProperty("bodyText.prefillText", "Lorem Impsum") + "</div>", bsiProperty("bodyText.language", "de-DE")),
+    cx.templatePart.FormattedText("Text", "body-text-OastHh", require("./editor-config.js")).withFormattedTextPrefill("<div>" + bsiProperty("bodyText.prefillText", "Lorem Impsum") + "</div>"),
   )
 ;
