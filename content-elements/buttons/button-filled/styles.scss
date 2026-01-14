@@ -1,10 +1,10 @@
 @use "../../../styles/properties/index.scss" as p;
 
-$buttonPadding: 0.25rem !default;
-$buttonBorder: p.border-width(200) solid #fff !default;
-$buttonBorderRadius: 8px !default;
-$buttonGap: 4px !default;
-$buttonTextColor: #333333 !default;
+$padding: 0.25rem !default;
+$border: p.border-width(200) solid #fff !default;
+$borderRadius: 8px !default;
+$gap: 4px !default;
+$textColor: #333333 !default;
 
 .bsi-button-template-part {
 
@@ -34,15 +34,12 @@ $buttonTextColor: #333333 !default;
 
     .bsi-button {
         display: flex;
-        // gap: bsiProperty("buttonGap", 4px);
-        gap: $buttonGap;
+        gap: $gap;
         justify-content: center;
-        padding: $buttonPadding;
-        // border-color: bsiProperty("buttonBorderColor", #ffffff);
-        // border-width: bsiProperty("buttonBorderWidth", 2px);
-        border: $buttonBorder;
+        padding: $padding;
+        border: $border;
         text-decoration: none;
-        color: $buttonTextColor;
+        color: $textColor;
 
         i {
             display: flex;
@@ -50,7 +47,7 @@ $buttonTextColor: #333333 !default;
         }
 
         &.button-rounded-corners {
-            border-radius: $buttonBorderRadius;
+            border-radius: $borderRadius;
         }
 
         $backgroundColor: (

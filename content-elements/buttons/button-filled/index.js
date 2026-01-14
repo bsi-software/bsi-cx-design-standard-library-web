@@ -10,11 +10,11 @@ module.exports = cx.templateElement
   .withIcon(Icon.MEGAPHONE)
   .withTemplateParts(
     cx.templatePart.Link("Button Link", "button-link-mbjVlk").withLinkPrefill("#", bsiProperty("button.text", bsiLoremIpsum(2)), bsiProperty("button.bfsgLabel", "Dies ist ein Button, der einen Link beinhaltet"), false),
-    // Tooltip: Gibt an, ob der Button abgerundete Ecken hat oder nicht.
+    // INFO: Gibt an, ob der Button abgerundete Ecken hat oder nicht.
     cx.templatePart.Checkbox(bsiProperty("buttons.roundedCorners", "Abgerundete Ecken?"), "button-rounded-corners-iJhxwU").withCheckboxPrefill(true),
-    // Tooltip: Bestimmt, die Breite des Buttons.
+    // INFO: Bestimmt, die Breite des Buttons.
     cx.templatePart.Checkbox(bsiProperty("buttons.fullWidth", "Soll der Button die ganze Breite einnehmen?"), "button-width-rBpJI2").withCheckboxPrefill(false),
-    // Tooltip: Gibt die Hintergundfarbe des Buttons an.
+    // INFO: Gibt die Hintergundfarbe des Buttons an.
     cx.templatePart.Option(bsiProperty("buttons.backgroundColorLabel", "Hintergrundfarbe des Buttons"), "button-background-color-eydth1", {
       // TODO: Wie machen wir die Übersetzug von den Optionen?
       "Transparent" : "bg-color-transparent",
@@ -24,7 +24,7 @@ module.exports = cx.templateElement
       "Light": "bg-color-light",
       "Dark" : "bg-color-dark",
     }).withOptionPrefill("bg-color-transparent"),
-    // Tooltip: Legt fest, welches Icon auf dem Button angezeigt wird (nur wirkungsvoll, wenn Icon Position gesetzt wurde).
+    // INFO: Legt fest, welches Icon auf dem Button angezeigt wird (nur wirkungsvoll, wenn Icon Position gesetzt wurde).
     cx.templatePart.Option(bsiProperty("buttons.iconLabel", "Icon (wird nur angezeigt, wenn bei Icon Position nicht 'kein Icon' ausgewählt ist)"), "button-icon-qj3zlU", {
       // TODO: Wie machen wir die Übersetzug von den Optionen?
       "Kein Icon" : "button-icon-none",

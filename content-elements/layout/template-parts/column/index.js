@@ -11,9 +11,9 @@ module.exports = cx.templateElement
   .withFile(require("./template.hbs.twig"))
   .withIcon(Icon.ONE_COLUMN)
   .withTemplateParts(
-    // Tooltip: Gibt an, ob die Splaten abgerundete Ecken haben oder nicht. Dies hat nur auswirkungen auf Spalten, die keinen transparenten hintergrund haben.
+    // INFO: Gibt an, ob die Splaten abgerundete Ecken haben oder nicht. Dies hat nur auswirkungen auf Spalten, die keinen transparenten hintergrund haben.
     cx.templatePart.Checkbox(bsiProperty("column.roundedCorners", "Abgerundete Ecken? (nur bei nicht transparentem Hintergrund relevant)"), "column-rounded-corners-J2lsXv").withCheckboxPrefill(true),
-    // Tooltip: Gibt die Hintergundfarbe der Spalte an.
+    // INFO: Gibt die Hintergundfarbe der Spalte an.
     cx.templatePart.Option(bsiProperty("column.backgroundColorLabel", "Hintergrundfarbe der Spalte"), "column-background-color-XzF28g", {
       // TODO: Wie machen wir die Übersetzug von den Optionen?  
       "Transparent" : "bg-color-transparent",
@@ -23,7 +23,7 @@ module.exports = cx.templateElement
       "Light": "bg-color-light",
       "Dark" : "bg-color-dark",
     }).withOptionPrefill("bg-color-transparent"),
-    // Tooltip: Bestimmt, wie die Elemente innerhalb der Spalte horizontal angeordnert werden.
+    // INFO: Bestimmt, wie die Elemente innerhalb der Spalte horizontal angeordnert werden.
     cx.templatePart.Option(bsiProperty("column.horizontalAlignmentLabel", "Elemente horizontal ausrichten"), "column-horizontal-alignment-2AmT0r", {
       // TODO: Wie machen wir die Übersetzug von den Optionen?  
       "Links" : "column-horizontal-alignment-left",
@@ -31,7 +31,7 @@ module.exports = cx.templateElement
       "Rechts" : "column-horizontal-alignment-right",
     }).withOptionPrefill("column-horizontal-alignment-left"),
     // TODO: When complexity levels are introduced, move this code to the appropriate complexity layer.
-    // Tooltip: Legt fest, wie die Elemente innerhalb in der Höhe der Spalte positioniert werden.
+    // INFO: Legt fest, wie die Elemente innerhalb in der Höhe der Spalte positioniert werden.
     cx.templatePart.Option(bsiProperty("column.verticalAlignmentLabel", "Elemente vertikal ausrichten"), "column-vertical-alignment-LuY0Fn", {
       // TODO: Wie machen wir die Übersetzug von den Optionen?  
       "Oben" : "column-vertical-alignment-top",
@@ -39,7 +39,7 @@ module.exports = cx.templateElement
       "Unten" : "column-vertical-alignment-bottom",
     }).withOptionPrefill("column-vertical-alignment-top"),
     // TODO: When complexity levels are introduced, move this code to the appropriate complexity layer.
-    // Tooltip: Bestimmt, ob die Elemente in der Spalte untereinander oder nebeneinander angeordnet sind.
+    // INFO: Bestimmt, ob die Elemente in der Spalte untereinander oder nebeneinander angeordnet sind.
     cx.templatePart.Option(bsiProperty("column.directionLabel", "Anordnung der Elemente"), "column-direction-YjtUbZ", {
       // TODO: Wie machen wir die Übersetzug von den Optionen?
       "Untereinander" : "column-direction-vertical",
