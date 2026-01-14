@@ -1,6 +1,4 @@
-require("./styles.scss");
-
-const { TemplateElement, Icon, cx } = require("@bsi-cx/design-build");
+const { TemplateElement, Icon, cx, bsiProperty, bsiLoremIpsum } = require("@bsi-cx/design-build");
 
 /**
  * @type {TemplateElement}
@@ -12,7 +10,7 @@ module.exports = cx.templateElement
   .withIcon(Icon.MEGAPHONE)
   .withRawContextFile(require("./context.json"))
   .withTemplateParts(
-    // cx.templatePart.Link("Button Link", "button-link-mbjVlk"),
+    cx.templatePart.Link("Button Link", "button-link-mbjVlk").withLinkPrefill("#", bsiProperty("button.text", bsiLoremIpsum(2)), bsiProperty("button.bfsgLabel", "Dies ist ein Button, der einen Link beinhaltet"), false),
     // Tooltip: Gibt an, ob der Button abgerundete Ecken hat oder nicht.
     cx.templatePart.Checkbox("Abgerundete Ecken?", "button-rounded-corners-iJhxwU"),
     // Tooltip: Bestimmt, die Breite des Buttons.

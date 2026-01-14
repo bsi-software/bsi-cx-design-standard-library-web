@@ -4,11 +4,11 @@
 
 {% apply spaceless %}
     <div data-bsi-element="{{ buttonElementId }}" class="bsi-button-template-part {{ customClasses }} {{ '{{#if button-width-rBpJI2.value}} button-wide {{/if}}' }}">
-        {# <a class="bsi-button {{ '{{ button-background-color-eydth1.value }} {{ button-icon-position-oaRUrQ.value }} {{#if button-rounded-corners-iJhxwU.value}}button-rounded-corners{{/if}}' }}" href="{{ '{{ button-link-mbjVlk.url }}' }}" role="button" aria-label="{{ '{{ button-link-mbjVlk.description }}' }}"> #}
-        <a class="bsi-button {{ '{{ button-background-color-eydth1.value }} {{ button-icon-position-oaRUrQ.value }} {{#if button-rounded-corners-iJhxwU.value}}button-rounded-corners{{/if}}' }}" href="#" role="button" aria-label="test aria">
-            {# <span>{{ '{{ button-link-mbjVlk.text }}' }}</span> #}
-            <span>Button</span>
-            <i class="{{ '{{ button-icon-qj3zlU.value}}' }}"></i>
+        <a class="bsi-button {{ '{{ button-background-color-eydth1.value }} {{#if button-rounded-corners-iJhxwU.value}}button-rounded-corners{{/if}}' }}" href="{{ '{{ button-link-mbjVlk.url }}' }}" role="button" aria-label="{{ '{{ button-link-mbjVlk.description }}' }}">
+            {% block testBlock %}
+                <span>{{ '{{ button-link-mbjVlk.text }}' }}</span>
+                <i class="icon {{ '{{ button-icon-qj3zlU.value }}' }}"></i>
+            {% endblock %}
 	    </a>
     </div>
 {% endapply %}

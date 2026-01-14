@@ -1,3 +1,11 @@
+@use "../../../styles/properties/index.scss" as p;
+
+$buttonPadding: 0.25rem !default;
+$buttonBorder: p.border-width(200) solid #fff !default;
+$buttonBorderRadius: 8px !default;
+$buttonGap: 4px !default;
+$buttonTextColor: #333333 !default;
+
 .bsi-button-template-part {
 
     @function text-color($background) {
