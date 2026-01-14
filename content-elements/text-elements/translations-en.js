@@ -19,7 +19,6 @@ module.exports = {
     bodyText: {
         label: "Text",
         prefillText: "Lorem Impsum",
-        language: "en-EN",
     }
 
 }
