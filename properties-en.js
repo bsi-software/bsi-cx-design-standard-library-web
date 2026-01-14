@@ -1,103 +1,31 @@
 // ------------------------------------------------------------
-// Library Localization Properties (English)
+// Library Localization Index (English)
 //
 // Purpose:
-// - Contains all language-specific text values for library components,
-//   such as labels, titles, messages, or descriptions.
-// - One file per language, selected at build time.
+// - Central entry point for all library localization files.
+// - Imports and aggregates localization data from individual
+//   element groups (e.g. buttons, layout, forms).
+// - One index per language, selected via the Webpack configuration.
 //
 // Notes:
-// - This file must contain text values only.
-// - Do NOT include styling, layout, or project-specific logic.
-// - Keys should remain consistent across languages to ensure predictable lookups.
-// - Component code should never contain hardcoded text; all user-facing strings
-//   must be defined here.
+// - This file must NOT contain any text values itself.
+// - Only import and re-export localization data from group files.
+// - Individual group files contain the actual translated strings.
+// - Keeping this as a central index simplifies language switching
+//   and ensures a single import location for consumers.
 // ------------------------------------------------------------
+
 const baseProperties = require('./properties');
+
+const textTranslations = require('./content-elements/text-elements/translations-de');
+const buttonTranslations = require('./content-elements/buttons/translations-en');
+const layoutTranslations = require('./content-elements/layout/translation-en');
 
 module.exports = {
   ...baseProperties,
+  ...layoutTranslations,
+  ...textTranslations,
+  ...buttonTranslations,
   language: 'en',
-
-    grid: {
-    label: "Row (Template Part)",
-    fullWidth: "Full width background?",
-    distributionLabel: "Column distribution",
-    // TODO: Übersetzung ist hier vorbereitet, aber kann nicht genutzt werden momentan -> Lösung finden
-    distribution: {
-      auto: "auto",
-      oneColumn: "1 column"
-    },
-    backgroundColorLabel: "Background color of the row",
-    // TODO: Übersetzung ist hier vorbereitet, aber kann nicht genutzt werden momentan -> Lösung finden
-    backgroundColors: {
-      transparent: "Transparent",
-      primary: "Primary",
-      secondary: "Sekundary",
-      tertiary: "Tertiary",
-      dark: "Dark"
-    }
-  },
-
-  column: {
-    label: "Column (Grid) (Template Part)",
-    roundedCornders: "Rounded corners? (only relevant for non-transparent backgrounds)",
-    backgroundColorLabel: "Background color of the column",
-    // TODO: Übersetzung ist hier vorbereitet, aber kann nicht genutzt werden momentan -> Lösung finden
-    backgroundColors: {
-      transparent: "Transparent",
-      primary: "Primary",
-      secondary: "Sekundary",
-      tertiary: "Tertiary",
-      light: "Light",
-      dark: "Dark"
-    },
-    horizontalAlignmentLabel: "Align elements horizontally",
-    // TODO: Übersetzung ist hier vorbereitet, aber kann nicht genutzt werden momentan -> Lösung finden
-    horizontalAlignment: {
-      left: "Left",
-      center: "Center",
-      right: "Right"
-    },
-    verticalAlignmentLabel: "Align elements vertically",
-    // TODO: Übersetzung ist hier vorbereitet, aber kann nicht genutzt werden momentan -> Lösung finden
-    verticalAlignment: {
-      top: "Top",
-      middle: "Middle",
-      bottom: "Bottom"
-    },
-    directionLabel: "Arrangement of elements",
-    // TODO: Übersetzung ist hier vorbereitet, aber kann nicht genutzt werden momentan -> Lösung finden
-    direction: {
-      vertical: "Below each other",
-      horizontal: "Side by side"
-    }
-  },
-
-  buttons: {
-    label: "Button filled (Template Part)",
-    roundedCorners: "Rounded Corners?",
-    fullWidth: "Should the button take up the entire width?",
-    iconLabel: "Icon (only displayed if 'No icon' is not selected for Icon position)",
-    // TODO: Übersetzung ist hier vorbereitet, aber kann nicht genutzt werden momentan -> Lösung finden
-    icons: {
-      noIcon: "No Icon",
-      chevronLeft: "Chevron to the left of the text",
-      chevronRight: "Chevron to the right of the text",
-      arrowLeft: "Arrow to the left of the text",
-      arrowRight: "Arrow to the right of the text",
-    },
-    bfsgLabel: "This is a button that contains a link.",
-    backgroundColorLabel: "Background color of the button",
-    // TODO: Übersetzung ist hier vorbereitet, aber kann nicht genutzt werden momentan -> Lösung finden
-    backgroundColors: {
-      transparent: "Transparent",
-      primary: "Primary",
-      secondary: "Sekundary",
-      tertiary: "Tertiary",
-      light: "Light",
-      dark: "Dark"
-    },
-  },
 
 }
