@@ -24,8 +24,9 @@
 @forward "./bootstrap/bs_index.scss" as bootstrap-*;
 
 @forward "./basic.scss";
-@forward "../content-elements/layout/layout.scss";
-@forward "../content-elements/buttons/buttons.scss";
+@forward "../content-elements/layout/layout-styles.scss";
+@forward "../content-elements/buttons/button-styles.scss";
+@forward "../content-elements/text-elements/text-styles.scss"
 
 // TODO: Remove if old headlines and/or layout elements are removed
 // @import "./old_properties";
