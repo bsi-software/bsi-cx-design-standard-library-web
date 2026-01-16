@@ -1,0 +1,10 @@
+// bsi standardLib typography properties
+// every properties that shoud be overrideable needs the !default flag
+
+// List for web safe CSS fonts: https://www.cssfontstack.com/
+// List for choosing fallback fonts: https://help.campaignmonitor.com/email-builder-font-compatibility
+
+$primaryFont: 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif' !default;
+$textSize: 16px !default;
+$fontWight: 400 !default;
+$lineHeight: 1.5 !default;

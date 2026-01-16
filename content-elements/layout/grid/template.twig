@@ -1,0 +1,42 @@
+{% import "../../_macros/preset-macro.twig" as presets %}
+
+{% set expandBackground = {
+    'yes': 'grid-expand-background',
+    'no': 'grid-normal-background',
+} %}
+
+{% set validBackgroundColors = {
+    'transparent': 'bg-color-transparent',
+    'primary': 'bg-color-primary',
+    'secondary': 'bg-color-secondary',
+    'tertiary': 'bg-color-tertiary',
+    'dark': 'bg-color-dark',
+} %}
+
+{% set validTemplates = {
+    'auto': 'grid-template-auto',
+    '1': 'grid-template-1',
+    '1-1': 'grid-template-1-1',
+    '2-1': 'grid-template-2-1',
+    '1-2': 'grid-template-1-2',
+} %}
+
+
+{% set gridElementId = elementId ?: 'bsi-grid-1814ad2b' %}
+{% set gridDropzoneId = dropzoneId ?: 'bsi-grid-dropzone-7da41088' %}
+
+{% set expandBackgroundClass = presets.resolvePreset(expandBackground, properties.expandBackground, expandBackground, 'no') %}
+{% set backgroundColorClass = presets.resolvePreset(backgroundColor, properties.gridBackgroundColor, validBackgroundColors, 'transparent') %}
+{% set templateClass = presets.resolvePreset(gridTemplate, properties.gridTeplate, validTemplates, 'auto') %}
+
+{% apply spaceless %}
+    <div data-bsi-element="{{gridElementId}}" class="{{ 'bsi-element-' ~ gridElementId }} bsi-grid-element {{ templateClass }} {{ expandBackgroundClass }} {{ backgroundColorClass }}">
+        <div class="container">
+            <div data-bsi-dropzone="{{ gridDropzoneId }}" class="grid" >
+                {% block grid_content %}
+                    {% include "../column/template.twig" %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endapply %}

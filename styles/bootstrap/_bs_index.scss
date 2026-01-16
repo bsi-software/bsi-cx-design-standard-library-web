@@ -1,0 +1,35 @@
+// ------------------------------------------------------------
+// Bootstrap Index
+//
+// This is the entry point for Bootstrap setup in the library.
+//
+// Purpose:
+// - Uses the Bootstrap bridge to map library properties to the
+//   Bootstrap variables that are actually used by library components.
+// - Forwards these Bootstrap variables so components work correctly
+//   in consuming projects.
+// - Only variables marked with !default can be overridden by projects;
+//   other variables remain internal to the library.
+//
+// Notes:
+// - The bridge is optional; Bootstrap variables could also be
+//   set directly. It mainly exists for better organization and
+//   clear separation of concerns.
+// - Do not forward Bootstrap variables that the library does not
+//   use, to avoid unnecessary exposure or overrides.
+// ------------------------------------------------------------
+
+// if you need some bootstrap things (variables, functions, mixince etc.) then use this file.
+// exapmle: @use "path/bootstrap/bs_index.scss"
+
+@use "./bridge";
+
+@forward "~bootstrap/scss/bootstrap" with (
+  $enable-cssgrid: true,
+  $theme-colors: bridge.$theme-colors !default,
+  $grid-breakpoints: (
+    mobile: 0,
+    tablet: 768px,
+    desktop: 1025px,
+  ) !default
+);

@@ -1,0 +1,52 @@
+@import "../../../../styles/old_properties";
+
+.bsi-element-col-two-ILRIL0 {
+    @media (min-width: bsiProperty('gridBreakpointTablet', 768px)) {
+        &.bsi-ratio-6-6 {
+            > .row > .bsi-column-1 {
+                width: 50%;
+            }
+            > .row > .bsi-column-2 {
+                width: 50%;
+            }
+        }
+
+        &.bsi-ratio-4-8 {
+            > .row > .bsi-column-1 {
+                width: 33.33333333%;
+            }
+            > .row > .bsi-column-2 {
+                width: 66.66666667%;
+            }
+        }
+
+        &.bsi-ratio-8-4 {
+            > .row > .bsi-column-1 {
+                width: 66.66666667%;
+            }
+            > .row > .bsi-column-2 {
+                width: 33.33333333%;
+            }
+        }        
+    }
+    @media (max-width: calc(bsiProperty('gridBreakpointTablet', 768px) - 0.02px)) {
+        &.bsi-col-order-swapped,
+        &.bsi-col-order-swapped-desktop {
+            > .row {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+    @media (max-width: calc(bsiProperty('gridBreakpointTablet', 768px) - 0.02px)) {
+        &.bsi-col-order-swapped,
+        &.bsi-col-order-swapped-mobile {
+            > .row {
+                flex-direction: column-reverse;
+            }
+        }
+
+        &.bsi-mobile-keep .row .bsi-column {
+            width: 50%!important;
+        }
+    }
+}

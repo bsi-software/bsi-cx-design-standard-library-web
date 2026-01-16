@@ -1,9 +1,0 @@
-@import "../../../../styles/properties";
-
-.bsi-element-col-four-yFAGKM {
-    @include media-breakpoint-down($tablet) {
-        &.bsi-mobile-keep .row .bsi-column {
-            width: 25%!important;
-        }
-    }
-}

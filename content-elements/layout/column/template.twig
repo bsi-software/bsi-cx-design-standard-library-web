@@ -1,0 +1,44 @@
+{% import "../../_macros/preset-macro.twig" as presets %}
+
+{% set validBackgroundColors = {
+    'transparent': 'bg-color-transparent',
+    'primary': 'bg-color-primary',
+    'secondary': 'bg-color-secondary',
+    'tertiary': 'bg-color-tertiary',
+    'light': 'bg-color-light',
+    'dark': 'bg-color-dark',
+} %}
+
+{% set roundedCorners = {
+    'yes': 'column-rounded-corners',
+    'no': 'column-none-rounded-corners',
+} %}
+
+{% set validVerticalAlignments = {
+    'top': 'column-vertical-alignment-top',
+    'center': 'column-vertical-alignment-center',
+    'bottom': 'column-vertical-alignment-bottom',
+} %}
+
+{% set validHorizontalAlignments = {
+    'left': 'column-horizontal-alignment-left',
+    'center': 'column-horizontal-alignment-center',
+    'right': 'column-horizontal-alignment-right',
+} %}
+
+
+{% set gridColumnElementId = elementId ?: 'bsi-grid-column-7972a004' %}
+{% set gridColumnDropzoneId = dropzoneId ?: 'bsi-grid-column-dropzone-57ce4d08' %}
+{% set backgroundColorClass = presets.resolvePreset(backgroundColor, properties.columnBackgroundColor, validBackgroundColors, 'transparent') %} {# if backgroundcolor is not transparent, the element has an padding (padding size can set in the properties)) #}
+{% set roundetCornerClass = presets.resolvePreset(roundetCorner, properties.columnRoundetCorner, roundedCorners, 'yes') %} {# has only an affect if backgroundcolor is not transparent #}
+{% set verticalAlignmentClass = presets.resolvePreset(verticalAlignment, properties.columnVerticalAlignment, validVerticalAlignments, 'top') %}
+{% set horizontalAlignmentClass = presets.resolvePreset(horizontalAlignment, properties.columnHorizontalAlignment, validHorizontalAlignments, 'left') %}
+
+{% apply spaceless %}
+    <div data-bsi-element="{{ gridColumnElementId }}" class="bsi-grid-column-element {{ backgroundColorClass }} {{ roundetCornerClass }} {{ verticalAlignmentClass }} {{ horizontalAlignmentClass }}">
+        <div data-bsi-dropzone="{{ gridColumnDropzoneId }}"> 
+            {% block grid_column_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endapply %}

@@ -1,0 +1,88 @@
+@use "../../../styles/bootstrap/bs_index" as bs;
+@use "../../../styles/properties/index.scss" as p;
+
+.bsi-grid-element {
+
+    &.grid-rounded-corners {
+        border-radius: p.border-radius(400);
+    };
+
+    // auto templating
+    .grid {
+
+        /* Mobile: max 4 Columns */
+        grid-template-columns: repeat(auto-fit, minmax(calc((100% - 3*p.$gridGap)/4), 1fr));
+
+        
+        /* Tablet: max 8 Columns */
+        @include bs.media-breakpoint-up(tablet) {
+            grid-template-columns: repeat(auto-fit, minmax(calc((100% - 7*p.$gridGap)/8), 1fr));
+        }
+
+        /* Desktop: max 12 Columns */
+        @include bs.media-breakpoint-up(desktop) {
+            grid-template-columns: repeat(auto-fit, minmax(calc((100% - 11*p.$gridGap)/12), 1fr));
+        }
+    };
+
+    $gridTemplates: (
+        "1": (
+            desktop: 1fr,
+            tablet: 1fr,
+            mobile: 1fr,
+        ),
+        "1-1": (
+            desktop: 1fr 1fr,
+            tablet: 1fr 1fr,
+            mobile: 1fr
+        ),
+        "2-1": (
+            desktop: 2fr 1fr,
+            tablet: 2fr 1fr,
+            mobile: 1fr
+        ),
+        "1-2": (
+            desktop: 1fr 2fr,
+            tablet: 1fr 2fr,
+            mobile: 1fr
+        ),
+    );
+
+    @each $name, $templates in $gridTemplates {
+        &.grid-template-#{$name} .grid {
+            /* Mobile */
+            grid-template-columns: map-get($templates, mobile);
+            
+            /* Tablet*/
+            @include bs.media-breakpoint-up(tablet) {
+                grid-template-columns: map-get($templates, tablet);
+            }
+            
+            /* Desktop */
+            @include bs.media-breakpoint-up(desktop) {
+                grid-template-columns: map-get($templates, desktop);
+            }
+        }
+    };
+
+    $backgroundColors: (
+        "transparent": transparent,
+        "primary": p.$primary,
+        "secondary": p.$secondary,
+        "tertiary": p.$tertiary,
+        "dark": p.$dark,
+    );
+
+    @each $name, $color in $backgroundColors {
+        &.bg-color-#{$name} {
+            &.grid-expand-background {
+                background-color: $color;
+            }
+
+            .grid-normal-background .container {
+                background-color: $color;
+            }
+        }
+    };
+    
+}
