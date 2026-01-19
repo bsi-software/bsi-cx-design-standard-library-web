@@ -18,14 +18,13 @@
 const baseProperties = require('./properties');
 
 const textTranslations = require('./content-elements/text-elements/translations-de');
-const buttonTranslations = require('./content-elements/buttons/translations-en');
 const layoutTranslations = require('./content-elements/layout/translation-en');
 
 module.exports = {
   ...baseProperties,
   ...layoutTranslations,
   ...textTranslations,
-  ...buttonTranslations,
+
   language: 'en',
 
 }

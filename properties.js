@@ -1,13 +1,6 @@
-const {css} = require('@bsi-cx/design-build');
-
-const keriTestColor = css.color('#fe6422');
+const buttonProperties = require('./content-elements/buttons/properties');
 
 module.exports = {
-
-  /* ============================================================= */
-  /*	                           Colors	                           */
-  /* ============================================================= */
-
-  keriTestColor,
+  ...buttonProperties,
 
 };
