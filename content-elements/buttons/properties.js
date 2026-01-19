@@ -16,6 +16,6 @@
 
 module.exports = {
 
-    ... require("./button-filled/properties")
+    ... require("./button/properties")
 
 }

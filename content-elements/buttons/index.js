@@ -1,7 +1,7 @@
 const { cx } = require('@bsi-cx/design-build');
 
 const buttonElements = [
-    require("./button-filled"),
+    require("./button"),
 ];
 
 module.exports.buttonElements = buttonElements;
