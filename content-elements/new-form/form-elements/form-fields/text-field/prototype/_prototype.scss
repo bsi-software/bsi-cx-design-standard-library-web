@@ -1,0 +1,14 @@
+@use '../../_prototype/styles' as prototypeStyleSheet;
+@use "../../../../../../styles/properties.scss" as properties;
+
+@include prototypeStyleSheet.formFieldsStyling();
+
+@mixin textFieldStyling(
+    
+) {
+    .bsi-element-form-field-2217aee4 {
+        .text-input {
+            padding: properties.$spacing300;
+        }
+    }
+}

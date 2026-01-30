@@ -1,0 +1,73 @@
+@use "../../../../../styles/properties.scss" as properties;
+
+@mixin radioGroupStyling(
+    $elementId: "radio-group-6e279f5e",
+) {
+    .bsi-element-#{$elementId} {
+
+        .radio-button-group-container {
+            display: flex;
+            flex-direction: column;
+
+            .radio-button-group {
+                display: flex;
+                flex-direction: column;
+                gap: properties.$spacing200;
+
+                .radiobutton-with-label {
+                    position: relative;
+                    display: flex;
+                    flex-direction: row;
+                    gap: properties.$spacing200;
+    
+                    user-select: none;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+    
+                    // create a custom checkbox
+                    .visual-radio {
+                        display: inline-flex;
+                        width: 24px;
+                        min-width: 24px;
+                        height: 24px;
+                        border-radius: properties.$borderRadiusCircle;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+    
+                        &::before {
+                            opacity: 0;
+                            transition: opacity 0.2s ease;
+                            line-height: 1;
+                            font-family: "bootstrap-icons";
+                            font-size: 8px;
+                            content: "\F287"; /* circle-fill bootstrap icon */
+                        }
+                    }
+    
+                    .native-radio:checked + .visual-radio::before {
+                        opacity: 1;
+                    }
+    
+                    .form-label, .group-radio-label {
+                        cursor: pointer;
+                        margin-bottom: properties.$spacing0;
+                        align-self: stretch;
+                    }
+                }
+            }
+        }
+
+        .error-and-helper-text-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &.form-group-alignment-horizontal .radio-button-group {
+            display: flex;
+            flex-direction: row;
+            gap: properties.$spacing400;
+        }
+    }
+}

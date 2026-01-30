@@ -1,0 +1,54 @@
+@use "../../../../../styles/properties.scss" as properties;
+
+@mixin checkboxStyling(
+    $elementId: "checkbox-49f468e6",
+) {
+    .bsi-element-#{$elementId} {
+        .checkbox-container {
+            display: flex;
+            flex-direction: column;
+            
+            .checkbox-with-label {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                gap: bsiProperty("spacing.200", 8px);
+
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+
+                // create a custom checkbox
+                .visual-checkbox {
+                    display: inline-flex;
+                    width: 24px;
+                    min-width: 24px;
+                    height: 24px;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+
+                    &::before {
+                        opacity: 0;
+                        transition: opacity 0.2s ease;
+                        line-height: 1;
+                        font-family: "bootstrap-icons";
+                        content: "\F26E"; /* check bootstrap icon */
+                    }
+                }
+
+                .native-checkbox:checked + .visual-checkbox::before {
+                    opacity: 1;
+                }
+
+                .form-label, .group-checkbox-label {
+                    cursor: pointer;
+                    margin-bottom: properties.$spacing0;
+                    align-self: stretch;
+                    white-space: now-wrap;
+                }
+            }
+        }
+    }
+}

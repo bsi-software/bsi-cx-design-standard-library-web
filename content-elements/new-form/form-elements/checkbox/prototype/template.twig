@@ -1,0 +1,25 @@
+{% apply spaceless %}
+    {% set formCheckboxElementId = elementId ?: 'checkbox-49f468e6' %}
+    {% set formCheckboxElementPartId = elementPartId ?: 'checkbox-part-7f02c9ea' %}
+    {% set formCheckboxHelperTextPartId = formCheckboxHelperTextPartId ?: 'checkbox-helper-text-part-5989e5eb' %}
+    {% set formCheckboxErrorInvalidPartId = errorInvalidPartId ?: 'checkbox-error-invalid-part-21861f61' %}
+    {% set formCheckboxLabelText = labelText ?: bsi_cx_lorem(3) %}
+    {% set formCheckboxHelperText = infoText  ?: "" %}
+
+    <div x-data="checkbox" data-bsi-element="{{ formCheckboxElementId }}" class="bsi-element-{{ formCheckboxElementId }} form-element" data-bsi-element-part="{{ formCheckboxElementPartId }}">
+        <div class="empty-element"></div> {# This Element is only for the option, that the label from other Form Elements stands on the left side insted of in the top of the element #}
+        <div class="checkbox-container">
+            <div class="checkbox-with-label">
+                <input @change="formElementValidationOnChange" id="checkbox-element" type="checkbox" class="native-checkbox native-input"></input>
+                <span @click="toggle" class="visual-checkbox visual-input"></span>
+                <label for="checkbox-element" class="form-label">{{ formCheckboxLabelText }}</label>  
+            </div>
+            {% block checkbox_info_texts %}
+                <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+                <div class="helper-text-container">
+                    <div data-bsi-element-part="{{ formCheckboxHelperTextPartId }}" class="helper-text">{{ formCheckboxHelperText }}</div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+{% endapply %}

@@ -1,0 +1,34 @@
+{% apply spaceless %}
+    {% set formCheckboxGroupElementId = elementId ?: 'checkbox-group-95a8d908' %}
+    {% set formCheckboxGroupElementPartId = elementPartId ?: 'checkbox-group-part-8cdc938a' %}
+    {% set formCheckboxGroupRequired = required ?: 'bsi-group-not-required' %} {# alternative 'bsi-group-required' #}
+    {% set formCheckboxGroupAlignment = alignment ?: 'form-group-alignment-vertical' %} {# alternative 'form-group-alignment-horizontal' #}
+    {% set formCheckboxGroupLabel = groupLabel ?: 'Checkbox Gruppe' %}
+    {% set formCheckboxGroupLabelId = groupLabelId ?: 'checkbox-group-label-a7bf5a38' %}
+    {% set formCheckboxGroupHelperTextPartId = formCheckboxGroupHelperTextPartId ?: 'checkbox-group-helper-text-part-1cf1d475' %}
+    {% set formCheckboxGroupErrorInvalidPartId = errorInvalidPartId ?: 'checkbox-group-error-invalid-part-6209efa8' %}
+    {% set formCheckboxGroupLabelText = labelText ?: bsi_cx_lorem(3) %}
+    {% set formCheckboxGroupHelperText = infoText ?: "" %}
+
+    <div data-bsi-element="{{ formCheckboxGroupElementId }}" class="bsi-element-{{ formCheckboxGroupElementId }} form-element checkbox-group {{ formCheckboxGroupRequired }} {{ formCheckboxGroupAlignment }}">
+        <fieldset>
+            <legend data-bsi-element-part="{{ formCheckboxGroupLabelId }}">{{ formCheckboxGroupLabel }}</legend>
+            <div data-bsi-dropzone="checkbox-group-dropzone-id-4f4a7409" class="checkbox-group-container">
+                {% block checkbox_group_dropzone %}
+                    {% include "./checkbox-group-checkbox/template.twig" only %}
+                {% endblock %}
+            </div>
+        </fieldset>
+        <div class="error-and-helper-text-wrapper">
+            <div class="empty-element"></div> {# This Element is only for the option, that the label from form elements stands on the left side insted of in the top of the element #}
+            <div class="error-and-helper-text-container">
+                {% block checkbox_info_texts %}
+                    <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+                    <div class="helper-text-container">
+                        <div data-bsi-element-part="{{ formCheckboxGroupHelperTextPartId }}" class="helper-text">{{ formCheckboxGroupHelperText }}</div>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endapply %}

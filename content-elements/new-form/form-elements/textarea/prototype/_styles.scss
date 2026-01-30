@@ -1,0 +1,33 @@
+@use "../../../../../styles/properties.scss" as properties;
+
+@mixin textareaStyling(
+    $elementId: "textarea-a4af575b",
+) {
+    .bsi-element-#{$elementId} {
+
+        .textarea-container {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+
+            .textarea-and-error-text {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+
+                textarea {
+                    padding: properties.$spacing300;
+                }
+            }
+        }
+
+        .helper-text-container {
+            display: flex;
+            align-self: stretch;
+        }
+
+        &:has(textarea:disabled) {
+            opacity: 0.3;
+        }
+    }
+}

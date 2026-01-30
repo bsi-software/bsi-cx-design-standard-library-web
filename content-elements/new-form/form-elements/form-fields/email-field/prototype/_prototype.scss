@@ -1,0 +1,14 @@
+@use '../../_prototype/styles' as prototypeStyleSheet;
+@use "../../../../../../styles/properties.scss" as properties;
+
+@include prototypeStyleSheet.formFieldsStyling();
+
+@mixin emailFieldStyling(
+    
+) {
+    .bsi-element-form-field-bdcd8d55 {
+        .email-input {
+            padding: properties.$spacing300;
+        }
+    }
+}
