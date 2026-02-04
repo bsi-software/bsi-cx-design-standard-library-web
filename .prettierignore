@@ -1,0 +1,5 @@
+# ignore artifacts
+dist
+node_modules
+_old-content-elements
+old-elements-styles

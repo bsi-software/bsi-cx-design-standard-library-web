@@ -1,0 +1,10 @@
+{
+  "[handlebars]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "files.associations": {
+    "*.hbs": "handlebars"
+  },
+  "prettier.documentSelectors": ["**/*.hbs"]
+}

@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@bsi-cx/design-build": "^2.0.0",
-    "file-loader": "^6.2.0"
+    "file-loader": "^6.2.0",
+    "prettier": "3.8.1"
   }
 }
