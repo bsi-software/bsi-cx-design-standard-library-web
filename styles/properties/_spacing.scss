@@ -2,20 +2,20 @@
 // every properties that shoud be overrideable needs the !default flag
 
 $spacing: (
-    0: 0px,
-    100: 4px,
-    200: 8px,
-    300: 16px,
-    400: 24px,
-    500: 32px,
-    600: 48px,
-    700: 60px,
-    800: 80px
+  0: 0px,
+  100: 4px,
+  200: 8px,
+  300: 16px,
+  400: 24px,
+  500: 32px,
+  600: 48px,
+  700: 60px,
+  800: 80px,
 ) !default;
 
 @function spacing($key) {
   @return map.get($spacing, $key);
-};
+}
 
 // this ist the standard gap for the bootstrap css grid
 $gridGap: 24px !default;

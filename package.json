@@ -4,6 +4,9 @@
   "description": "Standard content element library for BSI CX.",
   "license": "MIT",
   "repository": "github:bsi-software/bsi-cx-design-standard-library-web",
+  "scripts": {
+    "lint": "npx prettier . --write"
+  },
   "bugs": {
     "url": "https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues"
   },

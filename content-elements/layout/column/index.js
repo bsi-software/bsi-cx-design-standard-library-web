@@ -13,7 +13,4 @@ module.exports = cx.contentElement
     require("./configs/verticalAlignment"),
     require("./configs/horizontalAlignment"),
   )
-  .withDropzones(
-    cx.dropzone
-      .withDropzone("bsi-grid-column-dropzone-57ce4d08")
-  );
+  .withDropzones(cx.dropzone.withDropzone("bsi-grid-column-dropzone-57ce4d08"));

@@ -16,7 +16,7 @@
 // - Projects should import this file to get the full set of library
 //   properties, Bootstrap setup, and component styles in a single import.
 // - Styles are forwarded per group (not per individual component).
-// - TODO: implement a flag system later that allows importing 
+// - TODO: implement a flag system later that allows importing
 //   only selected groups based on project needs.
 // ------------------------------------------------------------
 
@@ -31,4 +31,3 @@
 // @import "./old_properties";
 @import "../content-elements/_old-content-elements/base/headlines/styles.scss";
 @import "../content-elements/_old-content-elements/layout/styles.scss";
-

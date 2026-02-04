@@ -6,4 +6,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-* Standard library 2.0 for CX designs.
+
+- Standard library 2.0 for CX designs.

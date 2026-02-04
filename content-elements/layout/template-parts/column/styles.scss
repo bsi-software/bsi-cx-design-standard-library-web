@@ -1,87 +1,85 @@
 @use "../../../../styles/properties/index.scss" as p;
 
 .bsi-grid-column-element-template-part {
+  $backgroundColors: (
+    "transparent": transparent,
+    "primary": p.$primary,
+    "secondary": p.$secondary,
+    "tertiary": p.$tertiary,
+    "light": p.$light,
+    "dark": p.$dark,
+  );
 
-
-    $backgroundColors: (
-        "transparent": transparent,
-        "primary": p.$primary,
-        "secondary": p.$secondary,
-        "tertiary": p.$tertiary,
-        "light": p.$light,
-        "dark": p.$dark,
-    );
-
-    @each $name, $color in $backgroundColors {
-        &.bg-color-#{$name} {
-            background-color: $color;
-            @if $name == "transparent" {
-                border-radius: unset;
-            } @else {
-                padding: p.$columnRoundetCorner;
-                &.column-rounded-corners {
-                    border-radius: p.$columnRoundetCorner;
-                }
-            }
+  @each $name, $color in $backgroundColors {
+    &.bg-color-#{$name} {
+      background-color: $color;
+      @if $name == "transparent" {
+        border-radius: unset;
+      } @else {
+        padding: p.$columnRoundetCorner;
+        &.column-rounded-corners {
+          border-radius: p.$columnRoundetCorner;
         }
-    };
+      }
+    }
+  }
 
-    $verticalAlignment: (
-        "top": flex-start,
-        "center": center,
-        "bottom": flex-end
-    );
+  $verticalAlignment: (
+    "top": flex-start,
+    "center": center,
+    "bottom": flex-end,
+  );
 
-    $horizontalAlignment: (
-        "left": flex-start,
-        "center": center,
-        "right": flex-end
-    );
+  $horizontalAlignment: (
+    "left": flex-start,
+    "center": center,
+    "right": flex-end,
+  );
 
-    $directions: (
-        "vertical": column,
-        "horizontal": row,
-    );
+  $directions: (
+    "vertical": column,
+    "horizontal": row,
+  );
 
-    @each $name, $direction in $directions {
-        .column-direction-#{$name} {
-            display: flex;
-            flex-direction: $direction;
-            height: 100%;
+  @each $name, $direction in $directions {
+    .column-direction-#{$name} {
+      display: flex;
+      flex-direction: $direction;
+      height: 100%;
 
-            @if $name == "vertical" {
-                // main axis: vertical
-                // cross axis: horizontal
-                @each $name, $alignment in $verticalAlignment {
-                    //column - elemente vertikal alignen
-                    &.column-vertical-alignment-#{$name} {
-                        justify-content: $alignment;
-                    }
-                };
-
-                @each $name, $alignment in $horizontalAlignment {
-                    //column - elemente horizontal alignen
-                    &.column-horizontal-alignment-#{$name} {
-                        align-items: $alignment;
-                    }
-                };
-            }  @else {
-                // main axis: horizontal
-                // cross axis: vertical
-                @each $name, $alignment in $verticalAlignment {
-                    //row - elemente vertikal alignen
-                    &.column-vertical-alignment-#{$name} {
-                        align-content: $alignment;
-                    }
-                };
-
-                @each $name, $alignment in $horizontalAlignment {
-                    //row - elemente horizontal alignen
-                    &.column-horizontal-alignment-#{$name} {
-                        justify-content: $alignment;
-                    }
-                };   
-            }
+      @if $name == "vertical" {
+        // main axis: vertical
+        // cross axis: horizontal
+        @each $name, $alignment in $verticalAlignment {
+          //column - elemente vertikal alignen
+          &.column-vertical-alignment-#{$name} {
+            justify-content: $alignment;
+          }
         }
-    };
+
+        @each $name, $alignment in $horizontalAlignment {
+          //column - elemente horizontal alignen
+          &.column-horizontal-alignment-#{$name} {
+            align-items: $alignment;
+          }
+        }
+      } @else {
+        // main axis: horizontal
+        // cross axis: vertical
+        @each $name, $alignment in $verticalAlignment {
+          //row - elemente vertikal alignen
+          &.column-vertical-alignment-#{$name} {
+            align-content: $alignment;
+          }
+        }
+
+        @each $name, $alignment in $horizontalAlignment {
+          //row - elemente horizontal alignen
+          &.column-horizontal-alignment-#{$name} {
+            justify-content: $alignment;
+          }
+        }
+      }
+    }
+  }
 }

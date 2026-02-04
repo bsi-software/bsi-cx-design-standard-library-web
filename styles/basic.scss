@@ -14,16 +14,16 @@
 @use "../styles/properties/index.scss" as p;
 // Bootstrap css Grid styles
 .bsi-grid-element {
-    --bs-columns: 4;
-    --bs-gap: p.$gridGap;
+  --bs-columns: 4;
+  --bs-gap: p.$gridGap;
 
-    @include bs.media-breakpoint-down(tablet) {
-        --bs-columns: 8;
-    }
+  @include bs.media-breakpoint-down(tablet) {
+    --bs-columns: 8;
+  }
 
-    @include bs.media-breakpoint-down(desktop) {
-        --bs-columns: 12;
-    }
+  @include bs.media-breakpoint-down(desktop) {
+    --bs-columns: 12;
+  }
 }
 // Styles used by multiple content elements:
 body p {

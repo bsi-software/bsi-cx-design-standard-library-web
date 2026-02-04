@@ -1,12 +1,12 @@
 {
-    "tabWidth": 2,
-    "overrides": [
-        {
-            "files": "*.hbs",
-            "options": {
-                "parser": "glimmer",
-                "tabWidth": 4
-            }
-        }
-    ]
+  "tabWidth": 2,
+  "overrides": [
+    {
+      "files": "*.hbs",
+      "options": {
+        "parser": "glimmer",
+        "tabWidth": 4
+      }
+    }
+  ]
 }

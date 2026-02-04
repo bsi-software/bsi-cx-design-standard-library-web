@@ -4,23 +4,23 @@
 @use "sass:map";
 
 $borderRadius: (
-    100: 4px,
-    200: 8px,
-    300: 16px,
-    400: 24px,
-    circle: 50vh
+  100: 4px,
+  200: 8px,
+  300: 16px,
+  400: 24px,
+  circle: 50vh,
 ) !default;
 
 @function border-radius($key) {
   @return map.get($borderRadius, $key);
-};
+}
 
 $borderWidth: (
-    100: 1px,
-    200: 2px,
-    300: 3px
+  100: 1px,
+  200: 2px,
+  300: 3px,
 ) !default;
 
 @function border-width($key) {
   @return map.get($borderWidth, $key);
-};
+}

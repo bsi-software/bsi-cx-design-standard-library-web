@@ -1,15 +1,17 @@
 [![node >= 16.16.0](https://img.shields.io/badge/node-%3E%3D16.16.0-brightgreen)](https://nodejs.org/)
 [![BSI Studio >= 1.0.0](https://img.shields.io/badge/BSI%20Studio-%3E%3D1.0.0-brightgreen)](https://www.bsi-software.com/cx)
+
 <!-- TODO: Links anpassen! -->
+
 [![BSI CX >= 25.2.0](https://img.shields.io/badge/BSI%20CX-%3E%3D1.3.0-brightgreen)](https://www.bsi-software.com/cx)
 [![Latest available version](https://img.shields.io/github/v/tag/bsi-software/bsi-cx-design-standard-library-web?label=npm)](https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases)
 
 <!-- TODO: Wie handhaben wir das? Wenn wir eine neue Version machen, wäre es vielleciht ugt, wenn wir das von der alten trennen -->
+
 [![Open GitHub issues](https://img.shields.io/github/issues/bsi-software/bsi-cx-design-standard-library-web)](https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/w/bsi-software/bsi-cx-design-standard-library-web)](https://github.com/bsi-software/bsi-cx-design-standard-library-web/commits)
 [![GitHub last commit](https://img.shields.io/github/last-commit/bsi-software/bsi-cx-design-standard-library-web)](https://github.com/bsi-software/bsi-cx-design-standard-library-web/commits)
 [![GitHub contributors](https://img.shields.io/github/contributors/bsi-software/bsi-cx-design-standard-library-web)](https://github.com/bsi-software/bsi-cx-design-standard-library-web/graphs/contributors)
-
 
 # @bsi-cx/design-standard-library-web
 
@@ -23,25 +25,26 @@ To get more information on BSI CX designs, checkout our [online documentation](h
 
 To use this package you have to fulfill the following requirements:
 
-* [Node](https://nodejs.org/) >= 16.16.0
-* [NPM](https://nodejs.org/) >= 8.11.0
-* A code editor e.g. [Visual Studio Code](https://code.visualstudio.com/), [IntelliJ](https://www.jetbrains.com/idea/)
+- [Node](https://nodejs.org/) >= 16.16.0
+- [NPM](https://nodejs.org/) >= 8.11.0
+- A code editor e.g. [Visual Studio Code](https://code.visualstudio.com/), [IntelliJ](https://www.jetbrains.com/idea/)
   or [Web Storm](https://www.jetbrains.com/webstorm/)
-* To test your design, you need access to [BSI CX](https://www.bsi-software.com/cx)
+- To test your design, you need access to [BSI CX](https://www.bsi-software.com/cx)
 
 ## Installation
 
 Fulfill the requirements and run the following command in your project folder:
 
-````shell script
+```shell script
 npm install --save-dev github:bsi-software/bsi-cx-design-standard-library-web#semver:^1.0.0
-````
+```
 
 Or add the following lines to the `devDependencies` section in your `package.json`:
 
-````json
+```json
 "@bsi-cx/design-standard-library-web": "github:bsi-software/bsi-cx-design-standard-library-web#semver:^1.0.0"
-````
+```
+
 Please note that `1.0.0` must be replaced with the latest version.
 
 ## Issues
