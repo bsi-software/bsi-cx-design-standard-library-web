@@ -3,7 +3,6 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/l10n/de.js";
 import "flatpickr/dist/l10n/fr.js";
 import "flatpickr/dist/l10n/it.js";
-import intlTelInput from 'intl-tel-input';
 
 Alpine.data("formField", () => ({
   inputEl: null,
@@ -14,6 +13,8 @@ Alpine.data("formField", () => ({
   requiredValidationMessage: '',
   logicValidationMessage: '',
   validationElement: null,
+  fileArray: null,
+  fileIndex: 1,
 
   init() {
     this.validationElement = this.$root.querySelector('.invalid-feedback');
@@ -25,8 +26,6 @@ Alpine.data("formField", () => ({
 
     if (this.inputEl.type === 'range') {
       this._initRangeInput();
-    } if (this.inputEl.type === 'tel') {
-      this._initTelInput();
     } else if (['date', 'datetime-local', 'time'].includes(this.inputEl.type)) {
       this._initDateInput();
     }
@@ -59,8 +58,6 @@ Alpine.data("formField", () => ({
     }
 
     this._validateDateTimeInput();
-    this._validateFileInput();
-    this._validateTelInput();
     this.validationElement.innerText = !this.$el.checkValidity() && this.$el.value
       ? this.logicValidationMessage
       : this.requiredValidationMessage;
@@ -90,115 +87,6 @@ Alpine.data("formField", () => ({
       this.inputEl.setCustomValidity(valid ? '' : this.logicValidationMessage);
     }
   },
-
-  _validateFileInput() {
-    if (this.inputEl.type !== 'file') return;
-
-    // CUSTOMIZED
-    this._validateAdvFileInput();
-    this.fileArray = Array.from(this.$el.files);
-    this.fileArray.forEach((file, index) => this._moveFilesToInputFields(file, index+1));
-    // CUSTOMIZED
-
-    const files = this.inputEl.files;
-    let valid = true;
-
-    if (files.length === 0) {
-      this.inputEl.setCustomValidity('');
-      return;
-    }
-
-    const accepted = (this.inputEl.accept || '')
-      .split(',')
-      .map(a => a.trim().toLowerCase())
-      .filter(a => !!a);
-
-    if (accepted.length) {
-      let valid = Array.from(files).every( file => {
-        let ext = '.' + file.name.split('.').pop().toLowerCase();
-        let mime = file.type.toLowerCase();
-        let valid =  accepted.some(acc =>
-            acc.endsWith('/*') ? mime.startsWith(acc.replace('/*', '')) : (mime === acc || ext === acc)
-          );
-          return valid;
-      })
-    }
-
-    this.inputEl.setCustomValidity(valid ? '' : this.logicValidationMessage);
-  },
-
-  _moveFilesToInputFields(file, index) {
-      // create label for filename and append div
-      let filenameContainer = document.createElement('div');
-      filenameContainer.classList.add('adv-fileupload-name');
-      filenameContainer.classList.add('bi');
-      filenameContainer.classList.add('bi-x-square');
-      filenameContainer.innerHTML = file.name;
-      let inputId = 'file-input-' + this.fileIndex;
-      let inputNameId = 'file-input-name' + this.fileIndex;
-      filenameContainer.setAttribute('id', inputNameId);
-
-      // set listener to remove files on click
-      filenameContainer.addEventListener("click", function() {
-        document.getElementById(inputId).value = "";
-        document.getElementById(inputNameId).remove();
-      });
-      this.fileIndex += 1;
-      
-      // don't upload large files, set invalid-message instead
-      if(file && file.size > 1000000) {
-        filenameContainer.classList.add('invalid-file-size');
-        filenameContainer.innerHTML = this.logicValidationMessage + ' ' + filenameContainer.innerHTML;
-        this.inputEl.after(filenameContainer);
-        return;
-      }
-      
-      // fill hidden input
-      let hiddenInputID = '#file-input-' + this.fileIndex;
-      var dataTransfer = new DataTransfer();
-      dataTransfer.items.add(file);
-      this.$root.querySelector(hiddenInputID).files = dataTransfer.files;
-      
-      // add file description to file list
-      this.inputEl.after(filenameContainer);
-    },
-
-    _validateAdvFileInput() {
-    if (this.inputEl.classList.contains('advanced-file-upload-input')) {
-      let valid = false;
-      let maxFiles = 10;
-      let currentNumberOfFiles = this.$root.querySelector('.file-input-container').querySelectorAll('.file-input-container').length;
-
-      currentNumberOfFiles <= maxFiles ? valid = true : valid = false;
-      if (valid) {
-        this.inputEl.setCustomValidity('');
-        this.$root.querySelector('.logic-validation').classList.remove('logic-validation-negative');
-        this.$root.querySelector('.logic-validation').classList.add('d-none');
-      }
-      else {
-        this.inputEl.setCustomValidity('Invalid');
-        this.$root.querySelector('.logic-validation').classList.add('logic-validation-negative');
-        this.$root.querySelector('.logic-validation').classList.remove('d-none');
-      }
-    }
-  },
-
-  _validateTelInput() {
-    if (this.inputEl.type !== 'tel' || !this.iti) return;
-
-    const value = this.inputEl.value.trim();
-
-    if (!value) {
-      this.inputEl.setCustomValidity('');
-      return;
-    }
-
-    const isValid = this.iti.isValidNumber();
-
-    this.inputEl.setCustomValidity(isValid ? '' : this.logicValidationMessage);
-  },
-
-
 
   // Adjust range input to bootstrap styling
   _initRangeInput() {
@@ -265,21 +153,83 @@ Alpine.data("formField", () => ({
     iconSpan.innerHTML = `<i class="bi ${this.isTime ? 'bi-clock' : 'bi-calendar'}"></i>`;
     this.inputEl.parentNode.appendChild(iconSpan);
 
-
-    // Formats the input of a date on the desktop if it is entered without periods. 03121996 -> 03.12.1996
-    this.$root.querySelector('input[type=text]')?.addEventListener('input', (event) => {
+    this.$root.querySelector('input[type=text]').addEventListener('input', (event) => {
       let value = event.target.value;
       event.target.value = value.replace(/(\d{2})(\d{2})(\d{4})/gm, '$1.$2.$3');
     })
   },
 
-  _initTelInput() {
-    this.iti = intlTelInput(this.inputEl, {
-      initialCountry: 'de',
-      nationalMode: false,
-      loadUtils: () => import('intl-tel-input/build/js/utils.js'),
-    });
+  validateFileInput() {
+    if(this.requiredErrorElement == null) {
+      this.requiredErrorElement = this.$root.querySelector('.invalid-feedback');
+    }
+
+    if (!this.inputEl.value && this.inputEl.hasAttribute('required')) {
+      this.requiredErrorElement.style.display = "block";
+    } else {
+      this.requiredErrorElement.style.display = "none";
+    }
+    this._validateAdvFileInput();
+    this.fileArray = Array.from(this.$el.files);
+
+    this.fileArray.forEach((file, index) => this._moveFilesToInputFields(file, index+1));
+    },
+
+    _moveFilesToInputFields(file, index) {
+
+      // create label for filename and append div
+      let filenameContainer = document.createElement('div');
+      filenameContainer.classList.add('adv-fileupload-name');
+      filenameContainer.classList.add('bi');
+      filenameContainer.classList.add('bi-x-square');
+      filenameContainer.innerHTML = file.name;
+      let inputId = 'file-input-' + this.fileIndex;
+      let inputNameId = 'file-input-name' + this.fileIndex;
+      filenameContainer.setAttribute('id', inputNameId);
+
+      // set listener to remove files on click
+      filenameContainer.addEventListener("click", function() {
+        document.getElementById(inputId).value = "";
+        document.getElementById(inputNameId).remove();
+      });
+      this.fileIndex += 1;
+      
+      // don't upload large files, set invalid-message instead
+      if(file && file.size > 1000000) {
+        filenameContainer.classList.add('invalid-file-size');
+        filenameContainer.innerHTML = this.logicValidationMessage + ' ' + filenameContainer.innerHTML;
+        this.inputEl.after(filenameContainer);
+        return;
+      }
+      
+      // fill hidden input
+      let hiddenInputID = '#file-input-' + this.fileIndex;
+      var dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      this.$root.querySelector(hiddenInputID).files = dataTransfer.files;
+      
+      // add file description to file list
+      this.inputEl.after(filenameContainer);
+
+    },
+
+  _validateAdvFileInput() {
+    if (this.inputEl.classList.contains('advanced-file-upload-input')) {
+      let valid = false;
+      let maxFiles = 10;
+      let currentNumberOfFiles = this.$root.querySelector('.file-input-container').querySelectorAll('.file-input-container').length;
+
+      currentNumberOfFiles <= maxFiles ? valid = true : valid = false;
+      if (valid) {
+        this.inputEl.setCustomValidity('');
+        this.$root.querySelector('.logic-validation').classList.remove('logic-validation-negative');
+        this.$root.querySelector('.logic-validation').classList.add('d-none');
+      }
+      else {
+        this.inputEl.setCustomValidity('Invalid');
+        this.$root.querySelector('.logic-validation').classList.add('logic-validation-negative');
+        this.$root.querySelector('.logic-validation').classList.remove('d-none');
+      }
+    }
   },
-
 }));
-
