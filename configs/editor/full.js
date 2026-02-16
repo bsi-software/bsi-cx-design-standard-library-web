@@ -1,7 +1,14 @@
-const {EnterMode, Feature, Format, FontSizeUnit, cx, bsiProperty} = require('@bsi-cx/design-build');
+const {
+  EnterMode,
+  Feature,
+  Format,
+  FontSizeUnit,
+  cx,
+  bsiProperty,
+} = require("@bsi-cx/design-build");
 
 module.exports = cx.htmlEditorConfig
-  .withIdentifier('editor-config-35co7H')
+  .withIdentifier("editor-config-35co7H")
   .withFeatures(
     Feature.BOLD,
     Feature.ITALIC,
@@ -32,10 +39,30 @@ module.exports = cx.htmlEditorConfig
     Feature.FULLSCREEN,
     Feature.SELECT_ALL,
     Feature.HTML,
-    Feature.HELP)
-  .withTextColors(bsiProperty('primaryColor', '#2F4E66'), bsiProperty('secondaryColor', '#93C120'), bsiProperty('lightColor', '#ffffff'), bsiProperty('darkColor', '#000000'))
-  .withBackgroundColors(bsiProperty('primaryColor', '#2F4E66'), bsiProperty('secondaryColor', '#93C120'), bsiProperty('lightColor', '#ffffff'), bsiProperty('darkColor', '#000000'))
-  .withFormats(Format.P, Format.H1, Format.H2, Format.H3, Format.H4, Format.H5, Format.H6, Format.PRE)
+    Feature.HELP,
+  )
+  .withTextColors(
+    bsiProperty("primaryColor", "#2F4E66"),
+    bsiProperty("secondaryColor", "#93C120"),
+    bsiProperty("lightColor", "#ffffff"),
+    bsiProperty("darkColor", "#000000"),
+  )
+  .withBackgroundColors(
+    bsiProperty("primaryColor", "#2F4E66"),
+    bsiProperty("secondaryColor", "#93C120"),
+    bsiProperty("lightColor", "#ffffff"),
+    bsiProperty("darkColor", "#000000"),
+  )
+  .withFormats(
+    Format.P,
+    Format.H1,
+    Format.H2,
+    Format.H3,
+    Format.H4,
+    Format.H5,
+    Format.H6,
+    Format.PRE,
+  )
   .withFontSizes(8, 9, 10, 11, 12, 14, 16, 18, 24, 30, 36, 48, 72)
   .withFontSizeUnit(FontSizeUnit.PX)
   .withFontSizeDefault(16)

@@ -7,81 +7,80 @@ $gap: 4px !default;
 $textColor: #333333 !default;
 
 .bsi-button-template-part {
+  @function text-color($background) {
+    // Get the RGB values of the background color (0-255)
+    $r: red($background);
+    $g: green($background);
+    $b: blue($background);
 
-    @function text-color($background) {
-        // Get the RGB values of the background color (0-255)
-        $r: red($background);
-        $g: green($background);
-        $b: blue($background);
+    // Calculate perceived brightness using the YIQ formula
+    // Humans perceive green as brighter than red, and blue as darker
+    $brightness: ($r * 0.299) + ($g * 0.587) + ($b * 0.114);
 
-        // Calculate perceived brightness using the YIQ formula
-        // Humans perceive green as brighter than red, and blue as darker
-        $brightness: ($r * 0.299) + ($g * 0.587) + ($b * 0.114);
+    // If brightness is greater than 128, use dark text, otherwise white text
+    @if ($brightness > 128) {
+      @return #333333; // dark text
+    } @else {
+      @return #ffffff; // light text
+    }
+  }
 
-        // If brightness is greater than 128, use dark text, otherwise white text
-        @if ($brightness > 128) {
-            @return #333333; // dark text
-        } @else {
-            @return #ffffff; // light text
-        }
+  width: fit-content;
+
+  &.button-wide {
+    width: 100%;
+  }
+
+  .bsi-button {
+    display: flex;
+    gap: $gap;
+    justify-content: center;
+    padding: $padding;
+    border: $border;
+    text-decoration: none;
+    color: $textColor;
+
+    i {
+      display: flex;
+      align-items: center;
     }
 
-    width: fit-content;
-
-    &.button-wide {
-        width: 100%;
+    &.button-rounded-corners {
+      border-radius: $borderRadius;
     }
 
-    .bsi-button {
-        display: flex;
-        gap: $gap;
-        justify-content: center;
-        padding: $padding;
-        border: $border;
-        text-decoration: none;
-        color: $textColor;
-
-        i {
-            display: flex;
-            align-items: center;
-        }
-
-        &.button-rounded-corners {
-            border-radius: $borderRadius;
-        }
-
-        $backgroundColor: (
-            "transparent" : transparent,
-            "primary" : p.$primary,
-            "secondary" : p.$secondary,
-            "tertiary" : p.$tertiary,
-            "light": p.$light,
-            "dark" : p.$dark,
-        );
-        @each $name, $color in $backgroundColor {
-            &.bg-color-#{$name} {
-                background-color: $color;
-                color: text-color($color);
-            }
-        }
-
-        $iconPosition: (
-            "none" : unset,
-            "left" : row-reverse,
-            "right" : row,
-        );
-        
-        @each $name, $position in $iconPosition {
-            &:has(.icon[class*="-#{$name}"]) {
-                flex-direction: $position;
-            }
-            .icon[class*="-#{$name}"] {
-                @if $name == "none" {
-                    i {
-                        display: none;
-                    }
-                }
-            }
-        }
+    $backgroundColor: (
+      "transparent": transparent,
+      "primary": p.$primary,
+      "secondary": p.$secondary,
+      "tertiary": p.$tertiary,
+      "light": p.$light,
+      "dark": p.$dark,
+    );
+    @each $name, $color in $backgroundColor {
+      &.bg-color-#{$name} {
+        background-color: $color;
+        color: text-color($color);
+      }
     }
+
+    $iconPosition: (
+      "none": unset,
+      "left": row-reverse,
+      "right": row,
+    );
+
+    @each $name, $position in $iconPosition {
+      &:has(.icon[class*="-#{$name}"]) {
+        flex-direction: $position;
+      }
+      .icon[class*="-#{$name}"] {
+        @if $name == "none" {
+          i {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 }

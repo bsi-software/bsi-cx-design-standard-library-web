@@ -2,7 +2,7 @@
 // Bootstrap Bridge
 //
 // This file provides a clean separation between our design tokens
-// (properties) and Bootstrap variables. 
+// (properties) and Bootstrap variables.
 //
 // Purpose:
 // - Maps internal tokens like $primary, $secondary, etc.
@@ -21,12 +21,11 @@
 @use "../properties/index.scss" as p;
 
 $theme-colors: (
-    'primary':      p.$primary,
-    'secondary':    p.$secondary,
-    'success':      p.$valid,
-    'info':         p.$info,
-    'danger':       p.$invalid,
-    'light':        p.$light,
-    'dark':         p.$dark
+  "primary": p.$primary,
+  "secondary": p.$secondary,
+  "success": p.$valid,
+  "info": p.$info,
+  "danger": p.$invalid,
+  "light": p.$light,
+  "dark": p.$dark,
 ) !default;
-

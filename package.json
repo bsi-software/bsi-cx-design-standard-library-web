@@ -4,6 +4,10 @@
   "description": "Standard content element library for BSI CX.",
   "license": "MIT",
   "repository": "github:bsi-software/bsi-cx-design-standard-library-web",
+  "scripts": {
+    "format": "npx prettier . --write",
+    "lint": "npx eslint ."
+  },
   "bugs": {
     "url": "https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues"
   },
@@ -25,6 +29,14 @@
   },
   "devDependencies": {
     "@bsi-cx/design-build": "^2.0.0",
-    "file-loader": "^6.2.0"
+    "@eslint/css": "^0.14.1",
+    "@eslint/js": "^9.39.2",
+    "@eslint/json": "^1.0.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsdoc": "^62.5.1",
+    "file-loader": "^6.2.0",
+    "globals": "^17.3.0",
+    "prettier": "3.8.1"
   }
 }

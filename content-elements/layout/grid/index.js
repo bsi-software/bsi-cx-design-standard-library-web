@@ -14,8 +14,6 @@ module.exports = cx.contentElement
   )
   .withDropzones(
     cx.dropzone
-    .withDropzone("bsi-grid-dropzone-7da41088")
-    .withAllowedElements(
-      require("../column"),
-    )
+      .withDropzone("bsi-grid-dropzone-7da41088")
+      .withAllowedElements(require("../column")),
   );

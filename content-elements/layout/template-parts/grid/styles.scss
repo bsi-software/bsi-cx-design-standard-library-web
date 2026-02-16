@@ -2,12 +2,11 @@
 @use "../../../../styles/properties/index.scss" as p;
 
 .bsi-grid-element-temlate-part {
+  &.grid-rounded-corners {
+    border-radius: p.border-radius(400);
+  }
 
-    &.grid-rounded-corners {
-        border-radius: p.border-radius(400);
-    };
-    
-    /**
+  /**
     * auto templating
     * Creates a responsive CSS Grid with a variable number of columns.
     * - auto-fit generates as many columns as needed, depending on the
@@ -17,81 +16,87 @@
     * - Columns can flexibly grow up to 1fr
     * - Unused columns are automatically collapsed
     **/
-    .grid {
-
-        /* Mobile: max 4 Columns */
-        grid-template-columns: repeat(auto-fit, minmax(calc((100% - 3*p.$gridGap)/4), 1fr));
-
-        
-        /* Tablet: max 8 Columns */
-        @include bs.media-breakpoint-up(tablet) {
-            grid-template-columns: repeat(auto-fit, minmax(calc((100% - 7*p.$gridGap)/8), 1fr));
-        }
-
-        /* Desktop: max 12 Columns */
-        @include bs.media-breakpoint-up(desktop) {
-            grid-template-columns: repeat(auto-fit, minmax(calc((100% - 11*p.$gridGap)/12), 1fr));
-        }
-    };
-
-    $gridTemplates: (
-        "1": (
-            desktop: 1fr,
-            tablet: 1fr,
-            mobile: 1fr,
-        ),
-        "1-1": (
-            desktop: 1fr 1fr,
-            tablet: 1fr 1fr,
-            mobile: 1fr
-        ),
-        "2-1": (
-            desktop: 2fr 1fr,
-            tablet: 2fr 1fr,
-            mobile: 1fr
-        ),
-        "1-2": (
-            desktop: 1fr 2fr,
-            tablet: 1fr 2fr,
-            mobile: 1fr
-        ),
+  .grid {
+    /* Mobile: max 4 Columns */
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(calc((100% - 3 * p.$gridGap) / 4), 1fr)
     );
 
-    @each $name, $templates in $gridTemplates {
-        .grid-template-#{$name} {
-            /* Mobile */
-            grid-template-columns: map-get($templates, mobile);
-            
-            /* Tablet*/
-            @include bs.media-breakpoint-up(tablet) {
-                grid-template-columns: map-get($templates, tablet);
-            }
-            
-            /* Desktop */
-            @include bs.media-breakpoint-up(desktop) {
-                grid-template-columns: map-get($templates, desktop);
-            }
-        }
-    };
+    /* Tablet: max 8 Columns */
+    @include bs.media-breakpoint-up(tablet) {
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(calc((100% - 7 * p.$gridGap) / 8), 1fr)
+      );
+    }
 
-    $backgroundColors: (
-        "transparent": transparent,
-        "primary": p.$primary,
-        "secondary": p.$secondary,
-        "tertiary": p.$tertiary,
-        "dark": p.$dark,
-    );
+    /* Desktop: max 12 Columns */
+    @include bs.media-breakpoint-up(desktop) {
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(calc((100% - 11 * p.$gridGap) / 12), 1fr)
+      );
+    }
+  }
 
-    @each $name, $color in $backgroundColors {
-        &.bg-color-#{$name} {
-            &.grid-expand-background {
-                background-color: $color;
-            }
+  $gridTemplates: (
+    "1": (
+      desktop: 1fr,
+      tablet: 1fr,
+      mobile: 1fr,
+    ),
+    "1-1": (
+      desktop: 1fr 1fr,
+      tablet: 1fr 1fr,
+      mobile: 1fr,
+    ),
+    "2-1": (
+      desktop: 2fr 1fr,
+      tablet: 2fr 1fr,
+      mobile: 1fr,
+    ),
+    "1-2": (
+      desktop: 1fr 2fr,
+      tablet: 1fr 2fr,
+      mobile: 1fr,
+    ),
+  );
 
-            .grid-normal-background {
-                background-color: $color;
-            }
-        }
-    };
-    
+  @each $name, $templates in $gridTemplates {
+    .grid-template-#{$name} {
+      /* Mobile */
+      grid-template-columns: map-get($templates, mobile);
+
+      /* Tablet*/
+      @include bs.media-breakpoint-up(tablet) {
+        grid-template-columns: map-get($templates, tablet);
+      }
+
+      /* Desktop */
+      @include bs.media-breakpoint-up(desktop) {
+        grid-template-columns: map-get($templates, desktop);
+      }
+    }
+  }
+
+  $backgroundColors: (
+    "transparent": transparent,
+    "primary": p.$primary,
+    "secondary": p.$secondary,
+    "tertiary": p.$tertiary,
+    "dark": p.$dark,
+  );
+
+  @each $name, $color in $backgroundColors {
+    &.bg-color-#{$name} {
+      &.grid-expand-background {
+        background-color: $color;
+      }
+
+      .grid-normal-background {
+        background-color: $color;
+      }
+    }
+  }
 }
