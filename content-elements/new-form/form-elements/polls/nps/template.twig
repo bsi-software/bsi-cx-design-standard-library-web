@@ -1,0 +1,45 @@
+{% set formFieldElementId = elementId ?: 'form-poll-nps-a026d07b' %}
+{% set formFieldElementPartId = elementPartId ?: 'form-poll-nps-part-0f3d03c5' %}
+{% set formFieldHelperTextPartId = formHelperTextPartId ?: 'form-poll-nps-helper-text-part-18d96c98' %}
+{% set formFieldErrorInvalidPartId = errorInvalidPartId ?: 'form-poll-nps-part-error-invalid-8fbaf46c' %}
+{% set formFieldLeftLabelPartId = errorInvalidPartId ?: 'left-label-nps-part-210cf3a6' %}
+{% set formFieldRightLabelPartId = errorInvalidPartId ?: 'right-label-nps-part-312d8b6e' %}
+{% set formFieldLabelText = labelText ?: bsi_cx_lorem(3) %}
+{% set formFieldLeftLabelText = leftLabelText ?: bsi_cx_lorem(3) %}
+{% set formFieldRightLabelText = rightLabelText ?: bsi_cx_lorem(3) %}
+{% set formFieldHelperText = infoText ?: "" %}
+{% set npsScaleLabelPosition = scaleLabelPosition ?: 'scale-label-below-input' %} {# Optionen: 'scale-label-above-input' or 'scale-label-below-input' #}
+
+{% set pollMin = (npsStartWith0 or properties.npsStartWith0) ? 0 : 1 %}
+{% set pollMax = 10 %}
+{% set pollRange = range(pollMin, pollMax) %}
+
+<div
+    data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} {{ npsScaleLabelPosition }} form-element form-field"
+    data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-value-list="{% for i in pollRange %}{{ i ~ '\n' }}{% endfor %}" id="nps-poll">
+    <label for="nps-poll" class="form-label">{{ formFieldLabelText }}</label>
+    <div class="input-field-container">
+        <div class="nps-container input-field-with-error-text">
+            <div class="scale-label-wrapper">
+                <fieldset class="nps-preview nps-radio-group" data-bsi-radio-group="" role="radiogroup">
+                    {% for value in pollRange %}
+                        {% block npsTemplate %}
+                            <div class="nps-item" data-bsi-radio-item="">
+                                <input class="native-nps-input native-input" type="radio" id="nps-poll-{{ value }}" value="{{ value }}" name="nps-poll"/>
+                                <label class="visual-nps-input visual-input" for="nps-poll">{{ value }}</label>
+                            </div>
+                        {% endblock %}
+                    {% endfor %}
+                </fieldset>
+                <div class="nps-scale-labels">
+                    <label data-bsi-element-part="{{ formFieldLeftLabelPartId }}" class="left-nps-scale-label">{{ formFieldLeftLabelText }}</label>
+                    <label data-bsi-element-part="{{ formFieldRightLabelPartId }}" class="right-nps-scale-label">{{ formFieldRightLabelText }}</label>
+                </div>
+            </div>
+            <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+        </div>
+        <div class="helper-text-container">
+            <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
+        </div>
+    </div>
+</div>

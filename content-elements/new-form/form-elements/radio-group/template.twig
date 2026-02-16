@@ -1,0 +1,39 @@
+{% apply spaceless %}
+    {% set formRadioGroupElementId = elementId ?: 'radio-group-6e279f5e' %}
+    {% set formRadioGroupElementPartId = elementPartId ?: 'radio-group-label-84ad37f1' %}
+    {% set formRadioGroupAlignment = alignment ?: 'form-group-alignment-vertical' %} {# alternative 'form-group-alignment-horizontal' #}
+    {% set formRadioGroupLabel = groupLabel ?: 'Radio Button Gruppe' %}
+    {% set formRadioGroupHelperTextPartId = formRadioGroupHelperTextPartId ?: 'radio-group-helper-text-part-c034d086' %}
+    {% set formRadioGroupErrorInvalidPartId = errorInvalidPartId ?: 'radio-group-error-invalid-part-67e4dde8' %}
+    {% set formRadioButtonLabelText = labelText ?: bsi_cx_lorem(3) %}
+    {% set formRadioGroupHelperText = infoText ?: "" %}
+
+    <div x-data="radioButton" data-bsi-element="{{ formRadioGroupElementId }}" class="bsi-element-{{ formRadioGroupElementId }} form-element radio-group {{ formRadioGroupAlignment }}" data-bsi-element-part="{{ formRadioGroupElementPartId }}">
+        <label class="form-label">{{ formRadioGroupLabel }}</label>
+        <div class="radio-button-group-container">
+            <div data-bsi-radio-group="" class="radio-button-group">
+                <div class="radiobutton-with-label" data-bsi-radio-item="">
+                    <input 
+                        @change="formElementValidationOnChange"
+                        id="radio-element"
+                        type="radio"
+                        class="native-radio native-input">
+                    </input>
+                    <span 
+                        @click="toggle"
+                        class="visual-radio visual-input">
+                    </span>
+                    <label for="radio-element" class="group-radio-label">{{ formRadioButtonLabelText }}</label>  
+                </div>
+            </div>
+            <div class="error-and-helper-text-container">
+                {% block radio_info_and_error_texts %}
+                    <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+                    <div class="helper-text-container">
+                        <div data-bsi-element-part="{{ formRadioGroupHelperTextPartId }}" class="helper-text">{{ formRadioGroupHelperText }}</div>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endapply %}

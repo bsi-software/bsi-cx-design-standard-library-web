@@ -7,6 +7,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
 * Dark mode activation/deactivation using properties.js value
+* Add in form-field the file type and the phone number validation
+* hover state and layout correction for nps element
+* Removed duplicate datepicker icon on mobile.
+* Adjusted input padding for better icon alignment.
+* Fixed JS function for date/time inputs so it works correctly on mobile.
+
 
 ## [1.4.15] - 09.10.2025
 * Make multi-column form dropzone extendable again

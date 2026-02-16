@@ -1,0 +1,3 @@
+@use 'prototype/styles' as toggleSwitchStyleSheet;
+
+@include toggleSwitchStyleSheet.toggleSwitchStyling();

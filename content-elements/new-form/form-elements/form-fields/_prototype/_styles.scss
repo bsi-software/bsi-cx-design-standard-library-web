@@ -1,0 +1,38 @@
+@use "../../../../../styles/properties.scss" as properties;
+
+@mixin formFieldsStyling () {
+
+    .form-field {
+
+        .input-field-container {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+
+            .input-field-with-error-text {
+                display: flex;
+                flex-direction: column;
+
+
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], select, textarea {
+                    &:placeholder-shown {
+                        &::placeholder {
+                            opacity: 0.5;
+                        }
+                    }
+                }
+            }
+        }
+
+        .helper-text-container {
+            display: flex;
+            align-self: stretch;
+        }
+
+        &:has(input:disabled) {
+            opacity: 0.3;
+        }  
+    }
+}
+
+

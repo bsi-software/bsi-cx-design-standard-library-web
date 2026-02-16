@@ -17,15 +17,27 @@
 
       input {
         width: 100%;
-        padding-right: 30px;
+        padding-right: 16px;
       }
 
       i {
         position: absolute;
-        right: 30px;
+        right: 16px;
         top: 50%;
         transform: translateY(-50%);
         cursor: pointer;
+      }
+
+      .iti {
+        display: block;
+
+        .iti__dropdown-content {
+          width: fit-content !important;
+        }
+
+        .iti__tel-input {
+          margin-top: 0.5rem !important;
+        }
       }
     }
 
@@ -35,8 +47,16 @@
       color: #dc3545;
     }
 
+    input[type=date], input[type=time], input[type=datetime-local] {
+      &::-webkit-calendar-picker-indicator {
+          opacity: 0;
+          display: none;
+      }
+    }
+
     input[type=range] {
       border: none;
+      padding-right: 0;
 
       &:focus {
         box-shadow: none;
@@ -60,7 +80,7 @@
 
   @if $darkModeActive == true {
     @media screen and (prefers-color-scheme: dark) {
-      .form-label {
+      .form-label, .bsi-form-element .form-text {
         color: bsiProperty('darkModeTextColor', #ffffff);
       }
     }

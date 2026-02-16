@@ -1,0 +1,222 @@
+// @use '../../_prototype/styles' as prototypeStyleSheet;
+@use "../../../../../styles/properties.scss" as properties;
+
+// TODO: Sollten hier eventuell noch neue Properties ersetllt werden, sodass man gezielt Sachen nur für das Formular ändern kann?
+@mixin fileUploadFieldStyling(
+    $borderColor: properties.$fileUploadBorderColor,
+    $borderActiveColor: properties.$fileUploadBorderActiveColor,
+    $borderFocusColor: properties.$fileUploadBorderFocusColor,
+    $borderColorDropover: properties.$fileUploadBorderColorDropover,
+    $backgroundColor: properties.$fileUploadBackgroundColor,
+    $backgroundColorDropover: properties.$fileUploadBackgroundColorDropover,
+    $buttonColor: properties.$fileUploadButtonColor,
+    $buttonFontColor: properties.$fileUploadButtonFontColor,
+    $buttonHoverColor: properties.$fileUploadButtonHoverColor,
+    $iconUploadFontName: properties.$fileUploadIconUploadFontName,
+    $iconUploadFontCharacter: properties.$fileUploadIconUploadFontCharacter,
+    $iconDeleteFontName: properties.$fileUploadIconDeleteFontName,
+    $iconDeleteFontCharacter: properties.$fileUploadIconDeleteFontCharacter,
+    $deleteButtomBackgroundColor: properties.$fileUploadDeleteButtomBackgroundColor,
+    $deleteButtomHoverBackgroundColor: properties.$fileUploadDeleteButtomHoverBackgroundColor,
+    $deleteButtomColor: properties.$fileUploadDeleteButtomColor,
+    $deleteButtomHoverColor: properties.$fileUploadDeleteButtomHoverColor,
+) {
+    .bsi-element-form-field-5674018a {
+        
+        // Only display element after Alpine has been executed
+        [x-cloak] { 
+            display: none !important;
+        }
+
+        .file-upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            align-self: stretch;
+
+            .file-upload-and-error-text {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                align-self: stretch;
+                
+                .file-upload {
+                    min-width: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    align-self: stretch;
+                    gap: properties.$spacing400;
+                    padding: 1rem;
+                    transition: outline-color 0.2s, background-color 0.2s;
+                    background-color: $backgroundColor;
+                    
+                    // no file (0, 4, 0)
+                    outline: properties.$borderWidth100 dashed var(--form-element-border-color);
+                    outline-offset: -(properties.$borderWidth100);
+                    border-radius: properties.$borderRadius200;
+
+                    &:not(:has(.file-info.hidden)) {
+                        // file uploaded (0, 6, 0)
+                        outline-style: solid;
+                        justify-content: space-between;
+
+                        > .left {
+                            width: 70%;
+                        }
+                    }
+
+                    &:has(.upload-button:focus-visible), &:has(.remove-button:focus-visible) {
+                        // focus-visible (0, 6, 0)
+                        outline-width: properties.$borderWidth300;
+                        outline-style: solid;
+                    }
+
+                    &.dragover:has(.file-info.hidden)  {
+                        // dragover some file if no file is uploaded yet (0, 7, 0)
+                        outline-color: $borderColorDropover;
+                        background-color: $backgroundColorDropover;
+                    }
+
+                    > .left {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.75rem;
+                    
+                        .upload-button {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            background: $buttonColor;
+                            border: 1px solid $buttonColor;
+                            color: $buttonFontColor;
+                            padding: 0.5rem 0.75rem;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            font-size: 1rem;
+                            line-height: 1.5rem;
+                            user-select: none;
+                            transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+                    
+                            &:hover {
+                                background: $buttonHoverColor;
+                                color: $buttonColor;
+                            }
+
+                            &:focus-visible {
+                                outline: unset;
+                            }
+
+                            &::after {
+                                font-family: $iconUploadFontName;
+                                content: $iconUploadFontCharacter;
+                                font-size: 1.5rem;
+                                line-height: 1.5rem;
+                            }
+                        }
+                    
+                        .file-info {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            width: 100%;
+
+                            .file-text-wrapper {
+                                width: 100%;
+                                display: flex;
+                                min-width: 0;
+                            }
+                    
+                            .file-name {
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+                            .file-suffix {
+                                flex-shrink: 0;
+                            }
+                            .file-size {
+                                padding-left: properties.$spacing300;
+                                flex-shrink: 0;
+                            }
+                            .preview-image {
+                                height: 3rem;
+                                aspect-ratio: 1 / 1;
+                                object-fit: contain;
+                                
+                                &:not([src]), img[src=""] {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                
+                    > .right {
+                        display: flex;
+                        align-items: center;
+                    
+                        .drop-text {
+                            font-size: 1rem;
+                            line-height: 1.5rem;
+                            font-weight: 700;
+                            user-select: none;
+                        }
+                    
+                        .remove-button {
+                            height: 40px;
+                            aspect-ratio: 1 / 1;
+                            border-radius: properties.$borderRadius100;
+                            background-color: $deleteButtomBackgroundColor;
+                            // display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            // background: none;
+                            border: none;
+                            cursor: pointer;
+                            color: $deleteButtomColor;
+                            // font-size: 1.2rem;
+                            padding: 0;
+                            user-select: none;
+
+                            &:focus-visible {
+                                outline: unset;
+                            }
+                    
+                            &:hover {
+                                color: $deleteButtomHoverColor;
+                                background-color: $deleteButtomHoverBackgroundColor;
+                            }
+
+                            &::before {
+                                font-family: $iconDeleteFontName;
+                                content: $iconDeleteFontCharacter;
+                                font-size: 24px;
+                                line-height: 40px;
+                            }
+                        }
+                    }
+                }
+            
+                .hidden {
+                    display: none !important;
+                }
+            }
+        }
+
+        &:has(input:disabled) {
+            opacity: 0.3;
+        }  
+    }
+
+    .bsi-ce-edit-mode .bsi-element-form-field-5674018a {
+        [x-cloak] { 
+            display: flex !important;
+        }
+
+        .file-upload-container .file-upload {
+            .preview-image, > .right .remove-button {
+                display: none;
+            }
+        }
+    }
+}

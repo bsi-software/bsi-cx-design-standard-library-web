@@ -1,5 +1,6 @@
 import Alpine from "@alpinejs/csp";
 import { Tooltip } from "bootstrap";
+import { FieldRules} from '@bsi-cx/web-frontend/dist/bsi-cx-web-frontend.js';
 
 Alpine.data("formElement", () => ({
   form: null,
@@ -31,6 +32,8 @@ Alpine.data("formElement", () => ({
         }
       });
     }
+
+    this._initBsiCxWebFrontend();
   },
 
   submitForm(e) {
@@ -151,4 +154,18 @@ Alpine.data("formElement", () => ({
       validationSummary.appendChild(messageContainerList);
     }
   },
+
+  /**
+   * Load the external BSI CX web frontend library: @bsi-cx/web-frontend.
+   * That library must be added as a NPM dependency, and loaded as script.
+   *
+   * IMPORTANT: init the autocomplete fields before the field rules!
+   *
+   * See: https://webpack.js.org/guides/author-libraries/
+   * Check: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+   */
+  _initBsiCxWebFrontend() {
+    let fieldRules = new FieldRules();
+    fieldRules.init();
+  }
 }));
