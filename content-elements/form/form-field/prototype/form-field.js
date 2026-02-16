@@ -216,7 +216,7 @@ Alpine.data("formField", () => ({
   _validateAdvFileInput() {
     if (this.inputEl.classList.contains('advanced-file-upload-input')) {
       let valid = false;
-      let maxFiles = 30;
+      let maxFiles = 10;
       let currentNumberOfFiles = this.$root.querySelector('.file-input-container').querySelectorAll('.file-input-container').length;
 
       currentNumberOfFiles <= maxFiles ? valid = true : valid = false;
