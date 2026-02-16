@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
+* Dark mode activation/deactivation using properties.js value
 * Add in form-field the file type and the phone number validation
 * hover state and layout correction for nps element
 * Removed duplicate datepicker icon on mobile.
