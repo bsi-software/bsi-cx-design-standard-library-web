@@ -1,6 +1,6 @@
 @mixin styles($id: 'friendly-captcha-03c21de7') {
-    .bsi-element-#{id} {    
-        .frc-image {
+    .bsi-element-#{$id} {    
+        img {
             height: 80px;
         }
     }
