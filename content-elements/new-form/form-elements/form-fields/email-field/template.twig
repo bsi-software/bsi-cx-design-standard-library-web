@@ -1,0 +1,29 @@
+{% apply spaceless %}
+    {% embed "../_prototype/form-field-prototype.twig" with {
+        elementId: "form-field-bdcd8d55",
+        elementPartId: "form-field-part-71d76c77",
+        formHelperTextPartId: "form-field-part-email-033f20a1",
+        errorInvalidPartId: "form-field-part-error-invalid-b8da3758",
+        errorInvalidText: "Sie haben keine gültige E-Mail Adresse eingegeben. Beispiel: mail@example.com",
+        labelText: "E-Mail Feld",
+        inputType: "email",
+    } only %}
+        {% block input_field %}
+            <input 
+                x-data="emailField"
+                @change="formElementValidationOnChange"
+                @blur="formElementValidationOnBlur"
+                id="{{ inputType }}-field"
+                class="{{ inputType }}-input"
+                type="{{ inputType }}"
+                maxlength="250"
+            >
+            </input>
+        {% endblock %}
+        {% block input_field_error_text %}
+            <div data-bsi-element-part="{{ errorInvalidPartId }}" class="bsi-invalid-feedback">
+                {{ errorInvalidText }}
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endapply %}

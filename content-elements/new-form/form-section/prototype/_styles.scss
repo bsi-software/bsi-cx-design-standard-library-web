@@ -1,0 +1,32 @@
+@import "../../../../styles/properties.scss";
+
+@mixin formSectionStyles() {
+    .bsi-element-form-section-4cc6cfe4 {
+
+        display: flex;
+        gap: bsiProperty("spacing.400", 24px);
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        @media (max-width: calc($md - 1px)) {
+            flex-direction: column;
+        }
+
+        .form-section.left-side {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+        }
+        .form-section.right-side {
+            display: none;
+        }
+        &.new-form-column-amount-2 {
+            .form-section.right-side {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+        }
+    }
+}

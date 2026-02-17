@@ -1,0 +1,52 @@
+@use "../../../../styles/properties" as properties;
+
+@mixin formValidationStyling(
+    $elementId: "form-container-84c6581f",
+    $errorColor: properties.$formErrorColor, 
+    $successColor: properties.$formSuccessColor,
+) {
+
+    .bsi-element-#{$elementId} {
+
+        .form-element {
+            &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid), &:has(select:user-invalid), &.checkbox-group.custom-invalid {
+                div.bsi-invalid-feedback {
+                    display: flex;
+                    color: $errorColor;
+                }
+            }
+
+            &:has(input:user-valid), &:has(input.custom-valid), &:has(textarea:user-valid), &:has(select:user-valid) {
+                input, .visual-input, select, textarea, .file-upload {
+                    --form-element-border-color: #{$successColor};
+                }
+                .visual-star-input {
+                    color: #{$successColor};
+                }
+            }
+
+            &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid), &:has(select:user-invalid) {
+                input, .visual-input, select, textarea, .file-upload {
+                    --form-element-border-color: #{$errorColor};
+                }
+                .visual-star-input {
+                    color: #{$errorColor};
+                }
+
+            }
+
+            // validation style for checkbox groups
+            &.checkbox-group.custom-valid {
+                .visual-checkbox.visual-input {
+                    --form-element-border-color: #{$successColor};
+                }
+            }
+
+            &.checkbox-group.custom-invalid {
+                .visual-checkbox.visual-input {
+                    --form-element-border-color: #{$errorColor};
+                }
+            }
+        }
+    }
+}

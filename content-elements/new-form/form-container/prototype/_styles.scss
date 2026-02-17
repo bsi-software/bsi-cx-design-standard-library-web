@@ -1,0 +1,226 @@
+@use "../../../../styles/properties" as properties;
+
+@use "./validation" as formValidationStyleSheet;
+@use "../../form-elements/form-element-styles" as formElementStyleSheet;
+
+// TODO: Sollten hier eventuell noch neue Properties erstellt werden, sodass man gezielt Sachen nur für das Formular ändern kann?
+@mixin formContainerStyling(
+    $elementId: "form-container-84c6581f",
+    $elementBackgroundColor: properties.$formElementBackgroundColor,  
+    $borderColor: properties.$formBorderColor, 
+    $labelColor: properties.$formLabelColor,
+    $activeColor: properties.$formActiveColor,
+    $activeBackgroundColor: properties.$formActiveBackgroundColor,
+    $helperTextColor: properties.$formHelperTextColor, 
+    $errorColor: properties.$formErrorColor, 
+    $successColor: properties.$formSuccessColor,
+    $buttonSubmitColor: properties.$formButtonSubmitColor,
+    $buttonResetColor: properties.$formButtonResetColor,
+    $buttonSubmitBackgroundColor: properties.$formButtonSubmitBackgroundColor,
+    $buttonResetBackgroundColor: properties.$formButtonResetBackgroundColor,
+) {
+
+    @include formValidationStyleSheet.formValidationStyling(
+        $elementId: $elementId,
+        $errorColor: $errorColor,
+        $successColor: $successColor
+    );
+    .bsi-element-#{$elementId} {
+        --form-element-border-color: #{$borderColor};
+        padding: properties.$spacing0;
+        min-width: 0; // important: allows element to shrink below content size - requiered for text-overflow to work
+
+        // spacing of the form elements
+        $spacings: ("0": properties.$spacing0, "100": properties.$spacing100, "200": properties.$spacing200, "300": properties.$spacing300, "400": properties.$spacing400, "500": properties.$spacing500, "600": properties.$spacing600, "700": properties.$spacing700, "800": properties.$spacing800);
+        @each $name, $spacing in $spacings {
+            // Set space between every form section and buttons in a form
+            &.space-between-form-sections-#{$name} {
+                form {
+                    gap: $spacing;
+                    
+                    .form-elements-container {
+                        gap: $spacing; 
+                    }
+                }
+            }
+
+            // Set space between every form element in a form section.
+            &.space-between-form-elements-#{$name} {
+                .form-section {
+                    gap: $spacing;
+                }
+            }
+
+            // Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.)
+            &.space-within-form-elements-#{$name} {
+                .form-element {
+                    gap: $spacing;
+
+                    .error-and-helper-text-wrapper,
+                    .error-and-helper-text-container,
+                    .checkbox-container,
+                    .radio-button-group-container,
+                    .toggle-switch-container,
+                    .textarea-container,
+                    .textarea-and-error-text,
+                    .select-container,
+                    .file-upload-container,
+                    fieldset {
+                        gap: $spacing;
+                    }
+                }
+
+                .form-field .input-field-container {
+                    gap: $spacing;
+
+                    .input-field-with-error-text, .scale-label-wrapper {
+                        gap: $spacing;
+                    }
+                }
+            }
+        }
+
+        // formular button alligments
+        $alignments: (start, center, end, space-between);
+        @each $alignment in $alignments {
+            &.form-button-alignment-#{$alignment} {
+                form .form-buttons {
+                    justify-content: $alignment;
+                }
+            }
+        }
+
+        // border radius from form elements
+        $borderRadiuses: ("100": properties.$borderRadius100, "200": properties.$borderRadius200, "300": properties.$borderRadius300, "400": properties.$borderRadius400, "circle": properties.$borderRadiusCircle);
+        @each $name, $borderRadius in $borderRadiuses {
+            &.border-radius-form-elements-#{$name} {
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], .visual-checkbox, select, textarea {
+                    border-radius: $borderRadius;
+                }
+            }
+        }
+
+        // label and infotext positions
+        // label on top and infotext on button
+        &.bsi-form-label-info-top-bottom {
+            form .form-elements-container .form-section .form-element {
+                .empty-element {
+                    display: contents;
+                }
+            }
+        }
+
+        // label on top and infotext on top
+        &.bsi-form-label-info-top-top {
+            form .form-elements-container .form-section .form-element {
+                .input-field-container, .textarea-container, .select-container, .file-upload-container {
+                    flex-direction: column-reverse;
+                }
+                .empty-element {
+                    display: contents;
+                }
+            }
+        }
+
+        // label left and infotext on button
+        &.bsi-form-label-info-left-bottom {
+            @media (min-width: properties.$md) {
+                form .form-elements-container .form-section .form-element:not(.checkbox-group) {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: 1fr 6fr;
+                    
+                    .form-label {
+                        display: block;
+                    }
+                }
+                
+                form .form-elements-container .form-section .form-element.checkbox-group {
+                    fieldset {
+                        width: 100%;
+                        display: grid;
+                        grid-template-columns: 1fr 6fr;
+                        
+                        .checkbox-group-container .form-element{
+                            display: flex;
+                        }
+                    }
+                    .error-and-helper-text-wrapper {
+                        width: 100%;
+                        display: grid;
+                        grid-template-columns: 1fr 6fr;
+                    }
+                }
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            .hiddenElement {
+                display: none;
+            }
+
+            .form-elements-container {
+                display: flex;
+                flex-direction: column;
+
+                @include formElementStyleSheet.formElementStyling(
+                    $labelColor: $labelColor,
+                    $helperTextColor: $helperTextColor,
+                    $elementBackgroundColor: $elementBackgroundColor,
+                    $borderColor: $borderColor,
+                    $activeBackgroundColor: $activeBackgroundColor,
+                    $activeColor: $activeColor,
+                );
+
+                .bsi-invalid-feedback {
+                    display: none;
+                }
+            }
+        
+            .form-buttons {
+                display: flex;
+                gap: properties.$spacing400;
+        
+                .form-button-submit {
+                    background-color: $buttonSubmitBackgroundColor;
+                    color: $buttonSubmitColor;
+                    transition: all 0.2s ease;
+
+                    &:hover {
+                        background-color: $buttonSubmitColor;
+                        color: $buttonSubmitBackgroundColor;
+                        box-shadow: inset 0 0 0 properties.$borderWidth100 $buttonSubmitBackgroundColor;
+                    }
+
+                    &:focus-visible {
+                        border-width: properties.$borderWidth100;
+                        box-shadow: inset 0 0 0 properties.$borderWidth200 $buttonSubmitColor;
+                    }
+                }
+        
+                .form-button-reset {
+                    background-color: $buttonResetBackgroundColor;
+                    color: $buttonResetColor;
+                    box-shadow: inset 0 0 0 properties.$borderWidth100 $buttonResetColor;
+
+                    &:hover {
+                        background-color: $buttonResetColor;
+                        color: $buttonResetBackgroundColor;
+                    }
+
+                    &:focus-visible {
+                        border-width: properties.$borderWidth100;
+                        box-shadow: inset 0 0 0 properties.$borderWidth200 $buttonResetColor;
+                    }
+                }
+        
+                input[type=reset]:disabled {
+                    display: none;
+                }
+            }
+        }
+    }
+}

@@ -205,7 +205,6 @@
 @if $darkModeActive == true {
   :root {
     color-scheme: light dark;
-    supported-color-schemes: light dark;
   }
 
   @media screen and (prefers-color-scheme: dark) {
@@ -228,6 +227,10 @@
     .bsi-dm-layout-colored {
       background-color: bsiProperty('layoutColoredBackgroundColorDarkMode', #3b3b3b) !important;
     }
+  }
+} @else {
+  :root {
+    color-scheme: light;
   }
 }
 

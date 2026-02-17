@@ -1,0 +1,20 @@
+{% apply spaceless %}
+    <div data-bsi-element="form-section-4cc6cfe4" class="bsi-element-form-section-4cc6cfe4 new-form-column-amount-1">
+        <div data-bsi-dropzone="form-section-dropzone-a1788622" class="form-section left-side">
+            {% block form_section_left_dropzone %}
+                {% include "../../../base/h3/template.twig" with {
+                    style: "bsi-header-style-5",
+                    weight: 'fw-bold',
+                } only %}
+            {% endblock %}
+        </div>
+        <div data-bsi-dropzone="form-section-right-dropzone-e4dd6542" class="form-section right-side">
+            {% block form_section_right_dropzone %}
+                {% include "../../../base/h3/template.twig" with {
+                    style: "bsi-header-style-5",
+                    weight: 'fw-bold',
+                } only %}
+            {% endblock %}
+        </div>
+    </div>
+{% endapply %}

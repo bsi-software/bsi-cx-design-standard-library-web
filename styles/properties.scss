@@ -64,8 +64,75 @@ $xxl: bsiProperty('gridBreakpointXXL', 1400px);
 //Flatpickr
 $flatpickrInput: bsiProperty('flatpickrInput', 'allowInput');
 
+//new formular
+$formElementBackgroundColor: bsiProperty('formElementBackgroundColor', #ffffff);
+$formBorderColor: bsiProperty('formBorderColor', #383e42);
+$formLabelColor: bsiProperty('formLabelColor', #383e42);
+$formActiveColor: bsiProperty('formActiveColor', #ffffff);
+$formActiveBackgroundColor: bsiProperty('formActiveBackgroundColor', #383e42);
+$formHelperTextColor: bsiProperty('formHelperTextColor', #383e42);
+$formErrorColor: bsiProperty('formErrorColor', #dc3545);
+$formSuccessColor: bsiProperty('formSuccessColor', #198754);
+$formButtonSubmitColor: bsiProperty('formButtonSubmitColor', #ffffff);
+$formButtonResetColor: bsiProperty('formButtonResetColor', #383e42);
+$formButtonSubmitBackgroundColor: bsiProperty('formButtonSubmitBackgroundColor', #2F4E66);
+$formButtonResetBackgroundColor: bsiProperty('formButtonResetBackgroundColor', #ffffff);
+
+// new formular fileupload
+$fileUploadBorderColor: bsiProperty('fileUploadBorderColor', rgba(#383e42, 0.1));
+$fileUploadBorderActiveColor: bsiProperty('fileUploadBorderActiveColor', #383e42);
+$fileUploadBorderFocusColor: bsiProperty('fileUploadBorderFocusColor', #383e42);
+$fileUploadBorderColorDropover: bsiProperty('fileUploadBorderColorDropover', #2F4E66);
+$fileUploadBackgroundColor: bsiProperty('fileUploadBackgroundColor', #ffffff);
+$fileUploadBackgroundColorDropover: bsiProperty('fileUploadBackgroundColorDropover', rgbs(#2F4E66, 0.1));
+$fileUploadButtonColor: bsiProperty('fileUploadButtonColor', #2F4E66);
+$fileUploadButtonFontColor: bsiProperty('fileUploadButtonFontColor', #ffffff);
+$fileUploadButtonHoverColor: bsiProperty('fileUploadButtonHoverColor', #ffffff);
+// $fileUploadIconUploadFontName: bsiProperty('fileUploadIconUploadFontName', 'bootstrap-icons');
+// $fileUploadIconUploadFontCharacter: bsiProperty('fileUploadIconDeleteFontName', '\F296');
+// $fileUploadIconDeleteFontName: bsiProperty('fileUploadIconUploadFontCharacter', 'bootstrap-icons');
+// $fileUploadIconDeleteFontCharacter: bsiProperty('fileUploadIconDeleteFontCharacter', '\F622');
+$fileUploadIconUploadFontName: 'bootstrap-icons';
+$fileUploadIconUploadFontCharacter: '\F296';
+$fileUploadIconDeleteFontName: 'bootstrap-icons';
+$fileUploadIconDeleteFontCharacter: '\F62A';
+$fileUploadDeleteButtomBackgroundColor: bsiProperty('fileUploadDeleteButtomBackgroundColor', #383e42);
+$fileUploadDeleteButtomHoverBackgroundColor: bsiProperty('fileUploadDeleteButtomHoverBackgroundColor', rgbs(#383e42, 0.3));
+$fileUploadDeleteButtomColor: bsiProperty('fileUploadDeleteButtomColor', #ffffff);
+$fileUploadDeleteButtomHoverColor: bsiProperty('fileUploadDeleteButtomHoverColor', rgbs(#ffffff, 0.3));
+
+//new formular poll
+$formPollHoverColor: bsiProperty("pollHoverColor", #ffffff);
+$formPollHoverBackgroundColor: bsiProperty("pollHoverBackgroundColor", #383e42);
+
+/* ============================================================= */
+/*	                      Global Variables                       */
+/* ============================================================= */
+
+$spacing0: bsiProperty("spacing.0", 0px);
+$spacing100: bsiProperty("spacing.100", 4px);
+$spacing200: bsiProperty("spacing.200", 8px);
+$spacing300: bsiProperty("spacing.300", 16px);
+$spacing400: bsiProperty("spacing.400", 24px);
+$spacing500: bsiProperty("spacing.500", 32px);
+$spacing600: bsiProperty("spacing.600", 48px);
+$spacing700: bsiProperty("spacing.700", 60px);
+$spacing800: bsiProperty("spacing.800", 80px);
+
+
+$borderRadius100: bsiProperty("borderRadius.100", 4px);
+$borderRadius200: bsiProperty("borderRadius.100", 8px);
+$borderRadius300: bsiProperty("borderRadius.100", 16px);
+$borderRadius400: bsiProperty("borderRadius.100", 24px);
+$borderRadiusCircle: bsiProperty("borderRadius.circle", 50vh);
+
+$borderWidth100: bsiProperty("borderWidth.100", 1px);
+$borderWidth200: bsiProperty("borderWidth.200", 2px);
+$borderWidth300: bsiProperty("borderWidth.300", 3px);
+
 //darkMode
 $darkModeActive: bsiProperty('darkModeActiveProperty');
+
 /* -------------- Customizing bootstrap variables -------------- */
 
 // Customize colors
