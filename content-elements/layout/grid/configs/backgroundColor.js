@@ -1,6 +1,6 @@
-const { cx } = require("@bsi-cx/design-build");
+import cx from "@bsi-cx/design-build";
 
-module.exports = cx.style
+export default cx.style
   .withIdentifier("grid-background-color-d053edf9")
   .withLabel("Hintergrundfarbe")
   .withCssClasses(

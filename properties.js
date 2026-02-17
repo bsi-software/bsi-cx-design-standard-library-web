@@ -1,8 +1,8 @@
-const { css } = require("@bsi-cx/design-build");
+import cx from "@bsi-cx/design-build";
 
-const keriTestColor = css.color("#fe6422");
+const keriTestColor = cx.css.color("#fe6422");
 
-module.exports = {
+export default {
   /* ============================================================= */
   /*	                           Colors	                           */
   /* ============================================================= */

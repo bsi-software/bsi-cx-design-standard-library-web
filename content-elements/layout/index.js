@@ -1,14 +1,14 @@
-const { cx } = require("@bsi-cx/design-build");
+import cx from "@bsi-cx/design-build";
 
 const layoutElements = [
-  require("./grid"),
-  require("./column"),
-  require("./template-parts/grid"),
-  require("./template-parts/column"),
+  import("./grid"),
+  import("./column"),
+  import("./template-parts/grid"),
+  import("./template-parts/column"),
 ];
-
-module.exports.layoutElements = layoutElements;
-module.exports.layoutGroup = cx.contentElementGroup
+const layoutGroup = cx.contentElementGroup
   .withGroupId("layout-elements-1f3c625c")
   .withLabel("Layout Elemente")
   .withContentElements(...layoutElements);
+
+export { layoutElements, layoutGroup };

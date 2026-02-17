@@ -1,19 +1,17 @@
-// require("./styles.scss");
+import { cx, Icon } from "@bsi-cx/design-build";
 
-const { cx, Icon } = require("@bsi-cx/design-build");
-
-module.exports = cx.contentElement
+export default cx.contentElement
   .withElementId("bsi-grid-1814ad2b")
   .withLabel("Row")
-  .withFile(require("./template.twig"))
+  .withFile(import("./template.twig"))
   .withIcon(Icon.ONE_COLUMN)
   .withAddStyleConfigs(
-    require("./configs/expandBackground"),
-    require("./configs/backgroundColor"),
-    require("./configs/gridTemplate"),
+    import("./configs/expandBackground"),
+    import("./configs/backgroundColor"),
+    import("./configs/gridTemplate"),
   )
   .withDropzones(
     cx.dropzone
       .withDropzone("bsi-grid-dropzone-7da41088")
-      .withAllowedElements(require("../column")),
+      .withAllowedElements(import("../column")),
   );

@@ -1,16 +1,14 @@
-// require("./styles.scss");
+import { cx, Icon } from "@bsi-cx/design-build";
 
-const { cx, Icon } = require("@bsi-cx/design-build");
-
-module.exports = cx.contentElement
+export default cx.contentElement
   .withElementId("bsi-grid-column-7972a004")
   .withLabel("Spalte (Grid)")
-  .withFile(require("./template.twig"))
+  .withFile(import("./template.twig"))
   .withIcon(Icon.ONE_COLUMN)
   .withAddStyleConfigs(
-    require("./configs/backgroundColor"),
-    require("./configs/roundedCorners"),
-    require("./configs/verticalAlignment"),
-    require("./configs/horizontalAlignment"),
+    import("./configs/backgroundColor"),
+    import("./configs/roundedCorners"),
+    import("./configs/verticalAlignment"),
+    import("./configs/horizontalAlignment"),
   )
   .withDropzones(cx.dropzone.withDropzone("bsi-grid-column-dropzone-57ce4d08"));

@@ -1,19 +1,12 @@
-// require("./styles.scss");
-
-const {
-  TemplateElement,
-  Icon,
-  cx,
-  bsiProperty,
-} = require("@bsi-cx/design-build");
+import { TemplateElement, Icon, cx, bsiProperty } from "@bsi-cx/design-build";
 
 /**
  * @type {TemplateElement}
  */
-module.exports = cx.templateElement
+export default cx.templateElement
   .withElementId("bsi-grid-v68Eos")
   .withLabel(bsiProperty("grid.label", "Reihe (Template Part)"))
-  .withFile(require("./template.hbs.twig"))
+  .withFile(import("./template.hbs.twig"))
   .withIcon(Icon.THREE_COLUMNS)
   .withTemplateParts(
     cx.templatePart
@@ -54,5 +47,5 @@ module.exports = cx.templateElement
   .withDropzones(
     cx.dropzone
       .withDropzone("bsi-grid-dropzone-QYpcxP")
-      .withAllowedElements(require("../column")),
+      .withAllowedElements(import("../column")),
   );

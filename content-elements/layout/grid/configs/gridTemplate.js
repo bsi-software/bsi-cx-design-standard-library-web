@@ -1,6 +1,6 @@
-const { cx } = require("@bsi-cx/design-build");
+import cx from "@bsi-cx/design-build";
 
-module.exports = cx.style
+export default cx.style
   .withIdentifier("grid-template-5e524c1f")
   .withLabel("Spalten Verteilung")
   .withCssClasses(

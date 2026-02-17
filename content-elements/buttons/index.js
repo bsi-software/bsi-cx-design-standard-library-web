@@ -1,9 +1,9 @@
-const { cx } = require("@bsi-cx/design-build");
+import cx from "@bsi-cx/design-build";
 
-const buttonElements = [require("./button-filled")];
-
-module.exports.buttonElements = buttonElements;
-module.exports.buttonGroup = cx.contentElementGroup
+const buttonElements = [import("./button-filled")];
+const buttonGroup = cx.contentElementGroup
   .withGroupId("button-elements-kX7dif")
   .withLabel("Button Elemente")
   .withContentElements(...buttonElements);
+
+export { buttonElements, buttonGroup };

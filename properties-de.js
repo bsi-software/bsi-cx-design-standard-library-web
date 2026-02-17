@@ -14,9 +14,9 @@
 //   must be defined here.
 // ------------------------------------------------------------
 
-const baseProperties = require("./properties");
+const baseProperties = import("./properties.js");
 
-module.exports = {
+export default {
   ...baseProperties,
   language: "de",
 

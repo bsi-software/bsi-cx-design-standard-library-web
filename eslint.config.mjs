@@ -17,11 +17,12 @@ export default defineConfig([
       jsdoc.configs["flat/recommended"],
       eslintConfigPrettier,
     ],
-    languageOptions: { globals: { ...globals.browser, ...globals.commonjs } },
+    languageOptions: { globals: globals.browser },
   },
   {
     files: ["**/*.js"],
     ignores: ignoreOldElements,
+    languageOptions: { sourceType: "module" },
   },
   {
     files: ["**/*.json"],

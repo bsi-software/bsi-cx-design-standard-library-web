@@ -13,9 +13,9 @@
 // - Component code should never contain hardcoded text; all user-facing strings
 //   must be defined here.
 // ------------------------------------------------------------
-const baseProperties = require("./properties");
+const baseProperties = import("./properties");
 
-module.exports = {
+export default {
   ...baseProperties,
   language: "en",
 

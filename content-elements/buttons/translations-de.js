@@ -14,7 +14,7 @@
 //   all user-facing strings should be defined here.
 // ------------------------------------------------------------
 
-module.exports = {
+export default {
   buttons: {
     label: "Button gefüllt (Template Part)",
     roundedCorners: "Abgerundete Ecken?",

@@ -1,6 +1,6 @@
-const { cx } = require("@bsi-cx/design-build");
+import cx from "@bsi-cx/design-build";
 
-module.exports = cx.style
+export default cx.style
   .withIdentifier("column-vertical-alignment-83345b1d")
   .withLabel("Vertikale Ausrichtung")
   .withCssClasses(

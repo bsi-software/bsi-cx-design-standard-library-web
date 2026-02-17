@@ -1,13 +1,13 @@
-const {
+import {
   EnterMode,
   Feature,
   Format,
   FontSizeUnit,
   cx,
   bsiProperty,
-} = require("@bsi-cx/design-build");
+} from "@bsi-cx/design-build";
 
-module.exports = cx.htmlEditorConfig
+export default cx.htmlEditorConfig
   .withIdentifier("editor-config-35co7H")
   .withFeatures(
     Feature.BOLD,

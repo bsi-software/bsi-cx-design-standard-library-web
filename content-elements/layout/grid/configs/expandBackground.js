@@ -1,6 +1,6 @@
-const { cx } = require("@bsi-cx/design-build");
+import cx from "@bsi-cx/design-build";
 
-module.exports = cx.style
+export default cx.style
   .withIdentifier("grid-expand-background-b17f4d2d")
   .withLabel("Hintergrund volle Breite")
   .withCssClasses(

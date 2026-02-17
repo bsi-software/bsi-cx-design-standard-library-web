@@ -1,18 +1,18 @@
-const {
+import {
   TemplateElement,
   Icon,
   cx,
   bsiProperty,
   bsiLoremIpsum,
-} = require("@bsi-cx/design-build");
+} from "@bsi-cx/design-build";
 
 /**
  * @type {TemplateElement}
  */
-module.exports = cx.templateElement
+export default cx.templateElement
   .withElementId("bsi-button-filled-ZNfhKO")
   .withLabel(bsiProperty("buttons.label", "button"))
-  .withFile(require("./template.hbs.twig"))
+  .withFile(import("./template.hbs.twig"))
   .withIcon(Icon.MEGAPHONE)
   .withTemplateParts(
     cx.templatePart
