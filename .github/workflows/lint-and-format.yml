@@ -2,7 +2,10 @@ name: Code Quality Check
 
 on:
   pull_request:
-    branches: features/mima/test-workflow
+    branches: 
+        - main
+        - "releases/standardLib-2.0-main" 
+        - features/mima/test-workflow # testing branch
 
 jobs:
   check-quality:
