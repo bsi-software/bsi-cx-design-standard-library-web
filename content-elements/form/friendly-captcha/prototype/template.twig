@@ -1,0 +1,23 @@
+{# Doku: https://developer.friendlycaptcha.com/docs/v2/getting-started/install #}
+
+{% set friendlyCaptchaElementId = elementId ?: "friendly-captcha-03c21de7" %}
+{% set friendlyCaptchaSiteKeyId = siteKeyePartId ?: "friendly-captcha-part-968cbea9" %}
+{% set friendlyCaptchaImageSrc = imageSrc ?: bsi_cx_asset('./friendly-captcha.png') %}
+
+<div x-data="friendlyCaptcha" data-bsi-element="{{ friendlyCaptchaElementId }}" class="bsi-element-{{ friendlyCaptchaElementId }}">
+    <div x-ref="siteKeyWrapper" class="siteKeyWrapper d-none">
+        <p x-ref="siteKey" data-bsi-element-part="{{ friendlyCaptchaSiteKeyId }}">SiteKey</p>
+    </div>
+    <img x-ref="frcImage" src="{{ friendlyCaptchaImageSrc }}" alt="friendly Captcha Logo" />
+
+    <div class="frc-captcha hide-edit" data-sitekey=""></div>
+
+    <div x-ref="responseFriendlyCaptcha" class="response-friendly-captcha d-none" data-bsi-element-part="friendly-captcha-form-field-part-bolY1C" data-bsi-form-field-fixed-type="text" data-bsi-hide-required>
+        <label for="response" class="d-none">Friendly Captcha</label>
+        <input id="response" class="d-none" type="text" value="" name="frc-captcha-response" required>
+    </div>
+    <div>
+        <input type="checkbox" required class="helper-checkbox d-none">
+        <div data-bsi-element-part="friendly-captcha-validity-message-Uc90KX" class="invalid-feedback">Bitte fülle das Captcha aus.</div>
+    </div>
+</div>
