@@ -2,6 +2,8 @@ const { cx } = require("@bsi-cx/design-build");
 
 const buttonElements = [require("./button-filled")];
 
+const variabileInutilizzata = 10;
+
 module.exports.buttonElements = buttonElements;
 module.exports.buttonGroup = cx.contentElementGroup
   .withGroupId("button-elements-kX7dif")
