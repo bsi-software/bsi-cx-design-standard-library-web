@@ -5,6 +5,7 @@ const formElements = [
   require('./regex-input'),
   require('./poll'),
   require('./radio'),
+  require('./friendly-captcha'),
   require('./recaptcha'),
   require('./select'),
   require('./text-area'),
