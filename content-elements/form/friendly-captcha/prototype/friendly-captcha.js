@@ -9,8 +9,16 @@ Alpine.data('friendlyCaptcha', () => ({
     init() {
         // SiteKey for Friendly Captcha, entered by the user in the editor.
         let mySiteKey = this.$refs.siteKey.innerHTML;
+
         // Check if the captcha is marked as required
-        let isRequired = this.$root.querySelector("#frc-captcha-response").hasAttribute("required");
+        let isRequired = true;
+        const captchaResponseElem = this.$root.querySelector("#frc-captcha-response");
+        if (captchaResponseElem) {
+            isRequired = captchaResponseElem.hasAttribute("required");
+        } else {
+            // Prevent friendly captcha widget from loading if id is wrong or missing.
+            return;
+        }
 
         // Remove elements that are only needed for the editor/configuration view.
         // The .siteKeyWrapper element is used in the builder/editor so the user can enter the SiteKey.
@@ -47,19 +55,16 @@ Alpine.data('friendlyCaptcha', () => ({
         // When the captcha is successfully solved, the checkbox is checked
         // so the form can be submitted (if required).
         widget.addEventListener("frc:widget.complete", function(event) {
-            console.log("Captcha solved with solution: " + event.detail.solution);
             validationCheckbox.checked = true;
         });
 
         // On error or captcha expiration, the checkbox is unchecked
         // so the form cannot be submitted.
         widget.addEventListener("frc:widget.error", function(event) {
-            console.log("Captcha error: " + event.detail.error);
             validationCheckbox.checked = false;
         });
 
         widget.addEventListener("frc:widget.expire", function(event) {
-            console.log("Captcha expired - solution no longer valid: " + event.detail.solution);
             validationCheckbox.checked = false;
         });
     }
