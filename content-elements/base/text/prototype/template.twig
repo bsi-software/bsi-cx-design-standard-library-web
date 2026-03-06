@@ -1,7 +1,7 @@
 {% apply spaceless %}
     {% set textElementId = elementId ?: 'text-kkq2fq' %}
     {% set textPartId = textPartId ?: 'text-part-Fjse59' %}
-    {% set textColor = (color ?: properties.textElementColor)?: 'bsi-text-color' %}
+    {% set textColor = (color ?: properties.textElementColor)?: 'bsi-text-dark' %}
     {% set text = (text ?: properties.textContent) ?: bsi_cx_lorem(110) %}
 
     <div data-bsi-element="{{ textElementId }}" data-bsi-element-part="{{ textPartId }}" class="{{ 'bsi-element-' ~ textElementId }} {{ textColor }} bsi-default">
