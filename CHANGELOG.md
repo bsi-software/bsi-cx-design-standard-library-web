@@ -12,6 +12,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Removed duplicate datepicker icon on mobile.
 * Adjusted input padding for better icon alignment.
 * Fixed JS function for date/time inputs so it works correctly on mobile.
+* Fixed breaking-behavior for long table-headers on mobile devices
 
 
 ## [1.4.15] - 09.10.2025
