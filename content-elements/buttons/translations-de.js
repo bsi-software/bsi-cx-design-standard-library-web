@@ -14,20 +14,20 @@
 //   all user-facing strings should be defined here.
 // ------------------------------------------------------------
 
-module.exports = {
+module.exports =       {
   buttons: {
     label: "Button gefüllt (Template Part)",
     roundedCorners: "Abgerundete Ecken?",
     fullWidth: "Soll der Button die ganze Breite einnehmen?",
     iconLabel: "Icon",
     // TODO: Übersetzung ist hier vorbereitet, aber kann nicht genutzt werden momentan -> Lösung finden
-    icons: {
-      noIcon: "Kein Icon",
-      chevronLeft: "Chevron links vom Text",
-      chevronRight: "Chevron rechts vom Text",
-      arrowLeft: "Pfeil links vom Text",
-      arrowRight: "Pfeil rechts vom Text",
-    },
+            icons: {
+              noIcon: "Kein Icon",
+              chevronLeft: "Chevron links vom Text",
+              chevronRight: "Chevron rechts vom Text",
+              arrowLeft: "Pfeil links vom Text",
+              arrowRight: "Pfeil rechts vom Text",
+            },
     bfsgLabel: "Dies ist ein Button, der einen Link beinhaltet",
     backgroundColorLabel: "Hintergrundfarbe des Buttons",
     // TODO: Übersetzung ist hier vorbereitet, aber kann nicht genutzt werden momentan -> Lösung finden
