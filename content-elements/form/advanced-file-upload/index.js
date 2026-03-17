@@ -8,7 +8,7 @@ module.exports = cx
   .withFile(require('./template.twig'))
   .withElementId('file-input-REEhtN')
   .withLabel('Mehrfach-Upload')
-  .withDescription('erweiteres Upload-Element')
+  .withDescription('erweitertes Upload-Element')
   .withIcon(Icon.FORMFIELD)
   .withParts(
     cx.part.plainText
