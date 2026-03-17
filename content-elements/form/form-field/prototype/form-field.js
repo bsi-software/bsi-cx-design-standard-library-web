@@ -14,6 +14,8 @@ Alpine.data("formField", () => ({
   requiredValidationMessage: '',
   logicValidationMessage: '',
   validationElement: null,
+  fileArray: null,
+  fileIndex: 1,
 
   init() {
     this.validationElement = this.$root.querySelector('.invalid-feedback');
