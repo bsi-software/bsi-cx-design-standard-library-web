@@ -7,10 +7,11 @@
     {% set formFieldErrorMaxCountPartId = errorMaxCountPartId ?: 'file-input-part-error-max-count-b20f620c' %}
     {% set formFieldLabelText = (labelText ?: properties.formFieldLabelText) ?: bsi_cx_lorem(3) %}
     {% set formFieldInfoText = (infoText ?: properties.formFieldInfoText) ?: "" %}
-    {% set formFieldErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
-    {% set formFieldErrorInvalidText = (errorInvalidText ?: properties.errorInvalidText) ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %} {# TODO: make translatable #}
+    {% set formFieldErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
+    {% set formFieldErrorMaxSizeText = (errorInvalidText ?: properties.errorAdvFileUploadMaxSizeText) ?: 'Upload nicht möglich. Die Dateigröße überschreitet die maximale Größe.' %}
+    {% set formFieldErrorMaxCountText = (errorInvalidText ?: properties.errorAdvFileUploadMaxCountText) ?: 'Upload nicht möglich. Die maximale Anzahl Files kann nicht überschritten werden.' %}
     {% set formFieldNumberOfFilesPartId = numberOfFilesPartId ?: 'file-input-part-file-number-T9yfhp' %}
-    {% set formFieldProgressText = properties.progressText ?: '0 von 9 Dateien hochgeladen.' %}
+    {% set formFieldProgressText = properties.formFieldProgressText ?: '0 / 9' %}
 
     <div x-data="advancedFileUpload" data-bsi-element="{{ formFieldElementId }}" class="{{ 'bsi-element-' ~ formFieldElementId }} mb-4 bsi-form-element bsi-form-field-element bsi-form-flex-label advanced-file-upload" data-bsi-form-field-fixed-type="">
         <div class="bsi-form-input-element mb-3 bsi-label-floating-element">
@@ -24,7 +25,7 @@
             </div>
             <div class="advanced-input-progress">{{ formFieldProgressText }}</div>
             <div data-bsi-element-part="{{ formFieldErrorRequiredPartId }}" class="invalid-feedback"> {{ formFieldErrorRequiredText }} </div>
-            <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="d-none logic-validation"> {{ formFieldErrorInvalidText }} </div>
+            <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="d-none logic-validation"> {{ formFieldErrorMaxSizeText }} </div>
             <div data-bsi-element-part="{{ formFieldErrorMaxCountPartId }}" class="d-none max-count-validation"> {{ formFieldErrorMaxCountText }} </div>
         </div>
         <div class="file-input-container" aria-hidden="true">

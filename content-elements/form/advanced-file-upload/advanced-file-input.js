@@ -6,6 +6,7 @@ Alpine.data("advancedFileUpload", () => ({
   fp: null,
   requiredValidationMessage: '',
   logicValidationMessage: '',
+  sizeValidationMessage: '',
   validationElement: null,
   hiddenInputContainer: null,
   fileArray: null,
@@ -16,7 +17,8 @@ Alpine.data("advancedFileUpload", () => ({
     this.validationElement = this.$root.querySelector('.invalid-feedback');
     this.hiddenInputContainer = this.$root.querySelector('.file-input-container');
     this.requiredValidationMessage = this.validationElement.innerText;
-    this.logicValidationMessage = this.$root.querySelector('.logic-validation').innerText;
+    this.logicValidationMessage = this.$root.querySelector('.max-count-validation').innerText;
+    this.sizeValidationMessage = this.$root.querySelector('.logic-validation').innerText;
     this.root = this.$root;
     this.fileIndex = 1;
     this.fileCount = 0;
@@ -46,10 +48,8 @@ Alpine.data("advancedFileUpload", () => ({
     Array.from(this.hiddenInputContainer.querySelectorAll('input')).forEach((hiddenInput) => {
       if (hiddenInput.value.length == 0) {
         this.fileIndex = hiddenInput.id.split('-')[2];
-        console.log('changed alpine index to next available index: ' + this.fileIndex);
       }
     })
-    console.log('updated file count to: ' + this.fileCount);
   },
   
   _moveFilesToInputFields(file) {
@@ -61,22 +61,20 @@ Alpine.data("advancedFileUpload", () => ({
       filenameCountErrorContainer.classList.add('bi');
       filenameCountErrorContainer.classList.add('bi-x-square');
       filenameCountErrorContainer.classList.add('invalid-file-size');
-      // TODO: add language support for message
-      filenameCountErrorContainer.innerHTML = file.name + ' konnte nicht hochgeladen werden, da die maximale Anzahl Dateien erreicht wurde.';
+      filenameCountErrorContainer.innerHTML = file.name + ' ' + this.logicValidationMessage;
       filenameCountErrorContainer.setAttribute('x-on:click', '_removeFailedInputMessage($event.currentTarget)');
       this.inputEl.after(filenameCountErrorContainer);
       return;
     }
     
     // handle too large files
-    // TODO: add "dynamic" max-size via properties -> bsiProperty.multiUploadMaxFileSize
     if(file && file.size > 1000000) {
       let filenameSizeErrorContainer = document.createElement('div');
       filenameSizeErrorContainer.classList.add('adv-fileupload-name');
       filenameSizeErrorContainer.classList.add('bi');
       filenameSizeErrorContainer.classList.add('bi-x-square');
       filenameSizeErrorContainer.classList.add('invalid-file-size');
-      filenameSizeErrorContainer.innerHTML = file.name  + this.logicValidationMessage;
+      filenameSizeErrorContainer.innerHTML = file.name  + this.sizeValidationMessage;
       filenameSizeErrorContainer.setAttribute('x-on:click', '_removeFailedInputMessage($event.currentTarget)');
       this.inputEl.after(filenameSizeErrorContainer);
       return;
@@ -108,7 +106,6 @@ Alpine.data("advancedFileUpload", () => ({
     let id = clickTarget.getAttribute('id');
     // fetch id from control input
     let hiddenInputId = 'file-input-' + id.split('-')[3];
-    console.log('hidden input id after click: ' + hiddenInputId);
     document.getElementById(hiddenInputId).value = "";
     clickTarget.remove();
     this.fileCount -= 1;
@@ -127,8 +124,7 @@ Alpine.data("advancedFileUpload", () => ({
       let currentNumberOfFiles = this.fileCount;
       currentNumberOfFiles <= maxFiles ? valid = true : valid = false;
       
-      // TODO: add language support via properties -> bsiProperty.progressText
-      let progressText = currentNumberOfFiles + ' von ' + maxFiles + ' Dateien hochgeladen.';
+      let progressText = currentNumberOfFiles + ' / ' + maxFiles;
       this.root.querySelectorAll('.advanced-input-progress')[0].innerText = progressText;
 
       if (valid) {
