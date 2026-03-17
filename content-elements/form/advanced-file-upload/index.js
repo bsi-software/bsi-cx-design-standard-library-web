@@ -25,7 +25,7 @@ module.exports = cx
       .withLabel('Fehlermeldung bei überschrittener Anzahl Files'),
     cx.part.plainText
       .withId('file-input-part-error-invalid-5g1mUc')
-      .withLabel('Fehlermeldung bei zu großem File'),//default text anpassen!
+      .withLabel('Fehlermeldung bei zu großem File'),
     hiddenInput(1),
     hiddenInput(2),
     hiddenInput(3),
