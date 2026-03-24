@@ -10,6 +10,7 @@ Alpine.data("advancedFileUpload", () => ({
   validationElement: null,
   hiddenInputContainer: null,
   fileSizeMax: null,
+  fileAmountMax: null,
   fileArray: null,
   fileIndex: null,
   fileCount: null,
@@ -21,6 +22,7 @@ Alpine.data("advancedFileUpload", () => ({
     this.logicValidationMessage = this.$root.querySelector('.max-count-validation').innerText;
     this.sizeValidationMessage = this.$root.querySelector('.logic-validation').innerText;
     this.fileSizeMax = this.$root.querySelector('.file-size-max').innerText;
+    this.fileAmountMax = this.$root.querySelectorAll('.file-input-entry').length;
     this.root = this.$root;
     this.fileIndex = 1;
     this.fileCount = 0;
@@ -57,7 +59,7 @@ Alpine.data("advancedFileUpload", () => ({
   _moveFilesToInputFields(file) {
     this._findNextAvailableIndex();
     // handle overflowing files
-    if (this.fileCount == 9) {
+    if (this.fileCount == this.fileAmountMax) {
       let filenameCountErrorContainer = document.createElement('div');
       filenameCountErrorContainer.classList.add('adv-fileupload-name');
       filenameCountErrorContainer.classList.add('bi');
@@ -122,11 +124,11 @@ Alpine.data("advancedFileUpload", () => ({
   _validateAdvFileInput() {
     if (this.inputEl.classList.contains('advanced-file-upload-input')) {
       let valid = false;
-      let maxFiles = 9;
+      // let maxFiles = 9;
       let currentNumberOfFiles = this.fileCount;
-      currentNumberOfFiles <= maxFiles ? valid = true : valid = false;
+      currentNumberOfFiles <= this.fileAmountMax ? valid = true : valid = false;
       
-      let progressText = currentNumberOfFiles + ' / ' + maxFiles;
+      let progressText = currentNumberOfFiles + ' / ' + this.fileAmountMax;
       this.root.querySelectorAll('.advanced-input-progress')[0].innerText = progressText;
 
       if (valid) {

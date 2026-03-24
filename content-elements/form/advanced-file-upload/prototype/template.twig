@@ -11,7 +11,7 @@
     {% set formFieldErrorMaxSizeText = (errorInvalidText ?: properties.errorAdvFileUploadMaxSizeText) ?: 'Upload nicht möglich. Die Dateigröße überschreitet die maximale Größe.' %}
     {% set formFieldErrorMaxCountText = (errorInvalidText ?: properties.errorAdvFileUploadMaxCountText) ?: 'Upload nicht möglich. Die maximale Anzahl Files kann nicht überschritten werden.' %}
     {% set formFieldFileSizeMax  = properties.formFieldFileSizeMax ?: 1000000 %}
-    {% set formFieldNumberOfInputs = properties.formFieldNumberOfInputs ?: 6 %}
+    {% set formFieldNumberOfInputs = properties.formFieldNumberOfInputs ?: 9 %}
     {% set hiddenInputRange = range(1, formFieldNumberOfInputs) %}
     {% set formFieldProgressText = properties.formFieldProgressText ?: '0 / ' + formFieldNumberOfInputs %}
 
