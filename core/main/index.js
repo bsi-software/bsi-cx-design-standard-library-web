@@ -11,7 +11,7 @@ import '../../content-elements/base/chart/prototype/chart';
 import '../../content-elements/base/news-snippet/prototype/news-snippet';
 import '../../content-elements/base/slot-finder/prototype/slot-finder';
 import '../../content-elements/base/table/prototype/table';
-import '../../content-elements/form/advanced-file-upload/advanced-file-input';
+import '../../content-elements/form/advanced-file-upload/prototype/advanced-file-input';
 import '../../content-elements/form/audiorecorder/prototype/audiorecorder';
 import '../../content-elements/form/checkbox/prototype/checkbox';
 import '../../content-elements/form/form-container/form';

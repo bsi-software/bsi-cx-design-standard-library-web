@@ -9,6 +9,7 @@ Alpine.data("advancedFileUpload", () => ({
   sizeValidationMessage: '',
   validationElement: null,
   hiddenInputContainer: null,
+  fileSizeMax: null,
   fileArray: null,
   fileIndex: null,
   fileCount: null,
@@ -19,6 +20,7 @@ Alpine.data("advancedFileUpload", () => ({
     this.requiredValidationMessage = this.validationElement.innerText;
     this.logicValidationMessage = this.$root.querySelector('.max-count-validation').innerText;
     this.sizeValidationMessage = this.$root.querySelector('.logic-validation').innerText;
+    this.fileSizeMax = this.$root.querySelector('.file-size-max').innerText;
     this.root = this.$root;
     this.fileIndex = 1;
     this.fileCount = 0;
@@ -68,7 +70,7 @@ Alpine.data("advancedFileUpload", () => ({
     }
     
     // handle too large files
-    if(file && file.size > 1000000) {
+    if(file && file.size > this.fileSizeMax) {
       let filenameSizeErrorContainer = document.createElement('div');
       filenameSizeErrorContainer.classList.add('adv-fileupload-name');
       filenameSizeErrorContainer.classList.add('bi');
