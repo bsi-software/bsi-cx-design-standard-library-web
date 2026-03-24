@@ -124,7 +124,6 @@ Alpine.data("advancedFileUpload", () => ({
   _validateAdvFileInput() {
     if (this.inputEl.classList.contains('advanced-file-upload-input')) {
       let valid = false;
-      // let maxFiles = 9;
       let currentNumberOfFiles = this.fileCount;
       currentNumberOfFiles <= this.fileAmountMax ? valid = true : valid = false;
       
