@@ -27,11 +27,11 @@
     .format-invalid-feedback {
       margin-top: 0.25rem;
       font-size: 0.875em;
-      color: #dc3545;
+      color: bsiProperty('invalidColor', #dc3545);
     }
 
     .logic-validation-negative {
-      color: #dc3545;
+      color: bsiProperty('invalidColor', #dc3545);
     }
 
     input[type=range] {

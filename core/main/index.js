@@ -15,6 +15,7 @@ import '../../content-elements/form/advanced-file-upload/prototype/advanced-file
 import '../../content-elements/form/audiorecorder/prototype/audiorecorder';
 import '../../content-elements/form/checkbox/prototype/checkbox';
 import '../../content-elements/form/form-container/form';
+import '../../content-elements/form/form-field-tel/prototype/form-tel-input';
 import '../../content-elements/form/form-field/prototype/form-field';
 import '../../content-elements/form/friendly-captcha/prototype/friendly-captcha';
 import '../../content-elements/form/form-pin/form-pin';

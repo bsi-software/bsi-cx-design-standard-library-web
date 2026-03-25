@@ -23,6 +23,7 @@ Alpine.data("advancedFileUpload", () => ({
     this.sizeValidationMessage = this.$root.querySelector('.logic-validation').innerText;
     this.fileSizeMax = this.$root.querySelector('.file-size-max').innerText;
     this.fileAmountMax = this.$root.querySelectorAll('.file-input-entry').length;
+    this.requiredErrorElement = this.$root.querySelector('.invalid-feedback');
     this.root = this.$root;
     this.fileIndex = 1;
     this.fileCount = 0;
@@ -32,10 +33,6 @@ Alpine.data("advancedFileUpload", () => ({
   },
 
   validateFileInput() {
-    if(this.requiredErrorElement == null) {
-      this.requiredErrorElement = this.$root.querySelector('.invalid-feedback');
-    }
-
     if (!this.inputEl.value && this.inputEl.hasAttribute('required')) {
       this.requiredErrorElement.style.display = "block";
     } else {
