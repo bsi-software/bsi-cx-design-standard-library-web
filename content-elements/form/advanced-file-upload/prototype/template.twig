@@ -1,0 +1,45 @@
+{% apply spaceless %}
+    {% set advFileUploadElementId = elementId ?: 'file-input-REEhtN' %}
+    {% set advFileUploadElementPartId = elementPartId ?: 'file-input-part-H72Mnu' %}
+    {% set advFileUploadTextPartId = formTextPartId ?: 'file-input-part-text-T9yfhp' %}
+    {% set advFileUploadErrorRequiredPartId = errorRequiredPartId ?: 'file-input-part-error-required-904DIx' %}
+    {% set advFileUploadErrorInvalidPartId = errorInvalidPartId ?: 'file-input-part-error-invalid-5g1mUc' %}
+    {% set advFileUploadErrorMaxCountPartId = errorMaxCountPartId ?: 'file-input-part-error-max-count-b20f620c' %}
+    {% set advFileUploadLabelText = (labelText ?: properties.advFileUploadLabelText) ?: bsi_cx_lorem(3) %}
+    {% set advFileUploadInfoText = (infoText ?: properties.advFileUploadInfoText) ?: "" %}
+    {% set advFileUploadErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
+    {% set advFileUploadErrorMaxSizeText = (errorInvalidText ?: properties.errorAdvFileUploadMaxSizeText) ?: 'Upload nicht möglich. Die Dateigröße überschreitet die maximale Größe.' %}
+    {% set advFileUploadErrorMaxCountText = (errorInvalidText ?: properties.errorAdvFileUploadMaxCountText) ?: 'Upload nicht möglich. Die maximale Anzahl Files kann nicht überschritten werden.' %}
+    {% set advFileUploadFileSizeMax  = properties.advFileUploadFileSizeMax ?: 1000000 %}
+    {% set advFileUploadNumberOfInputs = properties.advFileUploadNumberOfInputs ?: 9 %}
+    {% set hiddenInputRange = range(1, advFileUploadNumberOfInputs) %}
+    {% set advFileUploadProgressText = properties.advFileUploadProgressText ?: '0 / ' + advFileUploadNumberOfInputs %}
+
+    <div x-data="advancedFileUpload" data-bsi-element="{{ advFileUploadElementId }}" class="{{ 'bsi-element-' ~ advFileUploadElementId }} mb-4 bsi-form-element bsi-form-field-element bsi-form-flex-label advanced-file-upload" data-bsi-form-field-fixed-type="">
+        <div class="bsi-form-input-element mb-3 bsi-label-floating-element">
+        <div class="file-size-max" style="display:none;" aria-hidden="true">{{ advFileUploadFileSizeMax }}</div>
+            <div class="form-label-and-info-text">
+                <label data-bsi-element-part="label-text-f95479ef" for="field" class="form-label">{{ advFileUploadLabelText }}</label>
+                <div data-bsi-element-part="{{ advFileUploadTextPartId }}" class="form-text">{{ advFileUploadInfoText }}</div>
+                <i tabindex="0" class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ advFileUploadInfoText }}"></i>
+            </div>
+            <div class="input-container">
+                <input x-init="initFormFieldInput" x-on:change="validateFileInput" type="file" class="form-control bsi-form-field-input advanced-file-upload-input" id="field" value="" multiple>
+            </div>
+            <div class="advanced-input-progress">{{ advFileUploadProgressText }}</div>
+            <div data-bsi-element-part="{{ advFileUploadErrorRequiredPartId }}" class="invalid-feedback"> {{ advFileUploadErrorRequiredText }} </div>
+            <div data-bsi-element-part="{{ advFileUploadErrorInvalidPartId }}" class="d-none logic-validation"> {{ advFileUploadErrorMaxSizeText }} </div>
+            <div data-bsi-element-part="{{ advFileUploadErrorMaxCountPartId }}" class="d-none max-count-validation"> {{ advFileUploadErrorMaxCountText }} </div>
+        </div>
+        <div class="file-input-container" aria-hidden="true">
+            {% for i in hiddenInputRange %}
+                <div class="file-input-entry" data-bsi-element-part="hidden-file-input-32ea01d7-{{ i }}" data-bsi-form-field-fixed-type data-bsi-hide-required>
+                    <input type="file" id="file-input-{{ i }}" name="file-input-{{ i }}">
+                    </input>
+                    <label for="file-input-{{ i }}">file input {{ i }}
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endapply %}
