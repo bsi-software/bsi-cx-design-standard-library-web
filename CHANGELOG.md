@@ -6,15 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-* Add Friendly Captcha Element
+
+
+## [1.4.16] - 02.04.2026
+* Add friendly captcha element
+* Add multiple-file-upload element
+* Add file type and phone number validation to form-field 
 * Fix shadow issue and add new hover configuration for table
-* Dark mode activation/deactivation using properties.js value
-* Add in form-field the file type and the phone number validation
-* hover state and layout correction for nps element
-* Removed duplicate datepicker icon on mobile.
-* Adjusted input padding for better icon alignment.
-* Fixed JS function for date/time inputs so it works correctly on mobile.
-* Fixed breaking-behavior for long table-headers on mobile devices
+* Fix JS function for date/time inputs so it works correctly on mobile
+* Fix breaking-behavior for long table-headers on mobile devices
+* Remove duplicate datepicker icon on mobile
+* Update dark mode activation/deactivation using properties.js value
+* Update hover state and layout behavior for nps element
+* Update input padding for better icon alignment
 * Update text-element to add further properties upon includes 
 
 
