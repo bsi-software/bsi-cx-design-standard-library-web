@@ -6,10 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-* Update tel-input to allow country-selections via properties
+
 
 ## [1.4.17] - 15.04.2026
 * Fix dark-mode text property
+* Update tel-input to allow country-selections via properties
 
 
 ## [1.4.16] - 08.04.2026
