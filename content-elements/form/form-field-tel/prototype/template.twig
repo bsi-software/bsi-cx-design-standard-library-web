@@ -2,7 +2,9 @@
     {% set phoneElementId = elementId ?: 'form-field-tel-fKUxNS' %}
     {% set phoneElementPartId = elementPartId ?: 'form-field-tel-part-L3Y3gC' %}
     {% set phoneCountriesPartId = countriesPartId ?: 'form-field-tel-part-countries-OGz4jf' %}
+    {% set phoneAvailableCountries = (availableCountries ?: properties.phoneAvailableCountries) ?: 'ch,de,at' %}
     {% set phoneInitialCountriesPartId = (initialCountriesPartId ?: pinnedCountriesPartId) ?: 'form-field-tel-part-initial-BEWZhN' %}
+    {% set phoneCountryPreselect = (countryPreselect ?: properties.phoneCountryPreselect) ?: 'de' %}
     {% set phoneFormTextPartId = formTextPartId ?: 'form-field-tel-part-text-yXZUwb' %}
     {% set phoneErrorRequiredPartId = errorRequiredPartId ?: 'form-field-tel-part-error-required-XKiYlP' %}
     {% set phoneErrorInvalidPartId = errorInvalidPartId ?: 'form-field-tel-part-error-invalid-3XeP4R' %}
@@ -37,9 +39,9 @@
                         required>
                     <div class="d-none">
                         <div data-bsi-element-part="{{ phoneCountriesPartId }}"
-                            class="only-countries">ch,de,at</div>
+                            class="only-countries">{{ phoneAvailableCountries }}</div>
                         <div data-bsi-element-part="{{ phoneInitialCountriesPartId }}"
-                            class="initial-country">de</div>
+                            class="initial-country">{{ phoneCountryPreselect }}</div>
                     </div>
                     <div data-bsi-element-part="{{ phoneErrorRequiredPartId }}"
                         class="invalid-feedback">{{ phoneErrorRequiredText }}</div>
