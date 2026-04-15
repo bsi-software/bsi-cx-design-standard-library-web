@@ -1,4 +1,5 @@
 @import "bootstrap-icons/font/bootstrap-icons.css";
+@import "./../../../../styles/properties.scss";
 
 @mixin styles($id: 'file-input-REEhtN') {
   .bsi-element-#{$id} {
@@ -78,9 +79,11 @@
     }
   }
 
-  @media screen and (prefers-color-scheme: dark) {
-    .form-label {
-      color: bsiProperty('darkModeTextColor', #ffffff);
+  @if $darkModeActive == true {
+    @media screen and (prefers-color-scheme: dark) {
+      .form-label {
+        color: bsiProperty('darkModeTextColor', #ffffff);
+      }
     }
   }
 }

@@ -7,6 +7,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
 
+## [1.4.17] - 15.04.2026
+* Fix dark-mode text property
+
 
 ## [1.4.16] - 08.04.2026
 * Add friendly captcha element
