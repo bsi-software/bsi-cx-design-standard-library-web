@@ -73,6 +73,11 @@
             }
         }
 
+        // style for icons in form fields (e.g. select)
+        .wrapper-select::after {
+            color: $labelColor;
+        }
+
         // styles for helper text
         .helper-text-container, .helper-text {
             color: $helperTextColor;

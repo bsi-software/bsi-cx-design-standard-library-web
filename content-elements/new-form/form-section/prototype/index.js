@@ -16,8 +16,7 @@ module.exports = (
   elementId = "form-section-4cc6cfe4",
   elementLabel = "Formuar Sektion",
   elementDescription = "Abschnitt, der mehrere Formular-Elemente strukturiert.",
-  dropzoneIdLeft = "form-section-dropzone-a1788622",
-  dropzoneIdRight = "form-section-right-dropzone-e4dd6542"
+  dropzoneId = "form-section-dropzone-a1788622",
 ) => cx
   .contentElement
   .withFile(template)
@@ -30,15 +29,9 @@ module.exports = (
   )
   .withDropzones(
     cx.dropzone
-      .withDropzone(dropzoneIdLeft)
+      .withDropzone(dropzoneId)
       .withAllowedElements(
         require("../../../base/h3"),
         ...newFormElements,
-      ),
-    cx.dropzone
-      .withDropzone(dropzoneIdRight)
-      .withAllowedElements(
-        require("../../../base/h3"),
-        ...newFormElements,
-      ),
+      )
   );

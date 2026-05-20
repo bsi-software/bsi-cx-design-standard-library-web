@@ -47,6 +47,13 @@
                     margin-bottom: properties.$spacing0;
                     align-self: stretch;
                     white-space: now-wrap;
+                    font-weight: 400;
+
+                    a {
+                        color: inherit;
+                        text-decoration: underline;
+                        font-weight: 700;
+                    }
                 }
             }
         }

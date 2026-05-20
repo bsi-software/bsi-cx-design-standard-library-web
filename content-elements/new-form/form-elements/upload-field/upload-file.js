@@ -7,8 +7,17 @@ Alpine.data("fileUpload", () => ({
     allowedMimes: [],
     allowedExtensions: [],
 
+    // View state — directly toggled, referenced by name in template
+    hasFiles: false,
+    noFiles: true,
+    hasPreview: false,
+    filePreview: '',
+    fileName: '',
+    fileSuffix: '',
+    fileSize: '',
+
     init() {
-      this.$root.closest('form').addEventListener('reset', this.removeFile.bind(this), true); // last parameter for run in the capturing phase (true) or in the bubbling-phase (false)
+      this.$root.closest('form').addEventListener('reset', this.removeFile.bind(this), true);
       const allowedEntries = this.$refs.fileInput.getAttribute("accept")?.split(",")
         .map(atribute => atribute.trim().toLowerCase())
         .filter(attribute => attribute.replace(".", ""));
@@ -56,7 +65,7 @@ Alpine.data("fileUpload", () => ({
       const changeAfterDropEvent = new CustomEvent('change-after-drop', { 
         bubbles: true,
       });
-      this.$refs.fileInput.dispatchEvent(changeAfterDropEvent, event);
+      this.$refs.fileInput.dispatchEvent(changeAfterDropEvent);
       
       this.isDragOver = false;
       this.$el.classList.remove("dragover");
@@ -70,12 +79,13 @@ Alpine.data("fileUpload", () => ({
         }
       });
       this.files = [];
+      this._syncViewState();
       this.$refs.fileInput.value = "";
 
       const changeAfterDropEvent = new CustomEvent('change-after-drop', { 
         bubbles: true,
       });
-      this.$refs.fileInput.dispatchEvent(changeAfterDropEvent, event);
+      this.$refs.fileInput.dispatchEvent(changeAfterDropEvent);
     },
 
     _handleFiles(fileList) {
@@ -84,13 +94,35 @@ Alpine.data("fileUpload", () => ({
 
       if (uploadedFiles.length > 0) {
         const file = uploadedFiles[0]; // multiple upload is not allowed
-        this.files[0] = {
+        this.files = [{
           name: file.name.split('.').slice(0, -1).join('.'),
           size: this._formatSize(file.size),
           suffix: file.name.split('.').pop().toLowerCase(),
           type: file.type,
           preview: this._isImage(file) ? URL.createObjectURL(file) : null
-        };
+        }];
+      }
+      this._syncViewState();
+    },
+
+    _syncViewState() {
+      if (this.files.length > 0) {
+        const file = this.files[0];
+        this.hasFiles = true;
+        this.noFiles = false;
+        this.hasPreview = !!file.preview;
+        this.filePreview = file.preview || '';
+        this.fileName = file.name;
+        this.fileSuffix = '.' + file.suffix;
+        this.fileSize = file.size;
+      } else {
+        this.hasFiles = false;
+        this.noFiles = true;
+        this.hasPreview = false;
+        this.filePreview = '';
+        this.fileName = '';
+        this.fileSuffix = '';
+        this.fileSize = '';
       }
     },
 

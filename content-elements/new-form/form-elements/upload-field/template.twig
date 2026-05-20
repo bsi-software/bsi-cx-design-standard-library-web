@@ -17,7 +17,6 @@
         <div class="file-upload-and-error-text">
             <div
                 class="file-upload"
-                :class="\{ 'dragover': isDragOver }"
                 x-cloak
             >
                 {% block input_field %}
@@ -37,27 +36,27 @@
                             type="button"
                             class="upload-button"
                             @click="triggerFileUpload"
-                            :class="\{ 'hidden': files.length > 0 }"
+                            x-show="noFiles"
                             aria-label="Datei auswählen"
                         >
                             <span>Datei auswählen</span> {# TODO: muss noch übersetzt werden #}
                             <i class="icon-upload"></i>
                         </button>
                         <div
-                            class="file-info hidden"
+                            class="file-info"
                             aria-live="polite"
-                            :class="\{ 'hidden': files.length === 0 }"
+                            x-show="hasFiles"
                         >
                             <img 
                                 class="preview-image "
-                                :class="\{ 'hidden': files.length === 0 }"
-                                :src="files.length > 0 ? files\[0].preview: ''"
-                                :alt="files.length > 0 ? files\[0].name : ''"
+                                x-show="hasPreview"
+                                :src="filePreview"
+                                :alt="fileName"
                             />
                             <div class="file-text-wrapper">
-                                <span class="file-name" x-text="files.length > 0 ? files\[0].name : ''"></span>
-                                <span class="file-suffix" x-text="files.length > 0 ? '.' + files\[0].suffix : ''"></span>
-                                <span class="file-size" x-text="files.length > 0 ? files\[0].size : ''"></span>
+                                <span class="file-name" x-text="fileName"></span>
+                                <span class="file-suffix" x-text="fileSuffix"></span>
+                                <span class="file-size" x-text="fileSize"></span>
                             </div>
                         </div>
                     </div>
@@ -66,7 +65,7 @@
                         <label
                             class="drop-text"
                             aria-hidden="true"
-                            :class="\{ 'hidden': files.length > 0 }"
+                            x-show="noFiles"
                         > oder hier ablegen </label> {# TODO: muss noch übersetzt werden #}
 
                         <button
@@ -74,7 +73,7 @@
                             class="remove-button"
                             aria-label="Datei entfernen"
                             @click="removeFile"
-                            :class="\{ 'hidden': files.length === 0 }"
+                            x-show="hasFiles"
                         >
                             <i class="icon-delete"></i>
                         </button>
