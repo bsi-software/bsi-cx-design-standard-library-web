@@ -1,4 +1,4 @@
-{% set formFieldElementId = elementId ?: 'form-field-5674018a' %}
+{% set formFieldElementId = elementId ?: 'upload-form-field-5674018a' %}
 {% set formFieldElementPartId = elementPartId ?: 'form-field-part-c21742af' %}
 {% set formFieldHelperTextPartId = formHelperTextPartId ?: 'form-field-helper-text-part-0a34ce3d' %}
 {% set formFieldErrorInvalidPartId = errorInvalidPartId ?: 'form-field-part-error-invalid-6ca6d1fd' %}
@@ -54,16 +54,16 @@
                                 :alt="fileName"
                             />
                             <div class="file-text-wrapper">
-                                <span class="file-name" x-text="fileName"></span>
-                                <span class="file-suffix" x-text="fileSuffix"></span>
-                                <span class="file-size" x-text="fileSize"></span>
+                                <span class="second-form-label file-name" x-text="fileName"></span>
+                                <span class="second-form-label file-suffix" x-text="fileSuffix"></span>
+                                <span class="second-form-label file-size" x-text="fileSize"></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="right">
                         <label
-                            class="drop-text"
+                            class="drop-text second-form-label"
                             aria-hidden="true"
                             x-show="noFiles"
                         > oder hier ablegen </label> {# TODO: muss noch übersetzt werden #}

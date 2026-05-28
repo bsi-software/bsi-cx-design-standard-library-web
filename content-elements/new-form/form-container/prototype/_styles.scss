@@ -3,9 +3,10 @@
 @use "./validation" as formValidationStyleSheet;
 @use "../../form-elements/form-element-styles" as formElementStyleSheet;
 
-// TODO: Sollten hier eventuell noch neue Properties erstellt werden, sodass man gezielt Sachen nur für das Formular ändern kann?
 @mixin formContainerStyling(
     $elementId: "form-container-84c6581f",
+    $formContainerId: "",
+    $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
     $elementBackgroundColor: properties.$formElementBackgroundColor,  
     $borderColor: properties.$formBorderColor, 
     $labelColor: properties.$formLabelColor,
@@ -19,13 +20,23 @@
     $buttonSubmitBackgroundColor: properties.$formButtonSubmitBackgroundColor,
     $buttonResetBackgroundColor: properties.$formButtonResetBackgroundColor,
 ) {
+    $selector: "";
+    @if $formContainerId != "" and $colorThemeClass != "" {
+        $selector: ".bsi-element-#{$formContainerId}.#{$colorThemeClass}";
+    } @else if $formContainerId != "" {
+        $selector: ".bsi-element-#{$formContainerId}";
+    }
 
-    @include formValidationStyleSheet.formValidationStyling(
-        $elementId: $elementId,
-        $errorColor: $errorColor,
-        $successColor: $successColor
-    );
-    .bsi-element-#{$elementId} {
+    @if $selector != "" {
+        #{$selector} {
+            @include formValidationStyleSheet.formValidationStyling(
+                $elementId: $elementId,
+                $errorColor: $errorColor,
+                $successColor: $successColor
+            );
+        }
+    }
+    #{if($selector != "", $selector, '')} .bsi-element-#{$elementId} {
         --form-element-border-color: #{$borderColor};
         padding: properties.$spacing0;
         min-width: 0; // important: allows element to shrink below content size - requiered for text-overflow to work
@@ -56,15 +67,18 @@
                 .form-element {
                     gap: $spacing;
 
-                    .error-and-helper-text-wrapper,
-                    .error-and-helper-text-container,
+                    .error-text-wrapper,
+                    .error-text-container,
                     .checkbox-container,
                     .radio-button-group-container,
                     .toggle-switch-container,
                     .textarea-container,
                     .textarea-and-error-text,
-                    .select-container,
+                    .select-and-error-text,
                     .file-upload-container,
+                    .group-info-container,
+                    .select-container,
+                    .file-upload-and-error-text,
                     fieldset {
                         gap: $spacing;
                     }
@@ -125,30 +139,16 @@
         // label left and infotext on button
         &.bsi-form-label-info-left-bottom {
             @media (min-width: properties.$md) {
-                form .form-elements-container .form-section .form-element:not(.checkbox-group) {
+                form .form-elements-container .form-section .form-element {
                     width: 100%;
                     display: grid;
                     grid-template-columns: 1fr 6fr;
                     
                     .form-label {
                         display: block;
-                    }
-                }
-                
-                form .form-elements-container .form-section .form-element.checkbox-group {
-                    fieldset {
-                        width: 100%;
-                        display: grid;
-                        grid-template-columns: 1fr 6fr;
-                        
-                        .checkbox-group-container .form-element{
-                            display: flex;
-                        }
-                    }
-                    .error-and-helper-text-wrapper {
-                        width: 100%;
-                        display: grid;
-                        grid-template-columns: 1fr 6fr;
+                        min-width: 0;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                 }
             }
@@ -175,7 +175,15 @@
                     $activeColor: $activeColor,
                 );
 
+                .error-text-wrapper:has(> div:empty) {
+                    display: none;
+                }
+
                 .bsi-invalid-feedback {
+                    display: none;
+                }
+
+                .helper-text-container:has(> div:empty) {
                     display: none;
                 }
             }
@@ -196,6 +204,7 @@
                     }
 
                     &:focus-visible {
+                        outline: none;
                         border-width: properties.$borderWidth100;
                         box-shadow: inset 0 0 0 properties.$borderWidth200 $buttonSubmitColor;
                     }

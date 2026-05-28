@@ -18,6 +18,7 @@
     {% set spaceBetweenFormSections = (spaceBetweenFormSections ?: properties.spaceBetweenFormSections) ?:  'space-between-form-sections-600' %} {# Set space between every form section. #}
     {% set spaceBetweenFormElements = (spaceBetweenFormElements ?: properties.spaceBetweenFormElements) ?:  'space-between-form-elements-400' %} {# Set space between every form element in a form section. #}
     {% set spaceWithinFormelements = (spaceWithinFormelements ?: properties.spaceWithinFormelements) ?:  'space-within-form-elements-100' %} {# Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.) #}
+    {% set formScriptName = formScriptName ?: "form" %}
     {% set customStyleClasses = customStyleClasses %}
  
     <div {% if isDataBsiElement %}data-bsi-element="{{ elementId }}"{% endif %}
@@ -33,10 +34,12 @@
             customStyleClasses,
         ] | filter(value => value is not null) | join(' ') }}"
     >
-        <form x-data="form" @submit="submitForm" @reset="resetForm" data-bsi-element-part="{{ dataBsiElementPartForm }}" id="form" {{ properties.showFormFieldTypeField ?: data-bsi-show-form-type-field }} novalidate>
-            <div class="hiddenElement form-value-missing-error-text" data-bsi-element-part="{{ dataBsiElementPartValueMissingError }}">{{ formFieldErrorValueMissingText }}</div>
-            <div class="hiddenElement form-type-missmatch-error-text" data-bsi-element-part="{{ dataBsiElementPartMissmatchError }}">{{ formFieldErrorTypeMissmatchText }}</div>
-            <div class="hiddenElement form-other-error-text" data-bsi-element-part="{{ dataBsiElementPartOtherError }}">{{ formFieldOtherError }}</div>
+        <form x-data="{{ formScriptName }}" @submit="submitForm" @reset="resetForm" data-bsi-element-part="{{ dataBsiElementPartForm }}" id="form" {{ properties.showFormFieldTypeField ?: data-bsi-show-form-type-field }} novalidate>
+            {% block validity_messages %}
+                <div class="hiddenElement form-value-missing-error-text" data-bsi-element-part="{{ dataBsiElementPartValueMissingError }}">{{ formFieldErrorValueMissingText }}</div>
+                <div class="hiddenElement form-type-missmatch-error-text" data-bsi-element-part="{{ dataBsiElementPartMissmatchError }}">{{ formFieldErrorTypeMissmatchText }}</div>
+                <div class="hiddenElement form-other-error-text" data-bsi-element-part="{{ dataBsiElementPartOtherError }}">{{ formFieldOtherError }}</div>
+            {% endblock %}
             <div {% if not formHideDropzone %} data-bsi-dropzone="{{ formDropzoneId }}"{% endif %} class="form-elements-container">
                 {% block form_container_content %}
                     {% include "../../form-section/prototype/template.twig" only %}
@@ -49,7 +52,7 @@
             <div class="form-validation-summary">
                 <p>{{ formValidationSummaryMessage }}</p>
             </div>
-            <div data-bsi-remove-if="draft">
+            <div data-bsi-remove-if="!live">
                 <ul class="" data-bsi-form-validation="">
                     <li data-bsi-form-validation-item=""></li>
                 </ul>

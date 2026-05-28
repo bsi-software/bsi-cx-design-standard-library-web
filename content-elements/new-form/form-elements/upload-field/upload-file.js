@@ -1,5 +1,6 @@
 import Alpine from "@alpinejs/csp";
 
+
 Alpine.data("fileUpload", () => ({
 
     files: [],
@@ -8,6 +9,7 @@ Alpine.data("fileUpload", () => ({
     allowedExtensions: [],
 
     // View state — directly toggled, referenced by name in template
+    fileUploadDiv: null,
     hasFiles: false,
     noFiles: true,
     hasPreview: false,
@@ -18,6 +20,7 @@ Alpine.data("fileUpload", () => ({
 
     init() {
       this.$root.closest('form').addEventListener('reset', this.removeFile.bind(this), true);
+      this.fileUploadDiv = this.$el.querySelector('.file-upload');
       const allowedEntries = this.$refs.fileInput.getAttribute("accept")?.split(",")
         .map(atribute => atribute.trim().toLowerCase())
         .filter(attribute => attribute.replace(".", ""));
@@ -44,14 +47,15 @@ Alpine.data("fileUpload", () => ({
       this.$dispatch('after-change', event);
     },
 
+
     onDragOver() {
       this.isDragOver = true;
-      this.$el.classList.add("dragover");
+      if (this.fileUploadDiv) this.fileUploadDiv.classList.add("dragover");
     },
 
     onDragLeave() {
       this.isDragOver = false;
-      this.$el.classList.remove("dragover");
+      if (this.fileUploadDiv) this.fileUploadDiv.classList.remove("dragover");
     },
 
     onDrop(event) {
@@ -68,7 +72,7 @@ Alpine.data("fileUpload", () => ({
       this.$refs.fileInput.dispatchEvent(changeAfterDropEvent);
       
       this.isDragOver = false;
-      this.$el.classList.remove("dragover");
+      if (this.fileUploadDiv) this.fileUploadDiv.classList.remove("dragover");
     },
 
     removeFile() {

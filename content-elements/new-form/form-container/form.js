@@ -1,5 +1,4 @@
 import Alpine from "@alpinejs/csp";
-import { each } from "chart.js/helpers";
 
 Alpine.data("form", () => ({
     form: null,
@@ -8,21 +7,22 @@ Alpine.data("form", () => ({
     formOtherError: null,
     inputErrorMessages: [],
     errorMessageMap: null,
-    
+
     init() {
         this.form = this.$root;
         this.formErrorValueMissingText = this.$root.querySelector(".form-value-missing-error-text");
         this.formErrorTypeMissmatchText = this.$root.querySelector(".form-type-missmatch-error-text");
         this.formOtherError = this.$root.querySelector(".form-other-error-text");
 
-        // save all invalid-feedback error messages with id from element
+        // save all invalid-feedback error messages with id from element and set AriaDescribedByElements for all elements
         this.form.querySelectorAll(".form-element input").forEach(inputElement => {
             console.log("ID: " + inputElement.id);
             console.log("ErrorMessage: " + inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent.trim());
             this.inputErrorMessages.push( {
                 id: inputElement.id,
                 errorMessage: inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent.trim()
-            })
+            });
+            this._setAriaValuesForElement(inputElement);
         });
 
         // create a map of inputErrorMessages
@@ -32,7 +32,7 @@ Alpine.data("form", () => ({
     },
     
     /**
-     * Funktion that calles, if the formular is submited
+     * Function that calles, if the formular is submited
      * 
      * @param {*} event submit event
      */
@@ -44,7 +44,7 @@ Alpine.data("form", () => ({
     },
 
     /**
-     * Funktion that calles, if the formular is reseted
+     * Function that calles, if the formular is reseted
      * Anything beyond removing custom-valid and custom-invalid is handled in the element itself. This is already the case with the file-upload element.
      */
     resetForm() {
@@ -152,6 +152,7 @@ Alpine.data("form", () => ({
                 });
             }
         }
+        this._setAriaValuesForElement(element);
         return elementIsValid;
     },
 
@@ -181,7 +182,45 @@ Alpine.data("form", () => ({
         if (element.type === "radio") {
             
         }
+        this._setAriaValuesForElement(element);
         return groupIsValid;
+    },
+
+    /**
+     * Set ariaDescribedByElements for an input element with helper, error, and/or success feedback
+     * @param {Element} inputElement
+     */
+    _setAriaValuesForElement(inputField) {
+        var formElement = inputField.closest(".form-element");
+        console.log("Setting aria values for element: " + inputField.id);
+        if (!formElement) return;
+        const describedElements = [];
+        // Helper-text if visible and not empty
+        const helper = formElement.querySelector('.helper-text');
+        if (
+            helper 
+            && window.getComputedStyle(helper).display !== 'none' 
+            && helper.textContent.trim() !== ''
+        ) {
+            console.log("Helper Text Element: " + helper);
+            describedElements.push(helper);
+        }
+        // Error-message if visible and not empty
+        const error = formElement.querySelector('.bsi-invalid-feedback');
+        if (error 
+            && window.getComputedStyle(error).display !== 'none' 
+            && error.textContent.trim() !== ''
+        ) {
+            console.log("Error Message Element: " + error);
+            inputField.setAttribute("aria-invalid", true);
+            describedElements.push(error);
+        } else {
+            inputField.setAttribute("aria-invalid", false);
+        }
+        if ('ariaDescribedByElements' in Element.prototype) {
+            console.log("Setting ariaDescribedByElements: " + describedElements);
+            inputField.ariaDescribedByElements = describedElements;
+        }
     },
 
     /**

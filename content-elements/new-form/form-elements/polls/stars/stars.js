@@ -40,6 +40,7 @@ Alpine.data("starPoll", () => ({
                 id="${id}" 
                 name="${name}"
                 @change="updateStatus"
+                @after-change="formElementValidationOnChange"
                 ${required ? "required" : ""} 
                 ${checked ? "checked" : ""}
             >
@@ -63,6 +64,7 @@ Alpine.data("starPoll", () => ({
         let selectedIndex = Array.from(this.radioItems).findIndex(radio => radio.checked);
         this._setClassForAllStarsBefore(selectedIndex, "star-poll-radio-checked");
         this.$root.querySelector(".star-rating-fill-label").innerText = `${selectedIndex+1}/${this.max}`;
+        this.$dispatch("after-change");
     },
 
     onHover() {

@@ -18,7 +18,7 @@
         align-items: flex-start;
 
         // style for headlines of the form elements
-        legend, .form-label {
+        legend, .form-label, .second-form-label {
             color: $labelColor;
             font-size: 16px;
             font-style: normal;
@@ -26,7 +26,11 @@
             line-height: 150%;
             letter-spacing: 0;
             margin-bottom: properties.$spacing100;
-            align-self: stretch;    
+            align-self: stretch; 
+        }
+        .second-form-label {
+            font-weight: 400;
+            margin: 0;
         }
 
         // styles for form fields

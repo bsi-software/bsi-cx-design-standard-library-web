@@ -1,37 +1,45 @@
 @use "../../../../../styles/properties.scss" as properties;
 
-@mixin formFieldsStyling () {
+@mixin formFieldsStyling (
+    $formContainerId: "form-container-84c6581f",
+    $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
+    $placeholderColor: properties.$formPlaceholderColor,
+) {
 
-    .form-field {
+    .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
 
-        .input-field-container {
-            display: flex;
-            flex-direction: column;
-            align-self: stretch;
+        .form-field {
 
-            .input-field-with-error-text {
+            .input-field-container {
                 display: flex;
                 flex-direction: column;
+                align-self: stretch;
+
+                .input-field-with-error-text {
+                    display: flex;
+                    flex-direction: column;
 
 
-                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], select, textarea {
-                    &:placeholder-shown {
-                        &::placeholder {
-                            opacity: 0.5;
+                    input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], select, textarea {
+                        &:placeholder-shown {
+                            &::placeholder {
+                                opacity: 0.5;
+                                color: $placeholderColor;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        .helper-text-container {
-            display: flex;
-            align-self: stretch;
-        }
+            .helper-text-container {
+                display: flex;
+                align-self: stretch;
+            }
 
-        &:has(input:disabled) {
-            opacity: 0.3;
-        }  
+            &:has(input:disabled) {
+                opacity: 0.3;
+            }  
+        }
     }
 }
 

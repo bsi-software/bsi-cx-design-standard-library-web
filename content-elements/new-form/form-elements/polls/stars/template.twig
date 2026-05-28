@@ -17,7 +17,7 @@
 {% endfor %}
 
 <div x-data="starPoll" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="number">
-    <label for="number-field" class="form-label">{{ formFieldLabelText }}</label>
+    <label class="form-label">{{ formFieldLabelText }}</label>
     <div class="input-field-container">
         <div class="input-field-with-error-text">
             <div class="star-container">
@@ -32,7 +32,7 @@
                     value="",
                 >
                 </input>
-                <div x-init="initStar" class="star-preview nps-radio-group">
+                <div x-init="initStar" class="star-preview nps-radio-group" role="radiogroup">
                     {% for value in pollRange %}
                         <div class="star-item" data-bsi-remove-if="live">
                             <input class="native-star-input native-input" type="radio" id="poll-input-{{ value }}" value="{{ value }}"/>
@@ -44,7 +44,9 @@
                     <label class="star-rating-fill-label"></label>
                 </div>
             </div>
-            <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+            {% block stars_feedback %}
+                <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+            {% endblock %}
         </div>
         <div class="helper-text-container">
             <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>

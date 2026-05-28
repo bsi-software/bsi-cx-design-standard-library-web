@@ -2,100 +2,103 @@
 
 @mixin pollStarStyling (
     $elementId: "form-poll-star-2c7c0910",
-    $hoverColor: properties.$formPollHoverColor,
+    $formContainerId: "form-container-84c6581f",
+    $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
     $hoverBackgroundColor: properties.$formPollHoverBackgroundColor,
     $borderColor: properties.$formBorderColor,
     $activeBackgroundColor: properties.$formActiveBackgroundColor,
     $activeColor: properties.$formActiveColor,
 ) {
-    .bsi-element-#{$elementId} {
-        .star-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: properties.$spacing300;
-            padding: properties.$spacing100 properties.$spacing0;
-
-            .number-input {
-                display: none;
-            }
-            .star-preview {
+    .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
+        .bsi-element-#{$elementId} {
+            .star-container {
                 display: flex;
                 flex-wrap: wrap;
-                color: $borderColor;
-                // gap: properties.$spacing100;
+                gap: properties.$spacing300;
+                padding: properties.$spacing100 properties.$spacing0;
 
-                .star-item {
-                    padding: 0 calc(properties.$spacing100 / 2);
-                    cursor: pointer;
+                .number-input {
+                    display: none;
                 }
-
-                div:first-child {
-                    padding-right: 0;
-                }
-
-                div:last-child {
-                    padding-left: 0;
-                }
-                
-                .visual-star-input {
+                .star-preview {
                     display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 24px;
-                    height: 24px;
-                    box-shadow: unset;
-                    position: relative;
-                    cursor: pointer;
+                    flex-wrap: wrap;
+                    color: $borderColor;
+                    // gap: properties.$spacing100;
 
-                    &::before {
-                        position: absolute;
-                        font-family: "bootstrap-icons";
-                        font-size: 20px;
-                        width: 24px;
-                        line-height: 24px;
-                        text-align: center;
-                        opacity: 0;
-                        content: "\F586"; /* star-fill bootstrap icon */
+                    .star-item {
+                        padding: 0 calc(properties.$spacing100 / 2);
+                        cursor: pointer;
                     }
 
-                    &::after {
-                        position: absolute;
-                        font-family: "bootstrap-icons";
-                        font-size: 20px;
-                        width: 24px;
-                        line-height: 24px;
-                        text-align: center;
-                        opacity: 1;
-                        transition: all 0.2s ease;
-                        content: "\F588"; /* star-stroke bootstrap icon */
+                    div:first-child {
+                        padding-right: 0;
                     }
-                }
 
-                &:not(:has(.star-poll-radio-hovered)) .star-poll-radio-checked {
+                    div:last-child {
+                        padding-left: 0;
+                    }
+                    
                     .visual-star-input {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 24px;
+                        height: 24px;
+                        box-shadow: unset;
+                        position: relative;
+                        cursor: pointer;
+
                         &::before {
-                            color: $activeBackgroundColor;
+                            position: absolute;
+                            font-family: "bootstrap-icons";
+                            font-size: 20px;
+                            width: 24px;
+                            line-height: 24px;
+                            text-align: center;
+                            opacity: 0;
+                            content: "\F586"; /* star-fill bootstrap icon */
+                        }
+
+                        &::after {
+                            position: absolute;
+                            font-family: "bootstrap-icons";
+                            font-size: 20px;
+                            width: 24px;
+                            line-height: 24px;
+                            text-align: center;
                             opacity: 1;
-                        } 
-                    }
-                }
-
-                .native-star-input {
-                    &:focus-visible + .visual-star-input::after {
-                        font-weight: bold;
+                            transition: all 0.2s ease;
+                            content: "\F588"; /* star-stroke bootstrap icon */
+                        }
                     }
 
-                    &:checked:focus-visible + .visual-star-input::after {
-                        font-size: 16px;
-                        font-weight: normal;
-                        color: $activeColor;
+                    &:not(:has(.star-poll-radio-hovered)) .star-poll-radio-checked {
+                        .visual-star-input {
+                            &::before {
+                                color: $activeBackgroundColor;
+                                opacity: 1;
+                            } 
+                        }
                     }
-                }
 
-                .star-poll-radio-hovered {
-                    .visual-star-input::before {
-                        color: $activeBackgroundColor;
-                        opacity: 1;
+                    .native-star-input {
+                        &:focus-visible + .visual-star-input::after {
+                            font-weight: bold;
+                        }
+
+                        &:checked:focus-visible + .visual-star-input::after {
+                            font-size: 16px;
+                            font-weight: normal;
+                            color: $activeColor;
+                        }
+                    }
+
+                    .star-poll-radio-hovered {
+                        .visual-star-input::before {
+                            color: $hoverBackgroundColor;
+                            opacity: 1;
+                        }
                     }
                 }
             }

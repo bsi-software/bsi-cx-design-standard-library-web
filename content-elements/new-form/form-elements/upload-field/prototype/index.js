@@ -15,7 +15,7 @@ const { cx, Icon } = require("@bsi-cx/design-build");
  */
 module.exports = (
   template = require("../template.twig"),
-  elementId = "form-field-5674018a",
+  elementId = "upload-form-field-5674018a",
   elementLabel = "Datei Upload",
   elementDescription = "Formular Element, das Dateien von verschiedenen Typen akzeptiert.",
   formFieldPartLabel = "Formularfeld: Datei Upload",
