@@ -30,6 +30,9 @@ module.exports = (
   .withLabel(elementLabel)
   .withDescription(elementDescription)
   .withIcon(Icon.ENVELOPE)
+  .withStyleConfigs(
+    require("../../../../../../configs/styles/form-counter")
+  )
   .withParts(
     cx.part.FormField(formFieldPartLabel, formFieldPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),

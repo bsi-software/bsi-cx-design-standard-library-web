@@ -4,6 +4,8 @@
     {% set formSelectPlaceholderTextPartId = formSelecPlaceholderTextPartId ?: 'placeholder-text-part-4f08e438' %}
     {% set formSelectHelperTextPartId = formSelectHelperTextPartId ?: 'select-helper-text-part-5989e5eb' %}
     {% set formSelectErrorInvalidPartId = errorInvalidPartId ?: 'select-error-invalid-part-ad209a4c' %}
+    {% set formSelectErrorPlacehodlerId = "placeholder-error-text-part-Vs7EkY" %}
+    {% set formSelectPlaceholderErrorText = "Bitte wähle einen Wert aus, der nicht der Platzhalter ist." %}
     {% set formSelectLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set formSelectPlaceholderText = placeholderText ?: 'Bitte wählen' %}
     {% set formSelectHelperText = infoText  ?: "" %}
@@ -19,8 +21,9 @@
                         <option value="">{{ formSelectPlaceholderText }}</option>
                     </select>
                 </div>
+                <div class="max-char-counter"></div>
                 {% block select_error_texts %}
-                    <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+                    <div data-bsi-element-part="{{ formSelectErrorPlacehodlerId }}" class="bsi-invalid-feedback">{{ formSelectPlaceholderErrorText }}</div> {# for error messages from formular #}
                 {% endblock %}
             </div>
             <div class="helper-text-container">

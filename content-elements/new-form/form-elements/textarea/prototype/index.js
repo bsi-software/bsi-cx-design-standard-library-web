@@ -29,6 +29,9 @@ module.exports = (
   .withLabel(elementLabel)
   .withDescription(elementDescription)
   .withIcon(Icon.TEXTAREA)
+  .withStyleConfigs(
+    require("../../../../../configs/styles/form-counter")
+  )
   .withParts(
     cx.part.FormTextarea(formTextareaPartLabel, formTextareaPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),

@@ -4,11 +4,24 @@
     $elementId: "form-container-84c6581f",
     $errorColor: properties.$formErrorColor, 
     $successColor: properties.$formSuccessColor,
+    $errorIconFontName: properties.$formErrorIconFontName,
+    $errorIconFontCharacter: properties.$formErrorIconFontCharacter,
 ) {
 
     .bsi-element-#{$elementId} {
 
         .form-element {
+
+            .bsi-invalid-feedback {
+                display: none;
+                gap: properties.$spacing100;
+
+                &::before {
+                    font-family: $errorIconFontName;
+                    content: $errorIconFontCharacter;
+                }
+            }
+
             &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid), &:has(select:user-invalid), &.checkbox-group.custom-invalid {
                 div.bsi-invalid-feedback {
                     display: flex;

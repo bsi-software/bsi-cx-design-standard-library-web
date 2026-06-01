@@ -224,14 +224,14 @@
         }
     }
     
-    .bsi-ce-edit-mode .bsi-element-#{$elementId} {
+    .bsi-ce-edit-mode .bsi-element-#{$elementId} .file-upload-container .file-upload-and-error-text {
         [x-cloak] { 
             display: flex !important;
         }
         
-        .file-upload-container .file-upload {
-            .preview-image, > .right .remove-button {
-                display: none;
+        .file-upload {
+            .left img.preview-image, .left .file-info, > .right button.remove-button {
+                display: none; 
             }
         }
     }

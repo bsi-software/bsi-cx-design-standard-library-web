@@ -22,7 +22,11 @@ Alpine.data("form", () => ({
                 id: inputElement.id,
                 errorMessage: inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent.trim()
             });
+            // show counter if maxlength is set and set counter text to 0 / maxlength
+            this._countCharacters(inputElement);
+            // set AriaDescribedByElements for all elements
             this._setAriaValuesForElement(inputElement);
+            this._setAriaLabledByElements(inputElement);
         });
 
         // create a map of inputErrorMessages
@@ -152,6 +156,7 @@ Alpine.data("form", () => ({
                 });
             }
         }
+        this._countCharacters(element);
         this._setAriaValuesForElement(element);
         return elementIsValid;
     },
@@ -184,6 +189,31 @@ Alpine.data("form", () => ({
         }
         this._setAriaValuesForElement(element);
         return groupIsValid;
+    },
+
+    _countCharacters(element) {
+        const maxLength = element.getAttribute("maxlength");
+        const currentLength = element.value.length;
+        const counterElement = element.closest(".form-element").querySelector(".max-char-counter");
+        if (counterElement) {
+            counterElement.textContent = `${currentLength} / ${maxLength}`;
+        }
+    },
+
+    /**
+     * Set ariaLabelledByElements for an input element with the related label element
+     * @param {Element} inputField 
+     * @returns 
+     */
+    _setAriaLabledByElements(inputField) {
+        console.log("Setting ariaLabelledBy for element: " + inputField.id);
+        const label = inputField.closest(".form-element").querySelector(".form-label");
+
+        if (!label) return;
+        if ('ariaLabelledByElements' in Element.prototype) {
+            console.log("Setting ariaLabelledByElements: " + label);
+            inputField.ariaLabelledByElements = [label];
+        }
     },
 
     /**
@@ -232,6 +262,7 @@ Alpine.data("form", () => ({
         const errorMessageElement = inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback");
         
         const validity = inputElement.validity;
+        const validationMessage = inputElement.validationMessage;
 
         if (validity.valueMissing) {
             console.debug("Das Formularelement ist nicht ausgefüllt. Fehlertext: " + this.formErrorValueMissingText.textContent);
@@ -245,7 +276,11 @@ Alpine.data("form", () => ({
             console.debug("Das Formularelement hat das falsche pattern. Fehlertext: " + this.errorMessageMap[inputElement.id]);
             errorMessageElement.textContent = this.errorMessageMap[inputElement.id];
         }
-        else {
+        else if (validationMessage == "placeholder is selected") {
+            console.debug("Das Formularelement hat den Platzhalter ausgewählt. Fehlertext: " + this.errorMessageMap[inputElement.id]);
+            errorMessageElement.textContent = this.errorMessageMap[inputElement.id];
+        }
+        else if (this.formOtherError !== "") {
             console.debug("Das Formularelement ist nicht korrekt ausgefüllt. Fehlertext: " + this.formOtherError.textContent);
             errorMessageElement.textContent = this.formOtherError.textContent;
         }

@@ -13,8 +13,10 @@
     $activeColor: properties.$formActiveColor,
     $activeBackgroundColor: properties.$formActiveBackgroundColor,
     $helperTextColor: properties.$formHelperTextColor, 
-    $errorColor: properties.$formErrorColor, 
+    $errorColor: properties.$formErrorColor,
     $successColor: properties.$formSuccessColor,
+    $errorIconFontName: properties.$formErrorIconFontName,
+    $errorIconFontCharacter: properties.$formErrorIconFontCharacter,
     $buttonSubmitColor: properties.$formButtonSubmitColor,
     $buttonResetColor: properties.$formButtonResetColor,
     $buttonSubmitBackgroundColor: properties.$formButtonSubmitBackgroundColor,
@@ -32,7 +34,9 @@
             @include formValidationStyleSheet.formValidationStyling(
                 $elementId: $elementId,
                 $errorColor: $errorColor,
-                $successColor: $successColor
+                $successColor: $successColor,
+                $errorIconFontName: $errorIconFontName,
+                $errorIconFontCharacter: $errorIconFontCharacter,
             );
         }
     }
@@ -179,12 +183,17 @@
                     display: none;
                 }
 
-                .bsi-invalid-feedback {
+                .helper-text-container:has(> div:empty) {
                     display: none;
                 }
 
-                .helper-text-container:has(> div:empty) {
+                .max-char-counter {
                     display: none;
+                }
+
+                .form-element.bsi-show-max-length-counter .max-char-counter {
+                    display: flex;
+                    justify-content: flex-end;
                 }
             }
         

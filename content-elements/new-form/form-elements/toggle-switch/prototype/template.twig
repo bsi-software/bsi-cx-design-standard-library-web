@@ -31,10 +31,10 @@
             </div>
             {% block toggle_switch_info_texts %}
                 <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
-                <div class="helper-text-container">
-                    <div data-bsi-element-part="{{ formToggleSwitchHelperTextPartId }}" class="helper-text">{{ formToggleSwitchHelperText }}</div>
-                </div>
             {% endblock %}
+            <div class="helper-text-container">
+                <div data-bsi-element-part="{{ formToggleSwitchHelperTextPartId }}" class="helper-text">{{ formToggleSwitchHelperText }}</div>
+            </div>
         </div>
     </div>
 {% endapply %}
