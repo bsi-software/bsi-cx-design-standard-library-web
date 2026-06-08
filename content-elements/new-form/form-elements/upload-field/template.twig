@@ -5,8 +5,9 @@
 {% set formFieldLabelText = labelText ?: bsi_cx_lorem(3) %}
 {% set formFieldHelperText = infoText ?: "" %}
 {% set formFieldErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
+{% set customClasses = customClasses ?: "" %}
 
-<div x-data="fileUpload" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
+<div x-data="fileUpload" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
     <label for="file-upload-field" class="form-label">{{ formFieldLabelText }}</label>
     <div 
         class="file-upload-container"

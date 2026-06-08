@@ -6,6 +6,7 @@
 {% set formFieldLeftLabelText = leftLabelText ?: bsi_cx_lorem(3) %}
 {% set formFieldRightLabelText = rightLabelText ?: bsi_cx_lorem(3) %}
 {% set formFieldHelperText = infoText ?: "" %}
+{% set customClasses = customClasses ?: "" %}
 
 {% set pollMin = 1 %}
 {% set pollMax = 5 %}
@@ -16,7 +17,7 @@
 	{% set pollValueList = pollValueList ~ value ~ (loop.last == false ? "\n" : '') %}
 {% endfor %}
 
-<div x-data="starPoll" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="number">
+<div x-data="starPoll" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="number">
     <label class="form-label">{{ formFieldLabelText }}</label>
     <div class="input-field-container">
         <div class="input-field-with-error-text">

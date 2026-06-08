@@ -5,8 +5,9 @@
 {% set formFieldLabelText = labelText ?: bsi_cx_lorem(3) %}
 {% set formFieldHelperText = infoText ?: "" %}
 {% set formFieldInputType = inputType ?: "text" %}
+{% set customClasses = customClasses ?: "" %}
 
-<div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} {{ formFieldShowMaxLengthCounter }} form-element form-field" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
+<div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} {{ formFieldShowMaxLengthCounter }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
     <label for="{{ formFieldInputType }}-field" class="form-label">{{ formFieldLabelText }}</label>
     <div class="input-field-container">
         <div class="input-field-with-error-text">

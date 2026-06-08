@@ -9,8 +9,9 @@
     {% set formSelectLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set formSelectPlaceholderText = placeholderText ?: 'Bitte wählen' %}
     {% set formSelectHelperText = infoText  ?: "" %}
+    {% set customClasses = customClasses ?: "" %}
 
-    <div x-data="selectInputField"data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element" data-bsi-element-part="{{ formSelectElementPartId }}">
+    <div x-data="selectInputField"data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ formSelectElementPartId }}">
         <label for="select-element" class="form-label">{{ formSelectLabelText }}</label>
         <div class="select-container">
             <div class="select-and-error-text">

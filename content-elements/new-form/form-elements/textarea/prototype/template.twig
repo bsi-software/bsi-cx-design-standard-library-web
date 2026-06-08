@@ -6,8 +6,9 @@
     {% set formTextareaErrorInvalidPartId = errorInvalidPartId ?: 'textarea-error-invalid-part-52eb82f6' %}
     {% set formTextareaLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set formTextareaHelperText = infoText  ?: "" %}
+    {% set customClasses = customClasses ?: "" %}
 
-    <div data-bsi-element="{{ formTextareaElementId }}" class="bsi-element-{{ formTextareaElementId }} {{ formFieldShowMaxLengthCounter }} form-element" data-bsi-element-part="{{ formTextareaElementPartId }}">
+    <div data-bsi-element="{{ formTextareaElementId }}" class="bsi-element-{{ formTextareaElementId }} {{ formFieldShowMaxLengthCounter }} form-element {{ customClasses }}" data-bsi-element-part="{{ formTextareaElementPartId }}">
         <label for="textarea-element" class="form-label">{{ formTextareaLabelText }}</label>
         <div class="textarea-container">
             <div class="textarea-and-error-text">

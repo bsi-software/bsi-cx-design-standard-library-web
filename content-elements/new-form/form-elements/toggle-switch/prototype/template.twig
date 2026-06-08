@@ -5,8 +5,9 @@
     {% set formToggleSwitchErrorInvalidPartId = errorInvalidPartId ?: 'toggle-switch-error-invalid-part-a8889dc9' %}
     {% set formToggleSwitchLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set formToggleSwitchHelperText = infoText  ?: "" %}
+    {% set customClasses = customClasses ?: "" %}
    
-    <div x-data="toggleSwitch" data-bsi-element="{{ formToggleSwitchElementId }}" class="bsi-element-{{ formToggleSwitchElementId }} form-element" data-bsi-element-part="{{ formToggleSwitchElementPartId }}">
+    <div x-data="toggleSwitch" data-bsi-element="{{ formToggleSwitchElementId }}" class="bsi-element-{{ formToggleSwitchElementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ formToggleSwitchElementPartId }}">
         <div class="empty-element"></div> {# This Element is only for the option, that the label from other Form Elements stands on the left side insted of in the top of the element #}
         <div class="toggle-switch-container">
             <div class="toggle-switch-with-label">
