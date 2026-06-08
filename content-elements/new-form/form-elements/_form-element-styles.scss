@@ -82,6 +82,26 @@
             color: $labelColor;
         }
 
+        // styles for error and helper text wrapper of form elements
+        .error-text-wrapper:has(> div:empty) {
+            display: none;
+        }
+
+        .helper-text-container:has(> div:empty) {
+            display: none;
+        }
+
+        // style for max character counter
+        .max-char-counter {
+            display: none;
+        }
+
+        &.bsi-show-max-length-counter .max-char-counter {
+            display: flex;
+            justify-content: flex-end;
+            width: fit-content;
+        }
+
         // styles for helper text
         .helper-text-container, .helper-text {
             color: $helperTextColor;

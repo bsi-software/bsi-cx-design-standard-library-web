@@ -22,14 +22,18 @@
                     maxlength="250"
                 >
                 </input>
+            {% endblock %}
+            <div class="input-field-feedback-wrapper">
+                <div class="input-field-feedback-container">
+                    {% block input_field_error_text %}
+                        <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+                    {% endblock %}
+                    <div class="helper-text-container">
+                        <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
+                    </div>
+                </div>
                 <div class="max-char-counter"></div>
-            {% endblock %}
-            {% block input_field_error_text %}
-                <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
-            {% endblock %}
-        </div>
-        <div class="helper-text-container">
-            <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
+            </div>
         </div>
     </div>
 </div>

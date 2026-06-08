@@ -195,8 +195,11 @@ Alpine.data("form", () => ({
         const maxLength = element.getAttribute("maxlength");
         const currentLength = element.value.length;
         const counterElement = element.closest(".form-element").querySelector(".max-char-counter");
-        if (counterElement) {
+        const showMaxLength = element.closest(".form-element").classList.contains("bsi-show-max-length-counter");
+        if (counterElement && showMaxLength) {
             counterElement.textContent = `${currentLength} / ${maxLength}`;
+        } else if (counterElement) {
+            counterElement.textContent = '';
         }
     },
 

@@ -10,6 +10,12 @@
 
         .form-field {
 
+            .input-field-feedback-wrapper:not(
+                :has(.bsi-invalid-feedback:not(:empty), .max-char-counter:not(:empty))
+            ) {
+                display: none;
+            }
+
             .input-field-container {
                 display: flex;
                 flex-direction: column;
@@ -22,12 +28,18 @@
 
                     input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], select, textarea {
                         &:placeholder-shown {
+                            opacity: 0.5;
                             &::placeholder {
-                                opacity: 0.5;
                                 color: $placeholderColor;
                             }
                         }
                     }
+                }
+
+                .input-field-feedback-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
                 }
             }
 

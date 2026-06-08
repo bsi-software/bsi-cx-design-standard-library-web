@@ -178,23 +178,6 @@
                     $activeBackgroundColor: $activeBackgroundColor,
                     $activeColor: $activeColor,
                 );
-
-                .error-text-wrapper:has(> div:empty) {
-                    display: none;
-                }
-
-                .helper-text-container:has(> div:empty) {
-                    display: none;
-                }
-
-                .max-char-counter {
-                    display: none;
-                }
-
-                .form-element.bsi-show-max-length-counter .max-char-counter {
-                    display: flex;
-                    justify-content: flex-end;
-                }
             }
         
             .form-buttons {
