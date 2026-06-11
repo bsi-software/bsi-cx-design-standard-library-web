@@ -10,15 +10,18 @@
 
     <div data-bsi-element="{{ formTextareaElementId }}" class="bsi-element-{{ formTextareaElementId }} {{ formFieldShowMaxLengthCounter }} form-element {{ customClasses }}" data-bsi-element-part="{{ formTextareaElementPartId }}">
         <label for="textarea-element" class="form-label">{{ formTextareaLabelText }}</label>
-        <div class="textarea-container">
-            <div class="textarea-and-error-text">
+        <div class="textarea-container form-field-layout">
+            <div class="textarea-and-error-text form-field-input-wrapper">
                 <textarea class="textarea-input" id="textarea-element" rows="5" value=""></textarea>
+            </div>
+            <div class="form-field-feedback-wrapper">
                 {% block textarea_error_texts %}
                     <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
                 {% endblock %}
             </div>
+            <div class="max-char-counter"></div>
             <div class="helper-text-container">
-                <div data-bsi-element-part="{{ formTextareaHelperTextPartId }}" class="helper-text">{{ formTextareaHelperText }}</div>
+                <div class="helper-text" data-bsi-element-part="{{ formTextareaHelperTextPartId }}">{{ formTextareaHelperText }}</div>
             </div>
         </div>
     </div>

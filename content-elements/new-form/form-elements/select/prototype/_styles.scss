@@ -45,6 +45,11 @@
                         }
                     }
                 }
+
+                .form-field-feedback-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                }
             }
 
             .helper-text-container {

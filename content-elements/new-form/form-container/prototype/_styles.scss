@@ -73,6 +73,7 @@
 
                     .error-text-wrapper,
                     .error-text-container,
+                    .form-field-feedback-wrapper,
                     .checkbox-container,
                     .radio-button-group-container,
                     .toggle-switch-container,
@@ -118,37 +119,146 @@
             }
         }
 
-        // label and infotext positions
-        // label on top and infotext on button
-        &.bsi-form-label-info-top-bottom {
+        // ── label/info-position layouts ──────────────────────────────────────────
+        //
+        // Shared base for all three variants: grid structure, child areas, margins.
+        // Each variant below only overrides grid-template-areas (and left-bottom
+        // additionally adds the outer label/content grid at md+).
+
+        &.bsi-form-label-info-top-bottom,
+        &.bsi-form-label-info-top-top,
+        &.bsi-form-label-info-left-bottom {
             form .form-elements-container .form-section .form-element {
+
+                .form-field-layout {
+                    display: grid;
+                    row-gap: 0;
+                    grid-template-columns: minmax(0, 1fr);
+                    align-items: start;
+
+                    > .form-field-input-wrapper {
+                        grid-area: input;
+                        min-width: 0;
+                    }
+
+                    > .form-field-feedback-wrapper {
+                        grid-area: feedback;
+                        min-width: 0;
+                    }
+
+                    > .max-char-counter {
+                        grid-area: counter;
+                        justify-self: end;
+                        align-self: start;
+                    }
+
+                    > .helper-text-container,
+                    > .helper-text {
+                        grid-area: helper;
+                        min-width: 0;
+                    }
+                }
+
+                // Add spacing below input only when something visible follows below the input
+                .form-field-layout:has(
+                    .form-field-feedback-wrapper > div:not(:empty),
+                    .max-char-counter:not(:empty)
+                ) .form-field-input-wrapper {
+                    margin-block-end: properties.$spacing100;
+                }
+
+                // Counter visible: switch to 2-column layout
+                &.bsi-show-max-length-counter .form-field-layout {
+                    grid-template-columns: minmax(0, 1fr) auto;
+                }
+
                 .empty-element {
                     display: contents;
                 }
             }
         }
 
-        // label on top and infotext on top
+        // helper below input (top-bottom and left-bottom share the same area order)
+        &.bsi-form-label-info-top-bottom,
+        &.bsi-form-label-info-left-bottom {
+            form .form-elements-container .form-section .form-element {
+                .form-field-layout:has(.helper-text:not(:empty)) .form-field-input-wrapper {
+                    margin-block-end: properties.$spacing100;
+                }
+
+                .form-field-layout {
+                    grid-template-areas:
+                        "input"
+                        "feedback"
+                        "helper";
+                }
+
+                &.bsi-show-max-length-counter .form-field-layout {
+                    grid-template-areas:
+                        "input  input"
+                        "helper counter";
+                }
+
+                &.bsi-show-max-length-counter .form-field-layout:has(.form-field-feedback-wrapper > div:not(:empty)) {
+                    grid-template-areas:
+                        "input    input"
+                        "feedback counter"
+                        "helper   helper";
+                }
+            }
+        }
+
+        // helper above input
         &.bsi-form-label-info-top-top {
             form .form-elements-container .form-section .form-element {
-                .input-field-container, .textarea-container, .select-container, .file-upload-container {
-                    flex-direction: column-reverse;
+                .form-field-layout {
+                    grid-template-areas:
+                        "helper"
+                        "input"
+                        "feedback";
+   
+                    > .helper-text-container,
+                    > .helper-text {
+                        margin-block-end: properties.$spacing100;
+                    }
                 }
-                .empty-element {
-                    display: contents;
+
+                &.bsi-show-max-length-counter .form-field-layout {
+                    grid-template-areas:
+                        "helper  helper"
+                        "input   input"
+                        ".       counter";
+                }
+
+                &.bsi-show-max-length-counter .form-field-layout:has(.form-field-feedback-wrapper > div:not(:empty)) {
+                    grid-template-areas:
+                        "helper   helper"
+                        "input    input"
+                        "feedback counter";
                 }
             }
         }
 
-        // label left and infotext on button
+        // label left: outer label/content grid at md+
         &.bsi-form-label-info-left-bottom {
             @media (min-width: properties.$md) {
                 form .form-elements-container .form-section .form-element {
                     width: 100%;
                     display: grid;
-                    grid-template-columns: 1fr 6fr;
-                    
-                    .form-label {
+                    grid-template-columns: minmax(0, 1fr) minmax(0, 6fr);
+                    grid-template-areas: "label content";
+
+                    > .form-label,
+                    > legend,
+                    > .empty-element {
+                        grid-area: label;
+                    }
+
+                    > .form-field-layout {
+                        grid-area: content;
+                    }
+
+                    > .form-label {
                         display: block;
                         min-width: 0;
                         overflow: hidden;

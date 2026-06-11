@@ -13,8 +13,8 @@
 
     <div x-data="selectInputField"data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ formSelectElementPartId }}">
         <label for="select-element" class="form-label">{{ formSelectLabelText }}</label>
-        <div class="select-container">
-            <div class="select-and-error-text">
+        <div class="select-container form-field-layout">
+            <div class="select-and-error-text form-field-input-wrapper">
                 {# TODO: Was ist mit dem Platzhalter? Können wir das sauber umsetzen? Oder lassen wir das raus, bis die Produktentwicklung das sauber umgesetzt hat? #}
                 <div data-bsi-element-part="{{ formSelectPlaceholderTextPartId }}" class="d-none placeholder">{{ formSelectPlaceholderText }}</div>
                 <div class="wrapper-select">
@@ -22,7 +22,8 @@
                         <option value="">{{ formSelectPlaceholderText }}</option>
                     </select>
                 </div>
-                <div class="max-char-counter"></div>
+            </div>
+            <div class="form-field-feedback-wrapper">
                 {% block select_error_texts %}
                     <div data-bsi-element-part="{{ formSelectErrorPlacehodlerId }}" class="bsi-invalid-feedback">{{ formSelectPlaceholderErrorText }}</div> {# for error messages from formular #}
                 {% endblock %}

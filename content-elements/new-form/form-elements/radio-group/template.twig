@@ -13,8 +13,8 @@
 
     <div x-data="radioButton" data-bsi-element="{{ formRadioGroupElementId }}" class="bsi-element-{{ formRadioGroupElementId }} form-element form-field radio-group {{ formRadioGroupAlignment }} {{ customClasses }}" data-bsi-element-part="{{ formRadioGroupElementPartId }}">
         <label class="form-label">{{ formRadioGroupLabel }}</label>
-        <div class="input-field-container">
-            <div class="input-field-with-error-text">
+        <div class="input-field-container form-field-layout">
+            <div class="input-field-with-error-text form-field-input-wrapper">
                 <div data-bsi-radio-group="" class="radio-button-group">
                     <div class="radiobutton-with-label" data-bsi-radio-item="" role="radiogroup">
                         <input 
@@ -31,6 +31,8 @@
                         <label for="radio-element" class="second-form-label group-radio-label">{{ formRadioButtonLabelText }}</label>  
                     </div>
                 </div>
+            </div>
+            <div class="form-field-feedback-wrapper">
                 {% block radio_info_and_error_texts %}
                     <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
                 {% endblock %}

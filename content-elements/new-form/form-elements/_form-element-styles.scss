@@ -87,6 +87,14 @@
             display: none;
         }
 
+        .form-field-feedback-wrapper {
+            min-width: 0;
+        }
+
+        .form-field-feedback-wrapper:not(:has(> div:not(:empty))) {
+            display: none;
+        }
+
         .helper-text-container:has(> div:empty) {
             display: none;
         }
@@ -111,10 +119,11 @@
         &.required, &.bsi-group-required {
             .form-label, legend {
                 display: flex;
-                gap: properties.$spacing100;
+                gap: 0;
 
                 &::after {
                     content: "*";
+                    padding-left: properties.$spacing100;
                 }
             }
         }

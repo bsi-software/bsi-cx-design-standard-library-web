@@ -12,8 +12,8 @@
     <div data-bsi-element="{{ formCheckboxGroupElementId }}" class="bsi-element-{{ formCheckboxGroupElementId }} form-element form-field checkbox-group {{ formCheckboxGroupRequired }} {{ formCheckboxGroupAlignment }}">
         {# TODO: add for attribute with alpine #}
         <label class="form-label"data-bsi-element-part="{{ formCheckboxGroupLabelId }}">{{ formCheckboxGroupLabel }}</label>
-        <div class="input-field-container">
-            <div class="input-field-with-error-text">
+        <div class="input-field-container form-field-layout">
+            <div class="input-field-with-error-text form-field-input-wrapper">
                 <fieldset role="group">
                     <div data-bsi-dropzone="checkbox-group-dropzone-id-4f4a7409" class="checkbox-group-container">
                         {% block checkbox_group_dropzone %}
@@ -21,6 +21,8 @@
                         {% endblock %}
                     </div>
                 </fieldset>
+            </div>
+            <div class="form-field-feedback-wrapper">
                 {% block checkbox_info_texts %}
                     <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
                 {% endblock %}
@@ -28,6 +30,6 @@
             <div class="helper-text-container">
                 <div data-bsi-element-part="{{ formCheckboxGroupHelperTextPartId }}" class="helper-text">{{ formCheckboxGroupHelperText }}</div>
             </div>
-        <div>
+        </div>
     </div>
 {% endapply %}

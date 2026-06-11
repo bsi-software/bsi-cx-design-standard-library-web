@@ -10,9 +10,8 @@
 
         .form-field {
 
-            .input-field-feedback-wrapper:not(
-                :has(.bsi-invalid-feedback:not(:empty), .max-char-counter:not(:empty))
-            ) {
+            
+            .form-field-feedback-wrapper > div:not(:empty) {
                 display: none;
             }
 
@@ -36,7 +35,7 @@
                     }
                 }
 
-                .input-field-feedback-wrapper {
+                .form-field-feedback-wrapper {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;

@@ -21,8 +21,8 @@
     data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-value-list="{% for i in pollRange %}{{ i ~ '\n' }}{% endfor %}" id="nps-poll">
     {# TODO: add for attribute with alpine #}
     <label class="form-label">{{ formFieldLabelText }}</label>
-    <div class="input-field-container">
-        <div class="nps-container input-field-with-error-text">
+    <div class="input-field-container form-field-layout">
+        <div class="nps-container input-field-with-error-text form-field-input-wrapper">
             <div class="scale-label-wrapper">
                 <fieldset class="nps-preview nps-radio-group" data-bsi-radio-group="" role="radiogroup">
                     {% for value in pollRange %}
@@ -39,6 +39,8 @@
                     <label data-bsi-element-part="{{ formFieldRightLabelPartId }}" class="right-nps-scale-label">{{ formFieldRightLabelText }}</label>
                 </div>
             </div>
+        </div>
+        <div class="form-field-feedback-wrapper">
             {% block poll_feedback %}
                 <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
             {% endblock %}

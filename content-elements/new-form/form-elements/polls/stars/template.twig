@@ -19,8 +19,8 @@
 
 <div x-data="starPoll" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="number">
     <label class="form-label">{{ formFieldLabelText }}</label>
-    <div class="input-field-container">
-        <div class="input-field-with-error-text">
+    <div class="input-field-container form-field-layout">
+        <div class="input-field-with-error-text form-field-input-wrapper">
             <div class="star-container">
                 <input
                     id="number-field"
@@ -45,6 +45,8 @@
                     <label class="star-rating-fill-label"></label>
                 </div>
             </div>
+        </div>
+        <div class="form-field-feedback-wrapper">
             {% block stars_feedback %}
                 <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
             {% endblock %}

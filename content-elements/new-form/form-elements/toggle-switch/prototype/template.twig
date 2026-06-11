@@ -9,8 +9,8 @@
    
     <div x-data="toggleSwitch" data-bsi-element="{{ formToggleSwitchElementId }}" class="bsi-element-{{ formToggleSwitchElementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ formToggleSwitchElementPartId }}">
         <div class="empty-element"></div> {# This Element is only for the option, that the label from other Form Elements stands on the left side insted of in the top of the element #}
-        <div class="toggle-switch-container">
-            <div class="toggle-switch-with-label">
+        <div class="toggle-switch-container form-field-layout">
+            <div class="toggle-switch-with-label form-field-input-wrapper">
                 <input 
                     @change="formElementValidationOnChange"
                     id="toggleId"
@@ -30,9 +30,11 @@
                     class="form-label">{{ formToggleSwitchLabelText }}
                 </label>
             </div>
-            {% block toggle_switch_info_texts %}
-                <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
-            {% endblock %}
+            <div class="form-field-feedback-wrapper">
+                {% block toggle_switch_info_texts %}
+                    <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+                {% endblock %}
+            </div>
             <div class="helper-text-container">
                 <div data-bsi-element-part="{{ formToggleSwitchHelperTextPartId }}" class="helper-text">{{ formToggleSwitchHelperText }}</div>
             </div>

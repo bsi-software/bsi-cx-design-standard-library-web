@@ -12,6 +12,10 @@
 
         .form-element {
 
+            .form-field-feedback-wrapper {
+                display: none;
+            }
+
             .bsi-invalid-feedback {
                 display: none;
                 gap: properties.$spacing100;
@@ -23,6 +27,11 @@
             }
 
             &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid), &:has(select:user-invalid), &.checkbox-group.custom-invalid {
+                .form-field-feedback-wrapper {
+                    display: flex;
+                    margin-block-end: properties.$spacing100;
+                }
+
                 div.bsi-invalid-feedback {
                     display: flex;
                     color: $errorColor;

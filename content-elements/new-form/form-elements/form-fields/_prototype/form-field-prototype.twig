@@ -9,8 +9,8 @@
 
 <div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} {{ formFieldShowMaxLengthCounter }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
     <label for="{{ formFieldInputType }}-field" class="form-label">{{ formFieldLabelText }}</label>
-    <div class="input-field-container">
-        <div class="input-field-with-error-text">
+    <div class="input-field-container form-field-layout">
+        <div class="input-field-with-error-text form-field-input-wrapper">
             {% block input_field %}
                 <input
                     @change="formElementValidationOnChange"
@@ -23,17 +23,15 @@
                 >
                 </input>
             {% endblock %}
-            <div class="input-field-feedback-wrapper">
-                <div class="input-field-feedback-container">
-                    {% block input_field_error_text %}
-                        <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
-                    {% endblock %}
-                    <div class="helper-text-container">
-                        <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
-                    </div>
-                </div>
-                <div class="max-char-counter"></div>
-            </div>
+        </div>
+        <div class="input-field-feedback-container form-field-feedback-wrapper">
+            {% block input_field_error_text %}
+                <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+            {% endblock %}
+        </div>
+        <div class="max-char-counter"></div>
+        <div class="helper-text-container">
+            <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
         </div>
     </div>
 </div>

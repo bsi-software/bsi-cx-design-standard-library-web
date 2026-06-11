@@ -22,6 +22,8 @@ Alpine.data("form", () => ({
                 id: inputElement.id,
                 errorMessage: inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent.trim()
             });
+            // remove error messages from DOM, because they should only be added if the element is invalid and not on page load.
+            inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent = '';
             // show counter if maxlength is set and set counter text to 0 / maxlength
             this._countCharacters(inputElement);
             // set AriaDescribedByElements for all elements
@@ -133,7 +135,7 @@ Alpine.data("form", () => ({
         if (!element.checkValidity()) {
             console.debug("Das Formularelement ist nicht valide.");
             elementIsValid = false;
-            // all checkboxes that are not in a group
+            // all checkboxes and radios that are not in a group
             if (element.type === "checkbox" && !element.classList.contains("checkbox-in-group")) {
                 this._setCustomInvalidClass(element);
             }
@@ -145,15 +147,20 @@ Alpine.data("form", () => ({
             this._createErrorMessage(element);
         } else {
             console.log("Das Formularelement ist valide");
-            // all checkboxes that are not in a group
+            // all checkboxes and radios that are not in a group
             if (element.type === "checkbox" && !element.classList.contains("checkbox-in-group")) {
                 this._setCustomValidClass(element);
             }
-            // TODO: ist das notwendig?
             if (element.type === "radio" && element.classList.contains("native-radio")) {
                 element.closest(".radio-button-group").querySelectorAll(".native-radio").forEach(nativeRadio => {
                     this._setCustomValidClass(nativeRadio)
                 });
+            }
+
+            // remove error message if element is valid and not a group element
+            if (!(element.type === "checkbox" && element.classList.contains("checkbox-in-group")) && !(element.type === "radio" && element.classList.contains("native-radio"))) {
+                console.log("Entferne Fehlermeldung, da das Formularelement valide ist.");
+                element.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent = '';
             }
         }
         this._countCharacters(element);

@@ -10,14 +10,14 @@
 <div x-data="fileUpload" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
     <label for="file-upload-field" class="form-label">{{ formFieldLabelText }}</label>
     <div 
-        class="file-upload-container"
+        class="file-upload-container form-field-layout"
         @dragover.prevent="onDragOver"
         @dragleave.prevent="onDragLeave"
         @drop.prevent="onDrop"
     >
         <div class="file-upload-and-error-text">
             <div
-                class="file-upload"
+                class="file-upload form-field-input-wrapper"
                 x-cloak
             >
                 {% block input_field %}
@@ -81,7 +81,8 @@
                     </div>
                 {% endblock %}
             </div>
-
+        </div>
+        <div class="form-field-feedback-wrapper">
             {% block input_field_error_text %}
                 <div data-bsi-element-part="{{ formFieldErrorInvalidPartId }}" class="bsi-invalid-feedback">
                     {{ formFieldErrorInvalidText }}
