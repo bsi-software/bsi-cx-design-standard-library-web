@@ -14,27 +14,41 @@ Alpine.data("form", () => ({
         this.formErrorTypeMissmatchText = this.$root.querySelector(".form-type-missmatch-error-text");
         this.formOtherError = this.$root.querySelector(".form-other-error-text");
 
-        // save all invalid-feedback error messages with id from element and set AriaDescribedByElements for all elements
-        this.form.querySelectorAll(".form-element input").forEach(inputElement => {
-            console.log("ID: " + inputElement.id);
-            console.log("ErrorMessage: " + inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent.trim());
-            this.inputErrorMessages.push( {
-                id: inputElement.id,
-                errorMessage: inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent.trim()
-            });
+        // save all invalid-feedback error messages with id from elements and set aria values for all form controls
+        this.form.querySelectorAll(".form-element input, .form-element textarea, .form-element select").forEach(formControlElement => {
+            const formElement = formControlElement.closest(".form-element");
+            const invalidFeedbackElement = formElement ? formElement.querySelector(".bsi-invalid-feedback") : null;
+            const errorMessage = invalidFeedbackElement ? invalidFeedbackElement.textContent.trim() : "";
+
+            console.log("ID: " + formControlElement.id);
+            console.log("ErrorMessage: " + errorMessage);
+
+            if (formControlElement.id) {
+                this.inputErrorMessages.push({
+                    id: formControlElement.id,
+                    errorMessage,
+                });
+            }
+
             // remove error messages from DOM, because they should only be added if the element is invalid and not on page load.
-            inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent = '';
+            if (invalidFeedbackElement) {
+                invalidFeedbackElement.textContent = '';
+            }
             // show counter if maxlength is set and set counter text to 0 / maxlength
-            this._countCharacters(inputElement);
+            this._countCharacters(formControlElement);
             // set AriaDescribedByElements for all elements
-            this._setAriaValuesForElement(inputElement);
-            this._setAriaLabledByElements(inputElement);
+            this._setAriaValuesForElement(formControlElement);
+            this._setAriaLabledByElements(formControlElement);
         });
 
         // create a map of inputErrorMessages
         this.errorMessageMap = Object.fromEntries(
             this.inputErrorMessages.map(entry => [entry.id, entry.errorMessage])
         );
+
+        this.form.querySelectorAll(".form-element").forEach(formElement => {
+            this._setFeedbackVisibilityState(formElement, false);
+        });
     },
     
     /**
@@ -60,7 +74,11 @@ Alpine.data("form", () => ({
         
         this.form.querySelectorAll(".custom-valid").forEach(element => {
             element.classList.remove("custom-valid");
-        })
+        });
+
+        this.form.querySelectorAll(".form-element").forEach(formElement => {
+            this._setFeedbackVisibilityState(formElement, false);
+        });
         
     },
 
@@ -80,6 +98,15 @@ Alpine.data("form", () => ({
      */
     formElementValidationOnChange(event) {
         console.log("Form.js: formElementValidationOnChange wurde aufgerufen");
+        this._formElementValidation(event.target);
+    },
+
+    /**
+     * validate an element while typing
+     *
+     * @param {InputEvent} event for every input
+     */
+    formElementValidationOnInput(event) {
         this._formElementValidation(event.target);
     },
 
@@ -160,7 +187,14 @@ Alpine.data("form", () => ({
             // remove error message if element is valid and not a group element
             if (!(element.type === "checkbox" && element.classList.contains("checkbox-in-group")) && !(element.type === "radio" && element.classList.contains("native-radio"))) {
                 console.log("Entferne Fehlermeldung, da das Formularelement valide ist.");
-                element.closest(".form-element").querySelector(".bsi-invalid-feedback").textContent = '';
+                const formElement = element.closest(".form-element");
+                if (formElement) {
+                    const errorElement = formElement.querySelector(".bsi-invalid-feedback");
+                    if (errorElement) {
+                        errorElement.textContent = "";
+                    }
+                    this._setFeedbackVisibilityState(formElement, false);
+                }
             }
         }
         this._countCharacters(element);
@@ -187,12 +221,37 @@ Alpine.data("form", () => ({
                 this._createGroupErrorMessage(checkboxGroup);
             } else {
                 this._setCustomValidClass(checkboxGroup);
+                const errorMessageElement = checkboxGroup.querySelector(".bsi-invalid-feedback");
+                if (errorMessageElement) {
+                    errorMessageElement.textContent = "";
+                }
+                this._setFeedbackVisibilityState(checkboxGroup, false);
             }
         }
 
         // Radiobutton group
-        if (element.type === "radio") {
-            
+        if (element.type === "radio" && element.classList.contains("native-radio")) {
+            const radioGroup = element.closest(".radio-group");
+            if (radioGroup) {
+                const radios = radioGroup.querySelectorAll(".native-radio");
+                const oneChecked = Array.from(radios).some(radio => radio.checked);
+                const isGroupRequired =
+                    radioGroup.classList.contains("bsi-group-required") ||
+                    Array.from(radios).some(radio => radio.required);
+
+                if (!oneChecked && isGroupRequired) {
+                    groupIsValid = false;
+                    this._setCustomInvalidClass(...radios);
+                    this._createGroupErrorMessage(radioGroup);
+                } else {
+                    this._setCustomValidClass(...radios);
+                    const errorMessageElement = radioGroup.querySelector(".bsi-invalid-feedback");
+                    if (errorMessageElement) {
+                        errorMessageElement.textContent = "";
+                    }
+                    this._setFeedbackVisibilityState(radioGroup, false);
+                }
+            }
         }
         this._setAriaValuesForElement(element);
         return groupIsValid;
@@ -247,10 +306,7 @@ Alpine.data("form", () => ({
         }
         // Error-message if visible and not empty
         const error = formElement.querySelector('.bsi-invalid-feedback');
-        if (error 
-            && window.getComputedStyle(error).display !== 'none' 
-            && error.textContent.trim() !== ''
-        ) {
+        if (error && error.classList.contains("is-visible")) {
             console.log("Error Message Element: " + error);
             inputField.setAttribute("aria-invalid", true);
             describedElements.push(error);
@@ -269,7 +325,15 @@ Alpine.data("form", () => ({
      * @param {Element} inputElement that have a related error message Element
      */
     _createErrorMessage(inputElement) {
-        const errorMessageElement = inputElement.closest(".form-element").querySelector(".bsi-invalid-feedback");
+        const formElement = inputElement.closest(".form-element");
+        if (!formElement) {
+            return;
+        }
+
+        const errorMessageElement = formElement.querySelector(".bsi-invalid-feedback");
+        if (!errorMessageElement) {
+            return;
+        }
         
         const validity = inputElement.validity;
         const validationMessage = inputElement.validationMessage;
@@ -294,6 +358,8 @@ Alpine.data("form", () => ({
             console.debug("Das Formularelement ist nicht korrekt ausgefüllt. Fehlertext: " + this.formOtherError.textContent);
             errorMessageElement.textContent = this.formOtherError.textContent;
         }
+
+        this._setFeedbackVisibilityState(formElement, errorMessageElement.textContent.trim() !== "");
     },
 
     /**
@@ -303,10 +369,42 @@ Alpine.data("form", () => ({
      */
     _createGroupErrorMessage(group) {
         const errorMessageElement = group.querySelector(".bsi-invalid-feedback");
+        if (!errorMessageElement) {
+            return;
+        }
 
         if (errorMessageElement.textContent === '') {
-            errorMessageElement.textContent = this.formErrorValueMissingText.textContent
+            errorMessageElement.textContent = this.formErrorValueMissingText.textContent;
         }
+
+        this._setFeedbackVisibilityState(group, errorMessageElement.textContent.trim() !== "");
+    },
+
+    /**
+     * Set visibility state for feedback elements in a form element and update wrapper state.
+     *
+     * @param {Element} formElement form element that contains feedback wrapper and feedback elements
+     * @param {boolean} isVisible visibility state that should be applied
+     * @param {string} feedbackSelector selector for feedback elements that should get the visibility class
+     */
+    _setFeedbackVisibilityState(
+        formElement,
+        isVisible,
+        feedbackSelector = ".bsi-invalid-feedback"
+    ) {
+        if (!formElement) {
+            return;
+        }
+
+        const feedbackElements = formElement.querySelectorAll(feedbackSelector);
+        feedbackElements.forEach(feedbackElement => {
+            feedbackElement.classList.toggle("is-visible", isVisible);
+        });
+
+        const hasVisibleFeedback = formElement.querySelector(
+            ".form-field-feedback-wrapper > .is-visible"
+        ) !== null;
+        formElement.classList.toggle("has-visible-feedback", hasVisibleFeedback);
     },
 
     /**

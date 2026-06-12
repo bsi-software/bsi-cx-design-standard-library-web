@@ -161,9 +161,12 @@
 
                 // Add spacing below input only when something visible follows below the input
                 .form-field-layout:has(
-                    .form-field-feedback-wrapper > div:not(:empty),
                     .max-char-counter:not(:empty)
                 ) .form-field-input-wrapper {
+                    margin-block-end: properties.$spacing100;
+                }
+
+                &.has-visible-feedback .form-field-layout .form-field-input-wrapper {
                     margin-block-end: properties.$spacing100;
                 }
 
@@ -199,7 +202,7 @@
                         "helper counter";
                 }
 
-                &.bsi-show-max-length-counter .form-field-layout:has(.form-field-feedback-wrapper > div:not(:empty)) {
+                &.bsi-show-max-length-counter.has-visible-feedback .form-field-layout {
                     grid-template-areas:
                         "input    input"
                         "feedback counter"
@@ -230,7 +233,7 @@
                         ".       counter";
                 }
 
-                &.bsi-show-max-length-counter .form-field-layout:has(.form-field-feedback-wrapper > div:not(:empty)) {
+                &.bsi-show-max-length-counter.has-visible-feedback .form-field-layout {
                     grid-template-areas:
                         "helper   helper"
                         "input    input"

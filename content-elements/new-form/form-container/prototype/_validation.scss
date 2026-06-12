@@ -26,13 +26,13 @@
                 }
             }
 
-            &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid), &:has(select:user-invalid), &.checkbox-group.custom-invalid {
+            &.has-visible-feedback {
                 .form-field-feedback-wrapper {
                     display: flex;
                     margin-block-end: properties.$spacing100;
                 }
 
-                div.bsi-invalid-feedback {
+                div.bsi-invalid-feedback.is-visible {
                     display: flex;
                     color: $errorColor;
                 }

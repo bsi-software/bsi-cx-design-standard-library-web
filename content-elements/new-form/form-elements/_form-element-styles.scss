@@ -89,10 +89,19 @@
 
         .form-field-feedback-wrapper {
             min-width: 0;
+            display: none;
         }
 
-        .form-field-feedback-wrapper:not(:has(> div:not(:empty))) {
+        .form-field-feedback-wrapper :where(.bsi-invalid-feedback) {
             display: none;
+        }
+
+        &.has-visible-feedback :where(.form-field-feedback-wrapper) {
+            display: flex;
+        }
+
+        &.has-visible-feedback :where(.bsi-invalid-feedback.is-visible) {
+            display: flex;
         }
 
         .helper-text-container:has(> div:empty) {

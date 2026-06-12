@@ -12,7 +12,7 @@
         <label for="textarea-element" class="form-label">{{ formTextareaLabelText }}</label>
         <div class="textarea-container form-field-layout">
             <div class="textarea-and-error-text form-field-input-wrapper">
-                <textarea class="textarea-input" id="textarea-element" rows="5" value=""></textarea>
+                <textarea @change="formElementValidationOnChange" @blur="formElementValidationOnBlur" @input="formElementValidationOnInput" class="textarea-input" id="textarea-element" rows="5" value=""></textarea>
             </div>
             <div class="form-field-feedback-wrapper">
                 {% block textarea_error_texts %}
