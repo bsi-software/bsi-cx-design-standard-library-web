@@ -46,7 +46,7 @@
                         opacity: 1;
                     }
 
-                    &:has(input.native-checkbox[type="checkbox"]) label.form-label, .group-checkbox-label {
+                    &:has(input.native-checkbox[type="checkbox"]) label.form-label, .second-form-label {
                         cursor: pointer;
                         margin-bottom: properties.$spacing0;
                         align-self: stretch;
