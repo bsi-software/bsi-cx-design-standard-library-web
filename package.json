@@ -3,6 +3,9 @@
   "version": "1.4.17",
   "description": "Standard content element library for BSI CX.",
   "license": "MIT",
+  "scripts": {
+    "generate:stdlib-doc": "node scripts/generate-standardlib-doc.js"
+  },
   "repository": "github:bsi-software/bsi-cx-design-standard-library-web",
   "bugs": {
     "url": "https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues"
