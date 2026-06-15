@@ -92,23 +92,23 @@ $fileUploadBorderActiveColor: bsiProperty('fileUploadBorderActiveColor', #383e42
 $fileUploadBorderFocusColor: bsiProperty('fileUploadBorderFocusColor', #383e42);
 $fileUploadBorderColorDropover: bsiProperty('fileUploadBorderColorDropover', #2F4E66);
 $fileUploadBackgroundColor: bsiProperty('fileUploadBackgroundColor', #ffffff);
-$fileUploadBackgroundColorDropover: bsiProperty('fileUploadBackgroundColorDropover', rgbs(#2F4E66, 0.1));
+$fileUploadBackgroundColorDropover: bsiProperty('fileUploadBackgroundColorDropover', rgba(#2F4E66, 0.1));
 $fileUploadButtonBackgroundColor: bsiProperty('fileUploadButtonBackgroundColor', #2F4E66);
 $fileUploadButtonFontColor: bsiProperty('fileUploadButtonFontColor', #ffffff);
-$fileUploadButtonHoverBackgroundColor: bsiProperty('fileUploadButtonHoverBackgroundColor', rgbs(#2F4E66, 0.1));
+$fileUploadButtonHoverBackgroundColor: bsiProperty('fileUploadButtonHoverBackgroundColor', rgba(#2F4E66, 0.1));
 $fileUploadButtonHoverFontColor: bsiProperty('fileUploadButtonHoverFontColor', #ffffff);
 $fileUploadIconUploadFontName: bsiProperty('fileUploadIconUploadFontName', 'bootstrap-icons');
-$fileUploadIconUploadFontCharacter: bsiProperty('fileUploadIconDeleteFontName', '\F296');
-$fileUploadIconDeleteFontName: bsiProperty('fileUploadIconUploadFontCharacter', 'bootstrap-icons');
+$fileUploadIconUploadFontCharacter: bsiProperty('fileUploadIconUploadFontCharacter', '\F296');
+$fileUploadIconDeleteFontName: bsiProperty('fileUploadIconDeleteFontName', 'bootstrap-icons');
 $fileUploadIconDeleteFontCharacter: bsiProperty('fileUploadIconDeleteFontCharacter', '\F62A');
 // $fileUploadIconUploadFontName: 'bootstrap-icons';
 // $fileUploadIconUploadFontCharacter: '\F296';
 // $fileUploadIconDeleteFontName: 'bootstrap-icons';
 // $fileUploadIconDeleteFontCharacter: '\F62A';
 $fileUploadDeleteButtomBackgroundColor: bsiProperty('fileUploadDeleteButtomBackgroundColor', #383e42);
-$fileUploadDeleteButtomHoverBackgroundColor: bsiProperty('fileUploadDeleteButtomHoverBackgroundColor', rgbs(#383e42, 0.3));
+$fileUploadDeleteButtomHoverBackgroundColor: bsiProperty('fileUploadDeleteButtomHoverBackgroundColor', rgba(#383e42, 0.3));
 $fileUploadDeleteButtomColor: bsiProperty('fileUploadDeleteButtomColor', #ffffff);
-$fileUploadDeleteButtomHoverColor: bsiProperty('fileUploadDeleteButtomHoverColor', rgbs(#ffffff, 0.3));
+$fileUploadDeleteButtomHoverColor: bsiProperty('fileUploadDeleteButtomHoverColor', rgba(#ffffff, 0.3));
 
 //new formular poll
 $formPollHoverColor: bsiProperty("pollHoverColor", #ffffff);

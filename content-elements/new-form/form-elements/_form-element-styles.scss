@@ -1,6 +1,5 @@
 @use "../../../styles/properties" as properties;
 
-// TODO: Sollten hier eventuell noch neue Properties ersetllt werden, sodass man gezielt Sachen nur für das Formular ändern kann?
 @mixin formElementStyling(
     $labelColor: properties.$formLabelColor,
     $helperTextColor: properties.$formHelperTextColor,

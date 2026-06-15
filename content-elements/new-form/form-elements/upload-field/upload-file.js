@@ -18,6 +18,11 @@ Alpine.data("fileUpload", () => ({
     fileSuffix: '',
     fileSize: '',
 
+    /**
+     * Initialize upload component state and allowed file types from input accept attribute.
+     *
+     * @returns {void}
+     */
     init() {
       this.$root.closest('form').addEventListener('reset', this.removeFile.bind(this), true);
       this.fileUploadDiv = this.$el.querySelector('.file-upload');
@@ -30,36 +35,66 @@ Alpine.data("fileUpload", () => ({
         .map(fileType => fileType.replace(".", "")) ?? [];
     },
 
+    /**
+     * Open the native file picker dialog.
+     *
+     * @returns {void}
+     */
     triggerFileUpload() {
       this.$refs.fileInput.click();
     },
 
+    /**
+     * Handle file input change event and trigger validation.
+     *
+     * @param {Event} event native change event from file input
+     * @returns {void}
+     */
     onFileChange(event) {
-      console.log("upload-file.js: onFileChange")
       this._handleFiles(event.target.files);
       this._formElementValidationOnChange();
       this.$dispatch('after-change', event);
     },
 
+    /**
+     * Handle synthetic change event after drag-and-drop update.
+     *
+     * @param {Event} event custom change-after-drop event
+     * @returns {void}
+     */
     onFileChangeAfterDrop(event) {
-      console.log("upload-file.js: onFileChangeAfterDrop")
       this._formElementValidationOnChange();
       this.$dispatch('after-change', event);
     },
 
 
+    /**
+     * Set drag-over state and apply dragover styling on the upload area.
+     *
+     * @returns {void}
+     */
     onDragOver() {
       this.isDragOver = true;
       if (this.fileUploadDiv) this.fileUploadDiv.classList.add("dragover");
     },
 
+    /**
+     * Reset visual dragover state when dragging leaves the dropzone.
+     *
+     * @returns {void}
+     */
     onDragLeave() {
       this.isDragOver = false;
       if (this.fileUploadDiv) this.fileUploadDiv.classList.remove("dragover");
     },
 
+    /**
+     * Handle dropped files, sync native input and trigger follow-up validation event.
+     *
+     * @param {DragEvent} event native drop event
+     * @returns {void}
+     */
     onDrop(event) {
-      console.log("upload-file.js: onDrop");
       if (this.files.length == 0) {
         this._handleFiles(event.dataTransfer.files);
       }
@@ -75,8 +110,12 @@ Alpine.data("fileUpload", () => ({
       if (this.fileUploadDiv) this.fileUploadDiv.classList.remove("dragover");
     },
 
+    /**
+     * Remove selected file(s), revoke created object URLs and reset related state.
+     *
+     * @returns {void}
+     */
     removeFile() {
-      console.log("upload-file.js: removeFile");
       this.files.forEach((file) => {
         if (file.preview) {
           URL.revokeObjectURL(file.preview);
@@ -92,8 +131,13 @@ Alpine.data("fileUpload", () => ({
       this.$refs.fileInput.dispatchEvent(changeAfterDropEvent);
     },
 
+    /**
+     * Convert selected file list into internal view model.
+     *
+     * @param {FileList|File[]} fileList files from input or drag-and-drop
+     * @returns {void}
+     */
     _handleFiles(fileList) {
-      console.log("upload-file.js: handleFile");
       const uploadedFiles = Array.from(fileList);
 
       if (uploadedFiles.length > 0) {
@@ -109,6 +153,11 @@ Alpine.data("fileUpload", () => ({
       this._syncViewState();
     },
 
+    /**
+     * Synchronize derived UI state from current selected files.
+     *
+     * @returns {void}
+     */
     _syncViewState() {
       if (this.files.length > 0) {
         const file = this.files[0];
@@ -130,12 +179,12 @@ Alpine.data("fileUpload", () => ({
       }
     },
 
+    /**
+     * Validate selected file(s) against required state and allowed types/extensions.
+     *
+     * @returns {void}
+     */
     _formElementValidationOnChange() {
-      console.log("upload-file.js: Validierung des Files");
-      console.log("Es ist nun " + this.files.length + " File hochgeladen worden.")
-      console.log("Folgende Dateiendungen sind erlaubt: " + this.allowedExtensions);
-      console.log("Folgende MIMEs sind erlaubt: " + this.allowedMimes);
-
       if (this.files.length > 0) {
         let validType = false;
         if (this.allowedMimes.length > 0 || this.allowedExtensions.length > 0) {
@@ -151,18 +200,15 @@ Alpine.data("fileUpload", () => ({
           validType = true;
         }
         if (validType ) {
-          console.log("Validierung des Files erfolgreich!");
           this.$refs.fileInput.classList.remove("custom-invalid");
           this.$refs.fileInput.setCustomValidity("");
         } else {
-          console.log("Validierung des Files fehlgeschlagen! (falscher Dateityp)");
           this.$refs.fileInput.classList.add("custom-invalid");
           this.$refs.fileInput.setCustomValidity("wrong file type");
         }
       } 
       else {
         if (this.$refs.fileInput.required) {
-          console.log("Validierung des Files fehlgeschlagen! (keine Datei)");
           this.$refs.fileInput.classList.add("custom-invalid");
           this.$refs.fileInput.setCustomValidity("no file");
         } else {
@@ -172,6 +218,12 @@ Alpine.data("fileUpload", () => ({
       }
     },
 
+    /**
+     * Format file size in bytes to a human-readable string.
+     *
+     * @param {number} bytes file size in bytes
+     * @returns {string} formatted size string
+     */
     _formatSize(bytes) {
       if (bytes < 1024) return bytes + ' B';
       if (bytes < 1024 * 1024)
@@ -179,8 +231,13 @@ Alpine.data("fileUpload", () => ({
       return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
     },
 
+    /**
+     * Check whether a file is an image based on MIME type.
+     *
+     * @param {File} file file to check
+     * @returns {boolean} true if file is an image
+     */
     _isImage(file) {
-      console.log("Datei ist ein Bild: " + file.type.startsWith('image/'));
       return file.type.startsWith('image/');
     },
 

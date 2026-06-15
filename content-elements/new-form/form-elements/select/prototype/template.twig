@@ -12,10 +12,9 @@
     {% set customClasses = customClasses ?: "" %}
 
     <div x-data="selectInputField"data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ formSelectElementPartId }}">
-        <label for="select-element" class="form-label">{{ formSelectLabelText }}</label>
+        <label class="form-label">{{ formSelectLabelText }}</label>
         <div class="select-container form-field-layout">
             <div class="select-and-error-text form-field-input-wrapper">
-                {# TODO: Was ist mit dem Platzhalter? Können wir das sauber umsetzen? Oder lassen wir das raus, bis die Produktentwicklung das sauber umgesetzt hat? #}
                 <div data-bsi-element-part="{{ formSelectPlaceholderTextPartId }}" class="d-none placeholder">{{ formSelectPlaceholderText }}</div>
                 <div class="wrapper-select">
                     <select x-init="initSelectInputField" @change="onChangeSelection" @after-change="formElementValidationOnChange" class="select-input" id="select-element">

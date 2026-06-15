@@ -1,7 +1,6 @@
 // @use '../../_prototype/styles' as prototypeStyleSheet;
 @use "../../../../../styles/properties.scss" as properties;
 
-// TODO: Sollten hier eventuell noch neue Properties ersetllt werden, sodass man gezielt Sachen nur für das Formular ändern kann?
 @mixin fileUploadFieldStyling(
     $elementId: "upload-form-field-5674018a",
     $formContainerId: "form-container-84c6581f",

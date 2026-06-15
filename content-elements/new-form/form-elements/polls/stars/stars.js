@@ -5,6 +5,11 @@ Alpine.data("starPoll", () => ({
     max: null,
     radioItems: null,
 
+    /**
+     * Initialize star poll by converting definition input into interactive radio options.
+     *
+     * @returns {void}
+     */
     initStar() {
 
         let definitionInput = this.$root.querySelector("input.number-input");
@@ -29,6 +34,16 @@ Alpine.data("starPoll", () => ({
         this.radioItems = this.$root.querySelectorAll("input[type=radio]");
     },
 
+    /**
+     * Create and append one radio option for a star value.
+     *
+     * @param {number} value value represented by this star
+     * @param {string} id id for the generated radio input
+     * @param {string} name group name for the generated radio input
+     * @param {boolean} required whether generated inputs should be required
+     * @param {boolean} checked whether generated input should be preselected
+     * @returns {void}
+     */
     _initRadioElement(value, id, name, required, checked) {
         let div = document.createElement("div");
         div.setAttribute("class", "star-item");
@@ -59,6 +74,11 @@ Alpine.data("starPoll", () => ({
         this.$el.appendChild(div);
     },
 
+    /**
+     * Update selected star state, visual fill classes and rating label.
+     *
+     * @returns {void}
+     */
     updateStatus() {
         // let radioItems = Array.from(this.$root.querySelectorAll("input[type=radio]"));
         let selectedIndex = Array.from(this.radioItems).findIndex(radio => radio.checked);
@@ -67,18 +87,35 @@ Alpine.data("starPoll", () => ({
         this.$dispatch("after-change");
     },
 
+    /**
+     * Apply hover state to all stars up to the currently hovered star.
+     *
+     * @returns {void}
+     */
     onHover() {
         // this.$el.parentElement.classList.add("star-poll-radio-hovered");
         let hoveredIndex = Array.from(this.radioItems).findIndex(radio => radio.parentElement == this.$el.parentElement);
         this._setClassForAllStarsBefore(hoveredIndex, "star-poll-radio-hovered");
     },
 
+    /**
+     * Remove hover state from all stars.
+     *
+     * @returns {void}
+     */
     onStopHover() {
         this.radioItems.forEach((radio) => {
             radio.parentElement.classList.remove("star-poll-radio-hovered");
         });
     },
 
+    /**
+     * Toggle a CSS class on all stars up to the given index.
+     *
+     * @param {number} index last index that should be active
+     * @param {string} className class name to toggle on star wrapper elements
+     * @returns {void}
+     */
     _setClassForAllStarsBefore(index, className) {
         this.radioItems.forEach((radio, i) => {
             let parentClassList = radio.parentElement.classList;

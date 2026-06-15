@@ -4,6 +4,11 @@ Alpine.data("selectInputField", () => ({
   selectElement: null,
   placeholder: "",
 
+  /**
+   * Initialize select field state and apply placeholder fallback behavior.
+   *
+   * @returns {void}
+   */
   initSelectInputField() {
     this.selectElement = this.$el;
     this.placeholder = this.$root.querySelector(".placeholder").innerHTML;
@@ -22,9 +27,13 @@ Alpine.data("selectInputField", () => ({
     }
   },
 
-  // TODO: Das ist noch nicht fertig, hier bin ich gerade dran...
+  /**
+   * Handle selection changes and maintain custom validity for placeholder selection.
+   *
+   * @param {Event} event native change event from select field
+   * @returns {void}
+   */
   onChangeSelection(event) {
-    console.log("select.js: onChangeSelection")
     if (this.selectElement.selectedIndex == 0 && this.selectElement.required) {
       // If the placeholder is selected and the select is required, set the placeholder as invalid option
       this.selectElement.classList.add("custom-invalid");

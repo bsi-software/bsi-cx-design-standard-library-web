@@ -5,6 +5,8 @@
 {% set formFieldLabelText = labelText ?: bsi_cx_lorem(3) %}
 {% set formFieldHelperText = infoText ?: "" %}
 {% set formFieldErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
+{% set uploadButtonText = uploadButtonText ?: 'Datei auswählen' %}
+{% set uploadDropText = uploadDropText ?: 'oder hier ablegen' %}
 {% set customClasses = customClasses ?: "" %}
 
 <div x-data="fileUpload" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
@@ -38,9 +40,9 @@
                             class="upload-button"
                             @click="triggerFileUpload"
                             x-show="noFiles"
-                            aria-label="Datei auswählen"
+                            aria-label="{{ uploadButtonText }}"
                         >
-                            <span>Datei auswählen</span> {# TODO: muss noch übersetzt werden #}
+                            <span>{{ uploadButtonText }}</span>
                             <i class="icon-upload"></i>
                         </button>
                         <div
@@ -67,7 +69,7 @@
                             class="drop-text second-form-label"
                             aria-hidden="true"
                             x-show="noFiles"
-                        > oder hier ablegen </label> {# TODO: muss noch übersetzt werden #}
+                        > {{ uploadDropText }} </label>
 
                         <button
                             type="button"

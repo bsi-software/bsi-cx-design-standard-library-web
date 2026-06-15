@@ -10,7 +10,6 @@
     {% set formCheckboxGroupLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set formCheckboxGroupHelperText = infoText ?: "" %}
     <div data-bsi-element="{{ formCheckboxGroupElementId }}" class="bsi-element-{{ formCheckboxGroupElementId }} form-element form-field checkbox-group {{ formCheckboxGroupRequired }} {{ formCheckboxGroupAlignment }}">
-        {# TODO: add for attribute with alpine #}
         <label class="form-label"data-bsi-element-part="{{ formCheckboxGroupLabelId }}">{{ formCheckboxGroupLabel }}</label>
         <div class="input-field-container form-field-layout">
             <div class="input-field-with-error-text form-field-input-wrapper">
