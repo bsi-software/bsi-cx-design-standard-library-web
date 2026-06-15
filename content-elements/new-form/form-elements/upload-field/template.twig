@@ -5,11 +5,9 @@
 {% set formFieldLabelText = labelText ?: bsi_cx_lorem(3) %}
 {% set formFieldHelperText = infoText ?: "" %}
 {% set formFieldErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
-{% set uploadButtonText = uploadButtonText ?: 'Datei auswählen' %}
-{% set uploadDropText = uploadDropText ?: 'oder hier ablegen' %}
 {% set customClasses = customClasses ?: "" %}
 
-<div x-data="fileUpload" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
+<div x-data="fileUpload" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="file">
     <label for="file-upload-field" class="form-label">{{ formFieldLabelText }}</label>
     <div 
         class="file-upload-container form-field-layout"
@@ -40,9 +38,10 @@
                             class="upload-button"
                             @click="triggerFileUpload"
                             x-show="noFiles"
-                            aria-label="{{ uploadButtonText }}"
+                            x-ref="uploadButton"
+                            aria-label="Datei auswählen"
                         >
-                            <span>{{ uploadButtonText }}</span>
+                            <span>Datei auswählen</span>
                             <i class="icon-upload"></i>
                         </button>
                         <div
@@ -69,7 +68,8 @@
                             class="drop-text second-form-label"
                             aria-hidden="true"
                             x-show="noFiles"
-                        > {{ uploadDropText }} </label>
+                            x-ref="dropText"
+                        >oder hier ablegen</label>
 
                         <button
                             type="button"
@@ -77,6 +77,7 @@
                             aria-label="Datei entfernen"
                             @click="removeFile"
                             x-show="hasFiles"
+                            x-ref="removeButton"
                         >
                             <i class="icon-delete"></i>
                         </button>

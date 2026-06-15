@@ -1,5 +1,6 @@
 import Alpine from "@alpinejs/csp";
 
+const { getUploadFileLocalizedTexts } = require("./localizedTexts");
 
 Alpine.data("fileUpload", () => ({
 
@@ -24,6 +25,8 @@ Alpine.data("fileUpload", () => ({
      * @returns {void}
      */
     init() {
+      this._initLocalizedTexts();
+
       this.$root.closest('form').addEventListener('reset', this.removeFile.bind(this), true);
       this.fileUploadDiv = this.$el.querySelector('.file-upload');
       const allowedEntries = this.$refs.fileInput.getAttribute("accept")?.split(",")
@@ -33,6 +36,19 @@ Alpine.data("fileUpload", () => ({
       this.allowedMimes = allowedEntries?.filter(fileType => fileType.includes("/")) ?? [];
       this.allowedExtensions = allowedEntries?.filter(fileType => fileType.startsWith("."))
         .map(fileType => fileType.replace(".", "")) ?? [];
+    },
+
+    /**
+     * Initialize localized button labels and helper text based on global language setting.
+     *
+     * @returns {void}
+     */
+    _initLocalizedTexts() {
+        const language = document.querySelector('meta[name=x-language]').getAttribute('value'); 
+        this.$refs.removeButton.setAttribute('aria-label', getUploadFileLocalizedTexts('removeFile', language));
+        this.$refs.uploadButton.setAttribute('aria-label', getUploadFileLocalizedTexts('uploadButtonLabel', language));
+        this.$refs.uploadButton.querySelector('span').innerText = getUploadFileLocalizedTexts('uploadButtonLabel', language);
+        this.$refs.dropText.innerText = getUploadFileLocalizedTexts('uploadDropText', language);
     },
 
     /**
