@@ -2,6 +2,9 @@
 
 const fs = require('fs');
 const path = require('path');
+const { walkFilesByName, findElementCandidates } = require('./stdlib-doc/file-finder');
+const { createElementDocumentationModel, buildTemplateValidation } = require('./stdlib-doc/models');
+const { writeDocumentationOutputs } = require('./stdlib-doc/output-writer');
 
 const rootDir = path.resolve(__dirname, '..');
 const contentRoot = path.join(rootDir, 'content-elements');
@@ -10,21 +13,6 @@ const outputDir = path.join(rootDir, 'docs');
 const outputMarkdown = path.join(outputDir, 'standardlib-autodoc.md');
 const outputJson = path.join(outputDir, 'standardlib-autodoc.json');
 const outputHtml = path.join(outputDir, 'standardlib-autodoc.html');
-
-function walkFiles(startDir, fileName) {
-	if (!fs.existsSync(startDir)) return [];
-	const results = [];
-	const entries = fs.readdirSync(startDir, { withFileTypes: true });
-	for (const entry of entries) {
-		const abs = path.join(startDir, entry.name);
-		if (entry.isDirectory()) {
-			results.push(...walkFiles(abs, fileName));
-		} else if (entry.isFile() && entry.name === fileName) {
-			results.push(abs);
-		}
-	}
-	return results;
-}
 
 function normalizePosix(p) {
 	return p.replace(/\\/g, '/');
@@ -1024,7 +1012,7 @@ function buildParameterStyleLinks(parameterDefaults, styles) {
 }
 
 function buildDocumentation() {
-	const styleFiles = walkFiles(styleConfigRoot, '.keep').length ? [] : walkFiles(styleConfigRoot, 'dummy').slice(0, 0);
+	const styleFiles = walkFilesByName(styleConfigRoot, '.keep').length ? [] : walkFilesByName(styleConfigRoot, 'dummy').slice(0, 0);
 	const styleCandidates = fs.existsSync(styleConfigRoot)
 		? fs.readdirSync(styleConfigRoot)
 			.filter((x) => x.endsWith('.js'))
@@ -1037,8 +1025,11 @@ function buildDocumentation() {
 
 	const styleByFile = new Map(styleConfigs.map((s) => [path.resolve(s.filePath), s]));
 
-	const indexFiles = walkFiles(contentRoot, 'index.js');
-	const elementsRaw = indexFiles
+	const elementCandidates = findElementCandidates(contentRoot);
+	const candidateByIndex = new Map(elementCandidates.map((candidate) => [path.resolve(candidate.indexFile), candidate]));
+
+	const elementsRaw = elementCandidates
+		.map((candidate) => candidate.indexFile)
 		.map(parseElementConfig)
 		.filter(Boolean)
 		.filter((el) => el.elementId);
@@ -1047,14 +1038,16 @@ function buildDocumentation() {
 
 	const elements = Array.from(elementByDir.values())
 		.map((element) => {
-			const fallbackTemplate = [
+			const candidate = candidateByIndex.get(path.resolve(element.filePath));
+			const fallbackTemplate = candidate?.templateFile || [
 				path.join(element.elementDir, 'template.twig'),
 				path.join(element.elementDir, 'prototype', 'template.twig'),
-			].find((candidate) => fs.existsSync(candidate));
+			].find((foundTemplate) => fs.existsSync(foundTemplate));
 
 			const templateFile = element.templateFile && fs.existsSync(element.templateFile)
 				? element.templateFile
 				: fallbackTemplate;
+			const templateMarkers = candidate?.templateMarkers || { elementIds: new Set(), partIds: new Set(), dropzoneIds: new Set() };
 
 			const templateParameterInfo = templateFile
 				? parseTemplateParameterInfo(templateFile)
@@ -1100,7 +1093,7 @@ function buildDocumentation() {
 
 			const parameterStyleLinks = buildParameterStyleLinks(templateDefaults, styles);
 
-			return {
+			const elementModel = createElementDocumentationModel({
 				elementId: resolvedElementId,
 				label: element.label,
 				group,
@@ -1124,8 +1117,44 @@ function buildDocumentation() {
 				styles,
 				templateDefaults,
 				dropzones: resolveDropzoneAllowedElements({ ...element, templateDefaults }, elementByDir),
-			};
+				validation: null,
+			});
+
+			// Generic element detection rule:
+			// A valid element must have the same id in index.js (withElementId)
+			// and in twig (data-bsi-element).
+			if (templateMarkers.elementIds.size > 0 && !templateMarkers.elementIds.has(resolvedElementId)) {
+				return null;
+			}
+
+			// Generic dropzone mapping rule:
+			// Dropzones are defined in index.js and rendered in twig via data-bsi-dropzone.
+			const validatedDropzones = (elementModel.dropzones || []).filter((dropzone) => {
+				if (!dropzone?.dropzoneId) return false;
+				if (templateMarkers.dropzoneIds.size === 0) return true;
+				return templateMarkers.dropzoneIds.has(dropzone.dropzoneId);
+			});
+
+			// Generic part mapping rule:
+			// Parts are defined in index.js and rendered in twig via data-bsi-element-part.
+			const validatedParts = (elementModel.parts || []).filter((part) => {
+				if (!part?.id) return true;
+				if (templateMarkers.partIds.size === 0) return true;
+				return templateMarkers.partIds.has(part.id);
+			});
+
+			elementModel.parts = validatedParts;
+			elementModel.dropzones = validatedDropzones;
+			elementModel.validation = buildTemplateValidation({
+				elementId: resolvedElementId,
+				parts: validatedParts,
+				dropzones: validatedDropzones,
+				templateMarkers,
+			});
+
+			return elementModel;
 		})
+		.filter(Boolean)
 		.sort((a, b) => {
 			const parentPathA = (a.folderPath || []).slice(0, -1).join('/').toLocaleLowerCase('de');
 			const parentPathB = (b.folderPath || []).slice(0, -1).join('/').toLocaleLowerCase('de');
@@ -1356,10 +1385,12 @@ function toMarkdown(doc) {
 }
 
 function toHtml(doc) {
+	const branding = resolveExternalWebsiteBranding();
 	const safeDocJson = JSON.stringify(doc)
 		.replace(/</g, '\\u003c')
 		.replace(/>/g, '\\u003e')
 		.replace(/&/g, '\\u0026');
+	const logoSrc = branding.logoDataUri || '../static/logo-lm.svg';
 
 	return `<!doctype html>
 <html lang="de">
@@ -1369,23 +1400,30 @@ function toHtml(doc) {
 	<title>StandardLib Auto-Dokumentation</title>
 	<style>
 		:root {
-			--bg: #0f172a;
-			--surface: #111827;
-			--surface-2: #1f2937;
-			--card: #0b1220;
-			--text: #e5e7eb;
-			--muted: #9ca3af;
-			--accent: #60a5fa;
-			--accent-2: #22d3ee;
-			--border: #334155;
-			--ok: #34d399;
+			--bg: ${branding.colors.bg};
+			--surface: #ffffff;
+			--surface-2: ${branding.colors.surface2};
+			--card: #ffffff;
+			--text: ${branding.colors.text};
+			--muted: ${branding.colors.muted};
+			--accent: ${branding.colors.accent};
+			--accent-2: ${branding.colors.accent2};
+			--border: ${branding.colors.border};
+			--ok: #198754;
+			--space-100: ${branding.spacing[100]};
+			--space-200: ${branding.spacing[200]};
+			--space-300: ${branding.spacing[300]};
+			--space-400: ${branding.spacing[400]};
+			--radius-100: ${branding.radius[100]};
+			--radius-200: ${branding.radius[200]};
+			--radius-300: ${branding.radius[300]};
 		}
 		* { box-sizing: border-box; }
 		body {
 			margin: 0;
-			font-family: Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+			font-family: ${branding.fontFamily};
 			color: var(--text);
-			background: radial-gradient(1200px 900px at 20% -10%, #1d4ed8 0%, rgba(29,78,216,0) 55%), var(--bg);
+			background: var(--bg);
 			height: 100vh;
 			overflow: hidden;
 		}
@@ -1396,22 +1434,31 @@ function toHtml(doc) {
 		}
 		.sidebar {
 			border-right: 1px solid var(--border);
-			background: linear-gradient(180deg, rgba(17,24,39,.96), rgba(15,23,42,.96));
+			background: var(--surface);
 			display: flex;
 			flex-direction: column;
 			min-height: 0;
 		}
 		.brand {
-			padding: 16px 16px 10px;
+			padding: var(--space-300);
 			border-bottom: 1px solid var(--border);
-			background: rgba(15,23,42,.8);
-			backdrop-filter: blur(6px);
+			background: var(--surface);
+		}
+		.brand-head {
+			display: flex;
+			align-items: center;
+			gap: var(--space-200);
+		}
+		.brand-logo {
+			width: 36px;
+			height: 36px;
+			flex: 0 0 auto;
 		}
 		.brand h1 {
 			margin: 0;
-			font-size: 1rem;
+			font-size: .98rem;
 			font-weight: 700;
-			letter-spacing: .2px;
+			letter-spacing: .01em;
 		}
 		.meta {
 			margin-top: 8px;
@@ -1421,19 +1468,19 @@ function toHtml(doc) {
 			gap: 2px;
 		}
 		.search {
-			padding: 12px 16px;
+			padding: var(--space-200) var(--space-300) var(--space-300);
 			border-bottom: 1px solid var(--border);
 		}
 		.search input {
 			width: 100%;
-			padding: 10px 12px;
-			border-radius: 10px;
+			padding: var(--space-200) calc(var(--space-300) - var(--space-100));
+			border-radius: var(--radius-200);
 			border: 1px solid var(--border);
-			background: #0b1220;
+			background: #ffffff;
 			color: var(--text);
 			outline: none;
 		}
-		.search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(96,165,250,.15); }
+		.search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,130,161,.18); }
 		.tree {
 			overflow: auto;
 			padding: 8px 10px 16px;
@@ -1446,16 +1493,23 @@ function toHtml(doc) {
 			position: sticky;
 			top: 0;
 			z-index: 1;
-			background: rgba(15,23,42,.9);
-			color: var(--accent-2);
+			width: 100%;
+			text-align: left;
+			border: none;
+			background: var(--surface-2);
+			color: var(--accent);
 			font-size: .74rem;
 			text-transform: uppercase;
 			letter-spacing: .08em;
 			padding: 8px 10px 6px;
-			border-left: 2px solid var(--accent-2);
+			border-left: 2px solid var(--accent);
 			border-radius: 6px;
 			margin-bottom: 6px;
+			cursor: pointer;
 		}
+		.group-title .caret { display: inline-block; width: 12px; color: var(--accent); }
+		.group-title:hover { color: #224e5d; }
+		.group-content { margin-top: 2px; }
 		.item {
 			width: 100%;
 			text-align: left;
@@ -1468,15 +1522,15 @@ function toHtml(doc) {
 			margin-bottom: 4px;
 			transition: .12s ease;
 		}
-		.item:hover { background: rgba(148,163,184,.12); border-color: rgba(148,163,184,.2); }
-		.item.active { background: rgba(96,165,250,.18); border-color: rgba(96,165,250,.45); }
+		.item:hover { background: rgba(0,130,161,.07); border-color: rgba(0,130,161,.24); }
+		.item.active { background: rgba(0,130,161,.14); border-color: rgba(0,130,161,.38); }
 		.item .label { display: block; font-size: .9rem; }
 		.item .id { display: block; font-size: .73rem; color: var(--muted); margin-top: 2px; }
 		.folder {
 			font-size: .78rem;
 			text-transform: uppercase;
 			letter-spacing: .04em;
-			color: #93c5fd;
+			color: var(--accent);
 			padding: 4px 10px 2px;
 		}
 		.folder-toggle {
@@ -1484,37 +1538,37 @@ function toHtml(doc) {
 			text-align: left;
 			border: none;
 			background: transparent;
-			color: #93c5fd;
+			color: var(--accent);
 			font-size: .78rem;
 			text-transform: uppercase;
 			letter-spacing: .04em;
 			padding: 4px 10px 2px;
 			cursor: pointer;
 		}
-		.folder-toggle:hover { color: #bfdbfe; }
-		.folder-toggle .caret { display: inline-block; width: 12px; color: #7dd3fc; }
+		.folder-toggle:hover { color: #224e5d; }
+		.folder-toggle .caret { display: inline-block; width: 12px; color: var(--accent); }
 		.content {
 			overflow: auto;
-			padding: 24px;
+			padding: var(--space-400);
 		}
 		.outline {
 			border-left: 1px solid var(--border);
-			background: linear-gradient(180deg, rgba(17,24,39,.96), rgba(15,23,42,.96));
+			background: var(--surface);
 			overflow: auto;
-			padding: 16px;
+			padding: var(--space-300);
 		}
 		.outline-panel {
 			position: sticky;
-			top: 16px;
-			background: rgba(11,18,32,.88);
+			top: var(--space-300);
+			background: var(--surface-2);
 			border: 1px solid var(--border);
-			border-radius: 12px;
-			padding: 12px;
+			border-radius: var(--radius-300);
+			padding: var(--space-300);
 		}
 		.outline-panel h3 {
 			margin: 0 0 8px;
 			font-size: .95rem;
-			color: #cbd5e1;
+			color: var(--accent);
 		}
 		.outline-sub {
 			color: var(--muted);
@@ -1524,11 +1578,11 @@ function toHtml(doc) {
 		.panel {
 			max-width: 1200px;
 			margin: 0 auto;
-			background: linear-gradient(180deg, rgba(17,24,39,.88), rgba(15,23,42,.88));
+			background: var(--surface);
 			border: 1px solid var(--border);
-			border-radius: 16px;
-			padding: 20px;
-			box-shadow: 0 12px 28px rgba(0,0,0,.25);
+			border-radius: var(--radius-300);
+			padding: var(--space-400);
+			box-shadow: 0 8px 20px rgba(51,51,51,.08);
 		}
 		.header h2 { margin: 0; font-size: 1.4rem; }
 		.header .sub { color: var(--muted); margin-top: 6px; font-size: .9rem; }
@@ -1538,7 +1592,7 @@ function toHtml(doc) {
 			padding: 6px 9px;
 			border-radius: 999px;
 			border: 1px solid var(--border);
-			background: rgba(148,163,184,.1);
+			background: var(--surface-2);
 			color: var(--text);
 		}
 		.grid {
@@ -1548,15 +1602,15 @@ function toHtml(doc) {
 			margin-top: 18px;
 		}
 		.card {
-			background: rgba(11,18,32,.85);
+			background: var(--card);
 			border: 1px solid var(--border);
-			border-radius: 12px;
-			padding: 12px;
+			border-radius: var(--radius-200);
+			padding: var(--space-300);
 		}
 		.card h3 {
 			margin: 0 0 8px;
 			font-size: .95rem;
-			color: #cbd5e1;
+			color: var(--accent);
 			letter-spacing: .01em;
 		}
 		.list {
@@ -1575,13 +1629,13 @@ function toHtml(doc) {
 		.inline-link:hover { text-decoration: underline; }
 		.muted { color: var(--muted); }
 		.kv { font-size: .84rem; }
-		.kv b { color: #cbd5e1; font-weight: 600; }
+		.kv b { color: var(--accent); font-weight: 600; }
 		.style-row {
 			border: 1px solid var(--border);
-			border-radius: 10px;
-			padding: 10px;
-			margin-bottom: 8px;
-			background: rgba(15,23,42,.6);
+			border-radius: var(--radius-200);
+			padding: var(--space-200);
+			margin-bottom: var(--space-200);
+			background: var(--surface-2);
 		}
 		.style-row .title { font-size: .9rem; font-weight: 600; }
 		.style-row .source { font-size: .78rem; color: var(--muted); margin-top: 2px; }
@@ -1607,7 +1661,10 @@ function toHtml(doc) {
 	<div class="layout">
 		<aside class="sidebar">
 			<div class="brand">
-				<h1>StandardLib Auto-Dokumentation</h1>
+				<div class="brand-head">
+					<img class="brand-logo" src="${logoSrc}" alt="BSI Logo" />
+					<h1>StandardLib Auto-Dokumentation</h1>
+				</div>
 				<div class="meta" id="meta"></div>
 			</div>
 			<div class="search"><input id="search" type="search" placeholder="Element suchen (Label oder ID) …" /></div>
@@ -1651,6 +1708,7 @@ function toHtml(doc) {
 
 		let activeId = doc.elements[0] ? doc.elements[0].elementId : null;
 		let filterText = '';
+		const groupExpanded = new Map();
 		const folderExpanded = new Map();
 		const elementMap = new Map((doc.elements || []).map((el) => [el.elementId, el]));
 
@@ -1706,7 +1764,15 @@ function toHtml(doc) {
 				if (items.length === 0) continue;
 
 				blocks.push('<section class="group">');
-				blocks.push('<div class="group-title">' + esc(group.replaceAll('-', ' ')) + '</div>');
+				const groupKey = 'group:' + group;
+				const isGroupExpanded = groupExpanded.has(groupKey) ? groupExpanded.get(groupKey) : true;
+				const groupCaret = isGroupExpanded ? '▾' : '▸';
+				blocks.push('<button class="group-title" data-group-key="' + esc(groupKey) + '"><span class="caret">' + groupCaret + '</span>' + esc(group.replaceAll('-', ' ')) + '</button>');
+				if (!isGroupExpanded) {
+					blocks.push('</section>');
+					continue;
+				}
+				blocks.push('<div class="group-content">');
 
 				const tree = buildFolderTree(items);
 				const renderNode = (node, depth, pathPrefix) => {
@@ -1733,9 +1799,19 @@ function toHtml(doc) {
 				};
 
 				renderNode(tree, 0, '');
+				blocks.push('</div>');
 				blocks.push('</section>');
 			}
 			treeEl.innerHTML = blocks.join('');
+			treeEl.querySelectorAll('.group-title').forEach((btn) => {
+				btn.addEventListener('click', () => {
+					const key = btn.getAttribute('data-group-key');
+					if (!key) return;
+					const current = groupExpanded.has(key) ? groupExpanded.get(key) : true;
+					groupExpanded.set(key, !current);
+					renderTree();
+				});
+			});
 			treeEl.querySelectorAll('.folder-toggle').forEach((btn) => {
 				btn.addEventListener('click', () => {
 					const key = btn.getAttribute('data-folder-key');
@@ -1903,16 +1979,171 @@ function toHtml(doc) {
 </html>`;
 }
 
+function findFirstFileRecursive(startDir, matcher, maxDepth = 6, currentDepth = 0) {
+	if (!startDir || !fs.existsSync(startDir) || currentDepth > maxDepth) return null;
+	const entries = fs.readdirSync(startDir, { withFileTypes: true });
+	for (const entry of entries) {
+		const abs = path.join(startDir, entry.name);
+		if (entry.isFile() && matcher(abs, entry.name)) return abs;
+	}
+	for (const entry of entries) {
+		if (!entry.isDirectory()) continue;
+		const nested = findFirstFileRecursive(path.join(startDir, entry.name), matcher, maxDepth, currentDepth + 1);
+		if (nested) return nested;
+	}
+	return null;
+}
+
+function normalizeHexColor(value, fallback) {
+	if (typeof value !== 'string') return fallback;
+	const match = value.trim().match(/^#[0-9a-fA-F]{6}$/);
+	return match ? match[0].toLowerCase() : fallback;
+}
+
+function extractCssColor(propertyContent, key) {
+	const regex = new RegExp(`${key}\\s*:\\s*css\\.color\\((['\"])\\s*(#[0-9a-fA-F]{6})\\s*\\1\\)`);
+	const match = propertyContent.match(regex);
+	return match ? match[2].toLowerCase() : null;
+}
+
+function extractQuotedProperty(propertyContent, key) {
+	const regex = new RegExp(`${key}\\s*:\\s*(['\"])([\\s\\S]*?)\\1`);
+	const match = propertyContent.match(regex);
+	if (!match) return null;
+	return match[2].replace(/\u2011/g, '-').trim();
+}
+
+function extractTokenMap(propertyContent, mapKey) {
+	const tokenMap = {};
+	const blockStart = propertyContent.indexOf(`${mapKey}:`);
+	if (blockStart < 0) return tokenMap;
+	const braceStart = propertyContent.indexOf('{', blockStart);
+	if (braceStart < 0) return tokenMap;
+
+	let depth = 0;
+	let end = -1;
+	for (let i = braceStart; i < propertyContent.length; i += 1) {
+		const char = propertyContent[i];
+		if (char === '{') depth += 1;
+		if (char === '}') {
+			depth -= 1;
+			if (depth === 0) {
+				end = i;
+				break;
+			}
+		}
+	}
+	if (end < 0) return tokenMap;
+
+	const block = propertyContent.slice(braceStart + 1, end);
+	const entryRegex = /(\d+)\s*:\s*['\"]([^'\"]+)['\"]/g;
+	let match;
+	while ((match = entryRegex.exec(block)) !== null) {
+		tokenMap[match[1]] = match[2];
+	}
+
+	return tokenMap;
+}
+
+function svgToDataUri(svg) {
+	const compact = String(svg || '').replace(/\r?\n/g, '').trim();
+	if (!compact) return null;
+	return `data:image/svg+xml;utf8,${encodeURIComponent(compact)}`;
+}
+
+function resolveExternalWebsiteBranding() {
+	const defaults = {
+		colors: {
+			bg: '#f2fafd',
+			surface2: '#f6f6f6',
+			text: '#282322',
+			muted: '#818d94',
+			accent: '#0082a1',
+			accent2: '#fe9915',
+			border: '#e4e6e7',
+		},
+		spacing: {
+			100: '4px',
+			200: '8px',
+			300: '16px',
+			400: '24px',
+		},
+		radius: {
+			100: '4px',
+			200: '8px',
+			300: '16px',
+		},
+		fontFamily: 'Gilroy, Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans-serif',
+		logoDataUri: null,
+	};
+
+	const candidateRoots = [
+		process.env.BSI_WEBSITE_WEB_PATH,
+		path.resolve(rootDir, '..', '..', 'designs', 'BSI Website', 'web'),
+		'C:\\dev\\designs\\designs\\BSI Website\\web',
+	].filter(Boolean);
+
+	const websiteRoot = candidateRoots.find((candidate) => fs.existsSync(candidate));
+	if (!websiteRoot) return defaults;
+
+	const propertiesPath = path.join(websiteRoot, 'properties.js');
+	const properties = tryRead(propertiesPath) || '';
+
+	if (properties) {
+		const primaryColor = extractCssColor(properties, 'primaryColor');
+		const secondaryColor = extractCssColor(properties, 'secondaryColor');
+		const textColor = extractCssColor(properties, 'textColor') || extractCssColor(properties, 'darkColor');
+		const infoColor = extractCssColor(properties, 'infoColor');
+
+		defaults.colors.accent = normalizeHexColor(primaryColor, defaults.colors.accent);
+		defaults.colors.accent2 = normalizeHexColor(secondaryColor, defaults.colors.accent2);
+		defaults.colors.text = normalizeHexColor(textColor, defaults.colors.text);
+		defaults.colors.muted = normalizeHexColor(infoColor, defaults.colors.muted);
+
+		const spacingMap = extractTokenMap(properties, 'spacing');
+		defaults.spacing[100] = spacingMap['100'] || defaults.spacing[100];
+		defaults.spacing[200] = spacingMap['200'] || defaults.spacing[200];
+		defaults.spacing[300] = spacingMap['300'] || defaults.spacing[300];
+		defaults.spacing[400] = spacingMap['400'] || defaults.spacing[400];
+
+		const radiusMap = extractTokenMap(properties, 'borderRadius');
+		defaults.radius[100] = radiusMap['100'] || defaults.radius[100];
+		defaults.radius[200] = radiusMap['200'] || defaults.radius[200];
+		defaults.radius[300] = radiusMap['300'] || defaults.radius[300];
+
+		const fontFamily = extractQuotedProperty(properties, 'primaryFontFamily');
+		if (fontFamily) defaults.fontFamily = fontFamily;
+	}
+
+	const distDir = path.join(websiteRoot, 'dist');
+	const distLogo = findFirstFileRecursive(
+		distDir,
+		(filePath, fileName) => /logo-lm.*\.svg$/i.test(fileName) && /[\\/]static[\\/]/i.test(filePath),
+		6
+	);
+	const sourceLogo = path.join(websiteRoot, 'node_modules', '@bsi-cx', 'design-standard-library-web', 'static', 'logo-lm.svg');
+	const logoPath = distLogo || (fs.existsSync(sourceLogo) ? sourceLogo : null);
+	if (logoPath) {
+		const svg = tryRead(logoPath);
+		defaults.logoDataUri = svgToDataUri(svg);
+	}
+
+	return defaults;
+}
+
 function main() {
 	const doc = buildDocumentation();
-	const markdown = toMarkdown(doc);
-	const html = toHtml(doc);
 
 	if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 
-	fs.writeFileSync(outputMarkdown, markdown, 'utf8');
-	fs.writeFileSync(outputJson, JSON.stringify(doc, null, 2), 'utf8');
-	fs.writeFileSync(outputHtml, html, 'utf8');
+	writeDocumentationOutputs({
+		doc,
+		outputMarkdown,
+		outputJson,
+		outputHtml,
+		renderMarkdown: toMarkdown,
+		renderHtml: toHtml,
+	});
 
 	// eslint-disable-next-line no-console
 	console.log(`Generated: ${normalizePosix(path.relative(rootDir, outputMarkdown))}`);

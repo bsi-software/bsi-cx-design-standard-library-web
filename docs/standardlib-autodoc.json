@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-15T17:40:47.879Z",
+  "generatedAt": "2026-06-16T06:44:36.512Z",
   "sourceRoot": "C:/dev/designs/Mastertemplates/bsi-cx-design-standard-library-web",
   "summary": {
-    "elementCount": 60,
+    "elementCount": 50,
     "styleConfigCount": 76
   },
   "elements": [
@@ -73,7 +73,15 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "logo-lm-part-image-727593",
+          "logo-dm-part-image-289935"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "webcam-image-upload-wHe4UP",
@@ -277,7 +285,21 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "webcam-image-upload-part-plain-text-KVYYMZ",
+          "webcam-image-upload-part-plain-text-YLjguq",
+          "webcam-image-upload-part-plain-text-YLjguq",
+          "webcam-image-upload-part-plain-text-Mh7lOL",
+          "webcam-image-upload-part-plain-text-uFFq2F",
+          "webcam-image-upload-part-plain-text-KKc5DW",
+          "webcam-image-upload-part-form-X98egp",
+          "webcam-image-upload-part-file-form-field-ZxE3ka"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "accordion-OowSb3",
@@ -523,7 +545,16 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "accordion-title-74AGOw"
+        ],
+        "missingDropzoneIds": [
+          "accordion-content-dropzone-O93IRR"
+        ]
+      }
     },
     {
       "elementId": "banner-8eHkFN",
@@ -921,7 +952,17 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "banner-part-MIY0yR",
+          "banner-mobile-part-797cb6"
+        ],
+        "missingDropzoneIds": [
+          "banner-dropzone-Hh2fWF"
+        ]
+      }
     },
     {
       "elementId": "button-v3cFFn",
@@ -1265,7 +1306,15 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "button-part-0Cq8Xc",
+          "button-part-icon-f1TI9P"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "card-crRST4",
@@ -1682,7 +1731,15 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": [
+          "card-dropzone-image-CIqKdf",
+          "card-dropzone-content-b19htW"
+        ]
+      }
     },
     {
       "elementId": "chart-qEBqKT",
@@ -1764,7 +1821,15 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "chart-part-url-cDW6yK",
+          "chart-part-image-rpPPzg"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "figure-DWEfdD",
@@ -2079,7 +2144,15 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "figure-part-image-JoCwpV",
+          "figure-part-text-Xbhmjk"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "title-h1-piICx1",
@@ -2311,7 +2384,14 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "title-h1-part-4D1dKG"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "title-h2-KNs10G",
@@ -2543,7 +2623,14 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "title-h2-part-vD6omt"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "title-h3-gbnkTT",
@@ -2775,7 +2862,14 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "title-h3-part-mJ0yli"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "title-h4-7b609871",
@@ -3007,7 +3101,14 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "title-h4-part-c5318944"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "title-h5-1f7dcc4a",
@@ -3239,7 +3340,14 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "title-h5-part-cbbd0541"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "title-h6-f9a2d422",
@@ -3471,7 +3579,14 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "title-h6-part-2ef79d06"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "html-VN5KXz",
@@ -3523,7 +3638,14 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "html-part-OrXIAg"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "news-snippet-4E7jFg",
@@ -3780,7 +3902,15 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "news-snippet-part-Z6vBxS",
+          "news-snippet-part-btn-BplEx2"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "slot-finder-dZlvGH",
@@ -3985,7 +4115,20 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "slot-finder-part-url-cDW6yK",
+          "slot-finder-part-plain-text-rBaSIU",
+          "slot-finder-part-plain-text-Zvagh6",
+          "slot-finder-part-plain-text-8xP6D8",
+          "slot-finder-part-plain-text-85mYbP",
+          "slot-finder-part-plain-text-ZvwVaT",
+          "slot-finder-part-plain-text-Uysf70"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "social-media-follow-2MlXWB",
@@ -4289,7 +4432,14 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "social-media-follow-part-6oLWxR"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "social-media-share-u9ppdj",
@@ -4461,7 +4611,15 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "social-media-share-part-7duJql",
+          "social-media-share-part-label-gVreZk"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "table-FuXKu7",
@@ -4617,7 +4775,14 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "table-part-STrydn"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "text-kkq2fq",
@@ -4731,7 +4896,14 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "text-part-Fjse59"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "video-C4cbKm",
@@ -4790,7 +4962,14 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "video-part-loPxhG"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "file-input-REEhtN",
@@ -4936,7 +5115,27 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "label-text-f95479ef",
+          "file-input-part-text-T9yfhp",
+          "file-input-part-error-required-904DIx",
+          "file-input-part-error-max-count-b20f620c",
+          "file-input-part-error-invalid-5g1mUc",
+          "hidden-file-input-32ea01d7-1",
+          "hidden-file-input-32ea01d7-2",
+          "hidden-file-input-32ea01d7-3",
+          "hidden-file-input-32ea01d7-4",
+          "hidden-file-input-32ea01d7-5",
+          "hidden-file-input-32ea01d7-6",
+          "hidden-file-input-32ea01d7-7",
+          "hidden-file-input-32ea01d7-8",
+          "hidden-file-input-32ea01d7-9"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "audiorecorder-e89a2a",
@@ -4988,7 +5187,14 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "id-file-input-c1db98"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "checkbox-24CNSe",
@@ -5112,7 +5318,16 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "checkbox-part-Nls88s",
+          "checkbox-part-text-6ycJm4",
+          "checkbox-part-error-required-iYG8Ss"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "form-container-692qIu",
@@ -5814,7 +6029,12 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "form-field-REEhtN",
@@ -5914,7 +6134,17 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "form-field-part-H72Mnu",
+          "form-field-part-text-T9yfhp",
+          "form-field-part-error-required-904DIx",
+          "form-field-part-error-invalid-5g1mUc"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "form-field-tel-fKUxNS",
@@ -6044,7 +6274,19 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "form-field-tel-part-L3Y3gC",
+          "form-field-tel-part-countries-OGz4jf",
+          "form-field-tel-part-initial-BEWZhN",
+          "form-field-tel-part-text-yXZUwb",
+          "form-field-tel-part-error-required-XKiYlP",
+          "form-field-tel-part-error-invalid-3XeP4R"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "form-container-pin-384aa4d6",
@@ -6175,23 +6417,7 @@
           ]
         }
       ],
-      "parts": [
-        {
-          "type": "formField",
-          "id": "form-field-part-eefc3ac5",
-          "label": "Formularfeld"
-        },
-        {
-          "type": "plainText",
-          "id": "form-field-part-text-cc1a1c62",
-          "label": "Info Text"
-        },
-        {
-          "type": "plainText",
-          "id": "form-field-part-error-required-f3cf3728",
-          "label": "Fehlermeldung bei leerem Pflichtfeld"
-        }
-      ],
+      "parts": [],
       "styles": [
         {
           "identifier": "form-width-SYWW29",
@@ -6279,7 +6505,12 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "friendly-captcha-03c21de7",
@@ -6353,7 +6584,16 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "friendly-captcha-part-968cbea9",
+          "friendly-captcha-form-field-part-bolY1C",
+          "friendly-captcha-validity-message-Uc90KX"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "listElement-d5c652",
@@ -6418,7 +6658,16 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "listGroupItems"
+        ],
+        "missingDropzoneIds": [
+          "list-dropzone-content-a03084"
+        ]
+      }
     },
     {
       "elementId": "listItemElement-ad97e5",
@@ -6464,7 +6713,14 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "itemLabel"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "multi-column-VxWXpr",
@@ -6698,7 +6954,14 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": [
+          "multi-column-dropzone-olNcOu"
+        ]
+      }
     },
     {
       "elementId": "poll-wni8em",
@@ -6835,7 +7098,18 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "poll-part-diJBU7",
+          "poll-part-left-fw2gb8",
+          "poll-part-right-Cz7PuT",
+          "poll-part-text-Xi7bOp",
+          "poll-part-error-required-lL6aMT"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "radio-O6XCY3",
@@ -6965,7 +7239,16 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "radio-part-I0iU7X",
+          "radio-part-text-NyYl9g",
+          "radio-part-error-required-KCNwQh"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "recaptcha-es8WAZ",
@@ -7021,7 +7304,14 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "recaptcha-part-xMHmU5"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "regex-input-J37djj",
@@ -7122,7 +7412,16 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "regex-input-field-zSVF1f",
+          "regex-input-info-15YMmu",
+          "regex-input-error-required-27e49U"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "select-iOtV1m",
@@ -7231,7 +7530,16 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "select-part-XNh1St",
+          "select-part-text-hSNRfA",
+          "select-part-error-required-6sq4M6"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "text-area-J5z17p",
@@ -7316,7 +7624,16 @@
         }
       ],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "text-area-part-61guvT",
+          "text-area-part-text-gFR3M5",
+          "text-area-part-error-required-ZPOyD8"
+        ],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "if-layout-TljhJw",
@@ -7421,7 +7738,15 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": [
+          "if-container-Ys0IFw",
+          "then-container-KQoqAa"
+        ]
+      }
     },
     {
       "elementId": "then-group-0HfARz",
@@ -7585,7 +7910,16 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "then-group-condition-part-UF47Zh"
+        ],
+        "missingDropzoneIds": [
+          "depending-dropzone-MUq0Kd"
+        ]
+      }
     },
     {
       "elementId": "col-four-yFAGKM",
@@ -8395,7 +8729,12 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "col-one-l2ZclN",
@@ -8795,7 +9134,12 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "col-three-MEOl1p",
@@ -9487,7 +9831,12 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "col-two-ILRIL0",
@@ -10083,7 +10432,12 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "spacer-jarY9b",
@@ -10210,7 +10564,12 @@
           ]
         }
       ],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "form-container-84c6581f",
@@ -10390,7 +10749,12 @@
             }
           ]
         }
-      ]
+      ],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "form-section-4cc6cfe4",
@@ -10494,39 +10858,39 @@
           "allowedElements": [
             {
               "elementId": "checkbox-49f468e6",
-              "label": "Checkbox"
+              "label": null
             },
             {
               "elementId": "checkbox-group-95a8d908",
-              "label": "Checkbox Gruppe"
+              "label": null
             },
             {
               "elementId": "checkbox-group-checkbox-b2745977",
-              "label": "Checkbox für Gruppe"
+              "label": null
             },
             {
               "elementId": "form-field-5674018a",
-              "label": "Datei Upload"
+              "label": null
             },
             {
               "elementId": "form-poll-nps-a026d07b",
-              "label": "Umfrage NPS"
+              "label": null
             },
             {
               "elementId": "form-poll-star-2c7c0910",
-              "label": "Umfrage Sterne"
+              "label": null
             },
             {
               "elementId": "radio-group-6e279f5e",
-              "label": "Radio Gruppe"
+              "label": null
             },
             {
               "elementId": "select-51fb02b4",
-              "label": "Select"
+              "label": null
             },
             {
               "elementId": "textarea-a4af575b",
-              "label": "Textfeld"
+              "label": null
             },
             {
               "elementId": "title-h3-gbnkTT",
@@ -10534,7 +10898,7 @@
             },
             {
               "elementId": "toggle-switch-b0ae602a",
-              "label": "Toggle Switch"
+              "label": null
             }
           ]
         },
@@ -10556,39 +10920,39 @@
           "allowedElements": [
             {
               "elementId": "checkbox-49f468e6",
-              "label": "Checkbox"
+              "label": null
             },
             {
               "elementId": "checkbox-group-95a8d908",
-              "label": "Checkbox Gruppe"
+              "label": null
             },
             {
               "elementId": "checkbox-group-checkbox-b2745977",
-              "label": "Checkbox für Gruppe"
+              "label": null
             },
             {
               "elementId": "form-field-5674018a",
-              "label": "Datei Upload"
+              "label": null
             },
             {
               "elementId": "form-poll-nps-a026d07b",
-              "label": "Umfrage NPS"
+              "label": null
             },
             {
               "elementId": "form-poll-star-2c7c0910",
-              "label": "Umfrage Sterne"
+              "label": null
             },
             {
               "elementId": "radio-group-6e279f5e",
-              "label": "Radio Gruppe"
+              "label": null
             },
             {
               "elementId": "select-51fb02b4",
-              "label": "Select"
+              "label": null
             },
             {
               "elementId": "textarea-a4af575b",
-              "label": "Textfeld"
+              "label": null
             },
             {
               "elementId": "title-h3-gbnkTT",
@@ -10596,733 +10960,16 @@
             },
             {
               "elementId": "toggle-switch-b0ae602a",
-              "label": "Toggle Switch"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "elementId": "checkbox-49f468e6",
-      "label": "Checkbox",
-      "group": "new-form",
-      "folderPath": [
-        "new-form",
-        "form-elements",
-        "checkbox"
-      ],
-      "description": "Formular Element, das eome Option aktiviert oder deaktiviert",
-      "source": "content-elements/new-form/form-elements/checkbox/prototype/index.js",
-      "template": "content-elements/new-form/form-elements/checkbox/prototype/template.twig",
-      "parameters": [
-        "elementDescription",
-        "elementId",
-        "elementLabel",
-        "formCheckboxPartId",
-        "formCheckboxPartLabel",
-        "helperTextPartId",
-        "helperTextPartLabel",
-        "template"
-      ],
-      "parameterGroups": {
-        "settable": [
-          "elementId"
-        ],
-        "referencedOnly": [],
-        "notViaProperty": [
-          "elementDescription",
-          "elementLabel",
-          "formCheckboxPartId",
-          "formCheckboxPartLabel",
-          "helperTextPartId",
-          "helperTextPartLabel",
-          "template"
-        ]
-      },
-      "properties": {
-        "all": [
-          "checkbox",
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "infoText",
-          "labelText"
-        ],
-        "settable": [
-          "checkbox",
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "infoText",
-          "labelText"
-        ],
-        "referencedOnly": []
-      },
-      "parameterStyleLinks": [],
-      "parts": [
-        {
-          "type": "FormCheckbox",
-          "id": "checkbox-part-7f02c9ea",
-          "label": "Formularfeld: Checkbox"
-        },
-        {
-          "type": "PlainText",
-          "id": "checkbox-helper-text-part-5989e5eb",
-          "label": "Helper Text"
-        }
-      ],
-      "styles": [],
-      "dropzones": []
-    },
-    {
-      "elementId": "checkbox-group-95a8d908",
-      "label": "Checkbox Gruppe",
-      "group": "new-form",
-      "folderPath": [
-        "new-form",
-        "form-elements",
-        "checkbox-group"
-      ],
-      "description": "Formular Element, das Checkboxen gruppiert.",
-      "source": "content-elements/new-form/form-elements/checkbox-group/prototype/index.js",
-      "template": "content-elements/new-form/form-elements/checkbox-group/template.twig",
-      "parameters": [
-        "checkboxGroupLabelTextPartId",
-        "checkboxGroupPartLabel",
-        "dropzoneId",
-        "elementDescription",
-        "elementId",
-        "elementLabel",
-        "helperTextPartId",
-        "helperTextPartLabel",
-        "template"
-      ],
-      "parameterGroups": {
-        "settable": [
-          "elementId"
-        ],
-        "referencedOnly": [],
-        "notViaProperty": [
-          "checkboxGroupLabelTextPartId",
-          "checkboxGroupPartLabel",
-          "dropzoneId",
-          "elementDescription",
-          "elementLabel",
-          "helperTextPartId",
-          "helperTextPartLabel",
-          "template"
-        ]
-      },
-      "properties": {
-        "all": [
-          "alignment",
-          "checkbox",
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "groupLabel",
-          "groupLabelId",
-          "infoText",
-          "labelText",
-          "required"
-        ],
-        "settable": [
-          "alignment",
-          "checkbox",
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "groupLabel",
-          "groupLabelId",
-          "infoText",
-          "labelText",
-          "required"
-        ],
-        "referencedOnly": []
-      },
-      "parameterStyleLinks": [
-        {
-          "parameter": "alignment",
-          "defaultValue": "form-group-alignment-vertical",
-          "styleIdentifier": "form-group-alignment-7ed31a87",
-          "styleLabel": "Formular-Gruppen Ausrichtung",
-          "defaultOptionLabel": "Untereinander",
-          "defaultOptionCssClass": "form-group-alignment-vertical",
-          "styleOptions": [
-            {
-              "label": "Untereinander",
-              "cssClass": "form-group-alignment-vertical"
-            },
-            {
-              "label": "Nebeneinander",
-              "cssClass": "form-group-alignment-horizontal"
-            }
-          ]
-        },
-        {
-          "parameter": "required",
-          "defaultValue": "bsi-group-not-required",
-          "styleIdentifier": "group-required-1b4b6dd9",
-          "styleLabel": "Ist die Gruppe ein Pflichtfeld?",
-          "defaultOptionLabel": "Nein",
-          "defaultOptionCssClass": "bsi-group-not-required",
-          "styleOptions": [
-            {
-              "label": "Ja",
-              "cssClass": "bsi-group-required"
-            },
-            {
-              "label": "Nein",
-              "cssClass": "bsi-group-not-required"
+              "label": null
             }
           ]
         }
       ],
-      "parts": [
-        {
-          "type": "PlainText",
-          "id": "checkbox-group-label-a7bf5a38",
-          "label": "Label Chackbox Gruppe"
-        },
-        {
-          "type": "PlainText",
-          "id": "checkbox-group-helper-text-part-1cf1d475",
-          "label": "Helper Text"
-        }
-      ],
-      "styles": [
-        {
-          "identifier": "group-required-1b4b6dd9",
-          "label": "Ist die Gruppe ein Pflichtfeld?",
-          "source": "configs/styles/group-required.js",
-          "effect": null,
-          "defaults": [],
-          "options": [
-            {
-              "label": "Ja",
-              "cssClass": "bsi-group-required"
-            },
-            {
-              "label": "Nein",
-              "cssClass": "bsi-group-not-required"
-            }
-          ]
-        },
-        {
-          "identifier": "form-group-alignment-7ed31a87",
-          "label": "Formular-Gruppen Ausrichtung",
-          "source": "configs/styles/group-alignment.js",
-          "effect": null,
-          "defaults": [],
-          "options": [
-            {
-              "label": "Untereinander",
-              "cssClass": "form-group-alignment-vertical"
-            },
-            {
-              "label": "Nebeneinander",
-              "cssClass": "form-group-alignment-horizontal"
-            }
-          ]
-        }
-      ],
-      "dropzones": [
-        {
-          "dropzoneId": "checkbox-group-dropzone-id-4f4a7409",
-          "allowedElementIds": [
-            "checkbox-group-checkbox-b2745977"
-          ],
-          "allowedElements": [
-            {
-              "elementId": "checkbox-group-checkbox-b2745977",
-              "label": "Checkbox für Gruppe"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "elementId": "radio-group-6e279f5e",
-      "label": "Radio Gruppe",
-      "group": "new-form",
-      "folderPath": [
-        "new-form",
-        "form-elements",
-        "radio-group"
-      ],
-      "description": "Formular Element, das eine Auswahl aus mehreren Optionen erlaubt.",
-      "source": "content-elements/new-form/form-elements/radio-group/prototype/index.js",
-      "template": "content-elements/new-form/form-elements/radio-group/template.twig",
-      "parameters": [
-        "elementDescription",
-        "elementId",
-        "elementLabel",
-        "helperTextPartId",
-        "helperTextPartLabel",
-        "radioGroupLabelPartId",
-        "radioGroupPartLabel",
-        "template"
-      ],
-      "parameterGroups": {
-        "settable": [
-          "elementId"
-        ],
-        "referencedOnly": [],
-        "notViaProperty": [
-          "elementDescription",
-          "elementLabel",
-          "helperTextPartId",
-          "helperTextPartLabel",
-          "radioGroupLabelPartId",
-          "radioGroupPartLabel",
-          "template"
-        ]
-      },
-      "properties": {
-        "all": [
-          "alignment",
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "groupLabel",
-          "infoText",
-          "labelText",
-          "radio"
-        ],
-        "settable": [
-          "alignment",
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "groupLabel",
-          "infoText",
-          "labelText",
-          "radio"
-        ],
-        "referencedOnly": []
-      },
-      "parameterStyleLinks": [
-        {
-          "parameter": "alignment",
-          "defaultValue": "form-group-alignment-vertical",
-          "styleIdentifier": "form-group-alignment-7ed31a87",
-          "styleLabel": "Formular-Gruppen Ausrichtung",
-          "defaultOptionLabel": "Untereinander",
-          "defaultOptionCssClass": "form-group-alignment-vertical",
-          "styleOptions": [
-            {
-              "label": "Untereinander",
-              "cssClass": "form-group-alignment-vertical"
-            },
-            {
-              "label": "Nebeneinander",
-              "cssClass": "form-group-alignment-horizontal"
-            }
-          ]
-        }
-      ],
-      "parts": [
-        {
-          "type": "FormRadio",
-          "id": "radio-group-label-84ad37f1",
-          "label": "Label Radio Gruppe"
-        },
-        {
-          "type": "PlainText",
-          "id": "radio-group-helper-text-part-c034d086",
-          "label": "Helper Text"
-        }
-      ],
-      "styles": [
-        {
-          "identifier": "form-group-alignment-7ed31a87",
-          "label": "Formular-Gruppen Ausrichtung",
-          "source": "configs/styles/group-alignment.js",
-          "effect": null,
-          "defaults": [],
-          "options": [
-            {
-              "label": "Untereinander",
-              "cssClass": "form-group-alignment-vertical"
-            },
-            {
-              "label": "Nebeneinander",
-              "cssClass": "form-group-alignment-horizontal"
-            }
-          ]
-        }
-      ],
-      "dropzones": []
-    },
-    {
-      "elementId": "select-51fb02b4",
-      "label": "Select",
-      "group": "new-form",
-      "folderPath": [
-        "new-form",
-        "form-elements",
-        "select"
-      ],
-      "description": "Formular Element, um eine Option aus einem Dropdown zu wählen.",
-      "source": "content-elements/new-form/form-elements/select/prototype/index.js",
-      "template": "content-elements/new-form/form-elements/select/prototype/template.twig",
-      "parameters": [
-        "elementDescription",
-        "elementId",
-        "elementLabel",
-        "formSelectPartId",
-        "formSelectPartLabel",
-        "helperTextPartId",
-        "helperTextPartLabel",
-        "placeholderTextId",
-        "placeholderTextLabel",
-        "template"
-      ],
-      "parameterGroups": {
-        "settable": [
-          "elementId"
-        ],
-        "referencedOnly": [],
-        "notViaProperty": [
-          "elementDescription",
-          "elementLabel",
-          "formSelectPartId",
-          "formSelectPartLabel",
-          "helperTextPartId",
-          "helperTextPartLabel",
-          "placeholderTextId",
-          "placeholderTextLabel",
-          "template"
-        ]
-      },
-      "properties": {
-        "all": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "formSelecPlaceholderTextPartId",
-          "infoText",
-          "labelText",
-          "placeholderText",
-          "select"
-        ],
-        "settable": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "formSelecPlaceholderTextPartId",
-          "infoText",
-          "labelText",
-          "placeholderText",
-          "select"
-        ],
-        "referencedOnly": []
-      },
-      "parameterStyleLinks": [],
-      "parts": [
-        {
-          "type": "FormSelect",
-          "id": "select-part-c1cbbcc6",
-          "label": "Formularfeld: Select"
-        },
-        {
-          "type": "PlainText",
-          "id": "select-helper-text-part-5989e5eb",
-          "label": "Helper Text"
-        },
-        {
-          "type": "PlainText",
-          "id": "placeholder-text-part-4f08e438",
-          "label": "Platzhaltertext (Keinen, wenn kein Platzhalter gewünscht ist)"
-        }
-      ],
-      "styles": [],
-      "dropzones": []
-    },
-    {
-      "elementId": "textarea-a4af575b",
-      "label": "Textfeld",
-      "group": "new-form",
-      "folderPath": [
-        "new-form",
-        "form-elements",
-        "textarea"
-      ],
-      "description": "Formular Element für mehrzeilige Textinformationen.",
-      "source": "content-elements/new-form/form-elements/textarea/prototype/index.js",
-      "template": "content-elements/new-form/form-elements/textarea/prototype/template.twig",
-      "parameters": [
-        "elementDescription",
-        "elementId",
-        "elementLabel",
-        "formTextareaPartId",
-        "formTextareaPartLabel",
-        "helperTextPartId",
-        "helperTextPartLabel",
-        "template"
-      ],
-      "parameterGroups": {
-        "settable": [
-          "elementId"
-        ],
-        "referencedOnly": [],
-        "notViaProperty": [
-          "elementDescription",
-          "elementLabel",
-          "formTextareaPartId",
-          "formTextareaPartLabel",
-          "helperTextPartId",
-          "helperTextPartLabel",
-          "template"
-        ]
-      },
-      "properties": {
-        "all": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "infoText",
-          "labelText",
-          "textarea"
-        ],
-        "settable": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "infoText",
-          "labelText",
-          "textarea"
-        ],
-        "referencedOnly": []
-      },
-      "parameterStyleLinks": [],
-      "parts": [
-        {
-          "type": "FormTextarea",
-          "id": "textarea-part-18ad4cb0",
-          "label": "Formularfeld: Textfeld"
-        },
-        {
-          "type": "PlainText",
-          "id": "textarea-helper-text-part-47792922",
-          "label": "Helper Text"
-        }
-      ],
-      "styles": [],
-      "dropzones": []
-    },
-    {
-      "elementId": "toggle-switch-b0ae602a",
-      "label": "Toggle Switch",
-      "group": "new-form",
-      "folderPath": [
-        "new-form",
-        "form-elements",
-        "toggle-switch"
-      ],
-      "description": "Formular Element, das zwischen zwei Zuständen wechselt",
-      "source": "content-elements/new-form/form-elements/toggle-switch/prototype/index.js",
-      "template": "content-elements/new-form/form-elements/toggle-switch/prototype/template.twig",
-      "parameters": [
-        "elementDescription",
-        "elementId",
-        "elementLabel",
-        "formToggleSwitchPartId",
-        "formToggleSwitchPartLabel",
-        "helperTextPartId",
-        "helperTextPartLabel",
-        "template"
-      ],
-      "parameterGroups": {
-        "settable": [
-          "elementId"
-        ],
-        "referencedOnly": [],
-        "notViaProperty": [
-          "elementDescription",
-          "elementLabel",
-          "formToggleSwitchPartId",
-          "formToggleSwitchPartLabel",
-          "helperTextPartId",
-          "helperTextPartLabel",
-          "template"
-        ]
-      },
-      "properties": {
-        "all": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "infoText",
-          "labelText",
-          "toggle"
-        ],
-        "settable": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "infoText",
-          "labelText",
-          "toggle"
-        ],
-        "referencedOnly": []
-      },
-      "parameterStyleLinks": [],
-      "parts": [
-        {
-          "type": "FormCheckbox",
-          "id": "toggle-switch-part-76e700be",
-          "label": "Formularfeld: Toggle Switch"
-        },
-        {
-          "type": "PlainText",
-          "id": "toggle-switch-helper-text-part-772277fc",
-          "label": "Helper Text"
-        }
-      ],
-      "styles": [],
-      "dropzones": []
-    },
-    {
-      "elementId": "form-field-5674018a",
-      "label": "Datei Upload",
-      "group": "new-form",
-      "folderPath": [
-        "new-form",
-        "form-elements",
-        "upload-field"
-      ],
-      "description": "Formular Element, das Dateien von verschiedenen Typen akzeptiert.",
-      "source": "content-elements/new-form/form-elements/upload-field/prototype/index.js",
-      "template": "content-elements/new-form/form-elements/upload-field/template.twig",
-      "parameters": [
-        "elementDescription",
-        "elementId",
-        "elementLabel",
-        "errorTextPartId",
-        "errorTextPartLabel",
-        "formFieldPartId",
-        "formFieldPartLabel",
-        "helperTextPartId",
-        "helperTextPartLabel",
-        "template"
-      ],
-      "parameterGroups": {
-        "settable": [
-          "elementId"
-        ],
-        "referencedOnly": [],
-        "notViaProperty": [
-          "elementDescription",
-          "elementLabel",
-          "errorTextPartId",
-          "errorTextPartLabel",
-          "formFieldPartId",
-          "formFieldPartLabel",
-          "helperTextPartId",
-          "helperTextPartLabel",
-          "template"
-        ]
-      },
-      "properties": {
-        "all": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "errorInvalidText",
-          "formHelperTextPartId",
-          "infoText",
-          "labelText"
-        ],
-        "settable": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "errorInvalidText",
-          "formHelperTextPartId",
-          "infoText",
-          "labelText"
-        ],
-        "referencedOnly": []
-      },
-      "parameterStyleLinks": [],
-      "parts": [
-        {
-          "type": "FormField",
-          "id": "form-field-part-c21742af",
-          "label": "Formularfeld: Datei Upload"
-        },
-        {
-          "type": "PlainText",
-          "id": "form-field-helper-text-part-0a34ce3d",
-          "label": "Helper Text"
-        },
-        {
-          "type": "PlainText",
-          "id": "form-field-part-error-invalid-6ca6d1fd",
-          "label": "Fehlermeldung bei ungültiger Eingabe"
-        }
-      ],
-      "styles": [],
-      "dropzones": []
-    },
-    {
-      "elementId": "checkbox-group-checkbox-b2745977",
-      "label": "Checkbox für Gruppe",
-      "group": "new-form",
-      "folderPath": [
-        "new-form",
-        "form-elements",
-        "checkbox-group",
-        "checkbox-group-checkbox"
-      ],
-      "description": "Formular Element, das Teil einer Checkbox-Gruppe sein muss.",
-      "source": "content-elements/new-form/form-elements/checkbox-group/checkbox-group-checkbox/prototype/index.js",
-      "template": "content-elements/new-form/form-elements/checkbox-group/checkbox-group-checkbox/template.twig",
-      "parameters": [
-        "elementDescription",
-        "elementId",
-        "elementLabel",
-        "formCheckboxGroupPartId",
-        "formCheckboxGroupPartLabel",
-        "template"
-      ],
-      "parameterGroups": {
-        "settable": [
-          "elementId"
-        ],
-        "referencedOnly": [],
-        "notViaProperty": [
-          "elementDescription",
-          "elementLabel",
-          "formCheckboxGroupPartId",
-          "formCheckboxGroupPartLabel",
-          "template"
-        ]
-      },
-      "properties": {
-        "all": [
-          "elementId",
-          "elementPartId",
-          "labelText"
-        ],
-        "settable": [
-          "elementId",
-          "elementPartId",
-          "labelText"
-        ],
-        "referencedOnly": []
-      },
-      "parameterStyleLinks": [],
-      "parts": [
-        {
-          "type": "FormCheckbox",
-          "id": "checkbox-group-checkbox-part-6cee4307",
-          "label": "Formularfeld: Checkbox für Checkbox Gruppe"
-        }
-      ],
-      "styles": [],
-      "dropzones": []
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "form-field-bdcd8d55",
@@ -11371,25 +11018,14 @@
         "referencedOnly": []
       },
       "parameterStyleLinks": [],
-      "parts": [
-        {
-          "type": "FormField",
-          "id": "form-field-part-71d76c77",
-          "label": "Formularfeld: Text"
-        },
-        {
-          "type": "PlainText",
-          "id": "form-field-part-email-033f20a1",
-          "label": "Helper Text"
-        },
-        {
-          "type": "PlainText",
-          "id": "form-field-part-error-invalid-b8da3758",
-          "label": "Fehlermeldung bei ungültiger Eingabe"
-        }
-      ],
+      "parts": [],
       "styles": [],
-      "dropzones": []
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [],
+        "missingDropzoneIds": []
+      }
     },
     {
       "elementId": "form-field-2217aee4",
@@ -11447,189 +11083,15 @@
         }
       ],
       "styles": [],
-      "dropzones": []
-    },
-    {
-      "elementId": "form-poll-nps-a026d07b",
-      "label": "Umfrage NPS",
-      "group": "new-form",
-      "folderPath": [
-        "new-form",
-        "form-elements",
-        "polls",
-        "nps"
-      ],
-      "description": "Formular Element, um einen NPS-Wert zwischen 0 und 10 anzugeben.",
-      "source": "content-elements/new-form/form-elements/polls/nps/prototype/index.js",
-      "template": "content-elements/new-form/form-elements/polls/nps/template.twig",
-      "parameters": [
-        "elementDescription",
-        "elementId",
-        "elementLabel",
-        "formFieldPartId",
-        "formFieldPartLabel",
-        "helperTextPartId",
-        "helperTextPartLabel",
-        "leftLabel",
-        "leftLabelId",
-        "rightLabel",
-        "rightLabelId",
-        "template"
-      ],
-      "parameterGroups": {
-        "settable": [
-          "elementId"
+      "dropzones": [],
+      "validation": {
+        "elementIdMatchesTemplate": true,
+        "missingPartIds": [
+          "form-field-part-740b4e74",
+          "form-field-part-text-fb1cdc8d"
         ],
-        "referencedOnly": [],
-        "notViaProperty": [
-          "elementDescription",
-          "elementLabel",
-          "formFieldPartId",
-          "formFieldPartLabel",
-          "helperTextPartId",
-          "helperTextPartLabel",
-          "leftLabel",
-          "leftLabelId",
-          "rightLabel",
-          "rightLabelId",
-          "template"
-        ]
-      },
-      "properties": {
-        "all": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "formHelperTextPartId",
-          "infoText",
-          "labelText",
-          "leftLabelText",
-          "npsStartWith0",
-          "pollMin",
-          "rightLabelText",
-          "scaleLabelPosition"
-        ],
-        "settable": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "formHelperTextPartId",
-          "infoText",
-          "labelText",
-          "leftLabelText",
-          "npsStartWith0",
-          "pollMin",
-          "rightLabelText",
-          "scaleLabelPosition"
-        ],
-        "referencedOnly": []
-      },
-      "parameterStyleLinks": [],
-      "parts": [
-        {
-          "type": "FormRadio",
-          "id": "form-poll-nps-part-0f3d03c5",
-          "label": "Formularfeld: Umfrage NPS"
-        },
-        {
-          "type": "PlainText",
-          "id": "form-poll-nps-helper-text-part-18d96c98",
-          "label": "Helper Text"
-        },
-        {
-          "type": "PlainText",
-          "id": "left-label-nps-part-210cf3a6",
-          "label": "Angabe Skala (links)"
-        },
-        {
-          "type": "PlainText",
-          "id": "right-label-nps-part-312d8b6e",
-          "label": "Angabe Skala (rechts)"
-        }
-      ],
-      "styles": [],
-      "dropzones": []
-    },
-    {
-      "elementId": "form-poll-star-2c7c0910",
-      "label": "Umfrage Sterne",
-      "group": "new-form",
-      "folderPath": [
-        "new-form",
-        "form-elements",
-        "polls",
-        "stars"
-      ],
-      "description": "Formular Element, das Feedback als Sterne-Bewertung erfasst.",
-      "source": "content-elements/new-form/form-elements/polls/stars/prototype/index.js",
-      "template": "content-elements/new-form/form-elements/polls/stars/template.twig",
-      "parameters": [
-        "elementDescription",
-        "elementId",
-        "elementLabel",
-        "formFieldPartId",
-        "formFieldPartLabel",
-        "helperTextPartId",
-        "helperTextPartLabel",
-        "template"
-      ],
-      "parameterGroups": {
-        "settable": [
-          "elementId"
-        ],
-        "referencedOnly": [],
-        "notViaProperty": [
-          "elementDescription",
-          "elementLabel",
-          "formFieldPartId",
-          "formFieldPartLabel",
-          "helperTextPartId",
-          "helperTextPartLabel",
-          "template"
-        ]
-      },
-      "properties": {
-        "all": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "formHelperTextPartId",
-          "infoText",
-          "labelText",
-          "leftLabelText",
-          "pollMin",
-          "rightLabelText",
-          "value"
-        ],
-        "settable": [
-          "elementId",
-          "elementPartId",
-          "errorInvalidPartId",
-          "formHelperTextPartId",
-          "infoText",
-          "labelText",
-          "leftLabelText",
-          "pollMin",
-          "rightLabelText",
-          "value"
-        ],
-        "referencedOnly": []
-      },
-      "parameterStyleLinks": [],
-      "parts": [
-        {
-          "type": "FormField",
-          "id": "form-poll-star-part-7abccf42",
-          "label": "Formularfeld: Umfrage Sterne"
-        },
-        {
-          "type": "PlainText",
-          "id": "form-poll-star-helper-text-part-3ecf0459",
-          "label": "Helper Text"
-        }
-      ],
-      "styles": [],
-      "dropzones": []
+        "missingDropzoneIds": []
+      }
     }
   ]
 }
