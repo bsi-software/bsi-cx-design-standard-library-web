@@ -39,11 +39,8 @@
             }
 
             &:has(input:user-valid), &:has(input.custom-valid), &:has(textarea:user-valid), &:has(select:user-valid) {
-                input, .visual-input, select, textarea, .file-upload {
+                input:not([type="checkbox"], [type="radio"]), select, textarea, .file-upload {
                     --form-element-border-color: #{$successColor};
-                }
-                .visual-star-input {
-                    color: #{$successColor};
                 }
             }
 
@@ -55,13 +52,6 @@
                     color: #{$errorColor};
                 }
 
-            }
-
-            // validation style for checkbox groups
-            &.checkbox-group.custom-valid {
-                .visual-checkbox.visual-input {
-                    --form-element-border-color: #{$successColor};
-                }
             }
 
             &.checkbox-group.custom-invalid {

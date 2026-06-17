@@ -126,8 +126,7 @@
         // set a '*' signe after the label if form field is requiered
         &.required, &.bsi-group-required {
             .form-label, legend {
-                display: flex;
-                gap: 0;
+                display: inline;
 
                 &::after {
                     content: "*";
