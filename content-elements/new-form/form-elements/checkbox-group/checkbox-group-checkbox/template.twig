@@ -4,11 +4,11 @@
     {% set formCheckboxLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set customClasses = customClasses ?: "" %}
     
-    <div x-data="checkbox" data-bsi-element="{{ formCheckboxElementId }}" class="bsi-element-{{ formCheckboxElementId }} {{ customClasses }}" data-bsi-element-part="{{ formCheckboxElementPartId }}" data-bsi-hide-required>
+    <div data-bsi-element="{{ formCheckboxElementId }}" class="bsi-element-{{ formCheckboxElementId }} {{ customClasses }}" data-bsi-element-part="{{ formCheckboxElementPartId }}" data-bsi-hide-required>
         <div class="checkbox-container">
             <div class="checkbox-with-label">
-                <input @change="formGroupValidationOnChange" id="checkbox-element" type="checkbox" class="native-checkbox native-input checkbox-in-group"></input>
-                <span @click="toggle" class="visual-checkbox visual-input"></span>
+                <input id="checkbox-element" type="checkbox" class="native-checkbox native-input checkbox-in-group"></input>
+                <span class="visual-checkbox visual-input"></span>
                 <label for="checkbox-element" class="second-form-label">{{ formCheckboxLabelText }}</label>  
             </div>
         </div>

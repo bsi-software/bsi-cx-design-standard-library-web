@@ -6,12 +6,12 @@
     {% set formCheckboxHelperText = infoText  ?: "" %}
     {% set customClasses = customClasses ?: "" %}
 
-    <div x-data="checkbox" data-bsi-element="{{ formCheckboxElementId }}" class="bsi-element-{{ formCheckboxElementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ formCheckboxElementPartId }}">
+    <div data-bsi-element="{{ formCheckboxElementId }}" class="bsi-element-{{ formCheckboxElementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ formCheckboxElementPartId }}">
         <div class="empty-element"></div> {# This Element is only for the option, that the label from other Form Elements stands on the left side insted of in the top of the element #}
         <div class="checkbox-container form-field-layout">
             <div class="checkbox-with-label form-field-input-wrapper">
-                <input @change="formElementValidationOnChange" id="checkbox-element" type="checkbox" class="native-checkbox native-input"></input>
-                <span @click="toggle" class="visual-checkbox visual-input"></span>
+                <input id="checkbox-element" type="checkbox" class="native-checkbox native-input"></input>
+                <span class="visual-checkbox visual-input"></span>
                 <label for="checkbox-element" class="form-label">{{ formCheckboxLabelText }}</label>  
             </div>
             <div class="form-field-feedback-wrapper">

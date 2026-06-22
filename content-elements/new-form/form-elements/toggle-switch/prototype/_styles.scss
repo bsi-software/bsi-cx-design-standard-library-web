@@ -4,6 +4,9 @@
     $elementId: "toggle-switch-b0ae602a",
     $formContainerId: "form-container-84c6581f",
     $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
+    $toggleSwitchWidth: 40px,
+    $toggleSwitchHeight: properties.$spacing400,
+    $gapBetweenCheckboxAndLabel: properties.$spacing200,
 ) {
     .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
         .bsi-element-#{$elementId} {
@@ -15,15 +18,16 @@
                     position: relative;
                     display: flex;
                     flex-direction: row;
-                    gap: bsiProperty("spacing.200", 8px);
+                    gap: $gapBetweenCheckboxAndLabel;
                     cursor: pointer;
                     align-items: center;
 
                     // create a custom toggle-switch
                     .visual-toggle-switch {
-                        position: relative;
-                        width: 40px;
-                        height: 24px;
+                        position: absolute;
+                        z-index: 1;
+                        width: $toggleSwitchWidth;
+                        height: $toggleSwitchHeight;
                         border-radius: properties.$borderRadiusCircle;
                         cursor: pointer;
                         color: transparent;
@@ -56,6 +60,8 @@
                         cursor: pointer;
                         margin-bottom: properties.$spacing0;
                         align-self: stretch;
+                        padding-left: calc(#{$toggleSwitchWidth} + #{$gapBetweenCheckboxAndLabel});
+                        z-index: 2;
                     }
                 }
             }

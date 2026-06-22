@@ -4,6 +4,8 @@
     $elementId: "checkbox-49f468e6",
     $formContainerId: "form-container-84c6581f",
     $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
+    $checkboxSize: properties.$spacing400,
+    $gapBetweenCheckboxAndLabel: properties.$spacing200,
 ) {
     .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
 
@@ -16,7 +18,7 @@
                     position: relative;
                     display: flex;
                     flex-direction: row;
-                    gap: bsiProperty("spacing.200", 8px);
+                    gap: $gapBetweenCheckboxAndLabel;
 
                     user-select: none;
                     -webkit-user-select: none;
@@ -25,10 +27,12 @@
 
                     // create a custom checkbox
                     .visual-checkbox {
+                        position: absolute;
+                        z-index: 1;
                         display: inline-flex;
-                        width: 24px;
-                        min-width: 24px;
-                        height: 24px;
+                        width: $checkboxSize;
+                        min-width: $checkboxSize;
+                        height: $checkboxSize;
                         align-items: center;
                         justify-content: center;
                         cursor: pointer;
@@ -44,6 +48,11 @@
 
                     .native-checkbox:checked + .visual-checkbox::before {
                         opacity: 1;
+                    }
+
+                    label {
+                        padding-left: calc(#{$checkboxSize} + #{$gapBetweenCheckboxAndLabel});
+                        z-index: 2;
                     }
 
                     &:has(input.native-checkbox[type="checkbox"]) label.form-label, .second-form-label {
