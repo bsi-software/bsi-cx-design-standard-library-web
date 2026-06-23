@@ -1,24 +1,52 @@
 {% apply spaceless %}
 
+    {#
+        Configuration variables for the form container.
+        Default priority: explicit parameter -> properties.* -> fallback value.
+    #}
+
+    {# Enables/marks the element with the data-bsi-element attribute. #}
     {% set isDataBsiElement = dataBsiElement %}
+    {# Unique element ID for CSS/JS scoping and data-bsi-element. #}
     {% set elementId = elementId ?:  'form-container-84c6581f'%}
+    {# Controls whether the dropzone in the form container is hidden. #}
     {% set formHideDropzone = hideDropzone %}
+    {# Dropzone ID for form section content. #}
     {% set formDropzoneId = dropzoneId ?: 'form-container-dropzone-cd1f258c' %}
+    {# data-bsi-element-part identifier for the <form> element. #}
     {% set dataBsiElementPartForm = elementPartForm ?: 'form-container-part-06acb819' %}
+    {# data-bsi-element-part identifier for the "value missing" error message. #}
     {% set dataBsiElementPartValueMissingError = elementPartValueMissingError ?: 'form-element-value-missing-error-part-d090104c' %}
+    {# data-bsi-element-part identifier for the "type mismatch" error message. #}
     {% set dataBsiElementPartMissmatchError = elementPartMissmatchError ?: 'form-element-type-missmatch-error-part-8cbc022e' %}
+    {# data-bsi-element-part identifier for the generic error message. #}
     {% set dataBsiElementPartOtherError = elementPartOtherError ?: 'form-element-other-error-part-01ae5355' %}
+    {# Utility class for form element border radius. #}
     {% set borderRadiusFormElements = (borderRadiusFormElements ?: properties.borderRadiusFormElements) ?: 'border-radius-form-elements-100' %}
     {# {% set borderWidthFormElements = (borderWidthFormElements ?: properties.borderWidthFormElements) ?: 'border-width-form-elements-100' %} #}
+    {# Form button alignment (start, end, centered, distributed). #}
     {% set formButtonAlignment = (formButtonAlignment ?: properties.formButtonAlignment) ?: 'form-button-alignment-start' %} {# Optionen: 'form-button-alignment-start' or 'form-button-alignment-end' or 'form-button-alignment-center' 'form-button-alignment-space-between' #}
+    {# Position of label and info/help text per field. #}
     {% set formLabelInfoPosition = (formLabelInfoPosition ?: properties.formLabelInfoPosition) ?: 'bsi-form-label-info-top-bottom' %} {# Optionen: 'bsi-form-label-info-top-bottom' or 'bsi-form-label-info-top-top' or 'bsi-form-label-info-left-bottom' #}
+    {# Text for required/value-missing field errors. #}
     {% set formFieldErrorValueMissingText = (errorValueMissingText ?: properties.formErrorValueMissingText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
+    {# Text for type-mismatch/format field errors. #}
     {% set formFieldErrorTypeMissmatchText = (errorTypeMissmatchText ?: properties.formErrorTypeMissmatchText) ?: 'Das Format ist ungültig' %}
+    {# Text for other/unspecified validation errors. #}
     {% set formFieldOtherError = (otherError ?: properties.formOtherError) ?: 'Ungültige Eingabe' %}
+    {# Spacing between individual form sections. #}
     {% set spaceBetweenFormSections = (spaceBetweenFormSections ?: properties.spaceBetweenFormSections) ?:  'space-between-form-sections-600' %} {# Set space between every form section. #}
+    {# Spacing between form elements within a section. #}
     {% set spaceBetweenFormElements = (spaceBetweenFormElements ?: properties.spaceBetweenFormElements) ?:  'space-between-form-elements-400' %} {# Set space between every form element in a form section. #}
+    {# Inner spacing within a form field (e.g. label, input, helper text). #}
     {% set spaceWithinFormelements = (spaceWithinFormelements ?: properties.spaceWithinFormelements) ?:  'space-within-form-elements-100' %} {# Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.) #}
+    {#
+        Name of the Alpine `x-data` script for this form.
+        When inheriting, Alpine cannot be extended directly; therefore, a custom Alpine data script
+        can be passed here so the derived variant is used instead of the default (`form`).
+    #}
     {% set formScriptName = formScriptName ?: "form" %}
+        {# Additional freely passed CSS classes on the root container. #}
     {% set customStyleClasses = customStyleClasses %}
  
     <div {% if isDataBsiElement %}data-bsi-element="{{ elementId }}"{% endif %}
