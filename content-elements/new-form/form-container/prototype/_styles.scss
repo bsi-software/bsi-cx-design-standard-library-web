@@ -23,10 +23,11 @@
     $buttonResetBackgroundColor: properties.$formButtonResetBackgroundColor,
 ) {
     $selector: "";
-    @if $formContainerId != "" and $colorThemeClass != "" {
-        $selector: ".bsi-element-#{$formContainerId}.#{$colorThemeClass}";
-    } @else if $formContainerId != "" {
+    @if $formContainerId != "" {
         $selector: ".bsi-element-#{$formContainerId}";
+        @if $colorThemeClass != "" {
+            $selector: "#{$selector}.#{$colorThemeClass}";
+        }
     }
 
     @if $selector != "" {
