@@ -12,6 +12,7 @@
         <div class="toggle-switch-container form-field-layout">
             <div class="toggle-switch-with-label form-field-input-wrapper">
                 <input 
+                    @change="formElementValidationOnChange"
                     id="toggleId"
                     type="checkbox"
                     class="native-checkbox native-input">
