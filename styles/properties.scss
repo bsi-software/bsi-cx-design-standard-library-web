@@ -82,11 +82,15 @@ $formButtonResetBackgroundColor: bsiProperty('formButtonResetBackgroundColor', #
 
 $formPlaceholderColor: bsiProperty('formPlaceholderColor', #282322);
 
-// new formular select
+// new form checkbox
+$checkboxIconFontName: bsiProperty('checkboxIconFontName', 'bootstrap-icons');
+$checkboxIconFontCharacter: bsiProperty('checkboxIconFontCharacter', '\F26E');
+
+// new form select
 $selectIconFontName: bsiProperty('selectIconFontName', 'bootstrap-icons');
 $selectIconFontCharacter: bsiProperty('selectIconFontCharacter', '\F282');
 
-// new formular fileupload
+// new form fileupload
 $fileUploadBorderColor: bsiProperty('fileUploadBorderColor', rgba(#383e42, 0.1));
 $fileUploadBorderActiveColor: bsiProperty('fileUploadBorderActiveColor', #383e42);
 $fileUploadBorderFocusColor: bsiProperty('fileUploadBorderFocusColor', #383e42);
@@ -101,10 +105,10 @@ $fileUploadIconUploadFontName: bsiProperty('fileUploadIconUploadFontName', 'boot
 $fileUploadIconUploadFontCharacter: bsiProperty('fileUploadIconUploadFontCharacter', '\F296');
 $fileUploadIconDeleteFontName: bsiProperty('fileUploadIconDeleteFontName', 'bootstrap-icons');
 $fileUploadIconDeleteFontCharacter: bsiProperty('fileUploadIconDeleteFontCharacter', '\F62A');
-$fileUploadDeleteButtomBackgroundColor: bsiProperty('fileUploadDeleteButtomBackgroundColor', #383e42);
-$fileUploadDeleteButtomHoverBackgroundColor: bsiProperty('fileUploadDeleteButtomHoverBackgroundColor', rgba(#383e42, 0.3));
-$fileUploadDeleteButtomColor: bsiProperty('fileUploadDeleteButtomColor', #ffffff);
-$fileUploadDeleteButtomHoverColor: bsiProperty('fileUploadDeleteButtomHoverColor', rgba(#ffffff, 0.3));
+$fileUploadDeleteButtonBackgroundColor: bsiProperty('fileUploadDeleteButtonBackgroundColor', #383e42);
+$fileUploadDeleteButtonHoverBackgroundColor: bsiProperty('fileUploadDeleteButtonHoverBackgroundColor', rgba(#383e42, 0.3));
+$fileUploadDeleteButtonColor: bsiProperty('fileUploadDeleteButtonColor', #ffffff);
+$fileUploadDeleteButtonHoverColor: bsiProperty('fileUploadDeleteButtonHoverColor', rgba(#ffffff, 0.3));
 
 //new formular poll
 $formPollHoverColor: bsiProperty("pollHoverColor", #ffffff);
