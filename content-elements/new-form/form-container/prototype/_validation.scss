@@ -39,7 +39,7 @@
             }
 
             &:has(input:user-valid), &:has(input.custom-valid), &:has(textarea:user-valid), &:has(select:user-valid) {
-                input:not([type="checkbox"], [type="radio"]), select, textarea, .file-upload {
+                input:not([type="checkbox"], [type="radio"]), textarea, .file-upload {
                     --form-element-border-color: #{$successColor};
                 }
             }
