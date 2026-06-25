@@ -4,64 +4,66 @@
     $elementId: "checkbox-49f468e6",
     $checkboxSize: properties.$spacing400,
     $gapBetweenCheckboxAndLabel: properties.$spacing200,
+    $iconFontName: properties.$checkboxIconFontName,
+    $iconFontCharacter: properties.$checkboxIconFontCharacter,
 ) {
-        .bsi-element-#{$elementId} {
-            .checkbox-container {
+    .bsi-element-#{$elementId} {
+        .checkbox-container {
+            display: flex;
+            flex-direction: column;
+            
+            .checkbox-with-label {
+                position: relative;
                 display: flex;
-                flex-direction: column;
-                
-                .checkbox-with-label {
-                    position: relative;
-                    display: flex;
-                    flex-direction: row;
-                    gap: $gapBetweenCheckboxAndLabel;
+                flex-direction: row;
+                gap: $gapBetweenCheckboxAndLabel;
 
-                    user-select: none;
-                    -webkit-user-select: none;
-                    -moz-user-select: none;
-                    -ms-user-select: none;
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
 
-                    // create a custom checkbox
-                    .visual-checkbox {
-                        position: absolute;
-                        z-index: 1;
-                        display: inline-flex;
-                        width: $checkboxSize;
-                        min-width: $checkboxSize;
-                        height: $checkboxSize;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
+                // create a custom checkbox
+                .visual-checkbox {
+                    position: absolute;
+                    z-index: 1;
+                    display: inline-flex;
+                    width: $checkboxSize;
+                    min-width: $checkboxSize;
+                    height: $checkboxSize;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
 
-                        &::before {
-                            opacity: 0;
-                            transition: opacity 0.2s ease;
-                            line-height: 1;
-                            font-family: "bootstrap-icons";
-                            content: "\F26E"; /* check bootstrap icon */
-                        }
+                    &::before {
+                        opacity: 0;
+                        transition: opacity 0.2s ease;
+                        line-height: 1;
+                        font-family: $iconFontName;
+                        content: $iconFontCharacter;
                     }
+                }
 
-                    .native-checkbox:checked + .visual-checkbox::before {
-                        opacity: 1;
-                    }
+                .native-checkbox:checked + .visual-checkbox::before {
+                    opacity: 1;
+                }
 
-                    label {
-                        padding-left: calc(#{$checkboxSize} + #{$gapBetweenCheckboxAndLabel});
-                        z-index: 2;
-                    }
+                label {
+                    padding-left: calc(#{$checkboxSize} + #{$gapBetweenCheckboxAndLabel});
+                    z-index: 2;
+                }
 
-                    &:has(input.native-checkbox[type="checkbox"]) label.form-label, .second-form-label {
-                        cursor: pointer;
-                        margin-bottom: properties.$spacing0;
-                        align-self: stretch;
-                        font-weight: 400;
-                        display: inline;
+                &:has(input.native-checkbox[type="checkbox"]) label.form-label, .second-form-label {
+                    cursor: pointer;
+                    margin-bottom: properties.$spacing0;
+                    align-self: stretch;
+                    font-weight: 400;
+                    display: inline;
 
-                        a {
-                            color: inherit;
-                            text-decoration: underline;
-                            font-weight: 700;
+                    a {
+                        color: inherit;
+                        text-decoration: underline;
+                        font-weight: 700;
                     }
                 }
             }
