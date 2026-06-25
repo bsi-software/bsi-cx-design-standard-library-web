@@ -1,56 +1,50 @@
 @use "../../../../../styles/properties.scss" as properties;
 
 @mixin formFieldsStyling (
-    $formContainerId: "form-container-84c6581f",
-    $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
     $placeholderColor: properties.$formPlaceholderColor,
 ) {
 
-    .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
+    .form-field {
 
-        .form-field {
+        .form-field-feedback-wrapper > div:not(:empty) {
+            display: none;
+        }
 
-            
-            .form-field-feedback-wrapper > div:not(:empty) {
-                display: none;
-            }
+        .input-field-container {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
 
-            .input-field-container {
+            .input-field-with-error-text {
                 display: flex;
                 flex-direction: column;
-                align-self: stretch;
-
-                .input-field-with-error-text {
-                    display: flex;
-                    flex-direction: column;
 
 
-                    input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], select, textarea {
-                        &:placeholder-shown {
-                            &::placeholder {
-                                color: $placeholderColor;
-                                opacity: 0.5;
-                            }
+                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], select, textarea {
+                    &:placeholder-shown {
+                        &::placeholder {
+                            color: $placeholderColor;
+                            opacity: 0.5;
                         }
                     }
                 }
-
-                .form-field-feedback-wrapper {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                }
             }
 
-            .helper-text-container {
+            .form-field-feedback-wrapper {
                 display: flex;
-                align-self: stretch;
+                flex-direction: row;
+                justify-content: space-between;
             }
-
-            &:has(input:disabled) {
-                opacity: 0.3;
-            }  
         }
+
+        .helper-text-container {
+            display: flex;
+            align-self: stretch;
+        }
+
+        &:has(input:disabled) {
+            opacity: 0.3;
+        }  
     }
 }
 

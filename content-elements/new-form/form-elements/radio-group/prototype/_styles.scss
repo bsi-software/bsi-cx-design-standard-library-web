@@ -2,85 +2,81 @@
 
 @mixin radioGroupStyling(
     $elementId: "radio-group-6e279f5e",
-    $formContainerId: "form-container-84c6581f",
-    $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
     $radioButtonSize: properties.$spacing400,
     $gapBetweenRadioButtonAndLabel: properties.$spacing200,
 ) {
-    .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
-        .bsi-element-#{$elementId} {
+    .bsi-element-#{$elementId} {
 
-            .input-field-container {
+        .input-field-container {
+            display: flex;
+            flex-direction: column;
+
+            .radio-button-group {
                 display: flex;
                 flex-direction: column;
+                gap: properties.$spacing200;
 
-                .radio-button-group {
+                .radiobutton-with-label {
+                    position: relative;
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
                     gap: properties.$spacing200;
+    
+                    user-select: none;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+    
+                    // create a custom checkbox
+                    .visual-radio {
+                        position: absolute;
+                        z-index: 1;
+                        display: inline-flex;
+                        width: $radioButtonSize;
+                        min-width: $radioButtonSize;
+                        height: $radioButtonSize;
+                        border-radius: properties.$borderRadiusCircle;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+    
+                        &::before {
+                            opacity: 0;
+                            transition: opacity 0.2s ease;
+                            line-height: 1;
+                            font-family: "bootstrap-icons";
+                            font-size: 8px;
+                            content: "\F287"; /* circle-fill bootstrap icon */
+                        }
+                    }
+    
+                    .native-radio:checked + .visual-radio::before {
+                        opacity: 1;
+                    }
+    
+                    label.group-radio-label {
+                        padding-left: calc(#{$radioButtonSize} + #{$gapBetweenRadioButtonAndLabel});
+                        z-index: 2;
+                    }
 
-                    .radiobutton-with-label {
-                        position: relative;
-                        display: flex;
-                        flex-direction: row;
-                        gap: properties.$spacing200;
-        
-                        user-select: none;
-                        -webkit-user-select: none;
-                        -moz-user-select: none;
-                        -ms-user-select: none;
-        
-                        // create a custom checkbox
-                        .visual-radio {
-                            position: absolute;
-                            z-index: 1;
-                            display: inline-flex;
-                            width: $radioButtonSize;
-                            min-width: $radioButtonSize;
-                            height: $radioButtonSize;
-                            border-radius: properties.$borderRadiusCircle;
-                            align-items: center;
-                            justify-content: center;
-                            cursor: pointer;
-        
-                            &::before {
-                                opacity: 0;
-                                transition: opacity 0.2s ease;
-                                line-height: 1;
-                                font-family: "bootstrap-icons";
-                                font-size: 8px;
-                                content: "\F287"; /* circle-fill bootstrap icon */
-                            }
-                        }
-        
-                        .native-radio:checked + .visual-radio::before {
-                            opacity: 1;
-                        }
-        
-                        label.group-radio-label {
-                            padding-left: calc(#{$radioButtonSize} + #{$gapBetweenRadioButtonAndLabel});
-                            z-index: 2;
-                        }
-
-                        .form-label, .group-radio-label {
-                            cursor: pointer;
-                            margin-bottom: properties.$spacing0;
-                            align-self: stretch;
-                        }
+                    .form-label, .group-radio-label {
+                        cursor: pointer;
+                        margin-bottom: properties.$spacing0;
+                        align-self: stretch;
                     }
                 }
             }
+        }
 
-            .error-text-container {
-                display: flex;
-                flex-direction: column;
-            }
+        .error-text-container {
+            display: flex;
+            flex-direction: column;
+        }
 
-            &.form-group-alignment-horizontal .radio-button-group {
-                display: flex;
-                flex-direction: row;
-                gap: properties.$spacing400;
-            }
+        &.form-group-alignment-horizontal .radio-button-group {
+            display: flex;
+            flex-direction: row;
+            gap: properties.$spacing400;
         }
     }
 }

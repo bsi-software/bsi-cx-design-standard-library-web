@@ -2,36 +2,32 @@
 
 @mixin textareaStyling(
     $elementId: "textarea-a4af575b",
-    $formContainerId: "form-container-84c6581f",
-    $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
 ) {
-    .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
-        .bsi-element-#{$elementId} {
+    .bsi-element-#{$elementId} {
 
-            .textarea-container {
+        .textarea-container {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+
+            .textarea-and-error-text {
                 display: flex;
                 flex-direction: column;
-                align-self: stretch;
-
-                .textarea-and-error-text {
-                    display: flex;
-                    flex-direction: column;
-                    position: relative;
-                }
-
-                .form-field-feedback-wrapper {
-                    display: flex;
-                    flex-direction: column;
-                }
-
-                textarea {
-                    padding: properties.$spacing300;
-                }
+                position: relative;
             }
 
-            &:has(textarea:disabled) {
-                opacity: 0.3;
+            .form-field-feedback-wrapper {
+                display: flex;
+                flex-direction: column;
             }
+
+            textarea {
+                padding: properties.$spacing300;
+            }
+        }
+
+        &:has(textarea:disabled) {
+            opacity: 0.3;
         }
     }
 }

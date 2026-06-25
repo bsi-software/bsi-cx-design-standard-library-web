@@ -3,21 +3,14 @@
 
 @mixin textFieldStyling(
     $elementId: "form-field-2217aee4",
-    $formContainerId: "form-container-84c6581f",
-    $colorThemeClass: "", // optional class for color theme for formular (e.g. "dark-theme")
     $placeholderColor: properties.$formPlaceholderColor,
 ) {
     @include prototypeStyleSheet.formFieldsStyling(
-        $formContainerId: $formContainerId,
-        $colorThemeClass: $colorThemeClass, // optional class for color theme for formular (e.g. "dark-theme")
         $placeholderColor: $placeholderColor,
     );
-        .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
-
-            .bsi-element-#{$elementId} {
-                .text-input {
-                    padding: properties.$spacing300;
-            }
+        .bsi-element-#{$elementId} {
+            .text-input {
+                padding: properties.$spacing300;
         }
     }
 }

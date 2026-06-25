@@ -2,36 +2,29 @@
 
 @mixin checkboxGroupStyling(
     $elementId: "checkbox-group-95a8d908",
-    $formContainerId: "form-container-84c6581f",
-    $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
 ) {
-    .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
-        .bsi-element-#{$elementId} {
-            // display: flex;
-            // flex-direction: column;
-
-            fieldset {
-                display: grid;
-                .checkbox-group-container {
-                    display: flex;
-                    flex-direction: column;
-                    flex-wrap: wrap;
-                    gap: properties.$spacing200;
-                }
-            }
-
-            .error-text-wrapper {
-                .error-text-container {
-                    display: flex;
-                    flex-direction: column;
-                }
-            }
-
-            &.form-group-alignment-horizontal .checkbox-group-container {
+    .bsi-element-#{$elementId} {
+        fieldset {
+            display: grid;
+            .checkbox-group-container {
                 display: flex;
-                flex-direction: row;
-                gap: properties.$spacing400;
+                flex-direction: column;
+                flex-wrap: wrap;
+                gap: properties.$spacing200;
             }
+        }
+
+        .error-text-wrapper {
+            .error-text-container {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        &.form-group-alignment-horizontal .checkbox-group-container {
+            display: flex;
+            flex-direction: row;
+            gap: properties.$spacing400;
         }
     }
 }

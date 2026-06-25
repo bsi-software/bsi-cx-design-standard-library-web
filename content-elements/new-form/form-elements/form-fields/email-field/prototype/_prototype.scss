@@ -2,24 +2,18 @@
 @use "../../../../../../styles/properties.scss" as properties;
 
 
+
 @mixin emailFieldStyling(
     $elementId: "form-field-bdcd8d55",
-    $formContainerId: "form-container-84c6581f",
-    $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
     $placeholderColor: properties.$formPlaceholderColor,
 ) {
     @include prototypeStyleSheet.formFieldsStyling(
-        $formContainerId: $formContainerId,
-        $colorThemeClass: $colorThemeClass,
         $placeholderColor: $placeholderColor,
     );
 
-    .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
-
-        .bsi-element-#{$elementId} {
-            .email-input {
-                padding: properties.$spacing300;
-            }
+    .bsi-element-#{$elementId} {
+        .email-input {
+            padding: properties.$spacing300;
         }
     }
 }

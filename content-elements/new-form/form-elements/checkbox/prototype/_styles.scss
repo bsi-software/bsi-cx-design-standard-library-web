@@ -2,13 +2,9 @@
 
 @mixin checkboxStyling(
     $elementId: "checkbox-49f468e6",
-    $formContainerId: "form-container-84c6581f",
-    $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
     $checkboxSize: properties.$spacing400,
     $gapBetweenCheckboxAndLabel: properties.$spacing200,
 ) {
-    .bsi-element-#{$formContainerId}#{if($colorThemeClass != '', '.' + $colorThemeClass, '')} {
-
         .bsi-element-#{$elementId} {
             .checkbox-container {
                 display: flex;
@@ -66,7 +62,6 @@
                             color: inherit;
                             text-decoration: underline;
                             font-weight: 700;
-                        }
                     }
                 }
             }
