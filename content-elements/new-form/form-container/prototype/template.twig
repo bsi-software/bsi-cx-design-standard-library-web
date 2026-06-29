@@ -17,10 +17,11 @@
         otherError: Text used for other validation errors.
         formButtonAlignment: Button alignment (form-button-alignment-start|end|center|space-between).
         formScriptName: Alpine x-data script name (default: "form").
+        showFormFieldTypeField: Whether to show the form field type field (true|false).
         customStyleClasses: Additional CSS classes on the root container.
     #}
 
-    {% set isDataBsiElement = dataBsiElement %}
+    {% set isDataBsiElement = dataBsiElement ?? true %}
     {% set elementId = elementId ?:  'form-container-84c6581f'%}
     {% set formHideDropzone = hideDropzone %}
     {% set formDropzoneId = dropzoneId ?: 'form-container-dropzone-cd1f258c' %}
@@ -35,6 +36,7 @@
     {% set formButtonAlignment = (formButtonAlignment ?: properties.formButtonAlignment) ?: 'form-button-alignment-start' %}
     {% set formScriptName = formScriptName ?: "form" %}
     {% set customStyleClasses = customStyleClasses %}
+    {% set showFormFieldTypeField = showFormFieldTypeField ?? properties.showFormFieldTypeField ?? false %}
  
     <div {% if isDataBsiElement %}data-bsi-element="{{ elementId }}"{% endif %}
         class="{{ [
@@ -43,7 +45,7 @@
             customStyleClasses,
         ] | filter(value => value is not null) | join(' ') }}"
     >
-        <form x-data="{{ formScriptName }}" @submit="submitForm" @reset="resetForm" data-bsi-element-part="{{ dataBsiElementPartForm }}" id="form" {{ properties.showFormFieldTypeField ?: data-bsi-show-form-type-field }} novalidate>
+        <form x-data="{{ formScriptName }}" @submit="submitForm" @reset="resetForm" data-bsi-element-part="{{ dataBsiElementPartForm }}" id="form"{% if showFormFieldTypeField is same as(true) or showFormFieldTypeField == 'true' %} data-bsi-show-form-type-field{% endif %} novalidate>
             {% block validity_messages %}
                 <div class="hiddenElement form-value-missing-error-text" data-bsi-element-part="{{ dataBsiElementPartValueMissingError }}">{{ formFieldErrorValueMissingText }}</div>
                 <div class="hiddenElement form-type-missmatch-error-text" data-bsi-element-part="{{ dataBsiElementPartMissmatchError }}">{{ formFieldErrorTypeMissmatchText }}</div>
