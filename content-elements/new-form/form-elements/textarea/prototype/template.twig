@@ -1,8 +1,21 @@
 {% apply spaceless %}
+    {#
+        Parameter Header
+        Fallback order: explicit parameter -> default value.
+
+        formTextareaElementId: Root data-bsi-element ID for the textarea field.
+        formTextareaElementPartId: data-bsi-element-part ID for the field wrapper.
+        formTextareaHelperTextPartId: data-bsi-element-part ID for helper text.
+        formFieldShowMaxLengthCounter: Counter visibility class (bsi-show-max-length-counter|bsi-hide-max-length-counter).
+        formTextareaErrorInvalidPartId: Reserved part ID for invalid feedback.
+        formTextareaLabelText: Label text shown above the textarea.
+        formTextareaHelperText: Optional helper text below the field.
+        customClasses: Additional CSS classes for the root wrapper.
+    #}
     {% set formTextareaElementId = elementId ?: 'textarea-a4af575b' %}
     {% set formTextareaElementPartId = elementPartId ?: 'textarea-part-18ad4cb0' %}
     {% set formTextareaHelperTextPartId = formTextareaHelperTextPartId ?: 'textarea-helper-text-part-47792922' %}
-    {% set formFieldShowMaxLengthCounter = showMaxLengthCounter ?: 'bsi-show-max-length-counter' %} {# Optionen: 'bsi-show-max-length-counter' or 'bsi-hide-max-length-counter' #}
+    {% set formFieldShowMaxLengthCounter = showMaxLengthCounter ?: 'bsi-show-max-length-counter' %}
     {% set formTextareaErrorInvalidPartId = errorInvalidPartId ?: 'textarea-error-invalid-part-52eb82f6' %}
     {% set formTextareaLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set formTextareaHelperText = infoText  ?: "" %}

@@ -1,7 +1,11 @@
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 
-/* --------------------- Set style variables ------------------- */
+/* ============================================================= */
+/*	                      Global Variables                       */
+/* ============================================================= */
+
+/* --------------------- Set global style variables ------------------- */
 
 // Colors
 $primary: bsiProperty('primaryColor', #2F4E66);
@@ -14,6 +18,7 @@ $valid: bsiProperty('validColor', #198754);
 $invalid: bsiProperty('invalidColor', #dc3545);
 $textColor: bsiProperty('textColor', #383e42);
 $dark-mode-text-color: bsiProperty('darkModeTextColor', #ffffff);
+
 // Fonts
 $primaryFont: bsiProperty('primaryFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $titleStyle1FontFamily: bsiProperty('titleStyle1FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
@@ -24,100 +29,8 @@ $titleStyle5FontFamily: bsiProperty('titleStyle5FontFamily', 'Open Sans, Segoe U
 $titleStyle6FontFamily: bsiProperty('titleStyle6FontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 $textFont: bsiProperty('textFontFamily', 'Open Sans, Segoe UI, Apple SD Gothic Neo, Lucida Grande, Lucida Sans Unicode, sans‑serif');
 
-// Sizes
-$titleStyle1FontSize: bsiProperty('titleStyle1FontSize', 2.5rem);
-$titleStyle1FontSizeMobile: bsiProperty('titleStyle1FontSizeMobile', $titleStyle1FontSize);
-$titleStyle2FontSize: bsiProperty('titleStyle2FontSize', 2rem);
-$titleStyle2FontSizeMobile: bsiProperty('titleStyle2FontSizeMobile', $titleStyle2FontSize);
-$titleStyle3FontSize: bsiProperty('titleStyle3FontSize', 1.75rem);
-$titleStyle3FontSizeMobile: bsiProperty('titleStyle3FontSizeMobile', $titleStyle3FontSize);
-$titleStyle4FontSize: bsiProperty('titleStyle4FontSize', 1.5rem);
-$titleStyle4FontSizeMobile: bsiProperty('titleStyle4FontSizeMobile', $titleStyle4FontSize);
-$titleStyle5FontSize: bsiProperty('titleStyle5FontSize', 1.2rem);
-$titleStyle5FontSizeMobile: bsiProperty('titleStyle5FontSizeMobile', $titleStyle5FontSize);
-$titleStyle6FontSize: bsiProperty('titleStyle6FontSize', 1rem);
-$titleStyle6FontSizeMobile: bsiProperty('titleStyle6FontSizeMobile', $titleStyle6FontSize);
-$textSize: bsiProperty('textFontSize', 16px);
-$bannerHeight: bsiProperty('bannerHeight', 250px);
 
-// Icons
-$icon-primary-color: '%23' + str-slice(#{$primary}, 2);
-$star-icon-primary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-primary-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
-$star-fill-icon-primary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='" + $icon-primary-color + "' class='bi bi-star-fill' viewBox='0 0 16 16'> <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/> </svg>");
-$icon-secondary-color: '%23' + str-slice(#{$secondary}, 2);
-$star-icon-secondary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-secondary-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
-$star-fill-icon-secondary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='" + $icon-secondary-color + "' class='bi bi-star-fill' viewBox='0 0 16 16'> <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/> </svg>");
-$icon-invalid-color: '%23' + str-slice(#{$invalid}, 2);
-$star-icon-invalid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-invalid-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
-$icon-valid-color: '%23' + str-slice(#{$valid}, 2);
-$star-icon-valid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-valid-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
-$star-fill-icon-valid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='" + $icon-valid-color + "' class='bi bi-star-fill' viewBox='0 0 16 16'> <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/> </svg>");
-
-// Grid
-$xs: bsiProperty('gridBreakpointXS', 0);
-$sm: bsiProperty('gridBreakpointSM', 576px);
-$md: bsiProperty('gridBreakpointMD', 768px);
-$lg: bsiProperty('gridBreakpointLG', 940px);
-$xl: bsiProperty('gridBreakpointXL', 1200px);
-$xxl: bsiProperty('gridBreakpointXXL', 1400px);
-
-//Flatpickr
-$flatpickrInput: bsiProperty('flatpickrInput', 'allowInput');
-
-//new formular
-$formElementBackgroundColor: bsiProperty('formElementBackgroundColor', #ffffff);
-$formBorderColor: bsiProperty('formBorderColor', #383e42);
-$formLabelColor: bsiProperty('formLabelColor', #383e42);
-$formActiveColor: bsiProperty('formActiveColor', #ffffff);
-$formActiveBackgroundColor: bsiProperty('formActiveBackgroundColor', #383e42);
-$formHelperTextColor: bsiProperty('formHelperTextColor', #383e42);
-$formErrorColor: bsiProperty('formErrorColor', #dc3545);
-$formSuccessColor: bsiProperty('formSuccessColor', #198754);
-$formErrorIconFontName: bsiProperty('formErrorIconFontName', 'bootstrap-icons');
-$formErrorIconFontCharacter: bsiProperty('formErrorIconFontCharacter', '\F333');
-$formButtonSubmitColor: bsiProperty('formButtonSubmitColor', #ffffff);
-$formButtonResetColor: bsiProperty('formButtonResetColor', #383e42);
-$formButtonSubmitBackgroundColor: bsiProperty('formButtonSubmitBackgroundColor', #2F4E66);
-$formButtonResetBackgroundColor: bsiProperty('formButtonResetBackgroundColor', #ffffff);
-
-$formPlaceholderColor: bsiProperty('formPlaceholderColor', #282322);
-
-// new form checkbox
-$checkboxIconFontName: bsiProperty('checkboxIconFontName', 'bootstrap-icons');
-$checkboxIconFontCharacter: bsiProperty('checkboxIconFontCharacter', '\F26E');
-
-// new form select
-$selectIconFontName: bsiProperty('selectIconFontName', 'bootstrap-icons');
-$selectIconFontCharacter: bsiProperty('selectIconFontCharacter', '\F282');
-
-// new form fileupload
-$fileUploadBorderColor: bsiProperty('fileUploadBorderColor', rgba(#383e42, 0.1));
-$fileUploadBorderActiveColor: bsiProperty('fileUploadBorderActiveColor', #383e42);
-$fileUploadBorderFocusColor: bsiProperty('fileUploadBorderFocusColor', #383e42);
-$fileUploadBorderColorDropover: bsiProperty('fileUploadBorderColorDropover', #2F4E66);
-$fileUploadBackgroundColor: bsiProperty('fileUploadBackgroundColor', #ffffff);
-$fileUploadBackgroundColorDropover: bsiProperty('fileUploadBackgroundColorDropover', rgba(#2F4E66, 0.1));
-$fileUploadButtonBackgroundColor: bsiProperty('fileUploadButtonBackgroundColor', #2F4E66);
-$fileUploadButtonFontColor: bsiProperty('fileUploadButtonFontColor', #ffffff);
-$fileUploadButtonHoverBackgroundColor: bsiProperty('fileUploadButtonHoverBackgroundColor', rgba(#2F4E66, 0.1));
-$fileUploadButtonHoverFontColor: bsiProperty('fileUploadButtonHoverFontColor', #ffffff);
-$fileUploadIconUploadFontName: bsiProperty('fileUploadIconUploadFontName', 'bootstrap-icons');
-$fileUploadIconUploadFontCharacter: bsiProperty('fileUploadIconUploadFontCharacter', '\F296');
-$fileUploadIconDeleteFontName: bsiProperty('fileUploadIconDeleteFontName', 'bootstrap-icons');
-$fileUploadIconDeleteFontCharacter: bsiProperty('fileUploadIconDeleteFontCharacter', '\F62A');
-$fileUploadDeleteButtonBackgroundColor: bsiProperty('fileUploadDeleteButtonBackgroundColor', #383e42);
-$fileUploadDeleteButtonHoverBackgroundColor: bsiProperty('fileUploadDeleteButtonHoverBackgroundColor', rgba(#383e42, 0.3));
-$fileUploadDeleteButtonColor: bsiProperty('fileUploadDeleteButtonColor', #ffffff);
-$fileUploadDeleteButtonHoverColor: bsiProperty('fileUploadDeleteButtonHoverColor', rgba(#ffffff, 0.3));
-
-//new formular poll
-$formPollHoverColor: bsiProperty("pollHoverColor", #ffffff);
-$formPollHoverBackgroundColor: bsiProperty("pollHoverBackgroundColor", #383e42);
-
-/* ============================================================= */
-/*	                      Global Variables                       */
-/* ============================================================= */
-
+// Spacings
 $spacing0: bsiProperty("spacing.0", 0px);
 $spacing100: bsiProperty("spacing.100", 4px);
 $spacing200: bsiProperty("spacing.200", 8px);
@@ -128,19 +41,28 @@ $spacing600: bsiProperty("spacing.600", 48px);
 $spacing700: bsiProperty("spacing.700", 60px);
 $spacing800: bsiProperty("spacing.800", 80px);
 
-
+// Border radius
 $borderRadius100: bsiProperty("borderRadius.100", 4px);
 $borderRadius200: bsiProperty("borderRadius.100", 8px);
 $borderRadius300: bsiProperty("borderRadius.100", 16px);
 $borderRadius400: bsiProperty("borderRadius.100", 24px);
 $borderRadiusCircle: bsiProperty("borderRadius.circle", 50vh);
 
+// border width
 $borderWidth100: bsiProperty("borderWidth.100", 1px);
 $borderWidth200: bsiProperty("borderWidth.200", 2px);
 $borderWidth300: bsiProperty("borderWidth.300", 3px);
 
 //darkMode
 $darkModeActive: bsiProperty('darkModeActiveProperty');
+
+// Grid
+$xs: bsiProperty('gridBreakpointXS', 0);
+$sm: bsiProperty('gridBreakpointSM', 576px);
+$md: bsiProperty('gridBreakpointMD', 768px);
+$lg: bsiProperty('gridBreakpointLG', 940px);
+$xl: bsiProperty('gridBreakpointXL', 1200px);
+$xxl: bsiProperty('gridBreakpointXXL', 1400px);
 
 /* -------------- Customizing bootstrap variables -------------- */
 
@@ -175,3 +97,104 @@ $spacers: map-merge($spacers, (
     7: $spacer * 7.5,
     8: $spacer * 10,
 ));
+
+/* ============================================================= */
+/*                 Global Variables for Elements                 */
+/* ============================================================= */
+
+// Title
+$titleStyle1FontSize: bsiProperty('titleStyle1FontSize', 2.5rem);
+$titleStyle1FontSizeMobile: bsiProperty('titleStyle1FontSizeMobile', $titleStyle1FontSize);
+$titleStyle2FontSize: bsiProperty('titleStyle2FontSize', 2rem);
+$titleStyle2FontSizeMobile: bsiProperty('titleStyle2FontSizeMobile', $titleStyle2FontSize);
+$titleStyle3FontSize: bsiProperty('titleStyle3FontSize', 1.75rem);
+$titleStyle3FontSizeMobile: bsiProperty('titleStyle3FontSizeMobile', $titleStyle3FontSize);
+$titleStyle4FontSize: bsiProperty('titleStyle4FontSize', 1.5rem);
+$titleStyle4FontSizeMobile: bsiProperty('titleStyle4FontSizeMobile', $titleStyle4FontSize);
+$titleStyle5FontSize: bsiProperty('titleStyle5FontSize', 1.2rem);
+$titleStyle5FontSizeMobile: bsiProperty('titleStyle5FontSizeMobile', $titleStyle5FontSize);
+$titleStyle6FontSize: bsiProperty('titleStyle6FontSize', 1rem);
+$titleStyle6FontSizeMobile: bsiProperty('titleStyle6FontSizeMobile', $titleStyle6FontSize);
+
+// Text
+$textSize: bsiProperty('textFontSize', 16px);
+
+// Banner
+$bannerHeight: bsiProperty('bannerHeight', 250px);
+
+// Icons
+$icon-primary-color: '%23' + str-slice(#{$primary}, 2);
+$star-icon-primary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-primary-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
+$star-fill-icon-primary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='" + $icon-primary-color + "' class='bi bi-star-fill' viewBox='0 0 16 16'> <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/> </svg>");
+$icon-secondary-color: '%23' + str-slice(#{$secondary}, 2);
+$star-icon-secondary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-secondary-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
+$star-fill-icon-secondary: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='" + $icon-secondary-color + "' class='bi bi-star-fill' viewBox='0 0 16 16'> <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/> </svg>");
+$icon-invalid-color: '%23' + str-slice(#{$invalid}, 2);
+$star-icon-invalid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-invalid-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
+$icon-valid-color: '%23' + str-slice(#{$valid}, 2);
+$star-icon-valid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='" + $icon-valid-color + "' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg>");
+$star-fill-icon-valid: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='" + $icon-valid-color + "' class='bi bi-star-fill' viewBox='0 0 16 16'> <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/> </svg>");
+
+//Flatpickr
+$flatpickrInput: bsiProperty('flatpickrInput', 'allowInput');
+
+//new formular
+$formElementBackgroundColor: bsiProperty('formElementBackgroundColor', #ffffff);
+$formBorderColor: bsiProperty('formBorderColor', #383e42);
+$formLabelColor: bsiProperty('formLabelColor', #383e42);
+$formActiveColor: bsiProperty('formActiveColor', #ffffff);
+$formActiveBackgroundColor: bsiProperty('formActiveBackgroundColor', #383e42);
+$formHelperTextColor: bsiProperty('formHelperTextColor', #383e42);
+$formErrorColor: bsiProperty('formErrorColor', #dc3545);
+$formSuccessColor: bsiProperty('formSuccessColor', #198754);
+$formErrorIconFontName: bsiProperty('formErrorIconFontName', 'bootstrap-icons');
+$formErrorIconFontCharacter: bsiProperty('formErrorIconFontCharacter', '\F333');
+$formButtonSubmitColor: bsiProperty('formButtonSubmitColor', #ffffff);
+$formButtonResetColor: bsiProperty('formButtonResetColor', #383e42);
+$formButtonSubmitBackgroundColor: bsiProperty('formButtonSubmitBackgroundColor', #2F4E66);
+$formButtonResetBackgroundColor: bsiProperty('formButtonResetBackgroundColor', #ffffff);
+
+$formPlaceholderColor: bsiProperty('formPlaceholderColor', #282322);
+
+$borderRadiusFormElements: bsiProperty('borderRadiusFormElements', $borderRadius100);
+$formLabelInfoPosition: bsiProperty('formLabelInfoPosition', 'bsi-form-label-info-top-bottom');
+$spaceBetweenFormSections: bsiProperty('spaceBetweenFormSections', $spacing600);
+$spaceBetweenFormElements: bsiProperty('spaceBetweenFormElements', $spacing400);
+$spaceWithinFormelements: bsiProperty('spaceWithinFormelements', $spacing100);
+
+// new form checkbox
+$checkboxIconFontName: bsiProperty('checkboxIconFontName', 'bootstrap-icons');
+$checkboxIconFontCharacter: bsiProperty('checkboxIconFontCharacter', '\F26E');
+
+// new form email field
+$emailInvalidText: bsiProperty('emailInvalidText', 'Sie haben keine gültige E-Mail Adresse eingegeben. Beispiel: mail@example.com');
+
+// new form select
+$selectIconFontName: bsiProperty('selectIconFontName', 'bootstrap-icons');
+$selectIconFontCharacter: bsiProperty('selectIconFontCharacter', '\F282');
+
+// new form fileupload
+$fileUploadBorderColor: bsiProperty('fileUploadBorderColor', rgba(#383e42, 0.1));
+$fileUploadBorderActiveColor: bsiProperty('fileUploadBorderActiveColor', #383e42);
+$fileUploadBorderFocusColor: bsiProperty('fileUploadBorderFocusColor', #383e42);
+$fileUploadBorderColorDropover: bsiProperty('fileUploadBorderColorDropover', #2F4E66);
+$fileUploadBackgroundColor: bsiProperty('fileUploadBackgroundColor', #ffffff);
+$fileUploadBackgroundColorDropover: bsiProperty('fileUploadBackgroundColorDropover', rgba(#2F4E66, 0.1));
+$fileUploadButtonBackgroundColor: bsiProperty('fileUploadButtonBackgroundColor', #2F4E66);
+$fileUploadButtonFontColor: bsiProperty('fileUploadButtonFontColor', #ffffff);
+$fileUploadButtonHoverBackgroundColor: bsiProperty('fileUploadButtonHoverBackgroundColor', rgba(#2F4E66, 0.1));
+$fileUploadButtonHoverFontColor: bsiProperty('fileUploadButtonHoverFontColor', #ffffff);
+$fileUploadIconUploadFontName: bsiProperty('fileUploadIconUploadFontName', 'bootstrap-icons');
+$fileUploadIconUploadFontCharacter: bsiProperty('fileUploadIconUploadFontCharacter', '\F296');
+$fileUploadIconDeleteFontName: bsiProperty('fileUploadIconDeleteFontName', 'bootstrap-icons');
+$fileUploadIconDeleteFontCharacter: bsiProperty('fileUploadIconDeleteFontCharacter', '\F62A');
+$fileUploadDeleteButtonBackgroundColor: bsiProperty('fileUploadDeleteButtonBackgroundColor', #383e42);
+$fileUploadDeleteButtonHoverBackgroundColor: bsiProperty('fileUploadDeleteButtonHoverBackgroundColor', rgba(#383e42, 0.3));
+$fileUploadDeleteButtonColor: bsiProperty('fileUploadDeleteButtonColor', #ffffff);
+$fileUploadDeleteButtonHoverColor: bsiProperty('fileUploadDeleteButtonHoverColor', rgba(#ffffff, 0.3));
+
+//new formular poll
+$formPollHoverColor: bsiProperty("pollHoverColor", #ffffff);
+$formPollHoverBackgroundColor: bsiProperty("pollHoverBackgroundColor", #383e42);
+$npsStartWith0: bsiProperty('npsStartWith0', true);
+$formPollLabelPosition: bsiProperty('formPollLabelPosition', 'pollLabelPositionBelow');

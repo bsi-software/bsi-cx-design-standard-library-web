@@ -1,8 +1,24 @@
 {% apply spaceless %}
+    {#
+        Parameter Header
+        Fallback order: explicit parameter -> default value.
+
+        formCheckboxGroupElementId: Root data-bsi-element ID for the checkbox group.
+        formCheckboxGroupElementPartId: data-bsi-element-part ID for the group wrapper.
+        formCheckboxGroupRequired: Required-state class (bsi-group-required|bsi-group-not-required).
+        formCheckboxGroupAlignment: Layout class (form-group-alignment-vertical|form-group-alignment-horizontal).
+        formCheckboxGroupLabel: Visible group label text.
+        formCheckboxGroupLabelId: data-bsi-element-part ID for the group label.
+        formCheckboxGroupHelperTextPartId: data-bsi-element-part ID for helper text.
+        formCheckboxGroupErrorInvalidPartId: Reserved part ID for invalid feedback.
+        formCheckboxGroupLabelText: Label text fallback used for child entries.
+        formCheckboxGroupHelperText: Optional helper text below the group.
+        customClasses: Additional CSS classes for the root wrapper.
+    #}
     {% set formCheckboxGroupElementId = elementId ?: 'checkbox-group-95a8d908' %}
     {% set formCheckboxGroupElementPartId = elementPartId ?: 'checkbox-group-part-8cdc938a' %}
-    {% set formCheckboxGroupRequired = required ?: 'bsi-group-not-required' %} {# alternative 'bsi-group-required' #}
-    {% set formCheckboxGroupAlignment = alignment ?: 'form-group-alignment-vertical' %} {# alternative 'form-group-alignment-horizontal' #}
+    {% set formCheckboxGroupRequired = required ?: 'bsi-group-not-required' %}
+    {% set formCheckboxGroupAlignment = alignment ?: 'form-group-alignment-vertical' %}
     {% set formCheckboxGroupLabel = groupLabel ?: 'Checkbox Gruppe' %}
     {% set formCheckboxGroupLabelId = groupLabelId ?: 'checkbox-group-label-a7bf5a38' %}
     {% set formCheckboxGroupHelperTextPartId = formCheckboxGroupHelperTextPartId ?: 'checkbox-group-helper-text-part-1cf1d475' %}
@@ -11,10 +27,10 @@
     {% set formCheckboxGroupHelperText = infoText ?: "" %}
     {% set customClasses = customClasses ?: "" %}
 
-    <div data-bsi-element="{{ formCheckboxGroupElementId }}" class="bsi-element-{{ formCheckboxGroupElementId }} form-element form-field checkbox-group {{ formCheckboxGroupRequired }} {{ formCheckboxGroupAlignment }} {{ customClasses }}">
+    <div data-bsi-element="{{ formCheckboxGroupElementId }}" class="bsi-element-{{ formCheckboxGroupElementId }} form-element checkbox-group {{ formCheckboxGroupRequired }} {{ formCheckboxGroupAlignment }} {{ customClasses }}">
         <label class="form-label"data-bsi-element-part="{{ formCheckboxGroupLabelId }}">{{ formCheckboxGroupLabel }}</label>
-        <div class="input-field-container form-field-layout">
-            <div class="input-field-with-error-text form-field-input-wrapper">
+        <div class="form-field-layout">
+            <div class="form-field-input-wrapper">
                 <fieldset role="group">
                     <div data-bsi-dropzone="checkbox-group-dropzone-id-4f4a7409" class="checkbox-group-container">
                         {% block checkbox_group_dropzone %}

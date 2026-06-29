@@ -7,6 +7,7 @@
     $borderColor: properties.$formBorderColor,
     $activeBackgroundColor: properties.$formActiveBackgroundColor,
     $activeColor: properties.$formActiveColor,
+    $placeholderColor: properties.$formPlaceholderColor,
 ) {
 
     .form-element {
@@ -15,6 +16,10 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+
+        &:has(input:disabled) {
+            opacity: 0.3;
+        }  
 
         // style for headlines of the form elements
         legend, .form-label, .second-form-label {
@@ -81,9 +86,20 @@
             color: $labelColor;
         }
 
-        // styles for error and helper text wrapper of form elements
-        .error-text-wrapper:has(> div:empty) {
-            display: none;
+        .form-field-input-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+
+            // set placeholder color
+            input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], select, textarea {
+                &:placeholder-shown {
+                    &::placeholder {
+                        color: $placeholderColor;
+                        opacity: 0.5;
+                    }
+                }
+            }
         }
 
         .form-field-feedback-wrapper {
@@ -97,10 +113,17 @@
 
         &.has-visible-feedback :where(.form-field-feedback-wrapper) {
             display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         &.has-visible-feedback :where(.bsi-invalid-feedback.is-visible) {
             display: flex;
+        }
+
+        .helper-text-container {
+            display: flex;
+            align-self: stretch;
         }
 
         .helper-text-container:has(> div:empty) {

@@ -1,19 +1,23 @@
 @use "../../../../../../styles/properties.scss" as properties;
+@use "../../../../../../styles/functions.scss" as functions;
 
 @mixin pollNpsStyling (
     $elementId: "form-poll-nps-a026d07b",
     $hoverColor: properties.$formPollHoverColor,
     $hoverBackgroundColor: properties.$formPollHoverBackgroundColor,
+    $pollLabelPosition: functions.assert-one-of(properties.$formPollLabelPosition, "pollLabelPositionAbove", "pollLabelPositionBelow"),
 ) {
     .bsi-element-#{$elementId} {
         .scale-label-wrapper {
             display: flex;
             width: fit-content;
             flex-direction: column;
-        }
-
-        &.scale-label-above-input .scale-label-wrapper {
-            flex-direction: column-reverse;
+            @if $pollLabelPosition == "pollLabelPositionAbove" {
+                flex-direction: column-reverse;
+                .second-form-label {
+                    margin-bottom: properties.$spacing100;
+                }
+            }
         }
 
         .nps-scale-labels {

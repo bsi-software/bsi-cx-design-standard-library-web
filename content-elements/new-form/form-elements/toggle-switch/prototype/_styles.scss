@@ -22,6 +22,7 @@
                 // create a custom toggle-switch
                 .visual-toggle-switch {
                     position: absolute;
+                    left: 0;
                     z-index: 1;
                     width: $toggleSwitchWidth;
                     height: $toggleSwitchHeight;
@@ -53,7 +54,7 @@
                     }
                 }
 
-                .form-label {
+                .second-form-label {
                     cursor: pointer;
                     margin-bottom: properties.$spacing0;
                     align-self: stretch;

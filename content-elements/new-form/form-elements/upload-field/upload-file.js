@@ -1,6 +1,8 @@
 import Alpine from "@alpinejs/csp";
 
-const { getUploadFileLocalizedTexts } = require("./localizedTexts");
+const { getUploadFileLocalizedTexts } = require("../../../../core/main/localizedTexts");
+const BYTES_IN_KILOBYTE = 1024;
+const BYTES_IN_MEGABYTE = BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE;
 
 Alpine.data("fileUpload", () => ({
 
@@ -44,11 +46,10 @@ Alpine.data("fileUpload", () => ({
      * @returns {void}
      */
     _initLocalizedTexts() {
-        const language = document.querySelector('meta[name=x-language]').getAttribute('value'); 
-        this.$refs.removeButton.setAttribute('aria-label', getUploadFileLocalizedTexts('removeFile', language));
-        this.$refs.uploadButton.setAttribute('aria-label', getUploadFileLocalizedTexts('uploadButtonLabel', language));
-        this.$refs.uploadButton.querySelector('span').innerText = getUploadFileLocalizedTexts('uploadButtonLabel', language);
-        this.$refs.dropText.innerText = getUploadFileLocalizedTexts('uploadDropText', language);
+        this.$refs.removeButton.setAttribute('aria-label', getUploadFileLocalizedTexts('removeFile'));
+        this.$refs.uploadButton.setAttribute('aria-label', getUploadFileLocalizedTexts('uploadButtonLabel'));
+        this.$refs.uploadButton.querySelector('span').innerText = getUploadFileLocalizedTexts('uploadButtonLabel');
+        this.$refs.dropText.innerText = getUploadFileLocalizedTexts('uploadDropText');
     },
 
     /**
@@ -241,10 +242,10 @@ Alpine.data("fileUpload", () => ({
      * @returns {string} formatted size string
      */
     _formatSize(bytes) {
-      if (bytes < 1024) return bytes + ' B';
-      if (bytes < 1024 * 1024)
-        return (bytes / 1024).toFixed(1) + ' KB';
-      return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+      if (bytes < BYTES_IN_KILOBYTE) return bytes + ' B';
+      if (bytes < BYTES_IN_MEGABYTE)
+        return (bytes / BYTES_IN_KILOBYTE).toFixed(1) + ' KB';
+      return (bytes / BYTES_IN_MEGABYTE).toFixed(2) + ' MB';
     },
 
     /**

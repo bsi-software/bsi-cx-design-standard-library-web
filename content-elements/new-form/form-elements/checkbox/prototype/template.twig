@@ -1,4 +1,15 @@
 {% apply spaceless %}
+    {#
+        Parameter Header
+        Fallback order: explicit parameter -> default value.
+
+        formCheckboxElementId: Root data-bsi-element ID for the checkbox field.
+        formCheckboxElementPartId: data-bsi-element-part ID for the field wrapper.
+        formCheckboxHelperTextPartId: data-bsi-element-part ID for helper text.
+        formCheckboxLabelText: Label text shown next to the checkbox.
+        formCheckboxHelperText: Optional helper text below the field.
+        customClasses: Additional CSS classes for the root wrapper.
+    #}
     {% set formCheckboxElementId = elementId ?: 'checkbox-49f468e6' %}
     {% set formCheckboxElementPartId = elementPartId ?: 'checkbox-part-7f02c9ea' %}
     {% set formCheckboxHelperTextPartId = formCheckboxHelperTextPartId ?: 'checkbox-helper-text-part-5989e5eb' %}

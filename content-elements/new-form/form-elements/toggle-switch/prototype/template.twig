@@ -1,4 +1,16 @@
 {% apply spaceless %}
+    {#
+        Parameter Header
+        Fallback order: explicit parameter -> default value.
+
+        formToggleSwitchElementId: Root data-bsi-element ID for the toggle switch field.
+        formToggleSwitchElementPartId: data-bsi-element-part ID for the field wrapper.
+        formToggleSwitchHelperTextPartId: data-bsi-element-part ID for helper text.
+        formToggleSwitchErrorInvalidPartId: Reserved part ID for invalid feedback.
+        formToggleSwitchLabelText: Label text rendered next to the switch.
+        formToggleSwitchHelperText: Optional helper text below the field.
+        customClasses: Additional CSS classes for the root wrapper.
+    #}
     {% set formToggleSwitchElementId = elementId ?: 'toggle-switch-b0ae602a' %}
     {% set formToggleSwitchElementPartId = elementPartId ?: 'toggle-switch-part-76e700be' %}
     {% set formToggleSwitchHelperTextPartId = formToggleSwitchHelperTextPartId ?: 'toggle-switch-helper-text-part-772277fc' %}
@@ -25,7 +37,7 @@
                 <label
                     id="labelId"
                     for="toggleId"
-                    class="form-label">{{ formToggleSwitchLabelText }}
+                    class="second-form-label">{{ formToggleSwitchLabelText }}
                 </label>
             </div>
             <div class="form-field-feedback-wrapper">

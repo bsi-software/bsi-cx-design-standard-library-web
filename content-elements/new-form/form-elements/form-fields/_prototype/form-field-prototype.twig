@@ -7,10 +7,10 @@
 {% set formFieldInputType = inputType ?: "text" %}
 {% set customClasses = customClasses ?: "" %}
 
-<div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} {{ formFieldShowMaxLengthCounter }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
+<div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} {{ formFieldShowMaxLengthCounter }} form-element {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
     <label for="{{ formFieldInputType }}-field" class="form-label">{{ formFieldLabelText }}</label>
-    <div class="input-field-container form-field-layout">
-        <div class="input-field-with-error-text form-field-input-wrapper">
+    <div class="form-field-layout">
+        <div class="form-field-input-wrapper">
             {% block input_field %}
                 <input
                     @change="formElementValidationOnChange"
@@ -24,7 +24,7 @@
                 </input>
             {% endblock %}
         </div>
-        <div class="input-field-feedback-container form-field-feedback-wrapper">
+        <div class="form-field-feedback-wrapper">
             {% block input_field_error_text %}
                 <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
             {% endblock %}

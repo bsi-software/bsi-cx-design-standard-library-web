@@ -1,4 +1,20 @@
 {% apply spaceless %}
+    {#
+        Parameter Header
+        Fallback order: explicit parameter -> default value.
+
+        formSelectElementId: Root data-bsi-element ID for the select field.
+        formSelectElementPartId: data-bsi-element-part ID for the select wrapper.
+        formSelectPlaceholderTextPartId: data-bsi-element-part ID for placeholder text.
+        formSelectHelperTextPartId: data-bsi-element-part ID for helper text.
+        formSelectErrorInvalidPartId: Reserved part ID for invalid state handling.
+        formSelectErrorPlacehodlerId: Part ID for placeholder-validation error text.
+        formSelectPlaceholderErrorText: Error text when placeholder remains selected.
+        formSelectLabelText: Label text shown above the select.
+        formSelectPlaceholderText: Placeholder option text.
+        formSelectHelperText: Optional helper text below the field.
+        customClasses: Additional CSS classes for the root wrapper.
+    #}
     {% set formSelectElementId = elementId ?: 'select-51fb02b4' %}
     {% set formSelectElementPartId = elementPartId ?: 'select-part-c1cbbcc6' %}
     {% set formSelectPlaceholderTextPartId = formSelecPlaceholderTextPartId ?: 'placeholder-text-part-4f08e438' %}

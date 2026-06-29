@@ -1,8 +1,16 @@
 {# It's not possible to embed this file somewhere else because it is embeded it's self.
 Please use form-field-prototype.twig instead #}
 
+{#
+    Parameter Header
+    Fallback order: explicit parameter -> properties.* -> default value.
+
+    formFieldErrorInvalidPartId: data-bsi-element-part ID for the email invalid feedback.
+    formFieldErrorInvalidText: Email-specific invalid text (properties.emailInvalidText fallback).
+#}
+
 {% set formFieldErrorInvalidPartId = 'form-field-part-error-invalid-21769f4a' %}
-{% set formFieldErrorInvalidText ='Sie haben keine gültige E-Mail Adresse eingegeben. Beispiel: mail@example.com' %}
+{% set formFieldErrorInvalidText = properties.emailInvalidText ?: 'Sie haben keine gültige E-Mail Adresse eingegeben. Beispiel: mail@example.com' %}
 
 {% apply spaceless %}
     {% embed "../_prototype/form-field-prototype.twig" with {

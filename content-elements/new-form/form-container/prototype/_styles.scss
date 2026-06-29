@@ -2,12 +2,14 @@
 
 @use "./validation" as formValidationStyleSheet;
 @use "../../form-elements/form-element-styles" as formElementStyleSheet;
+@use "./info-label-position" as infoLabelPositionStyleSheet;
+@use "../../../../styles/functions.scss" as functions;
 
 @mixin formContainerStyling(
     $elementId: "form-container-84c6581f",
     $formContainerId: "",
     $colorThemeClass: "", // optional class for color theme for formular (e.g. "form-color-light")
-    $elementBackgroundColor: properties.$formElementBackgroundColor,  
+    $elementBackgroundColor: properties.$formElementBackgroundColor,
     $borderColor: properties.$formBorderColor, 
     $labelColor: properties.$formLabelColor,
     $activeColor: properties.$formActiveColor,
@@ -21,6 +23,17 @@
     $buttonResetColor: properties.$formButtonResetColor,
     $buttonSubmitBackgroundColor: properties.$formButtonSubmitBackgroundColor,
     $buttonResetBackgroundColor: properties.$formButtonResetBackgroundColor,
+    $placeholderColor: properties.$formPlaceholderColor,
+
+    // Utility class for form element border radius.
+    $borderRadius: properties.$borderRadiusFormElements,
+    $formLabelInfoPosition: functions.assert-one-of(properties.$formLabelInfoPosition, 'top-bottom', 'top-top', 'left-bottom'),
+    // Set space between every form section.
+    $spaceBetweenFormSections: properties.$spaceBetweenFormSections,
+    // Set space between every form element in a form section.
+    $spaceBetweenFormElements: properties.$spaceBetweenFormElements,
+    // Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.)
+    $spaceWithinFormelements: properties.$spaceWithinFormelements,
 ) {
     $selector: "";
     @if $formContainerId != "" {
@@ -47,57 +60,43 @@
         min-width: 0; // important: allows element to shrink below content size - requiered for text-overflow to work
 
         // spacing of the form elements
-        $spacings: ("0": properties.$spacing0, "100": properties.$spacing100, "200": properties.$spacing200, "300": properties.$spacing300, "400": properties.$spacing400, "500": properties.$spacing500, "600": properties.$spacing600, "700": properties.$spacing700, "800": properties.$spacing800);
-        @each $name, $spacing in $spacings {
-            // Set space between every form section and buttons in a form
-            &.space-between-form-sections-#{$name} {
-                form {
-                    gap: $spacing;
-                    
-                    .form-elements-container {
-                        gap: $spacing; 
-                    }
-                }
+        form {
+            gap: $spaceBetweenFormSections;
+            
+            .form-elements-container {
+                gap: $spaceBetweenFormSections; 
             }
+        }
+            
+        // Set space between every form element in a form section.
+        .form-section {
+            gap: $spaceBetweenFormElements;
+        }
 
-            // Set space between every form element in a form section.
-            &.space-between-form-elements-#{$name} {
-                .form-section {
-                    gap: $spacing;
-                }
+        // Set space between elements in every form field. (e.g. between label, inputfield, helperText etc.)
+        .form-element {
+            gap: $spaceWithinFormelements;
+            .error-text-container,
+            .form-field-feedback-wrapper,
+            .checkbox-container,
+            .toggle-switch-container,
+            .textarea-container,
+            .textarea-and-error-text,
+            .select-and-error-text,
+            .file-upload-container,
+            .select-container,
+            .file-upload-and-error-text,
+            .form-field-input-wrapper,
+            .form-field-layout,
+            .scale-label-wrapper,
+            fieldset {
+                gap: $spaceWithinFormelements;
             }
+        }
 
-            // Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.)
-            &.space-within-form-elements-#{$name} {
-                .form-element {
-                    gap: $spacing;
-
-                    .error-text-wrapper,
-                    .error-text-container,
-                    .form-field-feedback-wrapper,
-                    .checkbox-container,
-                    .radio-button-group-container,
-                    .toggle-switch-container,
-                    .textarea-container,
-                    .textarea-and-error-text,
-                    .select-and-error-text,
-                    .file-upload-container,
-                    .group-info-container,
-                    .select-container,
-                    .file-upload-and-error-text,
-                    fieldset {
-                        gap: $spacing;
-                    }
-                }
-
-                .form-field .input-field-container {
-                    gap: $spacing;
-
-                    .input-field-with-error-text, .scale-label-wrapper {
-                        gap: $spacing;
-                    }
-                }
-            }
+        // Set padding for every form element
+        select, textarea, input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local] {
+            padding: properties.$spacing300;
         }
 
         // formular button alligments
@@ -111,166 +110,12 @@
         }
 
         // border radius from form elements
-        $borderRadiuses: ("100": properties.$borderRadius100, "200": properties.$borderRadius200, "300": properties.$borderRadius300, "400": properties.$borderRadius400, "circle": properties.$borderRadiusCircle);
-        @each $name, $borderRadius in $borderRadiuses {
-            &.border-radius-form-elements-#{$name} {
-                input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], .visual-checkbox, select, textarea {
-                    border-radius: $borderRadius;
-                }
-            }
+        input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], .visual-checkbox, select, textarea {
+            border-radius: $borderRadius;
         }
 
-        // ── label/info-position layouts ──────────────────────────────────────────
-        //
-        // Shared base for all three variants: grid structure, child areas, margins.
-        // Each variant below only overrides grid-template-areas (and left-bottom
-        // additionally adds the outer label/content grid at md+).
-
-        &.bsi-form-label-info-top-bottom,
-        &.bsi-form-label-info-top-top,
-        &.bsi-form-label-info-left-bottom {
-            form .form-elements-container .form-section .form-element {
-
-                .form-field-layout {
-                    display: grid;
-                    row-gap: 0;
-                    grid-template-columns: minmax(0, 1fr);
-                    align-items: start;
-
-                    > .form-field-input-wrapper {
-                        grid-area: input;
-                        min-width: 0;
-                    }
-
-                    > .form-field-feedback-wrapper {
-                        grid-area: feedback;
-                        min-width: 0;
-                    }
-
-                    > .max-char-counter {
-                        grid-area: counter;
-                        justify-self: end;
-                        align-self: start;
-                    }
-
-                    > .helper-text-container,
-                    > .helper-text {
-                        grid-area: helper;
-                        min-width: 0;
-                    }
-                }
-
-                // Add spacing below input only when something visible follows below the input
-                .form-field-layout:has(
-                    .max-char-counter:not(:empty)
-                ) .form-field-input-wrapper {
-                    margin-block-end: properties.$spacing100;
-                }
-
-                &.has-visible-feedback .form-field-layout .form-field-input-wrapper {
-                    margin-block-end: properties.$spacing100;
-                }
-
-                // Counter visible: switch to 2-column layout
-                &.bsi-show-max-length-counter .form-field-layout {
-                    grid-template-columns: minmax(0, 1fr) auto;
-                }
-
-                .empty-element {
-                    display: contents;
-                }
-            }
-        }
-
-        // helper below input (top-bottom and left-bottom share the same area order)
-        &.bsi-form-label-info-top-bottom,
-        &.bsi-form-label-info-left-bottom {
-            form .form-elements-container .form-section .form-element {
-                .form-field-layout:has(.helper-text:not(:empty)) .form-field-input-wrapper {
-                    margin-block-end: properties.$spacing100;
-                }
-
-                .form-field-layout {
-                    grid-template-areas:
-                        "input"
-                        "feedback"
-                        "helper";
-                }
-
-                &.bsi-show-max-length-counter .form-field-layout {
-                    grid-template-areas:
-                        "input  input"
-                        "helper counter";
-                }
-
-                &.bsi-show-max-length-counter.has-visible-feedback .form-field-layout {
-                    grid-template-areas:
-                        "input    input"
-                        "feedback counter"
-                        "helper   helper";
-                }
-            }
-        }
-
-        // helper above input
-        &.bsi-form-label-info-top-top {
-            form .form-elements-container .form-section .form-element {
-                .form-field-layout {
-                    grid-template-areas:
-                        "helper"
-                        "input"
-                        "feedback";
-   
-                    > .helper-text-container,
-                    > .helper-text {
-                        margin-block-end: properties.$spacing100;
-                    }
-                }
-
-                &.bsi-show-max-length-counter .form-field-layout {
-                    grid-template-areas:
-                        "helper  helper"
-                        "input   input"
-                        ".       counter";
-                }
-
-                &.bsi-show-max-length-counter.has-visible-feedback .form-field-layout {
-                    grid-template-areas:
-                        "helper   helper"
-                        "input    input"
-                        "feedback counter";
-                }
-            }
-        }
-
-        // label left: outer label/content grid at md+
-        &.bsi-form-label-info-left-bottom {
-            @media (min-width: properties.$md) {
-                form .form-elements-container .form-section .form-element {
-                    width: 100%;
-                    display: grid;
-                    grid-template-columns: minmax(0, 1fr) minmax(0, 6fr);
-                    grid-template-areas: "label content";
-
-                    > .form-label,
-                    > legend,
-                    > .empty-element {
-                        grid-area: label;
-                    }
-
-                    > .form-field-layout {
-                        grid-area: content;
-                    }
-
-                    > .form-label {
-                        display: block;
-                        min-width: 0;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                    }
-                }
-            }
-        }
+        // label/info-position layouts
+        @include infoLabelPositionStyleSheet.infoLabelPositionStyling($formLabelInfoPosition: $formLabelInfoPosition);
 
         form {
             display: flex;
@@ -291,6 +136,7 @@
                     $borderColor: $borderColor,
                     $activeBackgroundColor: $activeBackgroundColor,
                     $activeColor: $activeColor,
+                    $placeholderColor: $placeholderColor,
                 );
             }
         

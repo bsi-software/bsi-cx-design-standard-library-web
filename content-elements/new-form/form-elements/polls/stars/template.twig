@@ -1,3 +1,24 @@
+{#
+    Parameter Header
+    Fallback order: explicit parameter -> default value.
+
+    formFieldElementId: Root data-bsi-element ID for the star poll.
+    formFieldElementPartId: data-bsi-element-part ID for the poll wrapper.
+    formFieldHelperTextPartId: data-bsi-element-part ID for helper text.
+    formFieldErrorInvalidPartId: data-bsi-element-part ID for invalid feedback.
+    formFieldLabelText: Main poll label text.
+    formFieldLeftLabelText: Left-side scale label text.
+    formFieldRightLabelText: Right-side scale label text.
+    formFieldHelperText: Optional helper text below the poll.
+    customClasses: Additional CSS classes for the root wrapper.
+
+    pollMin: Minimum selectable value.
+    pollMax: Maximum selectable value.
+    pollStep: Increment step for numeric value.
+    pollRange: Iteration range used to render star options.
+    pollValueList: Newline-separated value list derived from pollRange.
+#}
+
 {% set formFieldElementId = elementId ?: 'form-poll-star-2c7c0910' %}
 {% set formFieldElementPartId = elementPartId ?: 'form-poll-star-part-7abccf42' %}
 {% set formFieldHelperTextPartId = formHelperTextPartId ?: 'form-poll-star-helper-text-part-3ecf0459' %}
@@ -17,10 +38,10 @@
 	{% set pollValueList = pollValueList ~ value ~ (loop.last == false ? "\n" : '') %}
 {% endfor %}
 
-<div x-data="starPoll" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="number">
+<div x-data="starPoll" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="number">
     <label class="form-label">{{ formFieldLabelText }}</label>
-    <div class="input-field-container form-field-layout">
-        <div class="input-field-with-error-text form-field-input-wrapper">
+    <div class="form-field-layout">
+        <div class="form-field-input-wrapper">
             <div class="star-container">
                 <input
                     id="number-field"

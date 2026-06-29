@@ -1,7 +1,22 @@
 {% apply spaceless %}
+    {#
+        Parameter Header
+        Fallback order: explicit parameter -> default value.
+
+        formRadioGroupElementId: Root data-bsi-element ID for the radio group.
+        formRadioGroupElementPartId: data-bsi-element-part ID for the group wrapper.
+        formRadioGroupAlignment: Layout class (form-group-alignment-vertical|form-group-alignment-horizontal).
+        formRadioGroupLabel: Visible group label text.
+        formRadioGroupHelperTextPartId: data-bsi-element-part ID for helper text.
+        formRadioGroupErrorInvalidPartId: Reserved part ID for invalid feedback.
+        formRadioButtonLabelText: Label text for each radio option.
+        formRadioGroupHelperText: Optional helper text below the group.
+        customClasses: Additional CSS classes for the root wrapper.
+        uniqueIdForAriaDescribedBy: Runtime-generated helper-text ID for aria-describedby.
+    #}
     {% set formRadioGroupElementId = elementId ?: 'radio-group-6e279f5e' %}
     {% set formRadioGroupElementPartId = elementPartId ?: 'radio-group-label-84ad37f1' %}
-    {% set formRadioGroupAlignment = alignment ?: 'form-group-alignment-vertical' %} {# alternative 'form-group-alignment-horizontal' #}
+    {% set formRadioGroupAlignment = alignment ?: 'form-group-alignment-vertical' %}
     {% set formRadioGroupLabel = groupLabel ?: 'Radio Button Gruppe' %}
     {% set formRadioGroupHelperTextPartId = formRadioGroupHelperTextPartId ?: 'radio-group-helper-text-part-c034d086' %}
     {% set formRadioGroupErrorInvalidPartId = errorInvalidPartId ?: 'radio-group-error-invalid-part-67e4dde8' %}
@@ -11,10 +26,10 @@
 
     {% set uniqueIdForAriaDescribedBy = 'helper-id-' ~ random() %}
 
-    <div data-bsi-element="{{ formRadioGroupElementId }}" class="bsi-element-{{ formRadioGroupElementId }} form-element form-field radio-group {{ formRadioGroupAlignment }} {{ customClasses }}" data-bsi-element-part="{{ formRadioGroupElementPartId }}">
+    <div data-bsi-element="{{ formRadioGroupElementId }}" class="bsi-element-{{ formRadioGroupElementId }} form-element radio-group {{ formRadioGroupAlignment }} {{ customClasses }}" data-bsi-element-part="{{ formRadioGroupElementPartId }}">
         <label class="form-label">{{ formRadioGroupLabel }}</label>
-        <div class="input-field-container form-field-layout">
-            <div class="input-field-with-error-text form-field-input-wrapper">
+        <div class="form-field-layout">
+            <div class="form-field-input-wrapper">
                 <div data-bsi-radio-group="" class="radio-button-group">
                     <div class="radiobutton-with-label" data-bsi-radio-item="" role="radiogroup">
                         <input 

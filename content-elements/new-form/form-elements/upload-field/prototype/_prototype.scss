@@ -44,9 +44,10 @@
                 align-items: flex-start;
                 align-self: stretch;
                 
-                .file-upload {
+                .form-field-input-wrapper.file-upload {
                     min-width: 0;
                     display: flex;
+                    flex-direction: row;
                     align-items: center;
                     justify-content: center;
                     align-self: stretch;
@@ -212,10 +213,6 @@
                             }
                         }
                     }
-                }
-            
-                .hidden {
-                    display: none !important;
                 }
             }
         }

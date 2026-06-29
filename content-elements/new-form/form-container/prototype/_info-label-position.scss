@@ -1,0 +1,121 @@
+@use "../../../../styles/properties" as properties;
+
+// ── label/info-position layouts ──────────────────────────────────────────
+//
+// Shared base for all three variants: grid structure, child areas, margins.
+// Each variant below only overrides grid-template-areas (and left-bottom
+// additionally adds the outer label/content grid at md+).
+
+@mixin infoLabelPositionStyling (
+    $formLabelInfoPosition: functions.assert-one-of(properties.$formLabelInfoPosition, 'top-bottom', 'top-top', 'left-bottom'),
+) {
+    form .form-elements-container .form-section .form-element {
+
+        .form-field-layout {
+            display: grid;
+            row-gap: 0;
+            grid-template-columns: minmax(0, 1fr);
+            align-items: start;
+            align-self: stretch;
+
+            > .form-field-input-wrapper {
+                grid-area: input;
+                min-width: 0;
+            }
+
+            > .form-field-feedback-wrapper {
+                grid-area: feedback;
+                min-width: 0;
+            }
+
+            > .max-char-counter {
+                grid-area: counter;
+                justify-self: end;
+                align-self: start;
+            }
+
+            > .helper-text-container,
+            > .helper-text {
+                grid-area: helper;
+                min-width: 0;
+            }
+        }
+
+        // Add spacing below input only when something visible follows below the input
+        .form-field-layout:has(
+            .max-char-counter:not(:empty)
+        ) .form-field-input-wrapper {
+            margin-block-end: properties.$spacing100;
+        }
+
+        &.has-visible-feedback .form-field-layout .form-field-input-wrapper {
+            margin-block-end: properties.$spacing100;
+        }
+
+        // Counter visible: switch to 2-column layout
+        &.bsi-show-max-length-counter .form-field-layout {
+            grid-template-columns: minmax(0, 1fr) auto;
+        }
+
+        .empty-element {
+            display: contents;
+        }
+
+        // helper below input (top-bottom and left-bottom share the same area order)
+        @if $formLabelInfoPosition == 'top-bottom' or 
+            $formLabelInfoPosition == 'left-bottom' {
+
+            .form-field-layout:has(.helper-text:not(:empty)) .form-field-input-wrapper {
+                margin-block-end: properties.$spacing100;
+            }
+
+            .form-field-layout {
+                grid-template-areas:
+                    "input"
+                    "feedback"
+                    "helper";
+            }
+
+            &.bsi-show-max-length-counter .form-field-layout {
+                grid-template-areas:
+                    "input  input"
+                    "helper counter";
+            }
+
+            &.bsi-show-max-length-counter.has-visible-feedback .form-field-layout {
+                grid-template-areas:
+                    "input    input"
+                    "feedback counter"
+                    "helper   helper";
+            }
+
+        // helper above input
+        } @else if $formLabelInfoPosition == 'top-top' {
+            .form-field-layout {
+                grid-template-areas:
+                    "helper"
+                    "input"
+                    "feedback";
+
+                > .helper-text-container,
+                > .helper-text {
+                    margin-block-end: properties.$spacing100;
+                }
+            }
+
+            &.bsi-show-max-length-counter .form-field-layout {
+                grid-template-areas:
+                    "helper  helper"
+                    "input   input"
+                    ".       counter";
+            }
+
+            &.bsi-show-max-length-counter.has-visible-feedback .form-field-layout {
+                grid-template-areas:
+                    "helper   helper"
+                    "input    input"
+                    "feedback counter";
+            }
+        }
+    }
+}

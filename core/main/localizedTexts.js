@@ -4,4 +4,10 @@ const uploadFileLocalizedTexts = {
     uploadButtonLabel: { default: 'Datei auswählen', en: 'Select file', it: 'Seleziona file', fr: 'Sélectionner le fichier' },
 }
 
-module.exports.getUploadFileLocalizedTexts = (localizedKey, lang) => uploadFileLocalizedTexts[localizedKey] ? uploadFileLocalizedTexts[localizedKey][lang] ?? uploadFileLocalizedTexts[localizedKey].default : localizedKey;
+const lang = document.querySelector('meta[name=x-language]').getAttribute('value');
+
+module.exports.getLanguage = () => {
+    return lang;
+}
+
+module.exports.getUploadFileLocalizedTexts = (localizedKey) => uploadFileLocalizedTexts[localizedKey] ? uploadFileLocalizedTexts[localizedKey][lang] ?? uploadFileLocalizedTexts[localizedKey].default : localizedKey;

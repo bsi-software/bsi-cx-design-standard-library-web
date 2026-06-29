@@ -1,0 +1,21 @@
+@use "sass:list";
+
+
+
+// Ensures that the provided value is part of a defined allow-list.
+// Why this function exists:
+// - It fails fast during SCSS compilation when a mixin argument is invalid.
+// - It provides a clear error message listing all allowed values.
+// - Some parameters are intentionally restricted because they map to predefined CSS
+//   classes/selectors, and only those cases are implemented in the codebase.
+//   Allowing arbitrary values would create classes/selectors without matching styles.
+// When to use it:
+// - Use this function for mixin parameters that only accept a fixed set of options
+//   (for example variant, size, spacing level, or toggle-like modes).
+@function assert-one-of($value, $allowed...) {
+  @if not list.index($allowed, $value) {
+    @error "Invalid value '#{$value}'. Allowed values are: #{$allowed}.";
+  }
+
+  @return $value;
+}

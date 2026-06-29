@@ -1,3 +1,17 @@
+{#
+    Parameter Header
+    Fallback order: explicit parameter -> default value.
+
+    formFieldElementId: Root data-bsi-element ID for the upload field.
+    formFieldElementPartId: data-bsi-element-part ID for the field wrapper.
+    formFieldHelperTextPartId: data-bsi-element-part ID for helper text.
+    formFieldErrorInvalidPartId: data-bsi-element-part ID for invalid feedback.
+    formFieldLabelText: Label text displayed above the upload control.
+    formFieldHelperText: Optional helper text displayed below the field.
+    formFieldErrorInvalidText: Validation error text for invalid file input.
+    customClasses: Additional CSS classes for the root wrapper.
+#}
+
 {% set formFieldElementId = elementId ?: 'upload-form-field-5674018a' %}
 {% set formFieldElementPartId = elementPartId ?: 'form-field-part-c21742af' %}
 {% set formFieldHelperTextPartId = formHelperTextPartId ?: 'form-field-helper-text-part-0a34ce3d' %}
@@ -7,7 +21,7 @@
 {% set formFieldErrorInvalidText = errorInvalidText ?: 'Der Wert, den Sie für dieses Feld eingegeben haben, ist ungültig.' %}
 {% set customClasses = customClasses ?: "" %}
 
-<div x-data="fileUpload" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="file">
+<div x-data="fileUpload" data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="file">
     <label for="file-upload-field" class="form-label">{{ formFieldLabelText }}</label>
     <div 
         class="file-upload-container form-field-layout"
@@ -28,7 +42,7 @@
                         id="file-upload-field"
                         type="file"
                         x-ref="fileInput"
-                        class="native-file-upload-input hidden"
+                        class="native-file-upload-input hiddenElement"
                     >
                     </input>
 
