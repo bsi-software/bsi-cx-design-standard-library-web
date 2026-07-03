@@ -13,7 +13,7 @@
     {% set advFileUploadFileSizeMax  = properties.advFileUploadFileSizeMax ?: 1000000 %}
     {% set advFileUploadNumberOfInputs = properties.advFileUploadNumberOfInputs ?: 9 %}
     {% set hiddenInputRange = range(1, advFileUploadNumberOfInputs) %}
-    {% set advFileUploadProgressText = properties.advFileUploadProgressText ?: '0 / ' + advFileUploadNumberOfInputs %}
+    {% set advFileUploadProgressText = properties.advFileUploadProgressText ?: '0 / ' ~ advFileUploadNumberOfInputs %}
 
     <div x-data="advancedFileUpload" data-bsi-element="{{ advFileUploadElementId }}" class="{{ 'bsi-element-' ~ advFileUploadElementId }} mb-4 bsi-form-element bsi-form-field-element bsi-form-flex-label advanced-file-upload" data-bsi-form-field-fixed-type="">
         <div class="bsi-form-input-element mb-3 bsi-label-floating-element">
