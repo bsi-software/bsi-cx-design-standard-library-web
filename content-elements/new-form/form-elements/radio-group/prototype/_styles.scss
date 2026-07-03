@@ -2,7 +2,7 @@
 
 @mixin radioGroupStyling(
     $elementId: "radio-group-6e279f5e",
-    $radioButtonSize: properties.$spacing400,
+    $radioButtonSize: properties.$toggleItemSize,
     $gapBetweenRadioButtonAndLabel: properties.$spacing200,
 ) {
     .bsi-element-#{$elementId} {

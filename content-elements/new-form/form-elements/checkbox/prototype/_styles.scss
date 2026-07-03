@@ -2,7 +2,7 @@
 
 @mixin checkboxStyling(
     $elementId: "checkbox-49f468e6",
-    $checkboxSize: properties.$spacing400,
+    $checkboxSize: properties.$toggleItemSize,
     $gapBetweenCheckboxAndLabel: properties.$spacing200,
     $iconFontName: properties.$checkboxIconFontName,
     $iconFontCharacter: properties.$checkboxIconFontCharacter,
@@ -40,7 +40,7 @@
                         transition: opacity 0.2s ease;
                         line-height: 1;
                         font-family: $iconFontName;
-                        content: $iconFontCharacter;
+                        content: unquote("\"#{$iconFontCharacter}\"");
                     }
                 }
 

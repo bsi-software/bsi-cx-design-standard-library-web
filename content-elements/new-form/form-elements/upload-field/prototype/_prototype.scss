@@ -126,7 +126,7 @@
                             
                             &::after {
                                 font-family: $iconUploadFontName;
-                                content: $iconUploadFontCharacter;
+                                content: unquote("\"#{$iconUploadFontCharacter}\"");
                                 font-size: 1.5rem;
                                 line-height: 1.5rem;
                             }
@@ -207,7 +207,7 @@
                             
                             &::before {
                                 font-family: $iconDeleteFontName;
-                                content: $iconDeleteFontCharacter;
+                                content: unquote("\"#{$iconDeleteFontCharacter}\"");
                                 font-size: 24px;
                                 line-height: 40px;
                             }

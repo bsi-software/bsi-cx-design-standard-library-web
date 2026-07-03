@@ -50,7 +50,7 @@
                 $errorColor: $errorColor,
                 $successColor: $successColor,
                 $errorIconFontName: $errorIconFontName,
-                $errorIconFontCharacter: $errorIconFontCharacter,
+                $errorIconFontCharacter: unquote("\"#{$errorIconFontCharacter}\""),
             );
         }
     }
