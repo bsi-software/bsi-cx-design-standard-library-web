@@ -1,10 +1,10 @@
-# Doku: Aufbau neuer Formularelemente (new-Form)
+# Documentation: Structure of New Form Elements (new-form)
 
-Diese Doku beschreibt den minimalen technischen Aufbau, damit neue Formularelemente mit der bestehenden Validierung, den Layout-Regeln und Styles im System funktionieren.
+This documentation describes the minimal technical structure required so new form elements work with the existing validation, layout rules, and styles in the system.
 
-## 1) Zielstruktur im Projekt
+## 1) Target structure
 
-Für ein neues Element (Beispiel: `my-element`) nutze dieses Muster:
+For a new element (example: `my-element`), use this pattern in the StandardLib:
 
 ```text
 content-elements/new-form/form-elements/my-element/
@@ -16,63 +16,81 @@ content-elements/new-form/form-elements/my-element/
     _styles.scss (optional)
 ```
 
-Zusätzlich:
+Inside project implementations, the `prototype` folder is not required:
 
-1. Element in `content-elements/new-form/form-elements/index.js` registrieren.
-2. Wenn nötig, Style-Config in `prototype/index.js` über `.withStyleConfigs(...)` anbinden.
+```text
+content-elements/new-form/form-elements/my-element/
+  index.js
+  styles.scss
+  template.twig
+```
 
-## 1.1) Erben vs. Nutzen (wichtig für die Praxis)
+Additionally:
 
-### Wenn ich ein Element **erben/ableiten** will
+1. Register the element in `content-elements/new-form/form-elements/index.js`.
+2. If needed, attach style configs in `prototype/index.js` via `.withStyleConfigs(...)`.
 
-Dann arbeitest du primär mit den Dateien im `prototype`-Ordner (eine art Blaupause):
+## 1.1) Extend vs. use (important in practice)
 
-- `prototype/index.js` (eigentliche Element-Definition mit `withFile(...)`, `withParts(...)`, Defaults)
-- `prototype/template.twig` (Markup-Struktur)
-- optional `prototype/_styles.scss` (spezifische Styles)
+First check whether your change can be solved via a property.
+Many styles can be controlled this way, so you do not need to extend the element in your project.
+Examples include:
+- spacing and padding inside form fields
+- checkbox and radio icon
+- submit button color, etc.
+Available properties can be found in [styles/properties.scss]
 
-Der `index.js` außerhalb von `prototype` ist im Regelfall nur der technische Entry-Point (lädt `styles.scss` und exportiert aus `prototype/index.js`).
+### If you want to **extend/derive** an element
 
-### Wenn ich ein Element nur **nutzen** will
+You primarily work with files in the `prototype` folder (a blueprint):
 
-Dann nutzt du das registrierte Content-Element (über die normale Element-Auswahl im System) und musst nicht im `prototype`-Ordner arbeiten.
+- `prototype/index.js` (actual element definition with `withFile(...)`, `withParts(...)`, defaults)
+- `prototype/template.twig` (markup structure)
+- optional `prototype/_styles.scss` (specific styles)
 
-Technisch wird dabei der Entry-Point außerhalb von `prototype` verwendet, der intern an `prototype` delegiert.
+The `index.js` outside `prototype` is usually only a technical entry point (loads `styles.scss` and exports from `prototype/index.js`).
 
-## 2) Pflichtklassen und Pflicht-Hierarchie
+### If you only want to **use** an element
 
-Die folgenden Klassen/Container sind für Layout + Validierung relevant und sollten nicht umbenannt werden.
+Use the registered content element (via the normal element picker in the system) and do not work in the `prototype` folder.
 
-### Root des Elements
+Technically, the entry point outside `prototype` is used and delegates internally to `prototype`.
 
-- Pflicht: `.form-element`
-- Für klassische Input-Felder, die im form-fields Ordner liegen zusätzlich: `.form-field`
-- Optional: `.required` oder `.bsi-group-required` (Stern am Label + Required-Logik)
-- Optional: `.bsi-show-max-length-counter` (zeigt Counter, nur mit `maxlength` sinnvoll)
+## 2) Required classes and required hierarchy
 
-Empfohlener Root-Aufbau:
+The following classes/containers are relevant for layout + validation and should not be renamed.
+
+### Element root
+
+- Required: `.form-element`
+- Optional: `.required` or `.bsi-group-required` (asterisk on label + required logic)
+- Optional: `.bsi-show-max-length-counter` (shows counter, useful only with `maxlength`)
+
+Note: Relevant base styling runs via `.form-element` and internal structure classes (`.form-field-layout`, `.form-field-input-wrapper`, `.form-field-feedback-wrapper`).
+
+Recommended root structure:
 
 ```html
-<div class="bsi-element-... form-element form-field ..." data-bsi-element="..." data-bsi-element-part="...">
+<div class="bsi-element-... form-element ..." data-bsi-element="..." data-bsi-element-part="...">
   ...
 </div>
 ```
 
-### Interne Feldstruktur (wichtig für Grid/Abstände)
+### Internal field structure (important for grid/spacing)
 
-Der Wrapper `.form-field-layout` muss folgende direkten Kinder enthalten (Reihenfolge wie unten empfohlen):
+The `.form-field-layout` wrapper should contain the following direct children (recommended order):
 
 1. `.form-field-input-wrapper`
 2. `.form-field-feedback-wrapper`
-3. `.max-char-counter` (optional, kann leer sein)
+3. `.max-char-counter` (optional, can be empty)
 4. `.helper-text-container`
 
-Minimal:
+Minimal structure:
 
 ```html
 <div class="... form-field-layout">
   <div class="... form-field-input-wrapper">
-    <!-- input/select/textarea oder custom input -->
+    <!-- input/select/textarea or custom input -->
   </div>
   <div class="form-field-feedback-wrapper">
     <div class="bsi-invalid-feedback"></div>
@@ -84,63 +102,69 @@ Minimal:
 </div>
 ```
 
-Warum: Die Layout-Regeln greifen über direkte Child-Selektoren auf genau diese Klassen.
+Why: The layout rules target exactly these classes via direct child selectors.
 
-## 3) Validierung: Was ein Element liefern muss
+## 3) Validation: what an element must provide
 
-Die zentrale Logik sitzt in `form-container/form.js` und arbeitet über folgende Konventionen.
+The central logic is in `form-container/form.js` and works with the following conventions.
 
-### Für Einzel-Felder (Input, Select, Textarea)
+### For single fields (input, select, textarea)
 
-- Feld muss innerhalb von `.form-element` liegen.
-- Feld sollte eine eindeutige `id` haben (wichtig für feldspezifische Fehlermeldungen, z. B. Pattern).
-- Label sollte über `for="..."` auf die Feld-`id` zeigen.
-- Alpine-Events am Feld:
+- The field must be inside `.form-element`.
+- The field should have a unique `id`.
+- `for` on `label` is not used in the template because it is not reliable with the later system-replaced `id`.
+- Semantic mapping happens through the final rendered markup and the ARIA logic in `form.js`.
+- Alpine events on the field:
   - `@change="formElementValidationOnChange"`
   - `@blur="formElementValidationOnBlur"`
   - `@input="formElementValidationOnInput"`
 
-### Für Gruppen (Checkbox-/Radio-Gruppen)
+### For groups (checkbox/radio groups as examples)
 
-- Root-Klasse: `.checkbox-group` oder `.radio-group`
-- Gruppen-Inputs nutzen:
+- Root class: `.checkbox-group` or `.radio-group`
+- Group inputs use:
   - `@change="formGroupValidationOnChange"`
-- Für Checkboxen in Gruppen zusätzlich Klasse `.checkbox-in-group`
-- Für Radios Klasse `.native-radio` (wie im Bestand)
-- Gruppen-Error gehört in `.form-field-feedback-wrapper > .bsi-invalid-feedback`
+- For checkboxes in groups, additionally use `.checkbox-in-group`
+- For radios, use `.native-radio` (as in existing code)
+- Group errors belong in `.form-field-feedback-wrapper > .bsi-invalid-feedback`
 
-### Sichtbarkeit von Fehlern
+Note: For new element types, you do not have to build a checkbox/radio group structure unless you actually need group logic.
 
-- Fehler-Elemente tragen Klasse `.bsi-invalid-feedback`.
-- Sichtbarkeit wird per Klasse `.is-visible` gesetzt.
-- Das Form-Skript setzt am Element `.has-visible-feedback`.
+### Error visibility
 
-Nicht manuell dauerhaft einblenden; das übernimmt die Form-Logik.
+- Error elements use class `.bsi-invalid-feedback`.
+- Visibility is controlled via class `.is-visible`.
+- The form script sets `.has-visible-feedback` on the element.
 
-## 4) Custom Inputs (Checkbox/Radio/Toggle)
+Do not keep errors permanently visible manually; this is handled by form logic.
 
-Wenn ein visuelles Ersatz-Element statt nativer Darstellung genutzt wird:
+## 4) Custom inputs (checkbox/radio/toggle)
 
-- Native Input: Klasse `.native-input` (visuell versteckt)
-- Visualisierung: Klasse `.visual-input`
-- Struktur: `input.native-input + .visual-input` (direktes Adjacent-Sibling)
+If a visual replacement is used instead of native input rendering:
 
-Nur so greifen die bestehenden Zustands-Styles (checked/focus/invalid) korrekt.
+- Native input: class `.native-input` (visually hidden)
+- Visual element: class `.visual-input`
+- Structure: `input.native-input + .visual-input` (direct adjacent sibling)
 
-## 5) Helper-Text, Error-Text, A11y
+Only this way the existing state styles (checked/focus/invalid) work correctly.
 
-- Helper-Text immer als `.helper-text` in `.helper-text-container` führen.
-- Error-Text immer als `.bsi-invalid-feedback` in `.form-field-feedback-wrapper`.
-- Label-Klasse im Bestand: `.form-label` (bzw. `.second-form-label` bei Unterlabels).
-- Für A11y: `label[for]` + eindeutige Input-`id` konsequent setzen.
+## 5) Helper text, error text, accessibility
 
-Hinweis: `form.js` setzt `aria-describedby`/`aria-invalid` dynamisch anhand sichtbarer Helper-/Error-Texte.
+- Always place helper text as `.helper-text` inside `.helper-text-container`.
+- Always place error text as `.bsi-invalid-feedback` inside `.form-field-feedback-wrapper`.
+- Existing label class: `.form-label` (or `.second-form-label` for sub-labels).
+- ARIA mappings are set dynamically by the form script (`ariaDescribedByElements`, `aria-invalid`).
+- The `id` comes from the configurator and is required so elements can be reused and referenced uniquely.
+- In Twig, a placeholder `id` is common practice; the final `id` is replaced by the system.
+- `label[for]` is not used in the template.
 
-## 6) Minimaler Twig-Blueprint für neue Felder
+Note: `form.js` sets `aria-describedby` / `aria-invalid` dynamically based on visible helper/error text.
+
+## 6) Minimal Twig blueprint for new fields
 
 ```twig
-<div data-bsi-element="{{ elementId }}" class="bsi-element-{{ elementId }} form-element form-field {{ customClasses }}" data-bsi-element-part="{{ elementPartId }}">
-  <label for="my-input" class="form-label">{{ labelText }}</label>
+<div data-bsi-element="{{ elementId }}" class="bsi-element-{{ elementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ elementPartId }}">
+  <label class="form-label">{{ labelText }}</label>
 
   <div class="my-element-container form-field-layout">
     <div class="my-element-input-wrapper form-field-input-wrapper">
@@ -167,14 +191,16 @@ Hinweis: `form.js` setzt `aria-describedby`/`aria-invalid` dynamisch anhand sich
 </div>
 ```
 
-## 7) Checkliste vor dem Einbau
+## 7) Checklist before integration
 
-- Root enthält `.form-element` (und bei Feld-Elementen `.form-field`).
-- `.form-field-layout` enthält die Standard-Wrapper (`input`, `feedback`, `counter`, `helper`).
-- Fehlerausgabe über `.bsi-invalid-feedback` vorhanden.
-- Input hat `id`, Label hat passendes `for`.
-- Alpine-Validation-Events gesetzt.
-- Bei Custom Inputs: `.native-input + .visual-input` umgesetzt.
-- Element in `form-elements/index.js` registriert.
+- Root contains `.form-element`.
+- `.form-field-layout` contains the standard wrappers (`input`, `feedback`, `counter`, `helper`).
+- Error output via `.bsi-invalid-feedback` is present.
+- Input has a placeholder `id` in the template.
+- `for` is not set on `label` in the template.
+- Verify that the configurator-generated `id` exists in the final rendered markup.
+- Alpine validation events are set.
+- For custom inputs, `.native-input + .visual-input` is implemented.
+- Element is registered in `form-elements/index.js`.
 
-Wenn diese Punkte erfüllt sind, verhält sich das neue Element im Regelfall wie die bestehenden Formular-Elemente bezüglich Layout, Required-Markierung, Validierung und Feedback-Anzeige.
+If these points are met, the new element behaves like existing form elements regarding layout, required markers, validation, and feedback display.
