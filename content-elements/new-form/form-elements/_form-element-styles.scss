@@ -30,7 +30,8 @@
             line-height: 150%;
             letter-spacing: 0;
             margin-bottom: properties.$spacing100;
-            align-self: stretch; 
+            align-self: stretch;
+            width: fit-content;
         }
         .second-form-label {
             font-weight: 400;
