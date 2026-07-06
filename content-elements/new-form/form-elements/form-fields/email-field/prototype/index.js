@@ -17,19 +17,22 @@ module.exports = (
   template = require("../template.twig"),
   elementId = "form-field-bdcd8d55",
   elementLabel = "E-mail Input",
-  elementDescription = "Formular Element, um eine gültige E-Mail-Adresse zu erfasst.",
-  formFieldPartLabel = "Formularfeld: Text",
+  elementDescription = "Formular Element, um eine gültige E-Mail-Adresse zu erfassen.",
+  formFieldPartLabel = "Formularfeld: E-Mail",
   formFieldPartId = "form-field-part-71d76c77",
   helperTextPartLabel = "Helper Text",
   helperTextPartId = "form-field-part-email-033f20a1",
-  errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe",
-  errorTextPartId = "form-field-part-error-invalid-b8da3758",
+  errorTextPartLabel = "Fehlermeldung bei ungültiger Eingabe (pattern Missmatch)",
+  errorTextPartId = "form-field-part-error-invalid-21769f4a",
 ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
   .withDescription(elementDescription)
   .withIcon(Icon.ENVELOPE)
+  .withStyleConfigs(
+    require("../../../../../../configs/styles/form-counter")
+  )
   .withParts(
     cx.part.FormField(formFieldPartLabel, formFieldPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),

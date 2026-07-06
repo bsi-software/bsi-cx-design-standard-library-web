@@ -2,6 +2,10 @@
 
 @mixin checkboxStyling(
     $elementId: "checkbox-49f468e6",
+    $checkboxSize: properties.$toggleItemSize,
+    $gapBetweenCheckboxAndLabel: properties.$spacing200,
+    $iconFontName: properties.$checkboxIconFontName,
+    $iconFontCharacter: properties.$checkboxIconFontCharacter,
 ) {
     .bsi-element-#{$elementId} {
         .checkbox-container {
@@ -12,7 +16,7 @@
                 position: relative;
                 display: flex;
                 flex-direction: row;
-                gap: bsiProperty("spacing.200", 8px);
+                gap: $gapBetweenCheckboxAndLabel;
 
                 user-select: none;
                 -webkit-user-select: none;
@@ -21,10 +25,12 @@
 
                 // create a custom checkbox
                 .visual-checkbox {
+                    position: absolute;
+                    z-index: 1;
                     display: inline-flex;
-                    width: 24px;
-                    min-width: 24px;
-                    height: 24px;
+                    width: $checkboxSize;
+                    min-width: $checkboxSize;
+                    height: $checkboxSize;
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
@@ -33,8 +39,8 @@
                         opacity: 0;
                         transition: opacity 0.2s ease;
                         line-height: 1;
-                        font-family: "bootstrap-icons";
-                        content: "\F26E"; /* check bootstrap icon */
+                        font-family: $iconFontName;
+                        content: unquote("\"#{$iconFontCharacter}\"");
                     }
                 }
 
@@ -42,11 +48,23 @@
                     opacity: 1;
                 }
 
-                .form-label, .group-checkbox-label {
+                label {
+                    padding-left: calc(#{$checkboxSize} + #{$gapBetweenCheckboxAndLabel});
+                    z-index: 2;
+                }
+
+                &:has(input.native-checkbox[type="checkbox"]) label.form-label, .second-form-label {
                     cursor: pointer;
                     margin-bottom: properties.$spacing0;
                     align-self: stretch;
-                    white-space: now-wrap;
+                    font-weight: 400;
+                    display: inline;
+
+                    a {
+                        color: inherit;
+                        text-decoration: underline;
+                        font-weight: 700;
+                    }
                 }
             }
         }

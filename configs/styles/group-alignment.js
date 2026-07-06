@@ -2,7 +2,7 @@ const {cx} = require('@bsi-cx/design-build');
 
 module.exports = cx.style
   .withIdentifier('form-group-alignment-7ed31a87')
-  .withLabel('Formular-Gruppen Ausrichtung')
+  .withLabel('Ausrichtung')
   .withCssClasses(
     cx.cssClass
       .withLabel('Untereinander')

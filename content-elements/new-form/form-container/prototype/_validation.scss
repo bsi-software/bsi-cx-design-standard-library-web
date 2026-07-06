@@ -4,24 +4,43 @@
     $elementId: "form-container-84c6581f",
     $errorColor: properties.$formErrorColor, 
     $successColor: properties.$formSuccessColor,
+    $errorIconFontName: properties.$formErrorIconFontName,
+    $errorIconFontCharacter: properties.$formErrorIconFontCharacter,
 ) {
 
     .bsi-element-#{$elementId} {
 
         .form-element {
-            &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid), &:has(select:user-invalid), &.checkbox-group.custom-invalid {
-                div.bsi-invalid-feedback {
+
+            .form-field-feedback-wrapper {
+                display: none;
+            }
+
+            .bsi-invalid-feedback {
+                display: none;
+                gap: properties.$spacing100;
+
+                &::before {
+                    font-family: $errorIconFontName;
+                    content: $errorIconFontCharacter;
+                }
+            }
+
+            &.has-visible-feedback {
+                .form-field-feedback-wrapper {
+                    display: flex;
+                    margin-block-end: properties.$spacing100;
+                }
+
+                div.bsi-invalid-feedback.is-visible {
                     display: flex;
                     color: $errorColor;
                 }
             }
 
             &:has(input:user-valid), &:has(input.custom-valid), &:has(textarea:user-valid), &:has(select:user-valid) {
-                input, .visual-input, select, textarea, .file-upload {
+                input:not([type="checkbox"], [type="radio"]), textarea, .file-upload {
                     --form-element-border-color: #{$successColor};
-                }
-                .visual-star-input {
-                    color: #{$successColor};
                 }
             }
 
@@ -33,13 +52,6 @@
                     color: #{$errorColor};
                 }
 
-            }
-
-            // validation style for checkbox groups
-            &.checkbox-group.custom-valid {
-                .visual-checkbox.visual-input {
-                    --form-element-border-color: #{$successColor};
-                }
             }
 
             &.checkbox-group.custom-invalid {

@@ -1,26 +1,46 @@
 {% apply spaceless %}
+    {#
+        Parameter Header
+        Fallback order: explicit parameter -> default value.
+
+        formSelectElementId: Root data-bsi-element ID for the select field.
+        formSelectElementPartId: data-bsi-element-part ID for the select wrapper.
+        formSelectPlaceholderTextPartId: data-bsi-element-part ID for placeholder text.
+        formSelectHelperTextPartId: data-bsi-element-part ID for helper text.
+        formSelectErrorInvalidPartId: Reserved part ID for invalid state handling.
+        formSelectErrorPlacehodlerId: Part ID for placeholder-validation error text.
+        formSelectPlaceholderErrorText: Error text when placeholder remains selected.
+        formSelectLabelText: Label text shown above the select.
+        formSelectPlaceholderText: Placeholder option text.
+        formSelectHelperText: Optional helper text below the field.
+        customClasses: Additional CSS classes for the root wrapper.
+    #}
     {% set formSelectElementId = elementId ?: 'select-51fb02b4' %}
     {% set formSelectElementPartId = elementPartId ?: 'select-part-c1cbbcc6' %}
     {% set formSelectPlaceholderTextPartId = formSelecPlaceholderTextPartId ?: 'placeholder-text-part-4f08e438' %}
     {% set formSelectHelperTextPartId = formSelectHelperTextPartId ?: 'select-helper-text-part-5989e5eb' %}
     {% set formSelectErrorInvalidPartId = errorInvalidPartId ?: 'select-error-invalid-part-ad209a4c' %}
+    {% set formSelectErrorPlacehodlerId = "placeholder-error-text-part-Vs7EkY" %}
+    {% set formSelectPlaceholderErrorText = "Bitte wähle einen Wert aus, der nicht der Platzhalter ist." %}
     {% set formSelectLabelText = labelText ?: bsi_cx_lorem(3) %}
     {% set formSelectPlaceholderText = placeholderText ?: 'Bitte wählen' %}
     {% set formSelectHelperText = infoText  ?: "" %}
+    {% set customClasses = customClasses ?: "" %}
 
-    <div x-data="selectInputField"data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element" data-bsi-element-part="{{ formSelectElementPartId }}">
-        <label for="select-element" class="form-label">{{ formSelectLabelText }}</label>
-        <div class="select-container">
-            <div class="select-and-error-text">
-                {# TODO: Was ist mit dem Platzhalter? Können wir das sauber umsetzen? Oder lassen wir das raus, bis die Produktentwicklung das sauber umgesetzt hat? #}
+    <div x-data="selectInputField"data-bsi-element="{{ formSelectElementId }}" class="bsi-element-{{ formSelectElementId }} form-element {{ customClasses }}" data-bsi-element-part="{{ formSelectElementPartId }}">
+        <label class="form-label">{{ formSelectLabelText }}</label>
+        <div class="select-container form-field-layout">
+            <div class="select-and-error-text form-field-input-wrapper">
                 <div data-bsi-element-part="{{ formSelectPlaceholderTextPartId }}" class="d-none placeholder">{{ formSelectPlaceholderText }}</div>
                 <div class="wrapper-select">
                     <select x-init="initSelectInputField" @change="onChangeSelection" @after-change="formElementValidationOnChange" class="select-input" id="select-element">
                         <option value="">{{ formSelectPlaceholderText }}</option>
                     </select>
                 </div>
+            </div>
+            <div class="form-field-feedback-wrapper">
                 {% block select_error_texts %}
-                    <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
+                    <div data-bsi-element-part="{{ formSelectErrorPlacehodlerId }}" class="bsi-invalid-feedback">{{ formSelectPlaceholderErrorText }}</div> {# for error messages from formular #}
                 {% endblock %}
             </div>
             <div class="helper-text-container">

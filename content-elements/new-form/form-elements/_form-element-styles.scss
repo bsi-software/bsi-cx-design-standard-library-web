@@ -1,6 +1,5 @@
 @use "../../../styles/properties" as properties;
 
-// TODO: Sollten hier eventuell noch neue Properties ersetllt werden, sodass man gezielt Sachen nur für das Formular ändern kann?
 @mixin formElementStyling(
     $labelColor: properties.$formLabelColor,
     $helperTextColor: properties.$formHelperTextColor,
@@ -8,6 +7,7 @@
     $borderColor: properties.$formBorderColor,
     $activeBackgroundColor: properties.$formActiveBackgroundColor,
     $activeColor: properties.$formActiveColor,
+    $placeholderColor: properties.$formPlaceholderColor,
 ) {
 
     .form-element {
@@ -17,8 +17,12 @@
         flex-direction: column;
         align-items: flex-start;
 
+        &:has(input:disabled) {
+            opacity: 0.3;
+        }  
+
         // style for headlines of the form elements
-        legend, .form-label {
+        legend, .form-label, .second-form-label {
             color: $labelColor;
             font-size: 16px;
             font-style: normal;
@@ -26,7 +30,12 @@
             line-height: 150%;
             letter-spacing: 0;
             margin-bottom: properties.$spacing100;
-            align-self: stretch;    
+            align-self: stretch;
+            width: fit-content;
+        }
+        .second-form-label {
+            font-weight: 400;
+            margin: 0;
         }
 
         // styles for form fields
@@ -73,6 +82,66 @@
             }
         }
 
+        // style for icons in form fields (e.g. select)
+        .wrapper-select::after {
+            color: $labelColor;
+        }
+
+        .form-field-input-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+
+            // set placeholder color
+            input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=tel], input[type=time], input[type=datetime-local], input[type=checkbox], input[type=file], select, textarea {
+                &:placeholder-shown {
+                    &::placeholder {
+                        color: $placeholderColor;
+                        opacity: 0.5;
+                    }
+                }
+            }
+        }
+
+        .form-field-feedback-wrapper {
+            min-width: 0;
+            display: none;
+        }
+
+        .form-field-feedback-wrapper :where(.bsi-invalid-feedback) {
+            display: none;
+        }
+
+        &.has-visible-feedback :where(.form-field-feedback-wrapper) {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        &.has-visible-feedback :where(.bsi-invalid-feedback.is-visible) {
+            display: flex;
+        }
+
+        .helper-text-container {
+            display: flex;
+            align-self: stretch;
+        }
+
+        .helper-text-container:has(> div:empty) {
+            display: none;
+        }
+
+        // style for max character counter
+        .max-char-counter {
+            display: none;
+        }
+
+        &.bsi-show-max-length-counter .max-char-counter {
+            display: flex;
+            justify-content: flex-end;
+            width: fit-content;
+        }
+
         // styles for helper text
         .helper-text-container, .helper-text {
             color: $helperTextColor;
@@ -81,11 +150,11 @@
         // set a '*' signe after the label if form field is requiered
         &.required, &.bsi-group-required {
             .form-label, legend {
-                display: flex;
-                gap: properties.$spacing100;
+                display: inline;
 
                 &::after {
                     content: "*";
+                    padding-left: properties.$spacing100;
                 }
             }
         }

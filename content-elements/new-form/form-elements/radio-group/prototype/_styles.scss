@@ -2,12 +2,12 @@
 
 @mixin radioGroupStyling(
     $elementId: "radio-group-6e279f5e",
+    $radioButtonSize: properties.$toggleItemSize,
+    $gapBetweenRadioButtonAndLabel: properties.$spacing200,
 ) {
     .bsi-element-#{$elementId} {
 
-        .radio-button-group-container {
-            display: flex;
-            flex-direction: column;
+        .form-field-layout {
 
             .radio-button-group {
                 display: flex;
@@ -27,10 +27,12 @@
     
                     // create a custom checkbox
                     .visual-radio {
+                        position: absolute;
+                        z-index: 1;
                         display: inline-flex;
-                        width: 24px;
-                        min-width: 24px;
-                        height: 24px;
+                        width: $radioButtonSize;
+                        min-width: $radioButtonSize;
+                        height: $radioButtonSize;
                         border-radius: properties.$borderRadiusCircle;
                         align-items: center;
                         justify-content: center;
@@ -50,6 +52,11 @@
                         opacity: 1;
                     }
     
+                    label.group-radio-label {
+                        padding-left: calc(#{$radioButtonSize} + #{$gapBetweenRadioButtonAndLabel});
+                        z-index: 2;
+                    }
+
                     .form-label, .group-radio-label {
                         cursor: pointer;
                         margin-bottom: properties.$spacing0;
@@ -59,7 +66,7 @@
             }
         }
 
-        .error-and-helper-text-container {
+        .error-text-container {
             display: flex;
             flex-direction: column;
         }

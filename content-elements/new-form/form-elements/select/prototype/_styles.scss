@@ -2,6 +2,8 @@
 
 @mixin selectStyling(
     $elementId: "select-51fb02b4",
+    $iconFontName: properties.$selectIconFontName,
+    $iconFontCharacter: properties.$selectIconFontCharacter,
 ) {
     .bsi-element-#{$elementId} {
         
@@ -18,7 +20,6 @@
                 select {
                     appearance: none;
                     cursor: pointer;
-                    padding: properties.$spacing300;
                 }
 
                 .wrapper-select {
@@ -33,11 +34,16 @@
                         transform: translateY(-50%);
                         line-height: 1;
                         font-size: 24px;
-                        font-family: "bootstrap-icons";
-                        content: "\F282";
+                        font-family: $iconFontName;
+                        content: unquote("\"#{$iconFontCharacter}\"");
                         pointer-events: none;
                     }
                 }
+            }
+
+            .form-field-feedback-wrapper {
+                display: flex;
+                flex-direction: column;
             }
         }
 

@@ -25,12 +25,9 @@ import '../../content-elements/form/poll/prototype/poll';
 import '../../content-elements/form/radio/prototype/radio';
 import '../../content-elements/form/select/prototype/select';
 import '../../content-elements/new-form/form-container/form';
-import '../../content-elements/new-form/form-elements/checkbox/checkbox';
 import '../../content-elements/new-form/form-elements/form-fields/email-field/email';
 import '../../content-elements/new-form/form-elements/polls/stars/stars';
-import '../../content-elements/new-form/form-elements/radio-group/radio-buttons';
 import '../../content-elements/new-form/form-elements/select/select';
-import '../../content-elements/new-form/form-elements/toggle-switch/toggle-switch';
 import '../../content-elements/new-form/form-elements/upload-field/upload-file';
 
 // start Alpine.js AFTER importing all module scripts

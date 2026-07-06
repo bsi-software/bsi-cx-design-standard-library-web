@@ -25,6 +25,8 @@ module.exports = (
     placeholderTextId = "placeholder-text-part-4f08e438",
     helperTextPartLabel = "Helper Text",
     helperTextPartId = "select-helper-text-part-5989e5eb",
+    placeholderErrorTextLabel = "Fehlermeldung wenn Platzhalter ausgewählt ist (nur relevant, wenn es als Pflichtfeld markiert ist)",
+    placeholderErrorTextId = "placeholder-error-text-part-Vs7EkY",
   ) => cx.contentElement
   .withFile(template)
   .withElementId(elementId)
@@ -35,4 +37,5 @@ module.exports = (
     cx.part.FormSelect(formSelectPartLabel, formSelectPartId),
     cx.part.PlainText(helperTextPartLabel, helperTextPartId),
     cx.part.PlainText(placeholderTextLabel, placeholderTextId),
+    cx.part.PlainText(placeholderErrorTextLabel, placeholderErrorTextId),
   );

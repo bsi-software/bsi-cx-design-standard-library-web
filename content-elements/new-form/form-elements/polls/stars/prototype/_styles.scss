@@ -2,7 +2,6 @@
 
 @mixin pollStarStyling (
     $elementId: "form-poll-star-2c7c0910",
-    $hoverColor: properties.$formPollHoverColor,
     $hoverBackgroundColor: properties.$formPollHoverBackgroundColor,
     $borderColor: properties.$formBorderColor,
     $activeBackgroundColor: properties.$formActiveBackgroundColor,
@@ -94,7 +93,7 @@
 
                 .star-poll-radio-hovered {
                     .visual-star-input::before {
-                        color: $activeBackgroundColor;
+                        color: $hoverBackgroundColor;
                         opacity: 1;
                     }
                 }

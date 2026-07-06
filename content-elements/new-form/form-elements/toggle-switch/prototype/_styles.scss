@@ -2,6 +2,9 @@
 
 @mixin toggleSwitchStyling(
     $elementId: "toggle-switch-b0ae602a",
+    $toggleSwitchWidth: 40px,
+    $toggleSwitchHeight: properties.$spacing400,
+    $gapBetweenCheckboxAndLabel: properties.$spacing200,
 ) {
     .bsi-element-#{$elementId} {
         .toggle-switch-container {
@@ -12,17 +15,17 @@
                 position: relative;
                 display: flex;
                 flex-direction: row;
-                gap: bsiProperty("spacing.200", 8px);
-                cursor: pointer;
+                gap: $gapBetweenCheckboxAndLabel;
                 align-items: center;
 
                 // create a custom toggle-switch
                 .visual-toggle-switch {
-                    position: relative;
-                    width: 40px;
-                    height: 24px;
+                    position: absolute;
+                    left: 0;
+                    z-index: 1;
+                    width: $toggleSwitchWidth;
+                    height: $toggleSwitchHeight;
                     border-radius: properties.$borderRadiusCircle;
-                    cursor: pointer;
                     color: transparent;
                 }
 
@@ -49,10 +52,12 @@
                     }
                 }
 
-                .form-label {
+                .second-form-label {
                     cursor: pointer;
                     margin-bottom: properties.$spacing0;
                     align-self: stretch;
+                    padding-left: calc(#{$toggleSwitchWidth} + #{$gapBetweenCheckboxAndLabel});
+                    z-index: 2;
                 }
             }
         }

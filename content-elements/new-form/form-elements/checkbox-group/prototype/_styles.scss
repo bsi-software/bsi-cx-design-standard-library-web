@@ -4,22 +4,13 @@
     $elementId: "checkbox-group-95a8d908",
 ) {
     .bsi-element-#{$elementId} {
-        // display: flex;
-        // flex-direction: column;
-
         fieldset {
             display: grid;
             .checkbox-group-container {
                 display: flex;
                 flex-direction: column;
+                flex-wrap: wrap;
                 gap: properties.$spacing200;
-            }
-        }
-
-        .error-and-helper-text-wrapper {
-            .error-and-helper-text-container {
-                display: flex;
-                flex-direction: column;
             }
         }
 

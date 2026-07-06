@@ -1,36 +1,58 @@
 {% apply spaceless %}
 
-    {% set borderRadiusFormElements = (borderRadiusFormElements ?: properties.borderRadiusFormElements) ?: 'border-radius-form-elements-100' %}
-    {# {% set borderWidthFormElements = (borderWidthFormElements ?: properties.borderWidthFormElements) ?: 'border-width-form-elements-100' %} #}
-    {% set formButtonAlignment = (formButtonAlignment ?: properties.formButtonAlignment) ?: 'form-button-alignment-start' %} {# Optionen: 'form-button-alignment-start' or 'form-button-alignment-end' or 'form-button-alignment-center' 'form-button-alignment-space-between' #}
-    {% set formLabelInfoPosition = (formLabelInfoPosition ?: properties.formLabelInfoPosition) ?: 'bsi-form-label-info-top-bottom' %} {# Optionen: 'bsi-form-label-info-top-bottom' or 'bsi-form-label-info-top-top' or 'bsi-form-label-info-left-bottom' #}
-    {% set formFieldErrorValueMissingText = (errorValueMissingText ?: properties.formErrorValueMissingText) ?: "Bitte füllen Sie dieses Feld aus." %}
-    {% set formFieldErrorTypeMissmatchText = (errorTypeMissmatchText ?: properties.formErrorTypeMissmatchText) ?: "Das Format ist ungültig" %}
-    {% set formFieldOtherError = (otherError ?: properties.formOtherError) ?: "Ungültige Eingabe" %}
-    {% set spaceBetweenFormSections = (spaceBetweenFormSections ?: properties.spaceBetweenFormSections) ?:  "space-between-form-sections-600" %} {# Set space between every form section. #}
-    {% set spaceBetweenFormElements = (spaceBetweenFormElements ?: properties.spaceBetweenFormElements) ?:  "space-between-form-elements-400" %} {# Set space between every form element in a form section. #}
-    {% set spaceWithinFormelements = (spaceWithinFormelements ?: properties.spaceWithinFormelements) ?:  "space-within-form-elements-100" %} {# Set space between elements in a every form field. (e.g. between label, inputfield, helperText etc.) #}
+    {#
+        Form Container Parameter Header
+        Fallback order: explicit parameter -> properties.* -> default value
+
+        dataBsiElement: Enables data-bsi-element on the root container.
+        elementId: Unique ID for CSS/JS scoping and data-bsi-element.
+        hideDropzone: Controls whether the dropzone is hidden.
+        dropzoneId: ID of the form dropzone.
+        elementPartForm: data-bsi-element-part for the <form> element.
+        elementPartValueMissingError: Part ID for the "value missing" error text.
+        elementPartMissmatchError: Part ID for the "type/format mismatch" error text.
+        elementPartOtherError: Part ID for generic validation errors.
+        errorValueMissingText: Text used for missing required values.
+        errorTypeMissmatchText: Text used for type/format errors.
+        otherError: Text used for other validation errors.
+        formButtonAlignment: Button alignment (form-button-alignment-start|end|center|space-between).
+        formScriptName: Alpine x-data script name (default: "form").
+        showFormFieldTypeField: Whether to show the form field type field (true|false).
+        customStyleClasses: Additional CSS classes on the root container.
+    #}
+
+    {% set isDataBsiElement = dataBsiElement ?? true %}
+    {% set elementId = elementId ?:  'form-container-84c6581f'%}
+    {% set formHideDropzone = hideDropzone %}
+    {% set formDropzoneId = dropzoneId ?: 'form-container-dropzone-cd1f258c' %}
+    {% set dataBsiElementPartForm = elementPartForm ?: 'form-container-part-06acb819' %}
+    {% set dataBsiElementPartValueMissingError = elementPartValueMissingError ?: 'form-element-value-missing-error-part-d090104c' %}
+    {% set dataBsiElementPartMissmatchError = elementPartMissmatchError ?: 'form-element-type-missmatch-error-part-8cbc022e' %}
+    {% set dataBsiElementPartOtherError = elementPartOtherError ?: 'form-element-other-error-part-01ae5355' %}
+    {% set formFieldErrorValueMissingText = (errorValueMissingText ?: properties.formErrorValueMissingText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
+    {% set formFieldErrorTypeMissmatchText = (errorTypeMissmatchText ?: properties.formErrorTypeMissmatchText) ?: 'Das Format ist ungültig' %}
+    {% set formFieldOtherError = (otherError ?: properties.formOtherError) ?: 'Ungültige Eingabe' %}
+
+    {% set formButtonAlignment = (formButtonAlignment ?: properties.formButtonAlignment) ?: 'form-button-alignment-start' %}
+    {% set formScriptName = formScriptName ?: "form" %}
     {% set customStyleClasses = customStyleClasses %}
+    {% set showFormFieldTypeField = showFormFieldTypeField ?? properties.showFormFieldTypeField ?? false %}
  
-    <div data-bsi-element="form-container-84c6581f" 
-        class="
-            bsi-element-form-container-84c6581f
-            {{ borderRadiusFormElements }}
-            {# {{ borderWidthFormElements }} #}
-            {{ formButtonAlignment }}
-            {{ formLabelInfoPosition }}
-            {{ spaceBetweenFormSections }}
-            {{ spaceBetweenFormElements }}
-            {{ spaceWithinFormelements }}
-            {{ customStyleClasses }}
-        "
+    <div {% if isDataBsiElement %}data-bsi-element="{{ elementId }}"{% endif %}
+        class="{{ [
+            "bsi-element-" ~ elementId,
+            formButtonAlignment,
+            customStyleClasses,
+        ] | filter(value => value is not null) | join(' ') }}"
     >
-        <form x-data="form" @submit="submitForm" @reset="resetForm" data-bsi-element-part="form-container-part-06acb819" id="form" {{ properties.showFormFieldTypeField ?: data-bsi-show-form-type-field }} novalidate>
-            <div class="hiddenElement form-value-missing-error-text" data-bsi-element-part="form-element-value-missing-error-part-d090104c">{{ formFieldErrorValueMissingText }}</div>
-            <div class="hiddenElement form-type-missmatch-error-text" data-bsi-element-part="form-element-type-missmatch-error-part-8cbc022e">{{ formFieldErrorTypeMissmatchText }}</div>
-            <div class="hiddenElement form-other-error-text" data-bsi-element-part="form-element-other-error-part-01ae5355">{{ formFieldOtherError }}</div>
-            <div data-bsi-dropzone="form-container-dropzone-cd1f258c" class="form-elements-container">
-                {% block form_container_dropzone %}
+        <form x-data="{{ formScriptName }}" @submit="submitForm" @reset="resetForm" data-bsi-element-part="{{ dataBsiElementPartForm }}" id="form"{% if showFormFieldTypeField is same as(true) or showFormFieldTypeField == 'true' %} data-bsi-show-form-type-field{% endif %} novalidate>
+            {% block validity_messages %}
+                <div class="hiddenElement form-value-missing-error-text" data-bsi-element-part="{{ dataBsiElementPartValueMissingError }}">{{ formFieldErrorValueMissingText }}</div>
+                <div class="hiddenElement form-type-missmatch-error-text" data-bsi-element-part="{{ dataBsiElementPartMissmatchError }}">{{ formFieldErrorTypeMissmatchText }}</div>
+                <div class="hiddenElement form-other-error-text" data-bsi-element-part="{{ dataBsiElementPartOtherError }}">{{ formFieldOtherError }}</div>
+            {% endblock %}
+            <div {% if not formHideDropzone %} data-bsi-dropzone="{{ formDropzoneId }}"{% endif %} class="form-elements-container">
+                {% block form_container_content %}
                     {% include "../../form-section/prototype/template.twig" only %}
                 {% endblock %}
             </div>
@@ -41,7 +63,7 @@
             <div class="form-validation-summary">
                 <p>{{ formValidationSummaryMessage }}</p>
             </div>
-            <div data-bsi-remove-if="draft">
+            <div data-bsi-remove-if="editor">
                 <ul class="" data-bsi-form-validation="">
                     <li data-bsi-form-validation-item=""></li>
                 </ul>
