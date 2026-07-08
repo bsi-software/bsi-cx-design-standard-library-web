@@ -4,7 +4,7 @@ const uploadFileLocalizedTexts = {
     uploadButtonLabel: { default: 'Datei auswählen', en: 'Select file', it: 'Seleziona file', fr: 'Sélectionner le fichier' },
 }
 
-const lang = document.documentElement?.getAttribute('lang').toLowerCase().slice(0, 2);
+const lang = document.documentElement?.getAttribute('lang')?.toLowerCase().slice(0, 2) || '';
 
 module.exports.getLanguage = () => {
     return lang;
