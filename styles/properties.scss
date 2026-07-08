@@ -158,7 +158,7 @@ $showFormFieldTypeField: bsiProperty('showFormFieldTypeField', false);
 $formPlaceholderColor: bsiProperty('formPlaceholderColor', #282322);
 
 $borderRadiusFormElements: bsiProperty('borderRadiusFormElements', $borderRadius100);
-$formLabelInfoPosition: bsiProperty('formLabelInfoPosition', 'bsi-form-label-info-top-bottom');
+$formLabelInfoPosition: bsiProperty('formLabelInfoPosition', 'top-bottom');
 $spaceBetweenFormSections: bsiProperty('spaceBetweenFormSections', $spacing600);
 $spaceBetweenFormElements: bsiProperty('spaceBetweenFormElements', $spacing400);
 $spaceWithinFormelements: bsiProperty('spaceWithinFormelements', $spacing100);
