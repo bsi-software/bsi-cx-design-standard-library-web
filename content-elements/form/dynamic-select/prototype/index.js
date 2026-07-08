@@ -34,9 +34,6 @@ module.exports = (
   .withElementId(elementId)
   .withLabel(elementLabel)
   .withIcon(Icon.DROPDOWN)
-  .withStyleConfigs(
-      require('../../../../configs/styles/form-select-placeholder')
-  )
   .withParts(
       cx.part.basicDynamicValueList
           .withId(elementPartId)
