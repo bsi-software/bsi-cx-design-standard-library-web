@@ -9,24 +9,12 @@ const lang = () => {
         return '';
     }
 
-    const metaElement = document.querySelector(`meta[name=x-language]`);
-    if (!metaElement) {
-        return '';
-    }
-
-    return metaElement.getAttribute('value') || metaElement.getAttribute('content') || '';
-};
-
-const getLanguageFallback = () => {
-    if (typeof document === 'undefined') {
-        return '';
-    }
-
-    return document.documentElement?.getAttribute('lang') || '';
+    const detectedLang = document.documentElement?.getAttribute('lang') || '';
+    return detectedLang.toLowerCase().slice(0, 2);
 };
 
 module.exports.getLanguage = () => {
-    return lang() || getLanguageFallback();
+    return lang();
 }
 
-module.exports.getUploadFileLocalizedTexts = (localizedKey) => uploadFileLocalizedTexts[localizedKey] ? uploadFileLocalizedTexts[localizedKey][lang() || getLanguageFallback()] ?? uploadFileLocalizedTexts[localizedKey].default : localizedKey;
+module.exports.getUploadFileLocalizedTexts = (localizedKey) => uploadFileLocalizedTexts[localizedKey] ? uploadFileLocalizedTexts[localizedKey][lang()] ?? uploadFileLocalizedTexts[localizedKey].default : localizedKey;
