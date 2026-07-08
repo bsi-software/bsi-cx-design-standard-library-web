@@ -4,10 +4,29 @@ const uploadFileLocalizedTexts = {
     uploadButtonLabel: { default: 'Datei auswählen', en: 'Select file', it: 'Seleziona file', fr: 'Sélectionner le fichier' },
 }
 
-const lang = document.querySelector('meta[name=x-language]').getAttribute('value');
+const lang = () => {
+    if (typeof document === 'undefined') {
+        return '';
+    }
+
+    const metaElement = document.querySelector(`meta[name=x-language]`);
+    if (!metaElement) {
+        return '';
+    }
+
+    return metaElement.getAttribute('value') || metaElement.getAttribute('content') || '';
+};
+
+const getLanguageFallback = () => {
+    if (typeof document === 'undefined') {
+        return '';
+    }
+
+    return document.documentElement?.getAttribute('lang') || '';
+};
 
 module.exports.getLanguage = () => {
-    return lang;
+    return lang() || getLanguageFallback();
 }
 
-module.exports.getUploadFileLocalizedTexts = (localizedKey) => uploadFileLocalizedTexts[localizedKey] ? uploadFileLocalizedTexts[localizedKey][lang] ?? uploadFileLocalizedTexts[localizedKey].default : localizedKey;
+module.exports.getUploadFileLocalizedTexts = (localizedKey) => uploadFileLocalizedTexts[localizedKey] ? uploadFileLocalizedTexts[localizedKey][lang() || getLanguageFallback()] ?? uploadFileLocalizedTexts[localizedKey].default : localizedKey;
