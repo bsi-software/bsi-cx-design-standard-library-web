@@ -1,5 +1,6 @@
 const formElements = [
   require('./checkbox'),
+  require('./dynamic-select'),
   require('./form-field'),
   require('./form-field-tel'),
   require('./regex-input'),

@@ -1,0 +1,26 @@
+{% apply spaceless %}
+    {% set selectElementId = elementId ?: 'dynamic-value-list-4pkjw8' %}
+    {% set selectElementPartId = elementPartId ?: 'dynamic-select-part-oxkUYt' %}
+    {% set selectFormTextPartId = formTextPartId ?: 'dynamic-select-part-text-fBFsTH' %}
+    {% set selectPlaceholderPartId = placeholderTextPartId ?: 'dynamic-select-part-placeholder-D2OcHs' %}
+    {% set selectErrorRequiredPartId = errorRequiredPartId ?: 'dynamic-select-part-error-required-vN32yi' %}
+    {% set selectLabelText = (labelText ?: properties.selectLabelText) ?: bsi_cx_lorem(3) %}
+    {% set selectOptionText = (optionText ?: properties.selectOptionText) ?: 'Bitte wählen' %} {# TODO: make translatable #}
+    {% set selectInfoText = (infoText ?: properties.selectInfoText) ?: "" %}
+    {% set selectErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
+
+    <div x-data="dynamicSelect" data-bsi-element="{{ selectElementId }}" class="{{ 'bsi-element-' ~ selectElementId }} mb-4 bsi-form-element bsi-form-flex-label bsi-placeholder-not-defined" data-bsi-element-part="{{ selectElementPartId }}" data-bsi-entity-id="">
+        <div class="bsi-form-input-element bsi-label-floating-element mb-3" role="alert" aria-live="polite">
+            <div class="form-label-and-info-text">
+                <label for="dynamic-select" class="form-label">{{ selectLabelText }}</label>
+                <div data-bsi-element-part="{{ selectFormTextPartId }}" class="form-text">{{ selectInfoText }}</div>
+                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ selectInfoText }}"></i>
+            </div>
+            <select x-init="initDynamicSelectfield" class="form-select" x-on:input="onInputChanged">
+                <option data-bsi-element-part="{{ selectPlaceholderPartId }}" value="">{{ selectOptionText }}</option>
+            </select>
+            <div data-bsi-element-part="{{ selectErrorRequiredPartId }}" class="invalid-feedback"> {{ selectErrorRequiredText }} </div>
+            <input id="dynamic-select" type="text" class="basic-dynamic-value-list-input d-none" data-bsi-entity-key-value="" data-bsi-entity-key-display-text="">
+        </div>
+    </div>
+{% endapply %}

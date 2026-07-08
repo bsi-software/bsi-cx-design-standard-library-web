@@ -7,6 +7,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
 * new Formular refactor
+* Add new "Dynamic Dropdown with Value List"-Element
 
 ## [1.4.17] - 15.04.2026
 * Fix dark-mode text property
