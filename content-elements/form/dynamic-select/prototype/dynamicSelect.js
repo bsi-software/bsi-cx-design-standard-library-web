@@ -13,13 +13,11 @@ Alpine.data('dynamicSelect', () => ({
         this.selectElement.name = input.name;
         input.remove();
 
-        const placeholder = this.rootElement.querySelector('.placeholder');
-        const placeholderOption = this.selectElement.querySelector('option');
-        placeholderOption.textContent = placeholder.textContent
+        const placeholder = this.rootElement.querySelector('.placeholder').textContent;
         const options = await this.fetchBsiRestResource();
 
-        if (placeholder.textContent) {
-            this.selectElement.innerHTML =  placeholderOption.outerHTML + options;
+        if (placeholder) {
+            this.selectElement.innerHTML = `<option value="">${placeholder}</option>` + options;
         }
         else {
             this.selectElement.innerHTML = options;
@@ -35,7 +33,6 @@ Alpine.data('dynamicSelect', () => ({
          return entity.options
                 .map(option => `<option value="${option.id}">${option.text}</option>`)
                 .join("");
-
     },
 
     onInputChanged() {
