@@ -18,7 +18,7 @@
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ selectInfoText }}"></i>
             </div>
             <select x-init="initDynamicSelectfield" class="form-select" x-on:input="onInputChanged" data-bsi-entity-key-value="" data-bsi-entity-key-display-text="">
-                <option value="">{{ selectOptionText }}</option>
+                <option value=""></option>
             </select>
             <div data-bsi-element-part="{{ selectErrorRequiredPartId }}" class="invalid-feedback"> {{ selectErrorRequiredText }} </div>
             <input id="dynamic-select" type="text" class="d-none">
