@@ -15,10 +15,8 @@
 // ------------------------------------------------------------
 
 module.exports = {
-
-    bodyText: {
-        label: "Text",
-        prefillText: "Lorem Impsum",
-    }
-
-}
+  bodyText: {
+    label: "Text",
+    prefillText: "Lorem Impsum",
+  },
+};

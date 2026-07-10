@@ -1,4 +1,9 @@
-const { TemplateElement, Icon, cx, bsiProperty, bsiLoremIpsum } = require("@bsi-cx/design-build");
+const {
+  TemplateElement,
+  Icon,
+  cx,
+  bsiLoremIpsum,
+} = require("@bsi-cx/design-build");
 
 /**
  * @type {TemplateElement}
@@ -9,6 +14,7 @@ module.exports = cx.templateElement
   .withFile(require("./template.hbs.twig"))
   .withIcon(Icon.HEADING)
   .withTemplateParts(
-    cx.templatePart.PlainText("Überschrift", "headline-1-text").withTextPrefill({"value": cx.bsiLoremIpsum(3)}),
-  )
-;
+    cx.templatePart
+      .PlainText("Überschrift", "headline-1-text")
+      .withTextPrefill({ value: bsiLoremIpsum(3) }),
+  );
