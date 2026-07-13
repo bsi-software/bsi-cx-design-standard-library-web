@@ -12,44 +12,30 @@ const {
  */
 module.exports = cx.templateElement
   .withElementId("bsi-grid-v68Eos")
-  .withLabel(bsiProperty("grid.label", "Reihe (Template Part)"))
+  .withLabel(bsiProperty("grid.label.element", "Reihe (Template Part)"))
   .withFile(require("./template.hbs.twig"))
   .withIcon(Icon.THREE_COLUMNS)
   .withTemplateParts(
     cx.templatePart
       .Checkbox(
-        bsiProperty("grid.fullWidth", "Hintergrund volle Breite?"),
+        bsiProperty("grid.label.fullWidth", "Hintergrund volle Breite?"),
         "grid-expand-background-7h1Mpz",
       )
-      .withCheckboxPrefill(false),
+      .withCheckboxPrefill(bsiProperty("grid.prefill.fullWidth", false)),
     cx.templatePart
       .Option(
-        bsiProperty("grid.distributionLabel", "Spalten Verteilung"),
+        bsiProperty("grid.label.distribution", "Spalten Verteilung"),
         "grid-template-XepNDf",
-        {
-          // TODO: Wie machen wir die Übersetzug von den Optionen?
-          auto: "grid-template-auto",
-          "1 Spalte": "grid-template-1",
-          "1:1": "grid-template-1-1",
-          "2:1": "grid-template-2-1",
-          "1:2": "grid-template-1-2",
-        },
+        bsiProperty("grid.options.distribution"),
       )
       .withOptionPrefill("grid-template-1"),
     cx.templatePart
       .Option(
-        bsiProperty("grid.backgroundColorLabel", "Hintergrundfarbe der Row"),
+        bsiProperty("grid.label.background", "Hintergrundfarbe der Row"),
         "grid-background-color-cN3IpC",
-        {
-          // TODO: Wie machen wir die Übersetzug von den Optionen?
-          Transparent: "bg-color-transparent",
-          Primary: "bg-color-primary",
-          Secondary: "bg-color-secondary",
-          Tertiary: "bg-color-tertiary",
-          Dark: "bg-color-dark",
-        },
+        bsiProperty("grid.options.background"),
       )
-      .withOptionPrefill("bg-color-transparent"),
+      .withOptionPrefill("grid.prefill.background"),
   )
   .withDropzones(
     cx.dropzone

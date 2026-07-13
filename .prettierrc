@@ -1,22 +1,16 @@
 {
-  "plugins": [
-    "prettier-plugin-jinja-template"
-  ],
+  "plugins": ["prettier-plugin-jinja-template"],
   "tabWidth": 2,
   "overrides": [
     {
-      "files": [
-        "*.hbs"
-      ],
+      "files": ["*.hbs"],
       "options": {
         "parser": "glimmer",
         "tabWidth": 4
       }
     },
     {
-      "files": [
-        "*.twig"
-      ],
+      "files": ["*.twig"],
       "options": {
         "parser": "jinja-template",
         "tabWidth": 4
