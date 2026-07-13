@@ -1,12 +1,21 @@
-@use "../../../styles/bootstrap/bs_index" as bs;
-@use "../../../styles/properties/index.scss" as p;
+@use "../../../../styles/bootstrap/bs_index" as bs;
+@use "../../../../styles/properties/index.scss" as p;
 
-.bsi-grid-element {
+.bsi-grid-element-temlate-part {
   &.grid-rounded-corners {
     border-radius: p.border-radius(400);
   }
 
-  // auto templating
+  /**
+    * auto templating
+    * Creates a responsive CSS Grid with a variable number of columns.
+    * - auto-fit generates as many columns as needed, depending on the
+    *   available space and the number of grid items
+    * - The minimum column width is calculated from the desired grid structure
+    *   (total width minus gaps, evenly distributed across the columns)
+    * - Columns can flexibly grow up to 1fr
+    * - Unused columns are automatically collapsed
+    **/
   .grid {
     /* Mobile: max 4 Columns */
     grid-template-columns: repeat(
@@ -55,7 +64,7 @@
   );
 
   @each $name, $templates in $gridTemplates {
-    &.grid-template-#{$name} .grid {
+    .grid-template-#{$name} {
       /* Mobile */
       grid-template-columns: map-get($templates, mobile);
 
@@ -85,7 +94,7 @@
         background-color: $color;
       }
 
-      .grid-normal-background .container {
+      .grid-normal-background {
         background-color: $color;
       }
     }
