@@ -9,16 +9,21 @@ const {
  * @type {TemplateElement}
  */
 module.exports = cx.templateElement
-  .withElementId("bsi-body-text-IxsKOQ")
-  .withLabel(bsiProperty("bodyText.label", "Text"))
+  .withElementId("bsi-body-text")
+  .withLabel(bsiProperty("bodyText.label.element", "Text"))
   .withFile(require("./template.hbs.twig"))
   .withIcon(Icon.TEXT)
   .withTemplateParts(
     cx.templatePart
-      .FormattedText("Text", "body-text-OastHh", require("./editor-config.js"))
+      .FormattedText(
+        bsiProperty("bodyText.label.text"),
+        "body-text-OastHh",
+        bsiProperty(
+          "global.htmlEditor",
+          require("../../../configs/editor/full"),
+        ),
+      )
       .withFormattedTextPrefill(
-        "<div>" +
-          bsiProperty("bodyText.prefillText", "Lorem Impsum") +
-          "</div>",
+        bsiProperty("bodyText.prefill.text", "Lorem Impsum"),
       ),
   );

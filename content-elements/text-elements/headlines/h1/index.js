@@ -2,7 +2,7 @@ const {
   TemplateElement,
   Icon,
   cx,
-  bsiLoremIpsum,
+  bsiProperty,
 } = require("@bsi-cx/design-build");
 
 /**
@@ -10,11 +10,11 @@ const {
  */
 module.exports = cx.templateElement
   .withElementId("bsi-headline-h1")
-  .withLabel("Überschirft 1")
+  .withLabel(bsiProperty("headline.labels.element"))
   .withFile(require("./template.hbs.twig"))
   .withIcon(Icon.HEADING)
   .withTemplateParts(
     cx.templatePart
-      .PlainText("Überschrift", "headline-1-text")
-      .withTextPrefill({ value: bsiLoremIpsum(3) }),
+      .PlainText(bsiProperty("headline.labels.heading"), "headline-1-text")
+      .withTextPrefill({ value: bsiProperty("headline.prefill.heading") }),
   );

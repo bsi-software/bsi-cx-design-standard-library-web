@@ -33,14 +33,14 @@
 #}
 
 {% macro resolvePreset(preset, propertiesPreset = null, validPresets, defaultKey) %}
-{% apply spaceless %}
-	{% if preset in validPresets|keys %}
-		{% set key = preset %}
-	{% elseif propertiesPreset in validPresets|keys %}
-		{% set key = propertiesPreset %}
-	{% else %}
-		{% set key = defaultKey %}
-	{% endif %}
-	{{- validPresets[key] -}}
-{% endapply %}
+    {% apply spaceless %}
+        {% if preset in validPresets|keys %}
+            {% set key = preset %}
+            {% elseif propertiesPreset in validPresets|keys %}
+            {% set key = propertiesPreset %}
+        {% else %}
+            {% set key = defaultKey %}
+        {% endif %}
+        {{- validPresets[key] -}}
+    {% endapply %}
 {% endmacro %}

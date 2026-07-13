@@ -1,7 +1,15 @@
-{% set bodyTextElementId = elementId ?: 'bsi-body-text-IxsKOQ' %}
+{% set bodyTextElementId = elementId ?: 'bsi-body-text' %}
+{% set formattedTextId = formattedTextId ?: 'body-text-OastHh' %}
 
 {% apply spaceless %}
-<div data-bsi-element="{{ bodyTextElementId }}" class="bsi-text-element bsi-element-{{ bodyTextElementId }}">
-    <div lang="{{ '{{ body-text-OastHh.languageTag }}' }}">{{ ' {{{ body-text-OastHh.html }}}' }}</div>
-</div>
+    <div
+        {{ templateElement(bodyTextElementId, scope) }}
+        class="bsi-text-element bsi-element-{{ bodyTextElementId }}"
+    >
+        <div {{ formattedLanguageTag(formattedTextId, scope) }}>
+            {{ formattedHtml(formattedTextId, scope) }}
+        </div>
+    </div>
 {% endapply %}
+
+{# TODO: funktionen registrieren #}
