@@ -27,7 +27,8 @@ Alpine.data("formField", () => ({
       this._initRangeInput();
     } if (this.inputEl.type === 'tel') {
       this._initTelInput();
-    } else if (['date', 'datetime-local', 'time'].includes(this.inputEl.type)) {
+    } else if (['date', 'datetime-local', 'time'].includes(this.inputEl.type) 
+      && !this.$root.classList.contains('no-flatpickr')) {
       this._initDateInput();
     }
 
