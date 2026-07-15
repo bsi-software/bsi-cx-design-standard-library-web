@@ -72,6 +72,16 @@
         background-color: rgba(0, 0, 0, 0.05) !important;
       }
     }
+
+    &.no-flatpickr {
+      input[type=date], input[type=time], input[type=datetime-local] {
+        &::-webkit-calendar-picker-indicator {
+            display: block;
+            opacity: 1;
+            cursor: pointer;
+        }
+      }
+    }
   }
 
   .was-validated .bsi-element-#{$id} .input-container:has(input:invalid) .invalid-feedback {
