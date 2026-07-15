@@ -15,7 +15,7 @@
 {% set pollErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %}
 {# TODO: make translatable #}
 {% set pollDefaultType = (defaultType ?: properties.pollDefaultType) ?: 'poll-nps' %}
-{% set npsStart = (npsStartWith0 or properties.npsStartWith0) ? 0 : 1 %}
+{% set npsStart = (npsStartWithZero or properties.npsStartWithZero) ? 0 : 1 %}
 
 <div x-data="formPoll" data-bsi-element="{{ pollElementId }}" class="{{ 'bsi-element-' ~ pollElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-{{ pollDefaultType }}">
 	<fieldset data-bsi-element-part="{{ pollElementPartId }}" data-bsi-form-field-fixed-type>

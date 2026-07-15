@@ -8,7 +8,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * new Formular refactor
 * Add new "Dynamic Dropdown with Value List"-Element
-* Add npsStartWith0 property
+* Add npsStartWithZero property
 * Fix nps for newer CX Versions
 
 
