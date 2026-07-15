@@ -46,7 +46,7 @@
     // - max: 1-10
     @for $start from 0 through 1 {
       @for $end from 1 through 10 {
-        &:has(input[type=number][min="#{$start}"][max="#{$end}"]) {
+        &:has(input[type=number][min^="#{$start}"][max^="#{$end}"]) {
 
           @for $visible from $start through $end {
             fieldset .bsi-poll-radio-item:nth-child(#{$visible + 1}) {

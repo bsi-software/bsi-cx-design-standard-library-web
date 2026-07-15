@@ -14,7 +14,7 @@
     formFieldHelperText: Optional helper text below the poll.
     customClasses: Additional CSS classes for the root wrapper.
 
-    pollMin: Minimum selectable value (0 when npsStartWith0/properties.npsStartWith0 is true, otherwise 1).
+    pollMin: Minimum selectable value (0 when npsStartWithZero/properties.npsStartWithZero is true, otherwise 1).
     pollMax: Maximum selectable value.
     pollRange: Iteration range used to render NPS options.
 #}
@@ -31,7 +31,7 @@
 {% set formFieldHelperText = infoText ?: "" %}
 {% set customClasses = customClasses ?: "" %}
 
-{% set pollMin = (npsStartWith0 or properties.npsStartWith0) ? 0 : 1 %}
+{% set pollMin = (npsStartWithZero or properties.npsStartWithZero) ? 0 : 1 %}
 {% set pollMax = 10 %}
 {% set pollRange = range(pollMin, pollMax) %}
 
