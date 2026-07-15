@@ -9,8 +9,11 @@ Alpine.data('dynamicSelect', () => ({
         this.selectElement = this.$el;
         const input = this.rootElement.querySelector('input');
 
-        this.rootElement.id = input.id;
+        this.selectElement.id = input.id;
         this.selectElement.name = input.name;
+        if(input.hasAttribute('required')) {
+            this.selectElement.setAttribute('required', true);
+        }
         input.remove();
 
         const placeholder = this.rootElement.querySelector('.placeholder').textContent;
