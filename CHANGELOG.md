@@ -6,10 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-* new Formular refactor
+
+
+
+## [1.5.1] - 15.07.2026
 * Add new "Dynamic Dropdown with Value List"-Element
 * Add npsStartWithZero property
 * Fix nps for newer CX Versions
+* New Formular implementation
+
+[1.5.1]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.5.1
 
 
 ## [1.4.17] - 15.04.2026
