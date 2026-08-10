@@ -1,5 +1,4 @@
 import Alpine from '@alpinejs/csp';
-import { isNumber } from 'chart.js/helpers';
 
 Alpine.data('formPin', () => ({
   bsiInputElement: null, // Input field required for CX story / value flow
@@ -76,7 +75,7 @@ Alpine.data('formPin', () => ({
     containerDiv.appendChild(div);
 
     inputPin.addEventListener('focusin', (e) => {
-      if (inputPin.value < 0 || inputPin.value > 9 || !isNumber(inputPin.value)) {
+      if (inputPin.value < 0 || inputPin.value > 9 || !Number.isInteger(inputPin.value)) {
         inputPin.value = '';
       }
     });

@@ -27,6 +27,7 @@ module.exports = (
   .withMinVersion(Version.CX_22_0)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withArchived(true)
   .withIcon(Icon.DIAGRAM_BAR)
   .withParts(
     cx.part.urlProvider
