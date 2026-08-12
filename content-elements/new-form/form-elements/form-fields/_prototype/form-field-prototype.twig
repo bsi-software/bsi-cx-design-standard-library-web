@@ -29,7 +29,9 @@
                 <div class="bsi-invalid-feedback"></div> {# for error messages from formular #}
             {% endblock %}
         </div>
-        <div class="max-char-counter"></div>
+        {% block max_char_counter %}
+            <div class="max-char-counter"></div>
+        {% endblock %}
         <div class="helper-text-container">
             <div data-bsi-element-part="{{ formFieldHelperTextPartId }}" class="helper-text">{{ formFieldHelperText }}</div>
         </div>
