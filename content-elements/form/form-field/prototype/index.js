@@ -41,6 +41,8 @@ module.exports = (
   .withLabel(elementLabel)
   .withDescription(elementDescription)
   .withIcon(Icon.FORMFIELD)
+  .withStyleConfigs(
+    require('../../../../configs/styles/form-date-flatpickr'))
   .withParts(
     cx.part.formField
       .withId(elementPartId)
