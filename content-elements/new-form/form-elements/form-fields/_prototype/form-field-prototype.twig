@@ -6,6 +6,7 @@
 {% set formFieldHelperText = infoText ?: "" %}
 {% set formFieldInputType = inputType ?: "text" %}
 {% set customClasses = customClasses ?: "" %}
+{% set customAttributes = customAttributes ?: "" %}
 
 <div data-bsi-element="{{ formFieldElementId }}" class="bsi-element-{{ formFieldElementId }} {{ formFieldShowMaxLengthCounter }} form-element {{ customClasses }}" data-bsi-element-part="{{ formFieldElementPartId }}" data-bsi-form-field-fixed-type="{{ formFieldInputType }}">
     <label for="{{ formFieldInputType }}-field" class="form-label">{{ formFieldLabelText }}</label>
@@ -19,7 +20,7 @@
                     id="{{ formFieldInputType }}-field"
                     type="{{ formFieldInputType }}"
                     class="{{ formFieldInputType }}-input"
-                    maxlength="250"
+                    {{ customAttributes|raw }}
                 >
                 </input>
             {% endblock %}
