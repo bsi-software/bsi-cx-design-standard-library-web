@@ -97,6 +97,10 @@ Alpine.data("form", () => ({
      * @param {Event} event for every change
      */
     formElementValidationOnChange(event) {
+        // Number inputs should only validate on blur.
+        if (event.target?.type === "number") {
+            return;
+        }
         this._formElementValidation(event.target);
     },
 
@@ -106,6 +110,26 @@ Alpine.data("form", () => ({
      * @param {InputEvent} event for every input
      */
     formElementValidationOnInput(event) {
+        // Number inputs should not validate on every keystroke.
+        // If a number field already shows an error, clear it as soon as the value becomes valid again.
+        if (event.target?.type === "number") {
+            const formElement = event.target.closest(".form-element");
+            const hasVisibleError = formElement?.querySelector(".bsi-invalid-feedback.is-visible") !== null;
+            const isValidNow = event.target.checkValidity();
+
+            if (hasVisibleError && isValidNow) {
+                this._formElementValidation(event.target);
+                return;
+            }
+
+            if (!isValidNow) {
+                // Clear stale feedback immediately and show validation again on blur.
+                this._setCustomInvalidClass(event.target);
+                this._clearVisibleFeedback(formElement);
+                this._setAriaValuesForElement(event.target);
+            }
+            return;
+        }
         this._formElementValidation(event.target);
     },
 
@@ -442,6 +466,25 @@ Alpine.data("form", () => ({
         elements.forEach(element => {
             this._toggleClass(element, "custom-valid", "custom-invalid");
         });
+    },
+
+    /**
+     * Hide visible feedback elements and reset wrapper state.
+     *
+     * @param {Element|null} formElement form element wrapper
+     */
+    _clearVisibleFeedback(formElement) {
+        if (!formElement) {
+            return;
+        }
+
+        formElement
+            .querySelectorAll(".form-field-feedback-wrapper > .is-visible")
+            .forEach(feedbackElement => {
+                feedbackElement.classList.remove("is-visible");
+            });
+
+        formElement.classList.remove("has-visible-feedback");
     },
 
 }));
