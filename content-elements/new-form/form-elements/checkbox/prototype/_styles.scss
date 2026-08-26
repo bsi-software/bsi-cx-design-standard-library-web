@@ -40,7 +40,7 @@
                         transition: opacity 0.2s ease;
                         line-height: 1;
                         font-family: $iconFontName;
-                        content: unquote("\"#{$iconFontCharacter}\"");
+                        content: $iconFontCharacter;
                     }
                 }
 
