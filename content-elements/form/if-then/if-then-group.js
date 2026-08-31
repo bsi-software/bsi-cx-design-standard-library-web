@@ -1,61 +1,159 @@
-import Alpine from '@alpinejs/csp';
+import Alpine from "@alpinejs/csp";
 
-Alpine.data('ifThenGroup', () => ({
-    dependingObj: [],
-    conditionInputs: null,
-    ifInputType: '',
-    init() {
-        // map depending groups to objects
-        let dependingGroups = Array.from(this.$root.querySelectorAll('.then-group'));
-        this.dependingObj = dependingGroups.map(dependingGroupNode => {
-            return {
-                groupNode: dependingGroupNode,
-                visibleIf: dependingGroupNode.querySelector('.condition').innerText.split(';').map(val => val.trim()).filter(val => !!val),
-                childInputs: Array.from(dependingGroupNode.querySelectorAll('input, select, textarea')),
-                childsRequired: dependingGroupNode.classList.contains('required-if-visible')
-            }
-        })
+Alpine.data("ifThenGroup", () => ({
+  dependingObj: [],
+  conditionInputs: null,
+  ifInputType: "",
+  root: "",
+  init() {
+    this.root = this.$root;
 
-        // register event listener on "if"-dropzone inputs
-        this.conditionInputs = Array.from(this.$root.querySelectorAll('.if-container select, .if-container input'));
-        if (this.conditionInputs[0].tagName === 'SELECT') {
-            this.ifInputType = 'select';
-        } else {
-            this.ifInputType = this.conditionInputs[0].type;
-        }
-        this.conditionInputs.forEach(input => input.setAttribute('x-on:change', 'toggleDependingGroups'));
+    this._initDependingGroups();
+    this._initConditionInputs();
+    this._registerConditionListeners();
+    this._setAriaControls();
+    this._handlePrefilledConditions();
+  },
 
-        // BFSG: set aria-controls
-        // if select: write all ids in aria-controls
-        // else: write the controlled form fields on the input
-        this.conditionInputs.length === 1
-            ? this.conditionInputs.at(0).setAttribute('aria-controls', Array.from(this.$root.querySelectorAll('.then-container input, .then-container select')).map(inp => inp.id).join(' '))
-            : this.conditionInputs.forEach(radioInput => {
-                let controlIds = this.dependingObj.filter(opt => opt.visibleIf.includes(radioInput.value)).flatMap(opt => opt.childInputs.map(inp => inp.id)).join(' ');
-                radioInput.setAttribute('aria-controls', controlIds);
-            });
+  _initDependingGroups() {
+    const dependingGroups = Array.from(
+      this.$root.querySelectorAll(":scope > .then-container > .then-group"),
+    );
 
-        // ***** Handle prefilled condition *****
-        // Select -> send input to _showDependingGroupsOf and get the value there
-        // Radio -> send input if checked to _showDependingGroupsOf and get the value there
-        // Checkbox -> send input to _showDependingGroupsOf and get the checked attribute there
-        // ***************************************
-        this.conditionInputs.filter(input => this.ifInputType !== "radio" || input.checked).forEach(input => this._showDependingGroupsOf(input));
-    },
-    toggleDependingGroups() {
-        this._showDependingGroupsOf(this.$el);
-    },
-    _showDependingGroupsOf(checkedEl) {
-        // BFSG: set aria-expanded
-        this.conditionInputs.forEach(condition => condition.setAttribute('aria-expanded', condition === checkedEl));
-        let value = this.ifInputType === "checkbox" ? String(checkedEl.checked) : checkedEl.value
-        // show active depending 
-        this.dependingObj.forEach(dependingObj => {
-            let isVisible = dependingObj.visibleIf.includes(value);
-            isVisible ? dependingObj.groupNode.removeAttribute('aria-hidden') : dependingObj.groupNode.setAttribute('aria-hidden', true);
-            dependingObj.childInputs.forEach(input => (isVisible && dependingObj.childsRequired)
-                ? input.setAttribute('required', 'required')
-                : input.removeAttribute('required'))
-        });
+    this.dependingObj = dependingGroups.map((dependingGroupNode) => ({
+      groupNode: dependingGroupNode,
+      visibleIf: dependingGroupNode
+        .querySelector(".condition")
+        .innerText.split(";")
+        .map((val) => val.trim())
+        .filter(Boolean),
+      childInputs: Array.from(
+        dependingGroupNode.querySelectorAll("input, select, textarea"),
+      ),
+      childsRequired: dependingGroupNode.classList.contains(
+        "required-if-visible",
+      ),
+    }));
+  },
+
+  _initConditionInputs() {
+    this.conditionInputs = Array.from(
+      this.$root.querySelectorAll(
+        ":scope > .if-container select, :scope > .if-container input",
+      ),
+    );
+
+    const firstInput = this.conditionInputs.at(0);
+
+    if (!firstInput) {
+      this.ifInputType = null;
+      return;
     }
+
+    this.ifInputType =
+      firstInput.tagName === "SELECT" ? "select" : firstInput.type;
+  },
+
+  _registerConditionListeners() {
+    this.conditionInputs.forEach((input) => {
+      input.setAttribute("x-on:change", "toggleDependingGroups");
+    });
+  },
+
+  _setAriaControls() {
+    if (this.conditionInputs.length === 1) {
+      this._setAriaControlsForSingleConditionInput();
+      return;
+    }
+
+    this._setAriaControlsForMultipleConditionInputs();
+  },
+
+  _setAriaControlsForSingleConditionInput() {
+    const controlIds = Array.from(
+      this.$root.querySelectorAll(
+        ".then-container input, .then-container select",
+      ),
+    )
+      .map((input) => input.id)
+      .join(" ");
+
+    this.conditionInputs.at(0).setAttribute("aria-controls", controlIds);
+  },
+
+  _setAriaControlsForMultipleConditionInputs() {
+    this.conditionInputs.forEach((radioInput) => {
+      const controlIds = this.dependingObj
+        .filter((group) => group.visibleIf.includes(radioInput.value))
+        .flatMap((group) => group.childInputs.map((input) => input.id))
+        .join(" ");
+
+      radioInput.setAttribute("aria-controls", controlIds);
+    });
+  },
+
+  _handlePrefilledConditions() {
+    this.conditionInputs
+      .filter((input) => this.ifInputType !== "radio" || input.checked)
+      .forEach((input) => {
+        this._showDependingGroupsOf(input);
+      });
+  },
+  toggleDependingGroups() {
+    this._showDependingGroupsOf(this.$el);
+    this.disableAllInputsHidden();
+  },
+  disableAllInputsHidden() {
+    let hiddenInputs = this.root.querySelectorAll(
+      ".then-group[aria-hidden='true']",
+    );
+    hiddenInputs.forEach((div) => {
+      div.querySelectorAll("input,select").forEach((input) => {
+        input.removeAttribute("required");
+        if (input.type == "checkbox" || input.type == "radio") {
+          input.checked = false;
+          input.dispatchEvent(new Event("change"));
+        } else if (input.tagName == "select") {
+          input.selectedIndex = 0;
+          input.dispatchEvent(new Event("change"));
+        } else {
+          input.value = "";
+        }
+      });
+    });
+  },
+  _showDependingGroupsOf(checkedEl) {
+    // BFSG: set aria-expanded
+    this.conditionInputs.forEach((condition) =>
+      condition.setAttribute("aria-expanded", condition === checkedEl),
+    );
+    let value =
+      this.ifInputType === "checkbox"
+        ? String(checkedEl.checked)
+        : checkedEl.value;
+    // show active depending
+    this.dependingObj.forEach((dependingObj) => {
+      let isVisible = dependingObj.visibleIf.includes(value);
+      isVisible
+        ? dependingObj.groupNode.removeAttribute("aria-hidden")
+        : dependingObj.groupNode.setAttribute("aria-hidden", true);
+      dependingObj.childInputs.forEach((input) =>
+        isVisible && dependingObj.childsRequired
+          ? this.addRequired(input)
+          : this.removeRequired(input),
+      );
+    });
+  },
+  removeRequired(input) {
+    if (input.classList.contains("flatpickr-input")) {
+      input.nextElementSibling?.removeAttribute("required");
+    }
+    input.removeAttribute("required");
+  },
+  addRequired(input) {
+    if (input.classList.contains("flatpickr-input")) {
+      input.nextElementSibling?.setAttribute("required", "required");
+    }
+    input.setAttribute("required", "required");
+  },
 }));
