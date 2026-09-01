@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-
+* Fix focus input field styling
 
 
 ## [1.5.1] - 15.07.2026
@@ -26,7 +26,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.4.16] - 08.04.2026
 * Add friendly captcha element
 * Add multiple-file-upload element
-* Add file type and phone number validation to form-field 
+* Add file type and phone number validation to form-field
 * Fix shadow issue and add new hover configuration for table
 * Fix JS function for date/time inputs so it works correctly on mobile
 * Fix breaking-behavior for long table-headers on mobile devices
@@ -34,7 +34,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Update dark mode activation/deactivation using properties.js value
 * Update hover state and layout behavior for nps element
 * Update input padding for better icon alignment
-* Update text-element to add further properties upon includes 
+* Update text-element to add further properties upon includes
 
 
 ## [1.4.15] - 09.10.2025
@@ -85,7 +85,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.4.10] - 20.02.2025
 * Update nps-survey element: logic and mobile layout
 * Add dark mode support for general layout and all elements
-* Remove empty `ul`-tag from form summary validation 
+* Remove empty `ul`-tag from form summary validation
 * Fix the bootstrap date icon visualization
 * Update dark mode and accessibility for poll element
 * Add pin element
