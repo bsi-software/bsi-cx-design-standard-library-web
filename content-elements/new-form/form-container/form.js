@@ -97,10 +97,6 @@ Alpine.data("form", () => ({
      * @param {Event} event for every change
      */
     formElementValidationOnChange(event) {
-        // Number inputs should only validate on blur.
-        if (event.target?.type === "number") {
-            return;
-        }
         this._formElementValidation(event.target);
     },
 
@@ -117,6 +113,11 @@ Alpine.data("form", () => ({
             const hasVisibleError = formElement?.querySelector(".bsi-invalid-feedback.is-visible") !== null;
             const isValidNow = event.target.checkValidity();
 
+            // Immediate error cleanup when correcting:
+            // If the field shows a visible error AND the user corrects the value while typing,
+            // the full validation is triggered immediately.
+            // This removes the error, sets the element to "valid" and updates ARIA attributes,
+            // instead of waiting for the user to leave the field (blur).
             if (hasVisibleError && isValidNow) {
                 this._formElementValidation(event.target);
                 return;

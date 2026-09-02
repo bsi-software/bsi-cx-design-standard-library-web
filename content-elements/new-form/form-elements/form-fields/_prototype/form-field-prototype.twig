@@ -14,7 +14,7 @@
         <div class="form-field-input-wrapper">
             {% block input_field %}
                 <input
-                    @change="formElementValidationOnChange"
+                    {% if formFieldInputType != "number" %}@change="formElementValidationOnChange"{% endif %}
                     @blur="formElementValidationOnBlur"
                     @input="formElementValidationOnInput"
                     id="{{ formFieldInputType }}-field"
