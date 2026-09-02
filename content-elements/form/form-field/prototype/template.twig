@@ -15,7 +15,7 @@
 	<div class="bsi-form-input-element mb-3 bsi-label-floating-element">
 		<div class="form-label-and-info-text">
 			<label for="field" class="form-label">{{ formFieldLabelText }}</label>
-			<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ formFieldInfoText }}"></i>
+			<i class="bi bi-info-circle" x-ref="fieldTooltip" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ formFieldInfoText }}"></i>
 		</div>
 		<div class="input-container">
 			<div data-bsi-element-part="{{ formFieldTextPartId }}" class="form-text">{{ formFieldInfoText }}</div>
