@@ -1,16 +1,13 @@
 @use "../../../../styles/properties" as properties;
 
 @mixin formValidationStyling(
-    $elementId: "form-container-84c6581f",
     $errorColor: properties.$formErrorColor, 
     $successColor: properties.$formSuccessColor,
     $errorIconFontName: properties.$formErrorIconFontName,
     $errorIconFontCharacter: properties.$formErrorIconFontCharacter,
 ) {
 
-    .bsi-element-#{$elementId} {
-
-        .form-element {
+    .form-element {
 
             .form-field-feedback-wrapper {
                 display: none;
@@ -38,20 +35,23 @@
                 }
             }
 
+            &:has(.bsi-invalid-feedback.is-visible) {
+                // Error border should appear only when invalid feedback is visible.
+                input, .visual-input, select, textarea, .file-upload {
+                    --form-element-border-color: #{$errorColor};
+                }
+
+                .visual-star-input {
+                    color: #{$errorColor};
+                }
+            }
+
+            // Success border intentionally stays separate from visible feedback,
+            // because some fields have no success message but should still show a green border when valid.
             &:has(input:user-valid), &:has(input.custom-valid), &:has(textarea:user-valid), &:has(select:user-valid) {
                 input:not([type="checkbox"], [type="radio"]), textarea, .file-upload {
                     --form-element-border-color: #{$successColor};
                 }
-            }
-
-            &:has(input:user-invalid), &:has(input.custom-invalid), &:has(textarea:user-invalid), &:has(select:user-invalid) {
-                input, .visual-input, select, textarea, .file-upload {
-                    --form-element-border-color: #{$errorColor};
-                }
-                .visual-star-input {
-                    color: #{$errorColor};
-                }
-
             }
 
             &.checkbox-group.custom-invalid {
@@ -59,6 +59,5 @@
                     --form-element-border-color: #{$errorColor};
                 }
             }
-        }
     }
 }

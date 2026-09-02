@@ -1,5 +1,7 @@
 import Alpine from "@alpinejs/csp";
 
+const { getUploadFileLocalizedTexts } = require("../../../core/main/localizedTexts");
+
 Alpine.data("form", () => ({
     form: null,
     formErrorValueMissingText: null,
@@ -10,9 +12,9 @@ Alpine.data("form", () => ({
 
     init() {
         this.form = this.$root;
-        this.formErrorValueMissingText = this.$root.querySelector(".form-value-missing-error-text");
-        this.formErrorTypeMissmatchText = this.$root.querySelector(".form-type-missmatch-error-text");
-        this.formOtherError = this.$root.querySelector(".form-other-error-text");
+        this.formErrorValueMissingText = this.$root.querySelector(".form-value-missing-error-text")?.textContent.trim() || "";
+        this.formErrorTypeMissmatchText = this.$root.querySelector(".form-type-missmatch-error-text")?.textContent.trim() || "";
+        this.formOtherError = this.$root.querySelector(".form-other-error-text")?.textContent.trim() || "";
 
         // save all invalid-feedback error messages with id from elements and set aria values for all form controls
         this.form.querySelectorAll(".form-element input, .form-element textarea, .form-element select").forEach(formControlElement => {
@@ -104,6 +106,31 @@ Alpine.data("form", () => ({
      * @param {InputEvent} event for every input
      */
     formElementValidationOnInput(event) {
+        // Number inputs should not validate on every keystroke.
+        // If a number field already shows an error, clear it as soon as the value becomes valid again.
+        if (event.target?.type === "number") {
+            const formElement = event.target.closest(".form-element");
+            const hasVisibleError = formElement?.querySelector(".bsi-invalid-feedback.is-visible") !== null;
+            const isValidNow = event.target.checkValidity();
+
+            // Immediate error cleanup when correcting:
+            // If the field shows a visible error AND the user corrects the value while typing,
+            // the full validation is triggered immediately.
+            // This removes the error, sets the element to "valid" and updates ARIA attributes,
+            // instead of waiting for the user to leave the field (blur).
+            if (hasVisibleError && isValidNow) {
+                this._formElementValidation(event.target);
+                return;
+            }
+
+            if (!isValidNow) {
+                // Clear stale feedback immediately and show validation again on blur.
+                this._setCustomInvalidClass(event.target);
+                this._clearVisibleFeedback(formElement);
+                this._setAriaValuesForElement(event.target);
+            }
+            return;
+        }
         this._formElementValidation(event.target);
     },
 
@@ -330,21 +357,31 @@ Alpine.data("form", () => ({
         
         const validity = inputElement.validity;
         const validationMessage = inputElement.validationMessage;
+        const fieldErrorMessage = this.errorMessageMap[inputElement.id] || "";
 
-        if (validity.valueMissing) {
-            errorMessageElement.textContent = this.formErrorValueMissingText.textContent;
+        if (validity.badInput) {
+            errorMessageElement.textContent = getUploadFileLocalizedTexts("badInput");
+        }
+        else if (validity.valueMissing && inputElement.value.trim() === "") {
+            errorMessageElement.textContent = this.formErrorValueMissingText;
         }
         else if (validity.typeMismatch) {
-            errorMessageElement.textContent = this.formErrorTypeMissmatchText.textContent;
+            errorMessageElement.textContent = this.formErrorTypeMissmatchText;
         }
         else if (validity.patternMismatch) {
-            errorMessageElement.textContent = this.errorMessageMap[inputElement.id];
+            errorMessageElement.textContent = fieldErrorMessage;
+        }
+        else if (validity.rangeUnderflow || validity.rangeOverflow) {
+            errorMessageElement.textContent = getUploadFileLocalizedTexts("rangeError");
+        }
+        else if (validity.stepMismatch) {
+            errorMessageElement.textContent = getUploadFileLocalizedTexts("stepError");
         }
         else if (validationMessage == "placeholder is selected") {
-            errorMessageElement.textContent = this.errorMessageMap[inputElement.id];
+            errorMessageElement.textContent = fieldErrorMessage;
         }
-        else if (this.formOtherError !== "") {
-            errorMessageElement.textContent = this.formOtherError.textContent;
+        else if (this.formOtherError && this.formOtherError !== "") {
+            errorMessageElement.textContent = this.formOtherError;
         }
 
         this._setFeedbackVisibilityState(formElement, errorMessageElement.textContent.trim() !== "");
@@ -430,6 +467,25 @@ Alpine.data("form", () => ({
         elements.forEach(element => {
             this._toggleClass(element, "custom-valid", "custom-invalid");
         });
+    },
+
+    /**
+     * Hide visible feedback elements and reset wrapper state.
+     *
+     * @param {Element|null} formElement form element wrapper
+     */
+    _clearVisibleFeedback(formElement) {
+        if (!formElement) {
+            return;
+        }
+
+        formElement
+            .querySelectorAll(".form-field-feedback-wrapper > .is-visible")
+            .forEach(feedbackElement => {
+                feedbackElement.classList.remove("is-visible");
+            });
+
+        formElement.classList.remove("has-visible-feedback");
     },
 
 }));

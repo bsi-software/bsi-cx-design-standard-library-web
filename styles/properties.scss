@@ -148,7 +148,7 @@ $formHelperTextColor: bsiProperty('formHelperTextColor', #383e42);
 $formErrorColor: bsiProperty('formErrorColor', #dc3545);
 $formSuccessColor: bsiProperty('formSuccessColor', #198754);
 $formErrorIconFontName: bsiProperty('formErrorIconFontName', bootstrap-icons);
-$formErrorIconFontCharacter: bsiProperty('formErrorIconFontCharacter', '\F333');
+$formErrorIconFontCharacter: bsiProperty('formErrorIconFontCharacter', '\\F333');
 $formButtonSubmitColor: bsiProperty('formButtonSubmitColor', #ffffff);
 $formButtonResetColor: bsiProperty('formButtonResetColor', #383e42);
 $formButtonSubmitBackgroundColor: bsiProperty('formButtonSubmitBackgroundColor', #2F4E66);
@@ -168,14 +168,14 @@ $toggleItemSize: bsiProperty('toggleItemSize', $spacing400);
 
 // new form checkbox
 $checkboxIconFontName: bsiProperty('checkboxIconFontName', bootstrap-icons);
-$checkboxIconFontCharacter: bsiProperty('checkboxIconFontCharacter', '\F26E');
+$checkboxIconFontCharacter: bsiProperty('checkboxIconFontCharacter', '\\F26E');
 
 // new form email field
 $emailInvalidText: bsiProperty('emailInvalidText', 'Sie haben keine gültige E-Mail Adresse eingegeben. Beispiel: mail@example.com');
 
 // new form select
 $selectIconFontName: bsiProperty('selectIconFontName', bootstrap-icons);
-$selectIconFontCharacter: bsiProperty('selectIconFontCharacter', '\F282');
+$selectIconFontCharacter: bsiProperty('selectIconFontCharacter', '\\F282');
 
 // new form fileupload
 $fileUploadBorderColor: bsiProperty('fileUploadBorderColor', rgba(#383e42, 0.1));
@@ -189,9 +189,9 @@ $fileUploadButtonFontColor: bsiProperty('fileUploadButtonFontColor', #ffffff);
 $fileUploadButtonHoverBackgroundColor: bsiProperty('fileUploadButtonHoverBackgroundColor', rgba(#2F4E66, 0.1));
 $fileUploadButtonHoverFontColor: bsiProperty('fileUploadButtonHoverFontColor', #ffffff);
 $fileUploadIconUploadFontName: bsiProperty('fileUploadIconUploadFontName', bootstrap-icons);
-$fileUploadIconUploadFontCharacter: bsiProperty('fileUploadIconUploadFontCharacter', '\F296');
+$fileUploadIconUploadFontCharacter: bsiProperty('fileUploadIconUploadFontCharacter', '"\F296"');
 $fileUploadIconDeleteFontName: bsiProperty('fileUploadIconDeleteFontName', bootstrap-icons);
-$fileUploadIconDeleteFontCharacter: bsiProperty('fileUploadIconDeleteFontCharacter', '\F62A');
+$fileUploadIconDeleteFontCharacter: bsiProperty('fileUploadIconDeleteFontCharacter', '\\F62A');
 $fileUploadDeleteButtonBackgroundColor: bsiProperty('fileUploadDeleteButtonBackgroundColor', #383e42);
 $fileUploadDeleteButtonHoverBackgroundColor: bsiProperty('fileUploadDeleteButtonHoverBackgroundColor', rgba(#383e42, 0.3));
 $fileUploadDeleteButtonColor: bsiProperty('fileUploadDeleteButtonColor', #ffffff);
