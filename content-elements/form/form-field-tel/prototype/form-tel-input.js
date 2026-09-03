@@ -53,7 +53,7 @@ Alpine.data('telInput', () => ({
     this.inputField.checkValidity() ? classList.remove('d-block') : classList.add('d-block');
     // set Aria describedby attribute - also relevant in form.js and form-field.js
     this.inputField.setAttribute('aria-invalid', !logicValid);
-    if (logicValid && !this.inputField.value.trim() === '') {
+    if (logicValid) {
       this._setTooltipAccessibility(this.inputField.id);
     } else if ('ariaDescribedByElements' in Element.prototype) {
       var errorMessageElements = Array.from(

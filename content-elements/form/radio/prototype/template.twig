@@ -14,8 +14,8 @@
         <fieldset class="bsi-form-input-element">
             <legend class="form-label-and-info-text">
                 <label class="form-label pt-0">{{ radioGroupLabelText }}</label>
-                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ radioInfoText }}"></i>
-                <div data-bsi-element-part="{{ radioFormTextPartId }}" class="form-text">{{ radioInfoText }}</div>
+                <i class="bi bi-info-circle" data-bs-toggle="tooltip" x-ref="fieldTooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ radioInfoText }}"></i>
+                <div data-bsi-element-part="{{ radioFormTextPartId }}" x-ref="infoText" class="form-text">{{ radioInfoText }}</div>
             </legend>
             <div data-bsi-radio-group="" class="form-radio">
                 <div class="form-check" data-bsi-radio-item="">
