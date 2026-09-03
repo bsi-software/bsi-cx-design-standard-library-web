@@ -12,7 +12,7 @@
      data-bsi-element-part="{{ checkboxElementPartId }}"
      x-data="checkbox">
     <div class="bsi-form-input-element checkbox-info">
-		<div data-bsi-element-part="{{ checkboxFormTextPartId }}"
+		<div data-bsi-element-part="{{ checkboxFormTextPartId }}" x-ref="infoText"
 				class="form-text">{{ checkboxInfoText }}</div>
         <div>
             <input class="form-check-input form-checkbox-input"
@@ -21,7 +21,7 @@
 				   x-on:input="validateCheckbox">
 			<div class="checkbox-label-and-tooltip">
 				<label class="form-check-label" for="checkbox">{{ checkboxLabelText }}</label>
-				<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ checkboxInfoText }}"></i>
+				<i class="bi bi-info-circle" x-ref="fieldTooltip" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ checkboxInfoText }}"></i>
 			</div>
 			<div data-bsi-element-part="{{ checkboxErrorRequiredPartId }}" class="invalid-feedback">{{ checkboxErrorRequiredText }}</div>
 		</div>

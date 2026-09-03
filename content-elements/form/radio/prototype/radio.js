@@ -8,8 +8,10 @@ Alpine.data("formRadio", () => ({
 
     // not required or required and valid
     if (this.$el.checkValidity()) {
+      const form = this.$root.querySelector('input').closest('.bsi-element-form-container-692qIu');
+      this.tooltip = form.classList.contains('bsi-form-info-as-tooltip') ?  this.$root.fieldTooltip : this.$refs.infoText;
       this.$root.querySelectorAll("input").forEach((radioButton) => {
-        radioButton.removeAttribute("aria-describedby");
+        radioButton.ariaDescribedByElements = this.tooltip
       });
     }
     // required and invalid
