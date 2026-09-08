@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-
+* Archive Regex field for CX 25.2 and higher
 
 
 ## [1.5.1] - 15.07.2026
