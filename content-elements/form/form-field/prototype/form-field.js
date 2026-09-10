@@ -195,13 +195,28 @@ Alpine.data("formField", () => ({
       maxDate: this.maxDate,
     });
 
-    this.inputEl.closest('.input-container').querySelector('.input').id = this.inputEl.id;
+    const altInput = this.inputEl.closest('.input-container').querySelector('.input');
+    altInput.style.display = this.inputEl.style.display;
+    altInput.disabled = this.inputEl.disabled;
+    altInput.readOnly = this.inputEl.readOnly;
+    altInput.id = this.inputEl.id;
     this.inputEl.removeAttribute('id');
     // Add the span (with the icon) after the input
     this.inputEl.parentNode.classList.add('input-container'); // Add the container class in order to set the icon position
     var iconSpan = document.createElement('span');
     iconSpan.innerHTML = `<i class="bi ${this.isTime ? 'bi-clock' : 'bi-calendar'}"></i>`;
     this.inputEl.parentNode.appendChild(iconSpan);
+
+    const syncIcon = () => { iconSpan.style.display = altInput.style.display; };
+    syncIcon();
+    new MutationObserver(syncIcon).observe(altInput, { attributes: true, attributeFilter: ['style'] });
+
+    const syncReadonly = () => {
+      this.fp.set('clickOpens', !altInput.readOnly);
+      if (altInput.readOnly) this.fp.close();
+    };
+    syncReadonly();
+    new MutationObserver(syncReadonly).observe(altInput, { attributes: true, attributeFilter: ['readonly'] });
 
 
     // Formats the input of a date on the desktop if it is entered without periods. 03121996 -> 03.12.1996
@@ -216,6 +231,25 @@ Alpine.data("formField", () => ({
       initialCountry: 'de',
       nationalMode: false,
       loadUtils: () => import('intl-tel-input/build/js/utils.js'),
+    });
+
+    this._syncCountrySelectorWithInput();
+  },
+
+  _syncCountrySelectorWithInput() {
+    let countryContainer = this.$root.querySelector('.iti__country-container');
+    if (!countryContainer) return;
+
+    let countryButton = countryContainer.querySelector('button');
+    let sync = () => {
+      countryContainer.style.display = this.inputEl.style.display;
+      if (countryButton) countryButton.disabled = this.inputEl.disabled;
+    };
+
+    sync();
+    new MutationObserver(sync).observe(this.inputEl, {
+      attributes: true,
+      attributeFilter: ['style', 'disabled'],
     });
   },
 

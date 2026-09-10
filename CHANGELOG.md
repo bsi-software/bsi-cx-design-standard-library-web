@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
-
+* Fix date-picker and telephone number fields for conditional visibility within forms
 
 
 ## [1.5.1] - 15.07.2026
@@ -26,7 +26,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.4.16] - 08.04.2026
 * Add friendly captcha element
 * Add multiple-file-upload element
-* Add file type and phone number validation to form-field 
+* Add file type and phone number validation to form-field
 * Fix shadow issue and add new hover configuration for table
 * Fix JS function for date/time inputs so it works correctly on mobile
 * Fix breaking-behavior for long table-headers on mobile devices

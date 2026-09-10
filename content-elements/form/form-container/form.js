@@ -1,6 +1,6 @@
 import Alpine from "@alpinejs/csp";
 import { Tooltip } from "bootstrap";
-import { FieldRules} from '@bsi-cx/web-frontend/dist/bsi-cx-web-frontend.js';
+import { FieldRules, ExprEval } from '@bsi-cx/web-frontend/dist/bsi-cx-web-frontend.js';
 
 Alpine.data("formElement", () => ({
   form: null,
@@ -34,6 +34,7 @@ Alpine.data("formElement", () => ({
     }
 
     this._initBsiCxWebFrontend();
+    this._syncFieldWrapperVisibility();
   },
 
   submitForm(e) {
@@ -90,7 +91,7 @@ Alpine.data("formElement", () => ({
   _validateFormFieldTel() {
     this.form.querySelectorAll(".bsi-form-tel-input").forEach((telInput) => {
       let visibleInput = telInput.querySelector("input[type=tel]");
-      visibleInput.dispatchEvent(new Event("input"));
+      visibleInput?.dispatchEvent(new Event("input"));
     });
   },
 
