@@ -1,0 +1,165 @@
+/* =========================
+   Container
+   ========================= */
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+/* =========================
+   Carousel
+   ========================= */
+
+.carousel {
+    position: relative;
+    width: 100%;
+}
+
+
+/* =========================
+   Viewport
+   ========================= */
+
+.carousel__viewport {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* =========================
+   Track
+   ========================= */
+
+.carousel__track {
+    display: flex;
+    width: 100%;
+
+    transition: transform 400ms ease;
+}
+
+
+/* =========================
+   Slide
+   ========================= */
+
+.carousel__slide {
+    flex: 0 0 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    padding: 24px;
+}
+
+
+/* =========================
+   2-Spalter
+   ========================= */
+
+.carousel__image,
+.carousel__text {
+    min-width: 0;
+}
+
+
+/* =========================
+   Dropzones
+   ========================= */
+
+.dropzone {
+    width: 100%;
+    min-height: 250px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+
+    padding: 24px;
+}
+
+
+/* =========================
+   Navigation
+   ========================= */
+
+.carousel__prev,
+.carousel__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 28px;
+    line-height: 1;
+}
+
+.carousel__prev {
+    left: 8px;
+}
+
+.carousel__next {
+    right: 8px;
+}
+
+
+/* =========================
+   Dots
+   ========================= */
+
+.carousel__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 16px;
+}
+
+.carousel__dot {
+    width: 8px;
+    height: 8px;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.carousel__dot.is-active {
+    transform: scale(1.25);
+}
+
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .carousel__slide {
+        grid-template-columns: 1fr;
+    }
+
+}
