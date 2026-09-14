@@ -1,0 +1,27 @@
+{% apply spaceless %}
+{% set elementId = elementId ?: 'carousel-be15d5' %}
+{% set elementDropzoneId = dropzoneId ?: 'slide-dropzone-b0bf11' %}
+{% set elementPartId = elementPartId ?: 'interval-id-23b7e7' %}
+
+<div x-data="carousel" data-bsi-element="{{ elementId }}" class="bsi-element-carousel-be15d5 container">
+    <div class="d-none" x-ref="intervall" data-bsi-element-part="{{elementPartId}}">5000</div>
+    <div class="carousel">
+        <div class="carousel__viewport">
+            <div class="carousel__track" data-bsi-dropzone="{{elementDropzoneId}}">
+                {% block carousel_dropzone %}
+                    {% embed "../../layout/col-two/template.twig" %}
+                        {% block col_two_dropzone_1 %}
+                            {% include "../figure/template.twig" %}
+                        {% endblock %}
+                        {% block col_two_dropzone_2 %}
+                            {% include "../text/template.twig" %}
+                        {% endblock %}
+                    {% endembed %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="carousel__dots"></div>
+    </div>
+</div>
+
+{% endapply %}
