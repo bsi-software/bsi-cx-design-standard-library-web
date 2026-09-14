@@ -1,6 +1,6 @@
 import Alpine from "@alpinejs/csp";
 import { Tooltip } from "bootstrap";
-import { FieldRules} from '@bsi-cx/web-frontend/dist/bsi-cx-web-frontend.js';
+import { FieldRules, ExprEval } from '@bsi-cx/web-frontend/dist/bsi-cx-web-frontend.js';
 
 Alpine.data("formElement", () => ({
   form: null,
@@ -34,6 +34,7 @@ Alpine.data("formElement", () => ({
     }
 
     this._initBsiCxWebFrontend();
+    this._syncFieldWrapperVisibility();
   },
 
   submitForm(e) {
@@ -90,7 +91,7 @@ Alpine.data("formElement", () => ({
   _validateFormFieldTel() {
     this.form.querySelectorAll(".bsi-form-tel-input").forEach((telInput) => {
       let visibleInput = telInput.querySelector("input[type=tel]");
-      visibleInput.dispatchEvent(new Event("input"));
+      visibleInput?.dispatchEvent(new Event("input"));
     });
   },
 
@@ -153,6 +154,47 @@ Alpine.data("formElement", () => ({
         .join("");
       validationSummary.appendChild(messageContainerList);
     }
+  },
+
+  _syncFieldWrapperVisibility() {
+    const jsonAttr = this.form.getAttribute("data-bsi-json-document");
+    if (!jsonAttr) return;
+
+    let rulesDoc;
+    try {
+      rulesDoc = JSON.parse(jsonAttr
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&amp;/g, "&"));
+    } catch (e) {
+      console.warn("Failed to parse data-bsi-json-document for field wrapper visibility sync", e);
+      return;
+    }
+
+    setTimeout(() => {
+      (rulesDoc.rules || []).forEach((rule) => {
+        if (!rule.visible) return;
+
+        const sourceEl = this.form.querySelector(`#${rule.source}`);
+        if (!sourceEl) return;
+
+        const wrappers = rule.targets
+          .map((targetId) => document.getElementById(targetId)?.closest(".bsi-form-element"))
+          .filter(Boolean);
+        if (!wrappers.length) return;
+
+        const sync = () => {
+          const visible = new ExprEval(rule.visible).eval(sourceEl);
+          wrappers.forEach((wrapper) => { wrapper.style.display = visible ? "" : "none"; });
+        };
+
+        sync();
+        sourceEl.addEventListener("input", sync);
+        sourceEl.addEventListener("change", sync);
+      });
+    }, 0);
   },
 
   /**

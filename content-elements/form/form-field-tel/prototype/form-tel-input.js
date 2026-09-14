@@ -33,6 +33,8 @@ Alpine.data('telInput', () => ({
     if (hasFloatingLabel) {
       this._initFloatingLabel();
     }
+
+    this._syncCountrySelectorWithInput();
   },
 
   validate() {
@@ -61,5 +63,21 @@ Alpine.data('telInput', () => ({
     itiElement.classList.add('form-floating');
     itiElement.append(labelElement);
     labelElement.innerText = this.inputField.placeholder;
+  },
+  _syncCountrySelectorWithInput() {
+    let countryContainer = this.$root.querySelector('.iti__country-container');
+    if (!countryContainer) return;
+
+    let countryButton = countryContainer.querySelector('button');
+    let sync = () => {
+      countryContainer.style.display = this.inputField.style.display;
+      if (countryButton) countryButton.disabled = this.inputField.disabled;
+    };
+
+    sync();
+    new MutationObserver(sync).observe(this.inputField, {
+      attributes: true,
+      attributeFilter: ['style', 'disabled'],
+    });
   },
 }));
