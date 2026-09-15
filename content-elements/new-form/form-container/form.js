@@ -2,6 +2,10 @@ import Alpine from "@alpinejs/csp";
 
 const { getUploadFileLocalizedTexts } = require("../../../core/main/localizedTexts");
 
+function textOf(selector) {
+    return this.$root.querySelector(selector)?.textContent.trim() ?? "";
+};
+
 Alpine.data("form", () => ({
     form: null,
     formErrorValueMissingText: null,
@@ -12,9 +16,9 @@ Alpine.data("form", () => ({
 
     init() {
         this.form = this.$root;
-        this.formErrorValueMissingText = this.$root.querySelector(".form-value-missing-error-text")?.textContent.trim() || "";
-        this.formErrorTypeMissmatchText = this.$root.querySelector(".form-type-missmatch-error-text")?.textContent.trim() || "";
-        this.formOtherError = this.$root.querySelector(".form-other-error-text")?.textContent.trim() || "";
+        this.formErrorValueMissingText = textOf(".form-value-missing-error-text");
+        this.formErrorTypeMissmatchText = textOf(".form-type-missmatch-error-text");
+        this.formOtherError = textOf(".form-other-error-text");
 
         // save all invalid-feedback error messages with id from elements and set aria values for all form controls
         this.form.querySelectorAll(".form-element input, .form-element textarea, .form-element select").forEach(formControlElement => {
