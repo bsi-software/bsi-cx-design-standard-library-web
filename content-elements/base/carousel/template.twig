@@ -1,0 +1,28 @@
+{% apply spaceless %}
+    {% set carouselElementId = elementCarouselId ?: 'carousel-be15d5' %}
+    {% set carouselElementDropzoneId = dropzoneCarouselId ?: 'slide-dropzone-b0bf11' %}
+    {% set intervalElementPartId = intervalElementPartId ?: 'interval-id-23b7e7' %}
+    {% set ariaLabelElementPartId = ariaLabelElementPartId ?: 'aria-label-id-e7ca88' %}
+
+    <div x-data="carousel" data-bsi-element="{{ carouselElementId }}" class="bsi-element-carousel-be15d5 carousel">
+        <div class="d-none" x-ref="intervall" data-bsi-element-part="{{ intervalElementPartId }}">5000</div>
+        <div class="d-none" x-ref="ariaLabel" data-bsi-element-part="{{ ariaLabelElementPartId }}">Zur Folie</div>
+            <div class="carousel__viewport">
+                <div class="carousel__track" data-bsi-dropzone="{{ carouselElementDropzoneId }}">
+                    {% block carousel_dropzone %}
+                        {% embed "../../layout/col-two/template.twig" %}
+                            {% block col_two_dropzone_1 %}
+                                {% include "../figure/template.twig" %}
+                            {% endblock %}
+                            {% block col_two_dropzone_2 %}
+                                {% include "../text/template.twig" %}
+                            {% endblock %}
+                        {% endembed %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="carousel__dots"></div>
+        </div>
+    </div>
+
+{% endapply %}
