@@ -189,7 +189,7 @@ $fileUploadButtonFontColor: bsiProperty('fileUploadButtonFontColor', #ffffff);
 $fileUploadButtonHoverBackgroundColor: bsiProperty('fileUploadButtonHoverBackgroundColor', rgba(#2F4E66, 0.1));
 $fileUploadButtonHoverFontColor: bsiProperty('fileUploadButtonHoverFontColor', #ffffff);
 $fileUploadIconUploadFontName: bsiProperty('fileUploadIconUploadFontName', bootstrap-icons);
-$fileUploadIconUploadFontCharacter: bsiProperty('fileUploadIconUploadFontCharacter', '"\F296"');
+$fileUploadIconUploadFontCharacter: bsiProperty('fileUploadIconUploadFontCharacter', '\\F296');
 $fileUploadIconDeleteFontName: bsiProperty('fileUploadIconDeleteFontName', bootstrap-icons);
 $fileUploadIconDeleteFontCharacter: bsiProperty('fileUploadIconDeleteFontCharacter', '\\F62A');
 $fileUploadDeleteButtonBackgroundColor: bsiProperty('fileUploadDeleteButtonBackgroundColor', #383e42);
