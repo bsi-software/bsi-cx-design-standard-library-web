@@ -2,8 +2,17 @@
     display: block;
 }
 
+.bsi-ce-edit-mode .bsi-element-carousel-be15d5 {
+    margin-top: 50px;
+}
+
 .bsi-element-carousel-be15d5 {
-    .carousel {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    pa
+
+    &.carousel {
         position: relative;
         width: 100%;
     }
@@ -17,12 +26,19 @@
         display: flex;
         width: 100%;
         transition: transform 400ms ease;
+        will-change: transform;
     }
 
     .carousel__slide {
         flex: 0 0 100%;
         width: 100%;
         min-width: 100%;
+        max-width: 100%;
+    }
+
+    .carousel__slide>.container {
+        width: 100%;
+        max-width: none;
     }
 
     .carousel__dots {
