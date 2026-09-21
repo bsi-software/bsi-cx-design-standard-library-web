@@ -43,18 +43,14 @@
         }
     }
 
-    @if $selector != "" {
-        #{$selector} {
-            @include formValidationStyleSheet.formValidationStyling(
-                $elementId: $elementId,
-                $errorColor: $errorColor,
-                $successColor: $successColor,
-                $errorIconFontName: $errorIconFontName,
-                $errorIconFontCharacter: unquote("\"#{$errorIconFontCharacter}\""),
-            );
-        }
-    }
     #{if($selector != "", $selector, '')} .bsi-element-#{$elementId} {
+        @include formValidationStyleSheet.formValidationStyling(
+            $errorColor: $errorColor,
+            $successColor: $successColor,
+            $errorIconFontName: $errorIconFontName,
+            $errorIconFontCharacter: $errorIconFontCharacter,
+        );
+
         --form-element-border-color: #{$borderColor};
         padding: properties.$spacing0;
         min-width: 0; // important: allows element to shrink below content size - requiered for text-overflow to work
