@@ -215,7 +215,7 @@ Alpine.data("formField", () => ({
     this.iti = intlTelInput(this.inputEl, {
       initialCountry: 'de',
       nationalMode: false,
-      loadUtils: () => import('intl-tel-input/build/js/utils.js'),
+      loadUtils: () => import('intl-tel-input/dist/js/utils.js'),
     });
   },
 

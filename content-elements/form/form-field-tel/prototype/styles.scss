@@ -1,7 +1,7 @@
-@import "~intl-tel-input/build/css/intlTelInput.min.css";
+@import "~intl-tel-input/dist/css/intlTelInput.min.css" layer(intl-tel-input);
 @import "./../../../../styles/properties.scss";
 
-$flagsImagePath: "~intl-tel-input/build/img/";
+$flagsImagePath: "~intl-tel-input/dist/img/";
 
 @mixin styles($id: "form-field-tel-fKUxNS", $flags: $flagsImagePath) {
   .bsi-element-#{$id}.bsi-form-tel-input {
@@ -9,8 +9,6 @@ $flagsImagePath: "~intl-tel-input/build/img/";
       display: block;
       --iti-path-flags-1x: url("#{$flags}flags.webp");
       --iti-path-flags-2x: url("#{$flags}flags@2x.webp");
-      --iti-path-globe-1x: url("#{$flags}globe.webp");
-      --iti-path-globe-2x: url("#{$flags}globe@2x.webp");
 
       .iti__dropdown-content {
         width: fit-content !important;

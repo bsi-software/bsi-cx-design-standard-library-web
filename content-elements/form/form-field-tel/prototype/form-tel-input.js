@@ -23,11 +23,11 @@ Alpine.data('telInput', () => ({
     this.iti = intlTelInput(this.inputField, {
       onlyCountries: onlyCountries,
       countrySearch: onlyCountries.length > 5 || onlyCountries.length == 0,
-      loadUtils: () => import('intl-tel-input/build/js/utils.js'),
-      hiddenInput: () => ({ phone: name }),
+      loadUtils: () => import('intl-tel-input/dist/js/utils.js'),
+      hiddenInputs: () => ({ phone: name }),
       separateDialCode: false, // If floating label is selected, only show country flag without country code
       initialCountry: initialCountry,
-      validationNumberTypes: ["FIXED_LINE_OR_MOBILE"],
+      matchDropdownWidth: false,
     });
 
     if (hasFloatingLabel) {
