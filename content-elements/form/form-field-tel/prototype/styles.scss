@@ -5,18 +5,11 @@ $flagsImagePath: "~intl-tel-input/dist/img/";
 
 @mixin styles($id: "form-field-tel-fKUxNS", $flags: $flagsImagePath) {
   .bsi-element-#{$id}.bsi-form-tel-input {
-    .iti {
+    .intl-tel-container {
       display: block;
       --iti-path-flags-1x: url("#{$flags}flags.webp");
       --iti-path-flags-2x: url("#{$flags}flags@2x.webp");
-
-      .iti__dropdown-content {
-        width: fit-content !important;
-      }
-
-      .iti__tel-input {
-        margin-top: 0.5rem !important;
-      }
+      margin-top: 0.5rem !important;
     }
 
     .form-floating .form-label {
