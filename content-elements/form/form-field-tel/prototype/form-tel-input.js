@@ -43,7 +43,7 @@ Alpine.data('telInput', () => {
       separateDialCode: false, // If floating label is selected, only show country flag without country code
       initialCountry: initialCountry,
       countryNameLocale: language,
-      uiTranslations: translations[language] || en,
+      uiTranslations: translations[language] || de,
       matchDropdownWidth: false,
       classNames: {
         container: "intl-tel-container",
