@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "github:bsi-software/bsi-cx-design-standard-library-web"
+    "url": "git+https://github.com/bsi-software/bsi-cx-design-standard-library-web.git"
   },
   "bugs": {
     "url": "https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues"
