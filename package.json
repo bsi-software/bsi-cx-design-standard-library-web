@@ -3,7 +3,10 @@
   "version": "1.5.2",
   "description": "Standard content element library for BSI CX.",
   "license": "MIT",
-  "repository": "github:bsi-software/bsi-cx-design-standard-library-web",
+  "repository": {
+    "type": "git",
+    "url": "github:bsi-software/bsi-cx-design-standard-library-web"
+  },
   "bugs": {
     "url": "https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues"
   },
