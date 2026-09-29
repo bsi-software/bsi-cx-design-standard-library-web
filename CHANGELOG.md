@@ -6,8 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
+
+
+## [1.5.2] - 29.09.2026
 * Add new formular input field for numbers in new formular
 * Archive Regex field for CX 25.2 and higher
+
+[1.5.2]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.5.2
 
 
 ## [1.5.1] - 15.07.2026
