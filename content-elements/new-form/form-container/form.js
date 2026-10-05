@@ -1,5 +1,11 @@
 import Alpine from "@alpinejs/csp";
 
+const { getUploadFileLocalizedTexts } = require("../../../core/main/localizedTexts");
+
+function textOf(selector) {
+    return this.$root.querySelector(selector)?.textContent.trim() ?? "";
+};
+
 Alpine.data("form", () => ({
     form: null,
     formErrorValueMissingText: null,
@@ -10,9 +16,9 @@ Alpine.data("form", () => ({
 
     init() {
         this.form = this.$root;
-        this.formErrorValueMissingText = this.$root.querySelector(".form-value-missing-error-text");
-        this.formErrorTypeMissmatchText = this.$root.querySelector(".form-type-missmatch-error-text");
-        this.formOtherError = this.$root.querySelector(".form-other-error-text");
+        this.formErrorValueMissingText = textOf(".form-value-missing-error-text");
+        this.formErrorTypeMissmatchText = textOf(".form-type-missmatch-error-text");
+        this.formOtherError = textOf(".form-other-error-text");
 
         // save all invalid-feedback error messages with id from elements and set aria values for all form controls
         this.form.querySelectorAll(".form-element input, .form-element textarea, .form-element select").forEach(formControlElement => {
@@ -104,6 +110,10 @@ Alpine.data("form", () => ({
      * @param {InputEvent} event for every input
      */
     formElementValidationOnInput(event) {
+        // Some browsers report value="" for an incomplete number (e.g. "1." before more digits); skip validation until then.
+        if (event.target?.type === "number" && event.target?.value == "") {
+            return;
+        }
         this._formElementValidation(event.target);
     },
 
@@ -330,21 +340,31 @@ Alpine.data("form", () => ({
         
         const validity = inputElement.validity;
         const validationMessage = inputElement.validationMessage;
+        const fieldErrorMessage = this.errorMessageMap[inputElement.id] || "";
 
-        if (validity.valueMissing) {
-            errorMessageElement.textContent = this.formErrorValueMissingText.textContent;
+        if (validity.badInput) {
+            errorMessageElement.textContent = getUploadFileLocalizedTexts("badInput");
+        }
+        else if (validity.valueMissing && inputElement.value.trim() === "") {
+            errorMessageElement.textContent = this.formErrorValueMissingText;
         }
         else if (validity.typeMismatch) {
-            errorMessageElement.textContent = this.formErrorTypeMissmatchText.textContent;
+            errorMessageElement.textContent = this.formErrorTypeMissmatchText;
         }
         else if (validity.patternMismatch) {
-            errorMessageElement.textContent = this.errorMessageMap[inputElement.id];
+            errorMessageElement.textContent = fieldErrorMessage;
+        }
+        else if (validity.rangeUnderflow || validity.rangeOverflow) {
+            errorMessageElement.textContent = getUploadFileLocalizedTexts("rangeError");
+        }
+        else if (validity.stepMismatch) {
+            errorMessageElement.textContent = getUploadFileLocalizedTexts("stepError");
         }
         else if (validationMessage == "placeholder is selected") {
-            errorMessageElement.textContent = this.errorMessageMap[inputElement.id];
+            errorMessageElement.textContent = fieldErrorMessage;
         }
-        else if (this.formOtherError !== "") {
-            errorMessageElement.textContent = this.formOtherError.textContent;
+        else if (this.formOtherError && this.formOtherError !== "") {
+            errorMessageElement.textContent = this.formOtherError;
         }
 
         this._setFeedbackVisibilityState(formElement, errorMessageElement.textContent.trim() !== "");
