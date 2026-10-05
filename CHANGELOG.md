@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
+* Add property check for opening the social media link in a new tab
 * Fix focus input field styling
+
 
 ## [1.5.2] - 29.09.2026
 * Add new formular input field for numbers in new formular
