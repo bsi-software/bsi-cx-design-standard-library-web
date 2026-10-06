@@ -8,7 +8,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * Add new formular input field for numbers in new formular
 * Archive Regex field for CX 25.2 and higher
-
+* Add new targetLink property in the button template twig
 
 ## [1.5.1] - 15.07.2026
 * Add new "Dynamic Dropdown with Value List"-Element
