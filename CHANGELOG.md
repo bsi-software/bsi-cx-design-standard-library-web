@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
+* Add fix for nested wenn dann group element
 * Add property check for opening the social media link in a new tab
 * Fix focus input field styling
 * Add new targetLink property in the button template twig
