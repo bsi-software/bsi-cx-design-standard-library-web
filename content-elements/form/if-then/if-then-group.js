@@ -5,16 +5,15 @@ Alpine.data("ifThenGroup", () => ({
   conditionInputs: null,
   ifInputType: "",
   root: "",
+
   init() {
     this.root = this.$root;
 
     this._initDependingGroups();
     this._initConditionInputs();
-    this._registerConditionListeners();
     this._setAriaControls();
     this._handlePrefilledConditions();
   },
-
   _initDependingGroups() {
     const dependingGroups = Array.from(
       this.$root.querySelectorAll(":scope > .then-container > .then-group"),
@@ -35,13 +34,16 @@ Alpine.data("ifThenGroup", () => ({
       ),
     }));
   },
-
   _initConditionInputs() {
     this.conditionInputs = Array.from(
       this.$root.querySelectorAll(
         ":scope > .if-container select, :scope > .if-container input",
       ),
     );
+
+    this.conditionInputs.forEach((input) => {
+      input.setAttribute("x-on:change", "toggleDependingGroups");
+    });
 
     const firstInput = this.conditionInputs.at(0);
 
@@ -53,26 +55,15 @@ Alpine.data("ifThenGroup", () => ({
     this.ifInputType =
       firstInput.tagName === "SELECT" ? "select" : firstInput.type;
   },
-
-  _registerConditionListeners() {
-    this.conditionInputs.forEach((input) => {
-      input.setAttribute("x-on:change", "toggleDependingGroups");
-    });
-  },
-
   _setAriaControls() {
-    if (this.conditionInputs.length === 1) {
-      this._setAriaControlsForSingleConditionInput();
-      return;
-    }
-
-    this._setAriaControlsForMultipleConditionInputs();
+    this.conditionInputs.length === 1
+      ? this._setAriaControlsForSingleConditionInput()
+      : this._setAriaControlsForMultipleConditionInputs();
   },
-
   _setAriaControlsForSingleConditionInput() {
     const controlIds = Array.from(
       this.$root.querySelectorAll(
-        ".then-container input, .then-container select",
+        ".then-container input, .then-container select", ".then-container textarea"
       ),
     )
       .map((input) => input.id)
@@ -80,7 +71,6 @@ Alpine.data("ifThenGroup", () => ({
 
     this.conditionInputs.at(0).setAttribute("aria-controls", controlIds);
   },
-
   _setAriaControlsForMultipleConditionInputs() {
     this.conditionInputs.forEach((radioInput) => {
       const controlIds = this.dependingObj
@@ -91,7 +81,6 @@ Alpine.data("ifThenGroup", () => ({
       radioInput.setAttribute("aria-controls", controlIds);
     });
   },
-
   _handlePrefilledConditions() {
     this.conditionInputs
       .filter((input) => this.ifInputType !== "radio" || input.checked)
