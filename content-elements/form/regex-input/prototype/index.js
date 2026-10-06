@@ -42,6 +42,7 @@ module.exports = (
   .withDescription(elementDescription)
   .withIcon(Icon.FORMFIELD)
   .withMinVersion(Version.CX_23_1)
+  .withArchivedMinVersion(Version.CX_25_2)
   .withStyleConfigs(require('../../../../configs/styles/form-regex-pattern'))
   .withParts(
     cx.part.formField

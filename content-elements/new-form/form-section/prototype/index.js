@@ -24,9 +24,6 @@ module.exports = (
   .withLabel(elementLabel)
   .withDescription(elementDescription)
   .withIcon(Icon.ONE_COLUMN)
-  .withStyleConfigs(
-    require("../../../../configs/styles/new-form-section-column-amount.js"),
-  )
   .withDropzones(
     cx.dropzone
       .withDropzone(dropzoneId)
