@@ -48,8 +48,8 @@
 
             // Success border intentionally stays separate from visible feedback,
             // because some fields have no success message but should still show a green border when valid.
-            &:has(input:user-valid), &:has(input.custom-valid), &:has(textarea:user-valid), &:has(select:user-valid) {
-                input:not([type="checkbox"], [type="radio"]), textarea, .file-upload {
+            &:has(input:not([type="search"]):user-valid), &:has(input.custom-valid), &:has(textarea:user-valid), &:has(select:user-valid) {
+                input:not([type="checkbox"], [type="radio"], [type="search"]), textarea, .file-upload {
                     --form-element-border-color: #{$successColor};
                 }
             }

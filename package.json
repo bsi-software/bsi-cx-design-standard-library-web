@@ -1,9 +1,12 @@
 {
   "name": "@bsi-cx/design-standard-library-web",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Standard content element library for BSI CX.",
   "license": "MIT",
-  "repository": "github:bsi-software/bsi-cx-design-standard-library-web",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsi-software/bsi-cx-design-standard-library-web.git"
+  },
   "bugs": {
     "url": "https://github.com/bsi-software/bsi-cx-design-standard-library-web/issues"
   },
@@ -24,7 +27,7 @@
     "@popperjs/core": "^2.11.8",
     "chart.js": "^4.4.1",
     "flatpickr": "^4.6.13",
-    "intl-tel-input": "^25.3.1",
+    "intl-tel-input": "^29.5.3",
     "sortablejs": "^1.15.0"
   },
   "devDependencies": {

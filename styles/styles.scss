@@ -1,6 +1,12 @@
 @import "./properties";
 @import "bootstrap/scss/bootstrap";
 
+
+:root {
+  --bs-success-rgb: 25, 135, 84;
+  --bs-danger-rgb: 220, 53, 69;
+}
+
 // Styles used by multiple content elements:
 // Columns
 .bsi-column-element {
@@ -202,7 +208,7 @@
 /******************************************************/
 
 
-@if $darkModeActive == true {
+@if $darkModeActive ==true {
   :root {
     color-scheme: light dark;
   }
@@ -228,9 +234,12 @@
       background-color: bsiProperty('layoutColoredBackgroundColorDarkMode', #3b3b3b) !important;
     }
   }
-} @else {
+}
+
+@else {
   :root {
     color-scheme: light;
+
   }
 }
 
