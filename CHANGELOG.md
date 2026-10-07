@@ -8,6 +8,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Next
 * Add property check for opening the social media link in a new tab
 * Fix focus input field styling
+* Add new iterator elements: "Iterator" (empty dropzone, duplicates any inserted element) and "Produkt Iterator" (prefilled with image, title, text and button)
+* Add `buttonLink` parameter to the button element template
 
 
 ## [1.5.2] - 29.09.2026
