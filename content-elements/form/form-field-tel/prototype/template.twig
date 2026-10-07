@@ -21,14 +21,14 @@
         <div class="bsi-form-input-element mb-3">
             <div class="form-label-and-info-text">
                 <label for="tel-field" class="form-label">{{ phoneLabelText }}</label>
-                <i  class="bi bi-info-circle" x-ref="fieldTooltip"
+                <i  class="bi bi-info-circle"
                     data-bs-toggle="tooltip"
                     data-bs-custom-class="bsi-tooltip"
                     role="tooltip"
                     aria-label="{{ phoneInfoText }}"></i>
             </div>
             <div class="input-container">
-                <div data-bsi-element-part="{{ phoneFormTextPartId }}" x-ref="infoText"
+                <div data-bsi-element-part="{{ phoneFormTextPartId }}"
                     class="form-text">{{ phoneInfoText }}</div>
                 <div>
                     <input x-ref="inputField"

@@ -1,6 +1,6 @@
 import Alpine from "@alpinejs/csp";
 import { Tooltip } from "bootstrap";
-import { FieldRules} from '@bsi-cx/web-frontend/dist/bsi-cx-web-frontend.js';
+import { FieldRules } from "@bsi-cx/web-frontend/dist/bsi-cx-web-frontend.js";
 
 Alpine.data("formElement", () => ({
   form: null,
@@ -11,27 +11,36 @@ Alpine.data("formElement", () => ({
     this.root = this.$root;
 
     if (this.root.classList.contains("bsi-form-label-floating")) {
-      this.form.querySelectorAll(".bsi-label-floating-element").forEach(this._initFloatingLabels);
+      this.form
+        .querySelectorAll(".bsi-label-floating-element")
+        .forEach(this._initFloatingLabels);
     }
 
-    if (
+    const useTooltip =
       this.root.classList.contains("bsi-form-info-as-tooltip") &&
       ["bsi-form-label-top", "bsi-form-label-left"].some((labelClass) =>
-        this.root.classList.contains(labelClass)
-      )
-    ) {
-      this.form.querySelectorAll(".bsi-form-element").forEach((formElement) => {
-        let infoTextField = formElement.querySelector(".form-text");
-        let tooltipIcon = formElement.querySelector("i");
-        if (infoTextField && infoTextField.innerText && tooltipIcon) {
-          tooltipIcon.classList.add("tooltip-visible");
-          tooltipIcon.parentElement.classList.add("contains-tooltip");
-          tooltipIcon.setAttribute("title", infoTextField.innerText);
-          infoTextField.setAttribute("style", "display: none;");
-          new Tooltip(tooltipIcon);
-        }
-      });
-    }
+        this.root.classList.contains(labelClass),
+      );
+    this.form.querySelectorAll(".bsi-form-element").forEach((formElement) => {
+      const infoTextField = formElement.querySelector(".form-text");
+      const tooltipIcon = formElement.querySelector("i");
+      const input = formElement.querySelector("input, select, textarea");
+      if (!infoTextField || !input || !infoTextField.innerText) {
+        return;
+      }
+      if (useTooltip && tooltipIcon) {
+        tooltipIcon.classList.add("tooltip-visible");
+        tooltipIcon.parentElement.classList.add("contains-tooltip");
+        tooltipIcon.setAttribute("title", infoTextField.innerText);
+        infoTextField.style.display = "none";
+        tooltipIcon.id = `${input.id}-info`;
+        input.setAttribute("aria-describedby", tooltipIcon.id);
+        new Tooltip(tooltipIcon);
+      } else {
+        infoTextField.id = `${input.id}-info`;
+        input.setAttribute("aria-describedby", infoTextField.id);
+      }
+    });
 
     this._initBsiCxWebFrontend();
   },
@@ -54,7 +63,7 @@ Alpine.data("formElement", () => ({
     let input = floatingElement.querySelector(".form-control");
     let label = floatingElement.querySelector(".form-label");
     let labelAndInfo = floatingElement.querySelector(
-      ".form-label-and-info-text"
+      ".form-label-and-info-text",
     );
     if (!input) {
       input = floatingElement.querySelector(".form-select");
@@ -96,11 +105,11 @@ Alpine.data("formElement", () => ({
 
   _validateRadioInput() {
     let radioElements = this.form.getElementsByClassName(
-      "bsi-form-radio-element"
+      "bsi-form-radio-element",
     );
     for (const radioElement of radioElements) {
       let radioInputs = Array.from(
-        radioElement.querySelectorAll(".form-check-input")
+        radioElement.querySelectorAll(".form-check-input"),
       );
       let radioValid = radioInputs.some((radio) => radio.checkValidity());
       var validationElement = radioElement.querySelector(".invalid-feedback");
@@ -116,34 +125,46 @@ Alpine.data("formElement", () => ({
 
   // set Aria describedby attribute - also relevant in form-tel-input.js and form-field.js
   _setAriaValues() {
-    this.form.querySelectorAll(".bsi-form-element")
-      .forEach(formField => {
-        var inputs = formField.querySelectorAll("input:not([type=hidden]), textarea, select");
-        if (formField.classList.contains("bsi-form-tel-input")) {
-          inputs = formField.querySelectorAll("input.form-control:not([type=hidden])");
+    this.form.querySelectorAll(".bsi-form-element").forEach((formField) => {
+      var inputs = formField.querySelectorAll(
+        "input:not([type=hidden]), textarea, select",
+      );
+      if (formField.classList.contains("bsi-form-tel-input")) {
+        inputs = formField.querySelectorAll(
+          "input.form-control:not([type=hidden])",
+        );
+      }
+      inputs.forEach((input) => {
+        const isInvalid = !input.checkValidity();
+
+        if (!isInvalid) {
+          return;
         }
-        inputs.forEach(input => {
-          input.setAttribute("aria-invalid", !input.checkValidity());
-          if ("ariaDescribedByElements" in Element.prototype) {
-            // Array should be empty if element is valid
-            var errorMessageElements = Array
-              .from(formField.querySelectorAll(".invalid-feedback"))
-              .filter((errorMessageElement) => window.getComputedStyle(errorMessageElement).display !== "none");
-            input.ariaDescribedByElements = errorMessageElements;
-          }
-        });
+
+        input.setAttribute("aria-invalid", "true");
+        if ("ariaDescribedByElements" in Element.prototype) {
+          // Array should be empty if element is valid
+          var errorMessageElements = Array.from(
+            formField.querySelectorAll(".invalid-feedback"),
+          ).filter(
+            (errorMessageElement) =>
+              window.getComputedStyle(errorMessageElement).display !== "none",
+          );
+          input.ariaDescribedByElements = errorMessageElements;
+        }
       });
+    });
   },
 
   _formValidationSummary() {
     if (this.root.classList.contains("bsi-form-show-valdiation-summary")) {
       let validationSummary = this.$root.querySelector(
-        ".form-validation-summary"
+        ".form-validation-summary",
       );
       let invalidElements = Array.from(
         this.form.querySelectorAll(
-          ".bsi-form-element:has([aria-invalid=true]) .form-label-and-info-text label"
-        )
+          ".bsi-form-element:has([aria-invalid=true]) .form-label-and-info-text label",
+        ),
       );
       let messageContainerList =
         this.form.querySelector(".form-validation-summary ul") ??
@@ -167,5 +188,5 @@ Alpine.data("formElement", () => ({
   _initBsiCxWebFrontend() {
     let fieldRules = new FieldRules();
     fieldRules.init();
-  }
+  },
 }));

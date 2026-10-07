@@ -7,19 +7,29 @@ Alpine.data("selectField", () => ({
   initSelectField() {
     this.rootElement = this.$root;
     this.selectElement = this.$el;
-    const selectedOption = this.selectElement.options[this.selectElement.selectedIndex].value;
-    
+    const selectedOption =
+      this.selectElement.options[this.selectElement.selectedIndex].value;
+
     if (this.rootElement.classList.contains("bsi-placeholder-defined")) {
-      if(selectedOption === this.selectElement.options[0].value) {
+      if (selectedOption === this.selectElement.options[0].value) {
         this.selectElement.options[0].setAttribute("selected", "");
       }
       this.selectElement.options[0].setAttribute("value", "");
     }
-
   },
 
   onInputChanged() {
-    this.$el.removeAttribute("aria-describedby");
-    this.$el.setAttribute("aria-invalid", !this.selectElement.checkValidity());
+    if (this.selectElement.checkValidity()) {
+      this.selectElement.setAttribute(
+        "aria-describedby",
+        `${this.selectElement.id}-info`,
+      );
+    } else {
+      this.selectElement.removeAttribute("aria-describedby");
+      this.selectElement.setAttribute(
+        "aria-invalid",
+        true,
+      );
+    }
   },
-}))
+}));

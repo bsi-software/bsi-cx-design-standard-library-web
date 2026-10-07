@@ -25,6 +25,7 @@ import '../../content-elements/form/poll/prototype/poll';
 import '../../content-elements/form/radio/prototype/radio';
 import '../../content-elements/form/select/prototype/select';
 import '../../content-elements/form/dynamic-select/prototype/dynamicSelect';
+import '../../content-elements/form/text-area/prototype/textarea';
 import '../../content-elements/new-form/form-container/form';
 import '../../content-elements/new-form/form-elements/form-fields/email-field/email';
 import '../../content-elements/new-form/form-elements/polls/stars/stars';
