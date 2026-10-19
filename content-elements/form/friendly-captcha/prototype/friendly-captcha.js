@@ -21,9 +21,8 @@ Alpine.data('friendlyCaptcha', () => ({
         }
 
         // Remove elements that are only needed for the editor/configuration view.
-        // The .siteKeyWrapper element is used in the builder/editor so the user can enter the SiteKey.
         // After widget initialization, this element is removed because it should not be visible in the final form.
-        this.$refs.siteKeyWrapper.remove();
+        this.$refs.siteKey.remove();
 
         // The .response-friendly-captcha field is a static replica of the field that the FriendlyCaptcha widget creates at runtime.
         // Our form system only recognizes fields for validation if they exist at render time.
