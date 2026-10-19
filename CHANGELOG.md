@@ -6,11 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Next
+
+
+
+## [1.5.3] - 19.10.2026
 * Add fix for nested wenn dann group element
+* Add new targetLink property in the button template twig
 * Add property check for opening the social media link in a new tab
 * Fix focus input field styling
-* Add new targetLink property in the button template twig
 * Static variable for Friendly Captcha siteKey
+
+[1.5.3]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.5.3
 
 
 ## [1.5.2] - 29.09.2026
