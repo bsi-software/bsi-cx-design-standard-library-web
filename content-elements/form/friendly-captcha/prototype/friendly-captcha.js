@@ -8,7 +8,7 @@ Alpine.data('friendlyCaptcha', () => ({
 
     init() {
         // SiteKey for Friendly Captcha, entered by the user in the editor.
-        let mySiteKey = this.$refs.siteKey.innerText;
+        let mySiteKey = this.$refs.siteKey.innerHTML;
 
         // Check if the captcha is marked as required
         let isRequired = true;
@@ -21,7 +21,6 @@ Alpine.data('friendlyCaptcha', () => ({
         }
 
         // Remove elements that are only needed for the editor/configuration view.
-        // The .siteKey element is used in the builder/editor so the user can enter the SiteKey.
         // After widget initialization, this element is removed because it should not be visible in the final form.
         this.$refs.siteKey.remove();
 
