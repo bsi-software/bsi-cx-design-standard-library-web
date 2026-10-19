@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Add property check for opening the social media link in a new tab
 * Fix focus input field styling
 * Add new targetLink property in the button template twig
+* Static variable for Friendly Captcha siteKey
 
 
 ## [1.5.2] - 29.09.2026
