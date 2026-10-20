@@ -12,7 +12,6 @@ const contentElements = [
   require('./accordion'),
   require('./button'),
   require('./card'),
-  require('./chart'),
   require('./figure'),
   require('./html'),
   require('./news-snippet'),

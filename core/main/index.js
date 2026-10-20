@@ -7,7 +7,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../../content-elements/advanced/webcam-image-upload/prototype/webcam-image-upload';
 import '../../content-elements/base/accordion/prototype/accordion';
 import '../../content-elements/base/button/prototype/button';
-import '../../content-elements/base/chart/prototype/chart';
 import '../../content-elements/base/news-snippet/prototype/news-snippet';
 import '../../content-elements/base/slot-finder/prototype/slot-finder';
 import '../../content-elements/base/table/prototype/table';

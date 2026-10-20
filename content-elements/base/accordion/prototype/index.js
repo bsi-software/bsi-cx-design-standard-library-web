@@ -54,7 +54,6 @@ module.exports = (
                 require('../../../base/video'),
                 require('../../../base/social-media-share'),
                 require('../../../base/social-media-follow'),
-                require('../../../base/chart'),
                 require('../../../base/html'),
                 require('../../../layout/spacer')
             ));
