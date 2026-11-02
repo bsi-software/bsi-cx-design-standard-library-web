@@ -1,6 +1,7 @@
 const {cx, Icon} = require('@bsi-cx/design-build');
 const {advancedElements} = require('../../advanced');
 const {contentElements} = require('../../base');
+const {iteratorElements} = require('../../iterator');
 
 const element = cx.contentElement;
 
@@ -33,6 +34,7 @@ element.withElementId('col-one-l2ZclN')
         require('../../base/banner'),
         ...contentElements,
         ...advancedElements,
+        ...iteratorElements,
         require('../../form/form-container'),
         require('../../new-form/form-container'),
         require('../../form/form-pin')));

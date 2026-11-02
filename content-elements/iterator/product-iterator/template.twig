@@ -1,0 +1,24 @@
+{% apply spaceless %}
+{% set productIteratorElementId = elementId ?: 'product-iterator-Qm7RtZ' %}
+    {% set productIteratorPartId = iteratorPartId ?: 'product-iterator-part-Vh3kXp' %}
+    {% set productIteratorDropzoneImageId = dropzoneImageId ?: 'product-iterator-dropzone-image-L8wNcd' %}
+    {% set productIteratorDropzoneContentId = dropzoneContentId ?: 'product-iterator-dropzone-content-T2pGfa' %}
+    {% set productIteratorName = iteratorName ?: 'Article' %}
+
+    <div data-bsi-element="{{ productIteratorElementId }}" data-bsi-element-part="{{ productIteratorPartId }}" data-bsi-iterator="{{ productIteratorName }}" class="bsi-element-product-iterator-Qm7RtZ bsi-iterator-element container">
+        <div class="row bsi-iterator-item" data-bsi-iterator-item="{{ productIteratorName }}">
+            <div class="col-12 col-md-6 bsi-iterator-image" data-bsi-dropzone="{{ productIteratorDropzoneImageId }}">
+                {% block product_iterator_dropzone_image %}
+                    {% include '../../base/figure/template.twig' %}
+                {% endblock %}
+            </div>
+            <div class="col-12 col-md-6 bsi-iterator-content" data-bsi-dropzone="{{ productIteratorDropzoneContentId }}">
+                {% block product_iterator_dropzone_content %}
+                    {% include '../../base/h3/template.twig' with {text: '{' ~ productIteratorName ~ '.Name}'} %}
+                    {% include '../../base/text/template.twig' with {text: '{' ~ productIteratorName ~ '.Description}'} %}
+                    {% include '../../base/button/template.twig' with {buttonText: '{' ~ productIteratorName ~ '.ActionButtonText}', buttonLink: '[' ~ productIteratorName ~ '.ActionButtonLink]'} %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endapply %}

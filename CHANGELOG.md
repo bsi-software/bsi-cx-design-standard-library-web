@@ -5,8 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Next
-
+## [1.6.0] - Next release
+* Add new iterator elements: "Iterator" (empty dropzone, duplicates any inserted element) and "Produkt Iterator" (prefilled with image, title, text and button)
+* Add `buttonLink` parameter to the button element template
 
 
 ## [1.5.3] - 19.10.2026
