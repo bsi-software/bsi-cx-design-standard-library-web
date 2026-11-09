@@ -9,7 +9,10 @@ const {contentElements} = require('../../base');
 module.exports = cx.contentElement
   .withFile(require('./template.twig'))
   .withElementId('iterator-Hn4sWq')
-  .withLabel('Iterator')
+  /*.withLabel('Iterator Container')*/
+  .withLabel('Iterator Container')
+  /*.withDescription('Repeats the contained elements for each entry in a list')*/
+  .withDescription('Wiederholt die enthaltenen Elemente für jeden Eintrag einer Liste')
   .withIcon(Icon.LIST)
   .withParts(
     cx.part.iterator
