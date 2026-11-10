@@ -9,7 +9,7 @@
     {% set selectInfoText = (infoText ?: properties.selectInfoText) ?: "" %}
     {% set selectErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
-    <div x-data="dynamicSelect" data-bsi-element="{{ selectElementId }}" class="{{ 'bsi-element-' ~ selectElementId }} mb-4 bsi-form-element bsi-form-flex-label" data-bsi-element-part="{{ selectElementPartId }}" data-bsi-entity-id="">
+    <div x-data="dynamicSelect" data-bsi-element="{{ selectElementId }}" class="{{ 'bsi-element-' ~ selectElementId }} mb-4 bsi-form-element bsi-form-flex-label" data-bsi-element-part="{{ selectElementPartId }}">
         <span class="placeholder d-none" data-bsi-element-part="{{ selectPlaceholderPartId }}">{{ selectOptionText }}</span>
         <div class="bsi-form-dynamic-select-element bsi-label-floating-element mb-3" role="alert" aria-live="polite">
             <div class="form-label-and-info-text">
