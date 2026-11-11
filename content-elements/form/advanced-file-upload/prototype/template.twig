@@ -21,7 +21,9 @@
             <div class="form-label-and-info-text">
                 <label data-bsi-element-part="label-text-f95479ef" for="field" class="form-label">{{ advFileUploadLabelText }}</label>
                 <div data-bsi-element-part="{{ advFileUploadTextPartId }}" class="form-text">{{ advFileUploadInfoText }}</div>
-                <i tabindex="0" class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ advFileUploadInfoText }}"></i>
+                <button type="button" class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" data-bs-title="{{ advFileUploadInfoText }}">
+                    <i class="bi bi-info-circle" aria-hidden="true"></i>
+                </button>
             </div>
             <div class="input-container">
                 <input x-init="initFormFieldInput" x-on:change="validateFileInput" type="file" class="form-control bsi-form-field-input advanced-file-upload-input" id="field" value="" multiple>
