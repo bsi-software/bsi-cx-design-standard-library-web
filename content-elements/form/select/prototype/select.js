@@ -14,6 +14,7 @@ Alpine.data("selectField", () => ({
         this.selectElement.options[0].setAttribute("selected", "");
       }
       this.selectElement.options[0].setAttribute("value", "");
+      this.selectElement.selectedIndex = this.selectElement.selectedIndex;
     }
 
   },
