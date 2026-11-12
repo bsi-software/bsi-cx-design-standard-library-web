@@ -8,7 +8,7 @@ Alpine.data('dynamicSelect', () => ({
         this.rootElement = this.$root;
         this.selectElement = this.$el;
         const input = this.rootElement.querySelector('input');
-        const selectedValue = input.value; //getAttribute('data-bsi-entity-key-value') || "";
+        const selectedValue = input.value;
 
         this.selectElement.id = input.id;
         this.selectElement.name = input.name;
