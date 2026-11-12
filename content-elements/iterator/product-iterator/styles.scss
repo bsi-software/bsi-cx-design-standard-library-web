@@ -1,0 +1,25 @@
+@import "../../../styles/properties";
+
+.bsi-element-product-iterator-Qm7RtZ {
+    > .bsi-iterator-item {
+        margin-bottom: 1.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        > .bsi-iterator-image figure {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: $md - 1px) {
+            > .bsi-iterator-image {
+                margin-bottom: 1rem;
+            }
+
+            .bsi-btn-element .btn {
+                width: 100%;
+            }
+        }
+    }
+}
