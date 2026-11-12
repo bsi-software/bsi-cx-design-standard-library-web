@@ -8,6 +8,7 @@ Alpine.data('dynamicSelect', () => ({
         this.rootElement = this.$root;
         this.selectElement = this.$el;
         const input = this.rootElement.querySelector('input');
+        const selectedValue = input.value;
 
         this.selectElement.id = input.id;
         this.selectElement.name = input.name;
@@ -17,7 +18,7 @@ Alpine.data('dynamicSelect', () => ({
         input.remove();
 
         const placeholder = this.rootElement.querySelector('.placeholder').textContent;
-        const options = await this.fetchBsiRestResource();
+        const options = await this.fetchBsiRestResource(selectedValue);
 
         if (placeholder) {
             this.selectElement.innerHTML = `<option value="">${placeholder}</option>` + options;
@@ -27,14 +28,14 @@ Alpine.data('dynamicSelect', () => ({
         }
     },
 
-    async fetchBsiRestResource() {
+    async fetchBsiRestResource(selected) {
         let bsiRestResource = this.rootElement.querySelector('.bsi-form-dynamic-select-element').dataset.bsiRestResource;
 
         const response = await fetch(bsiRestResource);
         const entity = await response.json();
 
          return entity.options
-                .map(option => `<option value="${option.id}">${option.text}</option>`)
+                .map(option => `<option value="${option.id}"${option.id === selected ? ' selected' : ''}>${option.text}</option>`)
                 .join("");
     },
 

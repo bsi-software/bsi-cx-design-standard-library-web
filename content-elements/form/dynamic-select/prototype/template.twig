@@ -9,7 +9,7 @@
     {% set selectInfoText = (infoText ?: properties.selectInfoText) ?: "" %}
     {% set selectErrorRequiredText = (errorRequiredText ?: properties.errorRequiredText) ?: 'Bitte füllen Sie dieses Feld aus.' %} {# TODO: make translatable #}
 
-    <div x-data="dynamicSelect" data-bsi-element="{{ selectElementId }}" class="{{ 'bsi-element-' ~ selectElementId }} mb-4 bsi-form-element bsi-form-flex-label" data-bsi-element-part="{{ selectElementPartId }}" data-bsi-entity-id="">
+    <div x-data="dynamicSelect" data-bsi-element="{{ selectElementId }}" class="{{ 'bsi-element-' ~ selectElementId }} mb-4 bsi-form-element bsi-form-flex-label" data-bsi-element-part="{{ selectElementPartId }}">
         <span class="placeholder d-none" data-bsi-element-part="{{ selectPlaceholderPartId }}">{{ selectOptionText }}</span>
         <div class="bsi-form-dynamic-select-element bsi-label-floating-element mb-3" role="alert" aria-live="polite">
             <div class="form-label-and-info-text">
@@ -17,7 +17,7 @@
                 <div data-bsi-element-part="{{ selectFormTextPartId }}" class="form-text">{{ selectInfoText }}</div>
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ selectInfoText }}"></i>
             </div>
-            <select x-init="initDynamicSelectfield" class="form-select" x-on:input="onInputChanged" data-bsi-entity-key-value="" data-bsi-entity-key-display-text="">
+            <select x-init="initDynamicSelectfield" class="form-select" x-on:input="onInputChanged">
                 <option value=""></option>
             </select>
             <div data-bsi-element-part="{{ selectErrorRequiredPartId }}" class="invalid-feedback"> {{ selectErrorRequiredText }} </div>
