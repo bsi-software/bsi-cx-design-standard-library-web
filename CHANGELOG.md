@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.6.0] - Next release
-* Add new iterator elements: "Iterator" (empty dropzone, duplicates any inserted element) and "Produkt Iterator" (prefilled with image, title, text and button)
+* Add new iterator elements: "Iterator Container" (empty dropzone, duplicates any inserted element) and "Produktliste" (prefilled with image, title, text and button)
 * Add `buttonLink` parameter to the button element template
 
 
