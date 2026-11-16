@@ -13,7 +13,9 @@
             <div class="form-label-and-info-text">
                 <label for="select" class="form-label">{{ selectLabelText }}</label>
                 <div data-bsi-element-part="{{ selectFormTextPartId }}" class="form-text">{{ selectInfoText }}</div>
-                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" role="tooltip" aria-label="{{ selectInfoText }}"></i>
+               <button type="button" class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" data-bs-title="{{ selectInfoText }}">
+                    <i class="bi bi-info-circle" aria-hidden="true"></i>
+                </button>
             </div>
             <select x-init="initSelectField" class="form-select" id="select" x-on:input="onInputChanged">
                 <option value="">{{ selectOptionText }}</option>

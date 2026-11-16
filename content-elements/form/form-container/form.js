@@ -22,17 +22,31 @@ Alpine.data("formElement", () => ({
     ) {
       this.form.querySelectorAll(".bsi-form-element").forEach((formElement) => {
         let infoTextField = formElement.querySelector(".form-text");
-        let tooltipIcon = formElement.querySelector("i");
+        infoTextField?.classList.add("visually-hidden");
+        let tooltipIcon = formElement.querySelector('button[data-bs-toggle="tooltip"]');
         if (infoTextField && infoTextField.innerText && tooltipIcon) {
           tooltipIcon.classList.add("tooltip-visible");
           tooltipIcon.parentElement.classList.add("contains-tooltip");
-          tooltipIcon.setAttribute("title", infoTextField.innerText);
-          infoTextField.setAttribute("style", "display: none;");
-          new Tooltip(tooltipIcon);
+          tooltipIcon.setAttribute("data-bs-title", infoTextField.innerText);
+          tooltipIcon.setAttribute("aria-label", infoTextField.innerText);
+          new Tooltip(tooltipIcon, {
+            trigger: 'hover focus',
+            delay: { show: 0, hide: 200 }
+          });
+        } else if (tooltipIcon) {
+          tooltipIcon.remove();
         }
-      });
-    }
-
+        if (infoTextField && infoTextField.innerText) {
+          let infoTextFieldId = self.crypto.randomUUID();
+          infoTextField.setAttribute("id", infoTextFieldId);
+          formElement.querySelectorAll("input, textarea, select").forEach((input) => {
+            input.setAttribute("aria-describedby", infoTextFieldId);
+          });
+        }
+        });
+      } else {
+        this.form.querySelectorAll('button[data-bs-toggle="tooltip"]').forEach((button) => button.remove());
+      }
     this._initBsiCxWebFrontend();
   },
 

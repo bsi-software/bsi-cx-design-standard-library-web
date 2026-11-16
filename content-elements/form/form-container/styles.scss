@@ -314,21 +314,18 @@ input[type=reset][disabled] {
 
 .form-label-and-info-text,
 .checkbox-label-and-tooltip {
-  &.contains-tooltip {
-    display: flex;
+  display: flex;
     gap: 0.5rem;
-
-    .form-text {
-      display: none;
-    }
   }
 
-  i.bi-info-circle {
+  button[data-bs-toggle="tooltip"] {
     display: none;
+  }
 
-    &.tooltip-visible {
-      display: block;
-    }
+  &.bsi-form-info-as-tooltip button[data-bs-toggle="tooltip"].tooltip-visible {
+    display: block;
+    min-width: 24px;
+    min-height: 24px;
   }
 }
 
@@ -349,7 +346,6 @@ input[type=reset][disabled] {
 
 &.bsi-form-show-valdiation-summary form.was-validated .form-validation-summary {
   display: block;
-}
 }
 
 .bsi-tooltip {
