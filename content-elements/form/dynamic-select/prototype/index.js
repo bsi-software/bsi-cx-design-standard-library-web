@@ -1,4 +1,4 @@
-const {cx, Icon} = require('@bsi-cx/design-build');
+const {cx, Icon, Version} = require('@bsi-cx/design-build');
 
 /**
  * @param {string} template
@@ -33,6 +33,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withMinVersion(Version.CX_25_2)
   .withIcon(Icon.DROPDOWN)
   .withParts(
       cx.part.basicDynamicValueList
