@@ -21,6 +21,9 @@
 	<fieldset data-bsi-element-part="{{ pollElementPartId }}" data-bsi-form-field-fixed-type>
 		<legend class="form-label"><label for="poll-input">{{ pollLabelText }}</label></legend>
 		<div data-bsi-element-part="{{ pollFormTextPartId }}" class="form-text">{{ pollInfoText }}</div>
+		<button type="button" class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" data-bs-title="{{ pollInfoText }}">
+			<i class="bi bi-info-circle" aria-hidden="true"></i>
+		</button>
 		<input type="number" readonly="readonly" name="poll-input" id="poll-input" min="{{ npsStart }}" max="10" step="1" value="" required="" class="d-none" />
 		<div role="radiogroup" class="bsi-poll-radio-group d-flex flex-wrap">
 			{% for value in range(0,10) %}

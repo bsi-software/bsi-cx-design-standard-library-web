@@ -5,11 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Next
+## [1.6.0] - 17.11.2026
+* Add new iterator elements: "Iterator Container" (empty dropzone, duplicates any inserted element) and "Produktliste" (prefilled with image, title, text and button)
+* Add script for testing changes with templates
+* Archive if-then group for version > 24.2
+* Dynamic Select:
+  * Fix error caused by element
+  * Enable prefill of element
+  * Add min-version
+* Make tooltips of form fields more accessible
 
+[1.6.0]: https://github.com/bsi-software/bsi-cx-design-standard-library-web/releases/tag/1.6.0
 
 
 ## [1.5.3] - 19.10.2026
+* Add `buttonTargetLink` parameter to the button element template
 * Add fix for nested wenn dann group element
 * Add new targetLink property in the button template twig
 * Add property check for opening the social media link in a new tab
