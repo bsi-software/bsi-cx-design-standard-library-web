@@ -8,7 +8,6 @@ Alpine.data('dynamicSelect', () => ({
         this.rootElement = this.$root;
         this.selectElement = this.$el;
         const input = this.rootElement.querySelector('input');
-        const selectedValue = input.value;
 
         // Init Options
         const placeholder = this.rootElement.querySelector('.placeholder').textContent;
@@ -16,9 +15,9 @@ Alpine.data('dynamicSelect', () => ({
             this.selectElement.add(new Option(placeholder, ''));
         }
         await this.fetchOptionsFromUrl();
-        this.selectElement.value = selectedValue
 
         // set values from input
+        this.selectElement.value = input.value;
         this.selectElement.id = input.id;
         this.selectElement.name = input.name;
         if (input.hasAttribute('required')) {
