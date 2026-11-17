@@ -8,8 +8,10 @@ const {cx, Icon} = require('@bsi-cx/design-build');
 module.exports = cx.contentElement
   .withFile(require('./template.twig'))
   .withElementId('product-iterator-Qm7RtZ')
-  /*.withLabel('Product Iterator')*/
-  .withLabel('Produkt Iterator')
+  /*.withLabel('Product list')*/
+  .withLabel('Produktliste')
+  /*.withDescription('Product list containing name, description and detail link (includes iterator container)')*/
+  .withDescription('Produktliste mit Name, Beschreibung und Detail-Link (inkl. Iterator-Container)')
   .withIcon(Icon.TEXT_WITH_IMAGE)
   .withParts(
     cx.part.iterator
