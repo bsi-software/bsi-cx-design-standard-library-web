@@ -168,6 +168,11 @@
             padding-top: 7px;
           }
         }
+
+        &.bsi-form-radio-element .bsi-form-input-element > .form-text {
+          flex-basis: 100%;
+        }
+
       }
     }
   }
@@ -315,10 +320,12 @@
   .form-label-and-info-text,
   .checkbox-label-and-tooltip {
     display: flex;
-    gap: 0.5rem;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
+
+    .form-label {
+      margin-bottom: 0;
+    }
   }
 
   .form-label-and-info-text .form-text {
@@ -330,10 +337,19 @@
     display: none;
   }
 
-  &.bsi-form-info-as-tooltip button[data-bs-toggle="tooltip"].tooltip-visible {
-    display: block;
-    min-width: 24px;
-    min-height: 24px;
+  &.bsi-form-info-as-tooltip {
+    button[data-bs-toggle="tooltip"].tooltip-visible {
+      display: block;
+      min-width: 24px;
+      min-height: 24px;
+    }
+
+    .form-label-and-info-text,
+    .checkbox-label-and-tooltip {
+      &:has(> button[data-bs-toggle="tooltip"].tooltip-visible) {
+        gap: 0.5rem;
+      }
+    }
   }
 
   .input-container {
@@ -349,6 +365,31 @@
   &.bsi-form-info-below-input .input-container {
     display: flex;
     flex-direction: column-reverse;
+  }
+
+  &.bsi-form-label-top.bsi-form-info-below-input {
+    :is(.bsi-form-input-element, .bsi-form-dynamic-select-element):has(> .form-label-and-info-text > .form-text):not(:has(> .input-container)) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      > .form-label-and-info-text {
+        display: contents;
+      }
+      > .form-select,
+      > .form-control {
+        flex-basis: 100%;
+        order: 1;
+      }
+      > .invalid-feedback {
+        flex-basis: 100%;
+        order: 2;
+      }
+      .form-text {
+        flex-basis: 100%;
+        order: 3;
+      }
+    }
   }
 
   &.bsi-form-show-valdiation-summary form.was-validated .form-validation-summary {
