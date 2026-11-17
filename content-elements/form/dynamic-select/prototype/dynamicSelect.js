@@ -9,33 +9,36 @@ Alpine.data('dynamicSelect', () => ({
         this.selectElement = this.$el;
         const input = this.rootElement.querySelector('input');
 
+        // Init Options
+        const placeholder = this.rootElement.querySelector('.placeholder').textContent;
+        if(placeholder){
+            this.selectElement.add(new Option(placeholder, ''));
+        }
+        await this.fetchOptionsFromUrl();
+
+        // set values from input
+        this.selectElement.value = input.value;
         this.selectElement.id = input.id;
         this.selectElement.name = input.name;
-        if(input.hasAttribute('required')) {
+        if (input.hasAttribute('required')) {
             this.selectElement.setAttribute('required', true);
         }
         input.remove();
-
-        const placeholder = this.rootElement.querySelector('.placeholder').textContent;
-        const options = await this.fetchBsiRestResource();
-
-        if (placeholder) {
-            this.selectElement.innerHTML = `<option value="">${placeholder}</option>` + options;
-        }
-        else {
-            this.selectElement.innerHTML = options;
-        }
     },
 
-    async fetchBsiRestResource() {
-        let bsiRestResource = this.rootElement.querySelector('.bsi-form-dynamic-select-element').dataset.bsiRestResource;
-
-        const response = await fetch(bsiRestResource);
-        const entity = await response.json();
-
-         return entity.options
-                .map(option => `<option value="${option.id}">${option.text}</option>`)
-                .join("");
+    async fetchOptionsFromUrl() {
+        const bsiRestResource = this.rootElement.querySelector('.bsi-form-dynamic-select-element').dataset.bsiRestResource;
+        try {
+            const response = await fetch(bsiRestResource);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            const entity = await response.json();
+            entity.options
+                .forEach(option => this.selectElement.add(new Option(option.text, option.id)));
+        } catch (error) {
+            console.error(`Dynamic select: could not load options from "${bsiRestResource}".`, error);
+        }
     },
 
     onInputChanged() {
