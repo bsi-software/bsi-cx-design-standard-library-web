@@ -13,12 +13,11 @@
     <div x-data="formRadio" data-bsi-element="{{ radioElementId }}" class="{{ 'bsi-element-' ~ radioElementId }} mb-4 bsi-form-element bsi-form-radio-element bsi-form-flex-label {{ radioOrientationStyle }}" data-bsi-element-part="{{ radioElementPartId }}">
         <fieldset class="bsi-form-input-element">
             <legend class="form-label-and-info-text">
-                <span class="form-label pt-0">{{ radioGroupLabelText }}</span>
+                <label class="form-label pt-0">{{ radioGroupLabelText }}</label>
                 <button type="button" class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" data-bs-title="{{ radioInfoText }}">
                     <i class="bi bi-info-circle" aria-hidden="true"></i>
                 </button>
             </legend>
-            <div data-bsi-element-part="{{ radioFormTextPartId }}" class="form-text">{{ radioInfoText }}</div>
             <div data-bsi-radio-group="" class="form-radio">
                 <div class="form-check" data-bsi-radio-item="">
                     <input x-on:change="validateInput" class="form-check-input" type="radio" name="radio" id="radio1">
@@ -27,6 +26,7 @@
             </div>
         </fieldset>
         <div class="radio-info">
+            <div data-bsi-element-part="{{ radioFormTextPartId }}" class="form-text">{{ radioInfoText }}</div>
             <div data-bsi-element-part="{{ radioErrorRequiredPartId }}" class="invalid-feedback">{{ radioErrorRequiredText }}</div>
         </div>
     </div>
