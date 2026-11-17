@@ -1,4 +1,4 @@
-const { cx, Icon } = require('@bsi-cx/design-build');
+const { cx, Icon, Version } = require('@bsi-cx/design-build');
 const { formElements } = require('../../../index');
 const multiColumn = require('../../../multi-column');
 
@@ -21,6 +21,7 @@ module.exports = (
   .withFile(template)
   .withElementId(elementId)
   .withLabel(elementLabel)
+  .withArchivedMinVersion(Version.CX_25_1)
   .withDescription(elementDescription)
   .withIcon(Icon.HANDSHAKE)
   .withStyleConfigs(require('../../../../../configs/styles/then-group-required'))

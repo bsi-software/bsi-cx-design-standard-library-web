@@ -12,6 +12,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Fix error caused by dynamic-select element
 * Prefill of dynamic-select element
 * Versioning for dynamic-select element
+* Archive if-then group for version > 24.2
 
 
 ## [1.5.3] - 19.10.2026
