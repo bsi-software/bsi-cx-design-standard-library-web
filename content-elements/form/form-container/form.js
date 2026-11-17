@@ -14,24 +14,43 @@ Alpine.data("formElement", () => ({
       this.form.querySelectorAll(".bsi-label-floating-element").forEach(this._initFloatingLabels);
     }
 
-    if (
+    const showTooltips =
       this.root.classList.contains("bsi-form-info-as-tooltip") &&
       ["bsi-form-label-top", "bsi-form-label-left"].some((labelClass) =>
         this.root.classList.contains(labelClass)
-      )
-    ) {
-      this.form.querySelectorAll(".bsi-form-element").forEach((formElement) => {
-        let infoTextField = formElement.querySelector(".form-text");
-        let tooltipIcon = formElement.querySelector("i");
-        if (infoTextField && infoTextField.innerText && tooltipIcon) {
-          tooltipIcon.classList.add("tooltip-visible");
-          tooltipIcon.parentElement.classList.add("contains-tooltip");
-          tooltipIcon.setAttribute("title", infoTextField.innerText);
-          infoTextField.setAttribute("style", "display: none;");
-          new Tooltip(tooltipIcon);
-        }
-      });
-    }
+    );
+
+    this.form.querySelectorAll(".bsi-form-element").forEach((formElement) => {
+      const infoTextField = formElement.querySelector(".form-text");
+      const infoText = infoTextField?.innerText;
+      const tooltipIcon = formElement.querySelector('button[data-bs-toggle="tooltip"]');
+
+      // Always link the info text to its input via aria-describedby, regardless of whether
+      // it is shown as a tooltip or as visible text.
+      if (infoText) {
+        const infoTextFieldId = self.crypto.randomUUID();
+        infoTextField.setAttribute("id", infoTextFieldId);
+        formElement.querySelectorAll("input, textarea, select").forEach((input) => {
+          input.setAttribute("aria-describedby", infoTextFieldId);
+        });
+      }
+
+      // Show the info text as a tooltip if the tooltip style is enabled.
+      // Otherwise remove the unused button to avoid an empty, unlabeled button in the DOM.
+      if (showTooltips && infoText && tooltipIcon) {
+        infoTextField.classList.add("visually-hidden");
+        tooltipIcon.classList.add("tooltip-visible");
+        tooltipIcon.parentElement.classList.add("contains-tooltip");
+        tooltipIcon.setAttribute("data-bs-title", infoText);
+        tooltipIcon.setAttribute("aria-label", infoText);
+        new Tooltip(tooltipIcon, {
+          trigger: "hover focus",
+          delay: { show: 0, hide: 200 }
+        });
+      } else {
+        tooltipIcon?.remove();
+      }
+    });
 
     this._initBsiCxWebFrontend();
   },

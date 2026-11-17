@@ -21,11 +21,9 @@
         <div class="bsi-form-input-element mb-3">
             <div class="form-label-and-info-text">
                 <label for="tel-field" class="form-label">{{ phoneLabelText }}</label>
-                <i  class="bi bi-info-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-custom-class="bsi-tooltip"
-                    role="tooltip"
-                    aria-label="{{ phoneInfoText }}"></i>
+                <button type="button" class="btn btn-link p-0" data-bs-toggle="tooltip" data-bs-custom-class="bsi-tooltip" data-bs-title="{{ phoneInfoText }}">
+                    <i class="bi bi-info-circle" aria-hidden="true"></i>
+                </button>
             </div>
             <div class="input-container">
                 <div data-bsi-element-part="{{ phoneFormTextPartId }}"

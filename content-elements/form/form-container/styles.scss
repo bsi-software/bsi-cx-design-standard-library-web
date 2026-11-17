@@ -168,6 +168,11 @@
             padding-top: 7px;
           }
         }
+
+        &.bsi-form-radio-element .bsi-form-input-element > .form-text {
+          flex-basis: 100%;
+        }
+
       }
     }
   }
@@ -208,148 +213,188 @@
     "secondary": $secondary
   );
 
-@each $name, $color in $colors {
+  @each $name, $color in $colors {
 
-  &.bsi-form-color-#{$name} {
-    input:checked {
-      background-color: $color;
-      border-color: $color;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: rgba($color, .25);
-      box-shadow: 0 0 0 .25rem rgba($color, .25);
-    }
-
-    &.bsi-form-btn-outline .btn-submit {
-      color: $color;
-      background-color: transparent;
-      border-color: $color;
-
-      &:hover {
-        color: $light;
+    &.bsi-form-color-#{$name} {
+      input:checked {
         background-color: $color;
         border-color: $color;
       }
-    }
 
-    &.bsi-form-btn-filled .btn-submit {
-      color: $light;
-      background-color: $color;
-      border-color: $color;
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: rgba($color, .25);
+        box-shadow: 0 0 0 .25rem rgba($color, .25);
+      }
 
-      &:hover {
+      &.bsi-form-btn-outline .btn-submit {
         color: $color;
         background-color: transparent;
         border-color: $color;
+
+        &:hover {
+          color: $light;
+          background-color: $color;
+          border-color: $color;
+        }
+      }
+
+      &.bsi-form-btn-filled .btn-submit {
+        color: $light;
+        background-color: $color;
+        border-color: $color;
+
+        &:hover {
+          color: $color;
+          background-color: transparent;
+          border-color: $color;
+        }
+      }
+
+      input[type=range]::-webkit-slider-thumb {
+        background: $color;
+      }
+
+      input[type=range]::-moz-range-thumb {
+        background: $color;
+      }
+
+      /* Firefox */
+
+      input[type=range]::-ms-thumb {
+        background: $color;
+      }
+
+      /* IE */
+
+      input[type=range]:focus::-webkit-slider-thumb {
+        box-shadow: 0 0 0 .25rem rgba($color, .25);
+      }
+
+      input[type=range]:focus::-moz-range-thumb {
+        box-shadow: 0 0 0 .25rem rgba($color, .25);
+      }
+
+      /* Firefox */
+
+      input[type=range]:focus::-ms-thumb {
+        box-shadow: 0 0 0 .25rem rgba($color, .25);
+      }
+
+      /* IE */
+
+      i.bi-info-circle {
+        color: $color;
       }
     }
-
-    input[type=range]::-webkit-slider-thumb {
-      background: $color;
-    }
-
-    input[type=range]::-moz-range-thumb {
-      background: $color;
-    }
-
-    /* Firefox */
-
-    input[type=range]::-ms-thumb {
-      background: $color;
-    }
-
-    /* IE */
-
-    input[type=range]:focus::-webkit-slider-thumb {
-      box-shadow: 0 0 0 .25rem rgba($color, .25);
-    }
-
-    input[type=range]:focus::-moz-range-thumb {
-      box-shadow: 0 0 0 .25rem rgba($color, .25);
-    }
-
-    /* Firefox */
-
-    input[type=range]:focus::-ms-thumb {
-      box-shadow: 0 0 0 .25rem rgba($color, .25);
-    }
-
-    /* IE */
-
-    i.bi-info-circle {
-      color: $color;
-    }
   }
-}
 
 
-&.bsi-form-btn-filled .btn-outline-info {
-  color: $light;
-  background-color: $dark;
-  border-color: $dark;
-
-  &:hover {
-    color: $dark;
-    background-color: transparent;
+  &.bsi-form-btn-filled .btn-outline-info {
+    color: $light;
+    background-color: $dark;
     border-color: $dark;
+
+    &:hover {
+      color: $dark;
+      background-color: transparent;
+      border-color: $dark;
+    }
   }
-}
 
-input[type=submit],
-input[type=reset],
-.bsi-btn-element {
-  margin: 0 0.25rem 0.25rem 0 !important;
-}
+  input[type=submit],
+  input[type=reset],
+  .bsi-btn-element {
+    margin: 0 0.25rem 0.25rem 0 !important;
+  }
 
-input[type=reset][disabled] {
-  display: none;
-}
+  input[type=reset][disabled] {
+    display: none;
+  }
 
-.text-danger {
-  list-style-type: none;
-}
+  .text-danger {
+    list-style-type: none;
+  }
 
-.form-label-and-info-text,
-.checkbox-label-and-tooltip {
-  &.contains-tooltip {
+  .form-label-and-info-text,
+  .checkbox-label-and-tooltip {
     display: flex;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .form-label {
+      margin-bottom: 0;
+    }
+  }
+
+  .form-label-and-info-text .form-text {
+    flex-basis: 100%;
+    order: 1;
+  }
+  
+  button[data-bs-toggle="tooltip"] {
+    display: none;
+  }
+
+  &.bsi-form-info-as-tooltip {
+    button[data-bs-toggle="tooltip"].tooltip-visible {
+      display: block;
+      min-width: 24px;
+      min-height: 24px;
+    }
+
+    .form-label-and-info-text,
+    .checkbox-label-and-tooltip {
+      &:has(> button[data-bs-toggle="tooltip"].tooltip-visible) {
+        gap: 0.5rem;
+      }
+    }
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 
     .form-text {
-      display: none;
+      margin: 0;
     }
   }
 
-  i.bi-info-circle {
-    display: none;
+  &.bsi-form-info-below-input .input-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 
-    &.tooltip-visible {
-      display: block;
+  &.bsi-form-label-top.bsi-form-info-below-input {
+    :is(.bsi-form-input-element, .bsi-form-dynamic-select-element):has(> .form-label-and-info-text > .form-text):not(:has(> .input-container)) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      > .form-label-and-info-text {
+        display: contents;
+      }
+      > .form-select,
+      > .form-control {
+        flex-basis: 100%;
+        order: 1;
+      }
+      > .invalid-feedback {
+        flex-basis: 100%;
+        order: 2;
+      }
+      .form-text {
+        flex-basis: 100%;
+        order: 3;
+      }
     }
   }
-}
 
-.input-container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-
-  .form-text {
-    margin: 0;
+  &.bsi-form-show-valdiation-summary form.was-validated .form-validation-summary {
+    display: block;
   }
-}
-
-&.bsi-form-info-below-input .input-container {
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-&.bsi-form-show-valdiation-summary form.was-validated .form-validation-summary {
-  display: block;
-}
 }
 
 .bsi-tooltip {
