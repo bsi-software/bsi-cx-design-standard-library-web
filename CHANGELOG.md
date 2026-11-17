@@ -8,6 +8,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.6.0] - Next release
 * Add new iterator elements: "Iterator Container" (empty dropzone, duplicates any inserted element) and "Produktliste" (prefilled with image, title, text and button)
 * Add `buttonLink` parameter to the button element template
+* Add script for testing changes with templates
 * Fix error caused by dynamic-select element
 * Prefill of dynamic-select element
 * Versioning for dynamic-select element
